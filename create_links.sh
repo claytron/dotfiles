@@ -11,6 +11,7 @@ remove="$1"
 dotfiles=(
     .screenrc
     .vimrc
+    .zprofile
     .zshenv
     .zshprompt
     .zshprompt_simple
