@@ -15,7 +15,7 @@ function checkPath() {
     done
 
     # set the file separator back to normal
-    IFS=$IFS
+    IFS=$OIFS
     
     # the zsh compatible version
     for dir in $path
