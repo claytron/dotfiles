@@ -100,7 +100,7 @@ Here is how I typically set up my shell on a new system.  This is assuming
 subversion is available.  You could do something similar with git, but I 
 haven't messed with that yet.
 
-    $ svn co https://path/to/dotfiles .dotfiles
+    $ svn co https://repo/path/to/dotfiles/trunk .dotfiles
     $ .dotfiles/create_links.sh
     linking .screenrc
     linking .vimrc
