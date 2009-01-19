@@ -37,8 +37,10 @@ for dotfile in "${dotfiles[@]}"
             to_create=$HOME/$dotfile
         fi
         if [[ $remove == "unlink" ]]; then
-            rm $to_create
-            echo "Unlinked $to_create"
+            if [ -e $to_create ]; then
+                rm $to_create
+                echo "Unlinked $to_create"
+            fi
         else
             # symlink the conf file
             if [ ! -e $to_create ]; then
