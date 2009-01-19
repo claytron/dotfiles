@@ -155,7 +155,7 @@ if ! checkPath mate; then
     # write out a custom .ackrc
     ack_rc="
 # only search case sensitive if there are capital letters
---smart−case
+--smart-case
 
 # follow symlinks
 --follow
