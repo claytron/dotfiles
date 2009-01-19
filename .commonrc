@@ -9,7 +9,7 @@ alias zRehash='. ~/.zshrc'
 # switch over to the simple prompt
 alias sp='. ~/.zshprompt_simple'
 # re link all the conf files
-alias qs='~/.myconfs/create_links.sh'
+alias qs='~/.dotfiles/create_links.sh'
 
 # prefer vim over vi
 if checkPath vim; then
@@ -172,6 +172,9 @@ if ! checkPath mate; then
 
 # add .cfg for buildout files
 #--type-set buildout=.cfg
+
+# add markdown
+#--type-set markdown=.md,.mdown,.markdown,.mkdn
 
 ################################################"
 

@@ -28,7 +28,7 @@ fi
 
 # setting these here since the .ackrc can't cope with type-set or type-add yet
 # http://code.google.com/p/ack/issues/detail?id=106
-export ACK_OPTIONS="--type-add plone=.zcml,.props,.metadata,.dtml --type-add html=.css --type-set buildout=.cfg"
+export ACK_OPTIONS="--type-add plone=.zcml,.props,.metadata,.dtml --type-add html=.css --type-set buildout=.cfg --type-add markdown=.md,.mdown,.markdown,.mkdn"
 
 # get crazy with python, and the cheese whiz
 export PYTHONSTARTUP=$HOME/.pystartup

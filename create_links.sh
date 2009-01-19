@@ -6,6 +6,8 @@
 # checking out to the remote machine
 ########################################
 
+remove="$1"
+
 dotfiles=(
     .screenrc
     .vimrc
@@ -26,21 +28,26 @@ dotfiles=(
 
 for dotfile in "${dotfiles[@]}"
     do
-        the_dotfile=$HOME/.myconfs/$dotfile
+        the_dotfile=$HOME/.dotfiles/$dotfile
         # subversion config is an exception
         if [ $dotfile == 'config' ]; then
             to_create=$HOME/.subversion/$dotfile
         else
             to_create=$HOME/$dotfile
         fi
-        # symlink the conf file
-        if [ ! -e $to_create ]; then
-            echo "linking $dotfile"
-            ln -s $the_dotfile $to_create
-        fi
-        # warn the user that an existing file is in the way
-        if [ ! -h $to_create -a -e $to_create ]; then
-            echo "Remove $to_create so that it can be linked"
+        if [[ $remove == "unlink" ]]; then
+            rm $to_create
+            echo "Unlinked $to_create"
+        else
+            # symlink the conf file
+            if [ ! -e $to_create ]; then
+                echo "linking $dotfile"
+                ln -s $the_dotfile $to_create
+            fi
+            # warn the user that an existing file is in the way
+            if [ ! -h $to_create -a -e $to_create ]; then
+                echo "Remove $to_create so that it can be linked"
+            fi
         fi
     done
 
