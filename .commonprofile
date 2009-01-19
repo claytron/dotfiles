@@ -2,9 +2,9 @@
 
 # update the confs so they are in synce
 if checkPath svn; then
-      UPCONFS=`svn up $HOME/.myconfs`
+      UPCONFS=`svn up $HOME/.dotfiles`
       echo    
-      echo -e "My Confs updated: 
+      echo -e "dotfiles updated: 
 $UPCONFS"
     echo    
 fi
