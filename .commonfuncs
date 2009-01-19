@@ -1,0 +1,42 @@
+# helper function to search the $PATH for a given
+# executable.  useful for checks across different
+# systems.
+function checkPath() {
+    # the bash compatible version of this
+    OIFS=$IFS
+    IFS=':'
+    for dir in $PATH
+    do 
+        execpath="$dir/$1" 
+        if [ -x $execpath ]; then
+            IFS=$OIFS
+            return 0
+        fi
+    done
+
+    # set the file separator back to normal
+    IFS=$IFS
+    
+    # the zsh compatible version
+    for dir in $path
+    do 
+        execpath="$dir/$1"
+        if [ -x $execpath ]; then
+            IFS=$OIFS
+            return 0
+        fi
+    done
+    
+    return 1
+}
+
+# a little function to print the full path to a file.
+fullpath() {
+    fullpath=$(pwd)/$1
+    echo $fullpath
+    
+    # on OS X copy it to the clipboard too :)
+    if checkPath pbcopy && [[ $UNAME == "Darwin" ]]; then
+        echo $fullpath | pbcopy
+    fi
+}

@@ -1,0 +1,40 @@
+UNAME=`uname`
+
+# set some defaults for LESS
+export LESS="-I-J-M"
+
+# conditionally set the editor variable
+if [[ $UNAME == "Darwin" ]]; then
+    export EDITOR='mate_wait'
+else
+    export EDITOR=vi
+fi
+
+# set up some more OS X specific stuff
+if [[ $UNAME == "Darwin" ]]; then
+    # make sure /usr/local makes it into the man path
+    # TODO could do the same kind of 'rationalize-path' as below...
+    export MANPATH=$MANPATH:/usr/local/man
+
+    # tidy settings
+    export HTML_TIDY=$HOME/.tidyconf
+    
+    # TODO check for osx version?
+    # to not tar up resource forks, you'll need this
+    export COPYFILE_DISABLE="True"
+    # Tiger version...
+    #export COPY_EXTENDED_ATTRIBUTES_DISABLE="True"
+fi
+
+# setting these here since the .ackrc can't cope with type-set or type-add yet
+# http://code.google.com/p/ack/issues/detail?id=106
+export ACK_OPTIONS="--type-add plone=.zcml,.props,.metadata,.dtml --type-add html=.css --type-set buildout=.cfg"
+
+# get crazy with python, and the cheese whiz
+export PYTHONSTARTUP=$HOME/.pystartup
+
+# for FreeBSD
+# Pretty LSCOLORS explanation:
+# http://www.mjxg.com/index.py/geek/lscolors_and_ls_colors
+export LSCOLORS="cxgxCxdxbxegedabagacdx"
+export GREP_COLORS="ms=01;31:mc=01;31:sl=:cx=:fn=32:ln=36:bn=32:se=39"

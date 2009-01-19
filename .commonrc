@@ -1,0 +1,179 @@
+UNAME=`uname`
+
+. $HOME/.commonfuncs
+
+alias h=history
+
+# source my .zshrc
+alias zRehash='. ~/.zshrc'
+# switch over to the simple prompt
+alias sp='. ~/.zshprompt_simple'
+# re link all the conf files
+alias qs='~/.myconfs/create_links.sh'
+
+# prefer vim over vi
+if checkPath vim; then
+    alias vi=vim
+fi
+
+# set up a quickie for supervisorctl
+if checkPath supervisorctl; then
+    alias sctl=supervisorctl
+fi
+
+# some random shit I rarely use and only on OS X
+if [[ $UNAME == "Darwin" ]]; then
+    alias mysql='mysql5'
+
+    alias descrip_check="python2.4 setup.py --long-description | rst2html.py > /tmp/foo.html; open -a Firefox /tmp/foo.html"
+
+    # set up a growl function for iTerm
+    #growl() { echo -e $'\e]9;'${1}'\007' ; return  ; }
+    alias growl="growlnotify -a iTerm -t 'iTerm says'"
+
+    alias delpycAll="find -L . -name '*.pyc' -delete;find -L /Users/clayton/Documents/sixfeetup/bundles -name '*.pyc' -delete"
+
+    # pylons
+    alias pfg='bin/paster serve --reload src/sixieminutes/development.ini'
+
+    # mysql
+    alias mysqlwrapper="sudo /opt/local/etc/LaunchDaemons/org.macports.mysql5/mysql5.wrapper"
+fi
+
+# grepping (or acking)
+# sgrep stands for super grep, meaning recursive and case insensitive
+if checkPath ack; then
+    alias grep=ack
+    alias sgrep='ack -i'
+else
+    # using the GNU grep trunk with the exclude dir opt
+    #alias grep='grep -EIn --exclude-dir=".svn" --exclude-dir="CVS" --exclude=".DS_STORE" --exclude="*pyc" --color=always'
+    alias grep='grep -EIn --exclude=".DS_STORE" --exclude="*pyc" --color=always'
+    alias ack=grep
+    alias sgrep='grep -ir'
+    alias sgrepnoi='grep -r'
+    alias sgrepnor='grep -i'
+    alias sgrepnoir='grep'
+fi
+
+# processes
+alias ps='ps axwww'
+alias psg='ps | sgrep'
+alias ispy='psg python'
+alias isrb='psg ruby'
+
+# find aliases
+alias delpyc="find . -name '*.pyc' -delete"
+alias brokensymlinks="find -L . -type l"
+
+# pypi shortcuts (need to look into setup.py aliases)
+alias sdist_upload="python2.4 setup.py mregister sdist mupload -r skillet"
+alias sdist_upload_pypi="python2.4 setup.py mregister sdist mupload -r pypi"
+
+# svn helpers
+alias svnps="svn propset svn:externals -F EXTERNALS.txt ."
+alias svnpsi="svn propset svn:ignore -F IGNORE.txt ."
+# Needs to be a better way to do this...
+export sfuprivate='https://svn.sixfeetup.com/svn/private'
+#alias -g spriv='https://svn.sixfeetup.com/svn/private'
+export sfupublic='https://svn.sixfeetup.com/svn/public'
+
+# zope shortcuts based on our old zeo/zss setup
+# this was before buildout :)
+alias zRunzope='zss/bin/zeoctl start;zeo/bin/runzope'
+alias zStart='zss/bin/zeoctl start;zeo/bin/zopectl start'
+alias zStop='zeo/bin/zopectl stop;zss/bin/zeoctl stop'
+alias zCtl='zeo/bin/zopectl'
+alias z1Ctl='zss/bin/zeoctl'
+
+# zope runs most QA/Staging instances...
+alias zu='sudo -H -u zope'
+
+# buildout...
+alias bfg='bin/control fg'
+alias bs='bin/control stop'
+alias bbn='bin/buildout -v'
+alias bbpin="bin/buildout -Nvvvvv install instance | sed -ne 's/^Picked: //p' | sort | uniq"
+alias bbc="rm -rf .installed parts/* develop-eggs/*"
+alias bbcwipe="bbc var/filestorage/Data.fs*"
+alias bbrefresh="bs; rm .installed.cfg var/filestorage/Data.fs*; bbn -N"
+alias bbcextreme="bbc ~/.buildout/eggs/* ~/.buildout/downloads/* ~/.buildout/zope/*"
+
+# I have a folder of custom made fortunes...
+if checkPath fortune && [ -d /opt/local/share/games/fortune/comedy ]; then
+    alias laugh='echo; fortune comedy ;echo'
+fi
+
+# make cp and move ask before replacing files
+alias cp='cp -iv'
+alias mv='mv -i'
+
+# conditionally set up coloring on different OS types
+if [[ $UNAME == "FreeBSD" || $UNAME == "Darwin" ]]; then
+   alias ls="ls -GF"
+elif [[ $UNAME == "Linux" ]]; then
+   alias ls="ls --color=auto -GF"
+elif [[ $UNAME == 'SunOS' ]]; then
+   alias ls="ls --color=always -F"
+fi
+
+# show me everything
+alias lsa='ls -alh'
+# sort by size
+alias lss='lsa -Sr'
+# lsa but not human readable
+alias ll='ls -al'
+# show all dot files and dirs
+alias lsd='ls -ld .*'
+
+alias df='df -h'
+alias less='less -I'
+
+# tar aliases.  ignore OS X meta files
+# NOTE: on OS X tar is freaked out by resource forks.  see .zshenv for the fix.
+alias targzc='tar --exclude=".DS_Store" --exclude="*pyc" -zcvf'
+alias tarbzc='tar --exclude=".DS_Store" --exclude="*pyc" -jcvf'
+alias targzx='tar -zxvf'
+alias tarbzx='tar -xvjf'
+
+# always show all versions of an executable
+alias which="which -a"
+
+# Pretty LS_COLORS explanation: 
+# http://www.mjxg.com/index.py/geek/lscolors_and_ls_colors
+export LS_COLORS="no=00:fi=00:di=32:ln=36:pi=40;33:so=01;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=31:*.cmd=01;32:*.exe=01;32:*.com=01;32:*.btm=01;32:*.bat=01;32:*.sh=01;32:*.csh=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.bz=01;31:*.tz=01;31:*.rpm=01;31:*.cpio=01;31:*.jpg=01;35:*.gif=01;35:*.bmp=01;35:*.xbm=01;35:*.xpm=01;35:*.png=01;35:*.tif=01;35:"
+
+# if the virutalenv wrapper is available, then source it
+if checkPath virtualenvwrapper_bashrc; then
+    source virtualenvwrapper_bashrc
+fi
+
+# When TextMate is available I don't want to set up a
+# .ackrc since it effs up the Ack in Project plugin...
+# but otherwise I do want to set one.
+if ! checkPath mate; then
+    # write out a custom .ackrc
+    ack_rc="
+# only search case sensitive if there are capital letters
+−−smart−case
+
+# follow symlinks
+−−follow
+
+################################################
+# there is currently a bug:
+# http://code.google.com/p/ack/issues/detail?id=106
+
+# setting these in the ACK_OPTIONS environment 
+# variable and MacOSX/environment.plist
+
+# add some more zope files to the plone type
+#--type-add plone=.zcml,.props,.metadata
+
+# add .cfg for buildout files
+#--type-set buildout=.cfg
+
+################################################"
+
+    echo $ack_rc > $HOME/.ackrc
+fi

@@ -1,0 +1,38 @@
+# Ensures that the default shell is the same as the value of the $SHELL env variable
+shell -$SHELL
+
+# Define the time that all windows monitored for silence should 
+# wait before displaying a message. Default 30 seconds.
+silencewait 15
+
+# Automatically detach on hangup. 
+autodetach on
+
+# turn off that annoying start message
+startup_message off
+
+# the amount of scrollback
+defscrollback 1000
+
+# Affects the copying of text regions
+crlf off
+
+# No annoying audible bell, using "visual bell"
+#vbell on				# default: off
+#vbell_msg "   -- Ring, Ring!! --   "	# default: "Wuff,Wuff!!"
+
+# "sorendition": set the colors for
+# the "messages" and "text marking"
+# (ie text you mark in copy mode):
+sorendition 10 99 # default!
+#sorendition 02 34 # yellow on blue
+#sorendition 02 40 # green  on black
+
+# shows the window list in the last line
+#hardstatus alwayslastline "%w"
+# shows the host, time, load, windows
+#hardstatus alwayslastline " [ %H ] %{wb} %c:%s | %d.%m.%Y %{wr} Load: %l %{wb} %w "
+# time, date, windows
+hardstatus alwayslastline "[%c, %D, %d/%m/%y] %-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%<"
+#hardstatus alwayslastline 
+#hardstatus string "%{gk}[ %{G}%H %{g}][%= %{wk}%?%-Lw%?%{r}(%{W}%n*%f %t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m/%d %{W}%c %{g}]"

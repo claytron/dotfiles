@@ -1,0 +1,7 @@
+# simple version of my ZSH prompt
+RPROMPT=''
+PROMPT='
+%D{%a %h %e, %H:%M} | %/
+%m%% '
+PS2=''
+

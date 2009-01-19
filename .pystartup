@@ -1,0 +1,11 @@
+# TODO this could use some more love...
+
+try:
+    import rlcompleter2
+    print
+    rlcompleter2.setup()
+    del rlcompleter2
+except ImportError:
+    print
+    print "NO rlcompleter2 for nice experiences"
+    pass

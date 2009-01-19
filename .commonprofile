@@ -1,0 +1,10 @@
+. $HOME/.commonfuncs
+
+# update the confs so they are in synce
+if checkPath svn; then
+      UPCONFS=`svn up $HOME/.myconfs`
+      echo    
+      echo -e "My Confs updated: 
+$UPCONFS"
+    echo    
+fi

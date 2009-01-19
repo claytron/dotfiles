@@ -1,0 +1,7 @@
+# I prefer vi-style editing
+set editing-mode vi
+set keymap vi
+# ignore that case biatch
+set completion-ignore-case on
+# actually tab the first time :)
+set show-all-if-ambiguous on
