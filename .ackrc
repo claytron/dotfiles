@@ -1,0 +1,8 @@
+# add some more zope files to the plone type
+--type-add=plone=.zcml,.props
+
+# add .cfg for buildout files
+--type-set=buildout=.cfg
+
+# add markdown
+--type-set=markdown=.md,.mdown,.markdown,.mkdn

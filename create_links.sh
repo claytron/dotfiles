@@ -9,6 +9,15 @@
 remove="$1"
 
 dotfiles=(
+    .ackrc
+    .bash_profile
+    .bashrc
+    .commonrc
+    .commonenv
+    .commonprofile
+    .commonfuncs
+    .inputrc
+    .pystartup
     .screenrc
     .vimrc
     .zprofile
@@ -16,15 +25,7 @@ dotfiles=(
     .zshprompt
     .zshprompt_simple
     .zshrc
-    .inputrc
-    .bash_profile
-    .bashrc
-    .commonrc
-    .commonenv
-    .commonprofile
-    .commonfuncs
     config
-    .pystartup
 )
 
 for dotfile in "${dotfiles[@]}"

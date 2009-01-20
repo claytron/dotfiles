@@ -19,32 +19,44 @@ fi
 # set up a quickie for supervisorctl
 if checkPath supervisorctl; then
     alias sctl=supervisorctl
+    # set up completions for supervisor
+    compctl -s '`supervisorctl status`' supervisorctl
 fi
 
-# some random shit I rarely use and only on OS X
+# some OS X specific stuff
 if [[ $UNAME == "Darwin" ]]; then
-    alias mysql='mysql5'
 
+    # set up a path in .profile for TextMate (zsh haterz)
+    echo "export PATH=$PATH" > $HOME/.profile
+
+    if checkPath mysql5; then
+        # I have mysql5 installed with MacPorts, which adds the 5
+        alias mysql='mysql5'
+    fi
+    
+    # run the setup.py descrip through docutils, then open it with FF
     alias descrip_check="python2.4 setup.py --long-description | rst2html.py > /tmp/foo.html; open -a Firefox /tmp/foo.html"
 
-    # set up a growl function for iTerm
-    #growl() { echo -e $'\e]9;'${1}'\007' ; return  ; }
-    alias growl="growlnotify -a iTerm -t 'iTerm says'"
-
-    alias delpycAll="find -L . -name '*.pyc' -delete;find -L /Users/clayton/Documents/sixfeetup/bundles -name '*.pyc' -delete"
-
-    # pylons
+    # pylons buildout madness
     alias pfg='bin/paster serve --reload src/sixieminutes/development.ini'
 
     # mysql
     alias mysqlwrapper="sudo /opt/local/etc/LaunchDaemons/org.macports.mysql5/mysql5.wrapper"
+
+    # iPhone doesn't have a defaults command...yet
+    if checkPath defaults; then
+        # also set up the osx path
+        # (this will overwrite the PATH everytime we open a shell)
+        defaults write $HOME/.MacOSX/environment PATH -string $PATH
+    fi
 fi
 
 # grepping (or acking)
 # sgrep stands for super grep, meaning recursive and case insensitive
 if checkPath ack; then
+    alias ack='ack --smart-case --follow'
     alias grep=ack
-    alias sgrep='ack -i'
+    alias sgrep=ack
 else
     # using the GNU grep trunk with the exclude dir opt
     #alias grep='grep -EIn --exclude-dir=".svn" --exclude-dir="CVS" --exclude=".DS_STORE" --exclude="*pyc" --color=always'
@@ -146,37 +158,4 @@ export LS_COLORS="no=00:fi=00:di=32:ln=36:pi=40;33:so=01;35:bd=40;33;01:cd=40;33
 # if the virutalenv wrapper is available, then source it
 if checkPath virtualenvwrapper_bashrc; then
     source virtualenvwrapper_bashrc
-fi
-
-# When TextMate is available I don't want to set up a
-# .ackrc since it effs up the Ack in Project plugin...
-# but otherwise I do want to set one.
-if ! checkPath mate; then
-    # write out a custom .ackrc
-    ack_rc="
-# only search case sensitive if there are capital letters
---smart-case
-
-# follow symlinks
---follow
-
-################################################
-# there is currently a bug:
-# http://code.google.com/p/ack/issues/detail?id=106
-
-# setting these in the ACK_OPTIONS environment 
-# variable and MacOSX/environment.plist
-
-# add some more zope files to the plone type
-#--type-add plone=.zcml,.props,.metadata
-
-# add .cfg for buildout files
-#--type-set buildout=.cfg
-
-# add markdown
-#--type-set markdown=.md,.mdown,.markdown,.mkdn
-
-################################################"
-
-    echo $ack_rc > $HOME/.ackrc
 fi

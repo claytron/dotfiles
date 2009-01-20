@@ -26,15 +26,17 @@ if [[ $UNAME == "Darwin" ]]; then
     #export COPY_EXTENDED_ATTRIBUTES_DISABLE="True"
 fi
 
-# setting these here since the .ackrc can't cope with type-set or type-add yet
-# http://code.google.com/p/ack/issues/detail?id=106
-export ACK_OPTIONS="--type-add plone=.zcml,.props,.metadata,.dtml --type-add html=.css --type-set buildout=.cfg --type-add markdown=.md,.mdown,.markdown,.mkdn"
-
 # get crazy with python, and the cheese whiz
 export PYTHONSTARTUP=$HOME/.pystartup
+
+## colors!!!
 
 # for FreeBSD
 # Pretty LSCOLORS explanation:
 # http://www.mjxg.com/index.py/geek/lscolors_and_ls_colors
 export LSCOLORS="cxgxCxdxbxegedabagacdx"
+
+# set the ACK match color scheme
+export ACK_COLOR_MATCH="red"
+
 export GREP_COLORS="ms=01;31:mc=01;31:sl=:cx=:fn=32:ln=36:bn=32:se=39"

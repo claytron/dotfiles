@@ -6,36 +6,19 @@ UNAME=`uname`
 hash -d L=/var/log
 hash -d RA=/var/db/rails
 hash -d R=/usr/local/etc/rc.d
+hash -d Z=/var/db/zope
 
 # OS X specific settings
 if [[ $UNAME == "Darwin" ]]; then
-    # set up a path in .profile for TextMate (zsh haterz)
-    echo "export PATH=$PATH" > $HOME/.profile
     
-    # iPhone doesn't have a defaults command...yet
-    if checkPath defaults; then
-        # also set up the osx path
-        # (this will overwrite the PATH everytime we open a shell)
-        defaults write $HOME/.MacOSX/environment PATH -string $PATH
-        # setting the ACK_OPTIONS env var for TextMate
-        # http://code.google.com/p/ack/issues/detail?id=106
-        defaults write $HOME/.MacOSX/environment ACK_OPTIONS -string $ACK_OPTIONS
-    fi
-
     # set up dir hashes
-    hash -d OB=/Users/clayton/sixfeetup/bundles
-    hash -d B=/Users/clayton/Documents/sixfeetup/bundles
-    hash -d DB=/Users/clayton/Documents/sixfeetup/bundles-dev
-    hash -d DB25=/Users/clayton/Documents/sixfeetup/dev-bundle-2.5
-    hash -d OP=/Users/clayton/Documents/sixfeetup/projects
+    hash -d OB=$HOME/sixfeetup/bundles
+    hash -d B=$HOME/Documents/sixfeetup/bundles
+    hash -d DB=$HOME/Documents/sixfeetup/bundles-dev
+    hash -d DB25=$HOME/Documents/sixfeetup/dev-bundle-2.5
+    hash -d OP=$HOME/Documents/sixfeetup/projects
     hash -d EP=/Volumes/MUZAK/zope
-    hash -d P=/Users/clayton/sixfeetup/projects
-    hash -d Z=/Users/clayton/zope
-    hash -d MZ=/Users/clayton/myzope/projects
-    hash -d zP=zeo/Products
-    hash -d L=/var/log
-    hash -d Z27=/Applications/development/Zope
-    hash -d Z28=/Applications/development/Zope28
+    hash -d P=$HOME/sixfeetup/projects
     hash -d P24=/opt/local/Library/Frameworks/Python.framework/Versions/2.4/lib/python2.4/site-packages/
     hash -d S=$HOME/Sites
 

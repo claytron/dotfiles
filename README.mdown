@@ -35,6 +35,9 @@ Contents
 Here is a list of all the files and a brief explanation of what they do.
 
 
+`.ackrc`
+>    Setup some new types for ack.  Add to existing types (mainly Plone)
+
 `.bash_profile`
 >    Bash shell login code
 
