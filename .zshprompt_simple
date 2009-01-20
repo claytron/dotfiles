@@ -1,7 +1,23 @@
-# simple version of my ZSH prompt
-RPROMPT=''
-PROMPT='
-%D{%a %h %e, %H:%M} | %/
-%m%% '
-PS2=''
+function precmd {
+    # Only show user in the prompt if it isn't yourself
+    # Make sure and set the $ME var in .zshrc
+    if [[ `whoami` = $ME ]]; then
+       PR_IMPOSTER=""
+    else
+       PR_IMPOSTER="(%n%)"
+    fi
+}
 
+setprompt () {
+    # Need this so the prompt will work.
+    setopt prompt_subst
+    
+    # simple version of my ZSH prompt
+    RPROMPT=''
+    PROMPT='
+%D{%a %h %e, %H:%M} | %/
+%m$PR_IMPOSTER%# '
+    PS2=''
+}
+
+setprompt
