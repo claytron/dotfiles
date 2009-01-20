@@ -10,7 +10,7 @@ if checkPath fortune; then
 fi
 
 # update the confs so they are in synce
-if checkPath svn; then
+if checkPath svn && [ -d $HOME/.dotfiles/.svn ]; then
     UPCONFS=`svn up $HOME/.dotfiles`
     echo "\ndotfiles updated:\n$UPCONFS\n"
 fi
