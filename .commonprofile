@@ -1,10 +1,21 @@
 . $HOME/.commonfuncs
 
+if checkPath fortune; then
+    if [ -d /opt/local/share/games/fortune/comedy -e -d /usr/share/games/fortune/comedy ]; then
+        FORTUNE=`fortune comedy`
+    else
+        FORTUNE=`fortune`
+    fi
+    echo -e "
+$FORTUNE
+"
+fi
+
 # update the confs so they are in synce
 if checkPath svn; then
-      UPCONFS=`svn up $HOME/.dotfiles`
-      echo    
-      echo -e "dotfiles updated: 
-$UPCONFS"
-    echo    
+    UPCONFS=`svn up $HOME/.dotfiles`
+    echo -e "
+  dotfiles updated: 
+  $UPCONFS
+"
 fi
