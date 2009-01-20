@@ -6,16 +6,11 @@ if checkPath fortune; then
     else
         FORTUNE=`fortune`
     fi
-    echo -e "
-$FORTUNE
-"
+    echo "\n$FORTUNE\n"
 fi
 
 # update the confs so they are in synce
 if checkPath svn; then
     UPCONFS=`svn up $HOME/.dotfiles`
-    echo -e "
-  dotfiles updated: 
-  $UPCONFS
-"
+    echo "\n  dotfiles updated:\n  $UPCONFS\n"
 fi
