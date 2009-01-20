@@ -12,5 +12,5 @@ fi
 # update the confs so they are in synce
 if checkPath svn; then
     UPCONFS=`svn up $HOME/.dotfiles`
-    echo "\n  dotfiles updated:\n  $UPCONFS\n"
+    echo "\ndotfiles updated:\n$UPCONFS\n"
 fi
