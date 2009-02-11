@@ -1,3 +1,4 @@
+. $HOME/.commonfuncs
 UNAME=`uname`
 
 # set some defaults for LESS

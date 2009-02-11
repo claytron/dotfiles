@@ -22,7 +22,6 @@ function checkPath() {
     do 
         execpath="$dir/$1"
         if [ -x $execpath ]; then
-            IFS=$OIFS
             return 0
         fi
     done
