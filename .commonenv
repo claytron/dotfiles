@@ -1,11 +1,10 @@
-. $HOME/.commonfuncs
 UNAME=`uname`
 
 # set some defaults for LESS
 export LESS="-I-J-M"
 
 # conditionally set the editor variable
-if checkPath mate_wait; then
+if [ -x $HOME/bin/mate_wait ]; then
     export EDITOR='mate_wait'
 else
     export EDITOR=vi
