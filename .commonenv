@@ -4,7 +4,7 @@ UNAME=`uname`
 export LESS="-I-J-M"
 
 # conditionally set the editor variable
-if [[ $UNAME == "Darwin" ]]; then
+if checkPath mate_wait; then
     export EDITOR='mate_wait'
 else
     export EDITOR=vi

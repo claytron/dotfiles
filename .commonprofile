@@ -6,11 +6,11 @@ if checkPath fortune; then
     else
         FORTUNE=`fortune`
     fi
-    echo "\n$FORTUNE\n"
+    echo -e "\n$FORTUNE\n"
 fi
 
 # update the confs so they are in synce
 if checkPath svn && [ -d $HOME/.dotfiles/.svn ]; then
     UPCONFS=`svn up $HOME/.dotfiles`
-    echo "\ndotfiles updated:\n$UPCONFS\n"
+    echo -e "\ndotfiles updated:\n$UPCONFS\n"
 fi
