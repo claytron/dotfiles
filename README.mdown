@@ -14,7 +14,7 @@ picky about things, and this would certainly drive you crazy.
 
 Another item of note is that I use vi editing mode in every place that
 will allow me to.  This is set in the .inputrc and .zshrc.  This would
-likely through most people off as they are used to the emacs mode.  The
+likely throw most people off as they are used to the emacs mode.  The
 only issue I've run into with the vi mode is when you move from the end
 of the line in insert mode.  When you try and go back to the end you can't
 without going to command mode and using `a` to add to the line.
@@ -25,7 +25,7 @@ A little history
 To start off, here is a little background.  Here in lies years of
 craziness all compiled into one nice little folder.  I've been using
 the command line since 2003 when I was given a job as a systems
-administrator.  I stared on ZSH and have been using it ever since.
+administrator.  I started on ZSH and have been using it ever since.
 Recently I decided to compile a set of confs that could be used with
 either ZSH or Bash (since most machines have at least bash).
 
