@@ -1,8 +1,8 @@
 # add some more zope files to the plone type
---type-add=plone=.zcml,.props
-
+--type-add=plone=.zcml,.props,.dtml
 # add .cfg for buildout files
 --type-set=buildout=.cfg
-
-# add markdown
---type-set=markdown=.md,.mdown,.markdown,.mkdn
+# add markdown, textile, and reStructuredText
+--type-set=plaintext=.md,.mdown,.markdown,.mkdn,.textile,.rst
+# turn on text file searching
+--text
