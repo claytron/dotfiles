@@ -27,6 +27,8 @@ fi
 # set up common aliases between shells
 . $HOME/.commonrc
 
+alias qs='~/.dotfiles/create_links.sh;source $HOME/.dotfiles/.zshrc'
+
 # cvs setup
 export CVSROOT=:pserver:clayton@cvs:/var/cvsroot
 
