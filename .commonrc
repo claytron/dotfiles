@@ -3,6 +3,7 @@ UNAME=`uname`
 . $HOME/.commonfuncs
 
 alias h=history
+alias what_linux="cat /etc/issue"
 
 # source my .zshrc
 alias zRehash='. ~/.zshrc'
