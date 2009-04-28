@@ -2,7 +2,6 @@
 --type-add=plone=.zcml,.props,.dtml
 # add .cfg for buildout files
 --type-set=buildout=.cfg
+--type-set=zcml=.zcml
 # add markdown, textile, and reStructuredText
 --type-set=plaintext=.md,.mdown,.markdown,.mkdn,.textile,.rst
-# turn on text file searching
---text
