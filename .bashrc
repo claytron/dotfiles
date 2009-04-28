@@ -36,7 +36,7 @@ ME="clayton"
 if [[ $(whoami) = $ME ]]; then
    PR_IMPOSTER=""
 else
-   PR_IMPOSTER="(\u)"
+   PR_IMPOSTER="\n(\u)"
 fi
 
 # prompt will look like this:
