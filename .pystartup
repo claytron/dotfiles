@@ -1,11 +1,22 @@
-# TODO this could use some more love...
+# Most of the time i use ipython, which i think ignores this file.
+# but if i'm not using ipython, let's set some stuff up...
 
+# first try and set up rlcompleter2
 try:
     import rlcompleter2
     print
     rlcompleter2.setup()
     del rlcompleter2
 except ImportError:
-    print
-    print "NO rlcompleter2 for nice experiences"
-    pass
+    # then try and setup plain ol' readline
+    try:
+        import rlcompleter, readline
+        readline.parse_and_bind('tab: complete')
+        print
+        print "NO rlcompleter2 for nice experiences"
+        del rlcompleter
+        del readline
+    # then, well fuck, you're screwed
+    except ImportError:
+        print
+        print "NO readline at all for you, sadness..."

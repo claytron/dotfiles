@@ -63,7 +63,7 @@ Here is a list of all the files and a brief explanation of what they do.
 
 `.pystartup`
 >    Interactive Python interpreter startup code.  I use it to initialize 
->    rlcompleter2.
+>    rlcompleter2 or readline with tab completion.
 
 `.screenrc`
 >    Settings for screen
