@@ -1,6 +1,6 @@
-UNAME=`uname`
+UNAME=$(uname)
 
-. $HOME/.commonfuncs
+source $HOME/.commonfuncs
 
 alias h=history
 alias what_linux="cat /etc/issue"
@@ -18,10 +18,11 @@ if checkPath vim; then
 fi
 
 # set up a quickie for supervisorctl
+alias bsctl=bin/supervisorctl
 if checkPath supervisorctl; then
     alias sctl=supervisorctl
     # set up completions for supervisor
-    compctl -s '`supervisorctl status`' supervisorctl
+    compctl -s '$(supervisorctl status)' supervisorctl
 fi
 
 # some OS X specific stuff
@@ -95,7 +96,7 @@ export sfupublic='https://svn.sixfeetup.com/svn/public'
 
 # zope shortcuts based on our old zeo/zss setup
 # this was before buildout :)
-alias zRunzope='zss/bin/zeoctl start;zeo/bin/runzope'
+alias zRunzope='zss/bin/zeoctl start;zeo/bin/zopectl fg'
 alias zStart='zss/bin/zeoctl start;zeo/bin/zopectl start'
 alias zStop='zeo/bin/zopectl stop;zss/bin/zeoctl stop'
 alias zCtl='zeo/bin/zopectl'
@@ -108,7 +109,9 @@ alias zu='sudo -H -u zope'
 alias bfg='bin/control fg'
 alias bs='bin/control stop'
 alias bbn='bin/buildout -v'
-alias bbpin="bin/buildout -Nvvvvv install instance | sed -ne 's/^Picked: //p' | sort | uniq"
+alias bbk='bbn -U'
+alias bbkd='bbk -c development.cfg'
+alias bbpin="bin/buildout -Nvvvvv plonesite:enabled=false | sed -ne 's/^Picked: //p' | sort | uniq"
 alias bbc="rm -rf .installed parts/* develop-eggs/*"
 alias bbcwipe="bbc var/filestorage/Data.fs*"
 alias bbrefresh="bs; rm .installed.cfg var/filestorage/Data.fs*; bbn -N"
@@ -150,6 +153,8 @@ alias targzc='tar --exclude=".DS_Store" --exclude="*pyc" -zcvf'
 alias tarbzc='tar --exclude=".DS_Store" --exclude="*pyc" -jcvf'
 alias targzx='tar -zxvf'
 alias tarbzx='tar -xvjf'
+# 7zip
+alias 7zultra='7za a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on'
 
 # always show all versions of an executable
 alias which="which -a"

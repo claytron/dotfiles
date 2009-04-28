@@ -1,4 +1,4 @@
-. $HOME/.commonenv
+source $HOME/.commonenv
 
 ###################################
 #     Here we set the PATH:       #
@@ -39,6 +39,8 @@ path=(
   "$HOME/bin"
   /opt/local/bin
   /opt/local/sbin
+  /opt/local/lib/postgresql83/bin
+  /opt/python-macosx/python-2.4/bin
   /opt/local/Library/Frameworks/Python.framework/Versions/2.4/bin
   /sw/bin
   /sw/sbin
@@ -64,8 +66,10 @@ path=(
   /usr/local/games
   /usr/games
   "$path[@]"
-  "$fpath[@]"
 )
+
+# add the following to the above array to get functions as well:
+# "$fpath[@]"
 
 export PATH
 # Only unique entries please.
@@ -75,4 +79,4 @@ typeset -U path
 rationalize-path path
 
 # extra per environment settings
-. $HOME/.zshenv_extras
+source $HOME/.zshenv_extras

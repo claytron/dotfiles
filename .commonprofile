@@ -1,10 +1,10 @@
-. $HOME/.commonfuncs
+source $HOME/.commonfuncs
 
 if checkPath fortune; then
-    if [ -d /opt/local/share/games/fortune/comedy -e -d /usr/share/games/fortune/comedy ]; then
-        FORTUNE=`fortune comedy`
+    if [ -d /opt/local/share/games/fortune/comedy ] || [ -d /usr/share/games/fortune/comedy ]; then
+        FORTUNE=$(fortune comedy)
     else
-        FORTUNE=`fortune`
+        FORTUNE=$(fortune)
     fi
     echo -e "\n$FORTUNE\n"
 fi

@@ -1,1 +1,1 @@
-. $HOME/.commonprofile
+source $HOME/.commonprofile

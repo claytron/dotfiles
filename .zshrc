@@ -1,12 +1,26 @@
 UNAME=`uname`
 
-. $HOME/.commonfuncs
+source $HOME/.commonfuncs
 
 # Log dir hash
 hash -d L=/var/log
 hash -d RA=/var/db/rails
 hash -d R=/usr/local/etc/rc.d
 hash -d Z=/var/db/zope
+
+# python site-packages automagic hashes (I tried briefly to make this purdy)
+if checkPath python2.3; then
+    hash -d P23=`python2.3 -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"`
+fi
+if checkPath python2.4; then
+    hash -d P24=`python2.4 -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"`
+fi
+if checkPath python2.5; then
+    hash -d P25=`python2.5 -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"`
+fi
+if checkPath python2.5; then
+    hash -d P26=`python2.6 -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"`
+fi
 
 # OS X specific settings
 if [[ $UNAME == "Darwin" ]]; then
@@ -19,15 +33,19 @@ if [[ $UNAME == "Darwin" ]]; then
     hash -d OP=$HOME/Documents/sixfeetup/projects
     hash -d EP=/Volumes/MUZAK/zope
     hash -d P=$HOME/sixfeetup/projects
-    hash -d P24=/opt/local/Library/Frameworks/Python.framework/Versions/2.4/lib/python2.4/site-packages/
     hash -d S=$HOME/Sites
 
 fi
 
 # set up common aliases between shells
-. $HOME/.commonrc
+source $HOME/.commonrc
 
 alias qs='~/.dotfiles/create_links.sh;source $HOME/.dotfiles/.zshrc'
+
+# global aliases #
+# disable the plonesite part in a buildout run
+alias -g psef="plonesite:enabled=false"
+alias -g py_site_packages='-c "from distutils.sysconfig import get_python_lib; print get_python_lib()"'
 
 # cvs setup
 export CVSROOT=:pserver:clayton@cvs:/var/cvsroot
@@ -53,8 +71,8 @@ bindkey -M viins '\e[3~' vi-delete-char
 bindkey -M viins '^B' push-line-or-edit
 
 # set up history
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=3000
+SAVEHIST=3000
 HISTFILE=~/.zsh_history
 export HISTFILE HISTSIZE SAVEHIST
 
@@ -72,7 +90,7 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:
 # use some crazy ass shell prompt
 # thanks to for the basis: http://aperiodic.net/phil/prompt/
 ME="clayton"
-. ~/.zshprompt
+source ~/.zshprompt
 
 # load up per environment extras
-. ~/.zshextras
+source ~/.zshextras

@@ -14,9 +14,9 @@ setprompt () {
     
     # simple version of my ZSH prompt
     RPROMPT=''
-    PROMPT='
+    PROMPT='$PR_IMPOSTER
 %D{%a %h %e, %H:%M} | %/
-%m$PR_IMPOSTER%# '
+%m%# '
     PS2=''
 }
 
