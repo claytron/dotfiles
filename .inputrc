@@ -5,3 +5,5 @@ set keymap vi
 set completion-ignore-case on
 # actually tab the first time :)
 set show-all-if-ambiguous on
+# turn off the annoying bell
+set bell-style none
