@@ -13,6 +13,21 @@ source $HOME/.commonenv
 # set up common aliases between bourne shells
 source $HOME/.commonrc
 
+# seriously, i want to use vi
+set -o vi
+# make TAB cycle through the list of partial matches!
+bind -m vi-insert TAB:menu-complete
+bind -m vi-insert "\C-a":beginning-of-line
+bind -m vi-insert "\C-e":end-of-line
+
+# history settings
+export HISTFILE=$HOME/.bash_history
+export HISTCONTROL=ignoreboth
+export HISTSIZE=5000
+export HISTFILESIZE=1000
+# don't clear the history each time
+shopt -s histappend
+
 # Set up the prompt
 
 ME="clayton"

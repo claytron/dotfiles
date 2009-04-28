@@ -58,6 +58,7 @@ for dotfile in "${dotfiles[@]}"
 # touch extra files needed by the confs.
 touch_me=(
     .zsh_history
+    .bash_history
     .zshextras
     .zshenv_extras
     .bash_extras
