@@ -18,7 +18,7 @@ fi
 if checkPath python2.5; then
     hash -d P25=`python2.5 -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"`
 fi
-if checkPath python2.5; then
+if checkPath python2.6; then
     hash -d P26=`python2.6 -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"`
 fi
 

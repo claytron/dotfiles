@@ -76,6 +76,8 @@ alias psg='ps | sgrep'
 alias ispy='psg python'
 alias isrb='psg ruby'
 
+alias lsofp="sudo lsof -p"
+
 # find aliases
 alias delpyc="find . -name '*.pyc' -delete"
 alias brokensymlinks="find -L . -type l"
