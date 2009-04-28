@@ -77,6 +77,10 @@ HISTFILE=~/.zsh_history
 export HISTFILE HISTSIZE SAVEHIST
 
 # old style completions
+if checkPath supervisorctl; then
+    # set up completions for supervisor
+    compctl -s '$(supervisorctl status)' supervisorctl
+fi
 compctl -s 'fg kill start logreopen reload shell status wait help logtail restart show stop' instance zopectl zeoserver zeoctl
 compctl -s 'fg kill start logreopen reload shell status wait help logtail restart show stop run adduser test debug' instance zopectl
 

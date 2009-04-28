@@ -21,8 +21,6 @@ fi
 alias bsctl=bin/supervisorctl
 if checkPath supervisorctl; then
     alias sctl=supervisorctl
-    # set up completions for supervisor
-    compctl -s '$(supervisorctl status)' supervisorctl
 fi
 
 # some OS X specific stuff
