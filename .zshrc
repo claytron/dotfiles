@@ -60,9 +60,11 @@ setopt HIST_SAVE_NO_DUPS HIST_VERIFY HIST_IGNORE_ALL_DUPS EXTENDED_HISTORY
 
 # use vi mode
 bindkey -v
-# use home and end instead of ^e and ^a
+# use home and end in addition to ^e and ^a
 bindkey -M viins '^[[H' vi-beginning-of-line
+bindkey -M viins '^A' vi-beginning-of-line
 bindkey -M viins '^[[F' vi-end-of-line
+bindkey -M viins '^E' vi-end-of-line
 # use delete as forward delete
 bindkey -M viins '\e[3~' vi-delete-char
 # OS X?
