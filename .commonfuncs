@@ -4,6 +4,7 @@ UNAME=$(uname)
 # executable.  useful for checks across different
 # systems.
 checkPath() {
+    local execpath
     # the bash compatible version of this
     OIFS=$IFS
     IFS=':'
@@ -33,14 +34,14 @@ checkPath() {
 
 isiPhone() {
     if checkPath sw_vers; then
-        is_an_iphone=$(sw_vers | awk '/ProductName/ {print $2}')
-        [ $is_an_iphone = "iPhone" ] && return 0
+        [ $(sw_vers | awk '/ProductName/ {print $2}') = "iPhone" ] && return 0
     fi
     return 1
 }
 
 # a little function to print the full path to a file.
 fullpath() {
+    local fullpath
     fullpath=$(pwd)/$1
     echo $fullpath
     
@@ -51,6 +52,11 @@ fullpath() {
 }
 
 weShouldUpdate() {
+    local time_to_update
+    local touchy_file
+    local last_mod
+    local current_time
+    local time_diff
     # only update once a day
     time_to_update=86400
     # use a dot file as a marker
