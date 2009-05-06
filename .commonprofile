@@ -9,8 +9,11 @@ if checkPath fortune; then
     echo -e "\n$FORTUNE\n"
 fi
 
-# update the confs so they are in synce
-if checkPath svn && [ -d $HOME/.dotfiles/.svn ]; then
-    UPCONFS=`svn up $HOME/.dotfiles`
-    echo -e "\ndotfiles updated:\n$UPCONFS\n"
+# only update once a day, according to the weShouldUpdate function
+if weShouldUpdate; then
+  # update the confs so they are in sync, but only if under
+  # subversion control
+  if checkPath svn && [ -d $HOME/.dotfiles/.svn ]; then
+      svn up $HOME/.dotfiles
+  fi
 fi

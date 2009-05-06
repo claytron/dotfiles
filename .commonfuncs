@@ -39,3 +39,24 @@ fullpath() {
         echo $fullpath | pbcopy
     fi
 }
+
+weShouldUpdate() {
+    # only update once a day
+    time_to_update=86400
+    # use a dot file as a marker
+    touchy_file=$HOME/.dotfiles_updated
+    # if the file doesn't exist we'll end up touching it
+    last_mod=0
+    if [[ -e $touchy_file ]]; then
+        last_mod=$(stat -f %a "$touchy_file")
+    fi
+    current_time=$(date +%s)
+    # see what the difference is in seconds
+    time_diff=$(( $current_time - $last_mod ))
+    if [[ ( $time_diff -gt $time_to_update ) ]]; then
+        touch $touchy_file
+        echo "It's been a while since we updated the dotfiles..."
+        return 0
+    fi
+    return 1
+}
