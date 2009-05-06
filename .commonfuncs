@@ -1,3 +1,5 @@
+UNAME=$(uname)
+
 # helper function to search the $PATH for a given
 # executable.  useful for checks across different
 # systems.
@@ -48,7 +50,12 @@ weShouldUpdate() {
     # if the file doesn't exist we'll end up touching it
     last_mod=0
     if [[ -e $touchy_file ]]; then
-        last_mod=$(stat -f %a "$touchy_file")
+        # stat is different between flavas
+        if [[ $UNAME == "FreeBSD" || $UNAME == "Darwin" ]]; then
+            last_mod=$(stat -f %a "$touchy_file")
+        elif [[ $UNAME == "Linux" ]]; then
+            last_mod=$(stat -c %Y "$touchy_file")
+        fi
     fi
     current_time=$(date +%s)
     # see what the difference is in seconds
