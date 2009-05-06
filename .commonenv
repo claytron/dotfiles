@@ -24,7 +24,7 @@ if [[ $UNAME == "Darwin" ]]; then
     if [  $os_majorversion -ge 5 ]; then
         # Leopard version (and beyond??)
         export COPYFILE_DISABLE="True"
-    elif [ ${os_majorversion} -eq 4  -a  ${os_minorversion} -ge 6 ]; then
+    elif [ ${os_majorversion} -eq 4 ] && [ ${os_minorversion} -ge 6 ]; then
         # Tiger version
         export COPY_EXTENDED_ATTRIBUTES_DISABLE="True"
     fi

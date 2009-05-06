@@ -1,4 +1,5 @@
 UNAME=$(uname)
+iphone_string=$(sw_vers | awk '/ProductName/ {print $2}')
 
 # helper function to search the $PATH for a given
 # executable.  useful for checks across different
@@ -51,10 +52,10 @@ weShouldUpdate() {
     last_mod=0
     if [[ -e $touchy_file ]]; then
         # stat is different between flavas
-        if [[ $UNAME == "FreeBSD" || $UNAME == "Darwin" ]]; then
-            last_mod=$(stat -f %a "$touchy_file")
-        elif [[ $UNAME == "Linux" ]]; then
+        if [[ $UNAME == "Linux" || $iphone_string == "iPhone" ]]; then
             last_mod=$(stat -c %Y "$touchy_file")
+        elif [[ $UNAME == "FreeBSD" || $UNAME == "Darwin" ]]; then
+            last_mod=$(stat -f %a "$touchy_file")
         fi
     fi
     current_time=$(date +%s)
