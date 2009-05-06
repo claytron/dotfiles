@@ -3,7 +3,7 @@ UNAME=$(uname)
 # helper function to search the $PATH for a given
 # executable.  useful for checks across different
 # systems.
-function checkPath() {
+checkPath() {
     # the bash compatible version of this
     OIFS=$IFS
     IFS=':'
