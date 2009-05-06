@@ -15,6 +15,9 @@ alias qs='~/.dotfiles/create_links.sh'
 # prefer vim over vi
 if checkPath vim; then
     alias vi=vim
+else
+    # keep me honest
+    alias vim=vi
 fi
 
 # set up a quickie for supervisorctl
