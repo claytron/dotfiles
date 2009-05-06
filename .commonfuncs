@@ -34,9 +34,9 @@ function checkPath() {
 isiPhone() {
     if checkPath sw_vers; then
         is_an_iphone=$(sw_vers | awk '/ProductName/ {print $2}')
-        return is_an_iphone
+        return 0
     fi
-    return ""
+    return 1
 }
 
 # a little function to print the full path to a file.
@@ -59,7 +59,7 @@ weShouldUpdate() {
     last_mod=0
     if [[ -e $touchy_file ]]; then
         # stat is different between flavas
-        if [[ $UNAME == "Linux" || isiPhone ]]; then
+        if [[ $UNAME == "Linux" ]] || $(isiPhone); then
             last_mod=$(stat -c %Y "$touchy_file")
         elif [[ $UNAME == "FreeBSD" || $UNAME == "Darwin" ]]; then
             last_mod=$(stat -f %a "$touchy_file")
