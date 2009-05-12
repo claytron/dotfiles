@@ -1,5 +1,4 @@
 UNAME=$(uname)
-
 source $HOME/.commonfuncs
 
 # Log dir hash
@@ -7,20 +6,6 @@ hash -d L=/var/log
 hash -d RA=/var/db/rails
 hash -d R=/usr/local/etc/rc.d
 hash -d Z=/var/db/zope
-
-# python site-packages automagic hashes (I tried briefly to make this purdy)
-if checkPath python2.3; then
-    hash -d P23=`python2.3 -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"`
-fi
-if checkPath python2.4; then
-    hash -d P24=`python2.4 -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"`
-fi
-if checkPath python2.5; then
-    hash -d P25=`python2.5 -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"`
-fi
-if checkPath python2.6; then
-    hash -d P26=`python2.6 -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"`
-fi
 
 # OS X specific settings
 if [ $UNAME = "Darwin" ]; then
@@ -45,7 +30,7 @@ alias qs='~/.dotfiles/create_links.sh;source $HOME/.dotfiles/.zshrc'
 # global aliases #
 # disable the plonesite part in a buildout run
 alias -g psef="plonesite:enabled=false"
-alias -g py_site_packages='-c "from distutils.sysconfig import get_python_lib; print get_python_lib()"'
+alias -g site-packages='-c "from distutils.sysconfig import get_python_lib; print get_python_lib()"'
 
 # cvs setup
 export CVSROOT=:pserver:clayton@cvs:/var/cvsroot
