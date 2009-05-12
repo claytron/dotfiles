@@ -32,12 +32,12 @@ for dotfile in "${dotfiles[@]}"
     do
         the_dotfile=$HOME/.dotfiles/$dotfile
         # subversion config is an exception
-        if [ $dotfile == 'config' ]; then
+        if [ $dotfile = 'config' ]; then
             to_create=$HOME/.subversion/$dotfile
         else
             to_create=$HOME/$dotfile
         fi
-        if [[ $remove == "unlink" ]]; then
+        if [ "$remove" = "unlink" ]; then
             if [ -e $to_create ]; then
                 rm $to_create
                 echo "Unlinked $to_create"

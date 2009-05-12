@@ -10,10 +10,8 @@ if checkPath fortune; then
 fi
 
 # only update once a day, according to the weShouldUpdate function
-if weShouldUpdate; then
-  # update the confs so they are in sync, but only if under
-  # subversion control
-  if checkPath svn && [ -d $HOME/.dotfiles/.svn ]; then
-      svn up $HOME/.dotfiles
-  fi
+# update the confs so they are in sync, but only if under
+# subversion control and subversion is available
+if checkPath svn && [ -d $HOME/.dotfiles/.svn ] && weShouldUpdate; then
+    svn up $HOME/.dotfiles
 fi

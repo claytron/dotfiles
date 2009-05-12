@@ -130,11 +130,11 @@ alias cp='cp -iv'
 alias mv='mv -i'
 
 # conditionally set up coloring on different OS types
-if [[ $UNAME == "FreeBSD" || $UNAME == "Darwin" ]]; then
+if [ $UNAME = "FreeBSD" ] || [ $UNAME = "Darwin" ]; then
    alias ls="ls -GF"
-elif [[ $UNAME == "Linux" ]]; then
+elif [ $UNAME = "Linux" ]; then
    alias ls="ls --color=auto -GF"
-elif [[ $UNAME == 'SunOS' ]]; then
+elif [ $UNAME = 'SunOS' ]; then
    alias ls="ls --color=always -F"
 fi
 

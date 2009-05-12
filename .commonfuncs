@@ -46,7 +46,7 @@ fullpath() {
     echo $fullpath
     
     # on OS X copy it to the clipboard too :)
-    if checkPath pbcopy && [[ $UNAME == "Darwin" ]]; then
+    if checkPath pbcopy && [ $UNAME = "Darwin" ]; then
         echo $fullpath | pbcopy
     fi
 }
@@ -63,18 +63,18 @@ weShouldUpdate() {
     touchy_file=$HOME/.dotfiles_updated
     # if the file doesn't exist we'll end up touching it
     last_mod=0
-    if [[ -e $touchy_file ]]; then
+    if [ -e $touchy_file ]; then
         # stat is different between flavas
-        if [[ $UNAME == "Linux" ]] || isiPhone; then
+        if [ $UNAME = "Linux" ] || isiPhone; then
             last_mod=$(stat -c %Y "$touchy_file")
-        elif [[ $UNAME == "FreeBSD" || $UNAME == "Darwin" ]]; then
+        elif [ $UNAME = "FreeBSD" ] || [ $UNAME = "Darwin" ]; then
             last_mod=$(stat -f %a "$touchy_file")
         fi
     fi
     current_time=$(date +%s)
     # see what the difference is in seconds
     time_diff=$(( $current_time - $last_mod ))
-    if [[ ( $time_diff -gt $time_to_update ) ]]; then
+    if [ $time_diff -gt $time_to_update ]; then
         touch $touchy_file
         echo "It's been a while since we updated the dotfiles..."
         return 0

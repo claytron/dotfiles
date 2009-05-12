@@ -1,4 +1,4 @@
-UNAME=`uname`
+UNAME=$(uname)
 
 source $HOME/.commonfuncs
 
@@ -23,7 +23,7 @@ if checkPath python2.6; then
 fi
 
 # OS X specific settings
-if [[ $UNAME == "Darwin" ]]; then
+if [ $UNAME = "Darwin" ]; then
     
     # set up dir hashes
     hash -d OB=$HOME/sixfeetup/bundles

@@ -1,11 +1,8 @@
 function precmd {
     # Only show user in the prompt if it isn't yourself
     # Make sure and set the $ME var in .zshrc
-    if [[ `whoami` = $ME ]]; then
-       PR_IMPOSTER=""
-    else
-       PR_IMPOSTER="(%n%)"
-    fi
+    PR_IMPOSTER=""
+    if [ "$ME" != "" ] && [ $(whoami) != "$ME" ] && PR_IMPOSTER="(%n%)"
 }
 
 setprompt () {

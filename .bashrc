@@ -30,12 +30,11 @@ shopt -s histappend
 
 # Set up the prompt
 
-ME="clayton"
 # Only show user in the prompt if it isn't yourself
 # Make sure and set the $ME var
-if [[ $(whoami) = $ME ]]; then
-   PR_IMPOSTER=""
-else
+ME="clayton"
+PR_IMPOSTER=""
+if [ $(whoami) != $ME ]; then
    PR_IMPOSTER="\n(\u)"
 fi
 
