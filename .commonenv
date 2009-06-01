@@ -15,10 +15,6 @@ else
     export EDITOR=vi
 fi
 
-# make sure /usr/local makes it into the man path
-# TODO could do the same kind of 'rationalize-path' as in .zshenv...
-export MANPATH=$MANPATH:/usr/local/man
-
 # get crazy with python, and the cheese whiz
 export PYTHONSTARTUP=$HOME/.pystartup
 
