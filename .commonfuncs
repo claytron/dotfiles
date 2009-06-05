@@ -1,10 +1,23 @@
 UNAME=$(uname)
 
+makeMeLaugh() {
+  if checkPath fortune; then
+    local FORTUNE
+    if [ -d /opt/local/share/games/fortune/comedy ] || [ -d /usr/share/games/fortune/comedy ]; then
+        FORTUNE=$(fortune -e comedy)
+    else
+        FORTUNE=$(fortune -a)
+    fi
+    echo -e "\n$FORTUNE\n"
+  fi
+}
+
 # helper function to search the $PATH for a given
 # executable.  useful for checks across different
 # systems.
 checkPath() {
     local execpath
+    local OIFS
     # the bash compatible version of this
     OIFS=$IFS
     IFS=':'

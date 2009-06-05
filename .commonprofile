@@ -1,13 +1,7 @@
 source $HOME/.commonfuncs
 
-if checkPath fortune; then
-    if [ -d /opt/local/share/games/fortune/comedy ] || [ -d /usr/share/games/fortune/comedy ]; then
-        FORTUNE=$(fortune comedy)
-    else
-        FORTUNE=$(fortune)
-    fi
-    echo -e "\n$FORTUNE\n"
-fi
+# run the fortune function....and...laugh
+makeMeLaugh
 
 # only update once a day, according to the weShouldUpdate function
 # update the confs so they are in sync, but only if under
