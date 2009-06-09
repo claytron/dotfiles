@@ -38,9 +38,10 @@ if [[ $UNAME == "Darwin" ]]; then
     fi
     
     # open it up in TextMate
-    alias descrip_check="python2.4 setup.py --long-description > /tmp/package.rst && rst2html.py /tmp/package.rst /tmp/package.html && mate /tmp/package.rst"
+    alias py_long_descrip="python2.4 setup.py --long-description"
+    alias descrip_check="py_long_descrip > /tmp/package.rst && rst2html.py /tmp/package.rst /tmp/package.html && mate /tmp/package.rst"
     # run the setup.py descrip through docutils, then open it with Firefox (Minefield)
-    alias descrip_check_open="python2.4 setup.py --long-description | rst2html.py > /tmp/foo.html && open file:///tmp/foo.html"
+    alias descrip_check_open="py_long_descrip | rst2html.py > /tmp/foo.html && open file:///tmp/foo.html"
 
     # pylons buildout madness
     alias pfg='bin/paster serve --reload src/sixieminutes/development.ini'
@@ -54,6 +55,9 @@ if [[ $UNAME == "Darwin" ]]; then
         # (this will overwrite the PATH everytime we open a shell)
         defaults write $HOME/.MacOSX/environment PATH -string $PATH
     fi
+    
+    # add ports into the $MANPATH
+    export MANPATH=/opt/local/man:$MANPATH
 fi
 
 # grepping (or acking)
