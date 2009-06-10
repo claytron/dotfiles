@@ -70,3 +70,12 @@ for to_touch in "${touch_me[@]}"
         fi
         touch $HOME/$to_touch
     done
+
+# create a $HOME/bin if it does not exist
+HOME_BIN="$HOME/bin"
+if [[ ! -d "$HOME_BIN" ]] && [[ ! -a "$HOME_BIN" ]]; then
+    mkdir "$HOME/bin" && echo 'created a $HOME/bin directory'
+elif [[ ! -d "$HOME_BIN" ]] && [[ -a "$HOME_BIN" ]]; then
+    echo "something in the way of $HOME_BIN being created"
+fi
+
