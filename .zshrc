@@ -28,8 +28,9 @@ source $HOME/.commonrc
 alias qs='~/.dotfiles/create_links.sh;source $HOME/.dotfiles/.zshrc'
 
 # global aliases #
-# disable the plonesite part in a buildout run
+# disable the plonesite part in a buildout run, example: $ bin/buildout -N psef
 alias -g psef="plonesite:enabled=false"
+# easily get to the site packages dir of any python install, example: $ cd $(python2.5 site-packages)
 alias -g site-packages='-c "from distutils.sysconfig import get_python_lib; print get_python_lib()"'
 
 # cvs setup
