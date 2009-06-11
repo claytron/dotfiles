@@ -35,7 +35,8 @@ if [ $UNAME = "Darwin" ]; then
 
 fi
 
-## colors!!!
+# colors!!!
+###########
 
 # for FreeBSD
 # Pretty LSCOLORS explanation:
