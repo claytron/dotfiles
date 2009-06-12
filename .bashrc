@@ -15,8 +15,8 @@ source $HOME/.commonrc
 
 # seriously, i want to use vi
 set -o vi
-# make TAB cycle through the list of partial matches!
-bind -m vi-insert TAB:menu-complete
+# ^n cycle through the list of partial matches
+bind -m vi-insert "\`":menu-complete
 bind -m vi-insert "\C-a":beginning-of-line
 bind -m vi-insert "\C-e":end-of-line
 
