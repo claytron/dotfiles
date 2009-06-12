@@ -6,4 +6,4 @@
 # add markdown, textile, and reStructuredText
 --type-set=plaintext=.md,.mdown,.markdown,.mkdn,.textile,.rst
 # add in a type for gettext messages
---type-add=gettext=.pot,.po
+--type-set=gettext=.pot,.po
