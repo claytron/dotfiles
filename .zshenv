@@ -37,10 +37,10 @@ rationalize-path () {
 path=(
   "$HOME/bin/$MACHTYPE-$OSTYPE"
   "$HOME/bin"
+  /opt/python-macosx/python-2.4/bin
   /opt/local/bin
   /opt/local/sbin
   /opt/local/lib/postgresql83/bin
-  /opt/python-macosx/python-2.4/bin
   /opt/local/Library/Frameworks/Python.framework/Versions/2.4/bin
   /sw/bin
   /sw/sbin
