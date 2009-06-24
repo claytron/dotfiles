@@ -41,8 +41,9 @@ setopt NO_BEEP
 setopt AUTO_CD CDABLE_VARS
 # History
 setopt HIST_SAVE_NO_DUPS HIST_VERIFY HIST_IGNORE_ALL_DUPS EXTENDED_HISTORY
-# globbing
-#setopt GLOB_DOTS
+# Include dot files in globbing
+# use the following to ignore dot files: % ^.*
+setopt GLOB_DOTS
 
 # use vi mode
 bindkey -v

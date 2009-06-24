@@ -6,11 +6,11 @@ alias h=history
 alias what_linux="cat /etc/issue"
 
 # source my .zshrc
-alias zRehash='. ~/.zshrc'
+alias zRehash='source ~/.zshrc'
 # switch over to the simple prompt
-alias sp='. ~/.zshprompt_simple'
+alias sp='source ~/.zshprompt_simple'
 # re link all the conf files
-alias qs='~/.dotfiles/create_links.sh'
+alias qs='$HOME/.dotfiles/create_links.sh'
 
 # prefer vim over vi
 if checkPath vim; then
@@ -26,10 +26,16 @@ if checkPath supervisorctl; then
     alias sctl=supervisorctl
 fi
 
+# shortcut for long descrip checking
+alias py_long_descrip="python2.4 setup.py --long-description"
+# use cat to show the file
+alias descrip_check="py_long_descrip > /tmp/package.rst && rst2html.py /tmp/package.rst /tmp/package.html && cat -n /tmp/package.rst"
+
 # some OS X specific stuff
 if [[ $UNAME == "Darwin" ]]; then
 
     # set up a path in .profile for TextMate (zsh haterz)
+    # NOTE: this will overwrite the .profile
     echo "export PATH=$PATH" > $HOME/.profile
 
     if checkPath mysql5; then
@@ -37,8 +43,7 @@ if [[ $UNAME == "Darwin" ]]; then
         alias mysql='mysql5'
     fi
     
-    # open it up in TextMate
-    alias py_long_descrip="python2.4 setup.py --long-description"
+    # open it up in TextMate instead of cat
     alias descrip_check="py_long_descrip > /tmp/package.rst && rst2html.py /tmp/package.rst /tmp/package.html && mate /tmp/package.rst"
     # run the setup.py descrip through docutils, then open it with Firefox (Minefield)
     alias descrip_check_open="py_long_descrip | rst2html.py > /tmp/foo.html && open file:///tmp/foo.html"
@@ -78,9 +83,12 @@ else
 fi
 
 # processes
-alias ps='ps axwww'
-alias psg='ps | sgrep'
+alias psa='ps -axwww'
+# pipe into grep to find a proc
+alias psg='psa | sgrep'
+# search for python procs
 alias ispy='psg python'
+# search for ruby procs
 alias isrb='psg ruby'
 
 alias lsofp="sudo lsof -p"
@@ -98,8 +106,10 @@ alias svnps="svn propset svn:externals -F EXTERNALS.txt ."
 alias svnpsi="svn propset svn:ignore -F IGNORE.txt ."
 # Needs to be a better way to do this...
 export sfuprivate='https://svn.sixfeetup.com/svn/private'
-#alias -g spriv='https://svn.sixfeetup.com/svn/private'
+# TODO make the global alias work somehow
+#alias -g spriv='https://svn.sixfeetup.com/svn/private/'
 export sfupublic='https://svn.sixfeetup.com/svn/public'
+#alias -g spub='https://svn.sixfeetup.com/svn/public/'
 
 # zope shortcuts based on our old zeo/zss setup
 # this was before buildout :)
@@ -113,8 +123,8 @@ alias z1Ctl='zss/bin/zeoctl'
 alias zu='sudo -H -u zope'
 
 # buildout...
-alias bfg='bin/control fg'
-alias bs='bin/control stop'
+alias bfg='bin/control fg || bin/instance fg'
+alias bs='bin/control stop || bin/instance stop'
 alias bbn='bin/buildout -v'
 alias bbk='bbn -U'
 alias bbkd='bbk -c development.cfg'
