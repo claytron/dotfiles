@@ -66,29 +66,29 @@ fullpath() {
 
 weShouldUpdate() {
     local time_to_update
-    local touchy_file
+    local time_marker
     local last_mod
     local current_time
     local time_diff
     # only update once a day
     time_to_update=86400
     # use a dot file as a marker
-    touchy_file=$HOME/.dotfiles_updated
+    time_marker="$HOME/.dotfiles"
     # if the file doesn't exist we'll end up touching it
     last_mod=0
     if [ -e $touchy_file ]; then
         # stat is different between flavas
         if [ $UNAME = "Linux" ] || isiPhone; then
-            last_mod=$(stat -c %Y "$touchy_file")
+            last_mod=$(stat -c %Y "$time_marker")
         elif [ $UNAME = "FreeBSD" ] || [ $UNAME = "Darwin" ]; then
-            last_mod=$(stat -f %a "$touchy_file")
+            last_mod=$(stat -f %a "$time_marker")
         fi
     fi
     current_time=$(date +%s)
     # see what the difference is in seconds
     time_diff=$(( $current_time - $last_mod ))
     if [ $time_diff -gt $time_to_update ]; then
-        touch $touchy_file
+        touch "$time_marker"
         echo "It's been a while since we updated the dotfiles..."
         return 0
     fi
