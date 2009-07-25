@@ -58,6 +58,9 @@ bindkey -M viins '\e[3~' vi-delete-char
 #bindkey -M viins '^[[3~' vi-delete-char
 # line buffer
 bindkey -M viins '^B' push-line-or-edit
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
 
 # set up history
 HISTSIZE=3000
