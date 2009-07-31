@@ -25,6 +25,12 @@ function precmd {
     # Make sure and set the $ME var in .zshrc
     PR_IMPOSTER=""
     [ "$ME" != "" ] && [ $(whoami) != "$ME" ] && PR_IMPOSTER="(%n%)"
+    
+    PR_PROJECT=""
+    local THIRD_DIR=$(pwd | cut -f 4,5 -d /)
+    if [ "$THIRD_DIR" = "sixfeetup/projects" ]; then
+        PR_PROJECT="($(pwd | cut -f 6 -d /))"
+    fi
 }
 
 setopt extended_glob
@@ -56,7 +62,7 @@ setprompt () {
     # Decide if we need to set titlebar text.
     case $TERM in
        xterm*)
-           PR_TITLEBAR=$'%{\e]0;%m $PR_IMPOSTER\a%}'
+           PR_TITLEBAR=$'%{\e]0;%m $PR_IMPOSTER $PR_PROJECT\a%}'
            ;;
        screen)
            PR_TITLEBAR=$'%{\e_screen \005 (\005t) | %m $PR_IMPOSTER\e\\%}'
