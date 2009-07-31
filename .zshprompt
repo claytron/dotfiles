@@ -29,7 +29,8 @@ function precmd {
     PR_PROJECT=""
     local THIRD_DIR=$(pwd | cut -f 4,5 -d /)
     if [ "$THIRD_DIR" = "sixfeetup/projects" ]; then
-        PR_PROJECT="($(pwd | cut -f 6 -d /))"
+        PR_PROJECT="$(pwd | cut -f 6 -d /)"
+        [ ! "$PR_PROJECT" = "" ] && PR_PROJECT="($PR_PROJECT)"
     fi
 }
 
