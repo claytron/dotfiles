@@ -126,6 +126,7 @@ alias zu='sudo -H -u zope'
 alias bfg='bin/control fg || bin/instance fg'
 alias bs='bin/control stop || bin/instance stop'
 alias bbn='bin/buildout -v'
+alias bbnew="python2.4 bootstrap.py && bbn -N"
 alias bbk='bbn -U'
 alias bbkd='bbk -c development.cfg'
 alias bbpin="bin/buildout -Nvvvvv plonesite:enabled=false | sed -ne 's/^Picked: //p' | sort | uniq"
@@ -152,14 +153,16 @@ elif [ $UNAME = 'SunOS' ]; then
    alias ls="ls --color=always -F"
 fi
 
-# show me everything
-alias lsa='ls -alh'
+# show me all files (long list)
+alias ll='ls -al'
+# show me everything human readable
+alias lsa='ll -h'
 # sort by size
 alias lss='lsa -Sr'
-# lsa but not human readable
-alias ll='ls -al'
-# show all dot files and dirs
-alias lsd='ls -ld .*'
+# don't list directories
+alias lsd='lsa -d'
+# list all dot files
+alias lsdot='lsd .*'
 
 alias df='df -h'
 alias less='less -I'
@@ -175,6 +178,9 @@ alias 7zultra='7za a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on'
 
 # always show all versions of an executable
 alias which="which -a"
+
+# ssh over a slow connection
+alias sshc="ssh -C -c blowfish"
 
 # Pretty LS_COLORS explanation: 
 # http://www.mjxg.com/index.py/geek/lscolors_and_ls_colors
