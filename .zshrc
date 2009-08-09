@@ -58,9 +58,16 @@ bindkey -M viins '\e[3~' vi-delete-char
 #bindkey -M viins '^[[3~' vi-delete-char
 # line buffer
 bindkey -M viins '^B' push-line-or-edit
+
+# edit current command in $EDITOR
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
+
+# tetris!!
+autoload -U tetris
+zle -N tetris
+bindkey "^t" tetris
 
 # set up history
 HISTSIZE=3000
