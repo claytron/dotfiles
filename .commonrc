@@ -148,7 +148,7 @@ alias mv='mv -i'
 if [ $UNAME = "FreeBSD" ] || [ $UNAME = "Darwin" ]; then
    alias ls="ls -GF"
 elif [ $UNAME = "Linux" ]; then
-   alias ls="ls --color=auto -GF"
+   alias ls="ls --color=auto -F"
 elif [ $UNAME = 'SunOS' ]; then
    alias ls="ls --color=always -F"
 fi
