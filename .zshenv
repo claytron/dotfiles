@@ -78,22 +78,25 @@ typeset -U path
 # sake more than anything.
 rationalize-path path
 
-# Now let's take care of the 
-# function path
-#############################
-
-fpath=(
-    /usr/share/zsh/site-functions
-    /usr/share/zsh/4.3.4/functions
-    /opt/local/share/zsh/4.3.10/functions
-)
-
-export FPATH
-# Only unique entries please.
-typeset -U fpath
-# Remove entries that don't exist on this system.  Just for sanity's
-# sake more than anything.
-rationalize-path fpath
+# only on OS X for now, messing with this causes issues
+if [ $UNAME = "Darwin" ]; then
+    # Now let's take care of the 
+    # function path
+    #############################
+    
+    fpath=(
+        /usr/share/zsh/site-functions
+        /usr/share/zsh/4.3.4/functions
+        /opt/local/share/zsh/4.3.10/functions
+    )
+    
+    export FPATH
+    # Only unique entries please.
+    typeset -U fpath
+    # Remove entries that don't exist on this system.  Just for sanity's
+    # sake more than anything.
+    rationalize-path fpath
+fi
 
 # extra per environment settings
 source $HOME/.zshenv_extras
