@@ -27,11 +27,18 @@ source $HOME/.commonrc
 
 alias qs='~/.dotfiles/create_links.sh;source $HOME/.dotfiles/.zshrc'
 
-# global aliases #
+## global aliases
 # disable the plonesite part in a buildout run, example: $ bin/buildout -N psef
 alias -g psef="plonesite:enabled=false"
 # easily get to the site packages dir of any python install, example: $ cd $(python2.5 site-packages)
 alias -g site-packages='-c "from distutils.sysconfig import get_python_lib; print get_python_lib()"'
+# SVN repos
+# 
+# NOTE: you can expand aliases with "_expand_alias"
+#       see bindkey for more info $ bindkey -M viins
+alias -g spriv='https://svn.sixfeetup.com/svn/private/'
+alias -g spub='https://svn.sixfeetup.com/svn/public/'
+alias -g collective='https://svn.plone.org/svn/collective/'
 
 # cvs setup
 export CVSROOT=:pserver:clayton@cvs:/var/cvsroot
@@ -54,10 +61,10 @@ bindkey -M viins '^[[F' vi-end-of-line
 bindkey -M viins '^E' vi-end-of-line
 # use delete as forward delete
 bindkey -M viins '\e[3~' vi-delete-char
-# OS X?
-#bindkey -M viins '^[[3~' vi-delete-char
 # line buffer
 bindkey -M viins '^B' push-line-or-edit
+# change the '-' for up in history, always kills my command editing.
+bindkey -M vicmd '^[OA' vi-up-line-or-history
 
 # edit current command in $EDITOR
 autoload -U edit-command-line
