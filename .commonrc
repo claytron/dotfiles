@@ -104,12 +104,9 @@ alias sdist_upload_pypi="python2.4 setup.py mregister sdist mupload -r pypi"
 # svn helpers
 alias svnps="svn propset svn:externals -F EXTERNALS.txt ."
 alias svnpsi="svn propset svn:ignore -F IGNORE.txt ."
-# Needs to be a better way to do this...
+# Needs to be a better way to do this... (global aliases + zsh, see the .zshrc)
 export sfuprivate='https://svn.sixfeetup.com/svn/private'
-# TODO make the global alias work somehow
-#alias -g spriv='https://svn.sixfeetup.com/svn/private/'
 export sfupublic='https://svn.sixfeetup.com/svn/public'
-#alias -g spub='https://svn.sixfeetup.com/svn/public/'
 
 # zope shortcuts based on our old zeo/zss setup
 # this was before buildout :)
