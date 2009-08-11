@@ -38,7 +38,7 @@ export CVSROOT=:pserver:clayton@cvs:/var/cvsroot
 
 setopt NO_BEEP
 # Changing Directories
-setopt AUTO_CD CDABLE_VARS
+setopt AUTO_CD CDABLE_VARS AUTOPUSHD
 # History
 setopt HIST_SAVE_NO_DUPS HIST_VERIFY HIST_IGNORE_ALL_DUPS EXTENDED_HISTORY
 # Include dot files in globbing
