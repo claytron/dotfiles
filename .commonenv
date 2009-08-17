@@ -3,7 +3,7 @@ source $HOME/.commonfuncs
 
 # Turn off case sensitive search in less and display a long
 # prompt with more info.  This will also apply to man.
-export LESS="-I-M"
+export LESS="-IMR"
 
 # conditionally set the editor variable
 if checkPath mate_wait; then
