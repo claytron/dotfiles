@@ -87,9 +87,9 @@ alias psa='ps -axwww'
 # pipe into grep to find a proc
 alias psg='psa | sgrep'
 # search for python procs
-alias ispy='psg python'
+alias ispy='psg "[p]ython"'
 # search for ruby procs
-alias isrb='psg ruby'
+alias isrb='psg "[r]uby"'
 
 alias lsofp="sudo lsof -p"
 
@@ -127,7 +127,7 @@ alias bbnew="python2.4 bootstrap.py && bbn -N"
 alias bbk='bbn -U'
 alias bbkd='bbk -c development.cfg'
 alias bbpin="bin/buildout -Nvvvvv plonesite:enabled=false | sed -ne 's/^Picked: //p' | sort | uniq"
-alias bbc="rm -rf .installed parts/* develop-eggs/*"
+alias bbc="rm -rf parts/* develop-eggs/* fake-eggs/* .installed"
 alias bbcwipe="bbc var/filestorage/Data.fs*"
 alias bbrefresh="bs; rm .installed.cfg var/filestorage/Data.fs*; bbn -N"
 alias bbcextreme="bbc ~/.buildout/eggs/* ~/.buildout/downloads/* ~/.buildout/zope/*"
