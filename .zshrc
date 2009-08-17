@@ -45,9 +45,14 @@ export CVSROOT=:pserver:clayton@cvs:/var/cvsroot
 
 setopt NO_BEEP
 # Changing Directories
-setopt AUTO_CD CDABLE_VARS AUTOPUSHD
+setopt AUTO_CD 
+setopt CDABLE_VARS
+setopt AUTO_PUSHD
 # History
-setopt HIST_SAVE_NO_DUPS HIST_VERIFY HIST_IGNORE_ALL_DUPS EXTENDED_HISTORY
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_VERIFY
+setopt HIST_IGNORE_ALL_DUPS
+setopt EXTENDED_HISTORY
 # Include dot files in globbing
 # use the following to ignore dot files: % ^.*
 setopt GLOB_DOTS
@@ -82,12 +87,14 @@ SAVEHIST=3000
 HISTFILE=~/.zsh_history
 export HISTFILE HISTSIZE SAVEHIST
 
-# old style completions
+## old style completions
+# supervisor
 if checkPath supervisorctl; then
     # set up completions for supervisor
-    compctl -s '$(supervisorctl status)' supervisorctl
+    compctl -s "$(supervisorctl status | awk -F' ' '{print $1}')" supervisorctl
 fi
-compctl -s 'fg kill start logreopen reload shell status wait help logtail restart show stop' instance zopectl zeoserver zeoctl
+# zope
+compctl -s 'fg kill start logreopen reload shell status wait help logtail restart show stop' zeoserver zeoctl
 compctl -s 'fg kill start logreopen reload shell status wait help logtail restart show stop run adduser test debug' instance zopectl
 
 ## Completions
