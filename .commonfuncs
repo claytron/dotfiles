@@ -56,11 +56,11 @@ isiPhone() {
 fullpath() {
     local fullpath
     fullpath=$(pwd)/$1
-    echo $fullpath
+    echo -n "\"$fullpath\""
     
     # on OS X copy it to the clipboard too :)
     if checkPath pbcopy && [ $UNAME = "Darwin" ]; then
-        echo $fullpath | pbcopy
+        echo -n "\"$fullpath\"" | pbcopy
     fi
 }
 
