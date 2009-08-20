@@ -1,8 +1,10 @@
 UNAME=$(uname)
 source $HOME/.commonfuncs
 
-# Turn off case sensitive search in less and display a long
-# prompt with more info.  This will also apply to man.
+# Enable a few things for less (This will also apply to man)
+#   * turn off case sensitive search (-I)
+#   * display a long prompt with more info (-M)
+#   * show colors instead of escape characters (-R)
 export LESS="-IMR"
 
 # conditionally set the editor variable
