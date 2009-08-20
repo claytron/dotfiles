@@ -20,12 +20,6 @@ else
     alias vim=vi
 fi
 
-# set up a quickie for supervisorctl
-alias bsctl=bin/supervisorctl
-if checkPath supervisorctl; then
-    alias sctl=supervisorctl
-fi
-
 # shortcut for long descrip checking
 alias py_long_descrip="python2.4 setup.py --long-description"
 # use cat to show the file
@@ -82,7 +76,7 @@ else
     alias sgrepnoir='grep'
 fi
 
-# processes
+## processes
 alias psa='ps -axwww'
 # pipe into grep to find a proc
 alias psg='psa | sgrep'
@@ -90,6 +84,11 @@ alias psg='psa | sgrep'
 alias ispy='psg "[p]ython"'
 # search for ruby procs
 alias isrb='psg "[r]uby"'
+# set up a quickie for supervisorctl
+alias bsctl=bin/supervisorctl
+if checkPath supervisorctl; then
+    alias sctl=supervisorctl
+fi
 
 alias lsofp="sudo lsof -p"
 
