@@ -87,8 +87,6 @@ alias isrb='psg "[r]uby"'
 
 # supervisor in buildouts
 alias bsctl=bin/supervisorctl
-alias bsctlkill='kill $(cat var/supervisord.pid)'
-alias bsctlshutdown="bsctl stop all && bsctlkill"
 # system wide supervisor
 if checkPath supervisorctl; then
     alias sctl=supervisorctl
