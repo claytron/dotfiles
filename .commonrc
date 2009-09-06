@@ -23,7 +23,7 @@ fi
 # shortcut for long descrip checking
 alias py_long_descrip="python2.4 setup.py --long-description"
 # use cat to show the file
-alias descrip_check="py_long_descrip > /tmp/package.rst && rst2html.py /tmp/package.rst /tmp/package.html && cat -n /tmp/package.rst"
+alias descrip_check="py_long_descrip > /tmp/package.rst; rst2html.py /tmp/package.rst /tmp/package.html; cat -n /tmp/package.rst"
 
 # some OS X specific stuff
 if [[ $UNAME == "Darwin" ]]; then
@@ -38,9 +38,9 @@ if [[ $UNAME == "Darwin" ]]; then
     fi
     
     # open it up in TextMate instead of cat
-    alias descrip_check="py_long_descrip > /tmp/package.rst && rst2html.py /tmp/package.rst /tmp/package.html && mate /tmp/package.rst"
+    alias descrip_check="py_long_descrip > /tmp/package.rst; rst2html.py /tmp/package.rst /tmp/package.html; mate /tmp/package.rst"
     # run the setup.py descrip through docutils, then open it with Firefox (Minefield)
-    alias descrip_check_open="py_long_descrip | rst2html.py > /tmp/foo.html && open file:///tmp/foo.html"
+    alias descrip_check_open="py_long_descrip | rst2html.py > /tmp/foo.html; open file:///tmp/foo.html"
 
     # pylons buildout madness
     alias pfg='bin/paster serve --reload src/sixieminutes/development.ini'
@@ -121,7 +121,7 @@ alias z1Ctl='zss/bin/zeoctl'
 alias zu='sudo -H -u zope'
 
 # buildout...
-alias bfg='bin/control fg || bin/instance fg'
+alias bfg='bin/control fg || bin/supervisord && bin/instance fg || bin/instance fg'
 alias bs='bin/control stop || bin/instance stop'
 alias bbn='bin/buildout -v'
 alias bbnew="python2.4 bootstrap.py && bbn -N"
