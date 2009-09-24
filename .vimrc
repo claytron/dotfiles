@@ -59,3 +59,16 @@ set mouse=a
 " It feels weird at first but is quite useful.
 "set virtualedit=all
 
+" Settings trying to make vim like TextMate :)
+" --------------------------------------------
+
+" turn on filetype checking for plugins like pyflakes
+filetype on            " enables filetype detection
+filetype plugin on     " enables filetype specific plugins
+
+" set project folder to \x
+map <leader>x :NERDTree<CR>
+
+" shortcut for ack search
+map <leader>a :Ack
+

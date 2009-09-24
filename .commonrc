@@ -20,6 +20,8 @@ else
     alias vim=vi
 fi
 
+
+
 # shortcut for long descrip checking
 alias py_long_descrip="python2.4 setup.py --long-description"
 # use cat to show the file
@@ -77,7 +79,7 @@ else
 fi
 
 ## processes
-alias psa='ps -axwww'
+alias psa='ps axwww'
 # pipe into grep to find a proc
 alias psg='psa | sgrep'
 # search for python procs
@@ -179,6 +181,27 @@ alias which="which -a"
 
 # ssh over a slow connection
 alias sshc="ssh -C -c blowfish"
+
+## ArchLinux / Linux desktop stuff
+
+# use powerpill if available
+if checkPath powerpill; then
+    alias pacinstall="sudo powerpill -S"
+else
+    alias pacinstall="sudo pacman -S"
+fi
+
+if checkPath yaourt; then
+   alias pacsearch="yaourt -Ss"
+else
+   alias pacsearch="pacman -Ss"
+fi
+
+# use gnome-open if it is available
+if checkPath gnome-open; then
+    # can't break the OS X habit :)
+    alias open=gnome-open
+fi
 
 # Pretty LS_COLORS explanation: 
 # http://www.mjxg.com/index.py/geek/lscolors_and_ls_colors

@@ -6,6 +6,7 @@ hash -d L=/var/log
 hash -d RA=/var/db/rails
 hash -d R=/usr/local/etc/rc.d
 hash -d Z=/var/db/zope
+hash -d P=$HOME/sixfeetup/projects
 
 # OS X specific settings
 if [ $UNAME = "Darwin" ]; then
@@ -17,7 +18,6 @@ if [ $UNAME = "Darwin" ]; then
     hash -d DB25=$HOME/Documents/sixfeetup/dev-bundle-2.5
     hash -d OP=$HOME/Documents/sixfeetup/projects
     hash -d EP=/Volumes/MUZAK/zope
-    hash -d P=$HOME/sixfeetup/projects
     hash -d S=$HOME/Sites
 
 fi

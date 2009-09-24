@@ -62,6 +62,9 @@ fullpath() {
     if checkPath pbcopy && [ $UNAME = "Darwin" ]; then
         echo -n "\"$fullpath\"" | pbcopy
     fi
+
+    # on linux use xclip to copy to the clipboard
+    checkPath xclip && echo -n "\"$fullpath\"" | xclip
 }
 
 weShouldUpdate() {
