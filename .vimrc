@@ -11,7 +11,11 @@ syntax on
 " gui and terminal compatible color scheme
 set t_Co=256
 set background=dark
+" a 256 color enhanced version of ir_black, with my mods :)
 colorscheme tir_black
+
+" highlight the cursor line
+set cursorline
 
 " turn on line numbers, aww yeah
 set number
@@ -45,7 +49,7 @@ set ignorecase
 set smartcase
 
 " have fifty lines of command-line (etc) history:
-set history=50
+set history=1000
 
 " This setting ensures that each window contains a statusline that displays the
 " current cursor position.
