@@ -7,8 +7,10 @@ set nocompatible
 
 " turn on syntax highlighting
 syntax on
-" Make it not as appaling on dark background
-highlight Comment ctermfg=Cyan term=NONE cterm=NONE
+
+set t_Co=256
+set background=dark
+colorscheme ir_black
 
 " turn on line numbers, aww yeah
 set number
