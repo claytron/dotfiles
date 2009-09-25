@@ -8,9 +8,10 @@ set nocompatible
 " turn on syntax highlighting
 syntax on
 
+" gui and terminal compatible color scheme
 set t_Co=256
 set background=dark
-colorscheme ir_black
+colorscheme tir_black
 
 " turn on line numbers, aww yeah
 set number
@@ -61,6 +62,7 @@ set mouse=a
 " It feels weird at first but is quite useful.
 "set virtualedit=all
 
+" --------------------------------------------
 " Settings trying to make vim like TextMate :)
 " --------------------------------------------
 
@@ -73,4 +75,14 @@ map <leader>x :NERDTree<CR>
 
 " shortcut for ack search
 map <leader>a :Ack
+
+" buffer explorer ctrl + tabbing
+"let g:miniBufExplMapCTabSwitchWindows = 1
+"let g:miniBufExplMapWindowNavVim = 1
+
+" automatically use the wiki text for trac.sixfeetup.com when
+" using it's all text
+au BufNewFile,BufRead trac.sixfeetup.com.*.txt set syntax=wiki
+" markdown syntax
+au BufNewFile,BufRead *.{md|mdown|markdown} set syntax=mkd
 
