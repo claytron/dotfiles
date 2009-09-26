@@ -89,6 +89,7 @@ set mousemodel=popup
 
 " tell the bell to go beep itself!
 set vb
+set t_vb=
 
 " Settings trying to make vim like TextMate :)
 " --------------------------------------------
@@ -101,8 +102,6 @@ filetype plugin on     " enables filetype specific plugins
 " -----------------------------------------------------------------
 " set project folder to x
 map <leader>x :NERDTree<CR>
-" automagically open NERDTree
-autocmd VimEnter * exe 'NERDTree' | wincmd l
 " files/dirs to ignore in NERDTree (mostly the same as my svn ignores)
 let NERDTreeIgnore=['\~$', '\.pt.cache$', '\.Python$', '\.svn$', '\.git*$', '\.pyc$', '\.mo$', '\.o$', '\.lo$', '\.la$', '\..*.rej$', '\.rej$', '\.DS_Store$']
 " set the sort order to alphabetical
