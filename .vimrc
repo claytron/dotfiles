@@ -1,6 +1,13 @@
 " FreeBSD security advisory for this one...
 set nomodeline
 
+" set the default encoding
+set enc=utf-8
+
+" set the title of the window
+set title
+set titlestring=%f%(\ [%M]%)
+
 " This setting prevents vim from emulating the original vi's
 " bugs and limitations.
 set nocompatible
@@ -18,8 +25,10 @@ syntax on
 " gui and terminal compatible color scheme
 set t_Co=256
 set background=dark
-" a 256 color enhanced version of ir_black, with my mods :)
+" a 256 color enhanced version of ir_black
 colorscheme tir_black
+" my mods to the theme
+colorscheme tir_black_custom
 
 " highlight the cursor line
 set cursorline
@@ -70,6 +79,8 @@ set equalalways
 
 " have the mouse enabled all the time:
 set mouse=a
+" make right click do something
+set mousemodel=popup
 
 " By default, vim doesn't let the cursor stray beyond the defined text. This 
 " setting allows the cursor to freely roam anywhere it likes in command mode.
@@ -110,6 +121,9 @@ map <leader>a :Ack
 au BufNewFile,BufRead trac.sixfeetup.com.*.txt set syntax=wiki
 " markdown syntax
 au BufNewFile,BufRead *.{md|mdown|markdown} set syntax=mkd
+
+" fuzzy finder text mate mapping
+map <leader>t :FuzzyFinderTextMate<CR>
 
 " Make cursor move by visual lines instead of file lines (when wrapping)
 map <up> gk

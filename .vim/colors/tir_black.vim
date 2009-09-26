@@ -13,11 +13,11 @@ endif
 let colors_name = "tir_black"
 
 " General colors
-hi Normal guifg=#f6f3e8 guibg=#2e2e2e ctermfg=white ctermbg=NONE
-hi NonText guifg=#070707 guibg=NONE ctermfg=232 ctermbg=NONE
+hi Normal guifg=#f6f3e8 guibg=black ctermfg=white ctermbg=0
+hi NonText guifg=#070707 guibg=black ctermfg=232 ctermbg=0
 
 hi Cursor guifg=black guibg=white ctermfg=0 ctermbg=15
-hi LineNr guifg=#3D3D3D guibg=darkgray ctermfg=239 ctermbg=8
+hi LineNr guifg=#3D3D3D guibg=black ctermfg=239 ctermbg=0
 
 hi VertSplit guifg=#202020 guibg=#202020 ctermfg=235 ctermbg=235 
 hi StatusLine guifg=#CCCCCC guibg=#202020 gui=italic ctermfg=235 ctermbg=254
