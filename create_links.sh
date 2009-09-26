@@ -15,6 +15,7 @@ excluded=(
     .svn
     .git
     .gitignore
+    .DS_Store
     .
     ..
 )
@@ -61,9 +62,8 @@ linkDotfile() {
     fi
 }
 
-#####################################################
 # Links all the dotfiles from the .dotfiles directory
-#####################################################
+# -----------------------------------------------------------------
 for actual_dotfile in $HOME/.dotfiles/.*
     do
         dotfile=$(echo $actual_dotfile | awk -F"$dotfiles_loc/" '{print $2}')
@@ -74,18 +74,16 @@ for actual_dotfile in $HOME/.dotfiles/.*
         fi
     done
 
-##########################################
 # take care of the .subversion/config file
-##########################################
+# -----------------------------------------------------------------
 actual_dotfile="$dotfiles_loc/config"
 dotfile="config"
 to_create="$HOME/.subversion/$dotfile"
 # actually create/remove the link
 linkDotfile $dotfile $to_create $actual_dotfile
 
-########################################################
 # NOTE: None of these files are under version control...
-########################################################
+# -----------------------------------------------------------------
 if [ ! "$remove" = "remove" ]; then
     
     # warn the user what is about to happen
@@ -98,9 +96,8 @@ Deleting them will remove them immediately
 '
     fi
     
-    #######################################
     # touch extra files needed by the confs
-    #######################################
+    # -------------------------------------------------------------
     touch_me=(
         .zsh_history
         .bash_history
@@ -129,9 +126,8 @@ Deleting them will remove them immediately
             fi
         done
     
-    #########################################
     # create a $HOME/bin if it does not exist
-    #########################################
+    # -------------------------------------------------------------
     HOME_BIN="$HOME/bin"
     # if we are cleaning up, let's remove the dir
     if [ "$remove" = "cleanup" ]; then
@@ -150,10 +146,30 @@ Deleting them will remove them immediately
     elif [[ ! -d "$HOME_BIN" ]] && [[ -a "$HOME_BIN" ]]; then
         echo "something in the way of $HOME_BIN being created"
     fi
+
+    # directories for vim
+    # -------------------------------------------------------------
+    VIM_BACKUPS="$HOME/.backup"
+    # if we are cleaning up, let's remove the dir
+    if [ "$remove" = "cleanup" ]; then
+        if [ -d "$VIM_BACKUPS" ]; then
+            echo -n "Are you sure you want to delete $VIM_BACKUPS? [n]: "
+            read REMOVE_DIR
+            if [ "$REMOVE_DIR" = "y" ]; then
+                rm -rf "$VIM_BACKUPS"
+                echo "Deleted $VIM_BACKUPS"
+            fi
+        fi
+    # if the directory doesn't exist, let's create it
+    elif [[ ! -d "$VIM_BACKUPS" ]] && [[ ! -a "$VIM_BACKUPS" ]]; then
+        mkdir -p "$VIM_BACKUPS/vim/swap" && echo "created a $VIM_BACKUPS directory"
+        chmod 700 "$VIM_BACKUPS"
+    elif [[ ! -d "$VIM_BACKUPS" ]] && [[ -a "$VIM_BACKUPS" ]]; then
+        echo "something in the way of $VIM_BACKUPS being created"
+    fi
     
-    ##################################################
     # create a $HOME/.virtualenvs if it does not exist
-    ##################################################
+    # -------------------------------------------------------------
     VIRTUALENVS="$HOME/.virtualenvs"
     # if we are cleaning up, let's remove the dir
     if [ "$remove" = "cleanup" ]; then
@@ -173,9 +189,8 @@ Deleting them will remove them immediately
         echo "something in the way of $VIRTUALENVS being created"
     fi
     
-    #######################################
     # create a buildout directory structure
-    #######################################
+    # -------------------------------------------------------------
     BUILDOUT_DIR="$HOME/.buildout"
     # if we are cleaning up, let's remove the dir
     if [ "$remove" = "cleanup" ]; then
@@ -212,9 +227,8 @@ Deleting them will remove them immediately
         echo "something in the way of $BUILDOUT_DIR being created"
     fi
     
-    ########################
     # create a dummy .pypirc
-    ########################
+    # -------------------------------------------------------------
     PYPIRC="$HOME/.pypirc"
     if [ "$remove" = "cleanup" ]; then
         if [ -e "$PYPIRC" ]; then
@@ -250,9 +264,8 @@ Deleting them will remove them immediately
     chmod 600 $PYPIRC
     fi
     
-    #################################
     # create a dummy .pydistutils.cfg
-    #################################
+    # -------------------------------------------------------------
     PYDISTUTILS_CFG="$HOME/.pydistutils.cfg"
     if [ "$remove" = "cleanup" ]; then
         if [ -e "$PYDISTUTILS_CFG" ]; then

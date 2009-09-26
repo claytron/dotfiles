@@ -5,6 +5,13 @@ set nomodeline
 " bugs and limitations.
 set nocompatible
 
+" set the mapleader key
+let mapleader = ","
+
+" hide the backup and swap files
+set backupdir=~/.backup/vim,.,/tmp
+set directory=~/.backup/vim/swap,.,/tmp
+
 " turn on syntax highlighting
 syntax on
 
@@ -66,7 +73,9 @@ set mouse=a
 " It feels weird at first but is quite useful.
 "set virtualedit=all
 
-" --------------------------------------------
+" tell the bell to go beep itself!
+set vb
+
 " Settings trying to make vim like TextMate :)
 " --------------------------------------------
 
@@ -74,8 +83,17 @@ set mouse=a
 filetype on            " enables filetype detection
 filetype plugin on     " enables filetype specific plugins
 
-" set project folder to \x
+" NERDTree settings
+" -----------------------------------------------------------------
+" set project folder to x
 map <leader>x :NERDTree<CR>
+" automagically open NERDTree
+autocmd VimEnter * exe 'NERDTree' | wincmd l
+" files/dirs to ignore in NERDTree (mostly the same as my svn ignores)
+let NERDTreeIgnore=['\~$', '\.pt.cache$', '\.Python$', '\.svn$', '\.git*$', '\.pyc$', '\.mo$', '\.o$', '\.lo$', '\.la$', '\..*.rej$', '\.rej$', '\.DS_Store$']
+" set the sort order to alphabetical
+let NERDTreeSortOrder=[]
+" -----------------------------------------------------------------
 
 " shortcut for ack search
 map <leader>a :Ack
@@ -89,4 +107,25 @@ map <leader>a :Ack
 au BufNewFile,BufRead trac.sixfeetup.com.*.txt set syntax=wiki
 " markdown syntax
 au BufNewFile,BufRead *.{md|mdown|markdown} set syntax=mkd
+
+" Make cursor move by visual lines instead of file lines (when wrapping)
+map <up> gk
+map k gk
+imap <up> <C-o>gk
+map <down> gj
+map j gj
+imap <down> <C-o>gj
+map E ge
+
+" Insert newlines with enter and shift + enter
+map <S-Enter> O<ESC>
+map <Enter> o<ESC>
+
+" set up the invisible characters
+" -----------------------------------------------------------------
+set listchars=eol:¬,tab:>-
+" show invisible characters by default
+set list
+" toggle invisible characters
+:noremap <leader>i :set list!<CR>
 

@@ -14,7 +14,7 @@ let colors_name = "tir_black"
 
 " General colors
 hi Normal guifg=#f6f3e8 guibg=#2e2e2e ctermfg=white ctermbg=NONE
-hi NonText guifg=#070707 guibg=black ctermfg=232 ctermbg=NONE
+hi NonText guifg=#070707 guibg=NONE ctermfg=232 ctermbg=NONE
 
 hi Cursor guifg=black guibg=white ctermfg=0 ctermbg=15
 hi LineNr guifg=#3D3D3D guibg=darkgray ctermfg=239 ctermbg=8
