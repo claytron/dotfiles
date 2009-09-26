@@ -65,6 +65,9 @@ set ruler
 " Display an incomplete command in the lower right corner of the Vim window
 set showcmd
 
+" set all window splits equal
+set equalalways
+
 " have the mouse enabled all the time:
 set mouse=a
 
@@ -120,6 +123,9 @@ map E ge
 " Insert newlines with enter and shift + enter
 map <S-Enter> O<ESC>
 map <Enter> o<ESC>
+
+" map ; to : so you don't have to use shift
+map ; :
 
 " set up the invisible characters
 " -----------------------------------------------------------------
