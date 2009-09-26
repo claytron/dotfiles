@@ -109,6 +109,15 @@ let NERDTreeIgnore=['\~$', '\.pt.cache$', '\.Python$', '\.svn$', '\.git*$', '\.p
 let NERDTreeSortOrder=[]
 " -----------------------------------------------------------------
 
+" Fuzzy finder textmate plugin
+" -----------------------------------------------------------------
+" max results, lot o' files in a buildout :)
+let g:fuzzy_ceiling=35000
+" show full paths
+let g:fuzzy_path_display = 'highlighted_path'
+" ignored files
+let g:fuzzy_ignore = "*.png;*.PNG;*.pyc;*.pyo;*.JPG;*.jpg;*.GIF;*.gif;.svn/**;.git/**;*.mo"
+
 " shortcut for ack search
 map <leader>a :Ack
 
