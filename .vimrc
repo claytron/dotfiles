@@ -14,6 +14,8 @@ set nocompatible
 
 " set the mapleader key
 let mapleader = ","
+" set up jj as mode switch
+:map! jj <ESC>
 
 " hide the backup and swap files
 set backupdir=~/.backup/vim,.,/tmp
