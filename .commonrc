@@ -20,8 +20,6 @@ else
     alias vim=vi
 fi
 
-
-
 # shortcut for long descrip checking
 alias py_long_descrip="python2.4 setup.py --long-description"
 # use cat to show the file
@@ -107,6 +105,7 @@ alias sdist_upload_pypi="python2.4 setup.py mregister sdist mupload -r pypi"
 # svn helpers
 alias svnps="svn propset svn:externals -F EXTERNALS.txt ."
 alias svnpsi="svn propset svn:ignore -F IGNORE.txt ."
+alias svndiff="svn --dif-cmd=colordif"
 # Needs to be a better way to do this... (global aliases + zsh, see the .zshrc)
 export sfuprivate='https://svn.sixfeetup.com/svn/private'
 export sfupublic='https://svn.sixfeetup.com/svn/public'
