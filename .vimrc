@@ -45,13 +45,25 @@ set number
 "set autoindent
 "set smartindent
 
-" I prefer 4-space tabs to 8-space tabs. The first setting sets up 4-space
-" tabs, and the second tells vi to use 4 spaces when text is indented (auto or
-" with the manual indent adjustmenters.)
-set tabstop=4
-set shiftwidth=4
-set expandtab
-set softtabstop=4
+" function to switch between tabs and spaces
+" taken from: http://github.com/twerth/dotfiles/blob/master/etc/vim/vimrc
+function! Tabstyle_tabs()
+  " Using 4 column tabs
+  set softtabstop=4
+  set shiftwidth=4
+  set tabstop=4
+  set noexpandtab
+endfunction
+ 
+function! Tabstyle_spaces()
+  " Use 2 spaces
+  set softtabstop=4
+  set shiftwidth=4
+  set tabstop=4
+  set expandtab
+endfunction
+ 
+call Tabstyle_spaces()
 
 " This setting will cause the cursor to very briefly jump to a 
 " brace/parenthese/bracket's "match" whenever you type a closing or 
@@ -69,12 +81,11 @@ set smartcase
 " have fifty lines of command-line (etc) history:
 set history=1000
 
-" This setting ensures that each window contains a statusline that displays the
-" current cursor position.
-set ruler
-
 " Display an incomplete command in the lower right corner of the Vim window
 set showcmd
+
+" set a custom status line similar to that of ":set ruler"
+set statusline=line:%l\ column:%c\ \ \ %M%Y%r%=%-14.(%t%)\ %p%%
 
 " set all window splits equal
 set equalalways
@@ -108,6 +119,7 @@ map <leader>x :NERDTree<CR>
 let NERDTreeIgnore=['\~$', '\.pt.cache$', '\.Python$', '\.svn$', '\.git*$', '\.pyc$', '\.mo$', '\.o$', '\.lo$', '\.la$', '\..*.rej$', '\.rej$', '\.DS_Store$']
 " set the sort order to alphabetical
 let NERDTreeSortOrder=[]
+let NERDChristmasTree=0
 " -----------------------------------------------------------------
 
 " Fuzzy finder textmate plugin
@@ -131,6 +143,8 @@ map <leader>a :Ack
 au BufNewFile,BufRead trac.sixfeetup.com.*.txt set syntax=wiki
 " markdown syntax
 au BufNewFile,BufRead *.{md|mdown|markdown} set syntax=mkd
+" xml syntax for zcml files
+au BufNewFile,BufRead *.zcml set filetype=xml
 
 " fuzzy finder text mate mapping
 map <leader>t :FuzzyFinderTextMate<CR>
@@ -153,7 +167,7 @@ map ; :
 
 " set up the invisible characters
 " -----------------------------------------------------------------
-set listchars=eol:¬,tab:>-
+set listchars=eol:¬,tab:»\ 
 " show invisible characters by default
 set list
 " toggle invisible characters
