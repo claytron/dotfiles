@@ -93,7 +93,7 @@ export HISTFILE HISTSIZE SAVEHIST
 # supervisor
 if checkPath supervisorctl; then
     # set up completions for supervisor
-    compctl -s "$(supervisorctl status | awk -F' ' '{print $1}')" supervisorctl
+    compctl -s "$(supervisorctl status >/dev/null 2>&1 | awk -F' ' '{print $1}')" supervisorctl
 fi
 # zope
 compctl -s 'fg kill start logreopen reload shell status wait help logtail restart show stop' zeoserver zeoctl
