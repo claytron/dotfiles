@@ -7,3 +7,6 @@
 --type-set=plaintext=.md,.mdown,.markdown,.mkdn,.textile,.rst
 # add in a type for gettext messages
 --type-set=gettext=.pot,.po
+
+--smart-case
+--follow

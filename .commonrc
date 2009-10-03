@@ -62,7 +62,6 @@ fi
 # grepping (or acking)
 # sgrep stands for super grep, meaning recursive and case insensitive
 if checkPath ack; then
-    alias ack='ack --smart-case --follow'
     alias grep=ack
     alias sgrep=ack
 else
