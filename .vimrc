@@ -86,6 +86,8 @@ set showcmd
 
 " set a custom status line similar to that of ":set ruler"
 set statusline=line:%l\ column:%c\ \ \ %M%Y%r%=%-14.(%t%)\ %p%%
+" show the statusline in all windows
+set laststatus=2
 
 " set all window splits equal
 set equalalways
@@ -119,7 +121,8 @@ map <leader>x :NERDTree<CR>
 let NERDTreeIgnore=['\~$', '\.pt.cache$', '\.Python$', '\.svn$', '\.git*$', '\.pyc$', '\.mo$', '\.o$', '\.lo$', '\.la$', '\..*.rej$', '\.rej$', '\.DS_Store$']
 " set the sort order to alphabetical
 let NERDTreeSortOrder=[]
-let NERDChristmasTree=0
+" when the root is changed, change Vim's working dir
+let NERDTreeChDirMode=2
 " -----------------------------------------------------------------
 
 " Fuzzy finder textmate plugin
@@ -171,5 +174,8 @@ set listchars=eol:¬,tab:»\
 " show invisible characters by default
 set list
 " toggle invisible characters
-:noremap <leader>i :set list!<CR>
+noremap <leader>i :set list!<CR>
+
+" mapping for taglist
+nnoremap tt :TlistToggle<CR>
 
