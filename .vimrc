@@ -1,6 +1,9 @@
 " FreeBSD security advisory for this one...
 set nomodeline
 
+" Enhanced command menu ctrl + d to expand directories
+set wildmenu
+
 " set the default encoding
 set enc=utf-8
 
@@ -14,8 +17,10 @@ set nocompatible
 
 " set the mapleader key
 let mapleader = ","
+let g:mapleader = ","
+
 " set up jj as mode switch
-:map! jj <ESC>
+map! jj <ESC>
 
 " hide the backup and swap files
 set backupdir=~/.backup/vim,.,/tmp
@@ -42,8 +47,11 @@ set number
 " line's indent level to set the indent level of new lines). The second makes
 " vim attempt to intelligently guess the indent level of any new line based on
 " the previous line.
-"set autoindent
-"set smartindent
+set autoindent
+set smartindent
+
+" turn off indentation when pasting
+set pastetoggle=<F2>
 
 " function to switch between tabs and spaces
 " taken from: http://github.com/twerth/dotfiles/blob/master/etc/vim/vimrc
@@ -70,9 +78,13 @@ call Tabstyle_spaces()
 " opening brace/parenthese/bracket.
 set showmatch
 
+" -----------------------------------------------------------------
+" Searching
+" -----------------------------------------------------------------
 " find as you type
 set incsearch
-
+" highlight the terms
+set hlsearch
 " make searches case-insensitive
 set ignorecase
 " unless they contain upper-case letters
@@ -83,6 +95,9 @@ set history=1000
 
 " Display an incomplete command in the lower right corner of the Vim window
 set showcmd
+
+"Set 7 lines to the curors - when moving vertical..
+set so=7
 
 " set a custom status line similar to that of ":set ruler"
 set statusline=line:%l\ column:%c\ \ \ %M%Y%r%=%-14.(%t%)\ %p%%
@@ -103,7 +118,8 @@ set mousemodel=popup
 "set virtualedit=all
 
 " tell the bell to go beep itself!
-set vb
+set noerrorbells
+set novisualbell
 set t_vb=
 
 " Settings trying to make vim like TextMate :)
@@ -137,22 +153,30 @@ let g:fuzzy_ignore = "*.png;*.PNG;*.pyc;*.pyo;*.JPG;*.jpg;*.GIF;*.gif;.svn/**;.g
 " shortcut for ack search
 map <leader>a :Ack
 
-" buffer explorer ctrl + tabbing
-"let g:miniBufExplMapCTabSwitchWindows = 1
-"let g:miniBufExplMapWindowNavVim = 1
+" buffer explorer ctrl + tabbing and single click
+let g:miniBufExplUseSingleClick = 1
+let g:miniBufExplMapCTabSwitchBufs = 1
 
 " automatically use the wiki text for trac.sixfeetup.com when
 " using it's all text
 au BufNewFile,BufRead trac.sixfeetup.com.*.txt set syntax=wiki
 " markdown syntax
 au BufNewFile,BufRead *.{md|mdown|markdown} set syntax=mkd
+
+" Zope and Plone files
+" -----------------------------------------------------------------
 " xml syntax for zcml files
 au BufNewFile,BufRead *.zcml set filetype=xml
+" css.dtml as css
+au BufNewFile,BufRead *.css.dtml set filetype=css
+" js.dtml as javascript
+au BufNewFile,BufRead *.js.dtml set filetype=javascript
 
 " fuzzy finder text mate mapping
 map <leader>t :FuzzyFinderTextMate<CR>
 
 " Make cursor move by visual lines instead of file lines (when wrapping)
+" This makes me feel more at home :)
 map <up> gk
 map k gk
 imap <up> <C-o>gk
@@ -179,3 +203,29 @@ noremap <leader>i :set list!<CR>
 " mapping for taglist
 nnoremap tt :TlistToggle<CR>
 
+" -----------------------------------------------------------------
+" GUI settings
+" -----------------------------------------------------------------
+if has("gui_running")
+
+    " OS Specific
+    if has("gui_macvim")
+        "set fuoptions=maxvert,maxhorz " fullscreen options (MacVim only), resized window when changed to fullscreen
+        set guifont=Monaco:h13
+        set guioptions-=T " remove toolbar
+    elseif has("gui_gtk2")
+        set guifont=Terminal
+        set guioptions-=T " remove toolbar
+        colorscheme tir_black
+        colorscheme tir_black_custom
+    elseif has("x11")
+    elseif has("gui_win32")
+    end
+    
+    " Default size of window
+    set columns=145
+    set lines=45
+    
+    " automagically open NERDTree in a GUI
+    autocmd VimEnter * exe 'NERDTree' | wincmd l
+endif
