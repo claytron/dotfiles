@@ -118,9 +118,7 @@ set mousemodel=popup
 "set virtualedit=all
 
 " tell the bell to go beep itself!
-set noerrorbells
-set novisualbell
-set t_vb=
+set visualbell t_vb=
 
 " Settings trying to make vim like TextMate :)
 " --------------------------------------------
@@ -208,10 +206,17 @@ nnoremap tt :TlistToggle<CR>
 " -----------------------------------------------------------------
 if has("gui_running")
 
+    " Default size of window
+    set columns=145
+    set lines=45
+    
+    " automagically open NERDTree in a GUI
+    autocmd VimEnter * exe 'NERDTreeToggle' | wincmd l
+
     " OS Specific
     if has("gui_macvim")
         "set fuoptions=maxvert,maxhorz " fullscreen options (MacVim only), resized window when changed to fullscreen
-        set guifont=Monaco:h13
+        set guifont=Monaco:h10
         set guioptions-=T " remove toolbar
     elseif has("gui_gtk2")
         set guifont=Terminal
@@ -221,11 +226,5 @@ if has("gui_running")
     elseif has("x11")
     elseif has("gui_win32")
     end
-    
-    " Default size of window
-    set columns=145
-    set lines=45
-    
-    " automagically open NERDTree in a GUI
-    autocmd VimEnter * exe 'NERDTree' | wincmd l
+
 endif
