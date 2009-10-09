@@ -8,14 +8,19 @@ source $HOME/.commonfuncs
 export LESS="-IMR"
 
 # conditionally set the editor variable
-if checkPath mate_wait; then
+if checkPath vim; then
+    PREFERRED_EDITOR=vim
+elif checkPath mate_wait; then
     # to set this up you need to symlink the mate command
     #   $ cd ~/bin
     #   $ ln -s /path/to/mate mate_wait
-    export EDITOR='mate_wait'
+    PREFERRED_EDITOR=mate_wait
 else
-    export EDITOR=vi
+    # there should be at least vi on the machine!
+    PREFERRED_EDITOR=vi
 fi
+
+export EDITOR=$PREFERRED_EDITOR
 
 # get crazy with python, and the cheese whiz
 export PYTHONSTARTUP=$HOME/.pystartup
