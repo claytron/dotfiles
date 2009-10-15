@@ -209,14 +209,15 @@ Deleting them will remove them immediately
         mkdir "$BUILDOUT_DIR/downloads"
         mkdir "$BUILDOUT_DIR/zope"
         # create the default.cfg file
-        # XXX this is fugly
-        echo "#[buildout]" >> "$BUILDOUT_DIR/default.cfg"
-        echo "#eggs-directory = $HOME/.buildout/eggs" >>"$BUILDOUT_DIR/default.cfg"
-        echo "#download-cache = $HOME/.buildout/downloads" >>"$BUILDOUT_DIR/default.cfg"
-        echo "#zope-directory = $HOME/.buildout/zope" >> "$BUILDOUT_DIR/default.cfg"
-        echo >> "$BUILDOUT_DIR/default.cfg"
-        echo "#[instance]" >> "$BUILDOUT_DIR/default.cfg"
-        echo "#event-log-level = debug" >> "$BUILDOUT_DIR/default.cfg"
+        cat > $BUILDOUT_DIR/default.cfg <<EOF
+#[buildout]
+#eggs-directory = $HOME/.buildout/eggs
+#download-cache = $HOME/.buildout/downloads
+#zope-directory = $HOME/.buildout/zope
+
+#[instance]
+#event-log-level = debug
+EOF
         chmod 700 "$BUILDOUT_DIR"
         # let the person know they can modify the files
         echo
@@ -241,7 +242,8 @@ Deleting them will remove them immediately
         fi
     # if the file doesn't exist, let's create it with some content
     elif [ ! -e "$PYPIRC" ]; then
-        echo '#[distutils]
+        cat > $PYPIRC <<EOF
+#[distutils]
 #index-servers = 
 #    pypi
 #    skillet
@@ -259,7 +261,8 @@ Deleting them will remove them immediately
 #[plone.org]
 #repository: http://plone.org/products
 #Username: USERNAME
-#Password: PASSWORD' > $PYPIRC
+#Password: PASSWORD
+EOF
     echo "Created .pypirc example"
     chmod 600 $PYPIRC
     fi
@@ -278,9 +281,11 @@ Deleting them will remove them immediately
         fi
     # if the file doesn't exist, let's create it with some content
     elif [ ! -e "$PYDISTUTILS_CFG" ]; then
-        echo '#[easy_install]
+        cat > $PYDISTUTILS_CFG <<EOF
+#[easy_install]
 #find_links =
-#    http://USERNAME:PASSWORD@skillet.sixfeetup.com/simple' > $PYDISTUTILS_CFG
+#    http://USERNAME:PASSWORD@skillet.sixfeetup.com/simple
+EOF
     echo "Created .pydistutils.cfg example"
     chmod 600 $PYDISTUTILS_CFG
     fi
