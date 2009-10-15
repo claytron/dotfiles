@@ -1,8 +1,8 @@
 [core]
     whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
 [user]
-    name = claytron
-    email = robots@claytron.com
+	name = Clayton Parker
+    email = clayton@sixfeetup.com
 [color]
     ui = auto
 [color "branch"]

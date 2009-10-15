@@ -99,6 +99,9 @@ fi
 compctl -s 'fg kill start logreopen reload shell status wait help logtail restart show stop' zeoserver zeoctl
 compctl -s 'fg kill start logreopen reload shell status wait help logtail restart show stop run adduser test debug' instance zopectl
 
+# gitify completion
+compctl -s 'fetch gitify help h push update up' gitify
+
 ## Completions
 autoload -U compinit
 compinit -C
