@@ -89,6 +89,8 @@ set hlsearch
 set ignorecase
 " unless they contain upper-case letters
 set smartcase
+" a toggle for search highlight
+map <leader>h :nohl<CR>
 
 " have fifty lines of command-line (etc) history:
 set history=1000
@@ -132,7 +134,7 @@ filetype plugin on     " enables filetype specific plugins
 " set project folder to x
 map <leader>x :NERDTree<CR>
 " files/dirs to ignore in NERDTree (mostly the same as my svn ignores)
-let NERDTreeIgnore=['\~$', '\.pt.cache$', '\.Python$', '\.svn$', '\.git*$', '\.pyc$', '\.mo$', '\.o$', '\.lo$', '\.la$', '\..*.rej$', '\.rej$', '\.DS_Store$']
+let NERDTreeIgnore=['\~$', '\.pt.cache$', '\.Python$', '\.svn$', '\.git*$', '\.pyc$', '\.pyo$', '\.mo$', '\.o$', '\.lo$', '\.la$', '\..*.rej$', '\.rej$', '\.DS_Store$']
 " set the sort order to alphabetical
 let NERDTreeSortOrder=[]
 " when the root is changed, change Vim's working dir
