@@ -71,6 +71,9 @@ Here is a list of all the files and a brief explanation of what they do.
 `.vimrc`
 >    VIM settings
 
+`.vim`
+>    All my plugins and other misc. vim stuff
+
 `.zprofile`
 >    ZSH shell login code
 
@@ -141,7 +144,7 @@ Since `qs` is an alias for `.dotfiles/create_links.sh` the latest confs are in
 place.
 
 If you ever want to remove all the symlinks you can use the `create_links.sh`
-script by passing it the `unlink` argument
+script by passing it the `remove` argument
 
     $ .dotfiles/create_links.sh unlink
     Unlinked /home/clayton/.screenrc
@@ -159,3 +162,5 @@ script by passing it the `unlink` argument
     Unlinked /home/clayton/.commonfuncs
     Unlinked /home/clayton/.subversion/config
     Unlinked /home/clayton/.pystartup
+
+In addition to the `remove` argument there is `cleanup`. This will not only remove all the symlinks, but it will also remove all the other items created by the script. This can be slightly dangerous since that includes **everything**, including unversioned files.

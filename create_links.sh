@@ -14,7 +14,6 @@ dotfiles_loc="$HOME/.dotfiles"
 excluded=(
     .svn
     .git
-    .gitignore
     .DS_Store
     .
     ..
@@ -288,6 +287,29 @@ EOF
 EOF
     echo "Created .pydistutils.cfg example"
     chmod 600 $PYDISTUTILS_CFG
+    fi
+
+    # create a dummy .githack
+    # -------------------------------------------------------------
+    GITHACK="$HOME/.githack"
+    if [ "$remove" = "cleanup" ]; then
+        if [ -e "$GITHACK" ]; then
+            echo -n "Are you sure you want to delete $GITHACK? [n]: "
+            read REMOVE_FILE
+            if [ "$REMOVE_FILE" = "y" ]; then
+                rm "$GITHACK"
+                echo "Deleted $GITHACK"
+            fi
+        fi
+    # if the file doesn't exist, let's create it with some content
+    elif [ ! -e "$GITHACK" ]; then
+    cat > $GITHACK <<'EOF'
+`git config --global github.user claytron`
+`git config --global github.token YOUR_TOKEN_HERE`
+`git config --global core.excludesfile ~/.gitignore`
+EOF
+    echo "Created .githack example"
+    chmod 600 $GITHACK
     fi
 
 fi

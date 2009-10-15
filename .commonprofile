@@ -9,3 +9,15 @@ makeMeLaugh
 if checkPath svn && [ -d $HOME/.dotfiles/.svn ] && weShouldUpdate; then
     svn up $HOME/.dotfiles
 fi
+
+# set up my .gitconfig with variables I don't want public
+# or can't be set properly (i'm looking at you excludesfile)
+if checkPath git && [[ -a $HOME/.githack ]]; then
+(
+  while read line
+  do
+     eval $line
+  done
+) < $HOME/.githack
+
+fi

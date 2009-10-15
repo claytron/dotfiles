@@ -1,0 +1,28 @@
+[core]
+    whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+[user]
+    name = claytron
+    email = robots@claytron.com
+[color]
+    ui = auto
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+[color "diff"]
+    whitespace = red reverse
+    meta = yellow
+    frag = magenta
+    old = red
+    new = green
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+[alias]
+    st = status
+    ci = commit
+    br = branch
+    co = checkout
+    df = diff
+    lg = log -p
