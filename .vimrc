@@ -102,7 +102,7 @@ set showcmd
 set so=7
 
 " set a custom status line similar to that of ":set ruler"
-set statusline=line:%l\ column:%c\ \ \ %M%Y%r%=%-14.(%t%)\ %p%%
+set statusline=\ \ \ \ \ line:%l\ column:%c\ \ \ %M%Y%r%=%-14.(%t%)\ %p%%
 " show the statusline in all windows
 set laststatus=2
 
