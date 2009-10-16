@@ -125,88 +125,50 @@ Deleting them will remove them immediately
             fi
         done
     
-    # create a $HOME/bin if it does not exist
-    # -------------------------------------------------------------
-    HOME_BIN="$HOME/bin"
-    # if we are cleaning up, let's remove the dir
-    if [ "$remove" = "cleanup" ]; then
-        if [ -d "$HOME_BIN" ]; then
-            echo -n "Are you sure you want to delete $HOME_BIN? [n]: "
-            read REMOVE_DIR
-            if [ "$REMOVE_DIR" = "y" ]; then
-                rm -rf "$HOME_BIN"
-                echo "Deleted $HOME_BIN"
-            fi
-        fi
-    # if the directory doesn't exist, let's create it
-    elif [[ ! -d "$HOME_BIN" ]] && [[ ! -a "$HOME_BIN" ]]; then
-        mkdir "$HOME_BIN" && echo "created a $HOME_BIN directory"
-        chmod 700 "$HOME_BIN"
-    elif [[ ! -d "$HOME_BIN" ]] && [[ -a "$HOME_BIN" ]]; then
-        echo "something in the way of $HOME_BIN being created"
-    fi
-
-    # directories for vim
-    # -------------------------------------------------------------
-    VIM_BACKUPS="$HOME/.backup"
-    # if we are cleaning up, let's remove the dir
-    if [ "$remove" = "cleanup" ]; then
-        if [ -d "$VIM_BACKUPS" ]; then
-            echo -n "Are you sure you want to delete $VIM_BACKUPS? [n]: "
-            read REMOVE_DIR
-            if [ "$REMOVE_DIR" = "y" ]; then
-                rm -rf "$VIM_BACKUPS"
-                echo "Deleted $VIM_BACKUPS"
-            fi
-        fi
-    # if the directory doesn't exist, let's create it
-    elif [[ ! -d "$VIM_BACKUPS" ]] && [[ ! -a "$VIM_BACKUPS" ]]; then
-        mkdir -p "$VIM_BACKUPS/vim/swap" && echo "created a $VIM_BACKUPS directory"
-        chmod 700 "$VIM_BACKUPS"
-    elif [[ ! -d "$VIM_BACKUPS" ]] && [[ -a "$VIM_BACKUPS" ]]; then
-        echo "something in the way of $VIM_BACKUPS being created"
-    fi
+    DIRS_TO_MAKE=(
+        "$HOME"/bin
+        "$HOME"/.backup
+        "$HOME"/.backup/vim/swap
+        "$HOME"/.virtualenvs
+        "$HOME"/.buildout
+        "$HOME"/.buildout/eggs
+        "$HOME"/.buildout/downloads
+        "$HOME"/.buildout/zope
+    )
     
-    # create a $HOME/.virtualenvs if it does not exist
+    # create the $DIRS_TO_MAKE
     # -------------------------------------------------------------
-    VIRTUALENVS="$HOME/.virtualenvs"
-    # if we are cleaning up, let's remove the dir
-    if [ "$remove" = "cleanup" ]; then
-      if [ -d "$VIRTUALENVS" ]; then
-          echo -n "Are you sure you want to delete $VIRTUALENVS? [n]: "
-          read REMOVE_DIR
-          if [ "$REMOVE_DIR" = "y" ]; then
-              rm -rf "$VIRTUALENVS"
-              echo "Deleted $VIRTUALENVS"
-          fi
-      fi
-    # if the directory doesn't exist, let's create it
-    elif [[ ! -d "$VIRTUALENVS" ]] && [[ ! -a "$VIRTUALENVS" ]]; then
-        mkdir "$VIRTUALENVS" && echo "created a $VIRTUALENVS directory"
-        chmod 700 "$VIRTUALENVS"
-    elif [[ ! -d "$VIRTUALENVS" ]] && [[ -a "$VIRTUALENVS" ]]; then
-        echo "something in the way of $VIRTUALENVS being created"
-    fi
+    processDotDir() {
+        local dot_directory
+        dot_directory=$1
+        # if we are cleaning up, let's remove the dir
+        if [ "$remove" = "cleanup" ]; then
+            if [ -d "$dot_directory" ]; then
+                echo -n "Are you sure you want to delete $dot_directory? [n]: "
+                read REMOVE_DIR
+                if [ "$REMOVE_DIR" = "y" ]; then
+                    rm -rf "$dot_directory"
+                    echo "Deleted $dot_directory"
+                fi
+            fi
+        # if the directory doesn't exist, let's create it
+        elif [[ ! -d "$dot_directory" ]] && [[ ! -a "$dot_directory" ]]; then
+            mkdir -p "$dot_directory" && echo "created a $dot_directory directory"
+            chmod 700 "$dot_directory"
+        elif [[ ! -d "$dot_directory" ]] && [[ -a "$dot_directory" ]]; then
+            echo "something in the way of $dot_directory being created"
+        fi
+    }
+    
+    for dir in "${DIRS_TO_MAKE[@]}"
+        do
+            processDotDir $dir
+        done
     
     # create a buildout directory structure
     # -------------------------------------------------------------
-    BUILDOUT_DIR="$HOME/.buildout"
-    # if we are cleaning up, let's remove the dir
-    if [ "$remove" = "cleanup" ]; then
-        if [ -d "$BUILDOUT_DIR" ]; then
-            echo -n "Are you sure you want to delete $BUILDOUT_DIR? [n]: "
-            read REMOVE_DIR
-            if [ "$REMOVE_DIR" = "y" ]; then
-                rm -rf "$BUILDOUT_DIR"
-                echo "Deleted $BUILDOUT_DIR"
-            fi
-        fi
-    # if the directory doesn't exist, let's create it with some content
-    elif [[ ! -d "$BUILDOUT_DIR" ]] && [[ ! -a "$BUILDOUT_DIR" ]]; then
-        mkdir "$BUILDOUT_DIR" && echo "created a $BUILDOUT_DIR directory"
-        mkdir "$BUILDOUT_DIR/eggs"
-        mkdir "$BUILDOUT_DIR/downloads"
-        mkdir "$BUILDOUT_DIR/zope"
+    BUILDOUT_DIR="$HOME"/.buildout
+    if [[ ! -d "$BUILDOUT_DIR" ]] && [[ ! -a "$BUILDOUT_DIR" ]]; then
         # create the default.cfg file
         cat > $BUILDOUT_DIR/default.cfg <<EOF
 #[buildout]
@@ -217,31 +179,51 @@ Deleting them will remove them immediately
 #[instance]
 #event-log-level = debug
 EOF
-        chmod 700 "$BUILDOUT_DIR"
         # let the person know they can modify the files
         echo
         echo "A default buildout config has been set up for you in $BUILDOUT_DIR"
         echo "You can modify the $BUILDOUT_DIR/default.cfg to your liking"
         echo
-    elif [[ ! -d "$BUILDOUT_DIR" ]] && [[ -a "$BUILDOUT_DIR" ]]; then
-        echo "something in the way of $BUILDOUT_DIR being created"
     fi
     
-    # create a dummy .pypirc
+    FILES_TO_MAKE=(
+        .pypirc
+        .pydistutils.cfg
+        .githack
+    )
+    
+    # create some uncontrolled files
     # -------------------------------------------------------------
-    PYPIRC="$HOME/.pypirc"
-    if [ "$remove" = "cleanup" ]; then
-        if [ -e "$PYPIRC" ]; then
-            echo -n "Are you sure you want to delete $PYPIRC? [n]: "
-            read REMOVE_FILE
-            if [ "$REMOVE_FILE" = "y" ]; then
-                rm "$PYPIRC"
-                echo "Deleted $PYPIRC"
+    processDotFiles() {
+        local dot_file
+        dot_file=$1
+        if [ "$remove" = "cleanup" ]; then
+            if [ -e "$dot_file" ]; then
+                echo -n "Are you sure you want to delete $dot_file? [n]: "
+                read REMOVE_FILE
+                if [ "$REMOVE_FILE" = "y" ]; then
+                    rm "$dot_file"
+                    echo "Deleted $dot_file"
+                fi
             fi
-        fi
-    # if the file doesn't exist, let's create it with some content
-    elif [ ! -e "$PYPIRC" ]; then
-        cat > $PYPIRC <<EOF
+        # if the file doesn't exist, let's create it with some content
+        elif [ ! -e "$dot_file" ]; then
+
+            # distutils config
+            if [ "$dot_file" = ".pydistutils.cfg" ]; then
+                (
+                cat <<EOF
+#[easy_install]
+#find_links =
+#    http://USERNAME:PASSWORD@skillet.sixfeetup.com/simple
+EOF
+) > "$HOME/$dot_file"
+            fi
+
+            # pypirc
+            if [ "$dot_file" = ".pypirc" ]; then
+                (
+                cat <<EOF
 #[distutils]
 #index-servers = 
 #    pypi
@@ -262,54 +244,27 @@ EOF
 #Username: USERNAME
 #Password: PASSWORD
 EOF
-    echo "Created .pypirc example"
-    chmod 600 $PYPIRC
-    fi
-    
-    # create a dummy .pydistutils.cfg
-    # -------------------------------------------------------------
-    PYDISTUTILS_CFG="$HOME/.pydistutils.cfg"
-    if [ "$remove" = "cleanup" ]; then
-        if [ -e "$PYDISTUTILS_CFG" ]; then
-            echo -n "Are you sure you want to delete $PYDISTUTILS_CFG? [n]: "
-            read REMOVE_FILE
-            if [ "$REMOVE_FILE" = "y" ]; then
-                rm "$PYDISTUTILS_CFG"
-                echo "Deleted $PYDISTUTILS_CFG"
+) > "$HOME/$dot_file"
             fi
-        fi
-    # if the file doesn't exist, let's create it with some content
-    elif [ ! -e "$PYDISTUTILS_CFG" ]; then
-        cat > $PYDISTUTILS_CFG <<EOF
-#[easy_install]
-#find_links =
-#    http://USERNAME:PASSWORD@skillet.sixfeetup.com/simple
-EOF
-    echo "Created .pydistutils.cfg example"
-    chmod 600 $PYDISTUTILS_CFG
-    fi
 
-    # create a dummy .githack
-    # -------------------------------------------------------------
-    GITHACK="$HOME/.githack"
-    if [ "$remove" = "cleanup" ]; then
-        if [ -e "$GITHACK" ]; then
-            echo -n "Are you sure you want to delete $GITHACK? [n]: "
-            read REMOVE_FILE
-            if [ "$REMOVE_FILE" = "y" ]; then
-                rm "$GITHACK"
-                echo "Deleted $GITHACK"
-            fi
-        fi
-    # if the file doesn't exist, let's create it with some content
-    elif [ ! -e "$GITHACK" ]; then
-    cat > $GITHACK <<'EOF'
+            # my crazy git hack to add these items to the .gitconfig
+            if [ "$dot_file" = ".githack" ]; then
+                (
+                cat <<'EOF'
 `git config --global github.user claytron`
 `git config --global github.token YOUR_TOKEN_HERE`
 `git config --global core.excludesfile ~/.gitignore`
 EOF
-    echo "Created .githack example"
-    chmod 600 $GITHACK
-    fi
-
+) > "$HOME/$dot_file"
+            fi
+        echo "Created $dot_file example"
+        chmod 600 $dot_file
+        fi
+    }
+    
+    for dot_file in "${FILES_TO_MAKE[@]}"
+        do
+            processDotFiles $dot_file
+        done
+    
 fi
