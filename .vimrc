@@ -3,6 +3,7 @@ set nomodeline
 
 " Enhanced command menu ctrl + d to expand directories
 set wildmenu
+set wildignore+=*.pyc,*.pyo,CVS,.svn,.git,*.mo,.DS_Store,*.pt.cache,*.Python,*.o,*.lo,*.la,*~
 
 " set the default encoding
 set enc=utf-8
@@ -164,7 +165,7 @@ let g:fuzzy_ceiling=35000
 " show full paths
 let g:fuzzy_path_display = 'highlighted_path'
 " ignored files
-let g:fuzzy_ignore = "*.png;*.PNG;*.pyc;*.pyo;*.JPG;*.jpg;*.GIF;*.gif;.svn/**;.git/**;*.mo"
+let g:fuzzy_ignore = "*.png;*.PNG;*.pyc;*.pyo;*.JPG;*.jpg;*.GIF;*.gif;.svn/**;.git/**;*.mo;.DS_Store"
 
 " shortcut for ack search
 map <leader>a :Ack
