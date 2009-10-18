@@ -127,7 +127,7 @@ set visualbell t_vb=
 
 " turn on filetype checking for plugins like pyflakes
 filetype on            " enables filetype detection
-filetype plugin on     " enables filetype specific plugins
+filetype plugin indent on     " enables filetype specific plugins
 
 " NERDTree settings
 " -----------------------------------------------------------------
