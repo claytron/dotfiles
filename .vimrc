@@ -42,6 +42,8 @@ set cursorline
 
 " turn on line numbers, aww yeah
 set number
+" shortcut to turn off line numbers
+map <silent> <leader>n :set number!<CR>
 
 " The first setting tells vim to use "autoindent" (that is, use the current
 " line's indent level to set the indent level of new lines). The second makes
@@ -90,7 +92,7 @@ set ignorecase
 " unless they contain upper-case letters
 set smartcase
 " a toggle for search highlight
-map <leader>h :nohl<CR>
+map <silent> <leader>h :set hlsearch!<CR>
 
 " have fifty lines of command-line (etc) history:
 set history=1000
@@ -98,8 +100,8 @@ set history=1000
 " Display an incomplete command in the lower right corner of the Vim window
 set showcmd
 
-"Set 7 lines to the curors - when moving vertical..
-set so=7
+" Set a margin of lines when scrolling
+set so=4
 
 " set a custom status line similar to that of ":set ruler"
 set statusline=\ \ \ \ \ line:%l\ column:%c\ \ \ %M%Y%r%=%-14.(%t%)\ %p%%
