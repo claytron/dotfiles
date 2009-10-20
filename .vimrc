@@ -135,7 +135,7 @@ filetype plugin indent on     " enables filetype specific plugins
 " NERDTree settings
 " -----------------------------------------------------------------
 " set project folder to x
-map <leader>x :NERDTree<CR>
+map <leader>x :NERDTreeToggle<CR>
 " files/dirs to ignore in NERDTree (mostly the same as my svn ignores)
 let NERDTreeIgnore=[
     \'\~$',
@@ -234,6 +234,8 @@ if has("gui_running")
     
     " automagically open NERDTree in a GUI
     autocmd VimEnter * exe 'NERDTreeToggle' | wincmd l
+    " close the NERDTree when opening trac pages
+    autocmd VimEnter,BufNewFile,BufRead trac.sixfeetup.com.*.txt exe 'NERDTreeClose'
 
     " OS Specific
     if has("gui_macvim")
