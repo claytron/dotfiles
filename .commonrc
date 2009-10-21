@@ -210,3 +210,11 @@ export LS_COLORS="no=00:fi=00:di=32:ln=36:pi=40;33:so=01;35:bd=40;33;01:cd=40;33
 if checkPath virtualenvwrapper_bashrc && [ -d $HOME/.virtualenvs ]; then
     source virtualenvwrapper_bashrc
 fi
+
+# source a file that has some git config changes. One is the
+# .gitignore file setup since that doesn't know how to use
+# ~ or $HOME. The other is my github token, which I don't want
+# to check in.
+if [[ -a "$HOME/.githack" ]]; then
+    source "$HOME/.githack"
+fi
