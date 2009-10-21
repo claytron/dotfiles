@@ -236,6 +236,7 @@ if has("gui_running")
     autocmd VimEnter * exe 'NERDTreeToggle' | wincmd l
     " close the NERDTree when opening trac pages
     autocmd VimEnter,BufNewFile,BufRead trac.sixfeetup.com.*.txt exe 'NERDTreeClose'
+    autocmd VimEnter,BufNewFile,BufRead trac.sixfeetup.com.*.txt set nonumber
 
     " OS Specific
     if has("gui_macvim")
