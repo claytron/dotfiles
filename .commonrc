@@ -124,11 +124,12 @@ alias zu='sudo -H -u zope'
 alias bfg='bin/control fg || bin/supervisord && bin/instance fg || bin/instance fg'
 alias bs='bin/control stop || bin/instance stop'
 alias bbn='bin/buildout -v'
+alias bbN='bin/buildout -Nov'
 alias bbnew="python2.4 bootstrap.py && bbn -N"
 alias bbk='bbn -U'
 alias bbkd='bbk -c development.cfg'
 alias bbpin="bin/buildout -Nvvvvv plonesite:enabled=false | sed -ne 's/^Picked: //p' | sort | uniq"
-alias bbc="rm -rf parts/* develop-eggs/* fake-eggs/* .installed"
+alias bbc="rm -rf parts develop-eggs fake-eggs .installed"
 alias bbcwipe="bbc var/filestorage/Data.fs*"
 alias bbrefresh="bs; rm .installed.cfg var/filestorage/Data.fs*; bbn -N"
 alias bbcextreme="bbc ~/.buildout/eggs/* ~/.buildout/downloads/* ~/.buildout/zope/*"
