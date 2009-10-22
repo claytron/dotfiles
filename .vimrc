@@ -180,6 +180,8 @@ let g:miniBufExplMapCTabSwitchBufs = 1
 au BufNewFile,BufRead trac.sixfeetup.com.*.txt set syntax=wiki
 " markdown syntax
 au BufNewFile,BufRead *.{md|mdown|markdown} set syntax=mkd
+" shell files
+au BufNewFile,BufRead .common* set filetype=sh
 
 " Zope and Plone files
 " -----------------------------------------------------------------
