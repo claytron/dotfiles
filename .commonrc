@@ -121,7 +121,8 @@ alias z1Ctl='zss/bin/zeoctl'
 alias zu='sudo -H -u zope'
 
 # buildout...
-alias bfg='bin/control fg || bin/supervisord && bin/instance fg || bin/instance fg'
+alias bfg='bin/control fg || bin/instance fg'
+alias bfgs='bin/supervisord && bin/instance fg'
 alias bs='bin/control stop || bin/instance stop'
 alias bbn='bin/buildout -v'
 alias bbN='bin/buildout -Nv'
