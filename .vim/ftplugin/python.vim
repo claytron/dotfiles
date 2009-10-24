@@ -9,3 +9,5 @@ au BufWinEnter,BufEnter,BufWrite,InsertEnter,InsertLeave *.py let w:m2=matchadd(
 let python_highlight_builtins=1
 " remove trailing whitespace on save
 autocmd BufWritePre *.py :%s/\s\+$//e
+" run pep8 on the current file
+map <leader>p :Shell pep8 %<CR>

@@ -220,9 +220,6 @@ au BufNewFile,BufRead *.js.dtml set filetype=javascript
 " fuzzy finder text mate mapping
 map <leader>t :FuzzyFinderTextMate<CR>
 
-" run pep8 on the current file
-map <leader>p :!pep8 %<CR>
-
 " Make cursor move by visual lines instead of file lines (when wrapping)
 " This makes me feel more at home :)
 map <up> gk
