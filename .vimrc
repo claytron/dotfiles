@@ -203,8 +203,14 @@ let g:miniBufExplMapCTabSwitchBufs = 1
 " automatically use the wiki text for trac.sixfeetup.com when
 " using it's all text
 au BufNewFile,BufRead trac.sixfeetup.com.*.txt set syntax=wiki
+
 " markdown syntax
-au BufNewFile,BufRead *.{md|mdown|markdown} set syntax=mkd
+augroup mkd
+ autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:>
+augroup END
+command! -complete=file -nargs=* MarkdownToHTML  call s:RunShellCommand('Markdown.pl %')
+command! -complete=file -nargs=* MarkdownToHTMLCopy  !Markdown.pl % | pbcopy
+
 " shell files
 au BufNewFile,BufRead .common* set filetype=sh
 
