@@ -1,2 +1,6 @@
 GenericSetup
 Plone
+buildout
+Zope
+ZPL
+setuptools
