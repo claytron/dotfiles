@@ -188,7 +188,7 @@ let NERDTreeSortOrder=[]
 let NERDTreeChDirMode=2
 " -----------------------------------------------------------------
 
-" Fuzzy finder textmate plugin
+" Fuzzy finder TextMate plugin
 " -----------------------------------------------------------------
 " max results, lot o' files in a buildout :)
 let g:fuzzy_ceiling=35000
@@ -278,13 +278,7 @@ if has("gui_running")
         "set fuoptions=maxvert,maxhorz " fullscreen options (MacVim only), resized window when changed to fullscreen
         set guifont=Monaco:h10
         set guioptions-=T " remove toolbar
-    elseif has("gui_gtk2")
-        set guifont=Terminal
-        set guioptions-=T " remove toolbar
-        colorscheme tir_black
-        colorscheme tir_black_custom
-    elseif has("x11")
-    elseif has("gui_win32")
-    end
+    endif
 
 endif
+
