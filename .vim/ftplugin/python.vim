@@ -1,4 +1,4 @@
-" Custom setttings for Python files
+" Custom settings for Python files
 " -----------------------------------------------------------------
 
 " make sure tabs are set up properly in python

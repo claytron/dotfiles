@@ -29,6 +29,7 @@ set directory=~/.backup/vim/swap,.,/tmp
 
 " turn on spell checking
 set spell spelllang=en_us
+map <silent> <leader>s :set spell!<CR>
 
 " turn on syntax highlighting
 syntax on
