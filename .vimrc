@@ -27,6 +27,9 @@ map! jj <ESC>
 set backupdir=~/.backup/vim,.,/tmp
 set directory=~/.backup/vim/swap,.,/tmp
 
+" turn on spell checking
+set spell spelllang=en_us
+
 " turn on syntax highlighting
 syntax on
 
