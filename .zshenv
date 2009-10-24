@@ -42,6 +42,7 @@ path=(
   /opt/local/bin
   /opt/local/sbin
   /opt/local/lib/postgresql83/bin
+  /opt/local/lib/mysql5/bin
   /opt/local/Library/Frameworks/Python.framework/Versions/2.4/bin
   /sw/bin
   /sw/sbin
