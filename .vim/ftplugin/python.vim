@@ -5,6 +5,7 @@
 setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 smartindent autoindent
 
 " Highlight lines past column 80 in python files
+au BufWinEnter,BufEnter * call clearmatches()
 au BufWinEnter,BufEnter,BufWrite,InsertEnter,InsertLeave *.py let w:m2=matchadd('ErrorMsg', '\%>79v.\+', -1)
 
 " highlight builtins
