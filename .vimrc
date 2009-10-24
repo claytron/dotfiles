@@ -76,6 +76,31 @@ endfunction
  
 call Tabstyle_spaces()
 
+" function to run shell commands and create a scratch buffer (modified
+" slightly so that it doesn't show the command and it's interpretation)
+" http://vim.wikia.com/wiki/Display_output_of_shell_commands_in_new_window
+" Example, show output of ls in a scratch buffer:
+"
+" :Shell ls -al
+"
+command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
+function! s:RunShellCommand(cmdline)
+  echo a:cmdline
+  let expanded_cmdline = a:cmdline
+  for part in split(a:cmdline, ' ')
+     if part[0] =~ '\v[%#<]'
+        let expanded_part = fnameescape(expand(part))
+        let expanded_cmdline = substitute(expanded_cmdline, part, expanded_part, '')
+     endif
+  endfor
+  botright new
+  setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
+  call setline(1,substitute(getline(1),'.','=','g'))
+  execute '$read !'. expanded_cmdline
+  setlocal nomodifiable
+  1
+endfunction
+
 " This setting will cause the cursor to very briefly jump to a 
 " brace/parenthese/bracket's "match" whenever you type a closing or 
 " opening brace/parenthese/bracket.
