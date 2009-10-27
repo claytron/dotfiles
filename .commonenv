@@ -7,6 +7,9 @@ source $HOME/.commonfuncs
 #   * show colors instead of escape characters (-R)
 export LESS="-IMR"
 
+# use a fancy terminal
+export TERM=xterm-256color
+
 # conditionally set the editor variable
 if checkPath vim; then
     PREFERRED_EDITOR=vim
