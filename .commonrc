@@ -216,6 +216,6 @@ fi
 # .gitignore file setup since that doesn't know how to use
 # ~ or $HOME. The other is my github token, which I don't want
 # to check in.
-if [[ -a "$HOME/.githack" ]]; then
+if checkPath git && [[ -a "$HOME/.githack" ]]; then
     source "$HOME/.githack"
 fi
