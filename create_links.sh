@@ -134,6 +134,7 @@ Deleting them will remove them immediately
         "$HOME"/.buildout/eggs
         "$HOME"/.buildout/downloads
         "$HOME"/.buildout/zope
+        "$HOME"/.buildout/extends
     )
     
     # create the $DIRS_TO_MAKE
@@ -175,6 +176,7 @@ Deleting them will remove them immediately
 #eggs-directory = $HOME/.buildout/eggs
 #download-cache = $HOME/.buildout/downloads
 #zope-directory = $HOME/.buildout/zope
+#extends-cache = $HOME/.buildout/extends
 
 #[instance]
 #event-log-level = debug
