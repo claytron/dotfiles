@@ -243,6 +243,8 @@ map E ge
 " Insert newlines with enter and shift + enter
 map <S-Enter> O<ESC>
 map <Enter> o<ESC>
+" open a new line from the current spot (sort of the opposite of J)
+map <leader><Enter> i<CR><ESC>
 
 " map ; to : so you don't have to use shift
 map ; :
