@@ -9,6 +9,7 @@ hi LineNr guibg=darkgray ctermbg=8
 
 " make the status line have more contrast
 hi StatusLine guifg=#000000 guibg=#bbbbbb gui=italic ctermbg=235 ctermfg=254
+hi StatusLineNC guifg=#3B3B3B guibg=#202020 ctermfg=0 ctermbg=235
 
 " make python builtins stand out more
 hi pythonBuiltinObj guifg=#FF73FD ctermfg=151
