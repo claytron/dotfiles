@@ -26,6 +26,7 @@ map! jj <ESC>
 " hide the backup and swap files
 set backupdir=~/.backup/vim,.,/tmp
 set directory=~/.backup/vim/swap,.,/tmp
+set backupskip=/tmp/*,/private/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*
 
 " turn on spell checking
 set spell spelllang=en_us
