@@ -256,7 +256,7 @@ set listchars=eol:¬,tab:»\
 " show invisible characters by default
 set list
 " toggle invisible characters
-noremap <leader>i :set list!<CR>
+noremap <silent> <leader>i :set list!<CR>
 
 " mapping for taglist
 nnoremap tt :TlistToggle<CR>
