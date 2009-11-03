@@ -227,6 +227,8 @@ au BufNewFile,BufRead *.zcml set filetype=xml
 au BufNewFile,BufRead *.css.dtml set filetype=css
 " js.dtml as javascript
 au BufNewFile,BufRead *.js.dtml set filetype=javascript
+" any txt file in a `tests` directory is a doctest
+au BufNewFile,BufRead /*/tests/*.txt set filetype=doctest
 
 " fuzzy finder text mate mapping
 map <leader>t :FuzzyFinderTextMate<CR>
