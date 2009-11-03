@@ -169,7 +169,7 @@ Deleting them will remove them immediately
     # create a buildout directory structure
     # -------------------------------------------------------------
     BUILDOUT_DIR="$HOME"/.buildout
-    if [[ ! -d "$BUILDOUT_DIR" ]] && [[ ! -a "$BUILDOUT_DIR" ]]; then
+    if [[ -d "$BUILDOUT_DIR" ]] && [ ! -e "$BUILDOUT_DIR/default.cfg" ]; then
         # create the default.cfg file
         cat > $BUILDOUT_DIR/default.cfg <<EOF
 #[buildout]
@@ -219,7 +219,7 @@ EOF
 #find_links =
 #    http://USERNAME:PASSWORD@skillet.sixfeetup.com/simple
 EOF
-) > "$HOME/$dot_file"
+) > "$dot_file"
             fi
 
             # pypirc
