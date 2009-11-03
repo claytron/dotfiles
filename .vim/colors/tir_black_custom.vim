@@ -1,6 +1,6 @@
 " My tweaks to the tir_black theme
 hi Normal guibg=#232323 ctermbg=NONE
-hi NonText guibg=NONE ctermbg=NONE
+hi NonText guifg=#3F3F3F guibg=NONE ctermbg=NONE
 
 hi Directory term=bold guifg=#88AFD1 ctermfg=159
 
