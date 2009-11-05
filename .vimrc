@@ -61,6 +61,12 @@ set smartindent
 " turn off indentation when pasting
 set pastetoggle=<F2>
 
+" turn on tsv in csv mode
+function! Csv_tsv()
+  let b:delimiter='\t'
+  let b:col=substitute(b:col, ',', '\t', 'g')
+endfunction
+
 " function to switch between tabs and spaces
 " taken from: http://github.com/twerth/dotfiles/blob/master/etc/vim/vimrc
 function! Tabstyle_tabs()
