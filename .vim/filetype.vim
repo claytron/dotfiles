@@ -3,8 +3,6 @@ if exists("did_load_filetypes")
  finish
 endif
 
-let did_load_filetypes=1
-
 augroup markdown
     au! BufRead,BufNewFile *.mkd setfiletype mkd
 augroup END
