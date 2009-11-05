@@ -3,3 +3,15 @@
 *.pyc
 *.egg-info
 *.egg
+*.pt.cache
+.Python
+*.mo
+*.o
+*.lo
+*.la
+.*.rej
+*.rej
+.*~
+*~
+#*#
+.#*
