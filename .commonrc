@@ -3,6 +3,7 @@ UNAME=$(uname)
 source $HOME/.commonfuncs
 
 alias h=history
+# what freakin' linux is this?
 alias what_linux="cat /etc/issue"
 
 # source my .zshrc
