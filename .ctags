@@ -1,0 +1,3 @@
+--langdef=zcml
+--langmap=zcml:.zcml
+--regex-zcml=/.*name="(.*)"/\1/n,name/

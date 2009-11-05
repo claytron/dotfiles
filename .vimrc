@@ -266,6 +266,10 @@ set list
 " toggle invisible characters
 noremap <silent> <leader>i :set list!<CR>
 
+" make the taglist show on the right side
+let Tlist_Use_Right_Window = 1
+" show the name in the ctags list, helps with zope stuff :)
+let tlist_xml_settings = 'zcml;n:name'
 " mapping for taglist
 nnoremap tt :TlistToggle<CR>
 
