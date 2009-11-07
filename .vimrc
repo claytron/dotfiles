@@ -26,10 +26,6 @@
 " FreeBSD security advisory for this one...
 set nomodeline
 
-" Enhanced command menu ctrl + d to expand directories
-set wildmenu
-set wildignore+=*.pyc,*.pyo,CVS,.svn,.git,*.mo,.DS_Store,*.pt.cache,*.Python,*.o,*.lo,*.la,*~
-
 " set the default encoding
 set enc=utf-8
 
@@ -40,6 +36,10 @@ set titlestring=%f%(\ [%M]%)
 " This setting prevents vim from emulating the original vi's
 " bugs and limitations.
 set nocompatible
+
+" Enhanced command menu ctrl + d to expand directories
+set wildmenu
+set wildignore+=*.pyc,*.pyo,CVS,.svn,.git,*.mo,.DS_Store,*.pt.cache,*.Python,*.o,*.lo,*.la,*~
 
 " set the mapleader key
 let mapleader = ","
@@ -100,7 +100,7 @@ map <silent> <leader>n :set number!<CR>
 set autoindent
 set smartindent
 
-" turn off indentation when pasting
+" turn off smart indentation when pasting
 set pastetoggle=<F2>
 
 " turn on tsv in csv mode
@@ -118,7 +118,7 @@ function! Tabstyle_tabs()
   set tabstop=4
   set noexpandtab
 endfunction
- 
+
 function! Tabstyle_spaces()
   " Use 2 spaces
   set softtabstop=4
@@ -126,7 +126,7 @@ function! Tabstyle_spaces()
   set tabstop=4
   set expandtab
 endfunction
- 
+
 call Tabstyle_spaces()
 
 " function to run shell commands and create a scratch buffer (modified
@@ -203,6 +203,7 @@ set mousemodel=popup
 " tell the bell to go beep itself!
 set visualbell t_vb=
 
+" --------------------------------------------
 " Settings trying to make vim like TextMate :)
 " --------------------------------------------
 
