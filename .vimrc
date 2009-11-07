@@ -1,3 +1,28 @@
+" -----------------------------------------------------------------
+"
+" The mapleader has been switched from '\' to ',' anytime you see
+" <leader> that is what this refers to.
+"
+"    <leader>t       -- opens the TextMate fuzzy finder
+"    tt              -- opens up the taglist
+"    <leader>h       -- toggles the highlight search
+"    <leader>n       -- toggles the line numbers
+"    <leader>a       -- starts an ack search in the CWD
+"    <leader>i       -- toggles invisible characters
+"    <leader>x       -- toggles NERDTree drawer
+"    <leader>b       -- shortcut for getting to NERDTree bookmarks
+"    <leader><Enter> -- opens a line at the current column (this is
+"                       the reverse of J)
+"    jj              -- alternative to <ESC>
+"    ;               -- alternative to :
+"    ctrl + tab      -- cycle through buffers/tabs
+"    <Enter>         -- open a new line (non-insert)
+"    <S-Enter>       -- open a new line above (non-insert)
+"    <leader>s       -- Toggle spell checking
+"    <F2>            -- Toggle smart indent on paste
+"
+" -----------------------------------------------------------------
+
 " FreeBSD security advisory for this one...
 set nomodeline
 
