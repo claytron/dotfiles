@@ -57,6 +57,9 @@ set backupskip=/tmp/*,/private/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*
 set spell spelllang=en_us
 map <silent> <leader>s :set spell!<CR>
 
+" -----------------------------------------------------------------
+" Colors and Syntax
+" -----------------------------------------------------------------
 " turn on syntax highlighting
 syntax on
 
@@ -67,6 +70,20 @@ set background=dark
 colorscheme tir_black
 " my mods to the theme
 colorscheme tir_black_custom
+
+" A function to toggle between light and dark colors
+function! ColorSwitch()
+  if &background == 'dark'
+      colorscheme simplewhite
+      return
+  endif
+
+  if &background == 'light'
+      colorscheme tir_black
+      colorscheme tir_black_custom
+      return
+  endif
+endfunction
 
 " highlight the cursor line
 set cursorline
