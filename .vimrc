@@ -1,5 +1,8 @@
 " -----------------------------------------------------------------
 "
+"  NOTE: some settings are set up in a common rc file so that both
+"        vim and vimperator can use them. See ~/.vim_commonrc
+"
 " The mapleader has been switched from '\' to ',' anytime you see
 " <leader> that is what this refers to.
 "
@@ -23,6 +26,9 @@
 "
 " -----------------------------------------------------------------
 
+" set a common set of options for vim and vimperator
+source ~/.vim_commonrc
+
 " FreeBSD security advisory for this one...
 set nomodeline
 
@@ -40,10 +46,6 @@ set nocompatible
 " Enhanced command menu ctrl + d to expand directories
 set wildmenu
 set wildignore+=*.pyc,*.pyo,CVS,.svn,.git,*.mo,.DS_Store,*.pt.cache,*.Python,*.o,*.lo,*.la,*~
-
-" set the mapleader key
-let mapleader = ","
-let g:mapleader = ","
 
 " set up jj as mode switch
 map! jj <ESC>
@@ -159,20 +161,6 @@ endfunction
 " opening brace/parenthese/bracket.
 set showmatch
 
-" -----------------------------------------------------------------
-" Searching
-" -----------------------------------------------------------------
-" find as you type
-set incsearch
-" highlight the terms
-set hlsearch
-" make searches case-insensitive
-set ignorecase
-" unless they contain upper-case letters
-set smartcase
-" a toggle for search highlight
-map <silent> <leader>h :set hlsearch!<CR>
-
 " have fifty lines of command-line (etc) history:
 set history=1000
 
@@ -200,8 +188,8 @@ set mousemodel=popup
 " It feels weird at first but is quite useful.
 "set virtualedit=all
 
-" tell the bell to go beep itself!
-set visualbell t_vb=
+" make sure the bell shuts up
+set t_vb=
 
 " --------------------------------------------
 " Settings trying to make vim like TextMate :)
@@ -278,6 +266,8 @@ au BufNewFile,BufRead *.css.dtml set filetype=css
 au BufNewFile,BufRead *.js.dtml set filetype=javascript
 " any txt file in a `tests` directory is a doctest
 au BufNewFile,BufRead /*/tests/*.txt set filetype=doctest
+" .vimperatorrc files is a vim file
+au BufNewFile,BufRead .vimperatorrc set filetype=vim
 
 " fuzzy finder text mate mapping
 map <leader>t :FuzzyFinderTextMate<CR>
@@ -330,6 +320,12 @@ if has("gui_running")
     " close the NERDTree when opening trac pages
     autocmd VimEnter,BufNewFile,BufRead trac.sixfeetup.com.*.txt exe 'NERDTreeClose'
     autocmd VimEnter,BufNewFile,BufRead trac.sixfeetup.com.*.txt set nonumber
+
+    " turn off the scroll bars
+    set guioptions-=l
+    set guioptions-=r
+    set guioptions-=m
+    set guioptions-=b
 
     " OS Specific
     if has("gui_macvim")

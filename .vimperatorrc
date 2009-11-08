@@ -1,0 +1,29 @@
+" -----------------------------------------------------------------
+"
+"  NOTE: some settings are set up in a common rc file so that both
+"        vim and vimperator can use them. See ~/.vim_commonrc
+"
+" The mapleader has been switched from '\' to ',' anytime you see
+" <leader> that is what this refers to.
+"
+"    <leader>h       -- toggles the highlight search
+"
+" -----------------------------------------------------------------
+
+" set a common set of options for vim and vimperator
+source ~/.vim_commonrc
+
+" turn off the freakin' bell
+hi Bell display: none;
+
+" -----------------------------------------------------------------
+" Plugins
+" -----------------------------------------------------------------
+
+" Turn on delicious completions for :open and :tabopen
+autocmd VimperatorEnter ".*" :set complete+=D
+
+" Set the 'direct bookmark' service to delicious
+let g:direct_sbm_use_services_by_post='d'
+let g:direct_sbm_use_services_by_tag='d'
+
