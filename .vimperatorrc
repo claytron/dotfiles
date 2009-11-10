@@ -33,6 +33,9 @@ set maxitems=35
 " Don't go into insert mode when loading a page
 set focuscontent
 
+" use a different color scheme
+colorscheme simple
+
 " -----------------------------------------------------------------
 " Plugins
 " -----------------------------------------------------------------
