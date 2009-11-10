@@ -7,6 +7,9 @@
 " <leader> that is what this refers to.
 "
 "    <leader>h       -- toggles the highlight search
+"    <leader>g       -- turns the GUI back on
+"    <leader>G       -- turns the GUI back off
+"    <leader>b       -- shows the bookmark toolbar
 "
 " -----------------------------------------------------------------
 
@@ -15,6 +18,20 @@ source ~/.vim_commonrc
 
 " turn off the freakin' bell
 hi Bell display: none;
+
+" bring back the the gui
+map <silent> <leader>g :set guioptions+=mBT<CR>
+map <silent> <leader>G :set guioptions-=mBT<CR>
+map <silent> <leader>b :set guioptions+=B<CR>
+
+" set wild mode to show completions as you type
+set wildoptions="auto"
+
+" show up to 35 items in the completion list
+set maxitems=35
+
+" Don't go into insert mode when loading a page
+set focuscontent
 
 " -----------------------------------------------------------------
 " Plugins
