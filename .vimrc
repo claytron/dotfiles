@@ -244,7 +244,7 @@ let g:miniBufExplMapCTabSwitchBufs = 1
 
 " automatically use the wiki text for trac.sixfeetup.com when
 " using it's all text
-au BufNewFile,BufRead trac.sixfeetup.com.*.txt set syntax=wiki
+au BufNewFile,BufRead *trac.sixfeetup.com.* set syntax=wiki
 
 " markdown syntax
 augroup mkd
