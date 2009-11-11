@@ -1,5 +1,5 @@
 # add some more zope files to the plone type
---type-add=plone=.zcml,.props,.dtml
+--type-add=plone=.zcml,.props,.dtml,.vpy
 # add .cfg for buildout files
 --type-set=buildout=.cfg
 --type-set=zcml=.zcml
