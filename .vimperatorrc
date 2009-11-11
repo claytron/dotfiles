@@ -36,6 +36,22 @@ set focuscontent
 " use a different color scheme
 colorscheme simple
 
+" Scroll settings
+noremap j 5j
+noremap k 5k
+noremap w 5h
+noremap e 5l
+noremap J <C-f>
+noremap K <C-b>
+
+" Go to the next/previous tab
+noremap h <C-p>
+noremap l <C-n>
+
+" Move the current tab
+noremap ,h <Esc>:tabmove! -1<CR>
+noremap ,l <Esc>:tabmove! +1<CR>
+
 " -----------------------------------------------------------------
 " Plugins
 " -----------------------------------------------------------------
