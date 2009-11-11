@@ -16,6 +16,7 @@
 "    <leader>b       -- shortcut for getting to NERDTree bookmarks
 "    <leader><Enter> -- opens a line at the current column (this is
 "                       the reverse of J)
+"    <leader>c       -- Switch between light and dark colors
 "    jj              -- alternative to <ESC>
 "    ;               -- alternative to :
 "    ctrl + tab      -- cycle through buffers/tabs
@@ -75,17 +76,21 @@ colorscheme tir_black_custom
 
 " A function to toggle between light and dark colors
 function! ColorSwitch()
-  if &background == 'dark'
-      colorscheme simplewhite
-      return
-  endif
-
-  if &background == 'light'
-      colorscheme tir_black
-      colorscheme tir_black_custom
-      return
-  endif
+    " check for the theme, and switch to the other one.
+    " I had this working with &background == 'dark/light' but something
+    " stopped working for me :()
+    if g:colors_name == 'tir_black'
+        colorscheme simplewhite
+        colorscheme simplewhite_custom
+    elseif g:colors_name == 'simplewhite'
+        colorscheme tir_black
+        colorscheme tir_black_custom
+        return
+    endif
 endfunction
+
+" switch between light and dark colors
+map <silent> <leader>c :call ColorSwitch()<CR>
 
 " highlight the cursor line
 set cursorline
