@@ -329,6 +329,7 @@ if has("gui_running")
 
     " turn off the scroll bars
     set guioptions-=l
+    set guioptions-=L
     set guioptions-=r
     set guioptions-=m
     set guioptions-=b
