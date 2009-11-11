@@ -1,5 +1,5 @@
 " My tweaks to the tir_black theme
-hi Normal guibg=#232323 ctermbg=NONE
+hi Normal guibg=#232323 ctermbg=235
 hi NonText guifg=#3F3F3F guibg=NONE ctermbg=NONE ctermfg=239
 
 hi Directory term=bold guifg=#88AFD1 ctermfg=159
