@@ -32,6 +32,7 @@ expected_path=(
   /usr/bsd
   /usr/libexec
   /Developer/Tools
+  /opt/ruby1.8/bin
   /usr/X11R6/bin
   /usr/X11/bin
   /usr/bin/X11
