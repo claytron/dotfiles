@@ -24,7 +24,6 @@ expected_path=(
   /usr/local/sbin
   /usr/local/etc
   /sbin
-  /etc
   /bin
   /usr/bin
   /usr/sbin
@@ -42,6 +41,7 @@ expected_path=(
   /usr/local/lib/zsh/scr
   /usr/local/games
   /usr/games
+  /etc
 )
 
 for element in "${expected_path[@]}"
