@@ -49,8 +49,8 @@ noremap h <C-p>
 noremap l <C-n>
 
 " Move the current tab
-noremap ,h <Esc>:tabmove! -1<CR>
-noremap ,l <Esc>:tabmove! +1<CR>
+noremap <leader>h <Esc>:tabmove! -1<CR>
+noremap <leader>l <Esc>:tabmove! +1<CR>
 
 " I tend to tap the 'd' key on my keyboard on accident
 map d <silent> <Nop>
