@@ -52,6 +52,9 @@ noremap l <C-n>
 noremap ,h <Esc>:tabmove! -1<CR>
 noremap ,l <Esc>:tabmove! +1<CR>
 
+" I tend to tap the 'd' key on my keyboard on accident
+map d <silent> <Nop>
+
 " -----------------------------------------------------------------
 " Plugins
 " -----------------------------------------------------------------
