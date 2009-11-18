@@ -332,18 +332,18 @@ if has("gui_running")
     autocmd VimEnter,BufNewFile,BufRead /*/itsalltext/*.txt,vimperator-* exe 'NERDTreeClose'
     autocmd VimEnter,BufNewFile,BufRead /*/itsalltext/*.txt,vimperator-* set nonumber nospell
 
-    " turn off the scroll bars
-    set guioptions-=l
-    set guioptions-=L
-    set guioptions-=r
-    set guioptions-=m
-    set guioptions-=b
+    " turn off the gui elements
+    set guioptions=
 
     " OS Specific
     if has("gui_macvim")
-        "set fuoptions=maxvert,maxhorz " fullscreen options (MacVim only), resized window when changed to fullscreen
+        " use the whole screen
+        set fuoptions=maxvert,maxhorz
+        " use Monaco with no antialiasing
         set guifont=Monaco:h10
-        set guioptions-=T " remove toolbar
+        set noantialias
+        " maybe set the transparency
+        "set transparency=2
     endif
 
 endif
