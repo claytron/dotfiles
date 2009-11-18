@@ -254,9 +254,9 @@ let g:miniBufExplMapCTabSwitchBufs = 1
 " using it's all text
 au BufNewFile,BufRead *trac.sixfeetup.com.* set syntax=wiki
 
-" markdown syntax
+" markdown syntax (lot's of extension variants on that one)
 augroup mkd
- autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:>
+ autocmd BufNewFile,BufRead *.{mkd,mdown,md,markdown,mark,mkdn}  set ai ft=mkd formatoptions=tcroqn2 comments=n:>
 augroup END
 command! -complete=file -nargs=* MarkdownToHTML  call s:RunShellCommand('Markdown.pl %')
 command! -complete=file -nargs=* MarkdownToHTMLCopy  !Markdown.pl % | pbcopy
