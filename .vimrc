@@ -278,7 +278,7 @@ au BufNewFile,BufRead /*/tests/*.txt set filetype=doctest
 au BufNewFile,BufRead .vimperatorrc set filetype=vim
 
 " fuzzy finder text mate mapping
-map <leader>t :FuzzyFinderTextMate<CR>
+map <silent> <leader>t :FuzzyFinderTextMate<CR>
 
 " Make cursor move by visual lines instead of file lines (when wrapping)
 " This makes me feel more at home :)
