@@ -293,6 +293,9 @@ map <Enter> o<ESC>
 " open a new line from the current spot (sort of the opposite of J)
 map <leader><Enter> i<CR><ESC>
 
+" turn on writeroom
+map <silent> <F8> :source ~/.vim/nightroom.vim<CR>
+
 " map ; to : so you don't have to use shift
 map ; :
 
