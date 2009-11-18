@@ -24,6 +24,8 @@
 "    <S-Enter>       -- open a new line above (non-insert)
 "    <leader>s       -- Toggle spell checking
 "    <F2>            -- Toggle smart indent on paste
+"    CTRL-=          -- Make the current window taller
+"    CTRL-- (CTRL-DASH) -- Make the current window shorter
 "
 " -----------------------------------------------------------------
 
@@ -286,6 +288,12 @@ map <down> gj
 map j gj
 imap <down> <C-o>gj
 map E ge
+
+" window resizing
+if bufwinnr(1)
+  map + <C-W>+
+  map - <C-W>-
+endif
 
 " Insert newlines with enter and shift + enter
 map <S-Enter> O<ESC>
