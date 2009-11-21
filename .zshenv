@@ -1,4 +1,5 @@
 source $HOME/.commonenv
+source $HOME/.commonfuncs
 
 ###################################
 #     Here we set the PATH:       #
@@ -84,7 +85,9 @@ typeset -U path
 rationalize-path path
 
 # only on OS X for now, messing with this causes issues
-if [ $UNAME = "Darwin" ]; then
+if isiPhone; then
+    
+elif [ $UNAME = "Darwin" ]; then
     # Now let's take care of the 
     # function path
     #############################

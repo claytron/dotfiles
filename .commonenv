@@ -35,7 +35,7 @@ if [ $UNAME = "Darwin" ]; then
     os_minorversion=$(sw_vers | awk '/ProductVersion/ {print $2}' | cut -f3 -d'.')
     
     # to not tar up resource forks, you'll need this
-    if [  $os_majorversion -ge 5 ]; then
+    if [ $os_majorversion -ge 5 ]; then
         # Leopard version (and beyond??)
         export COPYFILE_DISABLE="True"
     elif [ ${os_majorversion} -eq 4 ] && [ ${os_minorversion} -ge 6 ]; then
