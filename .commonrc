@@ -161,6 +161,8 @@ alias ll='ls -al'
 alias lsa='ll -h'
 # sort by size
 alias lss='lsa -Sr'
+# sort by date modified
+alias lsdate='lsa -tr'
 # don't list directories
 alias lsd='lsa -d'
 # list all dot files
