@@ -331,8 +331,8 @@ nnoremap tt :TlistToggle<CR>
 if has("gui_running")
 
     " Default size of window
-    set columns=145
-    set lines=45
+    set columns=215
+    set lines=55
     
     " automagically open NERDTree in a GUI
     autocmd VimEnter * exe 'NERDTreeToggle' | wincmd l
