@@ -210,7 +210,7 @@ filetype plugin indent on     " enables filetype specific plugins
 " -----------------------------------------------------------------
 " set project folder to x
 map <leader>x :NERDTreeToggle<CR>
-map <leader>b :NERDTreeFromBookmark 
+map <leader>b :NERDTreeFromBookmark<Space>
 nnoremap <silent> <leader>f :call FindInNERDTree()<CR>
 " files/dirs to ignore in NERDTree (mostly the same as my svn ignores)
 let NERDTreeIgnore=[
@@ -244,7 +244,7 @@ let g:fuzzy_path_display = 'highlighted_path'
 let g:fuzzy_ignore = "*.png;*.PNG;*.pyc;*.pyo;*.JPG;*.jpg;*.GIF;*.gif;.svn/**;.git/**;*.mo;.DS_Store"
 
 " shortcut for ack search
-map <leader>a :Ack
+map <leader>a :Ack<Space>
 
 " buffer explorer ctrl + tabbing and single click
 let g:miniBufExplUseSingleClick = 1
