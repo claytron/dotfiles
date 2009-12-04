@@ -274,8 +274,6 @@ au BufNewFile,BufRead *.css.dtml set filetype=css
 au BufNewFile,BufRead *.js.dtml set filetype=javascript
 " any txt file in a `tests` directory is a doctest
 au BufNewFile,BufRead /*/tests/*.txt set filetype=doctest
-" .vimperatorrc files is a vim file
-au BufNewFile,BufRead .vimperatorrc set filetype=vim
 
 " fuzzy finder text mate mapping
 map <silent> <leader>t :FuzzyFinderTextMate<CR>
