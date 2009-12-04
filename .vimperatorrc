@@ -44,6 +44,9 @@ set focuscontent
 " use a different color scheme
 colorscheme simple
 
+" set a stupid title
+set titlestring="oh hai!"
+
 " Scroll settings
 noremap j 5j
 noremap k 5k
