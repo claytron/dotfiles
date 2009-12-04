@@ -19,10 +19,18 @@ source ~/.vim_commonrc
 " turn off the freakin' bell
 hi Bell display: none;
 
-" bring back the the gui
-map <silent> <leader>g :set guioptions+=mBT<CR>
-map <silent> <leader>G :set guioptions-=mBT<CR>
-map <silent> <leader>b :set guioptions+=B<CR>
+" bring back/hide portions of the GUI
+noremap <silent> <leader>g :set guioptions+=mBT<CR>
+noremap <silent> <leader>G :set guioptions-=mBT<CR>
+noremap <silent> <leader>b :set guioptions+=B<CR>
+noremap <leader>y :set showtabline=2<CR>
+noremap <leader>u :set showtabline=0<CR>
+
+" remove the right and bottom scrollbars
+set guioptions-=rb
+
+" get rid of the tab bar, that is valuable space!
+set showtabline=0
 
 " set wild mode to show completions as you type
 set wildoptions="auto"
@@ -51,6 +59,9 @@ noremap l <C-n>
 " Move the current tab
 noremap <leader>h <Esc>:tabmove! -1<CR>
 noremap <leader>l <Esc>:tabmove! +1<CR>
+
+" show the available tabs
+noremap <leader>t :buffers<CR>
 
 " I tend to tap the 'd' key on my keyboard on accident
 noremap d <silent> <Nop>
