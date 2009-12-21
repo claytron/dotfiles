@@ -22,7 +22,7 @@ hi Bell display: none;
 " bring back/hide portions of the GUI
 noremap <silent> <leader>g :set guioptions+=mBT<CR>
 noremap <silent> <leader>G :set guioptions-=mBT<CR>
-noremap <silent> <leader>b :set guioptions+=B<CR>
+noremap <silent> <leader>b :toolbartoggle Bookmarks Toolbar<CR>
 noremap <leader>y :set showtabline=2<CR>
 noremap <leader>u :set showtabline=0<CR>
 
