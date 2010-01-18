@@ -74,6 +74,12 @@ Here is a list of all the files and a brief explanation of what they do.
 `.vim`
 >    All my plugins and other misc. vim stuff
 
+`.vimperatorrc`
+>    Vimperator settings for the Firefox plugin
+
+`.vimperator`
+>    Plugins for Vimperator
+
 `.zprofile`
 >    ZSH shell login code
 
