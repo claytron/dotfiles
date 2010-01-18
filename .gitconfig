@@ -1,5 +1,6 @@
 [core]
 	whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+	excludesfile = /home/clayton/.gitignore
 [user]
 	name = Clayton Parker
 	email = clayton@sixfeetup.com
@@ -26,3 +27,6 @@
 	co = checkout
 	df = diff
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+[github]
+	user = claytron
+	token = 79c3d4b72b35cdad50c33fcf423c6433
