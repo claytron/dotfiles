@@ -4,7 +4,9 @@
 --type-set=buildout=.cfg
 --type-set=zcml=.zcml
 # add markdown, textile, and reStructuredText
---type-set=plaintext=.md,.mdown,.markdown,.mkdn,.textile,.rst
+--type-set=plaintext=.md,.mdown,.markdown,.mkdn,.textile,.rst,.txt
+# plain text CSV files
+--type-set=csv=.txt,.csv,.tsv
 # add in a type for gettext messages
 --type-set=gettext=.pot,.po
 
