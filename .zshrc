@@ -47,6 +47,7 @@ alias -g L='| less'
 alias -g M='| more'
 alias -g T='| tail'
 alias -g TT='| tail -n20'
+alias -g CD='| colordiff'
 
 # cvs setup
 export CVSROOT=:pserver:clayton@cvs:/var/cvsroot
