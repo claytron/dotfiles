@@ -68,6 +68,9 @@ Here is a list of all the files and a brief explanation of what they do.
 `.screenrc`
 >    Settings for screen
 
+`.tmux.conf`
+>    Settings for tmux
+
 `.vimrc`
 >    VIM settings
 
