@@ -10,6 +10,9 @@ export LESS="-IMR"
 # use a fancy terminal
 export TERM=xterm-256color
 
+# use the SFU package server for FreeBSD
+export PACKAGESITE=http://sfuppkg01.sixfeetup.com/FreeBSD/8.0/packages/All/
+
 # conditionally set the editor variable
 if checkPath vim; then
     PREFERRED_EDITOR=vim
@@ -27,6 +30,9 @@ export EDITOR=$PREFERRED_EDITOR
 
 # get crazy with python, and the cheese whiz
 export PYTHONSTARTUP=$HOME/.pystartup
+
+# prefer to use distribute for virtualenvs
+export VIRTUALENV_USE_DISTRIBUTE="TRUE"
 
 # set up some more OS X specific stuff
 if [ $UNAME = "Darwin" ]; then
