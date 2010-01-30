@@ -137,6 +137,9 @@ alias bbc="rm -rf parts develop-eggs fake-eggs .installed.cfg"
 alias bbcwipe="bbc var/filestorage/Data.fs*"
 alias bbrefresh="bs; rm .installed.cfg var/filestorage/Data.fs*; bbn -N"
 alias bbcextreme="bbc ~/.buildout/eggs/* ~/.buildout/downloads/* ~/.buildout/zope/*"
+# mr.developer shortcuts
+alias bd="bin/develop"
+alias bdu="bd up -v"
 
 # I have a folder of custom made fortunes...
 if checkPath fortune && [ -d /opt/local/share/games/fortune/comedy ]; then
