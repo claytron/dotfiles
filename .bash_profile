@@ -18,6 +18,7 @@ expected_path=(
   /opt/local/Library/Frameworks/Python.framework/Versions/2.4/bin
   /sw/bin
   /sw/sbin
+  /usr/bin/perlbin/site
   /usr/bin/perlbin/vendor
   /usr/bin/perlbin/core
   /usr/local/bin
