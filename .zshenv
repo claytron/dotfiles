@@ -50,6 +50,7 @@ path=(
   /usr/local/bin
   /usr/local/sbin
   /usr/local/etc
+  /usr/bin/perlbin/site
   /usr/bin/perlbin/vendor
   /usr/bin/perlbin/core
   /sbin
