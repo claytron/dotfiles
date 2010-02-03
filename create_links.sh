@@ -20,6 +20,8 @@ excluded=(
 )
 # make sure the dotfiles are only rwx by the owner
 chmod 700 $dotfiles_loc
+# make sure my home dir is secured
+chmod 700 $HOME
 
 notExcluded() {
     # check that the value exists
