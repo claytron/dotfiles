@@ -336,8 +336,8 @@ if has("gui_running")
     autocmd VimEnter * exe 'NERDTreeToggle' | wincmd l
     " close the NERDTree when opening it's all text and vimperator
     " editors
-    autocmd VimEnter,BufNewFile,BufRead /*/itsalltext/*.txt,vimperator-* exe 'NERDTreeClose'
-    autocmd VimEnter,BufNewFile,BufRead /*/itsalltext/*.txt,vimperator-* set nonumber nospell
+    autocmd VimEnter,BufNewFile,BufRead /*/itsalltext/* exe 'NERDTreeClose'
+    autocmd VimEnter,BufNewFile,BufRead /*/itsalltext/* set nospell
 
     " turn off the gui elements
     set guioptions=
