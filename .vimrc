@@ -11,6 +11,7 @@
 "    <leader>h       -- toggles the highlight search
 "    <leader>n       -- toggles the line numbers
 "    <leader>a       -- starts an ack search in the CWD
+"    <leader>T       -- Run tidy xml on the current file
 "    <leader>i       -- toggles invisible characters
 "    <leader>x       -- toggles NERDTree drawer
 "    <leader>b       -- shortcut for getting to NERDTree bookmarks
@@ -257,6 +258,10 @@ au BufNewFile,BufRead *trac.sixfeetup.com.* set syntax=wiki
 " run markdown on the current file
 command! -complete=file -nargs=* MarkdownToHTML  call s:RunShellCommand('Markdown.pl %')
 command! -complete=file -nargs=* MarkdownToHTMLCopy  !Markdown.pl % | pbcopy
+
+" xml tidy
+command! -complete=file -nargs=* TidyXML %!tidy -xml -i -q -w 0
+map <leader>T :TidyXML<CR>
 
 " shell files
 au BufNewFile,BufRead .common* set filetype=sh
