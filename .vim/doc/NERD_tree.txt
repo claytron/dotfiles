@@ -128,6 +128,11 @@ The following features and functionality are provided by the NERD tree:
 :NERDTreeClose                                                *:NERDTreeClose*
     Close the NERD tree in this tab.
 
+:NERDTreeFind                                                  *:NERDTreeFind*
+    Find the current file in the tree. If no tree exists for the current tab,
+    or the file is not under the current root, then initialize a new tree where
+    the root is the directory of the current file.
+
 ------------------------------------------------------------------------------
 2.2. Bookmarks                                             *NERDTreeBookmarks*
 
@@ -803,7 +808,7 @@ Values: 0 or 1.
 Default: 0
 
 If set to 1, the NERD tree window will close after opening a file with the
-|NERDTree-o| or |NERDTree-i| mappings.
+|NERDTree-o|, |NERDTree-i|, |NERDTree-t| and |NERDTree-T| mappings.
 
 ------------------------------------------------------------------------------
                                                      *'NERDTreeShowBookmarks'*
@@ -1075,6 +1080,21 @@ The latest dev versions are on github
 ==============================================================================
 6. Changelog                                               *NERDTreeChangelog*
 
+4.1.0
+    features:
+    - NERDTreeFind to reveal the node for the current buffer in the tree,
+      see |NERDTreeFind|. This effectively merges the FindInNERDTree plugin (by
+      Doug McInnes) into the script.
+    - make NERDTreeQuitOnOpen apply to the t/T keymaps too. Thanks to Stefan
+      Ritter and Rémi Prévost.
+    - truncate the root node if wider than the tree window. Thanks to Victor
+      Gonzalez.
+
+    bugfixes:
+    - really fix window state restoring
+    - fix some win32 path escaping issues. Thanks to Stephan Baumeister, Ricky,
+      jfilip1024, and Chris Chambers
+
 4.0.0
     - add a new programmable menu system (see :help NERDTreeMenu).
     - add new APIs to add menus/menu-items to the menu system as well as
@@ -1186,6 +1206,14 @@ just downloaded pr0n instead.
     Curtis Harvey
     Guillaume Duranceau
     Richard Hart (hates)
+    Doug McInnes
+    Stefan Ritter
+    Rémi Prévost
+    Victor Gonzalez
+    Stephan Baumeister
+    Ricky
+    jfilip1024
+    Chris Chambers
 
 ==============================================================================
 8. License                                                   *NERDTreeLicense*
