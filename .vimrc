@@ -272,6 +272,8 @@ au BufNewFile,BufRead .common* set filetype=sh
 au BufNewFile,BufRead *.zcml set filetype=xml
 " css.dtml as css
 au BufNewFile,BufRead *.css.dtml set filetype=css
+" kss files as css
+au BufNewFile,BufRead *.kss set filetype=css syntax=kss
 " js.dtml as javascript
 au BufNewFile,BufRead *.js.dtml set filetype=javascript
 " any txt file in a `tests` directory is a doctest
