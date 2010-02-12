@@ -35,13 +35,14 @@
 
 " Section: Plugin header {{{1
 
+if exists('VCSCommandDisableAll')
+	finish
+endif
+
 if v:version < 700
   echohl WarningMsg|echomsg 'VCSCommand requires at least VIM 7.0'|echohl None
   finish
 endif
-
-let s:save_cpo=&cpo
-set cpo&vim
 
 runtime plugin/vcscommand.vim
 
@@ -50,18 +51,28 @@ if !executable(VCSCommandGetOption('VCSCommandBZRExec', 'bzr'))
   finish
 endif
 
+let s:save_cpo=&cpo
+set cpo&vim
+
 " Section: Variable initialization {{{1
 
 let s:bzrFunctions = {}
 
 " Section: Utility functions {{{1
 
+" Function: s:Executable() {{{2
+" Returns the executable used to invoke bzr suitable for use in a shell
+" command.
+function! s:Executable()
+	return shellescape(VCSCommandGetOption('VCSCommandBZRExec', 'bzr'))
+endfunction
+
 " Function: s:DoCommand(cmd, cmdName, statusText) {{{2
 " Wrapper to VCSCommandDoCommand to add the name of the BZR executable to the
 " command argument.
 function! s:DoCommand(cmd, cmdName, statusText, options)
   if VCSCommandGetVCSType(expand('%')) == 'BZR'
-    let fullCmd = VCSCommandGetOption('VCSCommandBZRExec', 'bzr') . ' ' . a:cmd
+    let fullCmd = s:Executable() . ' ' . a:cmd
     return VCSCommandDoCommand(fullCmd, a:cmdName, a:statusText, a:options)
   else
     throw 'BZR VCSCommand plugin called on non-BZR item.'
@@ -73,7 +84,7 @@ endfunction
 " Function: s:bzrFunctions.Identify(buffer) {{{2
 function! s:bzrFunctions.Identify(buffer)
   let fileName = resolve(bufname(a:buffer))
-  let statusText = system(VCSCommandGetOption('VCSCommandBZRExec', 'bzr') . ' info "' . fileName . '"')
+  let statusText = s:VCSCommandUtility.system(s:Executable() . ' info -- "' . fileName . '"')
   if(v:shell_error)
     return 0
   else
@@ -89,7 +100,7 @@ endfunction
 " Function: s:bzrFunctions.Annotate(argList) {{{2
 function! s:bzrFunctions.Annotate(argList)
   if len(a:argList) == 0
-    if &filetype == 'BZRAnnotate'
+    if &filetype == 'BZRannotate'
       " Perform annotation of the version indicated by the current line.
       let caption = matchstr(getline('.'),'\v^\s+\zs\d+')
       let options = ' -r' . caption
@@ -108,7 +119,6 @@ function! s:bzrFunctions.Annotate(argList)
   let resultBuffer = s:DoCommand('blame' . options, 'annotate', caption, {})
   if resultBuffer > 0
     normal 1G2dd
-    set filetype=BZRAnnotate
   endif
   return resultBuffer
 endfunction
@@ -140,13 +150,7 @@ function! s:bzrFunctions.Diff(argList)
     let revOptions = a:argList
   endif
 
-  let resultBuffer = s:DoCommand(join(['diff'] + revOptions), 'diff', caption, {'allowNonZeroExit': 1})
-  if resultBuffer > 0
-    set filetype=diff
-  else
-    echomsg 'No differences found'
-  endif
-  return resultBuffer
+  return s:DoCommand(join(['diff'] + revOptions), 'diff', caption, {'allowNonZeroExit': 1})
 endfunction
 
 " Function: s:bzrFunctions.GetBufferInfo() {{{2
@@ -158,8 +162,8 @@ endfunction
 function! s:bzrFunctions.GetBufferInfo()
   let originalBuffer = VCSCommandGetOriginalBuffer(bufnr('%'))
   let fileName = resolve(bufname(originalBuffer))
-  let statusText = system(VCSCommandGetOption('VCSCommandBZRExec', 'bzr') . ' status -S "' . fileName . '"')
-  let revision = system(VCSCommandGetOption('VCSCommandBZRExec', 'bzr') . ' revno "' . fileName . '"')
+  let statusText = s:VCSCommandUtility.system(s:Executable() . ' status -S -- "' . fileName . '"')
+  let revision = s:VCSCommandUtility.system(s:Executable() . ' revno -- "' . fileName . '"')
   if(v:shell_error)
     return []
   endif
@@ -223,11 +227,7 @@ function! s:bzrFunctions.Review(argList)
     let versionOption = ' -r ' . versiontag . ' '
   endif
 
-  let resultBuffer = s:DoCommand('cat' . versionOption, 'review', versiontag, {})
-  if resultBuffer > 0
-    let &filetype=getbufvar(b:VCSCommandOriginalBuffer, '&filetype')
-  endif
-  return resultBuffer
+  return s:DoCommand('cat' . versionOption, 'review', versiontag, {})
 endfunction
 
 " Function: s:bzrFunctions.Status(argList) {{{2
@@ -248,7 +248,10 @@ function! s:bzrFunctions.Update(argList)
   return s:DoCommand('update', 'update', '', {})
 endfunction
 
+" Annotate setting {{{2
+let s:bzrFunctions.AnnotateSplitRegex = '^[^|]\+ | '
+
 " Section: Plugin Registration {{{1
-call VCSCommandRegisterModule('BZR', expand('<sfile>'), s:bzrFunctions, [])
+let s:VCSCommandUtility = VCSCommandRegisterModule('BZR', expand('<sfile>'), s:bzrFunctions, [])
 
 let &cpo = s:save_cpo

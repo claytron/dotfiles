@@ -81,7 +81,7 @@ output appears in a new window.
 Many of the commands accept revisions as arguments.  By default, most operate
 on the most recent revision on the current branch if no revision is specified.
 
-Each vcscommand is mapped to a key sequence starting with the <Leader>
+Each vcscommand is mapped to a key sequence starting with the |<Leader>|
 keystroke.  The default mappings may be overridden by supplying different
 mappings before the plugin is loaded, such as in the vimrc, in the standard
 fashion for plugin mappings.  For examples, please see
@@ -149,9 +149,8 @@ will cause the above behavior to change.  Instead of annotating the version on
 the current line, the parent revision is used instead, crossing branches if
 necessary.
 
-The filetype of the vcscommand scratch buffer is set to one of 'CVSAnnotate',
-'SVNAnnotate', 'SVKAnnotate' or 'gitAnnotate' as appropriate, to take advantage of the
-bundled syntax files.
+With no arguments the cursor will jump to the line in the annotated buffer
+corresponding to the current line in the source buffer.
 
 :VCSBlame[!]						*:VCSBlame*
 
@@ -172,9 +171,10 @@ log message.  The commit can be abandoned if the log message buffer is deleted
 or wiped before being written.
 
 Alternatively, the mapping that is used to invoke :VCSCommit (by default
-<Leader>cc) can be used in the log message buffer to immediately commit.  This
-is useful if the |VCSCommandCommitOnWrite| variable is set to 0 to disable the
-normal commit-on-write behavior.
+|<Leader>|cc, please see |vcscommand-mappings|) can be used in the log message
+buffer in Normal mode to immediately commit.  This is useful if the
+|VCSCommandCommitOnWrite| variable is set to 0 to disable the normal
+commit-on-write behavior.
 
 :VCSDelete						*:VCSDelete*
 
@@ -329,33 +329,33 @@ This command performs "cvs watchers" on the current file.
 By default, a mapping is defined for each command.  These mappings execute the
 default (no-argument) form of each command.
 
-<Leader>ca VCSAdd
-<Leader>cn VCSAnnotate
-<Leader>cN VCSAnnotate!
-<Leader>cc VCSCommit
-<Leader>cD VCSDelete
-<Leader>cd VCSDiff
-<Leader>cg VCSGotoOriginal
-<Leader>cG VCSGotoOriginal!
-<Leader>ci VCSInfo
-<Leader>cl VCSLog
-<Leader>cL VCSLock
-<Leader>cr VCSReview
-<Leader>cs VCSStatus
-<Leader>cu VCSUpdate
-<Leader>cU VCSUnlock
-<Leader>cv VCSVimDiff
+|<Leader>|ca VCSAdd
+|<Leader>|cn VCSAnnotate
+|<Leader>|cN VCSAnnotate!
+|<Leader>|cc VCSCommit
+|<Leader>|cD VCSDelete
+|<Leader>|cd VCSDiff
+|<Leader>|cg VCSGotoOriginal
+|<Leader>|cG VCSGotoOriginal!
+|<Leader>|ci VCSInfo
+|<Leader>|cl VCSLog
+|<Leader>|cL VCSLock
+|<Leader>|cr VCSReview
+|<Leader>|cs VCSStatus
+|<Leader>|cu VCSUpdate
+|<Leader>|cU VCSUnlock
+|<Leader>|cv VCSVimDiff
 
 Only for CVS buffers:
 
-<Leader>ce CVSEdit
-<Leader>cE CVSEditors
-<Leader>ct CVSUnedit
-<Leader>cwv CVSWatchers
-<Leader>cwa CVSWatchAdd
-<Leader>cwn CVSWatchOn
-<Leader>cwf CVSWatchOff
-<Leader>cwf CVSWatchRemove
+|<Leader>|ce CVSEdit
+|<Leader>|cE CVSEditors
+|<Leader>|ct CVSUnedit
+|<Leader>|cwv CVSWatchers
+|<Leader>|cwa CVSWatchAdd
+|<Leader>|cwn CVSWatchOn
+|<Leader>|cwf CVSWatchOff
+|<Leader>|cwf CVSWatchRemove
 
 						*vcscommand-mappings-override*
 
