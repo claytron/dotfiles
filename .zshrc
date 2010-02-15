@@ -69,10 +69,15 @@ setopt GLOB_DOTS
 # use vi mode
 bindkey -v
 # use home and end in addition to ^e and ^a
-bindkey -M viins '^[[H' vi-beginning-of-line
 bindkey -M viins '^A' vi-beginning-of-line
-bindkey -M viins '^[[F' vi-end-of-line
 bindkey -M viins '^E' vi-end-of-line
+if [ $UNAME = "Linux" ]; then
+  bindkey -M viins '^[OH' vi-beginning-of-line
+  bindkey -M viins '^[OF' vi-end-of-line
+else
+  bindkey -M viins '^[[H' vi-beginning-of-line
+  bindkey -M viins '^[[F' vi-end-of-line
+fi
 # use delete as forward delete
 bindkey -M viins '\e[3~' vi-delete-char
 # line buffer
