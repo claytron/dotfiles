@@ -47,11 +47,16 @@ colorscheme simple
 " set a stupid title
 set titlestring="oh hai!"
 
+" smooth scroll setting
+let g:smooziee_scroll_amount="100"
+let g:smooziee_scroll_interval="150"
+
 " Scroll settings
-noremap j 5j
-noremap k 5k
-noremap w 5h
-noremap e 5l
+noremap w 10h
+noremap e 10l
+" XXX: don't need these two with smooth scroll
+""noremap j 10j
+""noremap k 10k
 noremap J <C-f>
 noremap K <C-b>
 
