@@ -28,6 +28,17 @@
 "    CTRL-=          -- Make the current window taller
 "    CTRL-- (CTRL-DASH) -- Make the current window shorter
 "
+" I have set up some custom commands that might be of interest
+"
+"    MarkdownToHTML  -- Converts the current buffer into HTML and
+"                       places it in a scratch buffer.
+"    MarkdownToHTMLCopy -- Same as previous, but copys to clipboard
+"    Shell           -- Runs a shell command and places it in the
+"                       scratch buffer
+"    TidyXML         -- Runs tidy in XML mode on the current buffer
+"    TerminalHere    -- Opens the terminal to the directory of the
+"                       current buffer
+"
 " -----------------------------------------------------------------
 
 " set a common set of options for vim and vimperator
