@@ -11,6 +11,8 @@
 "    <leader>h       -- toggles the highlight search
 "    <leader>n       -- toggles the line numbers
 "    <leader>a       -- starts an ack search in the CWD
+"    <leader>f       -- shows the current file in the NERDTree. This
+"                       is the TextMate equivalent of ctrl+cmd+r
 "    <leader>T       -- Run tidy xml on the current file
 "    <leader>i       -- toggles invisible characters
 "    <leader>x       -- toggles NERDTree drawer
@@ -32,7 +34,7 @@
 "
 "    MarkdownToHTML  -- Converts the current buffer into HTML and
 "                       places it in a scratch buffer.
-"    MarkdownToHTMLCopy -- Same as previous, but copys to clipboard
+"    MarkdownToHTMLCopy -- Same as previous, but copies to clipboard
 "    Shell           -- Runs a shell command and places it in the
 "                       scratch buffer
 "    TidyXML         -- Runs tidy in XML mode on the current buffer
