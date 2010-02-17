@@ -263,6 +263,10 @@ command! -complete=file -nargs=* MarkdownToHTMLCopy  !Markdown.pl % | pbcopy
 command! -complete=file -nargs=* TidyXML %!tidy -xml -i -q -w 0
 map <leader>T :TidyXML<CR>
 
+" open up the current file's folder in the terminal
+" TODO: Make this work cross platform/terminal program (a plugin perhaps?)
+command TerminalHere silent !roxterm --tab --directory=%:p:h
+
 " shell files
 au BufNewFile,BufRead .common* set filetype=sh
 
