@@ -45,6 +45,8 @@
 
 " set a common set of options for vim and vimperator
 source ~/.vim_commonrc
+" make sure the above file gets the proper filetype
+au BufRead .vim_commonrc set ft=vim
 
 " FreeBSD security advisory for this one...
 set nomodeline
