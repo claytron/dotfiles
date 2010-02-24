@@ -126,6 +126,8 @@ set smartindent
 
 " turn off smart indentation when pasting
 set pastetoggle=<F2>
+" shortcut for pasting clipboard contents
+map <silent> <leader>* "+gP
 
 " turn on tsv in csv mode
 function! Csv_tsv()
