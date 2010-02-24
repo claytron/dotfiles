@@ -17,4 +17,4 @@ let python_highlight_all=1
 autocmd BufWritePre *.{v,c,}py :%s/\s\+$//e
 
 " run pep8 on the current file
-map <leader>p :Shell pep8 %<CR>
+map <leader>p :Shell pep8 --repeat --show-source %<CR>
