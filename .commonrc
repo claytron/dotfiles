@@ -140,6 +140,7 @@ alias bbcextreme="bbc ~/.buildout/eggs/* ~/.buildout/downloads/* ~/.buildout/zop
 # mr.developer shortcuts
 alias bd="bin/develop"
 alias bdu="bd up -v"
+alias bds="bd st -v"
 
 # I have a folder of custom made fortunes...
 if checkPath fortune && [ -d /opt/local/share/games/fortune/comedy ]; then
