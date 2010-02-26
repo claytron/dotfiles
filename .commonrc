@@ -142,6 +142,9 @@ alias bd="bin/develop"
 alias bdu="bd up -v"
 alias bds="bd st -v"
 
+# pep8 that can scan a `src` dir
+alias pep8scan="pep8 --repeat --show-source --statistics --exclude=paste"
+
 # I have a folder of custom made fortunes...
 if checkPath fortune && [ -d /opt/local/share/games/fortune/comedy ]; then
     alias laugh='echo; fortune comedy ;echo'
