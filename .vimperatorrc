@@ -10,6 +10,11 @@
 "    <leader>g       -- turns the GUI back on
 "    <leader>G       -- turns the GUI back off
 "    <leader>b       -- shows the bookmark toolbar
+"    <leader>y       -- show the tab bar
+"    <leader>u       -- turn off the tab bar
+"    <leader>s       -- toggle the status bar
+"    <leader>t       -- show a list of tabs/buffers
+"    <leader>p       -- open up the preferences pane
 "
 " -----------------------------------------------------------------
 
@@ -26,6 +31,7 @@ noremap <silent> <leader>b :toolbartoggle Bookmarks Toolbar<CR>
 noremap <silent> <leader>y :set showtabline=2<CR>
 noremap <silent> <leader>u :set showtabline=0<CR>
 noremap <silent> <leader>s :emenu View.Status Bar<CR>
+noremap <silent> <leader>p :emenu Edit.Preferences<CR>
 
 " remove the right and bottom scrollbars
 set guioptions-=rb
