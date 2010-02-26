@@ -3,7 +3,7 @@ UNAME=$(uname)
 makeMeLaugh() {
   if checkPath fortune; then
     local FORTUNE
-    if [ -d /opt/local/share/games/fortune/comedy ] || [ -d /usr/share/games/fortune/comedy ]; then
+    if [ -d /opt/local/share/games/fortune/comedy ] || [ -d /usr/share/games/fortune/comedy ] || [ -d /usr/share/fortune/comedy ]; then
         FORTUNE=$(fortune -e comedy)
     else
         FORTUNE=$(fortune -a)
