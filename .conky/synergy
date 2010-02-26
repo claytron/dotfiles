@@ -77,4 +77,4 @@ minimum_size 500 20
 
 
 TEXT
-${execp conkyRhythmbox -r + --template=~/.conky/rhythmbox.template}
+${execp conkyRhythmbox -n -r + --template=~/.conky/rhythmbox.template}
