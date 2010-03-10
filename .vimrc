@@ -62,6 +62,10 @@ set titlestring=%f%(\ [%M]%)
 " bugs and limitations.
 set nocompatible
 
+" Ignore those annoying "hit enter to coninue" messages
+" XXX there has to be a better way to accomplish this
+set cmdheight=2
+
 " Enhanced command menu ctrl + d to expand directories
 set wildmenu
 set wildignore+=*.pyc,*.pyo,CVS,.svn,.git,*.mo,.DS_Store,*.pt.cache,*.Python,*.o,*.lo,*.la,*~
