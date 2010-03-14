@@ -1,0 +1,17 @@
+#!/bin/bash
+# based on: amaroK info display script by eirc <eirc.eirc@gmail.com>
+# amarok2 info display script by fireandfuel <fireandfuel@hotmail.de>
+#
+# requirements: amaroK 2 (!)
+
+case "$1" in
+
+# Now Playing Info
+artist) qdbus org.kde.amarok /Player GetMetadata | awk -F': ' '/^artist/ {print $2}';;
+title) qdbus org.kde.amarok /Player GetMetadata | awk -F': ' '/^title/ {print $2}';;
+album) qdbus org.kde.amarok /Player GetMetadata | awk -F': ' '/^album/ {print $2}';;
+year) qdbus org.kde.amarok /Player GetMetadata | awk -F': ' '/^year/ {print $2}';;
+genre) qdbus org.kde.amarok /Player GetMetadata | awk -F': ' '/^genre/ {print $2}';;
+rating) qdbus org.kde.amarok /Player GetMetadata | awk -F': ' '/^rating/ {print $2}';;
+
+esac
