@@ -25,6 +25,8 @@ fi
 alias py_long_descrip="python2.4 setup.py --long-description"
 # use cat to show the file
 alias descrip_check="py_long_descrip > /tmp/package.rst; rst2html.py /tmp/package.rst /tmp/package.html; cat -n /tmp/package.rst"
+# run the setup.py descrip through docutils, then open it with Firefox (Minefield)
+alias descrip_check_open="py_long_descrip | rst2html.py > /tmp/foo.html; open file:///tmp/foo.html"
 
 # some OS X specific stuff
 if [[ $UNAME == "Darwin" ]]; then
@@ -40,8 +42,6 @@ if [[ $UNAME == "Darwin" ]]; then
     
     # open it up in TextMate instead of cat
     alias descrip_check="py_long_descrip > /tmp/package.rst; rst2html.py /tmp/package.rst /tmp/package.html; mate /tmp/package.rst"
-    # run the setup.py descrip through docutils, then open it with Firefox (Minefield)
-    alias descrip_check_open="py_long_descrip | rst2html.py > /tmp/foo.html; open file:///tmp/foo.html"
 
     # pylons buildout madness
     alias pfg='bin/paster serve --reload src/sixieminutes/development.ini'
