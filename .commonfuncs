@@ -3,8 +3,13 @@ UNAME=$(uname)
 makeMeLaugh() {
   if checkPath fortune; then
     local FORTUNE
-    if [ -d /opt/local/share/games/fortune/comedy ] || [ -d /usr/share/games/fortune/comedy ] || [ -d /usr/share/fortune/comedy ]; then
+    # display the fortune requested
+    if [ -n "$1" ]; then
+        FORTUNE=$(fortune -e "$1")
+    # try to run my custom comedy folder of goodness
+    elif [ -d /opt/local/share/games/fortune/comedy ] || [ -d /usr/share/games/fortune/comedy ] || [ -d /usr/share/fortune/comedy ]; then
         FORTUNE=$(fortune -e comedy)
+    # otherwise just any old fortune will do
     else
         FORTUNE=$(fortune -a)
     fi
