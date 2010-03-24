@@ -1,3 +1,7 @@
 --langdef=zcml
 --langmap=zcml:.zcml
 --regex-zcml=/.*name="(.*)"/\1/n,name/
+
+--langdef=ini
+--langmap=ini:.cfg.ini
+--regex-ini=/^\[(.*)\]/\1/s,section/

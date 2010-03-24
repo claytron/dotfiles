@@ -352,6 +352,7 @@ let Tlist_Use_Right_Window = 1
 let Tlist_File_Fold_Auto_Close = 1
 " show the name in the ctags list, helps with zope stuff :)
 let tlist_xml_settings = 'zcml;n:name'
+let tlist_cfg_settings = 'ini;s:section'
 " mapping for taglist
 nnoremap tt :TlistToggle<CR>
 
