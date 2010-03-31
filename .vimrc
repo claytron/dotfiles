@@ -184,6 +184,21 @@ function! s:RunShellCommand(cmdline)
   1
 endfunction
 
+" A function to strip trailing whitespace and clean up afterwards so
+" that the search history remains intact and cursor does not move.
+" Taken from: http://vimcasts.org/episodes/tidying-whitespace
+function! StripTrailingWhitespaces()
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    %s/\s\+$//e
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
+
 " This setting will cause the cursor to very briefly jump to a 
 " brace/parenthese/bracket's "match" whenever you type a closing or 
 " opening brace/parenthese/bracket.
