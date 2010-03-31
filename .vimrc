@@ -386,6 +386,8 @@ if has("gui_running")
     " editors
     autocmd VimEnter,BufNewFile,BufRead /*/itsalltext/* exe 'NERDTreeClose'
     autocmd VimEnter,BufNewFile,BufRead /*/itsalltext/* set nospell
+    " Close the NERDTree when external editing emails
+    autocmd VimEnter,BufNewFile,BufRead *.eml exe 'NERDTreeClose'
 
     " turn off the gui elements
     set guioptions=
