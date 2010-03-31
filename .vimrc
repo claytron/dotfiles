@@ -355,7 +355,7 @@ map ; :
 
 " set up the invisible characters
 " -----------------------------------------------------------------
-set listchars=eol:¬,tab:»\ 
+set listchars=tab:▸\ ,eol:¬
 " show invisible characters by default
 set list
 " toggle invisible characters
