@@ -358,6 +358,12 @@ map <silent> <F8> :source ~/.vim/nightroom.vim<CR>
 " map ; to : so you don't have to use shift
 map ; :
 
+" Mapping window commands directly
+map <C-h>  <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
 " set up the invisible characters
 " -----------------------------------------------------------------
 set listchars=tab:▸\ ,eol:¬
