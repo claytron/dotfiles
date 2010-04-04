@@ -221,10 +221,12 @@ set laststatus=2
 " set all window splits equal
 set equalalways
 
-" have the mouse enabled all the time:
-set mouse=a
-" make a menu popup on right click
-set mousemodel=popup
+if has('mouse')
+    " have the mouse enabled all the time
+    set mouse=a
+    " make a menu popup on right click
+    set mousemodel=popup
+endif
 
 " By default, vim doesn't let the cursor stray beyond the defined text. This 
 " setting allows the cursor to freely roam anywhere it likes in command mode.
