@@ -236,6 +236,9 @@ endif
 " make sure the bell shuts up
 set t_vb=
 
+" allow for switching buffers when a file has changes
+set hidden
+
 " --------------------------------------------
 " Settings trying to make vim like TextMate :)
 " --------------------------------------------
