@@ -47,7 +47,11 @@ alias -g L='| less'
 alias -g M='| more'
 alias -g T='| tail'
 alias -g TT='| tail -n20'
-alias -g CD='| colordiff'
+if checkPath colordiff; then
+    alias -g CD='| colordiff'
+else
+    alias -g CD='| vim -R -'
+fi
 # bootstrap with distribute
 alias -g bootstrap='bootstrap.py --distribute'
 
