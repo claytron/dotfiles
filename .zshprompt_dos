@@ -1,0 +1,16 @@
+function precmd {
+    # DOS?!?!
+    DOS_DIR=$(pwd | sed -e 's/\//\\/g')
+}
+
+setprompt () {
+    # Need this so the prompt will work.
+    setopt prompt_subst
+    
+    # simple version of my ZSH prompt
+    RPROMPT=''
+    PROMPT='C:$DOS_DIR>'
+    PS2=''
+}
+
+setprompt
