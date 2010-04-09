@@ -33,9 +33,6 @@ noremap <silent> <leader>u :set showtabline=0<CR>
 noremap <silent> <leader>s :emenu View.Status Bar<CR>
 noremap <silent> <leader>p :emenu Edit.Preferences<CR>
 
-" use the readability bookmarklet on the current page
-noremap <silent> <leader>r :open javascript:(function(){readStyle='style-ebook';readSize='size-medium';readMargin='margin-x-narrow';_readability_script=document.createElement('SCRIPT');_readability_script.type='text/javascript';_readability_script.src='http://lab.arc90.com/experiments/readability/js/readability.js?x='+(Math.random());document.getElementsByTagName('head')[0].appendChild(_readability_script);_readability_css=document.createElement('LINK');_readability_css.rel='stylesheet';_readability_css.href='http://lab.arc90.com/experiments/readability/css/readability.css';_readability_css.type='text/css';_readability_css.media='all';document.getElementsByTagName('head')[0].appendChild(_readability_css);_readability_print_css=document.createElement('LINK');_readability_print_css.rel='stylesheet';_readability_print_css.href='http://lab.arc90.com/experiments/readability/css/readability-print.css';_readability_print_css.media='print';_readability_print_css.type='text/css';document.getElementsByTagName('head')[0].appendChild(_readability_print_css);})();<CR>
-
 " Open the delicious plugin new bookmark window
 noremap <silent> <leader>d :emenu Delicious.Save a new Bookmark...<CR>
 
@@ -92,6 +89,12 @@ inoremap <C-e> <C-v><C-e>
 
 " I tend to tap the 'd' key on my keyboard on accident
 noremap d <silent> <Nop>
+
+" use the readability bookmarklet on the current page
+noremap <silent> <leader>r :open javascript:(function(){readStyle='style-ebook';readSize='size-medium';readMargin='margin-x-narrow';_readability_script=document.createElement('SCRIPT');_readability_script.type='text/javascript';_readability_script.src='http://lab.arc90.com/experiments/readability/js/readability.js?x='+(Math.random());document.getElementsByTagName('head')[0].appendChild(_readability_script);_readability_css=document.createElement('LINK');_readability_css.rel='stylesheet';_readability_css.href='http://lab.arc90.com/experiments/readability/css/readability.css';_readability_css.type='text/css';_readability_css.media='all';document.getElementsByTagName('head')[0].appendChild(_readability_css);_readability_print_css=document.createElement('LINK');_readability_print_css.rel='stylesheet';_readability_print_css.href='http://lab.arc90.com/experiments/readability/css/readability-print.css';_readability_print_css.media='print';_readability_print_css.type='text/css';document.getElementsByTagName('head')[0].appendChild(_readability_print_css);})();<CR>
+
+" use the instapaper bookmarklet
+noremap <silent> <leader>R :open javascript:function%20iprl5(){var%20d=document,z=d.createElement('scr'+'ipt'),b=d.body;try{if(!b)throw(0);d.title='(Saving...)%20'+d.title;z.setAttribute('src','http://www.instapaper.com/j/imXQ8OR8FphZ?u='+encodeURIComponent(d.location.href)+'&t='+(new%20Date().getTime()));b.appendChild(z);}catch(e){alert('Please%20wait%20until%20the%20page%20has%20loaded.');}}iprl5();void(0)<CR>
 
 " -----------------------------------------------------------------
 " Plugins
