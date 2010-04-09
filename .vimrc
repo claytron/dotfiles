@@ -395,7 +395,7 @@ if has("gui_running")
     autocmd VimEnter * exe 'NERDTreeToggle' | wincmd l
     " close the NERDTree when opening it's all text and vimperator
     " editors
-    autocmd VimEnter,BufNewFile,BufRead /*/itsalltext/* exe 'NERDTreeClose'
+    autocmd VimEnter,BufNewFile,BufRead /*/itsalltext/*,vimperator-*.tmp exe 'NERDTreeClose'
     autocmd VimEnter,BufNewFile,BufRead /*/itsalltext/* set nospell
     " Close the NERDTree when external editing emails
     autocmd VimEnter,BufNewFile,BufRead *.eml exe 'NERDTreeClose'
