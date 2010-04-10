@@ -93,22 +93,23 @@ let python_highlight_all=1
 " gui and terminal compatible color scheme
 set t_Co=256
 set background=dark
+let g:molokai_original=1
 " a 256 color enhanced version of ir_black
-colorscheme tir_black
+colorscheme molokai
 " my mods to the theme
-colorscheme tir_black_custom
+colorscheme molokai_custom
 
 " A function to toggle between light and dark colors
 function! ColorSwitch()
     " check for the theme, and switch to the other one.
     " I had this working with &background == 'dark/light' but something
     " stopped working for me :()
-    if g:colors_name == 'tir_black'
+    if g:colors_name == 'molokai'
         colorscheme simplewhite
         colorscheme simplewhite_custom
     elseif g:colors_name == 'simplewhite'
-        colorscheme tir_black
-        colorscheme tir_black_custom
+        colorscheme molokai
+        colorscheme molokai_custom
         return
     endif
 endfunction
