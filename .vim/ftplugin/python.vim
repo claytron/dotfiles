@@ -10,9 +10,6 @@ au BufWinEnter,BufEnter *.{v,c,}py let w:m2=matchadd('ErrorMsg', '\%>79v.\+', -1
 
 au BufEnter,BufNewFile *.{v,c,}py set spell spelllang=en_us
 
-" highlight builtins
-let python_highlight_all=1
-
 " remove trailing whitespace on save
 autocmd BufWritePre *.{v,c,}py :call StripTrailingWhitespaces()
 

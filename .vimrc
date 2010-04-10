@@ -87,6 +87,9 @@ set nospell
 " turn on syntax highlighting
 syntax on
 
+" highlight all python syntax
+let python_highlight_all=1
+
 " gui and terminal compatible color scheme
 set t_Co=256
 set background=dark
