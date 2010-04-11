@@ -36,9 +36,9 @@ syn match CfgVariableSub "\${[^}]*}" contained contains=CfgVarSubSection
 "Parameters
 syn match   CfgParams    "^[^ ].*="me=e-1 contains=CfgComment
 "... and their values (don't want to highlight '=' sign)
-syn match   CfgValues    "=.*"hs=s+1 contains=CfgDirectory,UncPath,CfgComment,CfgString,CfgOnOff,CfgVariableSub
+syn match   CfgValues    "=.*"hs=s+1 contains=CfgDirectory,UncPath,CfgString,CfgOnOff,CfgVariableSub
 " in buildout anything that starts with a space is a value
-syn match   CfgMultiValues    "^ .*" contains=CfgDirectory,UncPath,CfgComment,CfgString,CfgOnOff,CfgVariableSub
+syn match   CfgMultiValues    "^ .*" contains=CfgDirectory,UncPath,CfgString,CfgOnOff,CfgVariableSub
 
 " Buildout's section extension syntax
 syn match CfgExtendSection "^<=.*"
