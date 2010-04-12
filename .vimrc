@@ -93,26 +93,45 @@ let python_highlight_all=1
 " gui and terminal compatible color scheme
 set t_Co=256
 set background=dark
+" set global variables that will define the colorscheme
+let g:light_theme='simplewhite'
+let g:dark_theme='molokai'
+
+" Use the "original" molokai theme colors instead of "dark"
 let g:molokai_original=1
-" a 256 color enhanced version of ir_black
-colorscheme molokai
-" my mods to the theme
-colorscheme molokai_custom
+
+" turn the function into a command (XXX: couldn't get this to work
+" with the global vars g:dark_theme and g:light_theme)
+"command -nargs=* ColorSwitch call s:ColorSwitcher(<q-args>)
 
 " A function to toggle between light and dark colors
-function! ColorSwitch()
-    " check for the theme, and switch to the other one.
-    " I had this working with &background == 'dark/light' but something
-    " stopped working for me :()
-    if g:colors_name == 'molokai'
-        colorscheme simplewhite
-        colorscheme simplewhite_custom
-    elseif g:colors_name == 'simplewhite'
-        colorscheme molokai
-        colorscheme molokai_custom
+function! ColorSwitch(...)
+    " function to switch colorschemes
+    function! ChangeMe(theme)
+        execute('colorscheme '.a:theme)
+        try
+            execute('colorscheme '.a:theme.'_custom')
+        catch /E185:/
+            " There was no '_custom' scheme...
+        endtry 
+    endfunction
+
+    " Change to the specified theme
+    if exists('a:1')
+        call ChangeMe(a:1)
         return
     endif
+
+    " Toggle between a light and dark vim colorscheme
+    if &background == 'dark'
+        call ChangeMe(g:light_theme)
+    elseif &background == 'light'
+        call ChangeMe(g:dark_theme)
+    endif
 endfunction
+
+" set the colorscheme
+call ColorSwitch(g:dark_theme)
 
 " switch between light and dark colors
 map <silent> <leader>c :call ColorSwitch()<CR>
