@@ -419,7 +419,7 @@ function! WindowSize(dimensions)
 endfunction
 
 " A dictionary of available sizes, inspired by Firesizer
-let g:window_sizes = {"normal": '155 45', "bigger": '215 55'}
+let g:window_sizes = {"normal": '155 45', "bigger": '215 50'}
 
 " Set the window size to the given size named in g:window_sizes
 function! SelectWindowSize(size_name)
