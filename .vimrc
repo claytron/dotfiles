@@ -408,12 +408,39 @@ nnoremap tt :TlistToggle<CR>
 " -----------------------------------------------------------------
 " GUI settings
 " -----------------------------------------------------------------
+
+" Set the window size to "columns lines"
+function! WindowSize(dimensions)
+    let dimensions = split(a:dimensions)
+    let new_columns = get(dimensions, 0, &columns)
+    let new_lines = get(dimensions, 1, &lines)
+    execute('set columns='.new_columns)
+    execute('set lines='.new_lines)
+endfunction
+
+" A dictionary of available sizes, inspired by Firesizer
+let g:window_sizes = {"normal": '155 45', "bigger": '215 55'}
+
+" Set the window size to the given size named in g:window_sizes
+function! SelectWindowSize(size_name)
+    " TODO: throw an error if the size doesn't exist
+    if has_key(g:window_sizes, a:size_name)
+        call WindowSize(g:window_sizes[a:size_name])
+        "echo "Window size set to ".g:window_sizes[a:size_name]
+    else
+        echo g:window_sizes
+    endif
+endfunction
+
+" shortcuts to switch the window size
+map <leader>1 :call SelectWindowSize("normal")<CR>
+map <silent> <leader>2 :call SelectWindowSize("bigger")<CR>
+
 if has("gui_running")
 
     " Default size of window
-    set columns=215
-    set lines=55
-    
+    call SelectWindowSize("bigger")
+
     " automagically open NERDTree in a GUI
     autocmd VimEnter * exe 'NERDTreeToggle' | wincmd l
     " close the NERDTree when opening it's all text and vimperator

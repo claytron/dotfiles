@@ -3,6 +3,5 @@ if has("gui_gtk2")
     set guioptions-=T " remove toolbar
     call ColorSwitch(g:dark_theme)
     autocmd GUIEnter * set vb t_vb=
-    set columns=155
-    set lines=45
+    call SelectWindowSize("normal")
 endif
