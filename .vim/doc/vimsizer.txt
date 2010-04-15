@@ -1,0 +1,74 @@
+*vimsizer.txt* A plugin that allows for quick resizing of the window
+
+==============================================================================
+Author:  Clayton Parker <robots@claytron.com>                *vimsizer-author*
+License: http://sam.zoy.org/wtfpl/COPYING
+
+==============================================================================
+INTRODUCTION                                                        *vimsizer*
+
+Vimsizer is a simple plugin that was inspired by the Firesizer extension for
+Firefox. This plugin gives you the ability to define a re-usable set of window
+dimensions. There are two default sizes that are defined with the
+|vs_window_sizes| variable: >
+
+    let vs_window_sizes = {"normal": "150 40", "bigger": "210 50"}
+
+You can define your own set of sizes. Example: >
+
+    let vs_window_sizes = {"miniscule": "25 10", "magiscule": "200 60"}
+
+Once the window sizes have been defined then you can use the
+|VSSelectWindowSize| command to switch. Example: >
+
+    :VSSelectWindowSize bigger
+    :VSSelectWindowSize normal
+
+You can also quickly switch to any specific size you like with the
+|VSWindowSize| command. Example: >
+
+    :VSWindowSize 100 20
+
+You can use the |autogroup| command to set the window size on startup.
+Example: >
+
+    au VimEnter * exe 'VSSelectWindowSize normal'
+
+This would set the window size to `normal` upon entering vim for the first
+time.
+
+You could also |map| a shortcut key to a window size. Example:
+
+    map <leader>1 :VSSelectWindowSize normal<CR>
+    map <leader>2 :VSSelectWindowSize bigger<CR>
+
+------------------------------------------------------------------------------
+VIMSIZER SETTINGS                                           *VimsizerSettings*
+
+vs_window_sizes                                              *vs_window_sizes*
+
+    This is a dictionary of size name to window dimension settings. You can
+    set this to the list of pre-defined sizes that you want. Example >
+
+        let vs_window_sizes = {"size1": "100 20", "size2": "80 40"}
+< 
+    The size name can be anything you like. The dimensions are defined by
+    separating the |columns| and |lines| by a space, "columns lines"
+
+------------------------------------------------------------------------------
+VIMSIZER COMMANDS                                           *VimsizerCommands*
+
+Vimsizer creates a few new commands for you to use. They are described here.
+
+:VSSelectWindowSize [size_name]                           *VSSelectWindowSize*
+
+    Select a pre-defined size from the list of |vs_window_sizes|. Hitting tab
+    will cycle through all the sizes defined.
+
+:VSWindowSize [columns] [lines]                                 *VSWindowSize*
+
+    Quickly change the window size to the given |columns| and |lines|
+
+:VSShowWindowSizes                                         *VSShowWindowSizes*
+
+    Show a detailed listing of all the |vs_window_sizes| available.
