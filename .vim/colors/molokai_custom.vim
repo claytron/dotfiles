@@ -7,6 +7,8 @@ endif
 
 hi Special         guifg=#66D9EF guibg=bg gui=none
 hi Visual          guifg=NONE    guibg=#262D51     gui=NONE
+hi Statement       gui=none
+hi Constant        gui=none
 
 " make python builtins stand out more
 hi link pythonBuiltinObj Constant
@@ -18,11 +20,11 @@ hi link TagListFileName Normal
 " Set the condition "original" styles
 if s:molokai_original == 1
    hi VertSplit       guibg=#1B1D1E guifg=#3B3A32 gui=bold
-   hi FoldColumn       guibg=#1B1D1E guifg=#3B3A32 gui=bold
+   hi FoldColumn      guibg=#1B1D1E guifg=#3B3A32 gui=bold
    hi NonText         guifg=#494949 guibg=NONE
 else
    hi VertSplit       guibg=#1B1D1E guifg=#3B3A32 gui=bold
-   hi FoldColumn       guibg=#1B1D1E guifg=#3B3A32 gui=bold
+   hi FoldColumn      guibg=#1B1D1E guifg=#3B3A32 gui=bold
    hi NonText         guifg=#494949 guibg=NONE
 end
 
