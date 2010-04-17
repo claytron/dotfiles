@@ -21,6 +21,11 @@ else
     alias vim=vi
 fi
 
+# use git-achievements if it is avaiable
+if checkPath git-achievements; then
+    alias git=git-achievements
+fi
+
 # shortcut for long descrip checking
 alias py_long_descrip="python2.4 setup.py --long-description"
 # use cat to show the file
