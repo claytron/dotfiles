@@ -182,3 +182,25 @@ add .git-achievements-action.log .git-achievements.log
 Date: Sat Apr 17 17:08:44 EDT 2010
 st
 Date: Sat Apr 17 17:08:46 EDT 2010
+stash save
+Date: Sat Apr 17 17:10:55 EDT 2010
+st
+Date: Sat Apr 17 17:11:04 EDT 2010
+stash list
+Date: Sat Apr 17 17:11:25 EDT 2010
+stash drop
+Date: Sat Apr 17 17:11:28 EDT 2010
+stash list
+Date: Sat Apr 17 17:11:38 EDT 2010
+stash show -p
+Date: Sat Apr 17 17:12:13 EDT 2010
+st
+Date: Sat Apr 17 17:12:18 EDT 2010
+add .git-achievements-action.log .git-achievements.log
+Date: Sat Apr 17 17:12:57 EDT 2010
+st
+Date: Sat Apr 17 17:13:04 EDT 2010
+st
+Date: Sat Apr 17 17:14:00 EDT 2010
+stash list
+Date: Sat Apr 17 17:14:13 EDT 2010
