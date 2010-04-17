@@ -1,0 +1,184 @@
+;config --global core.excludesfile /home/clayton/.gitignore
+Date: Sat Apr 17 15:07:19 EDT 2010
+config --global core.excludesfile /home/clayton/.gitignore
+Date: Sat Apr 17 15:07:19 EDT 2010
+config --global core.excludesfile /home/clayton/.gitignore
+Date: Sat Apr 17 15:07:19 EDT 2010
+st
+Date: Sat Apr 17 15:07:38 EDT 2010
+diff .commonrc
+Date: Sat Apr 17 15:08:07 EDT 2010
+add .commonrc
+Date: Sat Apr 17 15:08:13 EDT 2010
+st
+Date: Sat Apr 17 15:08:19 EDT 2010
+commit
+Date: Sat Apr 17 15:08:46 EDT 2010
+st
+Date: Sat Apr 17 15:08:55 EDT 2010
+lg
+Date: Sat Apr 17 15:09:01 EDT 2010
+stash save my latest stuffs
+Date: Sat Apr 17 15:09:25 EDT 2010
+st
+Date: Sat Apr 17 15:09:29 EDT 2010
+st
+Date: Sat Apr 17 15:09:55 EDT 2010
+lga
+Date: Sat Apr 17 15:10:01 EDT 2010
+checkout master
+Date: Sat Apr 17 15:10:04 EDT 2010
+reset --hard remotes/trunk
+Date: Sat Apr 17 15:10:12 EDT 2010
+checkout local/trunk
+Date: Sat Apr 17 15:10:25 EDT 2010
+lga
+Date: Sat Apr 17 15:10:34 EDT 2010
+push origin master
+Date: Sat Apr 17 15:10:41 EDT 2010
+achievements --help
+Date: Sat Apr 17 15:11:11 EDT 2010
+achievements -l
+Date: Sat Apr 17 15:11:21 EDT 2010
+init
+Date: Sat Apr 17 15:13:37 EDT 2010
+achievements --help
+Date: Sat Apr 17 15:13:52 EDT 2010
+achievements -h
+Date: Sat Apr 17 15:17:54 EDT 2010
+config --global achievement.upload false
+Date: Sat Apr 17 15:19:13 EDT 2010
+config --global core.excludesfile /home/clayton/.gitignore
+Date: Sat Apr 17 15:32:52 EDT 2010
+config --global core.excludesfile /home/clayton/.gitignore
+Date: Sat Apr 17 15:32:52 EDT 2010
+config --global core.excludesfile /home/clayton/.gitignore
+Date: Sat Apr 17 15:32:52 EDT 2010
+init
+Date: Sat Apr 17 15:33:14 EDT 2010
+config --global core.excludesfile /home/clayton/.gitignore
+Date: Sat Apr 17 15:33:34 EDT 2010
+config --global core.excludesfile /home/clayton/.gitignore
+Date: Sat Apr 17 15:33:34 EDT 2010
+config --global core.excludesfile /home/clayton/.gitignore
+Date: Sat Apr 17 15:33:34 EDT 2010
+config --global core.excludesfile /home/clayton/.gitignore
+Date: Sat Apr 17 15:34:55 EDT 2010
+config --help
+Date: Sat Apr 17 15:37:10 EDT 2010
+config --help
+Date: Sat Apr 17 15:38:14 EDT 2010
+config --global -e
+Date: Sat Apr 17 15:40:43 EDT 2010
+config --global -e
+Date: Sat Apr 17 15:41:25 EDT 2010
+config --global -e
+Date: Sat Apr 17 15:43:28 EDT 2010
+achievements -p
+Date: Sat Apr 17 15:43:40 EDT 2010
+achievements -l
+Date: Sat Apr 17 15:45:28 EDT 2010
+remote add origin git@github.com:claytron/git-achievements.git
+Date: Sat Apr 17 15:53:25 EDT 2010
+st
+Date: Sat Apr 17 15:53:52 EDT 2010
+add git-achievements index.html index.rss
+Date: Sat Apr 17 15:54:14 EDT 2010
+st
+Date: Sat Apr 17 15:54:17 EDT 2010
+commit -a
+Date: Sat Apr 17 15:54:31 EDT 2010
+push origin master
+Date: Sat Apr 17 15:55:12 EDT 2010
+config --global -e
+Date: Sat Apr 17 15:56:02 EDT 2010
+--help
+Date: Sat Apr 17 15:57:53 EDT 2010
+branch --help
+Date: Sat Apr 17 15:58:11 EDT 2010
+branch gh-pages
+Date: Sat Apr 17 15:58:19 EDT 2010
+branch
+Date: Sat Apr 17 15:58:25 EDT 2010
+lga
+Date: Sat Apr 17 15:58:38 EDT 2010
+config --global core.excludesfile /home/clayton/.gitignore
+Date: Sat Apr 17 16:03:13 EDT 2010
+config --global core.excludesfile /home/clayton/.gitignore
+Date: Sat Apr 17 16:03:13 EDT 2010
+config --global core.excludesfile /home/clayton/.gitignore
+Date: Sat Apr 17 16:03:13 EDT 2010
+config --global core.excludesfile /home/clayton/.gitignore
+Date: Sat Apr 17 16:03:32 EDT 2010
+config --global core.excludesfile /home/clayton/.gitignore
+Date: Sat Apr 17 16:03:33 EDT 2010
+config --global core.excludesfile /home/clayton/.gitignore
+Date: Sat Apr 17 16:03:33 EDT 2010
+add -p .gitconfig
+Date: Sat Apr 17 16:04:36 EDT 2010
+st
+Date: Sat Apr 17 16:06:16 EDT 2010
+diff --staged
+Date: Sat Apr 17 16:41:55 EDT 2010
+commit
+Date: Sat Apr 17 16:42:43 EDT 2010
+st
+Date: Sat Apr 17 16:42:45 EDT 2010
+diff .gitconfig
+Date: Sat Apr 17 16:42:59 EDT 2010
+add -p .gitconfig
+Date: Sat Apr 17 16:43:11 EDT 2010
+st
+Date: Sat Apr 17 16:43:27 EDT 2010
+diff --staged
+Date: Sat Apr 17 16:43:35 EDT 2010
+commit
+Date: Sat Apr 17 16:43:49 EDT 2010
+st
+Date: Sat Apr 17 16:44:12 EDT 2010
+config --help
+Date: Sat Apr 17 16:48:19 EDT 2010
+st
+Date: Sat Apr 17 16:49:08 EDT 2010
+checkout gh-pages
+Date: Sat Apr 17 16:49:15 EDT 2010
+st
+Date: Sat Apr 17 16:49:17 EDT 2010
+push origin gh-pages
+Date: Sat Apr 17 16:49:31 EDT 2010
+lga
+Date: Sat Apr 17 16:49:46 EDT 2010
+st
+Date: Sat Apr 17 16:49:53 EDT 2010
+lga
+Date: Sat Apr 17 16:50:18 EDT 2010
+checkout HEAD
+Date: Sat Apr 17 16:50:21 EDT 2010
+reset --hard master
+Date: Sat Apr 17 16:50:29 EDT 2010
+lga
+Date: Sat Apr 17 16:50:36 EDT 2010
+push origin gh-pages
+Date: Sat Apr 17 16:50:42 EDT 2010
+config --global core.excludesfile /home/clayton/.gitignore
+Date: Sat Apr 17 16:51:19 EDT 2010
+config --global core.excludesfile /home/clayton/.gitignore
+Date: Sat Apr 17 16:51:19 EDT 2010
+config --global core.excludesfile /home/clayton/.gitignore
+Date: Sat Apr 17 16:51:19 EDT 2010
+st
+Date: Sat Apr 17 17:07:01 EDT 2010
+diff
+Date: Sat Apr 17 17:07:26 EDT 2010
+checkout .gitconfig
+Date: Sat Apr 17 17:07:31 EDT 2010
+st
+Date: Sat Apr 17 17:07:34 EDT 2010
+commit -a
+Date: Sat Apr 17 17:08:23 EDT 2010
+st
+Date: Sat Apr 17 17:08:37 EDT 2010
+add .git-achievements-action.log .git-achievements.log
+Date: Sat Apr 17 17:08:44 EDT 2010
+st
+Date: Sat Apr 17 17:08:46 EDT 2010
