@@ -38,6 +38,7 @@ rationalize-path () {
 path=(
   "$HOME/bin/$MACHTYPE-$OSTYPE"
   "$HOME/bin"
+  "$HOME/bin/git_achievements"
   /opt/python-build/python-2.4/bin
   /opt/python/bin
   /opt/local/bin
