@@ -364,6 +364,11 @@ au BufNewFile,BufRead *.js.dtml set filetype=javascript
 " any txt file in a `tests` directory is a doctest
 au BufNewFile,BufRead /*/tests/*.txt set filetype=doctest
 
+" automatically give executable permissions if file begins with #! and contains
+" '/bin/' in the path
+" borrowed from: http://github.com/mitechie/pyvim/blob/1.0/vimrc#L259
+au bufwritepost * if getline(1) =~ "^#!" | if getline(1) =~ "/bin/" | silent !chmod a+x <afile> | endif | endif
+
 " fuzzy finder text mate mapping
 map <silent> <leader>t :FuzzyFinderTextMate<CR>
 
