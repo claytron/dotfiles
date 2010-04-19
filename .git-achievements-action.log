@@ -1,5 +1,3 @@
-;config --global core.excludesfile /home/clayton/.gitignore
-Date: Sat Apr 17 15:07:19 EDT 2010
 config --global core.excludesfile /home/clayton/.gitignore
 Date: Sat Apr 17 15:07:19 EDT 2010
 config --global core.excludesfile /home/clayton/.gitignore
@@ -204,3 +202,67 @@ st
 Date: Sat Apr 17 17:14:00 EDT 2010
 stash list
 Date: Sat Apr 17 17:14:13 EDT 2010
+st
+Date: Sat Apr 17 17:16:47 EDT 2010
+add .gitconfig
+Date: Sat Apr 17 17:16:56 EDT 2010
+st
+Date: Sat Apr 17 17:17:03 EDT 2010
+config --global core.excludesfile /home/clayton/.gitignore
+Date: Sat Apr 17 17:18:24 EDT 2010
+diff --staged
+Date: Sat Apr 17 17:19:11 EDT 2010
+st
+Date: Sat Apr 17 17:19:24 EDT 2010
+achievements -p
+Date: Sat Apr 17 17:23:56 EDT 2010
+lga
+Date: Sun Apr 18 21:50:25 EDT 2010
+diff
+Date: Sun Apr 18 21:51:39 EDT 2010
+diff
+Date: Sun Apr 18 21:54:28 EDT 2010
+diff
+Date: Sun Apr 18 21:54:42 EDT 2010
+add -p
+Date: Sun Apr 18 21:55:05 EDT 2010
+diff --staged
+Date: Sun Apr 18 21:55:13 EDT 2010
+commit
+Date: Sun Apr 18 21:56:01 EDT 2010
+add -p
+Date: Sun Apr 18 21:56:13 EDT 2010
+diff --staged
+Date: Sun Apr 18 21:56:31 EDT 2010
+commit
+Date: Sun Apr 18 21:56:40 EDT 2010
+st
+Date: Sun Apr 18 21:59:16 EDT 2010
+st
+Date: Sun Apr 18 22:41:53 EDT 2010
+add -p .vimrc
+Date: Sun Apr 18 22:42:27 EDT 2010
+st
+Date: Sun Apr 18 22:42:31 EDT 2010
+diff --staged
+Date: Sun Apr 18 22:42:41 EDT 2010
+commit
+Date: Sun Apr 18 22:43:32 EDT 2010
+st
+Date: Sun Apr 18 22:43:47 EDT 2010
+add -p .vimrc
+Date: Sun Apr 18 22:44:02 EDT 2010
+diff --staged
+Date: Sun Apr 18 22:44:17 EDT 2010
+commit
+Date: Sun Apr 18 22:44:42 EDT 2010
+add -p .vimrc
+Date: Sun Apr 18 22:44:56 EDT 2010
+diff --staged
+Date: Sun Apr 18 22:45:13 EDT 2010
+commit
+Date: Sun Apr 18 22:45:44 EDT 2010
+st
+Date: Sun Apr 18 22:45:46 EDT 2010
+diff .gitconfig
+Date: Sun Apr 18 22:45:58 EDT 2010

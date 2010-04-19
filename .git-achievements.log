@@ -94,3 +94,27 @@
        Stash the changes in a dirty working directory away with git stash.       
 ********************************************************************************
 
+
+********************************************************************************
+                            Git Achievement Unlocked!                            
+
+                        Apprentice Stone Mason (Level 3)                        
+   Added files to the index area for inclusion in the next commit with git add   
+********************************************************************************
+
+
+********************************************************************************
+                            Git Achievement Unlocked!                            
+
+                           Apprentice Miller (Level 2)                           
+         Add only part of a file to the stage 10 times with git add -p.         
+********************************************************************************
+
+
+********************************************************************************
+                            Git Achievement Unlocked!                            
+
+                           Apprentice Author (Level 3)                           
+                     Made 2^Level commits using git commit.                     
+********************************************************************************
+
