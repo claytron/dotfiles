@@ -348,6 +348,9 @@ command TerminalHere silent !roxterm --tab --directory=%:p:h
 " shell files
 au BufNewFile,BufRead .common* set filetype=sh
 
+" vim help files
+au BufNewFile,BufRead /*/doc/*.txt set filetype=help
+
 " Zope and Plone files
 " -----------------------------------------------------------------
 " xml syntax for zcml files
