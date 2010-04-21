@@ -16,6 +16,7 @@ hi link pythonExClass Constant
 hi link pythonBuiltinFunc Special
 
 hi link TagListFileName Normal
+hi link MBENormal Normal
 
 " Set the condition "original" styles
 if s:molokai_original == 1
@@ -34,5 +35,7 @@ if &t_Co > 255
    hi VertSplit       ctermfg=238 ctermbg=236   cterm=bold
    hi LineNr          ctermfg=250 ctermbg=238
    hi NonText         ctermfg=239 ctermbg=NONE
+   hi VisualNOS                   ctermbg=18
+   hi Visual                      ctermbg=18
 end
 
