@@ -16,7 +16,7 @@ hi link pythonExClass Constant
 hi link pythonBuiltinFunc Special
 
 hi link TagListFileName Normal
-hi link MBENormal Normal
+hi link MBENormal LineNr
 
 " Set the condition "original" styles
 if s:molokai_original == 1
