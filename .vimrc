@@ -100,13 +100,12 @@ let g:dark_theme='molokai'
 " Use the "original" molokai theme colors instead of "dark"
 let g:molokai_original=1
 
-" turn the function into a command (XXX: couldn't get this to work
-" with the global vars g:dark_theme and g:light_theme)
-"command -nargs=* ColorSwitch call s:ColorSwitcher(<q-args>)
+" Command to call the ColorSwitch funciton
+command! -nargs=1 -complete=customlist,s:completeColorSchemes ColorSwitcher :call s:colorSwitch(<q-args>)
 
 " A function to toggle between light and dark colors
-function! ColorSwitch(...)
-    " function to switch colorschemes
+function! s:colorSwitch(...)
+    " function to switch colorscheme
     function! ChangeMe(theme)
         execute('colorscheme '.a:theme)
         try
@@ -118,7 +117,12 @@ function! ColorSwitch(...)
 
     " Change to the specified theme
     if exists('a:1')
-        call ChangeMe(a:1)
+        " check to see if we are passing in an existing var
+        if exists(a:1)
+            call ChangeMe(eval(a:1))
+        else
+            call ChangeMe(a:1)
+        endif
         return
     endif
 
@@ -130,11 +134,23 @@ function! ColorSwitch(...)
     endif
 endfunction
 
+" completion function for colorscheme names
+function! s:completeColorSchemes(A,L,P)
+    let colorscheme_names = []
+    for i in split(globpath(&runtimepath, "colors/*.vim"), "\n")
+        let colorscheme_name = fnamemodify(i, ":t:r")
+        if stridx(colorscheme_name, "_custom") < 0
+            call add(colorscheme_names, colorscheme_name)
+        endif
+    endfor
+    return filter(colorscheme_names, 'v:val =~ "^' . a:A . '"')
+endfunction
+
 " set the colorscheme
-call ColorSwitch(g:dark_theme)
+ColorSwitcher g:dark_theme
 
 " switch between light and dark colors
-map <silent> <leader>c :call ColorSwitch()<CR>
+map <silent> <leader>c :ColorSwitcher<CR>
 
 " highlight the cursor line
 set cursorline
