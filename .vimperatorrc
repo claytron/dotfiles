@@ -58,8 +58,8 @@ colorscheme simple
 set titlestring="oh hai!"
 
 " smooth scroll setting
-"let g:smooziee_scroll_amount="100"
-"let g:smooziee_scroll_interval="150"
+let g:smooziee_scroll_amount="100"
+let g:smooziee_scroll_interval="150"
 
 " Scroll settings
 noremap w 10h
