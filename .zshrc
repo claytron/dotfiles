@@ -102,8 +102,8 @@ zle -N tetris
 bindkey "^t" tetris
 
 # set up history
-HISTSIZE=3000
-SAVEHIST=3000
+HISTSIZE=50000
+SAVEHIST=50000
 HISTFILE=~/.zsh_history
 export HISTFILE HISTSIZE SAVEHIST
 
