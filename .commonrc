@@ -21,6 +21,14 @@ else
     alias vim=vi
 fi
 
+# use gvim or mvim for either command
+if checkPath gvim; then
+    alias mvim=gvim
+else
+    # keep me honest
+    alias gvim=mvim
+fi
+
 # use git-achievements if it is avaiable
 if checkPath git-achievements; then
     alias git=git-achievements
