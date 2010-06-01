@@ -170,15 +170,19 @@ fi
 alias cp='cp -iv'
 alias mv='mv -i'
 
-# conditionally set up coloring on different OS types
+# conditionally set up coloring on different OS types for ls
+# Using the variable trick from:
+# http://www.xsteve.at/prg/zsh/.zshrc
 if [ $UNAME = "FreeBSD" ] || [ $UNAME = "Darwin" ]; then
-   alias ls="ls -GF"
+   LS_COLOR_OPTION="-G"
 elif [ $UNAME = "Linux" ]; then
-   alias ls="ls --color=auto -F"
+   LS_COLOR_OPTION="--color=auto"
 elif [ $UNAME = 'SunOS' ]; then
-   alias ls="ls --color=always -F"
+   LS_COLOR_OPTION="--color=always"
 fi
 
+# Use colors and filetype characters with ls by default
+alias ls="ls -F $LS_COLOR_OPTION"
 # show me all files (long list)
 alias ll='ls -al'
 # show me everything human readable
