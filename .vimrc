@@ -101,7 +101,7 @@ let g:dark_theme='molokai'
 let g:molokai_original=1
 
 " Command to call the ColorSwitch funciton
-command! -nargs=1 -complete=customlist,s:completeColorSchemes ColorSwitcher :call s:colorSwitch(<q-args>)
+command! -nargs=? -complete=customlist,s:completeColorSchemes ColorSwitcher :call s:colorSwitch(<q-args>)
 
 " A function to toggle between light and dark colors
 function! s:colorSwitch(...)
@@ -116,7 +116,7 @@ function! s:colorSwitch(...)
     endfunction
 
     " Change to the specified theme
-    if exists('a:1')
+    if eval('a:1') != ""
         " check to see if we are passing in an existing var
         if exists(a:1)
             call ChangeMe(eval(a:1))
