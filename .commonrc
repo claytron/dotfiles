@@ -48,6 +48,9 @@ if [[ $UNAME == "Darwin" ]]; then
     # NOTE: this will overwrite the .profile
     echo "export PATH=$PATH" > $HOME/.profile
 
+    # Quickly re-enable refit
+    alias refi=/efi/refit/enable.sh
+
     if checkPath mysql5; then
         # I have mysql5 installed with MacPorts, which adds the 5
         alias mysql='mysql5'
