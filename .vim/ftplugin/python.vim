@@ -9,7 +9,7 @@ au BufWinEnter,BufEnter * call clearmatches()
 au BufWinEnter,BufEnter *.{v,c,}py let w:m2=matchadd('ErrorMsg', '\%>79v.\+', -1)
 
 " remove trailing whitespace on save
-autocmd BufWritePre *.{v,c,}py :call StripTrailingWhitespaces()
+autocmd BufWritePre *.{v,c,}py :StripTrailingWhitespaces
 
 " run pep8 on the current file
 map <leader>p :Shell pep8 --repeat --show-source %<CR>

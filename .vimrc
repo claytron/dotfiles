@@ -15,6 +15,7 @@
 "                       is the TextMate equivalent of ctrl+cmd+r
 "    <leader>T       -- Run tidy xml on the current file
 "    <leader>i       -- toggles invisible characters
+"    <leader>w       -- removes trailing whitespace characters
 "    <leader>x       -- toggles NERDTree drawer
 "    <leader>b       -- shortcut for getting to NERDTree bookmarks
 "    <leader><Enter> -- opens a line at the current column (this is
@@ -223,10 +224,13 @@ function! s:RunShellCommand(cmdline)
   1
 endfunction
 
+" Call the strip trailing whitespace function as a command
+command! StripTrailingWhitespaces call s:StripTrailingWhitespaces()
+
 " A function to strip trailing whitespace and clean up afterwards so
 " that the search history remains intact and cursor does not move.
 " Taken from: http://vimcasts.org/episodes/tidying-whitespace
-function! StripTrailingWhitespaces()
+function! s:StripTrailingWhitespaces()
     " Preparation: save last search, and cursor position.
     let _s=@/
     let l = line(".")
@@ -237,6 +241,8 @@ function! StripTrailingWhitespaces()
     let @/=_s
     call cursor(l, c)
 endfunction
+
+map <leader>w :StripTrailingWhitespaces<CR>
 
 " This setting will cause the cursor to very briefly jump to a 
 " brace/parenthese/bracket's "match" whenever you type a closing or 
