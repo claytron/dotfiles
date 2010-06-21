@@ -451,11 +451,12 @@ nnoremap tt :TlistToggle<CR>
 " -----------------------------------------------------------------
 
 " A dictionary of available sizes, inspired by Firesizer
-let vs_window_sizes = {"normal": '155 45', "bigger": '215 50'}
+let vs_window_sizes = {"normal": '155 45', "bigger": '215 50', "ginourmous": "285 65"}
 
 " shortcuts to switch the window size
 map <leader>1 :VSSelectWindowSize normal<CR>
 map <leader>2 :VSSelectWindowSize bigger<CR>
+map <leader>3 :VSSelectWindowSize ginourmous<CR>
 
 if has("gui_running")
 
