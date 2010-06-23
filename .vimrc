@@ -471,6 +471,8 @@ if has("gui_running")
     autocmd VimEnter,BufNewFile,BufRead /*/itsalltext/* set nospell
     " Close the NERDTree when external editing emails
     autocmd VimEnter,BufNewFile,BufRead *.eml exe 'NERDTreeClose'
+    " Close the NERDTree if we open a svn commit message
+    autocmd VimEnter,BufNewFile,BufRead svn-commit.*tmp exe 'NERDTreeClose'
 
     " turn off the gui elements
     set guioptions=
