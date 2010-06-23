@@ -1,6 +1,12 @@
 --langdef=zcml
 --langmap=zcml:.zcml
 --regex-zcml=/.*name="(.*)"/\1/n,name/
+--regex-zcml=/.*profile="(.*)"/\1/g,profile/
+--regex-zcml=/.*permission="(.*)"/\1/p,permission/
+--regex-zcml=/.*handler=".*\.(.[^"]*)"/\1/h,handler/
+--regex-zcml=/.*component=".*\.(.[^"]*)"/\1/m,component/
+--regex-zcml=/.*factory=".*\.(.[^"]*)"/\1/f,factory/
+--regex-zcml=/.*class=".*\.(.[^"]*)"/\1/c,class/
 
 --langdef=ini
 --langmap=ini:.cfg.ini
