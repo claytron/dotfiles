@@ -74,6 +74,9 @@ set wildignore+=*.pyc,*.pyo,CVS,.svn,.git,*.mo,.DS_Store,*.pt.cache,*.Python,*.o
 " set up jj as mode switch
 map! jj <ESC>
 
+" Take care of forgetting to use sudo with :w!!
+cmap w!! w !sudo tee % > /dev/null
+
 " hide the backup and swap files
 set backupdir=~/.backup/vim,.,/tmp
 set directory=~/.backup/vim/swap,.,/tmp
