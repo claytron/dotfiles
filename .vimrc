@@ -98,7 +98,7 @@ let python_highlight_all=1
 set t_Co=256
 set background=dark
 " set global variables that will define the colorscheme
-let g:light_theme='simplewhite'
+let g:light_theme='mayansmoke'
 let g:dark_theme='molokai'
 
 " Use the "original" molokai theme colors instead of "dark"
