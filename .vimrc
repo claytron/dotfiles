@@ -363,8 +363,18 @@ command! -complete=file -nargs=* MarkdownToHTML  call s:RunShellCommand('Markdow
 command! -complete=file -nargs=* MarkdownToHTMLCopy  !Markdown.pl % | pbcopy
 
 " xml tidy
-command! -complete=file -nargs=* TidyXML %!tidy -xml -i -q -w 0
+command! -complete=file -nargs=* TidyXML call s:TidyXML()
 map <leader>T :TidyXML<CR>
+
+function! s:TidyXML()
+    " Preparation: save last search, and cursor position.
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    %!tidy -xml -i -q -w 0
+    " Clean up cursor position
+    call cursor(l, c)
+endfunction
 
 " open up the current file's folder in the terminal
 " TODO: Make this work cross platform/terminal program (a plugin perhaps?)
