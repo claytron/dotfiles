@@ -486,6 +486,10 @@ if has("gui_running")
     autocmd VimEnter,BufNewFile,BufRead *.eml exe 'NERDTreeClose'
     " Close the NERDTree if we open a svn commit message
     autocmd VimEnter,BufNewFile,BufRead svn-commit.*tmp exe 'NERDTreeClose'
+    " Close the NERDTree if we open a git commit message
+    autocmd VimEnter,BufNewFile,BufRead COMMIT_EDITMSG exe 'NERDTreeClose'
+    " Close the NERDTree if we open a zsh command line
+    autocmd VimEnter,BufNewFile,BufRead /*/tmp/zsh* exe 'NERDTreeClose'
 
     " turn off the gui elements
     set guioptions=
