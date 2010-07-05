@@ -96,6 +96,9 @@ noremap <silent> <leader>r :open javascript:(function(){readStyle='style-ebook';
 " use the instapaper bookmarklet
 noremap <silent> <leader>R :open javascript:function%20iprl5(){var%20d=document,z=d.createElement('scr'+'ipt'),b=d.body;try{if(!b)throw(0);d.title='(Saving...)%20'+d.title;z.setAttribute('src','http://www.instapaper.com/j/imXQ8OR8FphZ?u='+encodeURIComponent(d.location.href)+'&t='+(new%20Date().getTime()));b.appendChild(z);}catch(e){alert('Please%20wait%20until%20the%20page%20has%20loaded.');}}iprl5();void(0)<CR>
 
+" use the Boxee "watch later" bookmarklet
+noremap <silent> <leader>W :open javascript:var%20b=document.body;if(b&&!document.xmlVersion){void(z=document.createElement('script'));void(z.src='http://www.boxee.tv/bookmarklet');void(b.appendChild(z));}else{}<CR>
+
 " -----------------------------------------------------------------
 " Plugins
 " -----------------------------------------------------------------
