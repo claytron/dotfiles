@@ -62,9 +62,6 @@ if [[ $UNAME == "Darwin" ]]; then
     # pylons buildout madness
     alias pfg='bin/paster serve --reload src/sixieminutes/development.ini'
 
-    # mysql
-    alias mysqlwrapper="sudo /opt/local/etc/LaunchDaemons/org.macports.mysql5/mysql5.wrapper"
-
     # iPhone doesn't have a defaults command...yet
     if checkPath defaults; then
         # also set up the osx path
