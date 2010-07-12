@@ -502,7 +502,7 @@ if has("gui_running")
         set guifont=Monaco:h10
         set noantialias
         " maybe set the transparency
-        "set transparency=2
+        set transparency=2
     endif
 
 endif
