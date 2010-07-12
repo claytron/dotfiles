@@ -49,6 +49,7 @@ path=(
   /opt/local/Library/Frameworks/Python.framework/Versions/2.4/bin
   /sw/bin
   /sw/sbin
+  /usr/local/Cellar/python/2.7/bin
   /usr/local/bin
   /usr/local/sbin
   /usr/local/etc

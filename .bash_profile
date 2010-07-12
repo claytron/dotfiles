@@ -22,6 +22,7 @@ expected_path=(
   /usr/bin/perlbin/site
   /usr/bin/perlbin/vendor
   /usr/bin/perlbin/core
+  /usr/local/Cellar/python/2.7/bin
   /usr/local/bin
   /usr/local/sbin
   /usr/local/etc
