@@ -90,6 +90,8 @@ bindkey -M viins '\e[3~' vi-delete-char
 bindkey -M viins '^B' push-line-or-edit
 # change the '-' for up in history, always kills my command editing.
 bindkey -M vicmd '^[OA' vi-up-line-or-history
+# change the shortcut for expand alias
+bindkey -M viins '^X' _expand_alias
 
 # edit current command in $EDITOR
 autoload -U edit-command-line
