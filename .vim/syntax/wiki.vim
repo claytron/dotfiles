@@ -1,77 +1,130 @@
 " Vim syntax file
-" Language:     wiki
-" Maintainer:   Andreas Kneib <aporia@web.de>
-" Improved By:  Mathias Panzenböck <grosser.meister.morti@gmx.at>
-" Last Change:  2003 Aug 05
+" Language:     DrProject Wiki, http://drproject.org
+" Maintainer:   David Wolever <david@wolever.net>
+" Home:         http://wolever.net/~wolever/drpwiki.vim
+" Author:       David Wolever, based on FlexWiki syntax highlighting by George V. Reilly
+" Last Change:  Wed Aug 15 16:12:55 EDT 2007
+" Version:      0.1
+" Bugs:         Lots of them.  Really.  I'm sure you'll find them.
 
-" Little syntax file to use a wiki-editor with VIM
-" (if your browser allow this action) 
-" To use this syntax file:
-" 1. mkdir ~/.vim/syntax
-" 2. mv ~/wiki.vim ~/.vim/syntax/wiki.vim
-" 3. :set syntax=wiki 
-"
+" Installing:   Save to ~/.vim/syntax/
+" Using:        Use :set filetype=drpwiki
 
 " Quit if syntax file is already loaded
 if version < 600
-  syntax clear
+    syntax clear
 elseif exists("b:current_syntax")
-  finish
+    finish
 endif
 
-if version < 508
-  command! -nargs=+ WikiHiLink hi link <args>
-else
-  command! -nargs=+ WikiHiLink hi def link <args>
-endif
+" First, match any escaped word
+syntax match  drpwikiEscaped       /![A-Za-z#@\[].\{-}\>/
 
-syn match   wikiWord        "\<[A-Z][^A-Z ]\+[A-Z][^A-Z ][^A-Z ]*\>"
-syn match   wikiLine        "^----$"
-syn region  wikiLink        start=+\[+hs=s+1 end=+\]+he=e-1
+" CamelCase word
+syntax match  drpwikiWord          /\<\(\(wiki:\)\?[A-Z][a-z0-9%#]\+\([A-Z][a-z0-9%#]\+\)\+\>\)\>/
+" A [bracketed wiki word] (short_link in formatter.py)
+syntax match  drpwikiWord          /\[[A-Za-z0-9_.+-]\+:\('[^']\+'\|"[^"]\+"\|[A-Za-z0-9_/?!#@]\([^|<>]*[a-zA-Z0-9/=]\)\?\)\]/
+" Ticket link: #123 or ticket:123
+syntax match  drpwikiWord          /\(\#\|ticket:\)[0-9]\+\>/
+" Mail message: @123@ or mail:123
+syntax match  drpwikiWord          /@[0-9]\+@/
+syntax match  drpwikiWord          /mail:[0-9]\+\>/
+" Changeset link: [123] or changeset:1 or [1:2] or r2 or r3:5
+syntax match  drpwikiWord          /changeset:[0-9]\+\>/
+syntax match  drpwikiWord          /\[[0-9]\+\(:[0-9]\+\)*\]/
+syntax match  drpwikiWord          /\<r[0-9]\+\(:[0-9]\+\)*/
+" Milestone link: milestone:1.23, milestone:foostone
+syntax match  drpwikiWord          /milestone:[a-zA-Z0-9.]\+/
+" File link: source:trunk/foo
+" Specific file revison: source:trunk/foo#123
+syntax match  drpwikiWord          /source:[a-zA-Z0-9./#@]\+/
 
-"" This RegEx don't work very well. But I'm to clueless, to make it better. ;)
-"syn region  wikiExtLink     start=+\([^\[]\|^\)\[[^\[]+hs=s+1 end=+[^\]]\]\([^\]\|$]\)+he=e-1
-"syn region  wikiLink        start=+\([^\[]\|^\)\[\[[^\[]+hs=s+1 end=+[^\]]\]\]\([^\]\|$]\)+he=e-1
+" text: "this is a link (optional tooltip)":http://www.microsoft.com
+" TODO: check URL syntax against RFC
+syntax match drpwikiLink           `\(\(https\?\|ftp\|gopher\|telnet\|file\|notes\|ms-help\):\(\(\(//\)\|\(\\\\\)\)\+[A-Za-z0-9:#@%/;$~_?+-=.&\-\\\\]*\)\)`
 
-syn match   wikiStar        "[*]"
-syn region  wikiCurly       start="{\{3\}" end="}\{3\}"
-syn region  wikiHead        start="^= " end="[=] *"
-syn region  wikiSubhead     start="^== " end="==[ ]*"
-syn match   wikiCurlyError  "}"
+" ''italic''
+syntax region drpwikiItalic         start="''" end="''"
 
-syn region wikiBold         start=+'''+ end=+'''+ contains=wikiBoldItalic
-syn region wikiBoldItalic   contained start=+\([^']\|^\)''[^']+ end=+[^']''\([^']\|$\)+
+" '''bold'''
+syntax region drpwikiBold           start="'''" end="'''"
 
-syn region wikiItalic       start=+\([^']\|^\)''[^']+hs=s+1 end=+[^']''\([^']\|$\)+he=e-1 contains=wikiItalicBold
-syn region wikiItalicBold   contained start=+'''+ end=+'''+
+" '''''bold italic'''''
+syntax region drpwikiBoldItalic     start="'''''" end="'''''"
 
-" The default highlighting.
-if version >= 508 || !exists("did_wiki_syn_inits")
-  if version < 508
-    let did_wiki_syn_inits = 1
-  endif
-  
-  WikiHiLink wikiCurlyError  Error
-  WikiHiLink wikiHead        Type
-  WikiHiLink wikiSubhead     PreProc
-  WikiHiLink wikiCurly       Statement
-  WikiHiLink wikiStar        String
-  WikiHiLink wikiExtLink     Special
-  WikiHiLink wikiLink        Special
-  WikiHiLink wikiLine        PreProc
-  WikiHiLink wikiWord        Keyword
-  hi def     wikiBold        term=bold cterm=bold gui=bold
-  hi def     wikiBoldItalic  term=bold,italic cterm=bold,italic gui=bold,italic
-  hi def     wikiItalic      term=italic cterm=italic gui=italic
-  hi def     wikiItalicBold  term=bold,italic cterm=bold,italic gui=bold,italic
-endif
+" text: __underlined__
+syntax region drpwikiUnderline      start="__" end="__"
 
-delcommand WikiHiLink
-  
-let b:current_syntax = "wiki"
+" text: ``code`` 
+syntax region drpwikiCode           start="``" end="``"
 
-"EOF vim: tw=78:ft=vim:ts=8
+"   text: ~~deleted text~~ 
+syntax region drpwikiDelText        start="\~\~" end="\~\~"
 
+"   text: ^superscript^ 
+syntax region drpwikiSuperScript    start="\^" end="\^"
 
+"   text: ,,subscript,, 
+syntax region drpwikiSubScript      start=",," end=",,"
 
+"   macros: [[SomeMacro]]
+syntax region drpwikiMacro          start="\[\[" end="\]\]"
 
+" Aggregate all the regular text highlighting into drpwikiText
+syntax cluster drpwikiText contains=drpwikiEscaped,drpwikiItalic,drpwikiBold,drpwikiCode,drpwikiDelText,drpwikiSuperScript,drpwikiSubScript,drpwikiLink,drpwikiWord,drpwikiBoldItalic,drpwikiMacro
+
+" single-line WikiPropertys
+syntax match drpwikiSingleLineProperty /^:\?[A-Z_][_a-zA-Z0-9]\+:/
+
+" TODO: multi-line WikiPropertys
+
+" Header levels, 1-6
+syntax match drpwikiH1             /^=.*=$/
+syntax match drpwikiH2             /^==.*==$/
+syntax match drpwikiH3             /^===.*===$/
+syntax match drpwikiH4             /^====.*====$/
+syntax match drpwikiH5             /^=====.*====$/
+syntax match drpwikiH6             /^======.*=====$/
+
+" <hr>, horizontal rule
+syntax match drpwikiHR             /^---.*$/
+
+" Bulleted list items start with one space or tabs, followed by whitespace, then '*'
+" Numeric  list items start with one space or tabs, followed by whitespace, then '#'
+" Eight spaces at the beginning of the line is equivalent to the leading tab.
+syntax match drpwikiList           /^[ \t]\+\(\*\|#\|[0-9]\+\.\) .*$/   contains=@drpwikiText
+
+" Also handle {{{ }}} preformatted text
+syntax region drpwikiPre           start="{{{" end="}}}" 
+
+" Link FlexWiki syntax items to colors
+hi def link drpwikiH1                    Title
+hi def link drpwikiH2                    drpwikiH1
+hi def link drpwikiH3                    drpwikiH2
+hi def link drpwikiH4                    drpwikiH3
+hi def link drpwikiH5                    drpwikiH4
+hi def link drpwikiH6                    drpwikiH5
+hi def link drpwikiHR                    drpwikiH6
+    
+hi def drpwikiBold                       term=bold cterm=bold gui=bold
+hi def drpwikiItalic                     term=italic cterm=italic gui=italic
+hi def drpwikiBoldItalic                 term=underline cterm=underline gui=underline
+hi def drpwikiUnderline                  term=underline cterm=underline gui=underline
+
+hi def link drpwikiCode                  Statement
+hi def link drpwikiWord                  Underlined
+
+hi def link drpwikiPre                   PreProc
+hi def link drpwikiLink                  Underlined
+hi def link drpwikiList                  Type
+hi def link drpwikiEmoticons             Constant
+hi def link drpwikiDelText               Comment
+hi def link drpwikiSuperScript           Constant
+hi def link drpwikiSubScript             Constant
+hi def link drpwikiMacro                 Type
+
+hi def link drpwikiSingleLineProperty    Identifier
+
+let b:current_syntax="DrProjectWiki"
+
+" vim:tw=0:
