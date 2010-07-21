@@ -22,10 +22,20 @@ if !exists('g:pyflakes_builtins')
 endif
 
 if !exists("b:did_python_init")
+    let b:did_python_init = 0
+
+    if !has('python')
+        echoerr "Error: the pyflakes.vim plugin requires Vim to be compiled with +python"
+        finish
+    endif
+
     python << EOF
 import vim
 import os.path
 import sys
+
+if sys.version_info[:2] < (2, 5):
+    raise AssertionError('Vim must be compiled with Python 2.5 or higher; you have ' + sys.version)
 
 # get the directory this script is in: the pyflakes python module should be installed there.
 scriptdir = os.path.join(os.path.dirname(vim.eval('expand("<sfile>")')), 'pyflakes')
@@ -33,6 +43,7 @@ sys.path.insert(0, scriptdir)
 
 from pyflakes import checker, ast, messages
 from operator import attrgetter
+import re
 
 class SyntaxError(messages.Message):
     message = 'could not compile: %s'
@@ -45,7 +56,24 @@ class blackhole(object):
 
 def check(buffer):
     filename = buffer.name
-    contents = '\n'.join(buffer[:])
+    contents = buffer[:]
+
+    # shebang usually found at the top of the file, followed by source code encoding marker.
+    # assume everything else that follows is encoded in the encoding.
+    encoding_found = False
+    for n, line in enumerate(contents):
+        if not encoding_found:
+            if re.match(r'^# -\*- coding: .+? -*-', line):
+                encoding_found = True
+        else:
+            # skip all preceeding lines 
+            contents = [''] * n + contents[n:]
+            break
+    contents = '\n'.join(contents) + '\n'
+
+    vimenc = vim.eval('&encoding')
+    if vimenc:
+        contents = contents.decode(vimenc)
 
     builtins = []
     try:
@@ -66,7 +94,7 @@ def check(buffer):
             lineno, offset, line = value[1][1:]
         except IndexError:
             lineno, offset, line = 1, 0, ''
-        if line.endswith("\n"):
+        if line and line.endswith("\n"):
             line = line[:-1]
 
         return [SyntaxError(filename, lineno, offset, str(value))]
@@ -80,6 +108,10 @@ def vim_quote(s):
     return s.replace("'", "''")
 EOF
     let b:did_python_init = 1
+endif
+
+if !b:did_python_init
+    finish
 endif
 
 au BufLeave <buffer> call s:ClearPyflakes()
@@ -169,6 +201,11 @@ let b:showing_message = 0
 if !exists("*s:GetPyflakesMessage")
     function s:GetPyflakesMessage()
         let s:cursorPos = getpos(".")
+
+        " Bail if RunPyflakes hasn't been called yet.
+        if !exists('b:matchedlines')
+            return
+        endif
 
         " if there's a message for the line the cursor is currently on, echo
         " it to the console
