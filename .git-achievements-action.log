@@ -684,3 +684,57 @@ st
 Date: Mon Jul  5 15:25:29 EDT 2010
 st
 Date: Mon Jul  5 15:26:07 EDT 2010
+push --force origin master
+Date: Tue Jul 13 13:00:49 EDT 2010
+st
+Date: Tue Jul 13 13:08:04 EDT 2010
+st
+Date: Tue Jul 13 19:53:17 EDT 2010
+init
+Date: Tue Jul 13 22:42:29 EDT 2010
+st
+Date: Tue Jul 13 22:42:31 EDT 2010
+st
+Date: Tue Jul 13 22:44:30 EDT 2010
+add .gitignore IGNORE.txt README.txt bootstrap.py buildout.cfg profiles scripts version.txt
+Date: Tue Jul 13 22:45:02 EDT 2010
+st
+Date: Tue Jul 13 22:45:36 EDT 2010
+commit
+Date: Tue Jul 13 22:45:46 EDT 2010
+st
+Date: Wed Jul 14 09:41:29 EDT 2010
+init
+Date: Wed Jul 14 09:41:38 EDT 2010
+st
+Date: Wed Jul 14 09:41:41 EDT 2010
+add .git README.txt docs example setup.cfg setup.py
+Date: Wed Jul 14 09:42:27 EDT 2010
+st
+Date: Wed Jul 14 09:42:29 EDT 2010
+commit
+Date: Wed Jul 14 09:42:42 EDT 2010
+st
+Date: Wed Jul 14 09:42:49 EDT 2010
+st
+Date: Wed Jul 14 09:46:35 EDT 2010
+diff
+Date: Wed Jul 14 09:46:40 EDT 2010
+add example/dexter/behavior/examplebehavior.py
+Date: Wed Jul 14 09:46:51 EDT 2010
+diff
+Date: Wed Jul 14 09:46:56 EDT 2010
+add example/dexter/behavior/configure.zcml
+Date: Wed Jul 14 09:47:07 EDT 2010
+dfs
+Date: Wed Jul 14 09:47:18 EDT 2010
+diff
+Date: Wed Jul 14 09:48:46 EDT 2010
+--version
+Date: Thu Jul 22 12:32:56 EDT 2010
+st
+Date: Thu Jul 22 12:33:55 EDT 2010
+st
+Date: Thu Jul 22 12:34:06 EDT 2010
+st
+Date: Thu Jul 22 12:43:47 EDT 2010
