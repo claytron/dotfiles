@@ -76,13 +76,11 @@ fi
 # grepping (or acking)
 # sgrep stands for super grep, meaning recursive and case insensitive
 if checkPath ack; then
-    alias grep=ack
     alias sgrep=ack
 else
     # using the GNU grep trunk with the exclude dir opt
     #alias grep='grep -EIn --exclude-dir=".svn" --exclude-dir="CVS" --exclude=".DS_STORE" --exclude="*pyc" --color=always'
-    alias grep='grep -EIn --exclude=".DS_STORE" --exclude="*pyc" --color=always'
-    alias ack=grep
+    alias sgrep='grep -EIn --exclude=".DS_STORE" --exclude="*pyc" --color=always'
     alias sgrep='grep -ir'
     alias sgrepnoi='grep -r'
     alias sgrepnor='grep -i'
@@ -206,7 +204,7 @@ alias tarbzx='tar -xvjf'
 alias 7zultra='7za a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on'
 
 # always show all versions of an executable
-alias which="which -a"
+alias wha="which -a"
 
 # ssh over a slow connection
 alias sshc="ssh -C -c blowfish"
