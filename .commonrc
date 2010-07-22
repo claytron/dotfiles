@@ -244,11 +244,3 @@ if [ -d $HOME/.virtualenvs ]; then
         source virtualenvwrapper.sh
     fi
 fi
-
-# source a file that has some git config changes. One is the
-# .gitignore file setup since that doesn't know how to use
-# ~ or $HOME. The other is my github token, which I don't want
-# to check in.
-if checkPath git && [[ -a "$HOME/.githack" ]]; then
-    source "$HOME/.githack"
-fi
