@@ -382,7 +382,7 @@ endfunction
 
 " open up the current file's folder in the terminal
 " TODO: Make this work cross platform/terminal program (a plugin perhaps?)
-command TerminalHere silent !roxterm --tab --directory=%:p:h
+command! TerminalHere silent !roxterm --tab --directory=%:p:h
 
 if has("autocmd")
     " automatically re-source the vimrc on save
