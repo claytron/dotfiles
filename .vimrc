@@ -51,8 +51,11 @@
 
 " set a common set of options for vim and vimperator
 source ~/.vim_commonrc
+
 " make sure the above file gets the proper filetype
-au BufRead .vim_commonrc set ft=vim
+if has("autocmd")
+    au BufRead .vim_commonrc set ft=vim
+endif
 
 " FreeBSD security advisory for this one...
 set nomodeline
@@ -359,10 +362,6 @@ let g:miniBufExplMapCTabSwitchBufs = 1
 " Delete buffers when i'm done with them in VCSCommand
 let VCSCommandDeleteOnHide = 1
 
-" automatically use the wiki text for trac.sixfeetup.com when
-" using it's all text
-au BufNewFile,BufRead *trac.sixfeetup.com.* set syntax=wiki
-
 " run markdown on the current file
 command! -complete=file -nargs=* MarkdownToHTML  call s:RunShellCommand('Markdown.pl %')
 command! -complete=file -nargs=* MarkdownToHTMLCopy  !Markdown.pl % | pbcopy
@@ -385,29 +384,38 @@ endfunction
 " TODO: Make this work cross platform/terminal program (a plugin perhaps?)
 command TerminalHere silent !roxterm --tab --directory=%:p:h
 
-" shell files
-au BufNewFile,BufRead .common* set filetype=sh
+if has("autocmd")
+    " automatically re-source the vimrc on save
+    "autocmd bufwritepost .vimrc source $MYVIMRC
 
-" vim help files
-au BufNewFile,BufRead /*/doc/*.txt set filetype=help
+    " automatically use the wiki text for trac.sixfeetup.com when
+    " using it's all text
+    au BufNewFile,BufRead *trac.sixfeetup.com.* set syntax=wiki
 
-" Zope and Plone files
-" -----------------------------------------------------------------
-" xml syntax for zcml files
-au BufNewFile,BufRead *.zcml set filetype=xml
-" css.dtml as css
-au BufNewFile,BufRead *.css.dtml set filetype=css
-" kss files as css
-au BufNewFile,BufRead *.kss set filetype=css syntax=kss
-" js.dtml as javascript
-au BufNewFile,BufRead *.js.dtml set filetype=javascript
-" any txt file in a `tests` directory is a doctest
-au BufNewFile,BufRead /*/tests/*.txt set filetype=doctest
+    " shell files
+    au BufNewFile,BufRead .common* set filetype=sh
 
-" automatically give executable permissions if file begins with #! and contains
-" '/bin/' in the path
-" borrowed from: http://github.com/mitechie/pyvim/blob/1.0/vimrc#L259
-au bufwritepost * if getline(1) =~ "^#!" | if getline(1) =~ "/bin/" | silent !chmod a+x <afile> | endif | endif
+    " vim help files
+    au BufNewFile,BufRead /*/doc/*.txt set filetype=help
+
+    " Zope and Plone files
+    " -----------------------------------------------------------------
+    " xml syntax for zcml files
+    au BufNewFile,BufRead *.zcml set filetype=xml
+    " css.dtml as css
+    au BufNewFile,BufRead *.css.dtml set filetype=css
+    " kss files as css
+    au BufNewFile,BufRead *.kss set filetype=css syntax=kss
+    " js.dtml as javascript
+    au BufNewFile,BufRead *.js.dtml set filetype=javascript
+    " any txt file in a `tests` directory is a doctest
+    au BufNewFile,BufRead /*/tests/*.txt set filetype=doctest
+
+    " automatically give executable permissions if file begins with #! and contains
+    " '/bin/' in the path
+    " borrowed from: http://github.com/mitechie/pyvim/blob/1.0/vimrc#L259
+    au bufwritepost * if getline(1) =~ "^#!" | if getline(1) =~ "/bin/" | silent !chmod a+x <afile> | endif | endif
+endif
 
 " fuzzy finder text mate mapping
 map <silent> <leader>t :FuzzyFinderTextMate<CR>
@@ -478,23 +486,25 @@ map <leader>3 :VSSelectWindowSize ginourmous<CR>
 
 if has("gui_running")
 
-    " Default size of window
-    autocmd VimEnter * exe 'VSSelectWindowSize bigger'
+    if has("autocmd")
+        " Default size of window
+        autocmd VimEnter * exe 'VSSelectWindowSize bigger'
 
-    " automagically open NERDTree in a GUI
-    autocmd VimEnter * exe 'NERDTreeToggle' | wincmd l
-    " close the NERDTree when opening it's all text and vimperator
-    " editors
-    autocmd VimEnter,BufNewFile,BufRead /*/itsalltext/*,vimperator-*.tmp exe 'NERDTreeClose'
-    autocmd VimEnter,BufNewFile,BufRead /*/itsalltext/* set nospell
-    " Close the NERDTree when external editing emails
-    autocmd VimEnter,BufNewFile,BufRead *.eml exe 'NERDTreeClose'
-    " Close the NERDTree if we open a svn commit message
-    autocmd VimEnter,BufNewFile,BufRead svn-commit.*tmp exe 'NERDTreeClose'
-    " Close the NERDTree if we open a git commit message
-    autocmd VimEnter,BufNewFile,BufRead COMMIT_EDITMSG exe 'NERDTreeClose'
-    " Close the NERDTree if we open a zsh command line
-    autocmd VimEnter,BufNewFile,BufRead /*/tmp/zsh* exe 'NERDTreeClose'
+        " automagically open NERDTree in a GUI
+        autocmd VimEnter * exe 'NERDTreeToggle' | wincmd l
+        " close the NERDTree when opening it's all text and vimperator
+        " editors
+        autocmd VimEnter,BufNewFile,BufRead /*/itsalltext/*,vimperator-*.tmp exe 'NERDTreeClose'
+        autocmd VimEnter,BufNewFile,BufRead /*/itsalltext/* set nospell
+        " Close the NERDTree when external editing emails
+        autocmd VimEnter,BufNewFile,BufRead *.eml exe 'NERDTreeClose'
+        " Close the NERDTree if we open a svn commit message
+        autocmd VimEnter,BufNewFile,BufRead svn-commit.*tmp exe 'NERDTreeClose'
+        " Close the NERDTree if we open a git commit message
+        autocmd VimEnter,BufNewFile,BufRead COMMIT_EDITMSG exe 'NERDTreeClose'
+        " Close the NERDTree if we open a zsh command line
+        autocmd VimEnter,BufNewFile,BufRead /*/tmp/zsh* exe 'NERDTreeClose'
+    endif
 
     " turn off the gui elements
     set guioptions=
