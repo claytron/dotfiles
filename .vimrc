@@ -31,6 +31,11 @@
 "    CTRL-=          -- Make the current window taller
 "    CTRL-- (CTRL-DASH) -- Make the current window shorter
 "
+" Command line shortcuts
+"
+"    w!!             -- Save the following file using sudo to avoid
+"                       the [readonly] flag
+"
 " I have set up some custom commands that might be of interest
 "
 "    MarkdownToHTML  -- Converts the current buffer into HTML and
