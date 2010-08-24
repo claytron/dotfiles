@@ -486,6 +486,9 @@ map <leader>3 :VSSelectWindowSize ginourmous<CR>
 
 if has("gui_running")
 
+    " turn off the cursor blinking (who thinks that is a good idea?)
+    set guicursor+=a:blinkon0
+
     if has("autocmd")
         " Default size of window
         autocmd VimEnter * exe 'VSSelectWindowSize bigger'
