@@ -395,7 +395,9 @@ if has("autocmd")
 
     " automatically use the wiki text for trac.sixfeetup.com when
     " using it's all text
-    au BufNewFile,BufRead *trac.sixfeetup.com.* set syntax=wiki
+    au BufNewFile,BufRead *trac.sixfeetup.com.* set filetype=wiki
+    " use markdown for karl
+    au BufNewFile,BufRead *karl.sixfeetup.com.* set filetype=markdown
 
     " shell files
     au BufNewFile,BufRead .common* set filetype=sh
@@ -507,7 +509,7 @@ if has("gui_running")
         " Close the NERDTree when external editing emails
         autocmd VimEnter,BufNewFile,BufRead *.eml exe 'NERDTreeClose'
         " Close the NERDTree if we open a svn commit message
-        autocmd VimEnter,BufNewFile,BufRead svn-commit.*tmp exe 'NERDTreeClose'
+        autocmd VimEnter,BufNewFile,BufRead svn-{commit,prop}.*tmp exe 'NERDTreeClose'
         " Close the NERDTree if we open a git commit message
         autocmd VimEnter,BufNewFile,BufRead COMMIT_EDITMSG exe 'NERDTreeClose'
         " Close the NERDTree if we open a zsh command line
