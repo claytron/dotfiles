@@ -362,9 +362,14 @@ let g:miniBufExplMapCTabSwitchBufs = 1
 " Delete buffers when i'm done with them in VCSCommand
 let VCSCommandDeleteOnHide = 1
 
-" run markdown on the current file
-command! -complete=file -nargs=* MarkdownToHTML  call s:RunShellCommand('Markdown.pl %')
-command! -complete=file -nargs=* MarkdownToHTMLCopy  !Markdown.pl % | pbcopy
+" run markdown on the current file and place the html in a scratch buffer
+command! -nargs=0 MarkdownToHTML  call s:RunShellCommand('Markdown.pl %')
+" replace the current buffer with the html version of the markdown
+command! -nargs=0 MarkdownToHTMLReplace  %!Markdown.pl "%"
+" copy the html version of the markdown to the clipboard (os x)
+command! -nargs=0 MarkdownToHTMLCopy  !Markdown.pl "%" | pbcopy
+" use pandoc to convert from html into markdown
+command! -nargs=0 MarkdownFromHTML  %!pandoc -f html -t markdown "%"
 
 " xml tidy
 command! -complete=file -nargs=* TidyXML call s:TidyXML()
