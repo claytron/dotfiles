@@ -93,6 +93,10 @@ set backupskip=/tmp/*,/private/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*
 map <silent> <leader>s :set spell!<CR>
 set nospell
 
+" Shortcut to clear out the search pattern (and thus turn off the highlighting)
+" from http://stackoverflow.com/questions/657447/vim-clear-last-search-highlighting
+map <silent> <leader>H :let @/ = ""<CR>
+
 " -----------------------------------------------------------------
 " Colors and Syntax
 " -----------------------------------------------------------------
