@@ -1,7 +1,7 @@
 [miscellany]
 ### Set global-ignores to a set of whitespace-delimited globs
 ### which Subversion will ignore in its 'status' output.
-global-ignores = *.pt.cache .Python .git* *.egg-info *.pyc *.mo *.o *.lo *.la .*.rej *.rej .DS_Store .*~ *~ #*# .#* .~lock.*# .VimballRecord .netrwhist *.add.spl
+global-ignores = *.pt.cache .Python .git* *.egg-info *.pyc *.mo *.o *.lo *.la .*.rej *.rej .DS_Store .*~ *~ #*# .#* .~lock.*# .VimballRecord .netrwhist *.add.spl .AppleDouble
 ### Automatic properties are defined in the section 'auto-props'.
 enable-auto-props = yes
 
