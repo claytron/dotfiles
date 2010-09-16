@@ -6,7 +6,6 @@
 " The mapleader has been switched from '\' to ',' anytime you see
 " <leader> that is what this refers to.
 "
-"    <leader>t       -- opens the TextMate fuzzy finder
 "    tt              -- opens up the taglist
 "    <leader>h       -- toggles the highlight search
 "    <leader>n       -- toggles the line numbers
@@ -427,9 +426,6 @@ if has("autocmd")
     " borrowed from: http://github.com/mitechie/pyvim/blob/1.0/vimrc#L259
     au bufwritepost * if getline(1) =~ "^#!" | if getline(1) =~ "/bin/" | silent !chmod a+x <afile> | endif | endif
 endif
-
-" fuzzy finder text mate mapping
-map <silent> <leader>t :FuzzyFinderTextMate<CR>
 
 " Make cursor move by visual lines instead of file lines (when wrapping)
 " This makes me feel more at home :)
