@@ -193,7 +193,6 @@ EOF
     FILES_TO_MAKE=(
         "$HOME"/.pypirc
         "$HOME"/.pydistutils.cfg
-        "$HOME"/.githack
     )
     
     # create some uncontrolled files
@@ -251,16 +250,6 @@ EOF
 ) > "$dot_file"
             fi
 
-            # my crazy git hack to add these items to the .gitconfig
-            if [ "$dot_file" = "$HOME/.githack" ]; then
-                (
-                cat <<'EOF'
-`git config --global github.user claytron`
-`git config --global github.token YOUR_TOKEN_HERE`
-`git config --global core.excludesfile ~/.gitignore`
-EOF
-) > "$dot_file"
-            fi
         echo "Created $dot_file example"
         chmod 600 "$dot_file"
         fi
