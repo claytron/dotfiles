@@ -17,6 +17,7 @@ excluded=(
     .DS_Store
     .
     ..
+    .AppleDouble
 )
 # make sure the dotfiles are only rwx by the owner
 chmod 700 $dotfiles_loc
