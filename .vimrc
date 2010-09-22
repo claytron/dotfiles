@@ -48,9 +48,6 @@
 "
 " -----------------------------------------------------------------
 
-" set a common set of options for vim and vimperator
-source ~/.vim_commonrc
-
 " make sure the above file gets the proper filetype
 if has("autocmd")
     au BufRead .vim_commonrc set ft=vim
@@ -58,6 +55,27 @@ endif
 
 " FreeBSD security advisory for this one...
 set nomodeline
+
+" set the mapleader key
+let mapleader = ","
+let g:mapleader = ","
+
+" tell the bell to go beep itself!
+set visualbell
+
+" -----------------------------------------------------------------
+" Searching
+" -----------------------------------------------------------------
+" find as you type
+set incsearch
+" highlight the terms
+set hlsearch
+" make searches case-insensitive
+set ignorecase
+" unless they contain upper-case letters
+set smartcase
+" a toggle for search highlight
+map <silent> <leader>h :set hlsearch!<CR>
 
 " set the default encoding
 set enc=utf-8
