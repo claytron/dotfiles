@@ -2,10 +2,9 @@
 "
 " CVS extension for VCSCommand.
 "
-" Version:       VCS development
 " Maintainer:    Bob Hiestand <bob.hiestand@gmail.com>
 " License:
-" Copyright (c) 2007 Bob Hiestand
+" Copyright (c) Bob Hiestand
 "
 " Permission is hereby granted, free of charge, to any person obtaining a copy
 " of this software and associated documentation files (the "Software"), to
@@ -429,17 +428,22 @@ for [pluginName, commandText, shortCut] in mappingInfo
 	endif
 endfor
 
-" Section: Menu items {{{1
-amenu <silent> &Plugin.VCS.CVS.&Edit       <Plug>CVSEdit
-amenu <silent> &Plugin.VCS.CVS.Ed&itors    <Plug>CVSEditors
-amenu <silent> &Plugin.VCS.CVS.Unedi&t     <Plug>CVSUnedit
-amenu <silent> &Plugin.VCS.CVS.&Watchers   <Plug>CVSWatchers
-amenu <silent> &Plugin.VCS.CVS.WatchAdd    <Plug>CVSWatchAdd
-amenu <silent> &Plugin.VCS.CVS.WatchOn     <Plug>CVSWatchOn
-amenu <silent> &Plugin.VCS.CVS.WatchOff    <Plug>CVSWatchOff
-amenu <silent> &Plugin.VCS.CVS.WatchRemove <Plug>CVSWatchRemove
-
 " Section: Plugin Registration {{{1
 let s:VCSCommandUtility = VCSCommandRegisterModule('CVS', expand('<sfile>'), s:cvsFunctions, s:cvsExtensionMappings)
+
+" Section: Menu items {{{1
+for [s:shortcut, s:command] in [
+			\['CVS.&Edit', '<Plug>CVSEdit'],
+			\['CVS.Ed&itors', '<Plug>CVSEditors'],
+			\['CVS.Unedi&t', '<Plug>CVSUnedit'],
+			\['CVS.&Watchers', '<Plug>CVSWatchers'],
+			\['CVS.WatchAdd', '<Plug>CVSWatchAdd'],
+			\['CVS.WatchOn', '<Plug>CVSWatchOn'],
+			\['CVS.WatchOff', '<Plug>CVSWatchOff'],
+			\['CVS.WatchRemove', '<Plug>CVSWatchRemove']
+			\]
+	call s:VCSCommandUtility.addMenuItem(s:shortcut, s:command)
+endfor
+unlet s:shortcut s:command
 
 let &cpo = s:save_cpo

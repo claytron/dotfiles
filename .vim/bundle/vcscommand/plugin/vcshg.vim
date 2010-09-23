@@ -2,10 +2,9 @@
 "
 " Mercurial extension for VCSCommand.
 "
-" Version:       VCS development
 " Maintainer:    Bob Hiestand <bob.hiestand@gmail.com>
 " License:
-" Copyright (c) 2009 Bob Hiestand
+" Copyright (c) Bob Hiestand
 "
 " Permission is hereby granted, free of charge, to any person obtaining a copy
 " of this software and associated documentation files (the "Software"), to
@@ -105,7 +104,7 @@ endfunction
 
 " Function: s:hgFunctions.Add() {{{2
 function! s:hgFunctions.Add(argList)
-	return s:DoCommand(join(['add'] + a:argList, ' '), 'add', join(a:argList, ' '), {})
+	return s:DoCommand(join(['add -v'] + a:argList, ' '), 'add', join(a:argList, ' '), {})
 endfunction
 
 " Function: s:hgFunctions.Annotate(argList) {{{2
@@ -132,10 +131,11 @@ endfunction
 
 " Function: s:hgFunctions.Commit(argList) {{{2
 function! s:hgFunctions.Commit(argList)
-	let resultBuffer = s:DoCommand('commit -l "' . a:argList[0] . '"', 'commit', '', {})
-	if resultBuffer == 0
+	try
+		return s:DoCommand('commit -v -l "' . a:argList[0] . '"', 'commit', '', {})
+	catch /Version control command failed.*nothing changed/
 		echomsg 'No commit needed.'
-	endif
+	endtry
 endfunction
 
 " Function: s:hgFunctions.Delete() {{{2
@@ -252,8 +252,8 @@ endfunction
 
 " Function: s:hgFunctions.Status(argList) {{{2
 function! s:hgFunctions.Status(argList)
-	let options = ['-u', '-v']
-	if len(a:argList) == 0
+	let options = ['-A', '-v']
+	if len(a:argList) != 0
 		let options = a:argList
 	endif
 	return s:DoCommand(join(['status'] + options, ' '), 'status', join(options, ' '), {})

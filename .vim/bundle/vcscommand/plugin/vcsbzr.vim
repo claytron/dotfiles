@@ -2,10 +2,9 @@
 "
 " BZR extension for VCSCommand.
 "
-" Version:       VCS development
 " Maintainer:    Bob Hiestand <bob.hiestand@gmail.com>
 " License:
-" Copyright (c) 2009 Bob Hiestand
+" Copyright (c) Bob Hiestand
 "
 " Permission is hereby granted, free of charge, to any person obtaining a copy
 " of this software and associated documentation files (the "Software"), to
@@ -84,7 +83,13 @@ endfunction
 " Function: s:bzrFunctions.Identify(buffer) {{{2
 function! s:bzrFunctions.Identify(buffer)
   let fileName = resolve(bufname(a:buffer))
-  let statusText = s:VCSCommandUtility.system(s:Executable() . ' info -- "' . fileName . '"')
+  let l:save_bzr_log=$BZR_LOG
+  try
+    let $BZR_LOG=has("win32") || has("win95") || has("win64") || has("win16") ? "nul" : "/dev/null"
+    let statusText = s:VCSCommandUtility.system(s:Executable() . ' info -- "' . fileName . '"')
+  finally
+    let $BZR_LOG=l:save_bzr_log
+  endtry
   if(v:shell_error)
     return 0
   else
@@ -233,7 +238,7 @@ endfunction
 " Function: s:bzrFunctions.Status(argList) {{{2
 function! s:bzrFunctions.Status(argList)
   let options = ['-S']
-  if len(a:argList) == 0
+  if len(a:argList) != 0
     let options = a:argList
   endif
   return s:DoCommand(join(['status'] + options, ' '), 'status', join(options, ' '), {})
