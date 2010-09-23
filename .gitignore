@@ -23,3 +23,6 @@ tags
 en.utf-8.add.spl
 svn-commit.tmp
 .AppleDouble
+.vim/ruby/command-t/Makefile
+.vim/ruby/command-t/ext.bundle
+.vim/ruby/command-t/mkmf.log
