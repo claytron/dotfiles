@@ -13,19 +13,21 @@ endif
 let colors_name = "tir_black"
 
 " General colors
-hi Normal guifg=#f6f3e8 guibg=black ctermfg=white ctermbg=0
-hi NonText guifg=#070707 guibg=black ctermfg=232 ctermbg=0
+hi Normal guibg=#232323 ctermbg=235
+hi NonText guifg=#3F3F3F guibg=NONE ctermbg=NONE ctermfg=239
 
 hi Cursor guifg=black guibg=white ctermfg=0 ctermbg=15
-hi LineNr guifg=#3D3D3D guibg=black ctermfg=239 ctermbg=0
+hi LineNr guibg=darkgray ctermbg=244 ctermfg=238
 
 hi VertSplit guifg=#202020 guibg=#202020 ctermfg=235 ctermbg=235 
-hi StatusLine guifg=#CCCCCC guibg=#202020 gui=italic ctermfg=235 ctermbg=254
-hi StatusLineNC guifg=black guibg=#202020 ctermfg=0 ctermbg=235 
+hi StatusLine guifg=#000000 guibg=#bbbbbb gui=italic ctermbg=235 ctermfg=254
+hi StatusLineNC guifg=#3B3B3B guibg=#202020 ctermfg=0 ctermbg=235
 
 hi Folded guifg=#a0a8b0 guibg=#384048 ctermfg=103 ctermbg=60
 hi Title guifg=#f6f3e8 gui=bold ctermfg=187 cterm=bold
 hi Visual guibg=#262D51 ctermbg=60
+
+hi Directory term=bold guifg=#88AFD1 ctermfg=159
 
 hi SpecialKey guifg=#808080 guibg=#343434 ctermfg=8 ctermbg=236
 
@@ -128,3 +130,7 @@ hi link javaScriptNumber Number
 
 " Special for CSharp
 hi link csXmlTag Keyword 
+
+" Special for Python
+hi pythonBuiltinObj guifg=#FF73FD ctermfg=151
+hi pythonExClass guifg=#FF73FD ctermfg=151
