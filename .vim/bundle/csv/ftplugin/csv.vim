@@ -1,6 +1,13 @@
 " Filetype plugin for editing CSV files."{{{
-" Copyright: C.Brabandt  <cb@256bit.org>
-" Version:   0.3
+" Author:  Christian Brabandt <cb@256bit.org>
+" Version: 0.5
+" Script:  http://www.vim.org/scripts/script.php?script_id=2830
+" License: VIM License
+" Last Change: Tue, 20 Apr 2010 19:58:49 +0200
+
+" Documentation: see :help ft_csv.txt
+" GetLatestVimScripts: 2830 2 :AutoInstall: csv.vim
+"
 " Some ideas are take from the wiki http://vim.wikia.com/wiki/VimTip667
 " though, implementation differs.
 if v:version < 700 || exists('b:did_ftplugin')
@@ -27,7 +34,11 @@ fu! <SID>GetDelimiter()"{{{
 	endif
     endfor
     call setpos('.', _cur)
-    return result[0]
+    if !empty(result)
+	return result[0]
+    else
+	return ''
+    endif
 endfu"}}}
 
 fu! <SID>HiCol(colnr)"{{{
@@ -40,10 +51,16 @@ fu! <SID>HiCol(colnr)"{{{
     "let colpat='\%(\%([^' . b:delimiter . ']*\%("[^"]*"\)\?\)[^' . b:delimiter . ']*' . b:delimiter . '\?\)'
     "let pat='^' . <SID>GetColPat(0,a:colnr) . '\zs[^' . b:delimiter . ']*' . b:delimiter . '\?'
     "let pat='^' . <SID>GetColPat(0,a:colnr) . '\zs' . b:col
-    if a:colnr==1
-	let pat='^'. <SID>GetColPat(a:colnr,0)
+    if empty(a:colnr)
+       let colnr=<sid>WColumn()
     else
-	let pat='^'. <SID>GetColPat(a:colnr-1,1) . b:col
+       let colnr=a:colnr
+    endif
+
+    if colnr==1
+	let pat='^'. <SID>GetColPat(colnr,0)
+    else
+	let pat='^'. <SID>GetColPat(colnr-1,1) . b:col
     endif
 
     if exists("*matchadd")
@@ -57,6 +74,7 @@ fu! <SID>HiCol(colnr)"{{{
 endfu"}}}
 
 fu! <SID>WColumn()"{{{
+    " Return on which column the cursor is
     let _cur = getpos('.')
     let line=getline('.')
     " If the cursor is on the field delimiter,
@@ -138,6 +156,7 @@ fu! <SID>DelColumn(colnr)"{{{
 endfu"}}}
 
 fu! <SID>ColWidth(colnr)"{{{
+    " Return the width of a column
     let list=getline(1,'$')
     let width=20 "Fallback (wild guess)
     try
@@ -157,18 +176,17 @@ endfu"}}}
 
 fu! <SID>ArrangeCol() range"{{{
    let _cur=getpos('.')
-"   let max_width=<SID>ColWidth(<SID>WColumn())+1
    let col_width=[]
    let max_cols=<SID>MaxColumns()
    for i in range(1,max_cols)
        call add(col_width, <SID>ColWidth(i))
    endfor
 
-   "exe ':%s/' . (b:col) . '/\=printf("%.' . (<SID>ColWidth(<SID>WColumn())+1) . 's", submatch(0).repeat(" ", (<SID>ColWidth(<SID>WColumn())-strlen(submatch(0)))))/g'
-"   echo ':%s/' . (b:col) . '/\=printf("%*.*s",'  (col_width[<SID>WColumn()-1]+1) ", ". (col_width[<SID>WColumn()-1]+1) . ", submatch(0))"/g'
-   "exe ':%s/' . (b:col) . '/\=printf("%*.*s",' . (col_width[<SID>WColumn()-1]+1) . ", " . (col_width[<SID>WColumn()-1]+1) . ", submatch(0))/g"
-   "exe ':%s/' . (b:col) . '/\=printf("%*.*s",  (<SID>ColWidth(<SID>WColumn())+1) ,  (<SID>ColWidth(<SID>WColumn())+1) , submatch(0))/g'
    exe ':%s/' . (b:col) . '/\=printf("%-*.*s", (col_width[<SID>WColumn()-1]+1) ,  (col_width[<SID>WColumn()-1]+1) , submatch(0))/g'
+   " If delimiter is a <Tab>, replace it by Space
+   if b:delimiter ==? "\t"
+       %s/\t/ /g
+   endif
    call setpos('.', _cur)
 endfu"}}}
 
@@ -199,16 +217,26 @@ fu! <SID>Init()"{{{
 	let s:hiGroup="WildMenu"
     endif
     " Determine default Delimiter
-    let b:delimiter=<SID>GetDelimiter()
+    if !exists("g:csv_delim")
+	let b:delimiter=<SID>GetDelimiter()
+    else
+	let b:delimiter=g:csv_delim
+    endif
+    if empty(b:delimiter)
+	echohl WarningMsg
+	echomsg "CSV: No delimiter found. See :h csv-delimiter to set it manually!"
+	echohl Normal
+    endif
     " Pattern for matching a single column
     let b:col='\%(\%([^' . b:delimiter . ']*"[^"]*"[^' . b:delimiter . ']*' . b:delimiter . '\)\|\%([^' . b:delimiter . ']*\%(' . b:delimiter . '\|$\)\)\)'
     setl nostartofline tw=0 nowrap
     command! -buffer WhatColumn :echo <SID>WColumn()
     command! -buffer NrColumns :echo <SID>MaxColumns()
-    command! -buffer -nargs=1 HiColumn :call <SID>HiCol(<args>)
+    command! -buffer -nargs=? HiColumn :call <SID>HiCol(<q-args>)
     command! -buffer -nargs=* SearchInColumn :call <SID>SearchColumn(<q-args>)
     command! -buffer -nargs=1 DeleteColumn :call <SID>DelColumn(<args>)
     command! -buffer ArrangeColumn :call <SID>ArrangeCol()
+    command! -buffer InitCSV :call <SID>Init()
     " undo when setting a new filetype
     let b:undo_ftplugin = "setlocal sol< tw< wrap<"
 	\ . "| unlet b:delimiter b:col"
