@@ -48,11 +48,6 @@
 "
 " -----------------------------------------------------------------
 
-" make sure the above file gets the proper filetype
-if has("autocmd")
-    au BufRead .vim_commonrc set ft=vim
-endif
-
 " FreeBSD security advisory for this one...
 set nomodeline
 
