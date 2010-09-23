@@ -51,6 +51,10 @@
 " FreeBSD security advisory for this one...
 set nomodeline
 
+" Set up pathogen
+filetype off
+call pathogen#runtime_append_all_bundles()
+
 " set the mapleader key
 let mapleader = ","
 let g:mapleader = ","
