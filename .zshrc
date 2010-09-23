@@ -7,6 +7,7 @@ hash -d RA=/var/db/rails
 hash -d R=/usr/local/etc/rc.d
 hash -d Z=/var/db/zope
 hash -d P=$HOME/sixfeetup/projects
+hash -d VP=/Volumes/clayton/sixfeetup/projects
 
 # OS X specific settings
 if [ $UNAME = "Darwin" ]; then
