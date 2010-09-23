@@ -61,7 +61,7 @@ let mapleader = ","
 let g:mapleader = ","
 
 " tell the bell to go beep itself!
-set visualbell
+set visualbell t_vb=
 
 " -----------------------------------------------------------------
 " Searching
@@ -309,9 +309,6 @@ endif
 " setting allows the cursor to freely roam anywhere it likes in command mode.
 " It feels weird at first but is quite useful.
 "set virtualedit=all
-
-" make sure the bell shuts up
-set t_vb=
 
 " allow for switching buffers when a file has changes
 set hidden
