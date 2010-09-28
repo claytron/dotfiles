@@ -1,7 +1,5 @@
 " -----------------------------------------------------------------
 "
-"  NOTE: some settings are set up in a common rc file so that both
-"        vim and vimperator can use them. See ~/.vim_commonrc
 "
 " The mapleader has been switched from '\' to ',' anytime you see
 " <leader> that is what this refers to.
