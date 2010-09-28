@@ -1,5 +1,13 @@
-" -----------------------------------------------------------------
+" My vimrc uses folds
 "
+" zR    open all folds
+" zM    close all folds
+" za    toggle fold at cursor position
+" zj    move down to start of next fold
+" zk    move up to end of previous fold
+
+" My vimrc command and mapping quick reference                 {{{1
+" -----------------------------------------------------------------
 "
 " The mapleader has been switched from '\' to ',' anytime you see
 " <leader> that is what this refers to.
@@ -43,11 +51,16 @@
 "    TidyXML         -- Runs tidy in XML mode on the current buffer
 "    TerminalHere    -- Opens the terminal to the directory of the
 "                       current buffer
-"
+
+" General setting                                              {{{1
 " -----------------------------------------------------------------
 
 " FreeBSD security advisory for this one...
 set nomodeline
+
+" This setting prevents vim from emulating the original vi's
+" bugs and limitations.
+set nocompatible
 
 " Set up pathogen
 filetype off
@@ -57,41 +70,8 @@ call pathogen#runtime_append_all_bundles()
 let mapleader = ","
 let g:mapleader = ","
 
-" tell the bell to go beep itself!
-set visualbell t_vb=
-
-" -----------------------------------------------------------------
-" Searching
-" -----------------------------------------------------------------
-" find as you type
-set incsearch
-" highlight the terms
-set hlsearch
-" make searches case-insensitive
-set ignorecase
-" unless they contain upper-case letters
-set smartcase
-" a toggle for search highlight
-map <silent> <leader>h :set hlsearch!<CR>
-
 " set the default encoding
 set enc=utf-8
-
-" set the title of the window
-set title
-set titlestring=%f%(\ [%M]%)
-
-" This setting prevents vim from emulating the original vi's
-" bugs and limitations.
-set nocompatible
-
-" Ignore those annoying "hit enter to coninue" messages
-" XXX there has to be a better way to accomplish this
-set cmdheight=2
-
-" Enhanced command menu ctrl + d to expand directories
-set wildmenu
-set wildignore+=*.pyc,*.pyo,CVS,.svn,.git,*.mo,.DS_Store,*.pt.cache,*.Python,*.o,*.lo,*.la,*~,.AppleDouble
 
 " set up jj as mode switch
 map! jj <ESC>
@@ -104,16 +84,104 @@ set backupdir=~/.backup/vim,.,/tmp
 set directory=~/.backup/vim/swap,.,/tmp
 set backupskip=/tmp/*,/private/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*
 
+" have fifty lines of command-line (etc) history:
+set history=1000
+
+if has('mouse')
+    " have the mouse enabled all the time
+    set mouse=a
+    " make a menu popup on right click
+    set mousemodel=popup
+endif
+
+" allow for switching buffers when a file has changes
+set hidden
+
+" The first setting tells vim to use "autoindent" (that is, use the current
+" line's indent level to set the indent level of new lines). The second makes
+" vim attempt to intelligently guess the indent level of any new line based on
+" the previous line.
+set autoindent
+set smartindent
+
+" Visual settings                                              {{{1
+" -----------------------------------------------------------------
+
+" tell the bell to go beep itself!
+set visualbell t_vb=
+
+" set the title of the window
+set title
+set titlestring=%f%(\ [%M]%)
+
+" Ignore those annoying "hit enter to coninue" messages
+" XXX there has to be a better way to accomplish this
+set cmdheight=2
+
+" Enhanced command menu ctrl + d to expand directories
+set wildmenu
+set wildignore+=*.pyc,*.pyo,CVS,.svn,.git,*.mo,.DS_Store,*.pt.cache,*.Python,*.o,*.lo,*.la,*~,.AppleDouble
+
 map <silent> <leader>s :set spell!<CR>
 set nospell
+
+" This setting will cause the cursor to very briefly jump to a 
+" brace/parenthese/bracket's "match" whenever you type a closing or 
+" opening brace/parenthese/bracket.
+set showmatch
+
+" Display an incomplete command in the lower right corner of the Vim window
+set showcmd
+
+" Set a margin of lines when scrolling
+set so=4
+
+" set a custom status line similar to that of ":set ruler"
+set statusline=\ \ \ \ \ line:%l\ column:%c\ \ \ %M%Y%r%=%-14.(%t%)\ %p%%
+" show the statusline in all windows
+set laststatus=2
+
+" set all window splits equal
+set equalalways
+
+" highlight the cursor line
+set cursorline
+
+" turn on line numbers, aww yeah
+set number
+" shortcut to turn off line numbers
+map <silent> <leader>n :set number!<CR>
+
+
+" Pasting                                                      {{{1
+" -----------------------------------------------------------------
+
+" turn off smart indentation when pasting
+set pastetoggle=<F2>
+" shortcut for pasting clipboard contents
+map <silent> <leader>* "+gP
+
+" Searching                                                    {{{1
+" -----------------------------------------------------------------
+
+" find as you type
+set incsearch
+" highlight the terms
+set hlsearch
+" make searches case-insensitive
+set ignorecase
+" unless they contain upper-case letters
+set smartcase
+" a toggle for search highlight
+map <silent> <leader>h :set hlsearch!<CR>
 
 " Shortcut to clear out the search pattern (and thus turn off the highlighting)
 " from http://stackoverflow.com/questions/657447/vim-clear-last-search-highlighting
 map <silent> <leader>H :let @/ = ""<CR>
 
+" Colors and Syntax                                            {{{1
 " -----------------------------------------------------------------
-" Colors and Syntax
-" -----------------------------------------------------------------
+
 " turn on syntax highlighting
 syntax on
 
@@ -182,31 +250,11 @@ ColorSwitcher g:dark_theme
 " switch between light and dark colors
 map <silent> <leader>c :ColorSwitcher<CR>
 
-" highlight the cursor line
-set cursorline
+" Custom functions and commands                                {{{1
+" -----------------------------------------------------------------
 
-" turn on line numbers, aww yeah
-set number
-" shortcut to turn off line numbers
-map <silent> <leader>n :set number!<CR>
-
-" The first setting tells vim to use "autoindent" (that is, use the current
-" line's indent level to set the indent level of new lines). The second makes
-" vim attempt to intelligently guess the indent level of any new line based on
-" the previous line.
-set autoindent
-set smartindent
-
-" turn off smart indentation when pasting
-set pastetoggle=<F2>
-" shortcut for pasting clipboard contents
-map <silent> <leader>* "+gP
-
-" turn on tsv in csv mode
-function! Csv_tsv()
-  let b:delimiter='\t'
-  let b:col=substitute(b:col, ',', '\t', 'g')
-endfunction
+" Tabs and spaces                                              {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 " function to switch between tabs and spaces
 " taken from: http://github.com/twerth/dotfiles/blob/master/etc/vim/vimrc
@@ -226,7 +274,11 @@ function! Tabstyle_spaces()
   set expandtab
 endfunction
 
+" Set spaces by default
 call Tabstyle_spaces()
+
+" Shell as scratch buffer                                      {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 " function to run shell commands and create a scratch buffer (modified
 " slightly so that it doesn't show the command and it's interpretation)
@@ -234,7 +286,7 @@ call Tabstyle_spaces()
 " Example, show output of ls in a scratch buffer:
 "
 " :Shell ls -al
-"
+
 command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
 function! s:RunShellCommand(cmdline)
   echo a:cmdline
@@ -252,6 +304,9 @@ function! s:RunShellCommand(cmdline)
   setlocal nomodifiable
   1
 endfunction
+
+" Whitespace                                                   {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 " Call the strip trailing whitespace function as a command
 command! StripTrailingWhitespaces call s:StripTrailingWhitespaces()
@@ -273,53 +328,45 @@ endfunction
 
 map <leader>w :StripTrailingWhitespaces<CR>
 
-" This setting will cause the cursor to very briefly jump to a 
-" brace/parenthese/bracket's "match" whenever you type a closing or 
-" opening brace/parenthese/bracket.
-set showmatch
+" Markdown                                                     {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-" have fifty lines of command-line (etc) history:
-set history=1000
+" run markdown on the current file and place the html in a scratch buffer
+command! -nargs=0 MarkdownToHTML  call s:RunShellCommand('Markdown.pl %')
+" replace the current buffer with the html version of the markdown
+command! -nargs=0 MarkdownToHTMLReplace  %!Markdown.pl "%"
+" copy the html version of the markdown to the clipboard (os x)
+command! -nargs=0 MarkdownToHTMLCopy  !Markdown.pl "%" | pbcopy
+" use pandoc to convert from html into markdown
+command! -nargs=0 MarkdownFromHTML  %!pandoc -f html -t markdown "%"
 
-" Display an incomplete command in the lower right corner of the Vim window
-set showcmd
+" Tidy                                                         {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-" Set a margin of lines when scrolling
-set so=4
+" xml tidy
+command! -complete=file -nargs=* TidyXML call s:TidyXML()
+map <leader>T :TidyXML<CR>
 
-" set a custom status line similar to that of ":set ruler"
-set statusline=\ \ \ \ \ line:%l\ column:%c\ \ \ %M%Y%r%=%-14.(%t%)\ %p%%
-" show the statusline in all windows
-set laststatus=2
+function! s:TidyXML()
+    " Preparation: save last search, and cursor position.
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    %!tidy -xml -i -q -w 0
+    " Clean up cursor position
+    call cursor(l, c)
+endfunction
 
-" set all window splits equal
-set equalalways
-
-if has('mouse')
-    " have the mouse enabled all the time
-    set mouse=a
-    " make a menu popup on right click
-    set mousemodel=popup
-endif
-
-" By default, vim doesn't let the cursor stray beyond the defined text. This 
-" setting allows the cursor to freely roam anywhere it likes in command mode.
-" It feels weird at first but is quite useful.
-"set virtualedit=all
-
-" allow for switching buffers when a file has changes
-set hidden
-
-" --------------------------------------------
-" Settings trying to make vim like TextMate :)
-" --------------------------------------------
+" Plugins                                                      {{{1
+" -----------------------------------------------------------------
 
 " turn on filetype checking for plugins like pyflakes
-filetype on            " enables filetype detection
-filetype plugin indent on     " enables filetype specific plugins
+filetype on                " enables filetype detection
+filetype plugin indent on  " enables filetype specific plugins
 
-" NERDTree settings
-" -----------------------------------------------------------------
+" NERDTree                                                     {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 " set project folder to x
 map <leader>x :NERDTreeToggle<CR>
 map <leader>b :NERDTreeFromBookmark<Space>
@@ -346,10 +393,10 @@ let NERDTreeIgnore=[
 let NERDTreeSortOrder=[]
 " when the root is changed, change Vim's working dir
 let NERDTreeChDirMode=2
-" -----------------------------------------------------------------
 
-" Fuzzy finder TextMate plugin
-" -----------------------------------------------------------------
+" Fuzzy Finder                                                 {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 " max results, lot o' files in a buildout :)
 let g:fuzzy_ceiling=35000
 " show full paths
@@ -368,42 +415,49 @@ let g:FuzzyFinderOptions = {
 " Don't delete a full path when using backspace in file mode
 let g:FuzzyFinderOptions.File.smart_bs = 0
 
+" Ack                                                          {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 " shortcut for ack search
 map <leader>a :Ack<Space>
+
+" Mini buf explorer                                            {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 " buffer explorer ctrl + tabbing and single click
 let g:miniBufExplUseSingleClick = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 
+" VCSCommand                                                   {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 " Delete buffers when i'm done with them in VCSCommand
 let VCSCommandDeleteOnHide = 1
 
-" run markdown on the current file and place the html in a scratch buffer
-command! -nargs=0 MarkdownToHTML  call s:RunShellCommand('Markdown.pl %')
-" replace the current buffer with the html version of the markdown
-command! -nargs=0 MarkdownToHTMLReplace  %!Markdown.pl "%"
-" copy the html version of the markdown to the clipboard (os x)
-command! -nargs=0 MarkdownToHTMLCopy  !Markdown.pl "%" | pbcopy
-" use pandoc to convert from html into markdown
-command! -nargs=0 MarkdownFromHTML  %!pandoc -f html -t markdown "%"
+" Taglist                                                      {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-" xml tidy
-command! -complete=file -nargs=* TidyXML call s:TidyXML()
-map <leader>T :TidyXML<CR>
+" make the taglist show on the right side
+let Tlist_Use_Right_Window = 1
+" only show the current buffer, fold the rest
+let Tlist_File_Fold_Auto_Close = 1
+" show the name in the ctags list, helps with zope stuff :)
+let tlist_xml_settings = 'zcml;n:name,g:profile,p:permission,h:handler,m:component,f:factory,c:class'
+let tlist_cfg_settings = 'ini;s:section'
+" mapping for taglist
+nnoremap tt :TlistToggle<CR>
 
-function! s:TidyXML()
-    " Preparation: save last search, and cursor position.
-    let l = line(".")
-    let c = col(".")
-    " Do the business:
-    %!tidy -xml -i -q -w 0
-    " Clean up cursor position
-    call cursor(l, c)
+" CSV                                                          {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" turn on tsv in csv mode
+function! Csv_tsv()
+  let b:delimiter='\t'
+  let b:col=substitute(b:col, ',', '\t', 'g')
 endfunction
 
-" open up the current file's folder in the terminal
-" TODO: Make this work cross platform/terminal program (a plugin perhaps?)
-command! TerminalHere silent !roxterm --tab --directory=%:p:h
+" Auto command settings                                        {{{1
+" -----------------------------------------------------------------
 
 if has("autocmd")
     " automatically re-source the vimrc on save
@@ -440,6 +494,9 @@ if has("autocmd")
     au bufwritepost * if getline(1) =~ "^#!" | if getline(1) =~ "/bin/" | silent !chmod a+x <afile> | endif | endif
 endif
 
+" Cursor and window controls                                   {{{1
+" -----------------------------------------------------------------
+
 " Make cursor move by visual lines instead of file lines (when wrapping)
 " This makes me feel more at home :)
 map <up> gk
@@ -475,25 +532,13 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 
 " set up the invisible characters
-" -----------------------------------------------------------------
 set listchars=tab:▸\ ,eol:¬
 " show invisible characters by default
 set list
 " toggle invisible characters
 noremap <silent> <leader>i :set list!<CR>
 
-" make the taglist show on the right side
-let Tlist_Use_Right_Window = 1
-" only show the current buffer, fold the rest
-let Tlist_File_Fold_Auto_Close = 1
-" show the name in the ctags list, helps with zope stuff :)
-let tlist_xml_settings = 'zcml;n:name,g:profile,p:permission,h:handler,m:component,f:factory,c:class'
-let tlist_cfg_settings = 'ini;s:section'
-" mapping for taglist
-nnoremap tt :TlistToggle<CR>
-
-" -----------------------------------------------------------------
-" GUI settings
+" GUI settings                                                 {{{1
 " -----------------------------------------------------------------
 
 " A dictionary of available sizes, inspired by Firesizer
@@ -545,3 +590,5 @@ if has("gui_running")
 
 endif
 
+" turn on folds
+" vim: fdm=marker
