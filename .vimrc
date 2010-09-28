@@ -120,6 +120,7 @@ set cmdheight=2
 
 " Enhanced command menu ctrl + d to expand directories
 set wildmenu
+set wildmode=list:longest,full
 set wildignore+=*.pyc,*.pyo,CVS,.svn,.git,*.mo,.DS_Store,*.pt.cache,*.Python,*.o,*.lo,*.la,*~,.AppleDouble
 
 map <silent> <leader>s :set spell!<CR>
