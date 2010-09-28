@@ -427,6 +427,11 @@ let g:FuzzyFinderOptions = {
 " Don't delete a full path when using backspace in file mode
 let g:FuzzyFinderOptions.File.smart_bs = 0
 
+" Shortcuts for opening fuzzy finder
+nmap ,ff :FufFile<Space>
+nmap ,t :FufFile<Space>
+nmap ,ft :FufTag<Space>
+
 " Ack                                                          {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
