@@ -146,7 +146,9 @@ set showmatch
 set showcmd
 
 " Set a margin of lines when scrolling
-set so=4
+set scrolloff=4
+" lines to scroll when cursor leaves screen
+set scrolljump=5
 
 " set a custom status line similar to that of ":set ruler"
 set statusline=\ \ \ \ \ line:%l\ column:%c\ \ \ %M%Y%r%=%-14.(%t%)\ %p%%
