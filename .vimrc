@@ -126,8 +126,8 @@ set wildignore+=*.pyc,*.pyo,CVS,.svn,.git,*.mo,.DS_Store,*.pt.cache,*.Python,*.o
 map <silent> <leader>s :set spell!<CR>
 set nospell
 
-" This setting will cause the cursor to very briefly jump to a 
-" brace/parenthese/bracket's "match" whenever you type a closing or 
+" This setting will cause the cursor to very briefly jump to a
+" brace/parenthese/bracket's "match" whenever you type a closing or
 " opening brace/parenthese/bracket.
 set showmatch
 
@@ -211,7 +211,7 @@ function! s:colorSwitch(...)
             execute('colorscheme '.a:theme.'_custom')
         catch /E185:/
             " There was no '_custom' scheme...
-        endtry 
+        endtry
     endfunction
 
     " Change to the specified theme
