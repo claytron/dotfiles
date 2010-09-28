@@ -110,6 +110,10 @@ set hidden
 set autoindent
 set smartindent
 
+" Allow command line editing like emacs
+cnoremap <C-A> <Home>
+cnoremap <C-E> <End>
+
 " Visual settings                                              {{{1
 " -----------------------------------------------------------------
 
