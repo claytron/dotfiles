@@ -15,6 +15,7 @@
 "    <leader>s       -- toggle the status bar
 "    <leader>t       -- show a list of tabs/buffers
 "    <leader>p       -- open up the preferences pane
+"    <leader>x       -- kick ass!
 "
 " -----------------------------------------------------------------
 
@@ -116,6 +117,9 @@ noremap <silent> <leader>R :open javascript:function%20iprl5(){var%20d=document,
 
 " use the Boxee "watch later" bookmarklet
 noremap <silent> <leader>W :open javascript:var%20b=document.body;if(b&&!document.xmlVersion){void(z=document.createElement('script'));void(z.src='http://www.boxee.tv/bookmarklet');void(b.appendChild(z));}else{}<CR>
+
+" destroy a website asteroids style
+noremap <silent> <leader>x :open javascript:var%20s%20=%20document.createElement('script');s.type='text/javascript';document.body.appendChild(s);s.src='http://erkie.github.com/asteroids.min.js';void(0);<CR> <C-Z>
 
 " -----------------------------------------------------------------
 " Plugins
