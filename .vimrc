@@ -536,6 +536,9 @@ map <Enter> o<ESC>
 " open a new line from the current spot (sort of the opposite of J)
 map <leader><Enter> i<CR><ESC>
 
+" Yank from the cursor to the end of the line, to be consistent with C and D.
+nnoremap Y y$
+
 " turn on writeroom
 map <silent> <F8> :source ~/.vim/nightroom.vim<CR>
 
