@@ -17,10 +17,6 @@ else
     let b:did_pyflakes_plugin = 1
 endif
 
-if !exists('g:pyflakes_builtins')
-    let g:pyflakes_builtins = []
-endif
-
 if !exists("b:did_python_init")
     let b:did_python_init = 0
 
@@ -48,7 +44,8 @@ import re
 class SyntaxError(messages.Message):
     message = 'could not compile: %s'
     def __init__(self, filename, lineno, col, message):
-        messages.Message.__init__(self, filename, lineno, col)
+        messages.Message.__init__(self, filename, lineno)
+	self.col = col
         self.message_args = (message,)
 
 class blackhole(object):
@@ -75,12 +72,6 @@ def check(buffer):
     if vimenc:
         contents = contents.decode(vimenc)
 
-    builtins = []
-    try:
-        builtins = eval(vim.eval('string(g:pyflakes_builtins)'))
-    except Exception:
-        pass
-
     try:
         # TODO: use warnings filters instead of ignoring stderr
         old_stderr, sys.stderr = sys.stderr, blackhole()
@@ -99,7 +90,7 @@ def check(buffer):
 
         return [SyntaxError(filename, lineno, offset, str(value))]
     else:
-        w = checker.Checker(tree, filename, builtins = builtins)
+        w = checker.Checker(tree, filename)
         w.messages.sort(key = attrgetter('lineno'))
         return w.messages
 
@@ -228,7 +219,7 @@ for w in check(vim.current.buffer):
     vim.command("let l:qf_item.text = '%s'" % vim_quote(w.message % w.message_args))
     vim.command("let l:qf_item.type = 'E'")
 
-    if w.col is None or isinstance(w, SyntaxError):
+    if getattr(w, "col", None) is None or isinstance(w, SyntaxError):
         # without column information, just highlight the whole line
         # (minus the newline)
         vim.command(r"let s:mID = matchadd('PyFlakes', '\%" + str(w.lineno) + r"l\n\@!')")
