@@ -37,7 +37,8 @@ if sys.version_info[:2] < (2, 5):
 scriptdir = os.path.join(os.path.dirname(vim.eval('expand("<sfile>")')), 'pyflakes')
 sys.path.insert(0, scriptdir)
 
-from pyflakes import checker, ast, messages
+import compiler
+from pyflakes import checker, messages
 from operator import attrgetter
 import re
 
@@ -45,7 +46,7 @@ class SyntaxError(messages.Message):
     message = 'could not compile: %s'
     def __init__(self, filename, lineno, col, message):
         messages.Message.__init__(self, filename, lineno)
-	self.col = col
+        self.col = col
         self.message_args = (message,)
 
 class blackhole(object):
@@ -53,6 +54,8 @@ class blackhole(object):
 
 def check(buffer):
     filename = buffer.name
+    if filename is None:
+        filename = ''
     contents = buffer[:]
 
     # shebang usually found at the top of the file, followed by source code encoding marker.
@@ -76,7 +79,7 @@ def check(buffer):
         # TODO: use warnings filters instead of ignoring stderr
         old_stderr, sys.stderr = sys.stderr, blackhole()
         try:
-            tree = ast.parse(contents, filename)
+            tree = compiler.parse(contents)
         finally:
             sys.stderr = old_stderr
     except:
