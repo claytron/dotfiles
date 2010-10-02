@@ -56,6 +56,9 @@ syn match  CfgComment   "^#.*" contains=@Spell
 syn match  CfgComment   ";.*" contains=@Spell
 syn match  CfgComment   "\/\/.*" contains=@Spell
 
+" set up folding
+syn region CfgFoldingSection start="^\[" end="\(\n\+\[\)\@=" contains=ALL keepend fold
+
 " Define the default hightlighting.
 " For version 5.7 and earlier: only when not done already
 " For version 5.8 and later: only when an item doesn't have highlighting yet
