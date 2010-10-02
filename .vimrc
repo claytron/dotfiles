@@ -49,6 +49,7 @@
 "    Shell           -- Runs a shell command and places it in the
 "                       scratch buffer
 "    TidyXML         -- Runs tidy in XML mode on the current buffer
+"    TabStyle        -- Set the tab style and number, :TabStyle space 4
 
 " General setting                                              {{{1
 " -----------------------------------------------------------------
@@ -269,26 +270,30 @@ map <silent> <leader>c :ColorSwitcher<CR>
 " Tabs and spaces                                              {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+" command to switch tab styles
+command! -nargs=+ TabStyle :call s:TabChanger(<f-args>)
+
 " function to switch between tabs and spaces
-" taken from: http://github.com/twerth/dotfiles/blob/master/etc/vim/vimrc
-function! Tabstyle_tabs()
-  " Using 4 column tabs
-  set softtabstop=4
-  set shiftwidth=4
-  set tabstop=4
-  set noexpandtab
+" initial idea taken from:
+" http://github.com/twerth/dotfiles/blob/master/etc/vim/vimrc
+function! s:TabChanger(...)
+    let l:tab_type = a:1
+    if !exists('a:2')
+        let l:tab_length = 4
+    else
+        let l:tab_length = a:2
+    endif
+    exec 'set softtabstop=' . l:tab_length
+    exec 'set shiftwidth=' . l:tab_length
+    exec 'set tabstop=' . l:tab_length
+    if l:tab_type == "space"
+        set expandtab
+    elseif l:tab_type =="tab"
+        set noexpandtab
+    endif
 endfunction
 
-function! Tabstyle_spaces()
-  " Use 2 spaces
-  set softtabstop=4
-  set shiftwidth=4
-  set tabstop=4
-  set expandtab
-endfunction
-
-" Set spaces by default
-call Tabstyle_spaces()
+TabStyle space 4
 
 " Shell as scratch buffer                                      {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
