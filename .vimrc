@@ -548,9 +548,6 @@ nnoremap Y y$
 " turn on writeroom
 map <silent> <F8> :source ~/.vim/nightroom.vim<CR>
 
-" map ; to : so you don't have to use shift
-map ; :
-
 " Mapping window commands directly
 map <C-h> <C-w>h
 map <C-j> <C-w>j
