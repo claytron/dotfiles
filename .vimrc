@@ -69,6 +69,7 @@ set nocompatible
 " Set up pathogen
 filetype off
 call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
 
 " set the mapleader key
 let mapleader = ","
