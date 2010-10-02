@@ -49,8 +49,6 @@
 "    Shell           -- Runs a shell command and places it in the
 "                       scratch buffer
 "    TidyXML         -- Runs tidy in XML mode on the current buffer
-"    TerminalHere    -- Opens the terminal to the directory of the
-"                       current buffer
 
 " General setting                                              {{{1
 " -----------------------------------------------------------------
