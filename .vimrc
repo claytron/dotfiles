@@ -23,6 +23,7 @@
 "    <leader>w       -- removes trailing whitespace characters
 "    <leader>x       -- toggles NERDTree drawer
 "    <leader>b       -- shortcut for getting to NERDTree bookmarks
+"    <leader>q       -- Toggle the quickfix window
 "    <leader><Enter> -- opens a line at the current column (this is
 "                       the reverse of J)
 "    <leader>c       -- Switch between light and dark colors
@@ -374,6 +375,24 @@ function! s:TidyXML()
     " Clean up cursor position
     call cursor(l, c)
 endfunction
+
+" Quickfix                                                     {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+command -bang -nargs=? QFix call QFixToggle(<bang>0)
+
+" Function to toggle the quickfix window open and close
+function! QFixToggle(forced)
+  if exists("g:qfix_win") && a:forced == 0
+    cclose
+    unlet g:qfix_win
+  else
+    copen 10
+    let g:qfix_win = bufnr("$")
+  endif
+endfunction
+
+map <leader>q :QFix<CR>
 
 " Plugins                                                      {{{1
 " -----------------------------------------------------------------
