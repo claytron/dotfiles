@@ -30,36 +30,74 @@ python << EOF
 import vim
 import re
 from xmlrpclib import ServerProxy
+from xmlrpclib import ProtocolError
 
-def python_input(message='input'):
+lodgeit_url = vim.eval("g:lodgeit_url")
+
+
+def python_input(message='input', secret=False):
+    input_type = 'input'
+    if secret:
+        input_type = "inputsecret"
     vim.command('call inputsave()')
-    vim.command("let user_input = input('%s')" % message)
+    vim.command("let user_input = %s('%s')" % (input_type, message))
     vim.command('call inputrestore()')
     return vim.eval('user_input')
 
-lodgeit_url = vim.eval("g:lodgeit_url")
-use_password = int(vim.eval("g:lodgeit_secure"))
 
-full_lodgeit_url = lodgeit_url
-if use_password:
-    # XXX: need to error out if keyring is not available
-    import keyring
-    # XXX: need to error out if username was not defined
-    username = vim.eval("g:lodgeit_username")
-    password = keyring.get_password(lodgeit_url, username)
-    if password is None:
-        password = python_input("password: ")
-        keyring.set_password(lodgeit_url, username, password)
+def get_full_url(password_reset=False):
+    use_password = int(vim.eval("g:lodgeit_secure"))
+    if not use_password:
+        return lodgeit_url
+    # test for the keyring support
+    try:
+        import keyring
+        has_keyring = True
+    except ImportError:
+        has_keyring = False
+    if has_keyring:
+        # Check for the username var, if it doesn't exist, ask for it
+        username_exists = int(vim.eval("exists('g:lodgeit_username')"))
+        if username_exists:
+            username = vim.eval("g:lodgeit_username")
+        else:
+            username = python_input("username: ")
+        password = None
+        # ignore the keyring if we are trying to reset the password
+        if not password_reset:
+            # Get the password out of the keyring
+            password = keyring.get_password(lodgeit_url, username)
+        if password is None:
+            password = python_input("password: ", secret=True)
+            keyring.set_password(lodgeit_url, username, password)
+    else:
+        # If there is no keyring support, ask for the username and password
+        username = python_input("username: ")
+        password = python_input("password: ", secret=True)
+    # Determine if the paste url is behind SSL
     if lodgeit_url[:5] == "https":
         protocol = "https"
         domain = lodgeit_url[8:]
     else:
         protocol = "http"
         domain = lodgeit_url[7:]
-    full_lodgeit_url = "%s://%s:%s@%s" % (protocol, username, password, domain)
+    return "%s://%s:%s@%s" % (protocol, username, password, domain)
 
-# XXX: need to handle 401 and re-prompt for password
-srv = ServerProxy('%s/xmlrpc/' % full_lodgeit_url, allow_none=True)
+
+full_lodgeit_url = get_full_url()
+while True:
+    try:
+        srv = ServerProxy('%s/xmlrpc/' % full_lodgeit_url, allow_none=True)
+        # an arbitrary check for authorization
+        srv.system.listMethods()
+        break
+    except (ProtocolError), error:
+        error_code = error.errcode
+        if error_code == 401:
+            full_lodgeit_url = get_full_url(password_reset=True)
+        else:
+            # TODO: handle other errors properly
+            break
 
 new_paste = srv.pastes.newPaste
 get_paste = srv.pastes.getPaste
