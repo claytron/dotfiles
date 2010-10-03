@@ -498,6 +498,12 @@ function! Csv_tsv()
   let b:col=substitute(b:col, ',', '\t', 'g')
 endfunction
 
+" Lodgeit                                                      {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+let g:lodgeit_url = "https://paste.sixfeetup.com"
+let g:lodgeit_username = "clayton"
+let g:lodgeit_secure = 1
+
 " Auto command settings                                        {{{1
 " -----------------------------------------------------------------
 
