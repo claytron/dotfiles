@@ -1,7 +1,12 @@
 " lodgeit.vim: Vim plugin for paste.pocoo.org
 " Maintainer:   Armin Ronacher <armin.ronacher@active-4.com>
 " Version:      0.2
-
+"
+" Options:
+"   g:lodgeit_url     Set the URL to a custom lodgeit instance.
+"   g:lodgeit_secure  If set to 1, you will be prompted for a password
+"   g:username        The username to be used if lodgeit is secured
+"
 " Usage:
 "   :Lodgeit    create a paste from the current buffer of selection
 "   :e <url>    download a paste. If you then use :Lodgeit you can
@@ -11,13 +16,50 @@
 " 	map ^P :Lodgeit<CR>
 " (where ^P is entered using ctrl + v, ctrl + p in vim)
 
+" Initialize some variables
+if !exists("g:lodgeit_url")
+    let g:lodgeit_url = "http://paste.pocoo.org"
+endif
+if !exists("g:lodgeit_secure")
+    let g:lodgeit_secure = 0
+endif
+
 function! s:LodgeitInit()
 python << EOF
 
 import vim
 import re
 from xmlrpclib import ServerProxy
-srv = ServerProxy('http://paste.pocoo.org/xmlrpc/', allow_none=True)
+
+def python_input(message='input'):
+    vim.command('call inputsave()')
+    vim.command("let user_input = input('%s')" % message)
+    vim.command('call inputrestore()')
+    return vim.eval('user_input')
+
+lodgeit_url = vim.eval("g:lodgeit_url")
+use_password = int(vim.eval("g:lodgeit_secure"))
+
+full_lodgeit_url = lodgeit_url
+if use_password:
+    # XXX: need to error out if keyring is not available
+    import keyring
+    # XXX: need to error out if username was not defined
+    username = vim.eval("g:lodgeit_username")
+    password = keyring.get_password(lodgeit_url, username)
+    if password is None:
+        password = python_input("password: ")
+        keyring.set_password(lodgeit_url, username, password)
+    if lodgeit_url[:5] == "https":
+        protocol = "https"
+        domain = lodgeit_url[8:]
+    else:
+        protocol = "http"
+        domain = lodgeit_url[7:]
+    full_lodgeit_url = "%s://%s:%s@%s" % (protocol, username, password, domain)
+
+# XXX: need to handle 401 and re-prompt for password
+srv = ServerProxy('%s/xmlrpc/' % full_lodgeit_url, allow_none=True)
 
 new_paste = srv.pastes.newPaste
 get_paste = srv.pastes.getPaste
@@ -56,7 +98,7 @@ for key, value in language_mapping.iteritems():
     language_reverse_mapping[value] = key
 
 def paste_id_from_url(url):
-    regex = re.compile(r'^http://paste.pocoo.org/show/([^/]+)/?$')
+    regex = re.compile(r'^%s/show/([^/]+)/?$' % full_lodgeit_url)
     m = regex.match(url)
     if m is not None:
         return m.group(1)
@@ -114,7 +156,7 @@ else:
 
     lng_code = language_mapping.get(vim.eval('&ft'), 'text')
     paste_id = new_paste(lng_code, code, parent)
-    url = 'http://paste.pocoo.org/show/%s' % paste_id
+    url = '%s/show/%s' % (lodgeit_url, paste_id)
 
     print 'Pasted #%s to %s' % (paste_id, url)
     vim.command(':call setreg(\'+\', %r)' % url)
