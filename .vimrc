@@ -456,8 +456,8 @@ let g:FuzzyFinderOptions = {
 let g:FuzzyFinderOptions.File.smart_bs = 0
 
 " Shortcuts for opening fuzzy finder
-nmap ,ff :FufFile<Space>
-nmap ,t :FufFile<Space>
+nmap ,ff :FufFile<Space>**/
+nmap ,t :FufFile<Space>**/
 nmap ,ft :FufTag<Space>
 
 " Ack                                                          {{{2
