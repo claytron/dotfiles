@@ -104,6 +104,9 @@ endif
 " allow for switching buffers when a file has changes
 set hidden
 
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+
 " The first setting tells vim to use "autoindent" (that is, use the current
 " line's indent level to set the indent level of new lines). The second makes
 " vim attempt to intelligently guess the indent level of any new line based on
