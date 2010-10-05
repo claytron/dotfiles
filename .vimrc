@@ -91,6 +91,12 @@ set backupdir=~/.backup/vim,.,/tmp
 set directory=~/.backup/vim/swap,.,/tmp
 set backupskip=/tmp/*,/private/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*
 
+if v:version >= 703
+    " keep a persistent backup file
+    set undofile
+    set undodir=~/.backup/vim/undo,~/tmp,/tmp
+endif
+
 " have fifty lines of command-line (etc) history:
 set history=1000
 
