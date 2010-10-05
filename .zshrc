@@ -75,6 +75,9 @@ setopt GLOB_DOTS
 
 # use vi mode
 bindkey -v
+
+# Use jj for ESC
+bindkey "jj" vi-cmd-mode
 # use home and end in addition to ^e and ^a
 bindkey -M viins '^A' vi-beginning-of-line
 bindkey -M viins '^E' vi-end-of-line
