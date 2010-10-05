@@ -131,6 +131,7 @@ Deleting them will remove them immediately
     DIRS_TO_MAKE=(
         "$HOME"/bin
         "$HOME"/.backup
+        "$HOME"/.backup/vim/undo
         "$HOME"/.backup/vim/swap
         "$HOME"/.virtualenvs
         "$HOME"/.buildout
