@@ -91,6 +91,7 @@ bindkey -M viins '^B' push-line-or-edit
 bindkey -M vicmd '^[OA' vi-up-line-or-history
 # change the shortcut for expand alias
 bindkey -M viins '^X' _expand_alias
+bindkey -M vicmd '/' history-incremental-pattern-search-backward
 
 # edit current command in $EDITOR
 autoload -U edit-command-line
