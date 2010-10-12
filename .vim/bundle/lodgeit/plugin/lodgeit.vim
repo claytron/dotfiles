@@ -16,6 +16,11 @@
 " 	map ^P :Lodgeit<CR>
 " (where ^P is entered using ctrl + v, ctrl + p in vim)
 
+if exists("loaded_lodgeit")
+    finish
+endif
+let loaded_lodgeit = 1
+
 " Initialize some variables
 if !exists("g:lodgeit_url")
     let g:lodgeit_url = "http://paste.pocoo.org"
@@ -24,16 +29,29 @@ if !exists("g:lodgeit_secure")
     let g:lodgeit_secure = 0
 endif
 
+" Only load the keyring if using the secure method
+if g:lodgeit_secure
+python << EOF
+import vim
+import os.path
+import sys
+
+# get the directory this script is in and add to syspath
+scriptdir = os.path.dirname(vim.eval('expand("<sfile>")'))
+keyring_dir = "%s/keyring" % os.path.abspath(scriptdir)
+if os.path.exists(keyring_dir):
+    sys.path.insert(0, keyring_dir)
+EOF
+endif
+
 function! s:LodgeitInit()
 python << EOF
-
 import vim
 import re
 from xmlrpclib import ServerProxy
 from xmlrpclib import ProtocolError
 
 lodgeit_url = vim.eval("g:lodgeit_url")
-
 
 def python_input(message='input', secret=False):
     input_type = 'input'
