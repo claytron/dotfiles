@@ -1,0 +1,28 @@
+-------
+CHANGES
+-------
+
+---
+0.4
+---
+
+* Fixed the setup script (some subdirs were not included in the release.)
+
+---
+0.3
+---
+
+* Fixed keyring.core when the user doesn't have a cfg, or is not
+  properly configured.
+
+* Fixed escaping issues for usernames with non-ascii characters
+
+---
+0.2
+---
+
+* Add support for Python 2.4+
+  http://bitbucket.org/kang/python-keyring-lib/issue/2
+
+* Fix the bug in KDE Kwallet extension compiling
+  http://bitbucket.org/kang/python-keyring-lib/issue/3
