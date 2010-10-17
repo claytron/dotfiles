@@ -513,6 +513,10 @@ let g:lodgeit_url = "https://paste.sixfeetup.com"
 let g:lodgeit_username = "clayton"
 let g:lodgeit_secure = 1
 
+" Gundo                                                        {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nnoremap <leader>g :GundoToggle<CR>
+
 " Auto command settings                                        {{{1
 " -----------------------------------------------------------------
 
