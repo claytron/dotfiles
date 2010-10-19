@@ -1,0 +1,94 @@
+*lodgeit.vim* Plugin to access and post to a Lodgeit paste board
+
+==============================================================================
+Original Author: Armin Ronacher <armin.ronacher@active-4.com>
+Improvements: Clayton Parker <robots@claytron.com>
+
+==============================================================================
+INTRODUCTION                                                          *lodgeit*
+
+This plugin offers a |Lodgeit| command that allows you to retrieve a specific
+paste or post a paste to a Lodgeit paste board.
+
+The default paste board is located at http://paste.pocoo.org, this is a public
+paste board.
+
+The plugin can be configured to point at a custom installation of Lodgeit. The
+custom install can be open to the public or protected by basic auth. See the
+|lodgeit-settings| section for more info.
+
+------------------------------------------------------------------------------
+INSTALLATION                                             *lodgeit-installation*
+
+If you are installing this plugin to use with a public facing Lodgeit instance
+all you need to do is place the lodgeit.vim file into a plugin folder within
+your |'runtimepath'|. The default location is ~/.vim/plugin.
+
+If your installation is behind basic auth, then you will be prompted for your
+username and password each time you access the Lodgeit instance. If you prefer
+to save the password you can use the included keyring library.
+
+Place the keyring folder in the same folder as the lodgeit.vim script. The
+keyring package requires some files to be compiled. You can do this by running
+the following: >
+
+    $ cd ~/.vim/plugin/keyring
+    $ python2.6 setup.py build_ext --inplace
+
+The package requires Python 2.5+, so make sure to use the proper version of
+Python when building the extensions.
+
+------------------------------------------------------------------------------
+USAGE                                                           *lodgeit-usage*
+
+The lodgeit.vim plugin comes with one command.
+
+:Lodgeit                                                              *Lodgeit*
+
+    This command allows you to paste or retrieve pastes from the Lodgeit
+    instance.
+
+                                                                *lodgeit-paste*
+
+    When calling the command with no options, you will send a paste to the
+    paste board. If you have text selected using |visual-mode|, this is what
+    will be pasted. Otherwise, the contents of the current buffer will be
+    sent. >
+
+        :Lodgeit
+
+<
+    After the paste has successfully been sent to the server, the URL will be
+    placed into the + register. This means that the url will be in your system
+    clipboard available for you to paste anywhere you like.
+
+                                                             *lodgeit-retrieve*
+
+    The Lodgeit command can also be used to retrieve a specific paste. If you
+    call :Lodgeit with a #paste_num, that paste will be opened up in a new
+    tab. >
+
+        :Lodgeit #1
+
+<
+    Once you have opened a paste in this manner, you can reply to it simply by
+    using the :Lodgeit command again.
+
+------------------------------------------------------------------------------
+SETTINGS                                                     *lodgeit-settings*
+
+g:lodgeit_url                                                     *lodgeit_url*
+
+    Set the URL to a custom lodgeit instance.
+
+g:lodgeit_secure                                               *lodgeit_secure*
+
+    If set to 1, you will be prompted for a password. The default is 0.
+
+g:lodgeit_username                                           *lodgeit_username*
+
+    The username to be used if lodgeit is secured with basic auth.
+   
+    This is optional when using the |lodgeit_secure| option. If you are using
+    the provided Python keyring support then this will allow you to paste and
+    retrieve items without entering a username or password each time.
