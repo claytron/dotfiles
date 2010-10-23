@@ -23,6 +23,8 @@
 set mapleader=","
 "set g:mapleader=","
 
+set editor="/Users/clayton/bin/mvim -f"
+
 " tell the bell to go beep itself!
 set visualbell
 
