@@ -1,0 +1,143 @@
+" -----------------------------------------------------------------
+"
+"  NOTE: some settings are set up in a common rc file so that both
+"        vim and vimperator can use them. See ~/.vim_commonrc
+"
+" The mapleader has been switched from '\' to ',' anytime you see
+" <leader> that is what this refers to.
+"
+"    <leader>h       -- toggles the highlight search
+"    <leader>g       -- turns the GUI back on
+"    <leader>G       -- turns the GUI back off
+"    <leader>b       -- shows the bookmark toolbar
+"    <leader>y       -- show the tab bar
+"    <leader>u       -- turn off the tab bar
+"    <leader>s       -- toggle the status bar
+"    <leader>t       -- show a list of tabs/buffers
+"    <leader>p       -- open up the preferences pane
+"    <leader>x       -- kick ass!
+"
+" -----------------------------------------------------------------
+
+" set the mapleader key
+set mapleader=","
+"set g:mapleader=","
+
+" tell the bell to go beep itself!
+set visualbell
+
+" -----------------------------------------------------------------
+" Searching
+" -----------------------------------------------------------------
+" find as you type
+set incsearch
+" highlight the terms
+set hlsearch
+" make searches case-insensitive
+set ignorecase
+" unless they contain upper-case letters
+set smartcase
+" a toggle for search highlight
+map <silent> <leader>h :set hlsearch!<CR>
+
+" turn off the freakin' bell
+hi Bell display: none;
+
+" bring back/hide portions of the GUI
+noremap <silent> <leader>g :set guioptions+=mBT<CR>
+noremap <silent> <leader>G :set guioptions-=mBT<CR>
+noremap <silent> <leader>b :toolbartoggle Bookmarks Toolbar<CR>
+noremap <silent> <leader>y :set showtabline=2<CR>
+noremap <silent> <leader>u :set showtabline=0<CR>
+noremap <silent> <leader>s :emenu View.Status Bar<CR>
+noremap <silent> <leader>p :emenu Edit.Preferences<CR>
+
+" Open the delicious plugin new bookmark window
+noremap <silent> <leader>d :emenu Delicious.Save a new Bookmark...<CR>
+
+" remove the right and bottom scrollbars
+set guioptions-=rb
+
+" get rid of the tab bar, that is valuable space!
+"set showtabline=0
+
+" set wild mode to show completions as you type
+set wildmode="list:full"
+
+" show up to 35 items in the completion list
+set maxitems=35
+
+" use a different color scheme
+colorscheme simple
+
+" set a stupid title
+set titlestring="oh hai!"
+
+" smooth scroll setting
+" XXX: No smoozie in pentadactyl yet
+"let g:smooziee_scroll_amount="100"
+"let g:smooziee_scroll_interval="150"
+
+" Scroll settings
+noremap w 10h
+noremap e 10l
+" XXX: don't need these two with smooth scroll
+noremap j 10j
+noremap k 10k
+noremap J <C-f>
+noremap K <C-b>
+
+" Go to the next/previous tab
+noremap h <C-p>
+noremap l <C-n>
+
+" Move the current tab
+noremap <leader>h <Esc>:tabmove! -1<CR>
+noremap <leader>l <Esc>:tabmove! +1<CR>
+
+" show the available tabs
+noremap <leader>t :buffers<CR>
+
+" Use It's all text instead of the built-in command
+inoremap <C-i> <C-v><C-e>
+" Also assign ctrl + e as that is easier to type, and what I have
+" set up in thunderbird :)
+inoremap <C-e> <C-v><C-e>
+
+" I tend to tap the 'd' key on my keyboard on accident
+noremap d <silent> <Nop>
+
+" use the readability bookmarklet on the current page
+noremap <silent> <leader>r :open javascript:(function(){readStyle='style-ebook';readSize='size-medium';readMargin='margin-x-narrow';_readability_script=document.createElement('SCRIPT');_readability_script.type='text/javascript';_readability_script.src='http://lab.arc90.com/experiments/readability/js/readability.js?x='+(Math.random());document.getElementsByTagName('head')[0].appendChild(_readability_script);_readability_css=document.createElement('LINK');_readability_css.rel='stylesheet';_readability_css.href='http://lab.arc90.com/experiments/readability/css/readability.css';_readability_css.type='text/css';_readability_css.media='all';document.getElementsByTagName('head')[0].appendChild(_readability_css);_readability_print_css=document.createElement('LINK');_readability_print_css.rel='stylesheet';_readability_print_css.href='http://lab.arc90.com/experiments/readability/css/readability-print.css';_readability_print_css.media='print';_readability_print_css.type='text/css';document.getElementsByTagName('head')[0].appendChild(_readability_print_css);})();<CR>
+
+" use the instapaper bookmarklet
+noremap <silent> <leader>R :open javascript:function%20iprl5(){var%20d=document,z=d.createElement('scr'+'ipt'),b=d.body;try{if(!b)throw(0);d.title='(Saving...)%20'+d.title;z.setAttribute('src','http://www.instapaper.com/j/imXQ8OR8FphZ?u='+encodeURIComponent(d.location.href)+'&t='+(new%20Date().getTime()));b.appendChild(z);}catch(e){alert('Please%20wait%20until%20the%20page%20has%20loaded.');}}iprl5();void(0)<CR>
+
+" use the Boxee "watch later" bookmarklet
+noremap <silent> <leader>W :open javascript:var%20b=document.body;if(b&&!document.xmlVersion){void(z=document.createElement('script'));void(z.src='http://www.boxee.tv/bookmarklet');void(b.appendChild(z));}else{}<CR>
+
+" destroy a website asteroids style
+noremap <silent> <leader>x :open javascript:var%20s%20=%20document.createElement('script');s.type='text/javascript';document.body.appendChild(s);s.src='http://erkie.github.com/asteroids.min.js';void(0);<CR> <C-Z>
+
+" -----------------------------------------------------------------
+" Plugins
+" -----------------------------------------------------------------
+
+" Turn on delicious completions for :open and :tabopen
+"autocmd Enter ".*" :set complete+=D
+
+" Set the 'direct bookmark' service to delicious
+"let g:direct_sbm_use_services_by_post='d'
+"let g:direct_sbm_use_services_by_tag='d'
+
+" Make the RSS feed icon show in the vimperator status bar
+" XXX: This doesn't work in pentadactyl
+"javascript <<EOF
+"(function(){
+"    var feedPanel = document.createElement("statusbarpanel");
+"    feedPanel.setAttribute("id", "feed-panel-clone");
+"    feedPanel.appendChild(document.getElementById("feed-button"));
+"    feedPanel.firstChild.setAttribute("style", "padding: 0; max-height: 16px;");
+"    document.getElementById("status-bar").insertBefore(feedPanel, document.getElementById("security-button"));
+"})();
+"EOF
