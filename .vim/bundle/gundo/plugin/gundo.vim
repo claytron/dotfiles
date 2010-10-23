@@ -10,189 +10,51 @@
 
 
 "{{{ Init
-"if exists('loaded_gundo') || &cp
-    "finish
-"endif
 
-"let loaded_gundo = 1
-
-if !exists('g:gundo_width')
-    let g:gundo_width = 45
+if !exists('g:gundo_debug') && (exists('loaded_gundo') || &cp)"{{{
+    finish
 endif
+let loaded_gundo = 1"}}}
+
+if v:version < '703'"{{{
+    echo  "Gundo requires Vim 7.3+"
+    finish
+endif"}}}
+
+if has('python')"{{{
+    let s:has_supported_python = 1
+
+python << ENDPYTHON
+import sys
+import vim
+if sys.version_info[:2] < (2, 4):
+    vim.command('let s:has_supported_python = 0')
+ENDPYTHON
+
+    " Python version is too old
+    if !s:has_supported_python
+        echo  "Gundo requires that Vim be compiled with Python 2.4+"
+        finish
+    endif
+else
+    " no Python support
+    echo  "Gundo requires that Vim be compiled with Python 2.4+"
+    finish
+endif"}}}
+
+if !exists('g:gundo_width')"{{{
+    let g:gundo_width = 45
+endif"}}}
+if !exists('g:gundo_preview_height')"{{{
+    let g:gundo_preview_height = 15
+endif"}}}
+if !exists('g:gundo_right')"{{{
+    let g:gundo_right = 0
+endif"}}}
+
 "}}}
 
-"{{{ Movement Mappings
-function! s:GundoMove(direction)
-    let start_line = getline('.')
-
-    " If we're in between two nodes we move by one to get back on track.
-    if stridx(start_line, '[') == -1
-        let distance = 1
-    else
-        let distance = 2
-    endif
-
-    let target_n = line('.') + (distance * a:direction)
-
-    " Bound the movement to the graph.
-    if target_n <= 4
-        call cursor(5, 0)
-    else
-        call cursor(target_n, 0)
-    endif
-
-    let line = getline('.')
-
-    " Move to the node, whether it's an @ or an o
-    let idx1 = stridx(line, '@')
-    let idx2 = stridx(line, 'o')
-    if idx1 != -1
-        call cursor(0, idx1 + 1)
-    else
-        call cursor(0, idx2 + 1)
-    endif
-
-    let target_line = matchstr(getline("."), '\v\[[0-9]+\]')
-    let target_num = matchstr(target_line, '\v[0-9]+')
-    call s:GundoRenderPreview(target_num)
-endfunction
-"}}}
-
-"{{{ Buffer/Window Management
-function! s:GundoResizeBuffers(backto)
-    " This sucks and doesn't work. TODO: Fix it.
-    exe bufwinnr(bufnr('__Gundo__')) . "wincmd w"
-    exe "vertical resize " . g:gundo_width
-    exe bufwinnr(bufnr('__Gundo_Preview__')) . "wincmd w"
-    exe "resize " . 15
-    exe a:backto . "wincmd w"
-endfunction
-
-function! s:GundoOpenBuffer()
-    let existing_gundo_buffer = bufnr("__Gundo__")
-
-    if existing_gundo_buffer == -1
-        exe bufwinnr(bufnr('__Gundo_Preview__')) . "wincmd w"
-        exe "new __Gundo__"
-        call s:GundoResizeBuffers(winnr())
-        nnoremap <script> <silent> <buffer> <CR>  :call <sid>GundoRevert()<CR>
-        nnoremap <script> <silent> <buffer> j     :call <sid>GundoMove(1)<CR>
-        nnoremap <script> <silent> <buffer> k     :call <sid>GundoMove(-1)<CR>
-        nnoremap <script> <silent> <buffer> gg    gg:call <sid>GundoMove(1)<CR>
-        nnoremap <script> <silent> <buffer> P     :call <sid>GundoPlayTo()<CR>
-        nnoremap <script> <silent> <buffer> q     :call <sid>GundoToggle()<CR>
-    else
-        let existing_gundo_window = bufwinnr(existing_gundo_buffer)
-
-        if existing_gundo_window != -1
-            if winnr() != existing_gundo_window
-                exe existing_gundo_window . "wincmd w"
-            endif
-        else
-            exe bufwinnr(bufnr('__Gundo_Preview__')) . "wincmd w"
-            exe "split +buffer" . existing_gundo_buffer
-            call s:GundoResizeBuffers(winnr())
-        endif
-    endif
-endfunction
-
-function! s:GundoToggle()
-    if expand('%') == "__Gundo__"
-        quit
-        if bufwinnr(bufnr('__Gundo_Preview__')) != -1
-            exe bufwinnr(bufnr('__Gundo_Preview__')) . "wincmd w"
-            quit
-        endif
-        exe bufwinnr(g:gundo_target_n) . "wincmd w"
-    else
-        if expand('%') != "__Gundo_Preview__"
-            " Record the previous buffer number.
-            "
-            " This sucks because we're not getting the window number, and there
-            " may be more than one window viewing the same buffer, so we might
-            " go back to the wrong one.
-            "
-            " Unfortunately window numbers change as we open more windows.
-            "
-            " TODO: Figure out how to fix this.
-            let g:gundo_target_n = bufnr('')
-            let g:gundo_target_f = @%
-        endif
-
-        call s:GundoOpenPreview()
-        exe bufwinnr(g:gundo_target_n) . "wincmd w"
-        GundoRender
-
-        " TODO: Move these lines into RenderPreview
-        let target_line = matchstr(getline("."), '\v\[[0-9]+\]')
-        let target_num = matchstr(target_line, '\v[0-9]+')
-        call s:GundoRenderPreview(target_num)
-    endif
-endfunction
-
-function! s:GundoMarkPreviewBuffer()
-    setlocal buftype=nofile
-    setlocal bufhidden=hide
-    setlocal noswapfile
-    setlocal buflisted
-    setlocal nomodifiable
-    setlocal filetype=diff
-    setlocal nonumber
-    setlocal norelativenumber
-    setlocal nowrap
-    " TODO: Set foldmethod?
-endfunction
-
-function! s:GundoMarkBuffer()
-    setlocal buftype=nofile
-    setlocal bufhidden=hide
-    setlocal noswapfile
-    setlocal buflisted
-    setlocal nomodifiable
-    setlocal filetype=gundo
-    setlocal nolist
-    setlocal nonumber
-    setlocal norelativenumber
-    setlocal nowrap
-    call s:GundoSyntax()
-endfunction
-
-function! s:GundoSyntax()
-    let b:current_syntax = 'gundo'
-
-    syn match GundoCurrentLocation '@'
-    syn match GundoHelp '\v^".*$'
-    syn match GundoNumberField '\v\[[0-9]+\]'
-    syn match GundoNumber '\v[0-9]+' contained containedin=GundoNumberField
-
-    hi def link GundoCurrentLocation Keyword
-    hi def link GundoHelp Comment
-    hi def link GundoNumberField Comment
-    hi def link GundoNumber Identifier
-endfunction
-
-function! s:GundoOpenPreview()
-    let existing_preview_buffer = bufnr("__Gundo_Preview__")
-
-    if existing_preview_buffer == -1
-        exe "vnew __Gundo_Preview__"
-        wincmd H
-    else
-        let existing_preview_window = bufwinnr(existing_preview_buffer)
-
-        if existing_preview_window != -1
-            if winnr() != existing_preview_window
-                exe existing_preview_window . "wincmd w"
-            endif
-        else
-            exe "vsplit +buffer" . existing_preview_buffer
-            wincmd H
-        endif
-    endif
-endfunction
-"}}}
-
-"{{{ Mercurial's Graphlog Code
+"{{{ Mercurial's graphlog code
 python << ENDPYTHON
 def asciiedges(seen, rev, parents):
     """adds edge info to changelog DAG walk suitable for ascii()"""
@@ -462,9 +324,15 @@ def generate(dag, edgefn, current):
     seen, state = [], [0, 0]
     buf = Buffer()
     for node, parents in list(dag):
-        age_label = age(int(node.time)) if node.time else 'Original'
+        if node.time:
+            age_label = age(int(node.time))
+        else:
+            age_label = 'Original'
         line = '[%s] %s' % (node.n, age_label)
-        char = '@' if node.n == current else 'o'
+        if node.n == current:
+            char = '@'
+        else:
+            char = 'o'
         ascii(buf, state, 'C', char, [line], edgefn(seen, node, parents))
     return buf.b
 ENDPYTHON
@@ -525,11 +393,7 @@ def _goto_window_for_buffer_name(bn):
 def _undo_to(n):
     n = int(n)
     if n == 0:
-        try:
-            vim.command('silent! undo 1')
-        except vim.error:
-            return
-        vim.command('silent undo')
+        vim.command('silent earlier 999999999d')
     else:
         vim.command('silent undo %d' % n)
 
@@ -566,7 +430,7 @@ def _make_nodes(alts, nodes, parent=None):
     p = parent
 
     for alt in alts:
-        curhead = True if 'curhead' in alt else False
+        curhead = 'curhead' in alt
         node = Node(n=alt['seq'], parent=p, time=alt['time'], curhead=curhead)
         nodes.append(node)
         if alt.get('alt'):
@@ -595,10 +459,238 @@ def changenr(nodes):
 ENDPYTHON
 "}}}
 
-"{{{ Graph rendering
-function! s:GundoRender()
+"{{{ Gundo buffer settings
+
+function! s:GundoMapGraph()"{{{
+    nnoremap <script> <silent> <buffer> <CR>          :call <sid>GundoRevert()<CR>
+    nnoremap <script> <silent> <buffer> j             :call <sid>GundoMove(1)<CR>
+    nnoremap <script> <silent> <buffer> k             :call <sid>GundoMove(-1)<CR>
+    nnoremap <script> <silent> <buffer> gg            gg:call <sid>GundoMove(1)<CR>
+    nnoremap <script> <silent> <buffer> P             :call <sid>GundoPlayTo()<CR>
+    nnoremap <script> <silent> <buffer> q             :call <sid>GundoClose()<CR>
+    cabbrev  <script> <silent> <buffer> q             call <sid>GundoClose()
+    cabbrev  <script> <silent> <buffer> quit          call <sid>GundoClose()
+    nnoremap <script> <silent> <buffer> <2-LeftMouse> :call <sid>GundoMouseDoubleClick()<CR>
+endfunction"}}}
+
+function! s:GundoMapPreview()"{{{
+    nnoremap <script> <silent> <buffer> q     :call <sid>GundoClose()<CR>
+    cabbrev  <script> <silent> <buffer> q     call <sid>GundoClose()
+    cabbrev  <script> <silent> <buffer> quit  call <sid>GundoClose()
+endfunction"}}}
+
+function! s:GundoSettingsGraph()"{{{
+    setlocal buftype=nofile
+    setlocal bufhidden=hide
+    setlocal noswapfile
+    setlocal nobuflisted
+    setlocal nomodifiable
+    setlocal filetype=gundo
+    setlocal nolist
+    setlocal nonumber
+    setlocal norelativenumber
+    setlocal nowrap
+    call s:GundoSyntaxGraph()
+    call s:GundoMapGraph()
+endfunction"}}}
+
+function! s:GundoSettingsPreview()"{{{
+    setlocal buftype=nofile
+    setlocal bufhidden=hide
+    setlocal noswapfile
+    setlocal nobuflisted
+    setlocal nomodifiable
+    setlocal filetype=diff
+    setlocal nonumber
+    setlocal norelativenumber
+    setlocal nowrap
+    setlocal foldlevel=20
+    call s:GundoMapPreview()
+endfunction"}}}
+
+function! s:GundoSyntaxGraph()"{{{
+    let b:current_syntax = 'gundo'
+
+    syn match GundoCurrentLocation '@'
+    syn match GundoHelp '\v^".*$'
+    syn match GundoNumberField '\v\[[0-9]+\]'
+    syn match GundoNumber '\v[0-9]+' contained containedin=GundoNumberField
+
+    hi def link GundoCurrentLocation Keyword
+    hi def link GundoHelp Comment
+    hi def link GundoNumberField Comment
+    hi def link GundoNumber Identifier
+endfunction"}}}
+
+"}}}
+
+"{{{ Buffer/window management
+
+function! s:GundoResizeBuffers(backto)"{{{
+    exe bufwinnr(bufnr('__Gundo__')) . "wincmd w"
+    exe "vertical resize " . g:gundo_width
+
+    exe bufwinnr(bufnr('__Gundo_Preview__')) . "wincmd w"
+    exe "resize " . g:gundo_preview_height
+
+    exe a:backto . "wincmd w"
+endfunction"}}}
+
+function! s:GundoOpenGraph()"{{{
+    let existing_gundo_buffer = bufnr("__Gundo__")
+
+    if existing_gundo_buffer == -1
+        exe bufwinnr(bufnr('__Gundo_Preview__')) . "wincmd w"
+        exe "new __Gundo__"
+        call s:GundoResizeBuffers(winnr())
+    else
+        let existing_gundo_window = bufwinnr(existing_gundo_buffer)
+
+        if existing_gundo_window != -1
+            if winnr() != existing_gundo_window
+                exe existing_gundo_window . "wincmd w"
+            endif
+        else
+            exe bufwinnr(bufnr('__Gundo_Preview__')) . "wincmd w"
+            exe "split +buffer" . existing_gundo_buffer
+            call s:GundoResizeBuffers(winnr())
+        endif
+    endif
+endfunction"}}}
+
+function! s:GundoOpenPreview()"{{{
+    let existing_preview_buffer = bufnr("__Gundo_Preview__")
+
+    if existing_preview_buffer == -1
+        exe "vnew __Gundo_Preview__"
+
+        if g:gundo_right
+            wincmd L
+        else
+            wincmd H
+        endif
+    else
+        let existing_preview_window = bufwinnr(existing_preview_buffer)
+
+        if existing_preview_window != -1
+            if winnr() != existing_preview_window
+                exe existing_preview_window . "wincmd w"
+            endif
+        else
+            exe "vsplit +buffer" . existing_preview_buffer
+
+            if g:gundo_right
+                wincmd L
+            else
+                wincmd H
+            endif
+        endif
+    endif
+endfunction"}}}
+
+function! s:GundoClose()"{{{
+        if bufwinnr(bufnr('__Gundo__')) != -1
+            exe bufwinnr(bufnr('__Gundo__')) . "wincmd w"
+            quit
+        endif
+
+        if bufwinnr(bufnr('__Gundo_Preview__')) != -1
+            exe bufwinnr(bufnr('__Gundo_Preview__')) . "wincmd w"
+            quit
+        endif
+
+        exe bufwinnr(g:gundo_target_n) . "wincmd w"
+endfunction"}}}
+
+function! s:GundoToggle()"{{{
+    if expand('%') == "__Gundo__"
+        call s:GundoClose()
+    else
+        if expand('%') != "__Gundo_Preview__"
+            " Record the previous buffer number.
+            "
+            " This sucks because we're not getting the window number, and there
+            " may be more than one window viewing the same buffer, so we might
+            " go back to the wrong one.
+            "
+            " Unfortunately window numbers change as we open more windows.
+            "
+            " TODO: Figure out how to fix this.
+            let g:gundo_target_n = bufnr('')
+            let g:gundo_target_f = @%
+        endif
+
+        call s:GundoOpenPreview()
+        exe bufwinnr(g:gundo_target_n) . "wincmd w"
+        GundoRender
+
+        " TODO: Move these lines into RenderPreview
+        let target_line = matchstr(getline("."), '\v\[[0-9]+\]')
+        let target_num = matchstr(target_line, '\v[0-9]+')
+        call s:GundoRenderPreview(target_num)
+    endif
+endfunction"}}}
+
+"}}}
+
+"{{{ Mouse handling
+
+function! s:GundoMouseDoubleClick()"{{{
+    let start_line = getline('.')
+
+    if stridx(start_line, '[') == -1
+        return
+    else
+        call s:GundoRevert()
+    endif
+endfunction"}}}
+ 
+"}}}
+
+"{{{ Movement
+
+function! s:GundoMove(direction)"{{{
+    let start_line = getline('.')
+
+    " If we're in between two nodes we move by one to get back on track.
+    if stridx(start_line, '[') == -1
+        let distance = 1
+    else
+        let distance = 2
+    endif
+
+    let target_n = line('.') + (distance * a:direction)
+
+    " Bound the movement to the graph.
+    if target_n <= 4
+        call cursor(5, 0)
+    else
+        call cursor(target_n, 0)
+    endif
+
+    let line = getline('.')
+
+    " Move to the node, whether it's an @ or an o
+    let idx1 = stridx(line, '@')
+    let idx2 = stridx(line, 'o')
+    if idx1 != -1
+        call cursor(0, idx1 + 1)
+    else
+        call cursor(0, idx2 + 1)
+    endif
+
+    let target_line = matchstr(getline("."), '\v\[[0-9]+\]')
+    let target_num = matchstr(target_line, '\v[0-9]+')
+    call s:GundoRenderPreview(target_num)
+endfunction"}}}
+
+"}}}
+
+"{{{ Rendering
+
+function! s:GundoRenderGraph()"{{{
 python << ENDPYTHON
-def GundoRender():
+def GundoRenderGraph():
     nodes, nmap = make_nodes()
 
     for node in nodes:
@@ -606,7 +698,10 @@ def GundoRender():
 
     def walk_nodes(nodes):
         for node in nodes:
-            yield(node, [node.parent] if node.parent else [])
+            if node.parent:
+                yield (node, [node.parent])
+            else:
+                yield (node, [])
 
     dag = sorted(nodes, key=lambda n: int(n.n), reverse=True)
     current = changenr(nodes)
@@ -617,7 +712,7 @@ def GundoRender():
     target = (vim.eval('g:gundo_target_f'), int(vim.eval('g:gundo_target_n')))
     header = (INLINE_HELP % target).splitlines()
 
-    vim.command('GundoOpenBuffer')
+    vim.command('GundoOpenGraph')
     vim.command('setlocal modifiable')
     vim.current.buffer[:] = (header + result)
     vim.command('setlocal nomodifiable')
@@ -633,13 +728,11 @@ def GundoRender():
         i += 1
     vim.command('%d' % (i+len(header)-1))
 
-GundoRender()
+GundoRenderGraph()
 ENDPYTHON
-endfunction
-"}}}
+endfunction"}}}
 
-"{{{ Preview Rendering
-function! s:GundoRenderPreview(target)
+function! s:GundoRenderPreview(target)"{{{
 python << ENDPYTHON
 import difflib
 
@@ -719,11 +812,13 @@ def GundoRenderPreview():
 
 GundoRenderPreview()
 ENDPYTHON
-endfunction
+endfunction"}}}
+
 "}}}
 
-"{{{ Undo/Redo Commands
-function! s:GundoRevert()
+"{{{ Undo/redo commands
+
+function! s:GundoRevert()"{{{
     let target_line = matchstr(getline("."), '\v\[[0-9]+\]')
     let target_num = matchstr(target_line, '\v[0-9]+')
     let back = bufwinnr(g:gundo_target_n)
@@ -731,15 +826,16 @@ function! s:GundoRevert()
 python << ENDPYTHON
 _undo_to(vim.eval('target_num'))
 ENDPYTHON
-    GundoRender
+    GundoRenderGraph
     exe back . "wincmd w"
-endfunction
+endfunction"}}}
 
-function! s:GundoPlayTo()
+function! s:GundoPlayTo()"{{{
     let target_line = matchstr(getline("."), '\v\[[0-9]+\]')
     let target_num = matchstr(target_line, '\v[0-9]+')
     let back = bufwinnr(g:gundo_target_n)
     exe back . "wincmd w"
+    normal zR
 
 python << ENDPYTHON
 def GundoPlayTo():
@@ -752,8 +848,10 @@ def GundoPlayTo():
         rev = origin.n < dest.n
 
         nodes = []
-        current = origin if origin.n > dest.n else dest
-        final = dest if origin.n > dest.n else origin
+        if origin.n > dest.n:
+            current, final = origin, dest
+        else:
+            current, final = dest, origin
 
         while current.n >= final.n:
             if current.n == final.n:
@@ -774,7 +872,7 @@ def GundoPlayTo():
 
     for node in branch:
         _undo_to(node.n)
-        vim.command('GundoRender')
+        vim.command('GundoRenderGraph')
         normal('zz')
         vim.command('%dwincmd w' % int(vim.eval('back')))
         vim.command('redraw')
@@ -782,13 +880,14 @@ def GundoPlayTo():
 
 GundoPlayTo()
 ENDPYTHON
-endfunction
+endfunction"}}}
+
 "}}}
 
 "{{{ Misc
-command! -nargs=0 GundoOpenBuffer call s:GundoOpenBuffer()
+command! -nargs=0 GundoOpenGraph call s:GundoOpenGraph()
 command! -nargs=0 GundoToggle call s:GundoToggle()
-command! -nargs=0 GundoRender call s:GundoRender()
-autocmd BufNewFile __Gundo__ call s:GundoMarkBuffer()
-autocmd BufNewFile __Gundo_Preview__ call s:GundoMarkPreviewBuffer()
+command! -nargs=0 GundoRenderGraph call s:GundoRenderGraph()
+autocmd BufNewFile __Gundo__ call s:GundoSettingsGraph()
+autocmd BufNewFile __Gundo_Preview__ call s:GundoSettingsPreview()
 "}}}
