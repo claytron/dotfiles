@@ -23,6 +23,9 @@
 set mapleader=","
 "set g:mapleader=","
 
+" Use home row letters for hints instead of numbers
+set hintkeys=asdfg;lkjh
+
 set editor="/Users/clayton/bin/mvim -f"
 
 " tell the bell to go beep itself!
