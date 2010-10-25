@@ -66,6 +66,9 @@ set guioptions-=rb
 " set wild mode to show completions as you type
 set wildmode="list:full"
 
+" fix completion list so search engines don't kill tabbing
+set complete=lS
+
 " show up to 35 items in the completion list
 set maxitems=35
 
