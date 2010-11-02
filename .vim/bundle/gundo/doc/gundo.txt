@@ -1,14 +1,5 @@
 *gundo.txt*   Graph your undo tree so you can actually USE it.
 
-
-                            CURRENT STATUS: BETA
-
-                           IT MIGHT EAT YOUR DATA
-
-      SERIOUSLY: IF YOU USE THIS PLUGIN, LOSE DATA AND COMPLAIN ABOUT IT
-                   I AM GOING TO MAKE FUN OF YOU ON TWITTER
-
-
 Making's Vim's undo tree usable by humans.
 
 ==============================================================================
@@ -19,11 +10,13 @@ CONTENTS                                                      *Gundo-contents*
     3. Configuration .................. |GundoConfig|
         3.1 gundo_width ............... |gundo_width|
         3.2 gundo_preview_height ...... |gundo_preview_height|
-        3.2 gundo_right ............... |gundo_right|
+        3.3 gundo_preview_bottom ...... |gundo_preview_bottom|
+        3.4 gundo_right ............... |gundo_right|
     4. License ........................ |GundoLicense|
     5. Bugs ........................... |GundoBugs|
     6. Contributing ................... |GundoContributing|
-    7. Credits ........................ |GundoCredits|
+    7. Changelog ...................... |GundoChangelog|
+    8. Credits ........................ |GundoCredits|
 
 ==============================================================================
 1. Intro                                                          *GundoIntro*
@@ -136,7 +129,24 @@ Set the vertical height of the Gundo preview.
 Default: 15
 
 ------------------------------------------------------------------------------
-3.3 g:gundo_right                                                *gundo_right*
+3.3 g:gundo_preview_bottom                              *gundo_preview_bottom*
+
+Force the preview window below current windows instead of below the graph.
+This gives the preview window more space to show the unified diff.
+
+Example:
+
+   +--------+            +--------+
+   !g!      !            !      !g!
+   !g!      !     or     !      !g!
+   !g!______!            !______!g!
+   !g!pppppp!            !pppppp!g!
+   +--------+            +--------+
+
+Default: 0
+
+------------------------------------------------------------------------------
+3.4 g:gundo_right                                                *gundo_right*
 
 Set this to 1 to make the Gundo graph (and preview) open on the right side
 instead of the left.
@@ -164,7 +174,13 @@ BitBucket: http://bitbucket.org/sjl/gundo.vim/
 GitHub: http://github.com/sjl/gundo.vim/
 
 ==============================================================================
-7. Credits                                                      *GundoCredits*
+7. Changelog                                                  *GundoChangelog*
+
+v1.0.0
+    Initial stable release.
+
+==============================================================================
+8. Credits                                                      *GundoCredits*
 
 The graphing code was all taken from Mercurial, hence the GPLv2+ license.
 
