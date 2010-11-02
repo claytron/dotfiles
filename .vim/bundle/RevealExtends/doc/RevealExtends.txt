@@ -1,0 +1,91 @@
+*RevealExtends.txt* A plugin to reveal extended URLs from the buildout cache
+
+===============================================================================
+1. Introduction
+
+Developers can use zc.buildout to manage the build of a software project. It
+is most commonly used in the Zope and Plone world, but has been gaining
+traction in other communities like Django.
+
+One of the nice things about buildout is the ability to define the
+configuration via ini style files. You can extend a local file or a URL. In
+version 1.4.0 of buildout, the option to cache the URL locally was added along
+with the new download API.
+
+Here is an example: >
+
+    [buildout]
+    versions = versions
+    extends = 
+       http://dist.example.org/versions.cfg
+       versions.cfg
+
+>
+
+This allows you to pull in a list of versions from example.org. If you have
+your default.cfg setup to cache the URL then you could find that file
+manually. This requires that you know the md5 hash of the URL string. Not the
+most convenient way to find the file. This is where the plugin comes in
+handy.
+
+The plugin allows you to use the current line, a visual selection or a string
+passed in to get the contents of the extended URL.
+
+===============================================================================
+2. Notes
+                                                                 *extends-cache*
+
+In order for this plugin to work, you will need to set up your buildout to
+cache downloaded URLs. This can be done by setting the appropriate option in
+your buildout default.cfg. Here is an example: >
+
+    $ mkdir -p ~/.buildout/extends
+    $ cd ~/.buildout
+    $ cat default.cfg
+    [buildout]
+    extends-cache = /home/clayton/.buildout/extends
+
+>
+
+Buildout does not currently expand the tilde, so you have to provide an
+absolute path to the directory that will contain the cached files. You also
+have to create the directory or you will receive an error.
+
+===============================================================================
+3. Commands
+
+The plugin comes with one command called RevealExtends.
+
+:RevealExtends [<extended_url>]                                 *:RevealExtends*
+
+This command takes a url and looks for the corresponding cache file. If the
+cache file does not exist, the plugin will attempt to access the URL directly.
+Downloading the URL requires vim to be compiled with Python support.
+
+The URL can be provided in one of three ways.
+
+  1. Calling :RevealExtends with no arguments and no visual selection will
+  use the entire current line you are on. Whitespace and new lines will be
+  stripped. This will work when the URL is on a line by itself.
+
+  2. You can use |visual-mode| to select the URL, then call
+  :RevealExtends.
+  
+  3. The URL can be passed directly on the command line >
+     :RevealExtends http://dist.example.org/versions.cfg
+>
+
+If the |extends-cache| does not exist or the file cannot be found, a message
+will be given to the user.
+
+===============================================================================
+4. Change Log
+
+1.0
+  - Initial plugin creation and release to the public
+
+===============================================================================
+5. License                                               *RevealExtendsLicense*
+
+RevealExtends is released under the wtfpl.
+See http://sam.zoy.org/wtfpl/COPYING.
