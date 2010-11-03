@@ -83,15 +83,15 @@ set titlestring="oh hai!"
 
 " smooth scroll setting
 " XXX: No smoozie in pentadactyl yet
-"let g:smooziee_scroll_amount="100"
-"let g:smooziee_scroll_interval="150"
+let g:smooziee_scroll_amount="100"
+let g:smooziee_scroll_interval="150"
 
 " Scroll settings
 noremap w 10h
 noremap e 10l
 " XXX: don't need these two with smooth scroll
-noremap j 10j
-noremap k 10k
+"noremap j 10j
+"noremap k 10k
 noremap J <C-f>
 noremap K <C-b>
 
