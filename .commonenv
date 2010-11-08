@@ -97,6 +97,9 @@ export PYTHONSTARTUP=$HOME/.pystartup
 # prefer to use distribute for virtualenvs
 export VIRTUALENV_USE_DISTRIBUTE="TRUE"
 
+# pip settings
+export PIP_FIND_LINKS="http://dist.sixfeetup.com/public/"
+
 # set up some more OS X specific stuff
 if [ $UNAME = "Darwin" ]; then
     # Figure out the major and minor version of OS X
