@@ -40,7 +40,8 @@ highlight StatusLineSecure font-size: 12px; font-weight: normal; color: #222; ba
 " highlight CompResult
 
 " highlight WarningMsg
-highlight Hint font-family: "DejaVu Sans Mono", monospace; font-size: 12px; font-weight: normal; color: #FFO099; background-color: #3399FF; padding: 0px 2px;
+highlight Hint font-family: "DejaVu Sans Mono", monospace; font-size: 12px; font-weight: normal; color: white; background-color: black; padding: 0px 4px; opacity: 0.6;
+
 highlight HintElem background-color: #00CC000;
 " highlight HintActive
 
