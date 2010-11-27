@@ -1,0 +1,188 @@
+# ZCML: factory
+snippet < ZCML: factory
+	<${1}factory
+	    component="${2}"
+	    description="${4}"
+	    id="${6}"
+	    title="${8}"
+	    />
+	
+# ZCML: page
+snippet < ZCML: page
+	<${1}page
+	    for="${3}"
+	    class="${5}"
+	    layer="${7}"
+	    permission="${8}"
+	    allowed_interface="${10}"
+	    allowed_attributes="${12}"
+	    />
+	
+# ZCML: Adapter
+snippet <adapter ZCML: Adapter
+	<${1}adapter
+	    factory = "${3}"
+	    for = "${5}"
+	    provides = "${7}"
+	    name = "${9}"
+	    permission = "${11}"
+	    trusted = "${13}"
+	    locate = "${15}"
+	    />
+# ZCML: AddMenuItem
+snippet <addMenuItem ZCML: AddMenuItem
+	<${1}addMenuItem
+	    title="${3}"
+	    description="${5}"
+	    for="${7}"
+	    factory="${9}"
+	    view="${11}"
+	    class="${13}"
+	    permission="${15}"
+	    order="${17}"
+	    filter="${19}"
+	    layer="${21}"
+	    icon="${23}"
+	    menu="${25}"
+	    />
+# ZCML: Class
+snippet <class ZCML: Class
+	<${1}class class="${2}">
+	  ${3:<${4}allow
+	      attributes="${6}"
+	      interface="${8}"/>}
+	  ${9:<${10}factory
+	      id="${12}"
+	      title="${14}"
+	      description="${16}"/>}
+	  ${17:<${18}implements 
+	      interface="${20}" />}
+	  ${21}
+	</class>
+# ZCML: configure
+snippet <configure ZCML: configure
+	<configure
+	    xmlns:${1:zope}="http://namespaces.zope.org/zope"
+	    xmlns:${2:browser}="http://namespaces.zope.org/browser">
+	  ${3}
+	</configure>
+	
+# ZCML: grant
+snippet <grant ZCML: grant
+	<${1}zope:grant
+	    permission="${3}"
+	    role="${5}"
+	    />
+# ZCML: Implements
+snippet <implements ZCML: Implements
+	<${1}implements interface="${2}"/>
+# ZCML: Include
+snippet <include ZCML: Include
+	<${1}include 
+	    package="${3}"
+	    file="${5}"
+	    />
+	
+# ZCML: Interface
+snippet <interface ZCML: Interface
+	<${1}interface
+	    interface="${3}"
+	    type="${5}"
+	    name="${7}"
+	    />
+# ZCML: permission
+snippet <permission ZCML: permission
+	<${1}zope:permission
+	    id="${3}"
+	    title="${5}"
+	    />
+# ZCML: Require
+snippet <require ZCML: Require
+	${1:<${2}require
+	    attributes="${4}"
+	    interface="${6}"
+	    set_attributes="${8}"
+	    set_schema="${10}"
+	    like_class="${12}"
+	    permission="${14}"
+	    />}
+# ZCML: role
+snippet <role ZCML: role
+	<${1}zope:role
+	    id="${3}"
+	    title="${5}"
+	    />
+# ZCML: Utility
+snippet <utility ZCML: Utility
+	<${1}utility
+	    component="${3}"
+	    factory="${5}"
+	    provides="${7}"
+	    name="${9}"
+	    permission="${11}"
+	    />
+# ZCML: Viewlet
+snippet <viewlet ZCML: Viewlet
+	<${1}viewlet
+	    name="${3}"
+	    for="${5}"
+	    manager="${7}"
+	    template="${9}"
+	    layer="${11}"
+	    permission="${13}"
+	    />
+# Generic Setup: Register profile
+snippet <profile Generic Setup: register profile
+	<genericsetup:registerProfile
+	    name="${1:default}"
+	    title="${2}"
+	    directory="${3:profiles}/${4:default}"
+	    description="${5}"
+	    provides="Products.GenericSetup.interfaces.EXTENSION"
+	    />
+	
+# ZCML: GenericSetup export step
+snippet <export ZCML: GenericSetup export step
+	<genericsetup:exportStep
+	    name="${1}"
+	    title="${2}"
+	    description="${4}"
+	    handler="${5}"
+	    />
+	
+# ZCML: GenericSetup import step
+snippet <import ZCML: GenericSetup import step
+	<genericsetup:importStep
+	    name="${1}"
+	    title="${2}"
+	    description="${4}"
+	    handler="${5}">
+	  <depends name="${8}"/>
+	</genericsetup:importStep>
+	
+# ZCML: GenericSetup upgrade step group
+snippet <upgradeg ZCML: GenericSetup upgrade step group
+	<genericsetup:upgradeSteps
+	    source="${1}"
+	    destination="${2}"
+	    sortkey="${3}"
+	    profile="${4}">
+	  <genericsetup:upgradeStep
+	      title="${5}"
+	      description="${6}"
+	      handler="${7}"
+	      />
+	</genericsetup:upgradeSteps>
+	
+# ZCML: GenericSetup upgrade step
+snippet <upgrade ZCML: GenericSetup upgrade step
+	<genericsetup:upgradeStep
+	    title="${1}"
+	    description="${2}"
+	    source="${3}"
+	    destination="${4}"
+	    handler="${5}"
+	    sortkey="${6}"
+	    profile="${7}"
+	    />
+	
