@@ -523,19 +523,6 @@ let g:lodgeit_secure = 1
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 nnoremap <leader>g :GundoToggle<CR>
 
-" Supertab                                                     {{{2
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" smart completions based on previous characters
-let g:SuperTabDefaultCompletionType = "context"
-
-set ofu=syntaxcomplete#Complete
-
-" set dictionary
-set dictionary+=/usr/share/dict/words
-" add support for completing dictionary words
-set complete+=k
-
-
 " Auto command settings                                        {{{1
 " -----------------------------------------------------------------
 
@@ -592,12 +579,8 @@ map E ge
 
 " window resizing
 if bufwinnr(1)
-  " increase height and width
-  noremap + <C-W>+
-  noremap <leader>+ <C-W>>
-  " decrease height and width
-  noremap - <C-W>-
-  noremap <leader>- <C-W><
+  map + <C-W>+
+  map - <C-W>-
 endif
 
 " Insert newlines with enter and shift + enter
@@ -629,13 +612,12 @@ noremap <silent> <leader>i :set list!<CR>
 " -----------------------------------------------------------------
 
 " A dictionary of available sizes, inspired by Firesizer
-let vs_window_sizes = {"normal": '155 45', "bigger": '215 50', "ginourmous": "285 65", "1280screen": "200 65"}
+let vs_window_sizes = {"normal": '155 45', "bigger": '215 50', "ginourmous": "285 65"}
 
 " shortcuts to switch the window size
 map <leader>1 :VSSelectWindowSize normal<CR>
 map <leader>2 :VSSelectWindowSize bigger<CR>
 map <leader>3 :VSSelectWindowSize ginourmous<CR>
-map <leader>4 :VSSelectWindowSize 1280screen<CR>
 
 if has("gui_running")
 
