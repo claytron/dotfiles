@@ -28,6 +28,7 @@ expected_path=(
   /usr/local/bin
   /usr/local/sbin
   /usr/local/etc
+  /usr/Programs/bin
   /sbin
   /bin
   /usr/bin

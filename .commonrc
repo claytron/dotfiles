@@ -191,6 +191,9 @@ alias lsd='lsa -d'
 # list all dot files
 alias lsdot='lsd .*'
 
+# find newest file recursively
+alias find_newest="find . -type f -print0 | xargs -0 ls -lTtr | tail -5"
+
 alias df='df -h'
 alias less='less -I'
 
