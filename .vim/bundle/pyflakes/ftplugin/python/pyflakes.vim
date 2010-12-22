@@ -236,15 +236,6 @@ for w in check(vim.current.buffer):
     vim.command("call add(b:matched, s:matchDict)")
     vim.command("call add(b:qf_list, l:qf_item)")
 EOF
-        if exists("s:pyflakes_qf")
-            " if pyflakes quickfix window is already created, reuse it
-            call s:ActivatePyflakesQuickFixWindow()
-            call setqflist(b:qf_list, 'r')
-        else
-            " one pyflakes quickfix window for all buffer
-            call setqflist(b:qf_list, '')
-            let s:pyflakes_qf = s:GetQuickFixStackCount()
-        endif
         let b:cleared = 0
     endfunction
 end
