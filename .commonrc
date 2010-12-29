@@ -152,6 +152,8 @@ alias bbcextreme="bbc ~/.buildout/eggs/* ~/.buildout/downloads/* ~/.buildout/zop
 alias bd="bin/develop"
 alias bdu="bd up -v"
 alias bds="bd st -v"
+# creating the buildout.cfg
+alias bcl='cp profiles/buildout.cfg.tmpl buildout.cfg && sed -I "" -e "s/#\(    profiles\/local\.cfg\)/\1/" buildout.cfg'
 
 # pep8 that can scan a `src` dir
 alias pep8scan="pep8 --repeat --show-source --statistics --exclude=paste"
