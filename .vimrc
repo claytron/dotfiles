@@ -209,6 +209,9 @@ map <silent> <leader>h :set hlsearch!<CR>
 " from http://stackoverflow.com/questions/657447/vim-clear-last-search-highlighting
 map <silent> <leader>H :let @/ = ""<CR>
 
+" Find any non-ascii character
+map <silent> <leader>uni /[^ -~]<CR>
+
 " Colors and Syntax                                            {{{1
 " -----------------------------------------------------------------
 
