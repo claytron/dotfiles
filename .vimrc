@@ -448,6 +448,11 @@ function! s:CopyMatches(line1, line2, reg)
   endif
 endfunction
 
+" :global to buffer                                            {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Output the last global command to a buffer for further use
+command! GlobalToBuffer execute 'normal! 0"ay0' | execute 'g//y A' | split | enew | setlocal bt=nofile | put! a
+
 " Plugins                                                      {{{1
 " -----------------------------------------------------------------
 
