@@ -211,20 +211,6 @@ alias wha="which -a"
 # ssh over a slow connection
 alias sshc="ssh -C -c blowfish"
 
-## ArchLinux / Linux desktop stuff
-
-# use powerpill if available
-if checkPath powerpill; then
-    alias pacinstall="sudo powerpill -S"
-else
-    alias pacinstall="sudo pacman -S"
-fi
-
-if checkPath yaourt; then
-   alias pacsearch="yaourt -Ss"
-else
-   alias pacsearch="pacman -Ss"
-fi
 
 # use gnome-open if it is available
 if checkPath gnome-open; then
