@@ -28,27 +28,39 @@ rationalize-path () {
   '
 }
 
-# only on OS X for now, messing with this causes issues
-if isiPhone; then
-    
-elif [ $UNAME = "Darwin" ]; then
-    # Now let's take care of the 
-    # function path
-    #############################
-    
-    fpath=(
-        /usr/share/zsh/site-functions
-        /usr/share/zsh/4.3.4/functions
-        /opt/local/share/zsh/4.3.10/functions
-    )
-    
-    export FPATH
-    # Only unique entries please.
-    typeset -U fpath
-    # Remove entries that don't exist on this system.  Just for sanity's
-    # sake more than anything.
-    rationalize-path fpath
+# Take care of setting an FPATH for all occasions.
+# Something seems very wrong about all of this
+
+# look for /usr/share version
+if [ -d /usr/share/zsh/$ZSH_VERSION ]; then
+    fpath+=(/usr/share/zsh/$ZSH_VERSION*/**/*(/))
 fi
+
+# look for /usr/local/share
+if [ -d /usr/local/share/zsh/$ZSH_VERSION ]; then
+    fpath+=(/usr/local/share/zsh/$ZSH_VERSION*/**/*(/))
+fi
+
+# look for /opt/local/share
+if [ -d /opt/local/share/zsh/$ZSH_VERSION ]; then
+    fpath+=(/opt/local/share/zsh/$ZSH_VERSION*/**/*(/))
+fi
+
+# Set the lowest common options
+fpath+=(
+    /usr/local/share/zsh/functions
+    /usr/local/share/zsh/site-functions
+    /usr/share/zsh/site-functions
+    /usr/share/zsh/functions
+    "$fpath[@]"
+)
+
+export FPATH
+# Only unique entries please.
+typeset -U fpath
+# Remove entries that don't exist on this system.  Just for sanity's
+# sake more than anything.
+rationalize-path fpath
 
 # extra per environment settings
 source $HOME/.zshenv_extras
