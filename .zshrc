@@ -141,3 +141,9 @@ source ~/.zshprompt
 
 # load up per environment extras
 source ~/.zshextras
+
+# load up some plugins
+for i in $HOME/.zsh.d/**/*(.)
+do
+    source $i
+done
