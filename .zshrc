@@ -1,6 +1,14 @@
 UNAME=$(uname)
 source $HOME/.commonfuncs
 
+# set no glob dots so we can re-source this file with no issue
+setopt NO_GLOB_DOTS
+# load up some plugins
+for i in $HOME/.zsh.d/**/*(.)
+do
+    source $i
+done
+
 # Log dir hash
 hash -d L=/var/log
 hash -d RA=/var/db/rails
@@ -141,9 +149,3 @@ source ~/.zshprompt
 
 # load up per environment extras
 source ~/.zshextras
-
-# load up some plugins
-for i in $HOME/.zsh.d/**/*(.)
-do
-    source $i
-done
