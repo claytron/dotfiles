@@ -13,6 +13,8 @@ alias sp='source ~/.zshprompt_simple'
 # re link all the conf files
 alias qs='$HOME/.dotfiles/create_links.sh'
 
+alias killflash="psg '[F]lash Player.plugin' | awk '{print $1}' | xargs kill -9"
+
 # prefer vim over vi
 if checkPath vim; then
     alias vi=vim
