@@ -1,13 +1,16 @@
 UNAME=$(uname)
 source $HOME/.commonfuncs
 
-# set no glob dots so we can re-source this file with no issue
-setopt NO_GLOB_DOTS
-# load up some plugins
-for i in $HOME/.zsh.d/**/*(.)
-do
-    source $i
-done
+autoload -U is-at-least
+if is-at-least 4.3; then
+    # set no glob dots so we can re-source this file with no issue
+    setopt NO_GLOB_DOTS
+    # load up some plugins
+    for i in $HOME/.zsh.d/**/*.zsh
+    do
+        source $i
+    done
+fi
 
 # Log dir hash
 hash -d L=/var/log
