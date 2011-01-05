@@ -22,22 +22,9 @@ highlight GradientRight      background-color: #FFF;
 highlight ErrorMsg background-color: #E00; color: #F5F5F5;
 highlight Filter font-weight: bold; color: #000;
 
-highlight StatusLine       font-size: 12px; font-weight: normal; color: #222; background: #EEE;
-highlight StatusLineBroken font-size: 12px; font-weight: normal; color: #222; background: #FDD;
-highlight StatusLineSecure font-size: 12px; font-weight: normal; color: #222; background: #DDF;
-" highlight StatusLine       font-size: 12px; font-weight: normal; color: #EEE; background: #111;
-" highlight StatusLineBroken font-size: 12px; font-weight: normal; color: #EEE; background: #311;
-" highlight StatusLineSecure font-size: 12px; font-weight: normal; color: #EEE; background: #114;
-
-" highlight InfoMsg
-" highlight ModeMsg
-" highlight MoreMsg
-
-" highlight CompLess
-" highlight CompLess::after
-" highlight CompMore
-" highlight CompMore::after
-" highlight CompResult
+highlight StatusLine       font-size: 12px !important; font-weight: normal !important; color: #222 !important; background: #EEE !important;
+highlight StatusLineBroken font-size: 12px !important; font-weight: normal !important; color: #222 !important; background: #FDD !important;
+highlight StatusLineSecure font-size: 12px !important; font-weight: normal !important; color: #222 !important; background: #DDF !important;
 
 " highlight WarningMsg
 highlight Hint font-family: "DejaVu Sans Mono", monospace; font-size: 12px; font-weight: normal; color: white; background-color: black; padding: 0px 4px; opacity: 0.6;
