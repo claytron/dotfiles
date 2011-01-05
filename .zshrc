@@ -1,17 +1,6 @@
 UNAME=$(uname)
 source $HOME/.commonfuncs
 
-autoload -U is-at-least
-if is-at-least 4.3; then
-    # set no glob dots so we can re-source this file with no issue
-    setopt NO_GLOB_DOTS
-    # load up some plugins
-    for i in $HOME/.zsh.d/**/*.zsh
-    do
-        source $i
-    done
-fi
-
 # Log dir hash
 hash -d L=/var/log
 hash -d RA=/var/db/rails
@@ -69,17 +58,6 @@ alias -g bootstrap='bootstrap.py --distribute'
 
 # cvs setup
 export CVSROOT=:pserver:clayton@cvs:/var/cvsroot
-
-# set up command line syntax highlighting overrides
-ZSH_HIGHLIGHT_STYLES[alias]='fg=black,bg=green'
-ZSH_HIGHLIGHT_STYLES[builtin]='fg=green,bold'
-ZSH_HIGHLIGHT_STYLES[function]='fg=green,underline'
-ZSH_HIGHLIGHT_STYLES[alias]='fg=black,bg=green'
-ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=yellow'
-ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=yellow'
-ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=yellow,underline'
-ZSH_HIGHLIGHT_STYLES[globbing]='fg=white,bold,bg=blue'
-ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=white,bold,bg=blue'
 
 setopt NO_BEEP
 # Changing Directories
@@ -163,3 +141,22 @@ source ~/.zshprompt
 
 # load up per environment extras
 source ~/.zshextras
+
+# Load up some plugins and enhancments
+autoload -U is-at-least
+if is-at-least 4.3; then
+    source $HOME/.zsh.d/zsh-syntax-highlighting.zsh
+    source $HOME/.zsh.d/opp.zsh
+    source $HOME/.zsh.d/opp/*
+
+    # set up command line syntax highlighting overrides
+    ZSH_HIGHLIGHT_STYLES[alias]='fg=black,bg=green'
+    ZSH_HIGHLIGHT_STYLES[builtin]='fg=green,bold'
+    ZSH_HIGHLIGHT_STYLES[function]='fg=green,underline'
+    ZSH_HIGHLIGHT_STYLES[alias]='fg=black,bg=green'
+    ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=yellow'
+    ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=yellow'
+    ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=yellow,underline'
+    ZSH_HIGHLIGHT_STYLES[globbing]='fg=white,bold,bg=blue'
+    ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=white,bold,bg=blue'
+fi
