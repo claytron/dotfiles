@@ -138,14 +138,18 @@ noremap <silent> <leader>x :open javascript:var%20s%20=%20document.createElement
 "let g:direct_sbm_use_services_by_post='d'
 "let g:direct_sbm_use_services_by_tag='d'
 
-" Make the RSS feed icon show in the vimperator status bar
-" XXX: This doesn't work in pentadactyl
-"javascript <<EOF
-"(function(){
-"    var feedPanel = document.createElement("statusbarpanel");
-"    feedPanel.setAttribute("id", "feed-panel-clone");
-"    feedPanel.appendChild(document.getElementById("feed-button"));
-"    feedPanel.firstChild.setAttribute("style", "padding: 0; max-height: 16px;");
-"    document.getElementById("status-bar").insertBefore(feedPanel, document.getElementById("security-button"));
-"})();
-"EOF
+" Move buttons from the normal toolbar into the status bar.
+" Currently this just moves the last pass and delicious tag buttons.
+javascript <<EOF
+(function() {
+    // TODO: Make this work with 'feed-panel' too.
+    var buttons = ['lpt_lastpass-compact-btn', 'del-button-tagPage'] //, 'feed-panel'];
+    for (var i = 0; i < buttons.length; i++) {
+        var button_id = buttons[i];
+        var new_button = document.createElement("new_button");
+        new_button.setAttribute("id", button_id + "-clone");
+        new_button.appendChild(document.getElementById(button_id));
+        document.getElementById("status-bar").insertBefore(new_button, document.getElementById("security-button"));
+    }
+})();
+EOF
