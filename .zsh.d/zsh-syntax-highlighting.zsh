@@ -1,8 +1,10 @@
 #!/usr/bin/env zsh
-# Copyleft 2010 zsh-syntax-highlighting contributors
+# -*- mode: zsh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
+# vim: ft=zsh sw=2 ts=2 et
+
+# Copyleft 2011 zsh-syntax-highlighting contributors
 # http://github.com/nicoulaj/zsh-syntax-highlighting
 # All wrongs reserved.
-# vim: ft=zsh sw=2 ts=2 et
 
 # Token types styles.
 typeset -gA ZSH_HIGHLIGHT_STYLES
@@ -26,6 +28,7 @@ ZSH_HIGHLIGHT_STYLES=(
   double-quoted-argument        'fg=yellow'
   dollar-double-quoted-argument 'fg=cyan'
   back-double-quoted-argument   'fg=cyan'
+  bracket-error                 'fg=red,bold'
 )
 
 # Tokens that are always followed by a command.
@@ -49,60 +52,15 @@ ZSH_HIGHLIGHT_TOKENS_FOLLOWED_BY_COMMANDS=(
   'whereis'
 )
 
-# ZLE events that trigger an update of the highlighting.
-ZSH_HIGHLIGHT_ZLE_UPDATE_EVENTS=(
-  accept-and-hold
-  accept-and-infer-next-history
-  accept-line
-  accept-line-and-down-history
-  backward-delete-char
-  backward-delete-word
-  backward-kill-word
-  beginning-of-buffer-or-history
-  beginning-of-history
-  beginning-of-history
-  beginning-of-line-hist
-  complete-word
-  delete-char
-  delete-char-or-list
-  down-history
-  down-line-or-history
-  down-line-or-history
-  down-line-or-search
-  end-of-buffer-or-history
-  end-of-history
-  end-of-line-hist
-  expand-or-complete
-  expand-or-complete-prefix
-  history-beginning-search-backward
-  history-beginning-search-forward
-  history-incremental-search-backward
-  history-incremental-search-forward
-  history-search-backward
-  history-search-forward
-  infer-next-history
-  insert-last-word
-  kill-word
-  magic-space
-  quoted-insert
-  redo
-  self-insert
-  undo
-  up-history
-  up-line-or-history
-  up-line-or-history
-  up-line-or-search
-  up-line-or-search
-  vi-backward-kill-word
-  vi-down-line-or-history
-  vi-fetch-history
-  vi-history-search-backward
-  vi-history-search-forward
-  vi-quoted-insert
-  vi-repeat-search
-  vi-rev-repeat-search
-  vi-up-line-or-history
-  yank
+# Colors for bracket levels
+# Put as many color as you wish
+# Leave it as an empty array to disable
+ZSH_MATCHING_BRACKETS=(
+  'fg=blue,bold'
+  'fg=green,bold'
+  'fg=magenta,bold'
+  'fg=yellow,bold'
+  'fg=cyan,bold'
 )
 
 # ZLE highlight types.
@@ -143,7 +101,7 @@ _zsh_highlight-string() {
 # Recolorize the current ZLE buffer.
 _zsh_highlight-zle-buffer() {
   # Avoid doing the same work over and over
-  [[ ${ZSH_PRIOR_HIGHLIGHTED_BUFFER:-} == $BUFFER ]] && return
+  [[ ${ZSH_PRIOR_HIGHLIGHTED_BUFFER:-} == $BUFFER ]] && [[ ${#region_highlight} -gt 0 ]] && return
   ZSH_PRIOR_HIGHLIGHTED_BUFFER=$BUFFER
 
   setopt localoptions extendedglob bareglobqual
@@ -163,7 +121,7 @@ _zsh_highlight-zle-buffer() {
       case $res in
         *': reserved')  style=$ZSH_HIGHLIGHT_STYLES[reserved-word];;
         *': alias')     style=$ZSH_HIGHLIGHT_STYLES[alias]
-                        local aliased_command=${"$(alias $arg)"#*=}
+                        local aliased_command="${"$(alias $arg)"#*=}"
                         if [[ ${${ZSH_HIGHLIGHT_TOKENS_FOLLOWED_BY_COMMANDS[(r)$aliased_command]:-}:+yes} = 'yes' && ${${ZSH_HIGHLIGHT_TOKENS_FOLLOWED_BY_COMMANDS[(r)$arg]:-}:+yes} != 'yes' ]]; then
                           ZSH_HIGHLIGHT_TOKENS_FOLLOWED_BY_COMMANDS+=($arg)
                         fi
@@ -177,7 +135,8 @@ _zsh_highlight-zle-buffer() {
                           style=$ZSH_HIGHLIGHT_STYLES[history-expansion]
                         else
                           style=$ZSH_HIGHLIGHT_STYLES[unknown-token]
-                        fi;;
+                        fi
+                        ;;
       esac
     else
       case $arg in
@@ -197,24 +156,53 @@ _zsh_highlight-zle-buffer() {
                    style=$ZSH_HIGHLIGHT_STYLES[history-expansion]
                  else
                    style=$ZSH_HIGHLIGHT_STYLES[default]
-                 fi;;
+                 fi
+                 ;;
       esac
     fi
     [[ $substr_color = 0 ]] && region_highlight+=("$start_pos $end_pos $style")
     [[ ${${ZSH_HIGHLIGHT_TOKENS_FOLLOWED_BY_COMMANDS[(r)${arg//|/\|}]:-}:+yes} = 'yes' ]] && new_expression=true
     start_pos=$end_pos
   done
+
+# Bracket matching
+  bracket_color_size=${#ZSH_MATCHING_BRACKETS}
+  if ((bracket_color_size > 0)); then
+    ((level = 0))
+    for pos in {1..${#BUFFER}}; do
+      case $BUFFER[pos] in
+        "("|"["|"{")
+          ((level++))
+          region_highlight+=("$((pos - 1)) $pos "$ZSH_MATCHING_BRACKETS[(( (level - 1) % bracket_color_size + 1 ))])
+          ;;
+        ")"|"]"|"}")
+          if ((level < 1)); then
+            region_highlight+=("$((pos - 1)) $pos "$ZSH_HIGHLIGHT_STYLES[bracket-error])
+          else
+            region_highlight+=("$((pos - 1)) $pos "$ZSH_MATCHING_BRACKETS[(( (level - 1) % bracket_color_size + 1 ))])
+          fi
+          ((level--))
+          ;;
+      esac
+    done
+  fi
 }
 
 # Special treatment for completion/expansion events:
-# For each *complete* function, we create a widget which mimics the original
+# For each *complete* function (except 'accept-and-menu-complete'), 
+# we create a widget which mimics the original
 # and use this orig-* version inside the new colorized zle function (the dot
 # idiom used for all others doesn't work right for these functions for some
 # reason).  You can see the default setup using "zle -l -L".
 
-# Bind ZLE events to highlighting function.
-for f in $ZSH_HIGHLIGHT_ZLE_UPDATE_EVENTS; do
+# Bind all ZLE events from zle -la to highlighting function.
+for f in $(zle -la); do
   case $f in
+    .*|_*)
+      ;;
+    accept-and-menu-complete)
+      eval "$f() { builtin zle .$f && _zsh_highlight-zle-buffer } ; zle -N $f"
+      ;;
     *complete*)
       eval "zle -C orig-$f .$f _main_complete ; $f() { builtin zle orig-$f && _zsh_highlight-zle-buffer } ; zle -N $f"
       ;;
@@ -223,3 +211,6 @@ for f in $ZSH_HIGHLIGHT_ZLE_UPDATE_EVENTS; do
       ;;
   esac
 done
+
+
+
