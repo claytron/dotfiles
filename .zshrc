@@ -70,6 +70,17 @@ alias -g bootstrap='bootstrap.py --distribute'
 # cvs setup
 export CVSROOT=:pserver:clayton@cvs:/var/cvsroot
 
+# set up command line syntax highlighting overrides
+ZSH_HIGHLIGHT_STYLES[alias]='fg=black,bg=green'
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=green,bold'
+ZSH_HIGHLIGHT_STYLES[function]='fg=green,underline'
+ZSH_HIGHLIGHT_STYLES[alias]='fg=black,bg=green'
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=yellow'
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=yellow'
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=yellow,underline'
+ZSH_HIGHLIGHT_STYLES[globbing]='fg=white,bold,bg=blue'
+ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=white,bold,bg=blue'
+
 setopt NO_BEEP
 # Changing Directories
 setopt AUTO_CD 
