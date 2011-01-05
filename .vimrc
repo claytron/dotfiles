@@ -382,7 +382,7 @@ command! -nargs=0 MarkdownFromHTML  %!pandoc -f html -t markdown "%"
 
 " xml tidy
 command! -complete=file -nargs=* TidyXML call s:TidyXML()
-map <leader>T :TidyXML<CR>
+map <silent> <leader>T :TidyXML<CR>
 
 function! s:TidyXML()
     " Preparation: save last search, and cursor position.
