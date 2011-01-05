@@ -147,7 +147,7 @@ autoload -U is-at-least
 if is-at-least 4.3; then
     source $HOME/.zsh.d/zsh-syntax-highlighting.zsh
     source $HOME/.zsh.d/opp.zsh
-    source $HOME/.zsh.d/opp/*
+    source $HOME/.zsh.d/opp/[^.]*
 
     # set up command line syntax highlighting overrides
     ZSH_HIGHLIGHT_STYLES[alias]='fg=black,bg=green'
