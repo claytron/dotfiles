@@ -31,6 +31,8 @@ else
     alias gvim=mvim
 fi
 
+# use gitx with "all branches"
+alias gitxa="gitx --all"
 # use git-achievements if it is avaiable
 if checkPath git-achievements; then
     alias git=git-achievements
