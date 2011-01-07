@@ -18,6 +18,7 @@ ZSH_HIGHLIGHT_STYLES=(
   builtin                       'fg=green'
   function                      'fg=green'
   command                       'fg=green'
+  hashed-command                'fg=green'
   path                          'underline'
   globbing                      'fg=blue'
   history-expansion             'fg=blue'
@@ -29,6 +30,17 @@ ZSH_HIGHLIGHT_STYLES=(
   dollar-double-quoted-argument 'fg=cyan'
   back-double-quoted-argument   'fg=cyan'
   bracket-error                 'fg=red,bold'
+)
+
+# Colors for bracket levels.
+# Put as many color as you wish.
+# Leave it as an empty array to disable.
+ZSH_HIGHLIGHT_MATCHING_BRACKETS_STYLES=(
+  'fg=blue,bold'
+  'fg=green,bold'
+  'fg=magenta,bold'
+  'fg=yellow,bold'
+  'fg=cyan,bold'
 )
 
 # Tokens that are always followed by a command.
@@ -50,17 +62,6 @@ ZSH_HIGHLIGHT_TOKENS_FOLLOWED_BY_COMMANDS=(
   'which'
   'where'
   'whereis'
-)
-
-# Colors for bracket levels
-# Put as many color as you wish
-# Leave it as an empty array to disable
-ZSH_MATCHING_BRACKETS=(
-  'fg=blue,bold'
-  'fg=green,bold'
-  'fg=magenta,bold'
-  'fg=yellow,bold'
-  'fg=cyan,bold'
 )
 
 # ZLE highlight types.
@@ -101,8 +102,9 @@ _zsh_highlight-string() {
 # Recolorize the current ZLE buffer.
 _zsh_highlight-zle-buffer() {
   # Avoid doing the same work over and over
-  [[ ${ZSH_PRIOR_HIGHLIGHTED_BUFFER:-} == $BUFFER ]] && [[ ${#region_highlight} -gt 0 ]] && return
+  [[ ${ZSH_PRIOR_HIGHLIGHTED_BUFFER:-} == $BUFFER ]] && [[ ${#region_highlight} -gt 0 ]] && (( ZSH_PRIOR_CURSOR == CURSOR )) && return
   ZSH_PRIOR_HIGHLIGHTED_BUFFER=$BUFFER
+  ZSH_PRIOR_CURSOR=$CURSOR
 
   setopt localoptions extendedglob bareglobqual
   local new_expression=true
@@ -129,6 +131,7 @@ _zsh_highlight-zle-buffer() {
         *': builtin')   style=$ZSH_HIGHLIGHT_STYLES[builtin];;
         *': function')  style=$ZSH_HIGHLIGHT_STYLES[function];;
         *': command')   style=$ZSH_HIGHLIGHT_STYLES[command];;
+        *': hashed')    style=$ZSH_HIGHLIGHT_STYLES[hashed-command];;
         *)              if _zsh_check-path; then
                           style=$ZSH_HIGHLIGHT_STYLES[path]
                         elif [[ $arg[0,1] = $histchars[0,1] ]]; then
@@ -166,25 +169,38 @@ _zsh_highlight-zle-buffer() {
   done
 
 # Bracket matching
-  bracket_color_size=${#ZSH_MATCHING_BRACKETS}
+  bracket_color_size=${#ZSH_HIGHLIGHT_MATCHING_BRACKETS_STYLES}
   if ((bracket_color_size > 0)); then
+    typeset -A levelpos lastoflevel matching revmatching
     ((level = 0))
     for pos in {1..${#BUFFER}}; do
       case $BUFFER[pos] in
         "("|"["|"{")
-          ((level++))
-          region_highlight+=("$((pos - 1)) $pos "$ZSH_MATCHING_BRACKETS[(( (level - 1) % bracket_color_size + 1 ))])
+          levelpos[$pos]=$((++level))
+          lastoflevel[$level]=$pos
           ;;
         ")"|"]"|"}")
-          if ((level < 1)); then
-            region_highlight+=("$((pos - 1)) $pos "$ZSH_HIGHLIGHT_STYLES[bracket-error])
-          else
-            region_highlight+=("$((pos - 1)) $pos "$ZSH_MATCHING_BRACKETS[(( (level - 1) % bracket_color_size + 1 ))])
-          fi
-          ((level--))
+          matching[$lastoflevel[$level]]=$pos
+          revmatching[$pos]=$lastoflevel[$level]
+          levelpos[$pos]=$((level--))
           ;;
       esac
     done
+    for pos in ${(k)levelpos}; do
+      level=$levelpos[$pos]
+      if ((level < 1)); then
+        region_highlight+=("$((pos - 1)) $pos "$ZSH_HIGHLIGHT_STYLES[bracket-error])
+      else
+        region_highlight+=("$((pos - 1)) $pos "$ZSH_HIGHLIGHT_MATCHING_BRACKETS_STYLES[(( (level - 1) % bracket_color_size + 1 ))])
+      fi
+    done
+    ((c = CURSOR + 1))
+    if [[ -n $levelpos[$c] ]]; then
+      ((otherpos = -1))
+      [[ -n $matching[$c] ]] && otherpos=$matching[$c]
+      [[ -n $revmatching[$c] ]] && otherpos=$revmatching[$c]
+      region_highlight+=("$((otherpos - 1)) $otherpos standout")
+    fi
   fi
 }
 
@@ -196,21 +212,23 @@ _zsh_highlight-zle-buffer() {
 # reason).  You can see the default setup using "zle -l -L".
 
 # Bind all ZLE events from zle -la to highlighting function.
-for f in $(zle -la); do
-  case $f in
-    .*|_*)
+local clean_event
+for event in $(zle -la); do
+  case $event in
+    _*)
       ;;
     accept-and-menu-complete)
-      eval "$f() { builtin zle .$f && _zsh_highlight-zle-buffer } ; zle -N $f"
+      eval "$event() { builtin zle .$event && _zsh_highlight-zle-buffer } ; zle -N $event"
       ;;
-    *complete*)
-      eval "zle -C orig-$f .$f _main_complete ; $f() { builtin zle orig-$f && _zsh_highlight-zle-buffer } ; zle -N $f"
+    [^\.]*complete*)
+      eval "zle -C orig-$event .$event _main_complete ; $event() { builtin zle orig-$event && _zsh_highlight-zle-buffer } ; zle -N $event"
+      ;;
+    .*)
+      clean_event=$event[2,${#event}] # Remove the leading dot in the event name
+      eval "$clean_event() { builtin zle $event && _zsh_highlight-zle-buffer } ; zle -N $clean_event"
       ;;
     *)
-      eval "$f() { builtin zle .$f && _zsh_highlight-zle-buffer } ; zle -N $f"
       ;;
   esac
 done
-
-
 
