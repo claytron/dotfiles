@@ -32,6 +32,11 @@ function precmd {
         PR_PROJECT="$(pwd | cut -f 6 -d /)"
         [ ! "$PR_PROJECT" = "" ] && PR_PROJECT="($PR_PROJECT)"
     fi
+    local OTHER_THIRD_DIR="$(pwd | cut -f 5,6 -d /)"
+    if [ "$OTHER_THIRD_DIR" = "sixfeetup/projects" ]; then
+        PR_PROJECT="$(pwd | cut -f 7 -d /)"
+        [ ! "$PR_PROJECT" = "" ] && PR_PROJECT="($PR_PROJECT)"
+    fi
 }
 
 setopt extended_glob
