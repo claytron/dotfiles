@@ -144,7 +144,11 @@ source ~/.zshextras
 
 # Load up some plugins and enhancments
 autoload -U is-at-least
-if is-at-least 4.3; then
+if [ -z $MY_ZSH_PLUGINS_LOADED ] && is-at-least 4.3; then
+    # sourcing these plugins again can cause issues, this var will
+    # stop that from happening
+    MY_ZSH_PLUGINS_LOADED="true"
+
     source $HOME/.zsh.d/zsh-syntax-highlighting.zsh
     source $HOME/.zsh.d/opp.zsh
     source $HOME/.zsh.d/opp/[^.]*
