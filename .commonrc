@@ -244,3 +244,5 @@ if [ -d $VIRTUALENVS_DIR ]; then
         source virtualenvwrapper.sh
     fi
 fi
+
+[[ -s /usr/local/lib/rvm ]] && source /usr/local/lib/rvm
