@@ -409,7 +409,7 @@ endfunction
 " Quickfix                                                     {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-command -bang -nargs=? QFix call QFixToggle(<bang>0)
+command! -bang -nargs=? QFix call QFixToggle(<bang>0)
 
 " Function to toggle the quickfix window open and close
 function! QFixToggle(forced)
