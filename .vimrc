@@ -235,10 +235,13 @@ set t_Co=256
 set background=dark
 " set global variables that will define the colorscheme
 let g:light_theme='mac_classic'
-let g:dark_theme='molokai'
+let g:dark_theme='zenburn'
 
 " Use the "original" molokai theme colors instead of "dark"
 let g:molokai_original=1
+
+" Zenburn settings
+let g:zenburn_alternate_Error = 1
 
 " Command to call the ColorSwitch funciton
 command! -nargs=? -complete=customlist,s:completeColorSchemes ColorSwitcher :call s:colorSwitch(<q-args>)
