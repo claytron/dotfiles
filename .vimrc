@@ -601,7 +601,7 @@ if has("autocmd")
     " Zope and Plone files
     " -----------------------------------------------------------------
     " xml syntax for zcml files
-    au BufNewFile,BufRead *.zcml set filetype=xml
+    au BufNewFile,BufRead *.zcml set filetype=zcml syntax=xml
     " css.dtml as css
     au BufNewFile,BufRead *.css.dtml set filetype=css
     " kss files as css
