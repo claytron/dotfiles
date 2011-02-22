@@ -709,7 +709,7 @@ if has("gui_running")
         " use the whole screen
         set fuoptions=maxvert,maxhorz
         " use Monaco with no antialiasing
-        set guifont=Inconsolata:h12,Monaco:h10
+        set guifont=Inconsolata-dz:h10,Inconsolata:h12,Monaco:h10
         set antialias
         " maybe set the transparency
         set transparency=2
