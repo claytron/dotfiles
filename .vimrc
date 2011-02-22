@@ -130,6 +130,9 @@ set nojoinspaces
 cnoremap <C-A> <Home>
 cnoremap <C-E> <End>
 
+" open up my vimrc in a tab for modifications
+map <leader>v :tabedit $MYVIMRC<CR>
+
 " Visual settings                                              {{{1
 " -----------------------------------------------------------------
 
