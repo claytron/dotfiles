@@ -86,6 +86,9 @@ map! jj <ESC>
 " Take care of forgetting to use sudo with :w!!
 cmap w!! w !sudo tee % > /dev/null
 
+" Set the shell to sh, zsh and vim don't seem to play nice
+set shell=sh
+
 " hide the backup and swap files
 set backupdir=~/.backup/vim,.,/tmp
 set directory=~/.backup/vim/swap,.,/tmp
