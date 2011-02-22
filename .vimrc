@@ -123,6 +123,9 @@ set backspace=indent,eol,start
 set autoindent
 set smartindent
 
+" Only one space after periods when formatting strings
+set nojoinspaces
+
 " Allow command line editing like emacs
 cnoremap <C-A> <Home>
 cnoremap <C-E> <End>
