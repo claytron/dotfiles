@@ -44,10 +44,10 @@ hi MatchParen	guifg=black			guibg=#fcaf3e		gui=none
 hi MatchParen	ctermfg=black		ctermbg=yellow		cterm=none
 
 " status line
-hi StatusLine	guifg=white			guibg=black			gui=bold
-hi StatusLine	ctermfg=white		ctermbg=black		cterm=bold
-hi StatusLineNC guifg=#a0a0a0		guibg=black			gui=bold
-hi StatusLineNc	ctermfg=darkgray	ctermbg=black		cterm=bold
+hi StatusLine  guifg=#000000 guibg=#C6DEFF gui=italic
+hi StatusLine  ctermfg=0 ctermbg=189
+hi StatusLineNC  guifg=#000000 guibg=#EFEFEF gui=NONE
+hi StatusLineNC  ctermfg=0 ctermbg=7
 
 " Diff
 hi DiffAdd		guifg=#b000b0		guibg=white			gui=none
@@ -106,10 +106,10 @@ hi ErrorMsg		ctermfg=white		ctermbg=red			cterm=none
 hi Question		guifg=black			guibg=white			gui=none
 hi Question		ctermfg=black		ctermbg=white		cterm=none
 
-hi LineNr		guifg=white			guibg=black			gui=none
-hi LineNr		ctermfg=white		ctermbg=black		cterm=none
-hi VertSplit	guifg=black			guibg=black			gui=none
-hi VertSplit	ctermfg=black		ctermbg=black		cterm=none
+hi LineNr  guifg=#808080 guibg=#EFEFEF
+hi LineNr  ctermfg=244 ctermbg=7
+hi VertSplit  guifg=#FFFFFF guibg=#CFCFCF gui=NONE
+hi VertSplit  ctermfg=15 ctermbg=252 gui=NONE
 
 "\n, \0, %d, %s, etc...
 hi Special		guifg=#606060		guibg=#f0f0f0		gui=none
