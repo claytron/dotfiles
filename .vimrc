@@ -584,7 +584,7 @@ nnoremap <leader>g :GundoToggle<CR>
 
 if has("autocmd")
     " automatically re-source the vimrc on save
-    "autocmd bufwritepost .vimrc source $MYVIMRC
+    autocmd bufwritepost .vimrc source $MYVIMRC
 
     " vimperator and pentadactyl files
     au BufNewFile,BufRead *.vimp,*.penta,.vimperatorrc,.pentadactylrc set filetype=vim
