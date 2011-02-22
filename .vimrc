@@ -182,6 +182,9 @@ set number
 " shortcut to turn off line numbers
 map <silent> <leader>n :set number!<CR>
 
+" don't redraw during macros
+set lazyredraw
+
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
 " (happens when dropping a file on gvim).
