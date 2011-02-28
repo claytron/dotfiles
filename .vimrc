@@ -535,7 +535,7 @@ nmap <leader>ft :FufTag<Space>
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 " shortcut for ack search
-map <leader>a :Ack<Space>
+map <leader>a :Ack!<Space>
 
 " Mini buf explorer                                            {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
