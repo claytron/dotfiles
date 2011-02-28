@@ -667,6 +667,9 @@ set list
 " toggle invisible characters
 noremap <silent> <leader>i :set list!<CR>
 
+" sort versions in a versions.cfg
+map <leader>V /\[versions\]<CR>jVG:g/^#/d<CR>gv:g/^$/d<CR>gv:sort i<CR>
+
 " GUI settings                                                 {{{1
 " -----------------------------------------------------------------
 
