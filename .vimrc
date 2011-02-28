@@ -618,9 +618,16 @@ if has("autocmd")
     au BufNewFile,BufRead /*/tests/*.txt set filetype=doctest
 
     " automatically give executable permissions if file begins with #! and contains
-    " '/bin/' in the path
-    " borrowed from: http://github.com/mitechie/pyvim/blob/1.0/vimrc#L259
-    au bufwritepost * if getline(1) =~ "^#!" | if getline(1) =~ "/bin/" | silent !chmod a+x <afile> | endif | endif
+    " Automatic `:!chmod +x %`.
+    " taken from https://gist.github.com/791189
+    autocmd BufWritePost * call s:auto_chmod()
+    function! s:auto_chmod()
+        if !exists('b:disable_auto_chmod')
+        \ && getfperm(expand('%'))[2] !=# 'x'
+        \ && getline(1) =~# '^#!'
+            !chmod +x %
+        endif
+    endfunction
 endif
 
 " Cursor and window controls                                   {{{1
