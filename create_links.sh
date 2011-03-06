@@ -84,6 +84,16 @@ to_create="$HOME/.subversion/$dotfile"
 # actually create/remove the link
 linkDotfile $dotfile $to_create $actual_dotfile
 
+# Take care of awesome configs
+# -----------------------------------------------------------------
+if [ -d "$HOME/.config" ]; then
+    actual_dotfile="$dotfiles_loc/awesome"
+    dotfile="awesome"
+    to_create="$HOME/.config/$dotfile"
+    # actually create/remove the link
+    linkDotfile $dotfile $to_create $actual_dotfile
+fi
+
 # NOTE: None of these files are under version control...
 # -----------------------------------------------------------------
 if [ ! "$remove" = "remove" ]; then
