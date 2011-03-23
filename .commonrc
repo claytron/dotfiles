@@ -222,9 +222,9 @@ alias sshc="ssh -C -c blowfish"
 
 # get my external ip address
 if checkPath pbcopy; then
-    alias whatsmyip="curl ip.appspot.com | pbcopy"
+    alias whatsmyip="curl -s ip.appspot.com | pbcopy && pbpaste"
 else
-    alias whatsmyip="curl ip.appspot.com"
+    alias whatsmyip="curl -s ip.appspot.com"
 fi
 
 # Path to Virtual Machine Library directory
