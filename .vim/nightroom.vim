@@ -28,6 +28,8 @@ if has("gui_running")
         set guioptions=
         " make sure to retain our lines and columns
         set fuoptions=
+        " no transparency
+        set transparency=0
         " `fullscreen` needs to go after `lines` etc
         set fullscreen
     endif
