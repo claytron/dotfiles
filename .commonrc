@@ -157,10 +157,10 @@ alias bd="bin/develop"
 alias bdu="bd up -v"
 alias bds="bd st -v"
 # creating the buildout.cfg
-if [ $UNAME = "Darwin" ]; then
-    alias bcl='cp profiles/buildout.cfg.tmpl buildout.cfg && sed -i "" -e "s/#\(    profiles\/local\.cfg\)/\1/" buildout.cfg'
-else
+if [ $UNAME = "FreeBSD" ]; then
     alias bcl='cp profiles/buildout.cfg.tmpl buildout.cfg && sed -I "" -e "s/#\(    profiles\/local\.cfg\)/\1/" buildout.cfg'
+else
+    alias bcl='cp profiles/buildout.cfg.tmpl buildout.cfg && sed -i "" -e "s/#\(    profiles\/local\.cfg\)/\1/" buildout.cfg'
 fi
 
 # pep8 that can scan a `src` dir
