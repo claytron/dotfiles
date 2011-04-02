@@ -11,9 +11,13 @@ require("naughty")
 -- Themes define colours, icons, and wallpapers
 beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
 
+-- theme customizations
+theme.font = "Inconsolata 10"
+theme.border_focus = "red"
 -- This is used later as the default terminal and editor to run.
 terminal = "roxterm"
 browser = "firefox"
+mail = "thunderbird"
 editor = os.getenv("EDITOR") or "vi"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -63,8 +67,9 @@ myawesomemenu = {
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "terminal", terminal },
                                     { "browser", browser },
+                                    { "mail", mail },
                                     { "gvim", "gvim" },
-                                    { "file browser", terminal .. " -e ranger" },
+                                    { "file browser", "thunar" },
                                   }
                         })
 
