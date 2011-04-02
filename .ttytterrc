@@ -1,0 +1,7 @@
+ansi=1
+verify=1
+urlopen=firefox %U
+wrap=79
+newline=1
+mentions=1
+readline
