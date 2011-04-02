@@ -702,7 +702,7 @@ if has("gui_running")
 
     if has("autocmd")
         " Default size of window
-        autocmd VimEnter * exe 'VSSelectWindowSize bigger'
+        "autocmd VimEnter * exe 'VSSelectWindowSize bigger'
 
         " automagically open NERDTree in a GUI
         autocmd VimEnter * exe 'NERDTreeToggle' | wincmd l
@@ -734,6 +734,10 @@ if has("gui_running")
         set transparency=2
     endif
 
+    if has("gui_gtk2")
+        set guifont=Inconsolata\ Medium\ 10,Droid\ Sans\ Mono\ 9,Liberation\ Mono\ 10,LucidaTypewriter\ Medium\ 10,Terminal
+        autocmd GUIEnter * set vb t_vb=
+    endif
 endif
 
 " turn on folds
