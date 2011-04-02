@@ -13,7 +13,7 @@ beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
 
 -- theme customizations
 theme.font = "Inconsolata 10"
-theme.border_focus = "red"
+theme.border_focus = "#FF5A00"
 -- This is used later as the default terminal and editor to run.
 terminal = "roxterm"
 browser = "firefox"
@@ -67,6 +67,7 @@ myawesomemenu = {
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "terminal", terminal },
                                     { "browser", browser },
+                                    { "twitter", terminal .. " -e ttytter" },
                                     { "mail", mail },
                                     { "gvim", "gvim" },
                                     { "file browser", "thunar" },
