@@ -43,7 +43,7 @@ alias -g spriv='https://svn.sixfeetup.com/svn/private/'
 alias -g spub='https://svn.sixfeetup.com/svn/public/'
 alias -g collective='https://svn.plone.org/svn/collective/'
 # some pipes
-alias -g G='| grep'
+alias -g G='| sgrep'
 alias -g L='| less'
 alias -g M='| more'
 alias -g T='| tail'
