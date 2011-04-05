@@ -243,8 +243,8 @@ let python_highlight_all=1
 set t_Co=256
 set background=dark
 " set global variables that will define the colorscheme
-let g:light_theme='mac_classic'
-let g:dark_theme='zenburn'
+let g:light_theme='solarized'
+let g:dark_theme='solarized'
 
 " Use the "original" molokai theme colors instead of "dark"
 let g:molokai_original=1
@@ -279,9 +279,12 @@ function! s:colorSwitch(...)
     endif
 
     " Toggle between a light and dark vim colorscheme
+    " This also takes care of the solarized scheme
     if &background == 'dark'
+        let g:solarized_style="light"
         call ChangeMe(g:light_theme)
     elseif &background == 'light'
+        let g:solarized_style="dark"
         call ChangeMe(g:dark_theme)
     endif
 endfunction
