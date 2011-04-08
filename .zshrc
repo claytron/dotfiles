@@ -65,6 +65,10 @@ setopt AUTO_CD
 setopt CDABLE_VARS
 setopt AUTO_PUSHD
 setopt PUSHDMINUS
+# Include dot files in globbing
+# use the following to ignore dot files: % ^.*
+setopt GLOB_DOTS
+
 # History
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_VERIFY
@@ -72,9 +76,6 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt EXTENDED_HISTORY
 alias histappend="fc -AI"
 alias histread="fc -AI"
-# Include dot files in globbing
-# use the following to ignore dot files: % ^.*
-setopt GLOB_DOTS
 
 # use vi mode
 bindkey -v
