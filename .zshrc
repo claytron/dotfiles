@@ -77,6 +77,12 @@ setopt EXTENDED_HISTORY
 alias histappend="fc -AI"
 alias histread="fc -AI"
 
+# set up the history-complete-older and newer
+zstyle ':completion:*:history-words' stop yes
+zstyle ':completion:*:history-words' remove-all-dups yes
+zstyle ':completion:*:history-words' list false
+zstyle ':completion:*:history-words' menu yes
+
 # use vi mode
 bindkey -v
 
