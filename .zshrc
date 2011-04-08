@@ -64,6 +64,7 @@ setopt NO_BEEP
 setopt AUTO_CD 
 setopt CDABLE_VARS
 setopt AUTO_PUSHD
+setopt PUSHDMINUS
 # History
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_VERIFY
