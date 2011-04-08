@@ -102,8 +102,8 @@ bindkey -M vicmd '^[OA' vi-up-line-or-history
 # change the shortcut for expand alias
 bindkey -M viins '^X' _expand_alias
 # Search backwards with a pattern
-bindkey -M vicmd '/' history-incremental-pattern-search-backward
-bindkey -M vicmd '?' history-incremental-pattern-search-forward
+bindkey -M vicmd '^R' history-incremental-pattern-search-backward
+bindkey -M vicmd '^F' history-incremental-pattern-search-forward
 # set up for insert mode too
 bindkey -M viins '^R' history-incremental-pattern-search-backward
 bindkey -M viins '^F' history-incremental-pattern-search-forward
