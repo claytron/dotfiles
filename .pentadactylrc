@@ -102,8 +102,8 @@ noremap J <C-f>
 noremap K <C-b>
 
 " Go to the next/previous tab
-noremap h <C-p>
-noremap l <C-n>
+noremap <C-h> <C-p>
+noremap <C-l> <C-n>
 
 " Move the current tab
 noremap <leader>h <Esc>:tabmove! -1<CR>
