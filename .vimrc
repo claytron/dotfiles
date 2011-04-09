@@ -252,6 +252,9 @@ let g:molokai_original=1
 " Zenburn settings
 let g:zenburn_alternate_Error = 1
 
+" Solarized settings
+let g:solarized_termcolors=256
+
 " Command to call the ColorSwitch funciton
 command! -nargs=? -complete=customlist,s:completeColorSchemes ColorSwitcher :call s:colorSwitch(<q-args>)
 
