@@ -40,6 +40,8 @@
 "  - Martin Langasek - clarify the license, whitespace fixes
 "  - Marcin Szamotulski - support autocomplete for Zenburn configuration
 "    parameters
+"  - Clayton Parker (claytron) - Convinced by Kurt Maier to use Zenburn. Fixed
+"    issues with LineNr and directory styles, and their usage in MacVim.
 "
 " CONFIGURABLE PARAMETERS:
 "
@@ -161,7 +163,7 @@ hi DiffAdd         guifg=#709080 guibg=#313c36 gui=bold
 hi DiffChange      guibg=#333333
 hi DiffDelete      guifg=#333333 guibg=#464646
 hi DiffText        guifg=#ecbcbc guibg=#41363c gui=bold
-hi Directory       guifg=#dcdccc gui=bold
+hi Directory       guifg=#9fafaf gui=bold
 hi ErrorMsg        guifg=#80d4aa guibg=#2f2f2f gui=bold
 hi Exception       guifg=#c3bf9f gui=bold
 hi Float           guifg=#c0bed1
@@ -224,7 +226,7 @@ if &t_Co > 255
     hi DiffChange      ctermbg=236
     hi DiffDelete      ctermfg=236   ctermbg=238
     hi DiffText        ctermfg=217   ctermbg=237     cterm=bold
-    hi Directory       ctermfg=188   cterm=bold
+    hi Directory       ctermfg=109   cterm=bold
     hi ErrorMsg        ctermfg=115   ctermbg=236     cterm=bold
     hi Exception       ctermfg=249   cterm=bold
     hi Float           ctermfg=251
