@@ -596,6 +596,13 @@ let g:lodgeit_secure = 1
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 nnoremap <leader>g :GundoToggle<CR>
 
+" syntastic                                                    {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Enable signs support to visually see where errors/warnings appear
+let g:syntastic_enable_signs=1
+" Automatically open the location list when there are errors
+let g:syntastic_auto_loc_list=1
+
 " Auto command settings                                        {{{1
 " -----------------------------------------------------------------
 
