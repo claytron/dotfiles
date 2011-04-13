@@ -114,11 +114,9 @@ noremap <leader>l <Esc>:tabmove! +1<CR>
 " show the available tabs
 noremap <leader>t :buffers<CR>
 
-" Use It's all text instead of the built-in command
-inoremap <C-i> <C-v><C-e>
 " Also assign ctrl + e as that is easier to type, and what I have
 " set up in thunderbird :)
-inoremap <C-e> <C-v><C-e>
+inoremap <C-e> <C-i>
 
 " I tend to tap the 'd' key on my keyboard on accident
 noremap d <silent> <Nop>
