@@ -185,4 +185,7 @@ snippet <upgrade ZCML: GenericSetup upgrade step
 	    sortkey="${6}"
 	    profile="${7}"
 	    />
-	
+# autoinclude items for zcml
+snippet autoinclude
+	<includePlugins package="${1:.}" />
+	<includeDependencies package="${2:.}" />
