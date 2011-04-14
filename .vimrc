@@ -617,7 +617,7 @@ if has("autocmd")
     " using it's all text
     au BufNewFile,BufRead *trac.sixfeetup.com.* set filetype=wiki
     " use markdown for karl
-    au BufNewFile,BufRead *karl.sixfeetup.com.* set filetype=markdown
+    au BufNewFile,BufRead *karl.sixfeetup.com.* set filetype=markdown.html
 
     " shell files
     au BufNewFile,BufRead .common* set filetype=sh
@@ -628,15 +628,15 @@ if has("autocmd")
     " Zope and Plone files
     " -----------------------------------------------------------------
     " xml syntax for zcml files
-    au BufNewFile,BufRead *.zcml set filetype=zcml syntax=xml
+    au BufNewFile,BufRead *.zcml set filetype=xml.zcml
     " css.dtml as css
-    au BufNewFile,BufRead *.css.dtml set filetype=css
+    au BufNewFile,BufRead *.css.dtml set filetype=css.dtml
     " kss files as css
-    au BufNewFile,BufRead *.kss set filetype=css syntax=kss
+    au BufNewFile,BufRead *.kss set filetype=kss.css
     " js.dtml as javascript
-    au BufNewFile,BufRead *.js.dtml set filetype=javascript
+    au BufNewFile,BufRead *.js.dtml set filetype=javascript.dtml
     " any txt file in a `tests` directory is a doctest
-    au BufNewFile,BufRead /*/tests/*.txt set filetype=doctest
+    au BufNewFile,BufRead /*/tests/*.txt set filetype=doctest.rst
 
     " automatically give executable permissions if file begins with #! and contains
     " Automatic `:!chmod +x %`.
