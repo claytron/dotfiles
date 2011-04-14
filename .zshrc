@@ -107,6 +107,13 @@ bindkey -M vicmd '^F' history-incremental-pattern-search-forward
 # set up for insert mode too
 bindkey -M viins '^R' history-incremental-pattern-search-backward
 bindkey -M viins '^F' history-incremental-pattern-search-forward
+# complete previous occurences of the command up till now on the command line
+bindkey -M viins "^[OA" up-line-or-search
+bindkey -M viins "^[[A" up-line-or-search
+bindkey -M viins "^N" up-line-or-search
+bindkey -M viins "^[OB" down-line-or-search
+bindkey -M viins "^[[B" down-line-or-search
+bindkey -M viins "^P" down-line-or-search
 
 # edit current command in $EDITOR
 autoload -U edit-command-line
@@ -116,35 +123,7 @@ bindkey -M vicmd v edit-command-line
 # tetris!!
 autoload -U tetris
 zle -N tetris
-bindkey "^t" tetris
-
-# cursor up/down look for a command that started like the one starting on the command line
-# taken from: http://www.xsteve.at/prg/zsh/.zshrc
-function history-search-end {
-    integer ocursor=$CURSOR
-
-    if [[ $LASTWIDGET = history-beginning-search-*-end ]]; then
-      # Last widget called set $hbs_pos.
-      CURSOR=$hbs_pos
-    else
-      hbs_pos=$CURSOR
-    fi
-
-    if zle .${WIDGET%-end}; then
-      # success, go to end of line
-      zle .end-of-line
-    else
-      # failure, restore position
-      CURSOR=$ocursor
-      return 1
-    fi
-}
-zle -N history-beginning-search-backward-end history-search-end
-zle -N history-beginning-search-forward-end history-search-end
-
-# complete previous occurences of the command up till now on the command line
-bindkey -M viins "^N" history-beginning-search-backward-end
-bindkey -M viins "^P" history-beginning-search-forward-end
+bindkey "^T" tetris
 
 # set up history
 HISTSIZE=50000
