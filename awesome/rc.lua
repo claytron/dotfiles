@@ -12,8 +12,11 @@ require("naughty")
 beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
 
 -- theme customizations
-theme.font = "Inconsolata 10"
+--theme.font = "Inconsolata Medium 10"
 theme.border_focus = "#FF5A00"
+-- TODO: couldn't get this to work
+--theme.wallpaper_cmd = { "awsetbg /home/clayton/.wallpapers/daft_fiction.jepg" }
+
 -- This is used later as the default terminal and editor to run.
 terminal = "roxterm"
 browser = "firefox"
@@ -34,15 +37,15 @@ layouts =
     awful.layout.suit.tile,
     awful.layout.suit.tile.bottom,
     awful.layout.suit.tile.left,
---    awful.layout.suit.tile.top,
     awful.layout.suit.fair,
---    awful.layout.suit.fair.horizontal,
     awful.layout.suit.spiral,
---    awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
---    awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier,
     awful.layout.suit.floating,
+--    awful.layout.suit.tile.top,
+--    awful.layout.suit.fair.horizontal,
+--    awful.layout.suit.spiral.dwindle,
+--    awful.layout.suit.max.fullscreen,
 }
 -- }}}
 
@@ -58,21 +61,23 @@ end
 -- {{{ Menu
 -- Create a laucher widget and a main menu
 myawesomemenu = {
-   { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awful.util.getdir("config") .. "/rc.lua" },
-   { "restart", awesome.restart },
-   { "quit", awesome.quit }
+   { "&manual", terminal .. " -e man awesome" },
+   { "&edit config", editor_cmd .. " " .. awful.util.getdir("config") .. "/rc.lua" },
+   { "&restart", awesome.restart },
+   { "&quit", awesome.quit }
 }
 
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "terminal", terminal },
-                                    { "browser", browser },
-                                    { "twitter", terminal .. " -e ttytter" },
-                                    { "mail", mail },
-                                    { "gvim", "gvim" },
-                                    { "file browser", "thunar" },
-                                  }
-                        })
+mymainmenu = awful.menu({
+    items = {
+        { "&awesome", myawesomemenu, beautiful.awesome_icon },
+        { "terminal", terminal },
+        { "&browser", browser },
+        { "&twitter", terminal .. " -e ttytter" },
+        { "&mail", mail },
+        { "&gvim", "gvim" },
+        { "&file browser", "thunar" },
+    }
+})
 
 mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
                                      menu = mymainmenu })
