@@ -3,6 +3,8 @@
 --regex-zcml=/.*name="(.*)"/\1/n,name/
 --regex-zcml=/.*profile="(.*)"/\1/g,profile/
 --regex-zcml=/.*permission="(.*)"/\1/p,permission/
+--regex-zcml=/.*id="(.*)"/\1/i,id/
+--regex-zcml=/.*schema=".*\.(.[^"]*)"/\1/s,schema/
 --regex-zcml=/.*handler=".*\.(.[^"]*)"/\1/h,handler/
 --regex-zcml=/.*component=".*\.(.[^"]*)"/\1/m,component/
 --regex-zcml=/.*factory=".*\.(.[^"]*)"/\1/f,factory/
