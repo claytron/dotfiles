@@ -202,7 +202,6 @@ alias lsd='lsa -d'
 alias lsdot='lsd .*'
 
 alias df='df -h'
-alias less='less -I'
 
 # tar aliases.  ignore OS X meta files
 # NOTE: on OS X tar is freaked out by resource forks.  see .zshenv for the fix.
