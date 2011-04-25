@@ -4,7 +4,7 @@
 "           (see this url for latest release & screenshots)
 " License:  OSI approved MIT license (see end of this file)
 " Created:  In the middle of the night
-" Modified: 2011 Apr 07
+" Modified: 2011 Apr 14
 "
 " Usage "{{{
 "
@@ -404,7 +404,7 @@ endif
 "}}}
 " Background value based on termtrans setting "{{{
 " ---------------------------------------------------------------------
-if g:solarized_termtrans == 0
+if (has("gui_running") || g:solarized_termtrans == 0)
     let s:back        = s:base03
 else
     let s:back        = "NONE"
@@ -649,8 +649,8 @@ else
 endif
 exe "hi! Directory"      .s:fmt_none   .s:fg_blue   .s:bg_none
 exe "hi! ErrorMsg"       .s:fmt_revr   .s:fg_red    .s:bg_none
-exe "hi! IncSearch"      .s:fmt_revr   .s:fg_yellow .s:bg_none
-exe "hi! Search"         .s:fmt_stnd   .s:fg_yellow .s:bg_none
+exe "hi! IncSearch"      .s:fmt_stnd   .s:fg_orange .s:bg_none
+exe "hi! Search"         .s:fmt_revr   .s:fg_yellow .s:bg_none
 exe "hi! MoreMsg"        .s:fmt_none   .s:fg_blue   .s:bg_none
 exe "hi! ModeMsg"        .s:fmt_none   .s:fg_blue   .s:bg_none
 exe "hi! LineNr"         .s:fmt_none   .s:fg_base01 .s:bg_base02
@@ -659,7 +659,7 @@ exe "hi! VertSplit"      .s:fmt_bold   .s:fg_base00 .s:bg_base00
 exe "hi! Title"          .s:fmt_bold   .s:fg_orange .s:bg_none
 exe "hi! VisualNOS"      .s:fmt_stnd   .s:fg_none   .s:bg_base02
 exe "hi! WarningMsg"     .s:fmt_bold   .s:fg_red    .s:bg_none
-exe "hi! WildMenu"       .s:fmt_none   .s:fg_base1  .s:bg_base02
+exe "hi! WildMenu"       .s:fmt_none   .s:fg_base2  .s:bg_base02
 exe "hi! Folded"         .s:fmt_undb   .s:fg_base0  .s:bg_base02  .s:sp_base03
 exe "hi! FoldColumn"     .s:fmt_bold   .s:fg_base0  .s:bg_base02
 exe "hi! DiffAdd"        .s:fmt_revr   .s:fg_green  .s:bg_none
@@ -923,6 +923,25 @@ exe "hi! pandocMetadata"                 .s:fg_blue   .s:bg_none   .s:fmt_bold
 hi! link pandocMetadataTitle             pandocMetadata
 
 "}}}
+" Utility autocommand "{{{
+" ---------------------------------------------------------------------
+" In cases where Solarized is initialized inside a terminal vim session and 
+" then transferred to a gui session via the command `:gui`, the gui vim process 
+" does not re-read the colorscheme (or .vimrc for that matter) so any `has_gui` 
+" related code that sets gui specific values isn't executed.
+"
+" Currently, Solarized sets only the cterm or gui values for the colorscheme 
+" depending on gui or terminal mode. It's possible that, if the following 
+" autocommand method is deemed excessively poor form, that approach will be 
+" used again and the autocommand below will be dropped.
+"
+" However it seems relatively benign in this case to include the autocommand 
+" here. It fires only in cases where vim is transferring from terminal to gui 
+" mode (detected with the script scope s:vmode variable). It also allows for 
+" other potential terminal customizations that might make gui mode suboptimal.
+"
+autocmd GUIEnter * if (s:vmode != "gui") | exe "colorscheme " . g:colors_name | endif
+"}}}
 " License "{{{
 " ---------------------------------------------------------------------
 "
@@ -946,4 +965,5 @@ hi! link pandocMetadataTitle             pandocMetadata
 " OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 " THE SOFTWARE.
 "
+" vim:foldmethod=marker:foldlevel=0
 "}}}
