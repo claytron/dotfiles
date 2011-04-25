@@ -285,11 +285,9 @@ function! s:colorSwitch(...)
     " This also takes care of the solarized scheme
     if &background == 'dark'
         set background=light
-        let g:solarized_style="light"
         call ChangeMe(g:light_theme)
     elseif &background == 'light'
         set background=dark
-        let g:solarized_style="dark"
         call ChangeMe(g:dark_theme)
     endif
 endfunction
