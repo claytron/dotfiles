@@ -228,9 +228,9 @@ EOF
             if [ "$dot_file" = "$HOME/.pydistutils.cfg" ]; then
                 (
                 cat <<EOF
-#[easy_install]
-#find_links =
-#    http://USERNAME:PASSWORD@skillet.sixfeetup.com/simple
+[easy_install]
+find_links =
+    http://dist.sixfeetup.com/public
 EOF
 ) > "$dot_file"
             fi
