@@ -99,6 +99,9 @@ bindkey -M viins '\e[3~' vi-delete-char
 bindkey -M viins '^B' push-line-or-edit
 # change the '-' for up in history, always kills my command editing.
 bindkey -M vicmd '^[OA' vi-up-line-or-history
+# Make sure that shift-tab doesn't take me out of insert mode. going to the
+# end of the line will work 99% of the time.
+bindkey -M viins '^[[Z' vi-end-of-line
 # change the shortcut for expand alias
 bindkey -M viins '^X' _expand_alias
 # Search backwards with a pattern
