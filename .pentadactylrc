@@ -43,7 +43,7 @@ set findcase=smart
 " a toggle for search highlight
 map <silent> <leader>h :set hlsearch!<CR>
 " Set up DuckDuckGo as the default search engine
-set defsearch=ddg
+set defsearch=google
 
 " turn off the freakin' bell
 hi Bell display: none;
