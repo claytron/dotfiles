@@ -832,6 +832,9 @@ if has("gui_running")
         set antialias
         " maybe set the transparency
         set transparency=2
+
+        " turn off transparency
+        noremap <leader>TT :set transparency=0<CR>
     endif
 
     if has("gui_gtk2")
