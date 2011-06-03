@@ -21,6 +21,7 @@
 "    <leader>T       -- Run tidy xml on the current file
 "    <leader>i       -- toggles invisible characters
 "    <leader>w       -- removes trailing whitespace characters
+"    <leader>\       -- toggle line wrapping
 "    <leader>y       -- show the yankring
 "    <leader>x       -- toggles NERDTree drawer
 "    <leader>b       -- shortcut for getting to NERDTree bookmarks
@@ -191,6 +192,15 @@ set lazyredraw
 
 " Set linebreak so words don't get split
 set linebreak
+
+" Scroll in smaller increments when going horizontal
+set sidescroll=5
+
+" Set the characters showing horizontal scrolling
+set listchars+=precedes:←,extends:→
+
+" toggle line wrapping on/off
+map <silent> <leader>\ :set wrap!<CR>
 
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
