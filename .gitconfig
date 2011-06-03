@@ -33,3 +33,6 @@
 	upload = true
 [github]
 	user = claytron
+[branch "master"]
+	remote = origin
+	merge = master
