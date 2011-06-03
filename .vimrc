@@ -487,6 +487,93 @@ command! GlobalToBuffer execute 'normal! 0"ay0' | execute 'g//y A' | split | ene
 filetype on                " enables filetype detection
 filetype plugin indent on  " enables filetype specific plugins
 
+" Disable plugins                                              {{{2
+"
+" Uncomment the lines below to disable a particular plugin. This
+" short circuits the plugin and stops it from loading.
+" -----------------------------------------------------------------
+
+" Ack                                                          {{{3
+" XXX: has no trap
+
+" BufOnly                                                      {{{3
+" XXX: has no trap
+
+" DelimitMate                                                  {{{3
+"let g:loaded_delimitMate = 1
+
+" FuzzyFinder and l9                                           {{{3
+" XXX: I couldn't figure those out :)
+
+" gundo                                                        {{{3
+"let loaded_gundo = 1
+
+" lodgeit                                                      {{{3
+"let loaded_lodgeit = 1
+
+" NERDTree                                                     {{{3
+"let loaded_nerd_tree = 1
+
+" minibufexplr                                                 {{{3
+"let loaded_minibufexplorer = 1
+
+" pyflakes                                                     {{{3
+"let b:did_pyflakes_plugin = 1
+
+" Python Matchit                                               {{{3
+"let b:loaded_py_match = 1
+
+" repeat                                                       {{{3
+"let g:loaded_repeat = 1
+
+" RevealExtends                                                {{{3
+"let g:loaded_RevealExtends = 1
+
+" Scratch                                                      {{{3
+"let loaded_scratch=1
+
+" Search complete                                              {{{3
+"let loaded_search_complete = 1
+
+" SnipMate                                                     {{{3
+"let loaded_snips = 1
+
+" Supertab                                                     {{{3
+" XXX: has no specific trap
+
+" surround                                                     {{{3
+"let g:loaded_surround = 1
+
+" syntastic                                                    {{{3
+"let g:loaded_syntastic_plugin = 1
+
+" Tabular                                                      {{{3
+"let g:tabular_loaded = 1
+
+" Taglist                                                      {{{3
+"let loaded_taglist = 'yes'
+
+" Tasklist                                                     {{{3
+"let g:loaded_tasklist = 1
+
+" VCSCommand                                                   {{{3
+"let VCSCommandDisableAll = 1
+
+" Solarized toggle background                                  {{{3
+"let g:loaded_ToggleBackground = 1
+
+" vimsizer                                                     {{{3
+"let loaded_vimsizer = 1
+
+" visualstar                                                   {{{3
+"let g:loaded_visualstar = 1
+
+" xmledit                                                      {{{3
+"let loaded_xmledit = 1
+
+" yankring                                                     {{{3
+"let loaded_yankring = 1
+
 " NERDTree                                                     {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
