@@ -21,6 +21,7 @@
 "    <leader>T       -- Run tidy xml on the current file
 "    <leader>i       -- toggles invisible characters
 "    <leader>w       -- removes trailing whitespace characters
+"    <leader>y       -- show the yankring
 "    <leader>x       -- toggles NERDTree drawer
 "    <leader>b       -- shortcut for getting to NERDTree bookmarks
 "    <leader>q       -- Toggle the quickfix window
@@ -687,6 +688,15 @@ nnoremap <leader>g :GundoToggle<CR>
 let g:syntastic_enable_signs=1
 " Automatically open the location list when there are errors
 let g:syntastic_auto_loc_list=1
+
+" Yankring                                                     {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Show and hide the yankring history
+nnoremap <silent> <leader>y :YRShow<CR>
+" Set the maximum number of history
+let g:yankring_max_history = 200
+" Make the yankring set the numbered registers
+let g:yankring_manage_numbered_reg = 1
 
 " Auto command settings                                        {{{1
 " -----------------------------------------------------------------
