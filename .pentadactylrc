@@ -61,9 +61,9 @@ noremap <silent> <leader>p :emenu Edit.Preferences<CR>
 noremap <silent> <leader>d :emenu Delicious.Save a new Bookmark...<CR>
 
 " Quicker ex mode access
-noremap ; :
+"noremap ; :
 " Still give access to the hint modes
-noremap : ;
+"noremap : ;
 
 " remove the right and bottom scrollbars
 set guioptions-=rb
