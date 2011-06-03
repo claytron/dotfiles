@@ -10,7 +10,7 @@
 # 'cleanup' means to remove all the files created by this script
 remove="$1"
 
-dotfiles_loc="$HOME/.dotfiles"
+dotfiles_loc=$(cd `dirname $0` && pwd)
 excluded=(
     .svn
     .git
