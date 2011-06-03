@@ -491,6 +491,16 @@ endfunction
 " Output the last global command to a buffer for further use
 command! GlobalToBuffer execute 'normal! 0"ay0' | execute 'g//y A' | split | enew | setlocal bt=nofile | put! a
 
+" Open a buffer number in a vertical split                     {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Vertical Split Buffer Function
+function! VerticalSplitBuffer(buffer)
+    execute "vert belowright sb" a:buffer
+endfunction
+
+" Vertical Split Buffer Mapping
+command! -nargs=1 Vbuffer call VerticalSplitBuffer(<f-args>)
+
 " Plugins                                                      {{{1
 " -----------------------------------------------------------------
 
