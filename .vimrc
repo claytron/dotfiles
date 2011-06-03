@@ -660,9 +660,12 @@ map <leader>a :Ack!<Space>
 " Mini buf explorer                                            {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-" buffer explorer ctrl + tabbing and single click
+" single click open of a buffer
 let g:miniBufExplUseSingleClick = 1
+" use ctrl + tab to cycle through tabs
 let g:miniBufExplMapCTabSwitchBufs = 1
+" better window management
+let g:miniBufExplModSelTarget = 1
 
 " VCSCommand                                                   {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
