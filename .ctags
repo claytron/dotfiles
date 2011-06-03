@@ -13,3 +13,13 @@
 --langdef=ini
 --langmap=ini:.cfg.ini
 --regex-ini=/^\[(.*)\]/\1/s,section/
+
+--langdef=markdown
+--langmap=markdown:.md.mdown.mkdown.markdown
+--regex-markdown=/^# (.*)(#)?/\1/h,header/
+--regex-markdown=/^#{2} (.*)(#{2})?/\1/h,header/
+--regex-markdown=/^#{3} (.*)(#{3})?/\1/h,header/
+--regex-markdown=/^#{4} (.*)(#{4})?/\1/h,header/
+--regex-markdown=/^#{5} (.*)(#{5})?/\1/h,header/
+--regex-markdown=/^#{6} (.*)(#{6})?/\1/h,header/
+--regex-markdown=/^#{7} (.*)(#{7})?/\1/h,header/
