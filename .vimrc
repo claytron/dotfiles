@@ -807,7 +807,7 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 
 " set up the invisible characters
-set listchars=tab:▸\ ,eol:¬
+set listchars+=tab:▸\ ,eol:¬
 " show invisible characters by default
 set list
 " toggle invisible characters
