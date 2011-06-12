@@ -73,6 +73,7 @@ setopt GLOB_DOTS
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_VERIFY
 setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
 setopt EXTENDED_HISTORY
 alias histappend="fc -AI"
 alias histread="fc -AI"
