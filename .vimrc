@@ -209,8 +209,10 @@ map <silent> <leader>\ :set wrap!<CR>
 " position when opening a file.
 autocmd BufReadPost *  if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
-" always jump to the top of svn commit messages
+" always jump to the top of commit messages
+" NOTE: mercurial and bazaar use temporary files, so this isn't necessary
 au BufReadPost svn-commit*.tmp exe "normal! gg"
+au BufReadPost COMMIT_EDITMSG* exe "normal! gg"
 
 " Pasting                                                      {{{1
 " -----------------------------------------------------------------
