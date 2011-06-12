@@ -687,7 +687,41 @@ let tlist_xml_settings = 'zcml;n:name,g:profile,p:permission,h:handler,m:compone
 let tlist_cfg_settings = 'ini;s:section'
 let tlist_markdown_settings = 'markdown;h:header'
 " mapping for taglist
-nnoremap tt :TlistToggle<CR>
+"nnoremap tt :TlistToggle<CR>
+
+
+" Tagbar                                                       {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nnoremap tt :TagbarToggle<CR>
+
+" ZCML type
+" XXX: This doesn't currently work because I use a filetype setting
+"      of "xml.zcml".
+let g:tagbar_type_zcml = {
+    \ 'ctagstype': 'zcml',
+    \ 'kinds': [
+        \ 'n:name',
+        \ 'g:profile',
+        \ 'p:permission',
+        \ 'h:handler',
+        \ 'm:component',
+        \ 'f:factory',
+        \ 'c:class',
+        \ 'i:id',
+        \ 's:schema'
+    \ ]
+\}
+" cfg file type
+let g:tagbar_type_cfg = {
+    \ 'ctagstype': 'ini',
+    \ 'kinds': ['s:section']
+\ }
+" Markdown type
+let g:tagbar_type_markdown = {
+    \ 'ctagstype': 'markdown',
+    \ 'kinds': ['h:header']
+\ }
+
 
 " CSV                                                          {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
