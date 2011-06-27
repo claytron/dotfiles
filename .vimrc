@@ -780,6 +780,9 @@ if has("autocmd")
     " vim help files
     au BufNewFile,BufRead /*/doc/*.txt set filetype=help
 
+    " Vagrant files
+    au BufNewFile,BufRead Vagrantfile set filetype=ruby
+
     " Zope and Plone files
     " -----------------------------------------------------------------
     " xml syntax for zcml files
