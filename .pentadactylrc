@@ -60,6 +60,12 @@ noremap <silent> <leader>p :emenu Edit.Preferences<CR>
 " Open the delicious plugin new bookmark window
 noremap <silent> <leader>d :emenu Delicious.Save a new Bookmark...<CR>
 
+" temporary workaround for copy paste in text boxes
+" https://code.google.com/p/dactyl/issues/detail?id=517
+inoremap <M-z> <pass>
+inoremap <M-a> <pass>
+inoremap <M-x> <pass>
+
 " Quicker ex mode access
 "noremap ; :
 " Still give access to the hint modes
