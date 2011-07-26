@@ -908,7 +908,8 @@ if has("gui_running")
         set guifont=Inconsolata-dz:h10,Inconsolata:h12,Monaco:h10
         set antialias
         " maybe set the transparency
-        set transparency=2
+        " XXX: getting annoyed by the transparency
+        "set transparency=2
 
         " turn off transparency
         noremap <leader>TT :set transparency=0<CR>
