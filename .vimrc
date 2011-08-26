@@ -749,6 +749,12 @@ let g:syntastic_enable_signs=1
 " Automatically open the location list when there are errors
 let g:syntastic_auto_loc_list=1
 
+" php debugger                                                  {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" turn off the mini buf explorer when using the debugger so the
+" windows get initialized properly
+let g:debuggerMiniBufExpl = 1
+
 " Yankring                                                     {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " Show and hide the yankring history
