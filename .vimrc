@@ -628,6 +628,8 @@ let NERDTreeIgnore=[
 let NERDTreeSortOrder=[]
 " when the root is changed, change Vim's working dir
 let NERDTreeChDirMode=2
+" use fancy ass arrows
+let NERDTreeDirArrows=1
 
 " Fuzzy Finder                                                 {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
