@@ -92,7 +92,8 @@ else
 fi
 
 ## processes
-alias psa='ps auxwww'
+alias psa='ps axwww'
+alias psau='psa -u'
 # pipe into grep to find a proc
 alias psg='psa | sgrep'
 # search for python procs
