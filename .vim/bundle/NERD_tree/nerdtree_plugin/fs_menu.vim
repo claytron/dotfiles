@@ -16,8 +16,8 @@ endif
 let g:loaded_nerdtree_fs_menu = 1
 
 call NERDTreeAddMenuItem({'text': '(a)dd a childnode', 'shortcut': 'a', 'callback': 'NERDTreeAddNode'})
-call NERDTreeAddMenuItem({'text': '(m)ove the curent node', 'shortcut': 'm', 'callback': 'NERDTreeMoveNode'})
-call NERDTreeAddMenuItem({'text': '(d)elete the curent node', 'shortcut': 'd', 'callback': 'NERDTreeDeleteNode'})
+call NERDTreeAddMenuItem({'text': '(m)ove the current node', 'shortcut': 'm', 'callback': 'NERDTreeMoveNode'})
+call NERDTreeAddMenuItem({'text': '(d)elete the current node', 'shortcut': 'd', 'callback': 'NERDTreeDeleteNode'})
 if g:NERDTreePath.CopyingSupported()
     call NERDTreeAddMenuItem({'text': '(c)copy the current node', 'shortcut': 'c', 'callback': 'NERDTreeCopyNode'})
 endif
@@ -57,7 +57,7 @@ function! NERDTreeAddNode()
     let newNodeName = input("Add a childnode\n".
                           \ "==========================================================\n".
                           \ "Enter the dir/file name to be created. Dirs end with a '/'\n" .
-                          \ "", curDirNode.path.str({'format': 'Glob'}) . g:NERDTreePath.Slash())
+                          \ "", curDirNode.path.str() . g:NERDTreePath.Slash(), "file")
 
     if newNodeName ==# ''
         call s:echo("Node Creation Aborted.")
@@ -85,7 +85,7 @@ function! NERDTreeMoveNode()
     let newNodePath = input("Rename the current node\n" .
                           \ "==========================================================\n" .
                           \ "Enter the new path for the node:                          \n" .
-                          \ "", curNode.path.str())
+                          \ "", curNode.path.str(), "file")
 
     if newNodePath ==# ''
         call s:echo("Node Renaming Aborted.")
@@ -163,7 +163,7 @@ function! NERDTreeCopyNode()
     let newNodePath = input("Copy the current node\n" .
                           \ "==========================================================\n" .
                           \ "Enter the new path to copy the node to:                   \n" .
-                          \ "", currentNode.path.str())
+                          \ "", currentNode.path.str(), "file")
 
     if newNodePath != ""
         "strip trailing slash
@@ -179,8 +179,10 @@ function! NERDTreeCopyNode()
         if confirmed
             try
                 let newNode = currentNode.copy(newNodePath)
-                call NERDTreeRender()
-                call newNode.putCursorHere(0, 0)
+                if !empty(newNode)
+                    call NERDTreeRender()
+                    call newNode.putCursorHere(0, 0)
+                endif
             catch /^NERDTree/
                 call s:echoWarning("Could not copy node")
             endtry
