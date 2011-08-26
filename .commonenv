@@ -12,6 +12,8 @@ expected_path=(
   "$HOME/bin"
   "$HOME/bin/git_achievements"
   "$HOME/.gem/ruby/1.8/bin"
+  "$HOME/Documents/android-sdk-mac_x86/tools"
+  "$HOME/Documents/android-sdk-mac_x86/platform-tools"
   /opt/local/apache2/bin
   /opt/python/bin
   /opt/python-build/python-2.4/bin
