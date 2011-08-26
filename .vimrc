@@ -26,6 +26,8 @@
 "    <leader>x       -- toggles NERDTree drawer
 "    <leader>b       -- shortcut for getting to NERDTree bookmarks
 "    <leader>q       -- Toggle the quickfix window
+"    <leader>pp      -- Run pep8 checker while trying not to laugh
+"                       childishly about the mapping.
 "    <leader><Enter> -- opens a line at the current column (this is
 "                       the reverse of J)
 "    <leader>c       -- Switch between light and dark colors
@@ -661,6 +663,11 @@ map <leader>a :Ack!<Space>
 " highlight search term matches
 let g:ackhighlight = 1
 
+" pep8                                                          {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" shortcut for pep8 searching (F5 is taken by the php debugger)
+let g:pep8_map='<leader>pp'
 
 " Mini buf explorer                                            {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
