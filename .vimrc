@@ -658,6 +658,9 @@ nmap <leader>ft :FufTag<Space>
 
 " shortcut for ack search
 map <leader>a :Ack!<Space>
+" highlight search term matches
+let g:ackhighlight = 1
+
 
 " Mini buf explorer                                            {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
