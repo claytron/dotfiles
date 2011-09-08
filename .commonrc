@@ -138,10 +138,6 @@ alias z1Ctl='zss/bin/zeoctl'
 alias zu='sudo -H -u zope'
 
 # buildout...
-alias bfg='bin/control fg || scripts/control fg || bin/instance fg'
-alias bfgs='bin/supervisord && bin/instance fg'
-alias bss='bin/supervisorctl shutdown'
-alias bs='bin/control stop || scripts/control stop || bin/instance stop'
 alias bbn='bin/buildout'
 alias bbN='bin/buildout -N'
 alias bbnew="python2.4 bootstrap.py && bbN"
@@ -259,3 +255,50 @@ if [ -d $VIRTUALENVS_DIR ]; then
 fi
 
 [[ -s /usr/local/lib/rvm ]] && source /usr/local/lib/rvm
+
+## Functions
+
+# start up a buildout given a myriad of ways to try
+function bfg() {
+    case "$1" in
+        stop) ACTION="stop";;
+        *) ACTION="start";;
+    esac
+
+    # start or stop a supervisor based install
+    if [ -x bin/supervisord ]; then
+        if [ $ACTION == "start" ]; then
+            bin/supervisord
+            bin/instance fg
+        else
+            bin/supervisorctl shutdown
+        fi
+    # use the old control script
+    elif [ -x bin/control ]; then
+        if [ $ACTION == "start" ]; then
+            bin/control fg
+        else
+            bin/control stop
+        fi
+    # use the new control script
+    elif [ -x scripts/control ]; then
+        if [ $ACTION == "start" ]; then
+            scripts/control fg
+        else
+            scripts/control stop
+        fi
+    # no script, just use the executables directly
+    elif [ -x bin/zeoserver ] && [ -x bin/instance ]; then
+        if [ $ACTION == "start" ]; then
+            bin/zeoserver start
+            bin/instance fg
+        else
+            bin/zeoserver stop
+        fi
+    # no zeoserver, just use the instance
+    elif [ -x bin/instance ]; then
+        bin/instance fg
+    else
+        print "Couldn't find a start script. Is this a third party buildout?"
+    fi
+}
