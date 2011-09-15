@@ -267,7 +267,7 @@ function bfg() {
 
     # start or stop a supervisor based install
     if [ -x bin/supervisord ]; then
-        if [ $ACTION == "start" ]; then
+        if [[ $ACTION == "start" ]]; then
             bin/supervisord
             bin/instance fg
         else
@@ -275,21 +275,21 @@ function bfg() {
         fi
     # use the old control script
     elif [ -x bin/control ]; then
-        if [ $ACTION == "start" ]; then
+        if [[ $ACTION == "start" ]]; then
             bin/control fg
         else
             bin/control stop
         fi
     # use the new control script
     elif [ -x scripts/control ]; then
-        if [ $ACTION == "start" ]; then
+        if [[ $ACTION == "start" ]]; then
             scripts/control fg
         else
             scripts/control stop
         fi
     # no script, just use the executables directly
     elif [ -x bin/zeoserver ] && [ -x bin/instance ]; then
-        if [ $ACTION == "start" ]; then
+        if [[ $ACTION == "start" ]]; then
             bin/zeoserver start
             bin/instance fg
         else
