@@ -20,6 +20,24 @@ makeMeLaugh() {
   fi
 }
 
+lulz() {
+  msg="I cannot make you have lulz"
+  if checkPath fortune && checkPath say; then
+    if [ -n "$1" ]; then
+        comedian=$1
+    elif [ -d /opt/local/share/games/fortune/comedy_short ]; then
+        comedian=comedy_short
+    else
+        echo $msg
+    fi
+    if [ -n "$comedian" ]; then
+        fortune $comedian | sed '$d' | say -v Fred
+    fi
+  else
+    echo $msg
+  fi
+}
+
 # helper function to search the $PATH for a given
 # executable.  useful for checks across different
 # systems.
