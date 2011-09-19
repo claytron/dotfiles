@@ -223,11 +223,6 @@ else
     alias whatsmyip="curl -s ip.appspot.com"
 fi
 
-# Path to Virtual Machine Library directory
-VM_LIBRARY="$HOME/Documents/Virtual\ Machines.localized"
-# Start up development VM in nogui mode
-alias noguivm="/Library/Application\ Support/VMware\ Fusion/vmrun -T fusion start $VM_LIBRARY/FreeBSD.vmwarevm/FreeBSD.vmx nogui"
-
 # use gnome-open if it is available
 if checkPath gnome-open; then
     # can't break the OS X habit :)
@@ -301,4 +296,31 @@ function bfg() {
     else
         print "Couldn't find a start script. Is this a third party buildout?"
     fi
+}
+
+# launch a VMWare vm in the background
+#
+# Set $VM_LIBRARY and $VM_VMRUN to alternate locations if
+# necessary
+function noguivm() {
+    local vmx_name
+    local vm_location
+    # the vmx filename will be based on the first arg given
+    vmx_name="$1.vmwarevm/$1.vmx"
+    # We will default to FreeBSD since that is the one used most
+    [ -z "$1" ] && vmx_name="FreeBSD.vmwarevm/FreeBSD.vmx"
+    # initialize the VM library folder if it hasn't been defined
+    [ -z "$VM_LIBRARY" ] && VM_LIBRARY="$HOME/Documents/Virtual Machines.localized"
+    # initialize the vmrun location
+    [ -z "$VM_VMRUN" ] && VM_VMRUN="/Library/Application Support/VMware Fusion/vmrun"
+    vm_location="$VM_LIBRARY/$vmx_name"
+    # If that file exists, let's start up the VM
+    # XXX: couldn't get the test to work...
+    #if [[ -e $vm_location ]]; then
+        print "Starting $vm_location"
+        # XXX: This is silly, wtf.
+        eval "'$VM_VMRUN'" -T fusion start "'$vm_location'" nogui
+    #else
+    #    print "VM not available: $vm_location"
+    #fi
 }
