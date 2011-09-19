@@ -37,4 +37,4 @@
 	remote = origin
 	merge = master
 [svn]
-	authorsfile = ~/.git-authorsfile
+	authorsfile = /Users/clayton/.git-authorsfile
