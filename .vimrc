@@ -775,6 +775,8 @@ nnoremap <silent> <leader>y :YRShow<CR>
 let g:yankring_max_history = 200
 " Make the yankring set the numbered registers
 let g:yankring_manage_numbered_reg = 1
+" don't leave the history in my home dir
+let g:yankring_history_dir = '$HOME/.backup/vim'
 
 " Auto command settings                                        {{{1
 " -----------------------------------------------------------------
