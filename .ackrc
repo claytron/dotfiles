@@ -11,6 +11,8 @@
 
 # add some more zope files to the plone type
 --type-add=plone=.zcml,.props,.dtml,.vpy,.kss
+# add specific type for page templates
+--type-set=zpt=.pt,.cpt
 # add .cfg for buildout files
 --type-set=buildout=.cfg
 # add a specific type for ZCML files
