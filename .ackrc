@@ -1,3 +1,11 @@
+# General Ack Settings
+####################################################################
+
+# only search with case sensitivity if there is mixed case
+--smart-case
+# follow symlinks
+--follow
+
 # Ack Type Settings
 ####################################################################
 
@@ -13,11 +21,3 @@
 --type-set=csv=.txt,.csv,.tsv
 # add in a type for gettext messages
 --type-set=gettext=.pot,.po
-
-# General Ack Settings
-####################################################################
-
-# only search with case sensitivity if there is mixed case
---smart-case
-# follow symlinks
---follow
