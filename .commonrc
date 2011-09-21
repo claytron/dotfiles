@@ -316,11 +316,11 @@ function noguivm() {
     vm_location="$VM_LIBRARY/$vmx_name"
     # If that file exists, let's start up the VM
     # XXX: couldn't get the test to work...
-    #if [[ -e $vm_location ]]; then
+    if [[ -e $vm_location ]]; then
         print "Starting $vm_location"
         # XXX: This is silly, wtf.
         eval "'$VM_VMRUN'" -T fusion start "'$vm_location'" nogui
-    #else
-    #    print "VM not available: $vm_location"
-    #fi
+    else
+        print "VM not available: $vm_location"
+    fi
 }
