@@ -23,3 +23,6 @@
 --type-set=csv=.txt,.csv,.tsv
 # add in a type for gettext messages
 --type-set=gettext=.pot,.po
+
+# types to ignore by default
+--nogettext
