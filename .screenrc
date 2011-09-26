@@ -14,6 +14,10 @@ startup_message off
 # the amount of scrollback
 defscrollback 1000
 
+# make sure to use utf-8 so that my vim will work properly (unicode
+# invisible characters)
+defutf8 on
+
 # Affects the copying of text regions
 crlf off
 
