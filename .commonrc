@@ -94,6 +94,7 @@ fi
 ## processes
 alias psa='ps axwww'
 alias psau='psa -u'
+alias psag='psa | grep -iv "Google Chrome"'
 # pipe into grep to find a proc
 alias psg='psa | sgrep'
 # search for python procs
