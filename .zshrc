@@ -152,6 +152,9 @@ compctl -s 'fetch gitify help h push update up' gitify
 autoload -U compinit
 compinit -C
 
+# make sure git-achievements can complete like git
+compdef git-achievements=git
+
 ## case-insensitive (all),partial-word and then substring completion
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
