@@ -303,6 +303,8 @@ function bfg() {
 #
 # Set $VM_LIBRARY and $VM_VMRUN to alternate locations if
 # necessary
+export VM_LIBRARY="$HOME/Documents/Virtual Machines.localized"
+export VM_VMRUN="/Library/Application Support/VMware Fusion/vmrun"
 function noguivm() {
     local vmx_name
     local vm_location
@@ -310,10 +312,6 @@ function noguivm() {
     vmx_name="$1.vmwarevm/$1.vmx"
     # We will default to FreeBSD since that is the one used most
     [ -z "$1" ] && vmx_name="FreeBSD.vmwarevm/FreeBSD.vmx"
-    # initialize the VM library folder if it hasn't been defined
-    [ -z "$VM_LIBRARY" ] && VM_LIBRARY="$HOME/Documents/Virtual Machines.localized"
-    # initialize the vmrun location
-    [ -z "$VM_VMRUN" ] && VM_VMRUN="/Library/Application Support/VMware Fusion/vmrun"
     vm_location="$VM_LIBRARY/$vmx_name"
     # If that file exists, let's start up the VM
     # XXX: couldn't get the test to work...
