@@ -59,6 +59,10 @@ alias -g bootstrap='bootstrap.py --distribute'
 # cvs setup
 export CVSROOT=:pserver:clayton@cvs:/var/cvsroot
 
+# automatically print timing statistics if the command took longer
+# than a minute
+export REPORTTIME=60
+
 setopt NO_BEEP
 # Changing Directories
 setopt AUTO_CD 
