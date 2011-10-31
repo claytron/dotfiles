@@ -65,6 +65,7 @@ setopt AUTO_CD
 setopt CDABLE_VARS
 setopt AUTO_PUSHD
 setopt PUSHDMINUS
+setopt PUSHD_IGNORE_DUPS
 # Include dot files in globbing
 # use the following to ignore dot files: % ^.*
 setopt GLOB_DOTS
