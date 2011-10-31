@@ -9,6 +9,7 @@
 --regex-zcml=/.*component=".*\.(.[^"]*)"/\1/m,component/
 --regex-zcml=/.*factory=".*\.(.[^"]*)"/\1/f,factory/
 --regex-zcml=/.*class=".*\.(.[^"]*)"/\1/c,class/
+--regex-zcml=/.*type=".*\.(.[^"]*)"/\1/t,type/
 
 --langdef=ini
 --langmap=ini:.cfg.ini
