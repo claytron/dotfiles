@@ -155,7 +155,7 @@ set cmdheight=2
 set wildmenu
 " comand <Tab> completion, list matches, then longest common part, then all.
 set wildmode=list:longest,full
-set wildignore+=*.pyc,*.pyo,CVS,.svn,.git,*.mo,.DS_Store,*.pt.cache,*.Python,*.o,*.lo,*.la,*~,.AppleDouble
+set wildignore+=*.pyc,*.pyo,CVS,.svn,.git,*.mo,.DS_Store,*.pt.cache,*.Python,*.o,*.lo,*.la,*~,.AppleDouble,*/blobstorage/*
 
 map <silent> <leader>s :set spell!<CR>
 set nospell
