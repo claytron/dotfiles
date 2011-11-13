@@ -826,6 +826,8 @@ if has("autocmd")
 
     " Zope and Plone files
     " -----------------------------------------------------------------
+    " set up zope page templates as the zpt filetype
+    au BufNewFile,BufRead *.pt,*.cpt,*.zpt set filetype=zpt syntax=xml
     " xml syntax for zcml files
     au BufNewFile,BufRead *.zcml set filetype=xml.zcml
     " css.dtml as css
