@@ -829,7 +829,7 @@ if has("autocmd")
     " set up zope page templates as the zpt filetype
     au BufNewFile,BufRead *.pt,*.cpt,*.zpt set filetype=zpt syntax=xml
     " xml syntax for zcml files
-    au BufNewFile,BufRead *.zcml set filetype=xml.zcml
+    au BufNewFile,BufRead *.zcml set filetype=zcml syntax=xml
     " css.dtml as css
     au BufNewFile,BufRead *.css.dtml set filetype=css.dtml
     " kss files as css
