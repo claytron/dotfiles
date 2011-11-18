@@ -654,13 +654,14 @@ let g:FuzzyFinderOptions.File.smart_bs = 0
 
 " Shortcuts for opening fuzzy finder
 nmap <leader>ff :FufFile<Space>**/
+nmap <leader>t :FufCoverageFile<Space>
 nmap <leader>ft :FufTag<Space>
 
 " CtrlP                                                        {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 " use my normal mapping
-let g:ctrlp_map = '<leader>t'
+"let g:ctrlp_map = '<leader>t'
 
 " working path setup
 let g:ctrlp_root_markers = ['bootstrap.py', 'buildout.cfg']
