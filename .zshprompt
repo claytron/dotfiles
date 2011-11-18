@@ -5,6 +5,9 @@
 # http://aperiodic.net/phil/prompt/
 
 function precmd {
+    # make sure that all new commands are available
+    rehash
+
     local TERMWIDTH
     (( TERMWIDTH = ${COLUMNS} - 1 ))
     

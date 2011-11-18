@@ -1,4 +1,7 @@
 function precmd {
+    # make sure that all new commands are available
+    rehash
+
     # DOS?!?!
     DOS_DIR=$(pwd | sed -e 's/\//\\/g')
 }

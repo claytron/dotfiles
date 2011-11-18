@@ -1,4 +1,7 @@
 function precmd {
+    # make sure that all new commands are available
+    rehash
+
     # Only show user in the prompt if it isn't yourself
     # Make sure and set the $ME var in .zshrc
     PR_IMPOSTER=""
