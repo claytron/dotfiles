@@ -663,6 +663,9 @@ nmap <leader>ft :FufTag<Space>
 " use my normal mapping
 let g:ctrlp_map = '<leader>t'
 
+" search by filename
+let g:ctrlp_by_filename = 1
+
 " working path setup
 let g:ctrlp_root_markers = ['bootstrap.py', 'buildout.cfg']
 " The above won't work with the omelette since it will open items
