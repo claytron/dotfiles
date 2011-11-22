@@ -671,6 +671,9 @@ let g:ctrlp_working_path_mode = 2
 let g:ctrlp_use_caching = 1
 let g:ctrlp_clear_cache_on_exit = 0
 
+" follow symlinks
+let g:ctrlp_follow_symlinks = 1
+
 " unlimited amount of files
 let g:ctrlp_max_files = 0
 let g:ctrlp_max_depth = 100
