@@ -665,7 +665,9 @@ let g:ctrlp_map = '<leader>t'
 
 " working path setup
 let g:ctrlp_root_markers = ['bootstrap.py', 'buildout.cfg']
-let g:ctrlp_working_path_mode = 2
+" The above won't work with the omelette since it will open items
+" that are symlinked in other directories.
+let g:ctrlp_working_path_mode = 0
 
 " ctrlp caching
 let g:ctrlp_use_caching = 1
