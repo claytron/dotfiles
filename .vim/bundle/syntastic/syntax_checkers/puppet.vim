@@ -27,9 +27,9 @@ function! SyntaxCheckers_puppet_GetLocList()
     if l:digits[0] == '2' && l:digits[1] == '7'
       let makeprg = 'puppet parser validate ' . 
             \ shellescape(expand('%')) .
-            \ ' --color=false'
+            \ ' --color=false --ignoreimport'
     else
-      let makeprg = 'puppet --color=false --parseonly '.shellescape(expand('%'))
+      let makeprg = 'puppet --color=false --parseonly --ignoreimport '.shellescape(expand('%'))
     endif
 
     let errorformat = 'err: Could not parse for environment %*[a-z]: %m at %f:%l'
