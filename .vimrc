@@ -84,6 +84,9 @@ let g:mapleader = ","
 " set the default encoding
 set enc=utf-8
 
+" only increment numbers and letters
+set nrformats=""
+
 " set up jj as mode switch
 map! jj <ESC>
 
