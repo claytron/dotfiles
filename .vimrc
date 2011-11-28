@@ -736,6 +736,12 @@ let tlist_markdown_settings = 'markdown;h:header'
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 nnoremap tt :TagbarToggle<CR>
 
+" unset the sort so it sorts by source file order
+let g:tagbar_sort = 0
+
+" always jump into the tagbar pane when it is opened
+let g:tagbar_autofocus = 1
+
 " ZCML type
 " XXX: This doesn't currently work because I use a filetype setting
 "      of "xml.zcml".
