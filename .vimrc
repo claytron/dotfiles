@@ -761,7 +761,15 @@ let g:tagbar_type_cfg = {
 " Markdown type
 let g:tagbar_type_markdown = {
     \ 'ctagstype': 'markdown',
-    \ 'kinds': ['h:header']
+    \ 'kinds': [
+          \ '1:header1',
+          \ '2:header2',
+          \ '3:header3',
+          \ '4:header4',
+          \ '5:header5',
+          \ '6:header6',
+          \ '7:header7'
+    \ ]
 \ }
 
 
