@@ -8,6 +8,7 @@
 --regex-zcml=/.*handler=".*\.(.[^"]*)"/\1/h,handler/
 --regex-zcml=/.*component=".*\.(.[^"]*)"/\1/m,component/
 --regex-zcml=/.*factory=".*\.(.[^"]*)"/\1/f,factory/
+--regex-zcml=/.*view=".*\.(.[^"]*)"/\1/v,view/
 --regex-zcml=/.*class=".*\.(.[^"]*)"/\1/c,class/
 --regex-zcml=/.*type=".*\.(.[^"]*)"/\1/t,type/
 

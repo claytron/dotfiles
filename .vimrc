@@ -759,6 +759,7 @@ let g:tagbar_type_zcml = {
         \ 'f:factory',
         \ 'c:class',
         \ 'i:id',
+        \ 'v:view',
         \ 's:schema'
     \ ]
 \}
