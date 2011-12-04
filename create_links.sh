@@ -76,6 +76,11 @@ for actual_dotfile in $HOME/.dotfiles/.*
         fi
     done
 
+
+# TODO: Modify creation script to handle nested directories that
+#       aren't under version control.
+###################################################################
+
 # take care of the .subversion/config file
 # -----------------------------------------------------------------
 actual_dotfile="$dotfiles_loc/config"
