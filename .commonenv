@@ -16,10 +16,10 @@ expected_path=(
   "$HOME/Documents/android-sdk-mac_x86/platform-tools"
   /opt/local/apache2/bin
   /opt/python/bin
-  /opt/python-build/python-2.4/bin
   /opt/local/bin
   /opt/local/sbin
   /opt/local/lib/postgresql83/bin
+  /opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin
   /opt/local/Library/Frameworks/Python.framework/Versions/2.4/bin
   /sw/bin
   /sw/sbin
