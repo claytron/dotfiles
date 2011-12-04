@@ -2,7 +2,7 @@
 " File:          autoload/ctrlp.vim
 " Description:   Fuzzy file, buffer and MRU file finder.
 " Author:        Kien Nguyen <github.com/kien>
-" Version:       1.6.2
+" Version:       1.6.3
 " =============================================================================
 
 " Static variables {{{
@@ -31,6 +31,7 @@ fu! s:opts()
 		\ 'g:ctrlp_root_markers':          ['s:rmarkers', []],
 		\ 'g:ctrlp_split_window':          ['s:splitwin', 0],
 		\ 'g:ctrlp_use_caching':           ['s:caching', 1],
+		\ 'g:ctrlp_use_migemo':            ['s:migemo', 0],
 		\ 'g:ctrlp_user_command':          ['s:usrcmd', ''],
 		\ 'g:ctrlp_working_path_mode':     ['s:pathmode', 2],
 		\ }
@@ -66,7 +67,9 @@ let [s:compare_lim, s:nocache_lim, s:mltipats_lim] = [3000, 4000, 2000]
 fu! s:Open()
 	let [s:cwd, s:winres] = [getcwd(), winrestcmd()]
 	let [s:crfile, s:crfpath] = [expand('%:p', 1), expand('%:p:h', 1)]
-	let [s:crword, s:crvisual] = [expand('<cword>'), s:lastvisual()]
+	let [s:crword, s:crline] = [expand('<cword>'), getline('.')]
+	let [s:tagfiles, s:crcursor] = [s:tagfiles(), getpos('.')]
+	let s:crvisual = s:lastvisual()
 	sil! exe s:mwbottom ? 'bo' : 'to' '1new ControlP'
 	let s:currwin = s:mwbottom ? winnr('#') : winnr('#') + 1
 	let [s:bufnr, s:prompt] = [bufnr('%'), ['', '', '']]
@@ -94,8 +97,9 @@ fu! s:Close()
 	let [g:ctrlp_lines, g:ctrlp_allfiles] = [[], []]
 	exe s:winres
 	unl! s:focus s:hisidx s:hstgot s:marked s:statypes s:cline s:init s:savestr
-		\ s:crfile s:crfpath s:crword s:crvisual g:ctrlp_nolimit
-	cal s:recordhist(join(s:prompt, ''))
+		\ s:crfile s:crfpath s:crword s:crvisual s:tagfiles s:crline s:crcursor
+		\ g:ctrlp_nolimit
+	cal ctrlp#recordhist()
 	ec
 endf
 "}}}
@@ -132,12 +136,12 @@ fu! s:GlobPath(dirs, allfiles, depth)
 		let entries = filter(entries, 'getftype(v:val) != "link"')
 	en
 	let g:ctrlp_allfiles = filter(copy(entries), '!isdirectory(v:val)')
-	let ftrfunc = s:dotfiles ? 's:dirfilter(v:val)' : 'isdirectory(v:val)'
+	let ftrfunc = s:dotfiles ? 'ctrlp#dirfilter(v:val)' : 'isdirectory(v:val)'
 	let alldirs = filter(entries, ftrfunc)
 	cal extend(g:ctrlp_allfiles, a:allfiles, 0)
 	let depth = a:depth + 1
 	if !empty(alldirs) && !s:maxfiles(len(g:ctrlp_allfiles)) && depth <= s:maxdepth
-		sil! cal s:progress(len(g:ctrlp_allfiles))
+		sil! cal ctrlp#progress(len(g:ctrlp_allfiles))
 		cal s:GlobPath(join(alldirs, ','), g:ctrlp_allfiles, depth)
 	en
 endf
@@ -158,28 +162,26 @@ fu! s:UserCommand(path, lscmd)
 	en
 endf
 
-fu! s:Files(path)
-	let cache_file = ctrlp#utils#cachefile()
+fu! s:Files()
+	let [cwd, cache_file] = [getcwd(), ctrlp#utils#cachefile()]
 	if g:ctrlp_newcache || !filereadable(cache_file) || !s:caching
 		let lscmd = s:lscommand()
 		" Get the list of files
 		if empty(lscmd)
-			cal s:GlobPath(a:path, [], 0)
+			cal s:GlobPath(cwd, [], 0)
 		el
-			sil! cal s:progress('Waiting...')
-			try | cal s:UserCommand(a:path, lscmd) | cat | retu [] | endt
+			sil! cal ctrlp#progress('Waiting...')
+			try | cal s:UserCommand(cwd, lscmd) | cat | retu [] | endt
 		en
 		" Remove base directory
-		let path = &ssl || !exists('+ssl') ? getcwd().'/' :
-			\ substitute(getcwd(), '\\', '\\\\', 'g').'\\'
-		cal map(g:ctrlp_allfiles, 'substitute(v:val, path, "", "g")')
+		cal ctrlp#rmbasedir(g:ctrlp_allfiles)
 		let read_cache = 0
 	el
 		let g:ctrlp_allfiles = ctrlp#utils#readfile(cache_file)
 		let read_cache = 1
 	en
 	if len(g:ctrlp_allfiles) <= s:compare_lim
-		cal sort(g:ctrlp_allfiles, 's:complen')
+		cal sort(g:ctrlp_allfiles, 'ctrlp#complen')
 	en
 	cal s:writecache(read_cache, cache_file)
 	retu g:ctrlp_allfiles
@@ -198,10 +200,11 @@ fu! s:Buffers() "{{{
 	retu allbufs
 endf "}}}
 " * MatchedItems() {{{
-fu! s:MatchIt(items, pat, limit)
+fu! s:MatchIt(items, pat, limit, ispathitem)
 	let [items, pat, limit, newitems] = [a:items, a:pat, a:limit, []]
-	let mfunc = s:byfname ? 's:matchfname'
-		\ : s:itemtype > 2 ? 's:matchtab' : 'match'
+	let mfunc = s:byfname && a:ispathitem ? 's:matchfname'
+		\ : s:itemtype > 2 && len(items) < 30000 && !a:ispathitem ? 's:matchtab'
+		\ : 'match'
 	for item in items
 		if call(mfunc, [item, pat]) >= 0 | cal add(newitems, item) | en
 		if limit > 0 && len(newitems) >= limit | brea | en
@@ -210,7 +213,7 @@ fu! s:MatchIt(items, pat, limit)
 endf
 
 fu! s:MatchedItems(items, pats, limit)
-	let [items, pats, limit] = [a:items, a:pats, a:limit]
+	let [items, pats, limit, ipt] = [a:items, a:pats, a:limit, s:ispathitem()]
 	" If items is longer than s:mltipats_lim, use only the last pattern
 	if len(items) >= s:mltipats_lim | let pats = [pats[-1]] | en
 	cal map(pats, 'substitute(v:val, "\\\~", "\\\\\\~", "g")')
@@ -225,7 +228,7 @@ fu! s:MatchedItems(items, pats, limit)
 			retu exists('newitems') ? newitems : []
 		el " Start here, go back up if have 2 or more in pats
 			" Loop through the items
-			let newitems = s:MatchIt(items, each, limit)
+			let newitems = s:MatchIt(items, each, limit, ipt)
 		en
 	endfo
 	let s:matches = len(newitems)
@@ -234,6 +237,19 @@ endf
 "}}}
 fu! s:SplitPattern(str, ...) "{{{
 	let str = s:sanstail(a:str)
+	if s:migemo && s:regexp && len(str) > 0 && executable('cmigemo')
+		let dict = s:glbpath(&rtp, printf("dict/%s/migemo-dict", &encoding), 1)
+		if !len(dict)
+			let dict = s:glbpath(&rtp, "dict/migemo-dict", 1)
+		en
+		if len(dict)
+			let [tokens, str, cmd] = [split(str, '\s'), '', 'cmigemo -v -w %s -d %s']
+			for token in tokens
+				let rtn = system(printf(cmd, shellescape(token), shellescape(dict)))
+				let str .= !v:shell_error && len(rtn) > 0 ? '.*'.rtn : token
+			endfo
+		en
+	en
 	let s:savestr = str
 	if s:regexp || match(str, '\\\(zs\|ze\|<\|>\)\|[*|]') >= 0
 		let array = [s:regexfilter(str)]
@@ -269,7 +285,7 @@ fu! s:Render(lines, pat)
 	" Print the new items
 	if empty(lines)
 		setl nocul
-		cal setline(1, ' == NO MATCHES ==')
+		cal setline(1, ' == NO ENTRIES ==')
 		cal s:unmarksigns()
 		if s:dohighlight() | cal clearmatches() | en
 		retu
@@ -327,7 +343,7 @@ fu! s:BuildPrompt(upd, ...)
 	if a:upd && ( s:matches || s:regexp || match(str, '[*|]') >= 0 ) && !lazy
 		sil! cal s:Update(str)
 	en
-	sil! cal s:statusline()
+	sil! cal ctrlp#statusline()
 	" Toggling
 	let [hiactive, hicursor, base] = exists('a:1') && !a:1
 		\ ? ['Comment', 'Comment', tr(base, '>', '-')]
@@ -606,9 +622,11 @@ fu! s:ToggleRegex()
 endf
 
 fu! s:ToggleByFname()
-	let s:byfname = s:byfname ? 0 : 1
-	cal s:MapKeys(s:Focus(), 1)
-	cal s:PrtSwitcher()
+	if s:ispathitem()
+		let s:byfname = s:byfname ? 0 : 1
+		cal s:MapKeys(s:Focus(), 1)
+		cal s:PrtSwitcher()
+	en
 endf
 
 fu! s:ToggleType(dir)
@@ -742,7 +760,7 @@ fu! s:MarkToOpen()
 			exe 'sign place' key 'line='.line('.').' name=ctrlpmark buffer='.s:bufnr
 		en
 	en
-	sil! cal s:statusline()
+	sil! cal ctrlp#statusline()
 endf
 
 fu! s:OpenMulti()
@@ -779,7 +797,7 @@ endf
 "}}}
 " ** Helper functions {{{
 " Sorting {{{
-fu! s:complen(s1, s2)
+fu! ctrlp#complen(s1, s2)
 	" By length
 	let [len1, len2] = [strlen(a:s1), strlen(a:s2)]
 	retu len1 == len2 ? 0 : len1 > len2 ? 1 : -1
@@ -828,7 +846,7 @@ fu! s:shortest(lens)
 endf
 
 fu! s:mixedsort(s1, s2)
-	let [cml, cln] = [s:compmatlen(a:s1, a:s2), s:complen(a:s1, a:s2)]
+	let [cml, cln] = [s:compmatlen(a:s1, a:s2), ctrlp#complen(a:s1, a:s2)]
 	if s:itemtype < 3 && s:height < 51
 		let par = s:comparent(a:s1, a:s2)
 		if s:height < 21
@@ -840,7 +858,7 @@ fu! s:mixedsort(s1, s2)
 endf
 "}}}
 " Statusline {{{
-fu! s:statusline(...)
+fu! ctrlp#statusline(...)
 	if !exists('s:statypes')
 		let s:statypes = [
 			\ ['files', 'fil'],
@@ -873,15 +891,29 @@ fu! s:dismrk()
 		\ '%<'.join(values(map(copy(s:marked), 'split(v:val, "[\\/]")[-1]')), ', ')
 endf
 
-fu! s:progress(len)
+fu! ctrlp#progress(len)
 	if has('macunix') || has('mac') | sl 1m | en
 	let &l:stl = '%#Function# '.a:len.' %* %=%<%#LineNr# '.getcwd().' %*'
 	redr
 endf
 "}}}
 " Paths {{{
-fu! s:dirfilter(val)
+fu! ctrlp#dirfilter(val)
 	retu isdirectory(a:val) && match(a:val, '[\/]\.\{,2}$') < 0 ? 1 : 0
+endf
+
+fu! s:ispathitem()
+	let ext = s:itemtype - ( g:ctrlp_builtins + 1 )
+	if s:itemtype < 3 || ( s:itemtype > 2 && g:ctrlp_ext_vars[ext][3] == 'dir' )
+		retu 1
+	en
+	retu 0
+endf
+
+fu! ctrlp#rmbasedir(items)
+	let path = &ssl || !exists('+ssl') ? getcwd().'/' :
+		\ substitute(getcwd(), '\\', '\\\\', 'g').'\\'
+	retu map(a:items, 'substitute(v:val, path, "", "g")')
 endf
 
 fu! s:parentdir(curr)
@@ -944,9 +976,10 @@ fu! ctrlp#fnesc(path)
 	retu exists('*fnameescape') ? fnameescape(a:path) : escape(a:path, " %#*?|<\"\n")
 endf
 
-fu! ctrlp#setdir(path)
+fu! ctrlp#setdir(path, ...)
+	let cmd = exists('a:1') ? a:1 : 'lc!'
 	try
-		exe 'lc!' ctrlp#fnesc(a:path)
+		exe cmd.' '.ctrlp#fnesc(a:path)
 	cat
 		cal ctrlp#msg("Can't change working dir. Directory not exists.")
 	endt
@@ -954,7 +987,7 @@ endf
 "}}}
 " Highlighting {{{
 fu! s:syntax()
-	sy match CtrlPNoEntries '^ == NO MATCHES ==$'
+	sy match CtrlPNoEntries '^ == NO ENTRIES ==$'
 	sy match CtrlPLineMarker '^>'
 	hi link CtrlPNoEntries Error
 	hi CtrlPLineMarker guifg=bg
@@ -990,11 +1023,12 @@ fu! s:gethistdata()
 	retu ctrlp#utils#readfile(s:gethistloc()[1])
 endf
 
-fu! s:recordhist(str)
-	if empty(a:str) || !s:maxhst | retu | en
+fu! ctrlp#recordhist()
+	let str = join(s:prompt, '')
+	if empty(str) || !s:maxhst | retu | en
 	let hst = s:hstry
-	if len(hst) > 1 && hst[1] == a:str | retu | en
-	cal extend(hst, [a:str], 1)
+	if len(hst) > 1 && hst[1] == str | retu | en
+	cal extend(hst, [str], 1)
 	if len(hst) > s:maxhst | cal remove(hst, s:maxhst, -1) | en
 endf
 "}}}
@@ -1121,14 +1155,16 @@ endf
 " Misc {{{
 fu! s:specinputs()
 	let str = join(s:prompt, '')
-	if str == '..' && !s:itemtype
+	let type = s:itemtype > 2 ?
+		\ g:ctrlp_ext_vars[s:itemtype - ( g:ctrlp_builtins + 1 )][3] : s:itemtype
+	if str == '..' && type =~ '0\|dir'
 		cal s:parentdir(getcwd())
-		cal s:SetLines(0)
+		cal s:SetLines(s:itemtype)
 		cal s:PrtClear()
 		retu 1
-	elsei ( str == '/' || str == '\' ) && !s:itemtype
+	elsei ( str == '/' || str == '\' ) && type =~ '0\|dir'
 		cal s:SetWD(2, 0)
-		cal s:SetLines(0)
+		cal s:SetLines(s:itemtype)
 		cal s:PrtClear()
 		retu 1
 	elsei str == '?'
@@ -1142,11 +1178,15 @@ endf
 
 fu! s:lastvisual()
 	let [cview, oreg, oreg_type] = [winsaveview(), getreg('v'), getregtype('v')]
-	norm! gv"vy
+	sil! norm! gv"vy
 	let selected = substitute(getreg('v'), '\n', '\\n', 'g')
 	cal setreg('v', oreg, oreg_type)
 	cal winrestview(cview)
 	retu selected
+endf
+
+fu! ctrlp#msg(msg)
+	echoh Identifier | echon "CtrlP: ".a:msg | echoh None
 endf
 
 fu! s:openfile(cmd, filpath)
@@ -1161,10 +1201,6 @@ fu! s:openfile(cmd, filpath)
 			sil! norm! zOzz
 		en
 	endt
-endf
-
-fu! ctrlp#msg(msg)
-	echoh Identifier | echon "CtrlP: ".a:msg | echoh None
 endf
 
 fu! s:writecache(read_cache, cache_file)
@@ -1189,10 +1225,6 @@ fu! s:regexfilter(str)
 	retu str
 endf
 
-fu! ctrlp#exit()
-	cal s:PrtExit()
-endf
-
 fu! s:walker(max, pos, dir)
 	retu a:dir > 0 ? a:pos < a:max ? a:pos + 1 : 0 : a:pos > 0 ? a:pos - 1 : a:max
 endf
@@ -1202,7 +1234,7 @@ fu! s:matchfname(item, pat)
 endf
 
 fu! s:matchtab(item, pat)
-	retu match(split(a:item, '\t[^\t]\+$')[0], a:pat)
+	retu match(split(a:item, '\t\+[^\t]\+$')[0], a:pat)
 endf
 
 fu! s:maxfiles(len)
@@ -1243,12 +1275,29 @@ fu! s:lscommand()
 	en
 endf
 "}}}
+" Extensions {{{
+fu! s:tagfiles()
+	retu filter(map(tagfiles(), 'fnamemodify(v:val, ":p")'), 'filereadable(v:val)')
+endf
+
+fu! ctrlp#exit()
+	cal s:PrtExit()
+endf
+
+fu! ctrlp#prtclear()
+	cal s:PrtClear()
+endf
+
+fu! ctrlp#setlines(type)
+	cal s:SetLines(a:type)
+endf
+"}}}
 "}}}
 " * Initialization {{{
 fu! s:SetLines(type)
 	let s:itemtype = a:type
 	let types = [
-		\ 's:Files(getcwd())',
+		\ 's:Files()',
 		\ 's:Buffers()',
 		\ 'ctrlp#mrufiles#list(-1)',
 		\ ]
