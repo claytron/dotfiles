@@ -667,6 +667,9 @@ nmap <leader>ft :FufTag<Space>
 " use my normal mapping
 let g:ctrlp_map = '<leader>t'
 
+" load ctrlp extensions
+let g:ctrlp_extensions = ['tag']
+
 " search by filename
 let g:ctrlp_by_filename = 1
 
