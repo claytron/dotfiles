@@ -97,6 +97,14 @@ to_create="$HOME/.subversion/$dotfile"
 # actually create/remove the link
 linkDotfile $dotfile $to_create $actual_dotfile
 
+# take care of the .subversion/servers file
+# -----------------------------------------------------------------
+actual_dotfile="$dotfiles_loc/authorized_keys"
+dotfile="authorized_keys"
+to_create="$HOME/.ssh/$dotfile"
+# actually create/remove the link
+linkDotfile $dotfile $to_create $actual_dotfile
+
 # Take care of awesome configs
 # -----------------------------------------------------------------
 if [ -d "$HOME/.config" ]; then
