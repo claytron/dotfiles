@@ -23,6 +23,10 @@ excluded=(
 chmod 700 $dotfiles_loc
 # make sure my home dir is secured
 chmod 700 $HOME
+# Ensure that StrictModes doesn't cause us issues with SSH key auth
+if [ -e "$dotfiles_loc/authorized_keys" ]; then
+    chmod 600 "$dotfiles_loc/authorized_keys"
+fi
 
 notExcluded() {
     # check that the value exists
