@@ -4,7 +4,7 @@
 " Author:        Kien Nguyen <github.com/kien>
 " =============================================================================
 
-" Init {{{
+" Init {{{1
 if exists('g:loaded_ctrlp_tag') && g:loaded_ctrlp_tag
 	fini
 en
@@ -17,8 +17,7 @@ let g:ctrlp_ext_vars = exists('g:ctrlp_ext_vars') && !empty(g:ctrlp_ext_vars)
 	\ ? add(g:ctrlp_ext_vars, s:tag_var) : [s:tag_var]
 
 let s:id = g:ctrlp_builtins + len(g:ctrlp_ext_vars)
-"}}}
-" Utilities {{{
+" Utilities {{{1
 fu! s:nodup(items)
 	let dict = {}
 	for each in a:items
@@ -31,7 +30,7 @@ fu! s:findcount(str)
 	let [tg, fname] = split(a:str, '\t\+\ze[^\t]\+$')
 	let [&l:tags, fname] = [s:ltags, expand(fname, 1)]
 	let tgs = taglist('^'.tg.'$')
-	if empty(tgs) | retu [0, 0] | en
+	if empty(tgs) | retu [1, 1] | en
 	let [fnd, ct, pos] = [0, 0, 0]
 	for each in tgs
 		let ct += 1
@@ -45,19 +44,34 @@ fu! s:findcount(str)
 	endfo
 	retu [fnd, pos]
 endf
-"}}}
-" Public {{{
+
+fu! s:filter(tags)
+	let [nr, alltags] = [0, a:tags]
+	wh 0 < 1
+		if alltags[nr] =~ '^!' && alltags[nr] !~ '^!_TAG_'
+			let nr += 1
+			con
+		en
+		if alltags[nr] =~ '^!_TAG_' && len(alltags) > nr
+			cal remove(alltags, nr)
+		el
+			brea
+		en
+	endw
+	retu alltags
+endf
+" Public {{{1
 fu! ctrlp#tag#init(tagfiles)
 	if empty(a:tagfiles) | retu [] | en
 	let tagfiles = sort(s:nodup(a:tagfiles))
 	let s:ltags  = join(tagfiles, ',')
 	let g:ctrlp_alltags = []
 	for each in tagfiles
-		let alltags = ctrlp#utils#readfile(each)
+		let alltags = s:filter(ctrlp#utils#readfile(each))
 		cal extend(g:ctrlp_alltags, alltags)
 	endfo
-	sy match CtrlPTagFilename '\zs\t.*\ze$'
-	hi link CtrlPTagFilename Comment
+	sy match CtrlPTabExtra '\zs\t.*\ze$'
+	hi link CtrlPTabExtra Comment
 	retu g:ctrlp_alltags
 endf
 
@@ -66,19 +80,18 @@ fu! ctrlp#tag#accept(mode, str)
 	let str = matchstr(a:str, '^[^\t]\+\t\+[^\t]\+\ze\t')
 	let [md, tg] = [a:mode, split(str, '^[^\t]\+\zs\t')[0]]
 	let fnd = s:findcount(str)
-	if fnd[0] == 1
-		let cmd = md == 't' ? 'tabe' : md == 'h' ? 'new'
-			\ : md == 'v' ? 'vne' : 'ene'
-	el
-		let cmd = md == 't' ? 'tab stj' : md == 'h' ? 'stj'
-			\ : md == 'v' ? 'vert stj' : 'tj'
-	en
+	let cmds = {
+		\ 't': ['tabe', 'tab stj'],
+		\ 'h': ['new', 'stj'],
+		\ 'v': ['vne', 'vert stj'],
+		\ 'e': ['ene', 'tj'],
+		\ }
+	let cmd = fnd[0] == 1 ? cmds[md][0] : cmds[md][1]
 	let cmd = cmd =~ 'tj\|ene' && &modified ? 'hid '.cmd : cmd
 	try
 		if fnd[0] == 1
 			exe cmd
 			let &l:tags = s:ltags
-			let tg = tg =~ '^!' ? substitute(tg, '!\(.*\)$', '/^!\1$', '') : tg
 			exe fnd[1].'ta' tg
 		el
 			exe cmd.' '.tg
@@ -93,4 +106,4 @@ fu! ctrlp#tag#id()
 endf
 "}}}
 
-" vim:fen:fdl=0:ts=2:sw=2:sts=2
+" vim:fen:fdm=marker:fmr={{{,}}}:fdl=0:fdc=1:ts=2:sw=2:sts=2

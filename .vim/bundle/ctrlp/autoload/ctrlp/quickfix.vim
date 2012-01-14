@@ -4,14 +4,14 @@
 " Author:        Kien Nguyen <github.com/kien>
 " =============================================================================
 
-" Init {{{
+" Init {{{1
 if exists('g:loaded_ctrlp_quickfix') && g:loaded_ctrlp_quickfix
 	fini
 en
 let g:loaded_ctrlp_quickfix = 1
 
 let s:var_qf = ['ctrlp#quickfix#init()', 'ctrlp#quickfix#accept', 'quickfix',
-	\ 'qfx', [1]]
+	\ 'qfx']
 
 let g:ctrlp_ext_vars = exists('g:ctrlp_ext_vars') && !empty(g:ctrlp_ext_vars)
 	\ ? add(g:ctrlp_ext_vars, s:var_qf) : [s:var_qf]
@@ -22,8 +22,7 @@ fu! s:lineout(dict)
 	retu printf('%s|%d:%d| %s', bufname(a:dict['bufnr']), a:dict['lnum'],
 		\ a:dict['col'], matchstr(a:dict['text'], '\s*\zs.*\S'))
 endf
-"}}}
-" Public {{{
+" Public {{{1
 fu! ctrlp#quickfix#init()
 	let g:ctrlp_nolimit = 1
 	sy match CtrlPqfLineCol '|\zs\d\+:\d\+\ze|'
@@ -44,7 +43,7 @@ fu! ctrlp#quickfix#accept(mode, str)
 	cat
 		cal ctrlp#msg("Invalid command or argument.")
 	fina
-		cal cursor(items[2], items[3]) | sil! norm! zOzz
+		cal cursor(items[2], items[3]) | sil! norm! zvzz
 	endt
 endf
 
@@ -53,4 +52,4 @@ fu! ctrlp#quickfix#id()
 endf
 "}}}
 
-" vim:fen:fdl=0:ts=2:sw=2:sts=2
+" vim:fen:fdm=marker:fmr={{{,}}}:fdl=0:fdc=1:ts=2:sw=2:sts=2
