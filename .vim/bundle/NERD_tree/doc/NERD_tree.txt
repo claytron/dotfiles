@@ -129,9 +129,13 @@ The following features and functionality are provided by the NERD tree:
     Close the NERD tree in this tab.
 
 :NERDTreeFind                                                  *:NERDTreeFind*
-    Find the current file in the tree. If no tree exists for the current tab,
-    or the file is not under the current root, then initialize a new tree where
-    the root is the directory of the current file.
+    Find the current file in the tree.
+
+    If not tree exists and the current file is under vim's CWD, then init a
+    tree at the CWD and reveal the file. Otherwise init a tree in the current
+    file's directory.
+
+    In any case, the current file is revealed and the cursor is placed on it.
 
 ------------------------------------------------------------------------------
 2.2. Bookmarks                                             *NERDTreeBookmarks*
@@ -155,6 +159,8 @@ Note that the following commands are only available in the NERD tree buffer.
 :Bookmark <name>
     Bookmark the current node as <name>. If there is already a <name>
     bookmark, it is overwritten. <name> must not contain spaces.
+    If <name> is not provided, it defaults to the file or directory name.
+    For directories, a trailing slash is present.
 
 :BookmarkToRoot <bookmark>
     Make the directory corresponding to <bookmark> the new root. If a treenode
@@ -985,22 +991,32 @@ NERDTreeAddKeyMap({options})                             *NERDTreeAddKeyMap()*
     "quickhelpText" - the text that will appear in the quickhelp (see
     |NERDTree-?|)
 
+    Additionally, a "scope" argument may be supplied. This constrains the
+    mapping so that it is only activated if the cursor is on a certain object.
+    That object is then passed into the handling method. Possible values are:
+        "FileNode" - a file node
+        "DirNode" - a directory node
+        "Node" - a file or directory node
+        "Bookmark" - A bookmark
+        "all" - the keymap is not constrained to any scope (default). When
+        thei is used, the handling function is not passed any arguments.
+
+
     Example: >
         call NERDTreeAddKeyMap({
-               \ 'key': 'b',
-               \ 'callback': 'NERDTreeEchoCurrentNode',
+               \ 'key': 'foo',
+               \ 'callback': 'NERDTreeCDHandler',
                \ 'quickhelpText': 'echo full path of current node' })
+               \ 'scope': 'DirNode'
 
-        function! NERDTreeEchoCurrentNode()
-            let n = g:NERDTreeFileNode.GetSelected()
-            if n != {}
-                echomsg 'Current node: ' . n.path.str()
-            endif
+        function! NERDTreeCDHandler(dirnode)
+            call a:dirnode.changeToDir()
         endfunction
 <
     This code should sit in a file like ~/.vim/nerdtree_plugin/mymapping.vim.
-    It adds a (rather useless) mapping on 'b' which echos the full path to the
-    current node.
+    It adds a (redundant) mapping on 'foo' which changes vim's CWD to that of
+    the current dir node. Note this mapping will only fire when the cursor is
+    on a directory node.
 
 ------------------------------------------------------------------------------
 4.2. Menu API                                                *NERDTreeMenuAPI*
@@ -1110,8 +1126,26 @@ The latest dev versions are on github
 ==============================================================================
 6. Changelog                                               *NERDTreeChangelog*
 
-4.x.x
-    - Fix a bug with :NERDTreeFind and symlinks. Thanks to Vitaly Bogdanov.
+Next
+    - add 'scope' argument to the key map API
+    - add NERDTreeCustomIgnoreFilter hook - needs doc
+
+4.2.0
+    - Add NERDTreeDirArrows option to make the UI use pretty arrow chars
+      instead of the old +~| chars to define the tree structure (sickill)
+    - shift the syntax highlighting out into its own syntax file (gnap)
+    - add some mac specific options to the filesystem menu - for macvim
+      only (andersonfreitas)
+    - Add NERDTreeMinimalUI option to remove some non functional parts of the
+      nerdtree ui (camthompson)
+    - tweak the behaviour of :NERDTreeFind - see :help :NERDTreeFind for the
+      new behaviour (benjamingeiger)
+    - if no name is given to :Bookmark, make it default to the name of the
+      target file/dir (minyoung)
+    - use 'file' completion when doing copying, create, and move
+      operations (EvanDotPro)
+    - lots of misc bug fixes (paddyoloughlin, sdewald, camthompson, Vitaly
+      Bogdanov, AndrewRadev, mathias, scottstvnsn, kml, wycats, me RAWR!)
 
 4.1.0
     features:
@@ -1248,6 +1282,21 @@ just downloaded pr0n instead.
     jfilip1024
     Chris Chambers
     Vitaly Bogdanov
+    Patrick O'Loughlin (paddyoloughlin)
+    Cam Thompson (camthompson)
+    Marcin Kulik (sickill)
+    Steve DeWald (sdewald)
+    Ivan Necas (iNecas)
+    George Ang (gnap)
+    Evan Coury (EvanDotPro)
+    Andrew Radev (AndrewRadev)
+    Matt Gauger (mathias)
+    Scott Stevenson (scottstvnsn)
+    Anderson Freitas (andersonfreitas)
+    Kamil K. Lemański (kml)
+    Yehuda Katz (wycats)
+    Min-Young Wu (minyoung)
+    Benjamin Geiger (benjamingeiger)
 
 ==============================================================================
 8. License                                                   *NERDTreeLicense*
