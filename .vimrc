@@ -148,6 +148,13 @@ nnoremap <silent> <leader>h1 :execute 'match InterestingWord1 /\<<c-r><c-w>\>/'<
 nnoremap <silent> <leader>h2 :execute '2match InterestingWord2 /\<<c-r><c-w>\>/'<cr>
 nnoremap <silent> <leader>h3 :execute '3match InterestingWord3 /\<<c-r><c-w>\>/'<cr>
 
+" shortcut to cycle through quickfix list
+nnoremap <m-Down> :cnext<cr>
+nnoremap <m-Up> :cprevious<cr>
+
+" shortcut to cycle through location list
+nnoremap <m-Right> :lnext<cr>
+nnoremap <m-Left> :lprevious<cr>
 " Visual settings                                              {{{1
 " -----------------------------------------------------------------
 
@@ -997,6 +1004,9 @@ if has("gui_running")
 
     " OS Specific
     if has("gui_macvim")
+        " disable the meta navigation keys set by macvim (so I can use them
+        " for other things)
+        let macvim_skip_cmd_opt_movement = 1
         " use the whole screen
         set fuoptions=maxvert,maxhorz
         " fancy powerline!
