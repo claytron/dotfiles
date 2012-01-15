@@ -140,6 +140,12 @@ cnoremap <C-E> <End>
 " open up my vimrc in a tab for modifications
 map <leader>v :tabedit $MYVIMRC<CR>
 
+" Highlight the word under the cursor
+" Taken from https://bitbucket.org/sjl/dotfiles/src/tip/vim/.vimrc
+nnoremap <silent> <leader>h1 :execute 'match InterestingWord1 /\<<c-r><c-w>\>/'<cr>
+nnoremap <silent> <leader>h2 :execute '2match InterestingWord2 /\<<c-r><c-w>\>/'<cr>
+nnoremap <silent> <leader>h3 :execute '3match InterestingWord3 /\<<c-r><c-w>\>/'<cr>
+
 " Visual settings                                              {{{1
 " -----------------------------------------------------------------
 
@@ -276,6 +282,13 @@ let g:solarized_termcolors=16
 " Command to call the ColorSwitch funciton
 command! -nargs=? -complete=customlist,s:completeColorSchemes ColorSwitcher :call s:colorSwitch(<q-args>)
 
+function! s:extraHighlights()
+    " Syntax highlights for the mappings set above
+    hi InterestingWord1 guifg=#000000 guibg=#FF4300
+    hi InterestingWord2 guifg=#000000 guibg=#53FF00
+    hi InterestingWord3 guifg=#000000 guibg=#FF74F8
+endfunction
+
 " A function to toggle between light and dark colors
 function! s:colorSwitch(...)
     " function to switch colorscheme
@@ -296,6 +309,8 @@ function! s:colorSwitch(...)
         else
             call ChangeMe(a:1)
         endif
+        " Put the extra highlights back in place
+        call s:extraHighlights()
         return
     endif
 
@@ -308,6 +323,9 @@ function! s:colorSwitch(...)
         set background=dark
         call ChangeMe(g:dark_theme)
     endif
+
+    " Put the extra highlights back in place
+    call s:extraHighlights()
 endfunction
 
 " completion function for colorscheme names
