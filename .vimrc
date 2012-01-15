@@ -296,6 +296,7 @@ function! s:extraHighlights()
     hi InterestingWord1 guifg=#000000 guibg=#FF4300
     hi InterestingWord2 guifg=#000000 guibg=#53FF00
     hi InterestingWord3 guifg=#000000 guibg=#FF74F8
+    hi IndentGuides                   guibg=#373737
 endfunction
 
 " A function to toggle between light and dark colors
@@ -534,6 +535,23 @@ endfunction
 
 " Vertical Split Buffer Mapping
 command! -nargs=1 Vbuffer call VerticalSplitBuffer(<f-args>)
+
+" Show indent guides                                           {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" Taken from https://bitbucket.org/sjl/dotfiles/src/tip/vim/.vimrc
+" though that may not be the originator.
+let g:indentguides_state = 0
+function! IndentGuides() " {{{
+    if g:indentguides_state
+        let g:indentguides_state = 0
+        2match None
+    else
+        let g:indentguides_state = 1
+        execute '2match IndentGuides /\%(\_^\s*\)\@<=\%(\%'.(0*&sw+1).'v\|\%'.(1*&sw+1).'v\|\%'.(2*&sw+1).'v\|\%'.(3*&sw+1).'v\|\%'.(4*&sw+1).'v\|\%'.(5*&sw+1).'v\|\%'.(6*&sw+1).'v\|\%'.(7*&sw+1).'v\)\s/'
+    endif
+endfunction " }}}
+nnoremap <leader>I :call IndentGuides()<cr>
 
 " Plugins                                                      {{{1
 " -----------------------------------------------------------------
