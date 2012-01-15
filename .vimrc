@@ -756,6 +756,8 @@ let g:ctrlp_max_depth = 100
 " show more items by default
 let g:ctrlp_max_height = 50
 
+" Only update the search after 1 second
+let g:ctrlp_lazy_update = 1000
 
 " Ack                                                          {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
