@@ -927,8 +927,7 @@ map <Enter> o<ESC>
 map <leader><Enter> i<CR><ESC>
 
 " Yank from the cursor to the end of the line, to be consistent with C and D.
-" XXX: This one doesn't work right now because of yankring.
-nnoremap Y vg_
+nnoremap Y yg_
 " Yank an entire line without the line ending and leading space
 nnoremap YY ^yg_
 
