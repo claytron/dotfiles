@@ -38,8 +38,10 @@
 "    <S-Enter>       -- open a new line above (non-insert)
 "    <leader>s       -- Toggle spell checking
 "    <F2>            -- Toggle smart indent on paste
-"    CTRL-=          -- Make the current window taller
-"    CTRL-- (CTRL-DASH) -- Make the current window shorter
+"    +               -- Make the current window taller
+"    -               -- Make the current window shorter
+"    <C-a>           -- Make the current window more narrow
+"    <C-s>           -- Make the current window wider
 "
 " Command line shortcuts
 "
@@ -916,8 +918,10 @@ map E ge
 
 " window resizing
 if bufwinnr(1)
-  map + <C-W>+
-  map - <C-W>-
+  nnoremap + <C-W>+
+  nnoremap - <C-W>-
+  nnoremap <C-a> <C-W>>
+  nnoremap <C-s> <C-W><
 endif
 
 " Insert newlines with enter and shift + enter
