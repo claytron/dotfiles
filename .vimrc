@@ -467,6 +467,24 @@ function! s:TidyXML()
     call cursor(l, c)
 endfunction
 
+" Error Toggle                                                 {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+command! -bang -nargs=? ErrorsToggle call ErrorsToggle(<bang>0)
+
+function! ErrorsToggle(forced)
+  if exists("g:llist_win") && a:forced == 0
+    lclose
+    unlet g:llist_win
+  else
+    exec "Errors"
+    lopen
+    let g:llist_win = bufnr("$")
+  endif
+endfunction
+
+nnoremap <silent> <leader>ee :ErrorsToggle<CR>
+
 " Quickfix                                                     {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
