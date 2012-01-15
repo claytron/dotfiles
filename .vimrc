@@ -829,7 +829,7 @@ nnoremap <leader>g :GundoToggle<CR>
 " Enable signs support to visually see where errors/warnings appear
 let g:syntastic_enable_signs=1
 " Automatically open the location list when there are errors
-let g:syntastic_auto_loc_list=1
+let g:syntastic_auto_loc_list=0
 
 " php debugger                                                  {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
