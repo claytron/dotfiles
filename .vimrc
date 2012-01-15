@@ -483,7 +483,7 @@ function! QFixToggle(forced)
   endif
 endfunction
 
-map <leader>q :QFix<CR>
+nnoremap <silent> <leader>q :QFix<CR>
 
 " Copy search matches to register                              {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
