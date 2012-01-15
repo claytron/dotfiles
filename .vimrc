@@ -722,7 +722,7 @@ let g:FuzzyFinderOptions.File.smart_bs = 0
 " Shortcuts for opening fuzzy finder
 nmap <leader>ff :FufFile<Space>**/
 "nmap <leader>t :FufCoverageFile<Space>
-nmap <leader>ft :FufTag<Space>
+"nmap <leader>ft :FufTag<Space>
 
 " CtrlP                                                        {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -758,6 +758,9 @@ let g:ctrlp_max_height = 50
 
 " Only update the search after 1 second
 let g:ctrlp_lazy_update = 1000
+
+" Use the CtrlPTag mode
+nmap <leader>ft :CtrlPTag<CR>
 
 " Ack                                                          {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
