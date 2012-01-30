@@ -149,12 +149,12 @@ nnoremap <silent> <leader>h2 :execute '2match InterestingWord2 /\<<c-r><c-w>\>/'
 nnoremap <silent> <leader>h3 :execute '3match InterestingWord3 /\<<c-r><c-w>\>/'<cr>
 
 " shortcut to cycle through quickfix list
-nnoremap <m-Down> :cnext<cr>
-nnoremap <m-Up> :cprevious<cr>
+nnoremap ¬ :cnext<cr>
+nnoremap ˙ :cprevious<cr>
 
 " shortcut to cycle through location list
-nnoremap <m-Right> :lnext<cr>
-nnoremap <m-Left> :lprevious<cr>
+nnoremap ∆ :lnext<cr>
+nnoremap ˚ :lprevious<cr>
 " Visual settings                                              {{{1
 " -----------------------------------------------------------------
 
