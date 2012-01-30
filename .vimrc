@@ -569,7 +569,7 @@ function! IndentGuides() " {{{
         execute '2match IndentGuides /\%(\_^\s*\)\@<=\%(\%'.(0*&sw+1).'v\|\%'.(1*&sw+1).'v\|\%'.(2*&sw+1).'v\|\%'.(3*&sw+1).'v\|\%'.(4*&sw+1).'v\|\%'.(5*&sw+1).'v\|\%'.(6*&sw+1).'v\|\%'.(7*&sw+1).'v\)\s/'
     endif
 endfunction " }}}
-nnoremap <leader>I :call IndentGuides()<cr>
+nnoremap <silent> <leader>I :call IndentGuides()<cr>
 
 " Plugins                                                      {{{1
 " -----------------------------------------------------------------
