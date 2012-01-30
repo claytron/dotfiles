@@ -1020,6 +1020,34 @@ map <C-H> <C-W>h
 map <C-J> <C-W>j
 map <C-K> <C-W>k
 map <C-L> <C-W>l
+
+" allow chording of window movement
+map <C-W><C-H> <C-W>H
+map <C-W><C-J> <C-W>J
+map <C-W><C-K> <C-W>K
+map <C-W><C-L> <C-W>L
+
+" cycle windows
+map <C-W>e <C-W>W
+map <C-W><C-E> <C-W>W
+
+" equalize without W
+" XXX: doesn't work
+"map <C-=> <C-W>=
+
+" Maximize the current window
+" XXX: no way to do this in vim?
+map <silent> <C-w>; :resize +999<CR>
+" XXX: doesn't work
+"map <C-;> :resize +999<CR>
+map <silent> <C-w><C-;> :resize +999<CR>
+
+" Minimize the current window
+map <silent> <C-w>' :resize -999<CR>
+" XXX: doesn't work
+"map <C-'> :resize -999<CR>
+map <silent> <C-w><C-'> :resize -999<CR>
+
 " GUI settings                                                 {{{1
 " -----------------------------------------------------------------
 
