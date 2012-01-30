@@ -999,14 +999,8 @@ nnoremap Y yg_
 " Yank an entire line without the line ending and leading space
 nnoremap YY ^yg_
 
-" turn on writeroom
-map <silent> <F8> :source ~/.vim/nightroom.vim<CR>
-
-" Mapping window commands directly
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+" sort versions in a versions.cfg
+map <leader>V /\[versions\]<CR>jVG:g/^#/d<CR>gv:g/^$/d<CR>gv:sort i<CR>
 
 " set up the invisible characters
 set listchars+=tab:▸\ ,eol:¬
@@ -1015,9 +1009,17 @@ set list
 " toggle invisible characters
 noremap <silent> <leader>i :set list!<CR>
 
-" sort versions in a versions.cfg
-map <leader>V /\[versions\]<CR>jVG:g/^#/d<CR>gv:g/^$/d<CR>gv:sort i<CR>
+" Window management settings                                    {{{1
+" -----------------------------------------------------------------
 
+" turn on writeroom
+map <silent> <F8> :source ~/.vim/nightroom.vim<CR>
+
+" Mapping window commands directly
+map <C-H> <C-W>h
+map <C-J> <C-W>j
+map <C-K> <C-W>k
+map <C-L> <C-W>l
 " GUI settings                                                 {{{1
 " -----------------------------------------------------------------
 
