@@ -11,6 +11,9 @@ env.dotfiles = 'https://svn.sixfeetup.com/svn/private/claytron/dotfiles/trunk'
 def push_dotfiles():
     """Push my dotfiles to a specific server
     """
+    # run this to expose potential issues with the machine like
+    # bash not being in /bin/bash
+    run("echo $HOME")
     if not exists("$HOME"):
         abort("You do not appear to have a home directory")
     if exists(".dotfiles"):
@@ -23,6 +26,9 @@ def push_dotfiles():
 def remove_dotfiles(ignore=None):
     """Remove my dotfiles from a specific server
     """
+    # run this to expose potential issues with the machine like
+    # bash not being in /bin/bash
+    run("echo $HOME")
     if not exists("$HOME"):
         abort("You do not appear to have a home directory")
     if not exists(".dotfiles"):
