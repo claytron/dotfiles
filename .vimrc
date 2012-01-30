@@ -159,6 +159,14 @@ nnoremap ˚ :lprevious<cr>
 " Use sane regexes.
 nnoremap / /\v
 vnoremap / /\v
+
+" Easy filetype switching
+nnoremap <leader>ftm :set ft=markdown<CR>
+nnoremap <leader>ftp :set ft=python<CR>
+nnoremap <leader>ftw :set ft=wiki<CR>
+nnoremap <leader>ftr :set ft=rst<CR>
+nnoremap <leader>ftv :set ft=vim<CR>
+
 " Visual settings                                              {{{1
 " -----------------------------------------------------------------
 
