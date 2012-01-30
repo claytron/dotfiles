@@ -155,6 +155,10 @@ nnoremap ˙ :cprevious<cr>
 " shortcut to cycle through location list
 nnoremap ∆ :lnext<cr>
 nnoremap ˚ :lprevious<cr>
+
+" Use sane regexes.
+nnoremap / /\v
+vnoremap / /\v
 " Visual settings                                              {{{1
 " -----------------------------------------------------------------
 
