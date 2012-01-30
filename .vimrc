@@ -898,6 +898,10 @@ let g:yankring_manage_numbered_reg = 1
 " don't leave the history in my home dir
 let g:yankring_history_dir = '$HOME/.backup/vim'
 
+" Powerline                                                    {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+let g:Powerline_theme = 'distinguished'
+
 " Auto command settings                                        {{{1
 " -----------------------------------------------------------------
 
