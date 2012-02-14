@@ -797,6 +797,8 @@ let g:miniBufExplUseSingleClick = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 " better window management
 let g:miniBufExplModSelTarget = 1
+" Don't show dupes for now
+let g:miniBufExplCheckDupeBufs = 0
 
 " VCSCommand                                                   {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
