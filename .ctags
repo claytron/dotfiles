@@ -11,6 +11,16 @@
 --regex-zcml=/.*view=".*\.(.[^"]*)"/\1/v,view/
 --regex-zcml=/.*class=".*\.(.[^"]*)"/\1/c,class/
 --regex-zcml=/.*type=".*\.(.[^"]*)"/\1/t,type/
+--regex-zcml=/.*elector=".*\.(.[^"]*)"/\1/w,workflow/
+--regex-zcml=/.*content_types=".*\.(.[^"]*)"/\1/w,workflow/
+--regex-zcml=/.*initial_state=".*\.(.[^"]*)"/\1/w,workflow/
+--regex-zcml=/.*state_attr=".*\.(.[^"]*)"/\1/w,workflow/
+--regex-zcml=/.*permission_checker=".*\.(.[^"]*)"/\1/w,workflow/
+--regex-zcml=/.*callback=".*\.(.[^"]*)"/\1/w,workflow/
+--regex-zcml=/.*from_state=".*\.(.[^"]*)"/\1/w,workflow/
+--regex-zcml=/.*to_state=".*\.(.[^"]*)"/\1/w,workflow/
+--regex-zcml=/.*value=".*\.(.[^"]*)"/\1/w,workflow/
+--regex-zcml=/.*title=".*\.(.[^"]*)"/\1/w,workflow/
 
 --langdef=ini
 --langmap=ini:.cfg.ini
