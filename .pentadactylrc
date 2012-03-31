@@ -51,9 +51,9 @@ map -builtin <silent> ,u :set showtabline=never<CR>
 
 " temporary workaround for copy paste in text boxes
 " https://code.google.com/p/dactyl/issues/detail?id=517
-inoremap <M-z> <pass>
-inoremap <M-a> <pass>
-inoremap <M-x> <pass>
+imap -builtin <M-z> <pass>
+imap -builtin <M-a> <pass>
+imap -builtin <M-x> <pass>
 
 " remove the right and bottom scrollbars
 set guioptions-=rb
@@ -84,14 +84,15 @@ set scrollsteps=10
 set scrolltime=300
 
 " Scroll settings
-noremap w 10h
-noremap e 10l
-noremap J <C-f>
-noremap K <C-b>
+map -builtin w 10h
+map -builtin e 10l
+" go forward and back
+map -builtin J <C-f>
+map -builtin K <C-b>
 
 " Go to the next/previous tab
-noremap <C-h> <C-p>
-noremap <C-l> <C-n>
+map -builtin <C-h> <C-p>
+map -builtin <C-l> <C-n>
 
 " Move the current tab
 map -builtin ,h <Esc>:tabmove! -1<CR>
@@ -102,10 +103,10 @@ map -builtin ,t :buffers<CR>
 
 " Also assign ctrl + e as that is easier to type, and what I have
 " set up in thunderbird :)
-inoremap <C-e> <C-i>
+imap -builtin <C-e> <C-i>
 
 " I tend to tap the 'd' key on my keyboard on accident
-noremap d <silent> <Nop>
+nmap -builtin d <silent> <Nop>
 
 " use the readability bookmarklet on the current page
 map -builtin <silent> ,r :open javascript:(function(){readStyle='style-ebook';readSize='size-medium';readMargin='margin-x-narrow';_readability_script=document.createElement('SCRIPT');_readability_script.type='text/javascript';_readability_script.src='http://lab.arc90.com/experiments/readability/js/readability.js?x='+(Math.random());document.getElementsByTagName('head')[0].appendChild(_readability_script);_readability_css=document.createElement('LINK');_readability_css.rel='stylesheet';_readability_css.href='http://lab.arc90.com/experiments/readability/css/readability.css';_readability_css.type='text/css';_readability_css.media='all';document.getElementsByTagName('head')[0].appendChild(_readability_css);_readability_print_css=document.createElement('LINK');_readability_print_css.rel='stylesheet';_readability_print_css.href='http://lab.arc90.com/experiments/readability/css/readability-print.css';_readability_print_css.media='print';_readability_print_css.type='text/css';document.getElementsByTagName('head')[0].appendChild(_readability_print_css);})();<CR>
