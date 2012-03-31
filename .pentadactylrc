@@ -80,9 +80,8 @@ set titlestring="oh hai!"
 set showtabline=multitab
 
 " smooth scroll setting
-" XXX: No smoozie in pentadactyl yet
-"let g:smooziee_scroll_amount="100"
-"let g:smooziee_scroll_interval="150"
+set scrollsteps=10
+set scrolltime=300
 
 " Scroll settings
 noremap w 10h
