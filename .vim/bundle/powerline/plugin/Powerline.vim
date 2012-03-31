@@ -11,18 +11,26 @@
 	let g:Powerline_loaded = 1
 " }}}
 " Set default options {{{
-	function! s:InitOptions(options) " {{{
-		for [key, value] in items(a:options)
-			if ! exists('g:Powerline_' . key)
-				exec printf('let g:Powerline_%s = %s', key, string(value))
-			endif
-		endfor
-	endfunction " }}}
-	call s:InitOptions({
-	\   'theme'        : 'distinguished'
-	\ , 'symbols'      : 'compatible'
-	\ , 'cache_file'   : (exists('$TEMP') && ! empty($TEMP) ? $TEMP : '/tmp') . '/Powerline.cache'
-	\ })
+	for [s:key, s:value] in items({
+		\   'theme'        : 'distinguished'
+		\ , 'colorscheme'  : 'distinguished'
+		\ , 'symbols'      : 'compatible'
+		\ , 'cache_enabled': 1
+		\ })
+
+		if ! exists('g:Powerline_' . s:key)
+			exec printf('let g:Powerline_%s = %s', s:key, string(s:value))
+		endif
+	endfor
+
+	if ! exists('g:Powerline_cache_file')
+		exec 'let g:Powerline_cache_file = '. string(printf('%s/Powerline_%s_%s_%s.cache'
+			\ , simplify(expand('<sfile>:p:h') .'/..')
+			\ , g:Powerline_theme
+			\ , g:Powerline_colorscheme
+			\ , g:Powerline_symbols
+			\ ))
+	endif
 " }}}
 " Autocommands {{{
 	augroup Powerline
