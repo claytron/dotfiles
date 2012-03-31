@@ -814,7 +814,7 @@ let Tlist_Use_Right_Window = 1
 " only show the current buffer, fold the rest
 let Tlist_File_Fold_Auto_Close = 1
 " show the name in the ctags list, helps with zope stuff :)
-let tlist_xml_settings = 'zcml;n:name,g:profile,p:permission,h:handler,m:component,f:factory,c:class,i:id,s:schema,t:type,v:view,w:workflow'
+let tlist_xml_settings = 'zcml;n:name,f:for,g:profile,p:permission,h:handler,m:component,f:factory,c:class,i:id,s:schema,c:controller,t:type,v:view,w:workflow'
 let tlist_cfg_settings = 'ini;s:section'
 let tlist_markdown_settings = 'markdown;h:header'
 " mapping for taglist
@@ -838,6 +838,7 @@ let g:tagbar_type_zcml = {
     \ 'ctagstype': 'zcml',
     \ 'kinds': [
         \ 'n:name',
+        \ 'f:for',
         \ 'g:profile',
         \ 'p:permission',
         \ 'h:handler',
@@ -847,6 +848,7 @@ let g:tagbar_type_zcml = {
         \ 'i:id',
         \ 'v:view',
         \ 's:schema',
+        \ 'c:controller',
         \ 't:type',
         \ 'w:workflow'
     \ ]
