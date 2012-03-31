@@ -86,9 +86,6 @@ set scrolltime=300
 " Scroll settings
 noremap w 10h
 noremap e 10l
-" Scroll in larger increments
-noremap j 10j
-noremap k 10k
 noremap J <C-f>
 noremap K <C-b>
 
