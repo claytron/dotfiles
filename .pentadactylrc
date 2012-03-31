@@ -55,11 +55,6 @@ inoremap <M-z> <pass>
 inoremap <M-a> <pass>
 inoremap <M-x> <pass>
 
-" Quicker ex mode access
-"noremap ; :
-" Still give access to the hint modes
-"noremap : ;
-
 " remove the right and bottom scrollbars
 set guioptions-=rb
 
