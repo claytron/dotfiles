@@ -135,8 +135,7 @@ map -builtin <silent> ,d :open javascript:(function(){f='http://www.delicious.co
 " Currently this just moves the last pass and delicious tag buttons.
 javascript <<EOF
 (function() {
-    // TODO: Make this work with 'feed-panel' too.
-    var buttons = ['lpt_lastpass-compact-btn', 'del-button-tagPage'] //, 'feed-panel'];
+    var buttons = ['lpt_lastpass-compact-btn', 'feed-button'];
     for (var i = 0; i < buttons.length; i++) {
         var button_id = buttons[i];
         var new_button = document.createElement("new_button");
