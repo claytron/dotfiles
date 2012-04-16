@@ -1058,7 +1058,7 @@ map <silent> <C-w><C-'> :resize -999<CR>
 " -----------------------------------------------------------------
 
 " A dictionary of available sizes, inspired by Firesizer
-let vs_window_sizes = {"normal": '155 45', "bigger": '215 50', "ginourmous": "285 65", "1280screen": "200 65", "bigandtall": "227 75"}
+let vs_window_sizes = {"normal": '155 45', "bigger": '205 60', "ginourmous": "285 65", "1280screen": "200 65", "bigandtall": "227 75"}
 
 " shortcuts to switch the window size
 map <leader>1 :VSSelectWindowSize normal<CR>
