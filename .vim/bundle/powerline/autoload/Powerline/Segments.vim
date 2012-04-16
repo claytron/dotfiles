@@ -1,11 +1,13 @@
-let g:Powerline#Segments#segments = Pl#Segment#Init(
+let g:Powerline#Segments#segments = Pl#Segment#Init([
 	\ Pl#Segment#Create('SPLIT'   , '__split__'),
 	\ Pl#Segment#Create('TRUNCATE', '__truncate__'),
 	\
+	\ Pl#Segment#Create('paste_indicator' , '%{&paste ? "PASTE" : ""}', Pl#Segment#Modes('!N')),
 	\ Pl#Segment#Create('mode_indicator'  , '%{Powerline#Functions#GetMode()}', Pl#Segment#Modes('!N')),
 	\ Pl#Segment#Create('fileinfo',
 		\ Pl#Segment#Create('flags.ro'    , '%{&readonly ? "$RO" : ""}'),
-		\ Pl#Segment#Create('name'        , '%t'),
+		\ Pl#Segment#Create('filepath'    , '%{Powerline#Functions#GetFilepath()}', Pl#Segment#NoPadding()),
+		\ Pl#Segment#Create('filename'    , '%t'),
 		\ Pl#Segment#Create('flags.mod'   , '%M'),
 		\ Pl#Segment#Create('flags.type'  , '%H%W'),
 	\ ),
@@ -20,8 +22,9 @@ let g:Powerline#Segments#segments = Pl#Segment#Init(
 	\ Pl#Segment#Create('scrollpercent'   , '%3p%%'),
 	\ Pl#Segment#Create('lineinfo',
 		\ Pl#Segment#Create('line.cur'    , '$LINE %3l'),
-		\ Pl#Segment#Create('line.tot'    , '$COL %-2c'),
+		\ Pl#Segment#Create('line.tot'    , ':%-2c', Pl#Segment#NoPadding()),
 	\ ),
 	\ Pl#Segment#Create('charcode'        , '%{Powerline#Functions#GetCharCode()}', Pl#Segment#Modes('!N')),
-	\ Pl#Segment#Create('currhigroup'     , '%{synIDattr(synID(line("."), col("."), 1), "name")}', Pl#Segment#Modes('!N'))
-\ )
+	\ Pl#Segment#Create('currhigroup'     , '%{synIDattr(synID(line("."), col("."), 1), "name")}', Pl#Segment#Modes('!N')),
+	\ Pl#Segment#Create('ws_marker'       , '%{Powerline#Functions#GetWSMarker()}', Pl#Segment#Modes('!N')),
+\ ])

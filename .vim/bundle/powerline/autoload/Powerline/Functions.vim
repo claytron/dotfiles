@@ -1,3 +1,48 @@
+" Recalculate the trailing whitespace warning when idle, and after saving
+autocmd CursorHold,BufWritePost,InsertLeave * unlet! b:statusline_trailing_space_warning
+
+function! Powerline#Functions#GetFilepath() " {{{
+	let relpath = expand('%')
+
+	if empty(relpath)
+		return ''
+	endif
+
+	let headpath = substitute(expand('%:h'), escape($HOME, '\'), '~', '')
+	let fullpath = substitute(expand('%:p:h'), escape($HOME, '\'), '~', '')
+	let ret = ''
+
+	if g:Powerline_stl_path_style == 'short'
+		" Display a short path where the first directory is displayed with its
+		" full name, and the subsequent directories are shortened to their
+		" first letter, i.e. "/home/user/foo/foo/bar/baz.vim" becomes
+		" "~/foo/f/b/baz.vim"
+		let fpath = split(headpath, '/')
+		let fpath_shortparts = map(fpath[1:], 'v:val[0]')
+		let ret = join(extend([fpath[0]], fpath_shortparts), '/') .'/'
+	elseif g:Powerline_stl_path_style == 'relative'
+		" Display a relative path, similar to the %f statusline item
+		let ret = headpath .'/'
+	elseif g:Powerline_stl_path_style == 'full'
+		" Display the full path, similar to the %F statusline item
+		let ret = fullpath .'/'
+	endif
+
+	if ret == './'
+		return ''
+	endif
+
+	return ret
+endfunction " }}}
+function! Powerline#Functions#GetShortPath(threshold) " {{{
+	let fullpath = split(substitute(expand('%:p:h'), $HOME, '~', 'g'), '/')
+
+	if len(fullpath) > a:threshold
+		let fullpath = [fullpath[0], '…'] +  fullpath[-a:threshold + 1 :]
+	endif
+
+	return join(fullpath, '/')
+endfunction " }}}
 function! Powerline#Functions#GetMode() " {{{
 	let mode = mode()
 
@@ -73,3 +118,15 @@ function! Powerline#Functions#GetCharCode() " {{{
 
 	return "'". char ."' ". nr
 endfunction "}}}
+function! Powerline#Functions#GetWSMarker() " {{{
+	" Return '...' if trailing white space is detected
+	" Return '' otherwise
+	if ! exists("b:statusline_trailing_space_warning")
+		if search('\s$', 'nw') != 0
+			let b:statusline_trailing_space_warning = ' … '
+		else
+			let b:statusline_trailing_space_warning = ''
+		endif
+	endif
+	return b:statusline_trailing_space_warning
+endfunction " }}}

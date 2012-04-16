@@ -22,7 +22,7 @@ function! Pl#Colorscheme#Apply(colorscheme, buffer_segments) " {{{
 	try
 		let colorscheme = g:Powerline#Colorschemes#{a:colorscheme}#colorscheme
 	catch
-		echoe 'Color scheme "'. a:colorscheme .'" doesn''t exist!'
+		echom 'Color scheme "'. a:colorscheme .'" doesn''t exist!'
 
 		return
 	endtry
@@ -142,20 +142,4 @@ function! Pl#Colorscheme#Apply(colorscheme, buffer_segments) " {{{
 	" It will be parsed by the main Powerline code, where all the data will be shortened to a simple
 	" array consiting of a statusline for each mode, with generated highlighting groups and dividers.
 	return buffer_segments
-endfunction " }}}
-function! Pl#Colorscheme#HiSegment(segments, normal, ...) " {{{
-	let mode_hi_dict = {
-		\ 	'n': a:normal
-		\ }
-
-	if a:0 && type(a:1) == type({})
-		for [modes, hl] in items(a:1)
-			for mode in split(modes, '\zs')
-				let mode_hi_dict[mode] = hl
-			endfor
-		endfor
-	endif
-
-	" a:segments may be either a string or a list of strings to use this highlighting
-	return [a:segments, mode_hi_dict]
 endfunction " }}}
