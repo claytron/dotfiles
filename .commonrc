@@ -307,7 +307,11 @@ function bfg() {
 # Set $VM_LIBRARY and $VM_VMRUN to alternate locations if
 # necessary
 export VM_LIBRARY="$HOME/Documents/Virtual Machines.localized"
-export VM_VMRUN="/Library/Application Support/VMware Fusion/vmrun"
+if [ -e "/Library/Application Support/VMWare Fusion/vmrun" ]; then
+    export VM_VMRUN="/Library/Application Support/VMware Fusion/vmrun"
+else
+    export VM_VMRUN="/Applications/VMware Fusion.app/Contents/Library/vmrun"
+fi
 function noguivm() {
     local vmx_name
     local vm_location
