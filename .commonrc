@@ -260,6 +260,7 @@ if [ -d $VIRTUALENVS_DIR ]; then
 fi
 
 [[ -s /usr/local/lib/rvm ]] && source /usr/local/lib/rvm
+[[ -s $HOME/.rvm ]] && source $HOME/.rvm/scripts/rvm
 
 ## Functions
 

@@ -11,6 +11,7 @@ expected_path=(
   "$HOME/bin/$MACHTYPE-$OSTYPE"
   "$HOME/bin"
   "$HOME/bin/git_achievements"
+  "$HOME/.rvm/bin"
   "$HOME/.gem/ruby/1.8/bin"
   "$HOME/Documents/android-sdk-mac_x86/tools"
   "$HOME/Documents/android-sdk-mac_x86/platform-tools"
