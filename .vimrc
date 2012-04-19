@@ -590,151 +590,22 @@ nnoremap <silent> <leader>I :call IndentGuides()<cr>
 filetype on                " enables filetype detection
 filetype plugin indent on  " enables filetype specific plugins
 
-" Disable plugins                                              {{{2
-"
-" Uncomment the lines below to disable a particular plugin. This
-" short circuits the plugin and stops it from loading.
-" -----------------------------------------------------------------
-
-" Ack                                                          {{{3
-" XXX: has no trap
-
-" BufOnly                                                      {{{3
-" XXX: has no trap
-
-" DelimitMate                                                  {{{3
-"let g:loaded_delimitMate = 1
-
-" FuzzyFinder and l9                                           {{{3
-" XXX: I couldn't figure those out :)
-
-" gundo                                                        {{{3
-"let loaded_gundo = 1
-
-" lodgeit                                                      {{{3
-"let loaded_lodgeit = 1
-
-" NERDTree                                                     {{{3
-"let loaded_nerd_tree = 1
-
-" minibufexplr                                                 {{{3
-"let loaded_minibufexplorer = 1
-
-" pyflakes                                                     {{{3
-"let b:did_pyflakes_plugin = 1
-
-" Python Matchit                                               {{{3
-"let b:loaded_py_match = 1
-
-" repeat                                                       {{{3
-"let g:loaded_repeat = 1
-
-" RevealExtends                                                {{{3
-"let g:loaded_RevealExtends = 1
-
-" Scratch                                                      {{{3
-"let loaded_scratch=1
-
-" Search complete                                              {{{3
-"let loaded_search_complete = 1
-
-" SnipMate                                                     {{{3
-"let loaded_snips = 1
-
-" Supertab                                                     {{{3
-" XXX: has no specific trap
-
-" surround                                                     {{{3
-"let g:loaded_surround = 1
-
-" syntastic                                                    {{{3
-"let g:loaded_syntastic_plugin = 1
-
-" Tabular                                                      {{{3
-"let g:tabular_loaded = 1
-
-" Taglist                                                      {{{3
-"let loaded_taglist = 'yes'
-
-" Tasklist                                                     {{{3
-"let g:loaded_tasklist = 1
-
-" VCSCommand                                                   {{{3
-"let VCSCommandDisableAll = 1
-
-" Solarized toggle background                                  {{{3
-"let g:loaded_ToggleBackground = 1
-
-" vimsizer                                                     {{{3
-"let loaded_vimsizer = 1
-
-" visualstar                                                   {{{3
-"let g:loaded_visualstar = 1
-
-" xmledit                                                      {{{3
-"let loaded_xmledit = 1
-
-" yankring                                                     {{{3
-"let loaded_yankring = 1
-
-" NERDTree                                                     {{{2
+" Ack                                                          {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-" set project folder to x
-map <leader>x :NERDTreeToggle<CR>
-map <leader>b :NERDTreeFromBookmark<Space>
-nnoremap <silent> <leader>f :NERDTreeFind<CR>
-" files/dirs to ignore in NERDTree (mostly the same as my svn ignores)
-let NERDTreeIgnore=[
-    \'\~$',
-    \'\.pt.cache$',
-    \'\.Python$',
-    \'\.svn$',
-    \'\.git*$',
-    \'\.pyc$',
-    \'\.pyo$',
-    \'\.mo$',
-    \'\.o$',
-    \'\.lo$',
-    \'\.la$',
-    \'\..*.rej$',
-    \'\.rej$',
-    \'\.\~lock.*#$',
-    \'\.AppleDouble$',
-    \'\.pt.py$',
-    \'\.DS_Store$']
-" set the sort order to alphabetical
-let NERDTreeSortOrder=[]
-" when the root is changed, change Vim's working dir
-let NERDTreeChDirMode=2
-" use fancy ass arrows
-let NERDTreeDirArrows=1
+" shortcut for ack search
+map <leader>a :Ack!<Space>
+" highlight search term matches
+let g:ackhighlight = 1
 
-" Fuzzy Finder                                                 {{{2
+" CSV                                                          {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-" max results, lot o' files in a buildout :)
-let g:fuzzy_ceiling=35000
-" show full paths
-let g:fuzzy_path_display = 'highlighted_path'
-" ignored files
-let g:fuzzy_ignore = "*.png;*.PNG;*.pyc;*.pyo;*.JPG;*.jpg;*.GIF;*.gif;.svn/**;.git/**;*.mo;.DS_Store;.AppleDouble"
-" available modes
-let g:FuzzyFinderOptions = {
-    \'File': {'mode_available': 1},
-    \'Buffer': {'mode_available': 0},
-    \'Dir': {'mode_available': 0},
-    \'MruFile': {'mode_available': 0},
-    \'MruCmd': {'mode_available': 0},
-    \'Bookmark': {'mode_available': 0},
-    \}
-" Don't delete a full path when using backspace in file mode
-let g:FuzzyFinderOptions.File.smart_bs = 0
-
-" Shortcuts for opening fuzzy finder
-nmap <leader>ff :FufFile<Space>**/
-"nmap <leader>t :FufCoverageFile<Space>
-"nmap <leader>ft :FufTag<Space>
+" turn on tsv in csv mode
+function! Csv_tsv()
+  let b:delimiter='\t'
+  let b:col=substitute(b:col, ',', '\t', 'g')
+endfunction
 
 " CtrlP                                                        {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -774,19 +645,41 @@ let g:ctrlp_lazy_update = 1000
 " Use the CtrlPTag mode
 nmap <leader>ft :CtrlPTag<CR>
 
-" Ack                                                          {{{2
+" Fuzzy Finder                                                 {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-" shortcut for ack search
-map <leader>a :Ack!<Space>
-" highlight search term matches
-let g:ackhighlight = 1
+" max results, lot o' files in a buildout :)
+let g:fuzzy_ceiling=35000
+" show full paths
+let g:fuzzy_path_display = 'highlighted_path'
+" ignored files
+let g:fuzzy_ignore = "*.png;*.PNG;*.pyc;*.pyo;*.JPG;*.jpg;*.GIF;*.gif;.svn/**;.git/**;*.mo;.DS_Store;.AppleDouble"
+" available modes
+let g:FuzzyFinderOptions = {
+    \'File': {'mode_available': 1},
+    \'Buffer': {'mode_available': 0},
+    \'Dir': {'mode_available': 0},
+    \'MruFile': {'mode_available': 0},
+    \'MruCmd': {'mode_available': 0},
+    \'Bookmark': {'mode_available': 0},
+    \}
+" Don't delete a full path when using backspace in file mode
+let g:FuzzyFinderOptions.File.smart_bs = 0
 
-" pep8                                                          {{{2
+" Shortcuts for opening fuzzy finder
+nmap <leader>ff :FufFile<Space>**/
+"nmap <leader>t :FufCoverageFile<Space>
+"nmap <leader>ft :FufTag<Space>
+
+" Gundo                                                        {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nnoremap <leader>g :GundoToggle<CR>
 
-" shortcut for pep8 searching (F5 is taken by the php debugger)
-let g:pep8_map='<leader>pp'
+" Lodgeit                                                      {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+let g:lodgeit_url = "https://paste.sixfeetup.com"
+let g:lodgeit_username = "clayton"
+let g:lodgeit_secure = 1
 
 " Mini buf explorer                                            {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -800,26 +693,61 @@ let g:miniBufExplModSelTarget = 1
 " Don't show dupes for now
 let g:miniBufExplCheckDupeBufs = 0
 
-" VCSCommand                                                   {{{2
+" NERDTree                                                     {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-" Delete buffers when i'm done with them in VCSCommand
-let VCSCommandDeleteOnHide = 1
+" set project folder to x
+map <leader>x :NERDTreeToggle<CR>
+map <leader>b :NERDTreeFromBookmark<Space>
+nnoremap <silent> <leader>f :NERDTreeFind<CR>
+" files/dirs to ignore in NERDTree (mostly the same as my svn ignores)
+let NERDTreeIgnore=[
+    \'\~$',
+    \'\.pt.cache$',
+    \'\.Python$',
+    \'\.svn$',
+    \'\.git*$',
+    \'\.pyc$',
+    \'\.pyo$',
+    \'\.mo$',
+    \'\.o$',
+    \'\.lo$',
+    \'\.la$',
+    \'\..*.rej$',
+    \'\.rej$',
+    \'\.\~lock.*#$',
+    \'\.AppleDouble$',
+    \'\.pt.py$',
+    \'\.DS_Store$']
+" set the sort order to alphabetical
+let NERDTreeSortOrder=[]
+" when the root is changed, change Vim's working dir
+let NERDTreeChDirMode=2
+" use fancy ass arrows
+let NERDTreeDirArrows=1
 
-" Taglist                                                      {{{2
+" pep8                                                          {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-" make the taglist show on the right side
-let Tlist_Use_Right_Window = 1
-" only show the current buffer, fold the rest
-let Tlist_File_Fold_Auto_Close = 1
-" show the name in the ctags list, helps with zope stuff :)
-let tlist_xml_settings = 'zcml;n:name,f:for,g:profile,p:permission,h:handler,m:component,f:factory,c:class,i:id,s:schema,c:controller,t:type,v:view,w:workflow'
-let tlist_cfg_settings = 'ini;s:section'
-let tlist_markdown_settings = 'markdown;h:header'
-" mapping for taglist
-"nnoremap tt :TlistToggle<CR>
+" shortcut for pep8 searching (F5 is taken by the php debugger)
+let g:pep8_map='<leader>pp'
 
+" php debugger                                                  {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" turn off the mini buf explorer when using the debugger so the
+" windows get initialized properly
+let g:debuggerMiniBufExpl = 1
+
+" Powerline                                                    {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+let g:Powerline_theme = 'distinguished'
+
+" syntastic                                                    {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Enable signs support to visually see where errors/warnings appear
+let g:syntastic_enable_signs=1
+" Automatically open the location list when there are errors
+let g:syntastic_auto_loc_list=0
 
 " Tagbar                                                       {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -873,37 +801,26 @@ let g:tagbar_type_markdown = {
 \ }
 
 
-" CSV                                                          {{{2
+" Taglist                                                      {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-" turn on tsv in csv mode
-function! Csv_tsv()
-  let b:delimiter='\t'
-  let b:col=substitute(b:col, ',', '\t', 'g')
-endfunction
+" make the taglist show on the right side
+let Tlist_Use_Right_Window = 1
+" only show the current buffer, fold the rest
+let Tlist_File_Fold_Auto_Close = 1
+" show the name in the ctags list, helps with zope stuff :)
+let tlist_xml_settings = 'zcml;n:name,f:for,g:profile,p:permission,h:handler,m:component,f:factory,c:class,i:id,s:schema,c:controller,t:type,v:view,w:workflow'
+let tlist_cfg_settings = 'ini;s:section'
+let tlist_markdown_settings = 'markdown;h:header'
+" mapping for taglist
+"nnoremap tt :TlistToggle<CR>
 
-" Lodgeit                                                      {{{2
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-let g:lodgeit_url = "https://paste.sixfeetup.com"
-let g:lodgeit_username = "clayton"
-let g:lodgeit_secure = 1
 
-" Gundo                                                        {{{2
+" VCSCommand                                                   {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-nnoremap <leader>g :GundoToggle<CR>
 
-" syntastic                                                    {{{2
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" Enable signs support to visually see where errors/warnings appear
-let g:syntastic_enable_signs=1
-" Automatically open the location list when there are errors
-let g:syntastic_auto_loc_list=0
-
-" php debugger                                                  {{{2
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" turn off the mini buf explorer when using the debugger so the
-" windows get initialized properly
-let g:debuggerMiniBufExpl = 1
+" Delete buffers when i'm done with them in VCSCommand
+let VCSCommandDeleteOnHide = 1
 
 " Yankring                                                     {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -915,10 +832,6 @@ let g:yankring_max_history = 200
 let g:yankring_manage_numbered_reg = 1
 " don't leave the history in my home dir
 let g:yankring_history_dir = '$HOME/.backup/vim'
-
-" Powerline                                                    {{{2
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-let g:Powerline_theme = 'distinguished'
 
 " Auto command settings                                        {{{1
 " -----------------------------------------------------------------
