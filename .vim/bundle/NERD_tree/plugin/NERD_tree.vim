@@ -279,9 +279,6 @@ function! s:Bookmark.CacheBookmarks(silent)
         endfor
         if invalidBookmarksFound
             call s:Bookmark.Write()
-            if !a:silent
-                call s:echo(invalidBookmarksFound . " invalid bookmarks were read. See :help NERDTreeInvalidBookmarks for info.")
-            endif
         endif
         call s:Bookmark.Sort()
     endif
