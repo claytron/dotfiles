@@ -242,6 +242,7 @@ alias etcks="etckv status"
 alias g=git
 alias s=svn
 alias t=tmux
+alias ta='tmux attach -t '
 alias v=vim
 
 # Pretty LS_COLORS explanation: 
@@ -261,6 +262,9 @@ fi
 
 [[ -s /usr/local/lib/rvm ]] && source /usr/local/lib/rvm
 [[ -s $HOME/.rvm ]] && source $HOME/.rvm/scripts/rvm
+
+# Tmuxinator setup
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 
 ## Functions
 
