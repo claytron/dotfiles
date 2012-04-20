@@ -26,8 +26,6 @@
 "    <leader>x       -- toggles NERDTree drawer
 "    <leader>b       -- shortcut for getting to NERDTree bookmarks
 "    <leader>q       -- Toggle the quickfix window
-"    <leader>pp      -- Run pep8 checker while trying not to laugh
-"                       childishly about the mapping.
 "    <leader><Enter> -- opens a line at the current column (this is
 "                       the reverse of J)
 "    <leader>c       -- Switch between light and dark colors
@@ -726,12 +724,6 @@ let NERDTreeChDirMode=2
 " use fancy ass arrows
 let NERDTreeDirArrows=1
 
-" pep8                                                          {{{2
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-" shortcut for pep8 searching (F5 is taken by the php debugger)
-let g:pep8_map='<leader>pp'
-
 " php debugger                                                  {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " turn off the mini buf explorer when using the debugger so the
@@ -838,7 +830,7 @@ let g:yankring_history_dir = '$HOME/.backup/vim'
 
 if has("autocmd")
     " automatically re-source the vimrc on save
-    autocmd bufwritepost .vimrc source $MYVIMRC
+    "autocmd bufwritepost .vimrc source $MYVIMRC
 
     " vimperator and pentadactyl files
     au BufNewFile,BufRead *.vimp,*.penta,.vimperatorrc,.pentadactylrc set filetype=vim
