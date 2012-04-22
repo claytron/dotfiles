@@ -89,7 +89,7 @@ setprompt () {
     fi
     
     # Finally, the prompt (removed the color - claytron)
-    PROMPT='$PR_IMPOSTER
+    PROMPT='$PR_IMPOSTER $(git_super_status)
 $PR_SET_CHARSET$PR_STITLE${(e)PR_TITLEBAR}\
 $PR_SHIFT_IN$PR_ULCORNER$PR_HBAR$PR_SHIFT_OUT\
 %D{%a,%b %d}\

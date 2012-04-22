@@ -191,6 +191,10 @@ compdef git-achievements=git
 ## case-insensitive (all),partial-word and then substring completion
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
+# Make git status information available
+export ZSH_THEME_GIT_PROMPT_NOCACHE="True"
+source ~/.zsh/git-prompt/gitstatus.sh
+
 # use some crazy ass shell prompt
 # thanks to for the basis: http://aperiodic.net/phil/prompt/
 ME="clayton"

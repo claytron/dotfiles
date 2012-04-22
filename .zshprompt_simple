@@ -15,7 +15,7 @@ setprompt () {
     # simple version of my ZSH prompt
     RPROMPT=''
     PROMPT='$PR_IMPOSTER
-%D{%a %h %e, %H:%M} | %/
+%D{%a %h %e, %H:%M} $(git_super_status) | %/
 %m%# '
     PS2=''
 }
