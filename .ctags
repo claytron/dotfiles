@@ -1,6 +1,7 @@
 --langdef=zcml
 --langmap=zcml:.zcml
 --regex-zcml=/.*name="(.*)"/\1/n,name/
+--regex-zcml=/.*for="(.*)"?/\1/f,for/
 --regex-zcml=/.*profile="(.*)"/\1/g,profile/
 --regex-zcml=/.*permission="(.*)"/\1/p,permission/
 --regex-zcml=/.*id="(.*)"/\1/i,id/
@@ -10,6 +11,7 @@
 --regex-zcml=/.*factory=".*\.(.[^"]*)"/\1/f,factory/
 --regex-zcml=/.*view=".*\.(.[^"]*)"/\1/v,view/
 --regex-zcml=/.*class=".*\.(.[^"]*)"/\1/c,class/
+--regex-zcml=/.*controller=".*\.(.[^"]*)"/\1/c,controller/
 --regex-zcml=/.*type=".*\.(.[^"]*)"/\1/t,type/
 --regex-zcml=/.*elector=".*\.(.[^"]*)"/\1/w,workflow/
 --regex-zcml=/.*content_types=".*\.(.[^"]*)"/\1/w,workflow/
