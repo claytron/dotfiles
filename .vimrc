@@ -733,6 +733,8 @@ let g:debuggerMiniBufExpl = 1
 " Powerline                                                    {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 let g:Powerline_theme = 'distinguished'
+" show the unicode symbols in the terminal, fancy is set in gui below
+let g:Powerline_symbols = 'unicode'
 
 " syntastic                                                    {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
