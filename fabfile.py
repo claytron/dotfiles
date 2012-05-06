@@ -2,23 +2,43 @@
 """
 from fabric.api import run
 from fabric.api import env
+from fabric.api import local
 from fabric.utils import abort
 from fabric.contrib.files import exists
 
 env.dotfiles = 'https://svn.sixfeetup.com/svn/private/claytron/dotfiles/trunk'
+env.dotfiles_local = "$HOME/.dotfiles"
 
 
-def push_dotfiles():
+def push_dotfiles(rsync=None, dry=None):
     """Push my dotfiles to a specific server
+
+    rsync::
+      If this option is passed, do an rsync instead of trying to
+      check out from svn.
+    dry::
+      Pass the dry-run option to rsync
     """
     # run this to expose potential issues with the machine like
     # bash not being in /bin/bash
     run("echo $HOME")
     if not exists("$HOME"):
         abort("You do not appear to have a home directory")
-    if exists(".dotfiles"):
+    # Only bail out if we are doing a checkout
+    if rsync is None and exists(".dotfiles"):
         abort("The .dotfiles directory already exists")
-    run('svn co %s .dotfiles' % env.dotfiles)
+    if rsync is None:
+        run('svn co %s .dotfiles' % env.dotfiles)
+    else:
+        if dry is not None:
+            dry = '-n'
+        else:
+            dry = ''
+        # rsync to the host deleting files that don't exist here
+        # TODO: use built-in fabric command?
+        # NOTE: I still use svn as the main repo, so ignore git
+        local('rsync %s -av --delete --exclude=".git" %s/ %s:.dotfiles' % (
+            dry, env.dotfiles_local, env.host_string))
     run('.dotfiles/create_links.sh remove')
     run('.dotfiles/create_links.sh')
 
