@@ -740,6 +740,7 @@ let g:Powerline_theme = 'distinguished'
 let g:syntastic_enable_signs=1
 " Automatically open the location list when there are errors
 let g:syntastic_auto_loc_list=0
+let g:syntastic_check_on_open=1
 
 " Tagbar                                                       {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
