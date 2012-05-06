@@ -28,3 +28,5 @@ svn-commit.tmp
 .vim/bundle/command-t/ruby/command-t/ext.bundle
 .vim/bundle/command-t/ruby/command-t/mkmf.log
 .long-description.html
+.irssi/startup
+.irssi/saved_colors
