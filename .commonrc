@@ -241,9 +241,12 @@ alias etcks="etckv status"
 # Shortened commands
 alias g=git
 alias s=svn
+alias v=vim
+
+# Tmux shortcuts
 alias t=tmux
 alias ta='tmux attach -t '
-alias v=vim
+alias tn='tmux new-session -s '
 
 # Pretty LS_COLORS explanation: 
 # http://www.mjxg.com/index.py/geek/lscolors_and_ls_colors
