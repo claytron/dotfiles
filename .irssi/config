@@ -8,7 +8,7 @@ settings = {
   "fe-common/core" = { theme = "solarized"; };
   "perl/core/scripts" = {
     neat_colorize = "yes";
-    neat_allow_shrinking = "yes";
+    neat_allow_shrinking = "ON";
     neat_maxlength = "13";
     neat_ignorechars = "[_]";
   };
