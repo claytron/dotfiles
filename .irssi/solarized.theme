@@ -368,21 +368,21 @@ abstracts = {
 formats = {
   "fe-common/core" = {
     daychange = "           %g-----%w-%W-%n Day changed to %%D %W-%w-%g-----%n";
-    pubmsg = "{pubmsgnick {pubnick %g$[-9]0}$2}$1";
-    own_msg = "{ownmsgnick {ownnick $[-9]0$2}}$1";
-    own_msg_channel = "{ownmsgnick {ownnick $[-9]0$3}{msgchannel $1}}$2";
-    own_msg_private_query = "{ownprivmsgnick {ownprivnick $[-9]2}}$1";
-    pubmsg_me = "{pubmsgmenick {menick $[-9]0}$2}$1";
-    pubmsg_me_channel = "{pubmsgmenick {menick $[-9]0$3}{msgchannel $1}}$2";
-    pubmsg_hilight = "{pubmsghinick $0 $0 $[-9]1$3%n}$2";
-    pubmsg_hilight_channel = "{pubmsghinick $0 $[-9]1$4{msgchannel $2}}$3";
-    pubmsg_channel = "{pubmsgnick {pubnick %g$[-9]0}$2}$1";
-    msg_private_query = "{privmsgnick $[-9]0}$2";
+    pubmsg = "{pubmsgnick {pubnick %B$[-13]0}$2}$1";
+    own_msg = "{ownmsgnick {ownnick $[-13]0$2}}$1";
+    own_msg_channel = "{ownmsgnick {ownnick $[-13]0$3}{msgchannel $1}}$2";
+    own_msg_private_query = "{ownprivmsgnick {ownprivnick $[-13]2}}$1";
+    pubmsg_me = "{pubmsgmenick {menick $[-13]0}$2}$1";
+    pubmsg_me_channel = "{pubmsgmenick {menick $[-13]0$3}{msgchannel $1}}$2";
+    pubmsg_hilight = "{pubmsghinick $0 $0 $[-13]1$3%n}$2";
+    pubmsg_hilight_channel = "{pubmsghinick $0 $[-13]1$4{msgchannel $2}}$3";
+    pubmsg_channel = "{pubmsgnick {pubnick %B$[-13]0}$2}$1";
+    msg_private_query = "{privmsgnick $[-13]0}$2";
   };
   "fe-common/irc" = {
-    own_action = "{ownaction $[-7]0} $1";
-    action_private = "{pvtaction $[-7]0}$1";
-    action_private_query = "{pvtaction_query $[-7]0} $2";
-    action_public = "{pubaction $[-7]0}$1";
+    own_action = "{ownaction $[-11]0} $1";
+    action_private = "{pvtaction $[-11]0}$1";
+    action_private_query = "{pvtaction_query $[-11]0} $2";
+    action_public = "{pubaction $[-11]0}$1";
   };
 };
