@@ -11,6 +11,13 @@ settings = {
     neat_allow_shrinking = "ON";
     neat_maxlength = "13";
     neat_ignorechars = "[_]";
+    mailhilights_from = "internets@claytron.com";
+    mailhilights_to = "me@claytron.com";
+    smshilights_command = "~/bin/smsme.sh";
+    mailhilights_subject_chan = "= [irc] $; mentioned something you are interested in";
+    mailhilights_subject_query = "- [irc] $, sent you a private message";
+    tmux_away_active = "yes";
+    tmux_away_message = "someone pressed my power button";
   };
 };
 
@@ -323,3 +330,4 @@ hilights = (
   { text = "six feet up"; nick = "yes"; word = "yes"; },
   { text = "lineage"; nick = "yes"; word = "yes"; }
 );
+logs = { };
