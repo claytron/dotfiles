@@ -14,8 +14,8 @@ settings = {
     mailhilights_from = "internets@claytron.com";
     mailhilights_to = "me@claytron.com";
     smshilights_command = "~/bin/smsme.sh";
-    mailhilights_subject_chan = "= [irc] $; mentioned something you are interested in";
-    mailhilights_subject_query = "- [irc] $, sent you a private message";
+    mailhilights_subject_chan = "[irc] $; mentioned something you are interested in";
+    mailhilights_subject_query = "[irc] $, sent you a private message";
     tmux_away_active = "yes";
     tmux_away_message = "someone pressed my power button";
     awl_display_key = "$Q%K|%n$H$C$S";
