@@ -18,6 +18,8 @@ settings = {
     mailhilights_subject_query = "- [irc] $, sent you a private message";
     tmux_away_active = "yes";
     tmux_away_message = "someone pressed my power button";
+    awl_display_key = "$Q%K|%n$H$C$S";
+    awl_block = "-15";
   };
 };
 
@@ -156,7 +158,6 @@ statusbar = {
         window = { };
         window_empty = { };
         lag = { priority = "-1"; };
-        act = { priority = "10"; };
         more = { priority = "-1"; alignment = "right"; };
         barend = { priority = "100"; alignment = "right"; };
       };
@@ -204,6 +205,13 @@ statusbar = {
         topic = { };
         topic_empty = { };
         topicbarend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    awl_0 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_0 = { };
+        barend = { priority = "100"; alignment = "right"; };
       };
     };
   };
