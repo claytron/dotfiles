@@ -34,6 +34,9 @@ else
     alias gvim=mvim
 fi
 
+alias v=vim
+alias vn="vim -c ':NERDTree | wincmd l'"
+
 # use gitx with "all branches"
 alias gitxa="gitx --all"
 # use git-achievements if it is avaiable
@@ -241,7 +244,6 @@ alias etcks="etckv status"
 # Shortened commands
 alias g=git
 alias s=svn
-alias v=vim
 
 # Tmux shortcuts
 alias t=tmux
