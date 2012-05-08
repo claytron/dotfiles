@@ -734,7 +734,9 @@ let g:debuggerMiniBufExpl = 1
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 let g:Powerline_theme = 'distinguished'
 " show the unicode symbols in the terminal, fancy is set in gui below
-let g:Powerline_symbols = 'unicode'
+let g:Powerline_symbols = 'fancy'
+" Better unicode dividers that work with Inconsolata
+"let g:Powerline_dividers_override = [ "◤ ", " ⤷ ", " ◥", "⤶ " ]
 
 " syntastic                                                    {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
