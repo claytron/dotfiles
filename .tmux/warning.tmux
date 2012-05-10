@@ -4,10 +4,5 @@
 #
 
 # Set an obnoxious window name
-setw window-status-current-format "◀◀◀◀ WARNING  #I:#W#F  WARNING ▶▶▶▶"
-
-# Change the colors so things are more obvious
-setw window-status-bg yellow
-setw window-status-fg white
-setw window-status-current-bg white
-setw window-status-current-fg red
+setw window-status-current-format "#[bg=colour160,fg=colour234]⮀#[bg=colour160,fg=colour230] WARNING ⮁ #W ⮁ #I#F ⮁ WARNING #[fg=colour160,bg=colour234]⮀"
+setw window-status-format "#[bg=colour160,fg=colour234]⮀#[bg=colour160,fg=colour234] WARNING  #W ⮁ #I#F  WARNING #[fg=colour160,bg=colour234]⮀"
