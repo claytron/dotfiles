@@ -275,16 +275,41 @@ fi
 
 # start up a buildout given a myriad of ways to try
 function bfg() {
-    case "$1" in
-        stop) ACTION="stop";;
-        *) ACTION="start";;
-    esac
+    ACTION="start"
+    # Any argument causes a shutdown
+    [[ -n "$1" ]] && ACTION="stop"
+    echo $ACTION
+
+    instance=
+    instance_names=(instance client)
+    # Devine an instance executable, sometimes called "client", and sometimes with a number
+    for i in ${instance_names[@]}
+    do
+        if [[ -x "bin/$i" ]]; then
+            instance=$i
+            break
+        elif [[ -x "bin/$i1" ]]; then
+            instance=$i1
+            break
+        fi
+    done
+
+    zeo=
+    zeo_names=(zeo zeoserver)
+    # Devine a zeo executable, most of the time either zeoserver or zeo
+    for i in ${zeo_names[@]}
+    do
+        if [[ -x "bin/$i" ]]; then
+            zeo=$i
+            break
+        fi
+    done
 
     # start or stop a supervisor based install
     if [ -x bin/supervisord ]; then
         if [[ $ACTION == "start" ]]; then
             bin/supervisord
-            bin/instance fg
+            bin/$instance fg
         else
             bin/supervisorctl shutdown
         fi
@@ -303,16 +328,16 @@ function bfg() {
             scripts/control stop
         fi
     # no script, just use the executables directly
-    elif [ -x bin/zeoserver ] && [ -x bin/instance ]; then
+    elif [ -n "$zeo" ] && [ -n "$instance" ]; then
         if [[ $ACTION == "start" ]]; then
-            bin/zeoserver start
-            bin/instance fg
+            bin/$zeo start
+            bin/$instance fg
         else
-            bin/zeoserver stop
+            bin/$zeo stop
         fi
     # no zeoserver, just use the instance
-    elif [ -x bin/instance ]; then
-        bin/instance fg
+    elif [[ $ACTION == "start" ]] && [ -n "$instance" ]; then
+        bin/$instance fg
     else
         print "Couldn't find a start script. Is this a third party buildout?"
     fi
