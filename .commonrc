@@ -278,7 +278,6 @@ function bfg() {
     ACTION="start"
     # Any argument causes a shutdown
     [[ -n "$1" ]] && ACTION="stop"
-    echo $ACTION
 
     instance=
     instance_names=(instance client)
@@ -289,7 +288,7 @@ function bfg() {
             instance=$i
             break
         elif [[ -x "bin/$i1" ]]; then
-            instance=$i1
+            instance="${i}1"
             break
         fi
     done
