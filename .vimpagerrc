@@ -1,0 +1,51 @@
+" set the mapleader key
+let mapleader = ","
+let g:mapleader = ","
+
+" use a better color scheme
+colorscheme zellner
+
+" set the default encoding
+set enc=utf-8
+
+" set up jj as mode switch
+map! jj <ESC>
+
+if has('mouse')
+    " have the mouse enabled all the time
+    set mouse=a
+    " make a menu popup on right click
+    set mousemodel=popup
+endif
+
+" tell the bell to go beep itself!
+set visualbell t_vb=
+
+" This setting will cause the cursor to very briefly jump to a
+" brace/parenthese/bracket's "match" whenever you type a closing or
+" opening brace/parenthese/bracket.
+set showmatch
+
+" Set a margin of lines when scrolling
+set scrolloff=4
+" lines to scroll when cursor leaves screen
+set scrolljump=5
+
+" find as you type
+set incsearch
+" highlight the terms
+set hlsearch
+" make searches case-insensitive
+set ignorecase
+" unless they contain upper-case letters
+set smartcase
+
+" Make cursor move by visual lines instead of file lines (when wrapping)
+" This makes me feel more at home :)
+map <up> gk
+map k gk
+imap <up> <C-o>gk
+map <down> gj
+map j gj
+imap <down> <C-o>gj
+map E ge

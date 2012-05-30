@@ -101,6 +101,14 @@ fi
 
 export EDITOR=$PREFERRED_EDITOR
 
+if checkPath vimpager; then
+    export PAGER=vimpager
+    # vim pager doesn't currently support ansi colors
+    export GIT_PAGER=less
+    alias less=$PAGER
+    alias zless=$PAGER
+fi
+
 # get crazy with python, and the cheese whiz
 export PYTHONSTARTUP=$HOME/.pystartup
 

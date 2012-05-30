@@ -825,6 +825,9 @@ if has("autocmd")
     " vimperator and pentadactyl files
     au BufNewFile,BufRead *.vimp,*.penta,.vimperatorrc,.pentadactylrc set filetype=vim
 
+    " vim pager settings"
+    au BufNewFile,BufRead .vimpagerrc set filetype=vim
+
     " automatically use the wiki text for trac.sixfeetup.com when
     " using it's all text
     au BufNewFile,BufRead *trac.sixfeetup.com.* set filetype=wiki
