@@ -18,6 +18,7 @@ if [ $UNAME = "Darwin" ]; then
     hash -d DB=$HOME/Documents/sixfeetup/bundles-dev
     hash -d DB25=$HOME/Documents/sixfeetup/dev-bundle-2.5
     hash -d OP=$HOME/Documents/sixfeetup/projects
+    hash -d PP=$HOME/sixfeetup/presentation
     hash -d EP=/Volumes/MUZAK/zope
     hash -d S=$HOME/Sites
 
