@@ -245,10 +245,14 @@ alias etcks="etckv status"
 alias g=git
 alias s=svn
 
-# Tmux shortcuts
-alias t=tmux
-alias ta='tmux attach -t '
-alias tn='tmux new-session -s '
+# Tmux shortcuts, use wemux if available
+if checkPath wemux; then
+    alias t=wemux
+else
+    alias t=tmux
+    alias ta='t attach -t '
+    alias tn='t new-session -s '
+fi
 
 # Pretty LS_COLORS explanation: 
 # http://www.mjxg.com/index.py/geek/lscolors_and_ls_colors
