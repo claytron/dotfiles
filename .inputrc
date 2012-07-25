@@ -1,6 +1,8 @@
 # I prefer vi-style editing
 set editing-mode vi
-set keymap vi
+$if mode=vi
+    set keymap vi-command
+$endif
 # ignore that case biatch
 set completion-ignore-case on
 # actually tab the first time :)
