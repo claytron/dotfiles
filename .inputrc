@@ -1,5 +1,6 @@
 # I prefer vi-style editing
 set editing-mode vi
+set bell-style none
 $if mode=vi
     set keymap vi-command
     "gg": beginning-of-history
