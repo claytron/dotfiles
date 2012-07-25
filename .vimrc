@@ -164,6 +164,7 @@ nnoremap <leader>ftp :set ft=python<CR>
 nnoremap <leader>ftw :set ft=wiki<CR>
 nnoremap <leader>ftr :set ft=rst<CR>
 nnoremap <leader>ftv :set ft=vim<CR>
+nnoremap <leader>ftj :set ft=javascript<CR>
 
 " Visual settings                                              {{{1
 " -----------------------------------------------------------------
