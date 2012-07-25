@@ -5,6 +5,11 @@ if [ -f /etc/bashrc ]; then
     source /etc/bashrc
 fi
 
+# Enable MacPorts provided bash completions
+if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
+    source /opt/local/etc/profile.d/bash_completion.sh
+fi
+
 ## User specific aliases and functions
 
 # set up common env vars between bourne shells
