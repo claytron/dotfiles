@@ -635,6 +635,9 @@ let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_max_files = 0
 let g:ctrlp_max_depth = 100
 
+" Save the last 1000 files for MRU mode
+let g:ctrlp_mruf_max = 1000
+
 " show more items by default
 let g:ctrlp_max_height = 50
 
@@ -643,6 +646,8 @@ let g:ctrlp_lazy_update = 1000
 
 " Use the CtrlPTag mode
 nmap <leader>ft :CtrlPTag<CR>
+" Use the CtrlPMRUFiles mode
+nmap <leader>r :CtrlPMRUFiles<CR>
 
 " Fuzzy Finder                                                 {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
