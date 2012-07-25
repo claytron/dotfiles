@@ -181,6 +181,7 @@ compctl -s 'fetch gitify help h push update up' gitify
 
 # noguivm completions
 compctl -s '$(\ls -d $VM_LIBRARY/*.vmwarevm | sed -e "s|$VM_LIBRARY/||" -e "s/.vmwarevm//")' noguivm
+compctl -s '$(\ls /opt/local/share/games/fortune | grep .dat | sed "s/.dat//")' fortune makeMeLaugh lulz
 
 ## Completions
 autoload -U compinit
