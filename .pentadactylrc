@@ -94,8 +94,8 @@ map -builtin <C-h> <C-p>
 map -builtin <C-l> <C-n>
 
 " Move the current tab
-map -builtin ,h <Esc>:tabmove! -1<CR>
-map -builtin ,l <Esc>:tabmove! +1<CR>
+map -builtin H <Esc>:tabmove! -1<CR>
+map -builtin L <Esc>:tabmove! +1<CR>
 
 " show the available tabs
 map -builtin ,t :buffers<CR>
