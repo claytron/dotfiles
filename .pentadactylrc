@@ -1,8 +1,5 @@
 " -----------------------------------------------------------------
 "
-"  NOTE: some settings are set up in a common rc file so that both
-"        vim and vimperator can use them. See ~/.vim_commonrc
-"
 "    ,h       -- toggles the highlight search
 "    ,g       -- turns the GUI back on
 "    ,G       -- turns the GUI back off
