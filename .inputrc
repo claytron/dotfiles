@@ -2,6 +2,8 @@
 set editing-mode vi
 $if mode=vi
     set keymap vi-command
+    "gg": beginning-of-history
+    "G": end-of-history
 $endif
 # ignore that case biatch
 set completion-ignore-case on
