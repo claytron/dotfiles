@@ -33,7 +33,7 @@ set hlfind
 " unless they contain upper-case letters
 set findcase=smart
 " a toggle for search highlight
-map <silent> ,h :set hlsearch!<CR>
+map <silent> ,h :set hlfind!<CR>
 " Set up google as the default search engine
 set defsearch=google
 
