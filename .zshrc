@@ -22,6 +22,12 @@ if [ $UNAME = "Darwin" ]; then
     hash -d EP=/Volumes/MUZAK/zope
     hash -d S=$HOME/Sites
 
+    # Set up global aliases for copy / pasting in tmux
+    if checkPath reattach-to-user-namespace && [ -n "$TMUX" ]; then
+        alias -g pbcopy="reattach-to-user-namespace pbcopy"
+        alias -g pbpaste="reattach-to-user-namespace pbpaste"
+    fi
+
 fi
 
 # set up common aliases between shells
