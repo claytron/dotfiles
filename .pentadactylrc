@@ -1,3 +1,12 @@
+" My pentadactylrc uses folds
+"
+" zR    open all folds
+" zM    close all folds
+" za    toggle fold at cursor position
+" zj    move down to start of next fold
+" zk    move up to end of previous fold
+
+" My pentadactylrc command and mapping quick reference         {{{1
 " -----------------------------------------------------------------
 "
 "  Keyboard mappings
@@ -30,7 +39,8 @@
 "
 "    d        -- Turned off delete current tab
 "    <bs>     -- Turned off backspace as "back"
-"
+
+" General settings                                             {{{1
 " -----------------------------------------------------------------
 
 " Use home row letters for hints instead of numbers
@@ -42,37 +52,10 @@ set editor="/Users/clayton/bin/mvim -f"
 
 " tell the bell to go beep itself!
 set visualbell
-
-" -----------------------------------------------------------------
-" Searching
-" -----------------------------------------------------------------
-" find as you type
-set incfind
-" highlight the terms
-set hlfind
-" unless they contain upper-case letters
-set findcase=smart
-" a toggle for search highlight
-map <silent> ,h :set hlfind!<CR>
-" Set up google as the default search engine
-set defsearch=google
-
+"
 " turn off the freakin' bell
 hi Bell display: none;
-
-" bring back/hide portions of the GUI
-map -builtin <silent> ,g :set guioptions+=mBT<CR>
-map -builtin <silent> ,G :set guioptions-=mBT<CR>
-map -builtin <silent> ,b :toolbartoggle Bookmarks Toolbar<CR>
-map -builtin <silent> ,y :set showtabline=always<CR>
-map -builtin <silent> ,u :set showtabline=never<CR>
-
-" temporary workaround for copy paste in text boxes
-" https://code.google.com/p/dactyl/issues/detail?id=517
-imap -builtin <M-z> <pass>
-imap -builtin <M-a> <pass>
-imap -builtin <M-x> <pass>
-
+"
 " remove the right and bottom scrollbars
 set guioptions-=rb
 
@@ -96,6 +79,36 @@ set titlestring="oh hai!"
 
 " only show the tab bar if there are more than 1 tabs
 set showtabline=multitab
+
+" Searching                                                    {{{1
+" -----------------------------------------------------------------
+
+" find as you type
+set incfind
+" highlight the terms
+set hlfind
+" unless they contain upper-case letters
+set findcase=smart
+" a toggle for search highlight
+map <silent> ,h :set hlfind!<CR>
+" Set up google as the default search engine
+set defsearch=google
+
+" Mappings                                                     {{{1
+" -----------------------------------------------------------------
+
+" bring back/hide portions of the GUI
+map -builtin <silent> ,g :set guioptions+=mBT<CR>
+map -builtin <silent> ,G :set guioptions-=mBT<CR>
+map -builtin <silent> ,b :toolbartoggle Bookmarks Toolbar<CR>
+map -builtin <silent> ,y :set showtabline=always<CR>
+map -builtin <silent> ,u :set showtabline=never<CR>
+
+" temporary workaround for copy paste in text boxes
+" https://code.google.com/p/dactyl/issues/detail?id=517
+imap -builtin <M-z> <pass>
+imap -builtin <M-a> <pass>
+imap -builtin <M-x> <pass>
 
 " jj as esc
 map jj <Esc>
@@ -138,6 +151,9 @@ nmap -builtin <bs> <nop>
 " Go into pass through mode when invoking group tabs
 nmap -builtin <M-S-E> <C-z><M-S-E>
 
+" Bookmarklets                                                 {{{2
+" -----------------------------------------------------------------
+
 " use the readability bookmarklet on the current page
 map -builtin <silent> ,r :open javascript:(function(){readStyle='style-ebook';readSize='size-medium';readMargin='margin-x-narrow';_readability_script=document.createElement('SCRIPT');_readability_script.type='text/javascript';_readability_script.src='http://lab.arc90.com/experiments/readability/js/readability.js?x='+(Math.random());document.getElementsByTagName('head')[0].appendChild(_readability_script);_readability_css=document.createElement('LINK');_readability_css.rel='stylesheet';_readability_css.href='http://lab.arc90.com/experiments/readability/css/readability.css';_readability_css.type='text/css';_readability_css.media='all';document.getElementsByTagName('head')[0].appendChild(_readability_css);_readability_print_css=document.createElement('LINK');_readability_print_css.rel='stylesheet';_readability_print_css.href='http://lab.arc90.com/experiments/readability/css/readability-print.css';_readability_print_css.media='print';_readability_print_css.type='text/css';document.getElementsByTagName('head')[0].appendChild(_readability_print_css);})();<CR>
 
@@ -150,16 +166,9 @@ map -builtin <silent> ,x :open javascript:var%20s%20=%20document.createElement('
 " Save to delicious
 map -builtin <silent> ,d :open javascript:(function(){f='http://www.delicious.com/save?url='+encodeURIComponent(window.location.href)+'&title='+encodeURIComponent(document.title)+'&notes='+encodeURIComponent(''+(window.getSelection?window.getSelection():document.getSelection?document.getSelection():document.selection.createRange().text))+'&v=6&';a=function(){if(!window.open(f+'noui=1&jump=doclose','deliciousuiv6','location=1,links=0,scrollbars=0,toolbar=0,width=710,height=660'))location.href=f+'jump=yes'};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})()<CR>
 
-" -----------------------------------------------------------------
-" Plugins
-" -----------------------------------------------------------------
 
-" Turn on delicious completions for :open and :tabopen
-"autocmd Enter ".*" :set complete+=D
-
-" Set the 'direct bookmark' service to delicious
-"let g:direct_sbm_use_services_by_post='d'
-"let g:direct_sbm_use_services_by_tag='d'
+" Interface Tweaks                                             {{{1
+" -----------------------------------------------------------------
 
 " Move buttons from the normal toolbar into the status bar.
 " Currently this just moves the last pass and delicious tag buttons.
@@ -175,3 +184,6 @@ javascript <<EOF
     }
 })();
 EOF
+
+" turn on folds
+" vim: fdm=marker
