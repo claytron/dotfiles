@@ -1,5 +1,7 @@
 " -----------------------------------------------------------------
 "
+"  Keyboard mappings
+"
 "    ,h       -- toggles the highlight search
 "    ,g       -- turns the GUI back on
 "    ,G       -- turns the GUI back off
@@ -8,7 +10,26 @@
 "    ,u       -- turn off the tab bar
 "    ,t       -- show a list of tabs/buffers
 "    ,p       -- open up the preferences pane
+"    ,d       -- Bookmark in delicious
 "    ,x       -- kick ass!
+"    jj       -- Alternative for <Esc> in all modes
+"    w        -- Horizontal scroll left
+"    e        -- Horizontal scroll right
+"    J        -- Alternative to <C-f>
+"    K        -- Alternative to <C-b>
+"    <C-h>    -- Switch to next tab to the left
+"    <C-l>    -- Switch to next tab to the right
+"    H        -- Move current tab to the left
+"    L        -- Move current tab to the right
+"    <C-e>    -- Open textarea in external editor
+"    <M-S-E>  -- Map the group tab shortcut to start pass through first
+"    <C-r>    -- Use readability bookmarklet
+"    <C-R>    -- Add current page to Readability
+"
+" Keyboard mappings that have been disabled
+"
+"    d        -- Turned off delete current tab
+"    <bs>     -- Turned off backspace as "back"
 "
 " -----------------------------------------------------------------
 
