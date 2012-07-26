@@ -6,7 +6,6 @@
 "    ,b       -- shows the bookmark toolbar
 "    ,y       -- show the tab bar
 "    ,u       -- turn off the tab bar
-"    ,s       -- toggle the status bar
 "    ,t       -- show a list of tabs/buffers
 "    ,p       -- open up the preferences pane
 "    ,x       -- kick ass!
@@ -46,7 +45,6 @@ map -builtin <silent> ,G :set guioptions-=mBT<CR>
 map -builtin <silent> ,b :toolbartoggle Bookmarks Toolbar<CR>
 map -builtin <silent> ,y :set showtabline=always<CR>
 map -builtin <silent> ,u :set showtabline=never<CR>
-"map -builtin <silent> ,s :emenu View.Status Bar<CR>
 
 " temporary workaround for copy paste in text boxes
 " https://code.google.com/p/dactyl/issues/detail?id=517
