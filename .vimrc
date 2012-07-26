@@ -252,6 +252,8 @@ au BufReadPost COMMIT_EDITMSG* exe "normal! gg"
 set pastetoggle=<F2>
 " shortcut for pasting clipboard contents
 map <silent> <leader>* "+gP
+" Pipe the output of the default register to pbcopy. Useful inside tmux.
+map <silent> <leader>z :call system("echo '".getreg('"')."' \| reattach-to-user-namespace pbcopy")<CR>
 
 " Searching                                                    {{{1
 " -----------------------------------------------------------------
