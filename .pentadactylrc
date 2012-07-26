@@ -97,6 +97,12 @@ set titlestring="oh hai!"
 " only show the tab bar if there are more than 1 tabs
 set showtabline=multitab
 
+" jj as esc
+map jj <Esc>
+cmap jj <Esc>
+imap jj <Esc>
+tmap jj <Esc>
+
 " smooth scroll setting
 set scrollsteps=10
 set scrolltime=300
