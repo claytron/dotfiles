@@ -155,11 +155,6 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
-# tetris!!
-autoload -U tetris
-zle -N tetris
-bindkey "^T" tetris
-
 # set up history
 HISTSIZE=50000
 SAVEHIST=50000
