@@ -22,17 +22,40 @@ makeMeLaugh() {
 }
 
 lulz() {
+  local VOICE
+  local msg
+  local comedian
+
+  while getopts "v:" OPTION
+  do
+       case $OPTION in
+           v)
+               VOICE=$OPTARG
+               shift $((OPTIND-1))
+               ;;
+           ?)
+               echo "Not a valid option"
+               exit 1
+               ;;
+       esac
+  done
+
+  if [ -z "$VOICE" ]; then
+      VOICE="Fred"
+  fi
+
   msg="I cannot make you have lulz"
   if checkPath fortune && checkPath say; then
     if [ -n "$1" ]; then
-        comedian=$1
+        comedian="$1"
     elif [ -d /opt/local/share/games/fortune/comedy_short ]; then
         comedian=comedy_short
     else
         echo $msg
     fi
     if [ -n "$comedian" ]; then
-        fortune $comedian | sed '$d' | say -v Fred
+        # pipe through sed to get rid of the attribution line, then say it
+        fortune $comedian | sed -E '$,/^(-{1,2} |Deep Thoughts)/d' | say -v $VOICE
     fi
   else
     echo $msg
