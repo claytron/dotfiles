@@ -23,6 +23,8 @@
 "    <leader>w       -- removes trailing whitespace characters
 "    <leader>\       -- toggle line wrapping
 "    <leader>y       -- show the yankring
+"    <leader>z       -- push default register to remote server's
+"                       pbcopy. Basically copy from VM -> OS X.
 "    <leader>x       -- toggles NERDTree drawer
 "    <leader>b       -- shortcut for getting to NERDTree bookmarks
 "    <leader>q       -- Toggle the quickfix window
@@ -252,8 +254,13 @@ au BufReadPost COMMIT_EDITMSG* exe "normal! gg"
 set pastetoggle=<F2>
 " shortcut for pasting clipboard contents
 map <silent> <leader>* "+gP
-" Pipe the output of the default register to pbcopy. Useful inside tmux.
-map <silent> <leader>z :call system("echo '".getreg('"')."' \| reattach-to-user-namespace pbcopy")<CR>
+
+let g:paste_file = '~/.backup/vim/pastie.txt'
+let g:paste_server = 'clyde.local'
+" Pipe the output of the default register to ssh, then pbcopy on that machine
+" NOTE: The sed and perl in this are necessary because the RegisterToFile
+" function is putting extra characters in the file.
+map <silent> <leader>z :call RegisterToFile(g:paste_file) \| exe "silent !cat " . g:paste_file . " \| sed 1d \| perl -pe 'chomp if eof' \| ssh " . g:paste_server . " 'pbcopy'" \| redraw!<CR>
 
 " Searching                                                    {{{1
 " -----------------------------------------------------------------
@@ -583,6 +590,24 @@ function! IndentGuides() " {{{
     endif
 endfunction " }}}
 nnoremap <silent> <leader>I :call IndentGuides()<cr>
+
+" Push register out to file                                    {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+function! RegisterToFile(...)
+    " TODO: use a tmpfile, then clean it up afterwards
+    let l:filename = a:1
+    if !exists('a:2')
+        let l:register = '"'
+    else
+        let l:register = a:2
+    endif
+    " XXX: Make it so this doesn't push an empty first line and trailing
+    " newline to the file
+    exe "redir! > " . l:filename
+    echo getreg(l:register)
+    redir END
+endfunction
 
 " Plugins                                                      {{{1
 " -----------------------------------------------------------------
