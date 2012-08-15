@@ -151,6 +151,8 @@ bindkey -M viins '^F' history-incremental-pattern-search-forward
 # complete previous occurences of the command up till now on the command line
 bindkey -M viins "^[OA" history-beginning-search-backward-end
 bindkey -M viins "^[[A" history-beginning-search-backward-end
+bindkey -M vicmd "k" history-beginning-search-backward-end
+bindkey -M vicmd "j" history-beginning-search-backward-end
 bindkey -M viins "^N" up-line-or-search
 bindkey -M viins "^[OB" history-beginning-search-forward-end
 bindkey -M viins "^[[B" history-beginning-search-forward-end
