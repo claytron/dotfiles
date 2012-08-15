@@ -130,6 +130,11 @@ map -builtin K <C-b>
 map -builtin <C-h> <C-p>
 map -builtin <C-l> <C-n>
 
+" Go to the next / previous tab group
+" XXX: the tilde doesn't work, just sends tick :(
+map <C-;> <C-~>
+map <C-''> <C-`>
+
 " Move the current tab
 map -builtin H <Esc>:tabmove! -1<CR>
 map -builtin L <Esc>:tabmove! +1<CR>
