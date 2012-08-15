@@ -255,6 +255,7 @@ else
 fi
 alias tm=teamocil
 alias tmh='tm --here'
+alias tmhr='rvm use 1.9.3@teamocil && tmh'
 
 # Pretty LS_COLORS explanation: 
 # http://www.mjxg.com/index.py/geek/lscolors_and_ls_colors
