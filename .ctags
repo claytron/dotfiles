@@ -4,6 +4,7 @@
 --regex-zcml=/.*for="(.*)"?/\1/f,for/
 --regex-zcml=/.*profile="(.*)"/\1/g,profile/
 --regex-zcml=/.*permission="(.*)"/\1/p,permission/
+--regex-zcml=/.*provides=".*\.(.[^"]*)"/\1/p,provides/
 --regex-zcml=/.*id="(.*)"/\1/i,id/
 --regex-zcml=/.*schema=".*\.(.[^"]*)"/\1/s,schema/
 --regex-zcml=/.*handler=".*\.(.[^"]*)"/\1/h,handler/

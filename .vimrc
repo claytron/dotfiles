@@ -799,6 +799,7 @@ let g:tagbar_type_zcml = {
         \ 'f:for',
         \ 'g:profile',
         \ 'p:permission',
+        \ 'p:provides',
         \ 'h:handler',
         \ 'm:component',
         \ 'f:factory',
