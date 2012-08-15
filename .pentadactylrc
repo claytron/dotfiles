@@ -111,7 +111,6 @@ imap -builtin <M-a> <pass>
 imap -builtin <M-x> <pass>
 
 " jj as esc
-map jj <Esc>
 cmap jj <Esc>
 imap jj <Esc>
 tmap jj <Esc>
