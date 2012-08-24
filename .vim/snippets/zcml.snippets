@@ -189,3 +189,9 @@ snippet <upgrade ZCML: GenericSetup upgrade step
 snippet autoinclude
 	<includePlugins package="${1:.}" />
 	<includeDependencies package="${2:.}" />
+# Zope 3 Event Subscriber
+snippet <subscriber Event subscriber
+	<subscriber
+	    for="${1}"
+	    handler="${2}"
+	    />
