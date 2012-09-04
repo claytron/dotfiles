@@ -131,17 +131,18 @@ endif
 "=============================================================================
 " map debugging function keys
 "=============================================================================
-map <F1> :python debugger_resize()<cr>
-map <F2> :python debugger_command('step_into')<cr>
-map <F3> :python debugger_command('step_over')<cr>
-map <F4> :python debugger_command('step_out')<cr>
-map <F5> :call <SID>startDebugging()<cr>
-map <F6> :call <SID>stopDebugging()<cr>
-map <F11> :python debugger_context()<cr>
-map <F12> :python debugger_property()<cr>
-map <F11> :python debugger_watch_input("context_get")<cr>A<cr>
-map <F12> :python debugger_watch_input("property_get", '<cword>')<cr>A<cr>
-nnoremap ,e :python debugger_watch_input("eval")<cr>A
+" XXX: Please don't...
+"map <F1> :python debugger_resize()<cr>
+"map <F2> :python debugger_command('step_into')<cr>
+"map <F3> :python debugger_command('step_over')<cr>
+"map <F4> :python debugger_command('step_out')<cr>
+"map <F5> :call <SID>startDebugging()<cr>
+"map <F6> :call <SID>stopDebugging()<cr>
+"map <F11> :python debugger_context()<cr>
+"map <F12> :python debugger_property()<cr>
+"map <F11> :python debugger_watch_input("context_get")<cr>A<cr>
+"map <F12> :python debugger_watch_input("property_get", '<cword>')<cr>A<cr>
+"nnoremap ,e :python debugger_watch_input("eval")<cr>A
 
 
 "=============================================================================
