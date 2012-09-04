@@ -32,8 +32,7 @@
 "                       the reverse of J)
 "    <leader>c       -- Switch between light and dark colors
 "    jj              -- alternative to <ESC>
-"    ;               -- alternative to :
-"    ctrl + tab      -- cycle through buffers/tabs
+"    ctrl + tab      -- cycle through buffers
 "    <Enter>         -- open a new line (non-insert)
 "    <S-Enter>       -- open a new line above (non-insert)
 "    <leader>s       -- Toggle spell checking
@@ -42,6 +41,8 @@
 "    -               -- Make the current window shorter
 "    <C-a>           -- Make the current window more narrow
 "    <C-s>           -- Make the current window wider
+"    <leader>ft      -- Fuzzy tag mode (CtrlP)
+"    <leader>r       -- Fuzzy MRU mode (CtrlP)
 "    <leader>e       -- Fuzzy buffer mode (CtrlP)
 "
 " Command line shortcuts
