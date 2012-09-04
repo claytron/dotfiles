@@ -42,6 +42,7 @@
 "    -               -- Make the current window shorter
 "    <C-a>           -- Make the current window more narrow
 "    <C-s>           -- Make the current window wider
+"    <leader>e       -- Fuzzy buffer mode (CtrlP)
 "
 " Command line shortcuts
 "
@@ -675,6 +676,8 @@ let g:ctrlp_lazy_update = 1000
 nmap <leader>ft :CtrlPTag<CR>
 " Use the CtrlPMRUFiles mode
 nmap <leader>r :CtrlPMRUFiles<CR>
+" Use the buffer mode
+nmap <leader>e :CtrlPBuffer<CR>
 
 " Fuzzy Finder                                                 {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
