@@ -39,13 +39,3 @@ set hlsearch
 set ignorecase
 " unless they contain upper-case letters
 set smartcase
-
-" Make cursor move by visual lines instead of file lines (when wrapping)
-" This makes me feel more at home :)
-map <up> gk
-map k gk
-imap <up> <C-o>gk
-map <down> gj
-map j gj
-imap <down> <C-o>gj
-map E ge
