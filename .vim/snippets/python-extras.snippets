@@ -6,3 +6,52 @@ snippet autoinclude
 snippet logger
 	import logging
 	logger = logging.getLogger(${1:__name__})
+snippet zopectlrun # zopectl run script template
+	import sys
+	from AccessControl.SecurityManagement import newSecurityManager
+	from Testing.makerequest import makerequest
+	from zope.app.component.hooks import setSite
+	
+	# This is this the path to the Plone site object from the root of the
+	# Zope instance (i.e. app)
+	#
+	# Example: Plone or sites/Plone
+	SITE_PATH = '${1:Plone}'
+	
+	
+	class ScriptRunner(object):
+	    """${2:A zopectl run script}
+	    """
+	
+	    def __init__(self, portal, app=None):
+	        self.portal = portal
+	        self.app = app
+	
+	    def su(self, user_id='admin'):
+	        user = self.portal.acl_users.getUserById(user_id)
+	        if user is None and self.app is not None:
+	            user = self.app.acl_users.getUserById(user_id)
+	        if user is None:
+	            print "User '%s' could not be found" % user_id
+	            sys.exit(1)
+	        newSecurityManager(None, user)
+	
+	    def run(self):
+	        ${3:# Write your code here}
+	
+	
+	def main(app):
+	    app = makerequest(app)
+	    portal_obj = app.restrictedTraverse(SITE_PATH, None)
+	    if portal_obj is None:
+	        print "Could not find '%s', check the SITE_PATH" % SITE_PATH
+	        sys.exit(1)
+	    portal = makerequest(portal_obj)
+	    setSite(portal)
+	    runner = ScriptRunner(portal, app)
+	    runner.su()
+	    runner.run()
+	
+	
+	if __name__ == '__main__':
+	    main(app) # NOQA
