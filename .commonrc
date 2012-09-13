@@ -315,7 +315,10 @@ function bfg() {
     if [ -x bin/supervisord ]; then
         if [[ $ACTION == "start" ]]; then
             bin/supervisord
-            bin/$instance fg
+            # XXX: instance shouldn't be set, but seems to be anyway...
+            if [ -x "bin/$instance" ]; then
+                bin/$instance fg
+            fi
         else
             bin/supervisorctl shutdown
         fi
