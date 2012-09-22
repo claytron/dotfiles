@@ -1,41 +1,85 @@
-" ==Vimperator_Color_Scheme==
+" ==Pentadactyl_Color_Scheme==
 " name: Simple
-" modifications: Travis Jeffery <t.jeffery@utoronto.ca>
-" - changed font to DejaVu Sans Mono
-" - changed colors to be brighter and more excitings
-" ==Simple_Color_Scheme==
+" ==Simple_Colorscheme_Settings==
 
-highlight Bell display: none;
 
-highlight CmdLine font-size: 10px; font-weight: normal; font-family:"DejaVu Sans Mono", monospace; padding: 0 0;
+"StatusLine settings
+"hi StatusLine					  -a color: #000000 !important; background-color: white !important; font-weight: bold !important;
+hi StatusLineNormal				  -a color: #000000 !important; background-color: white !important; font-weight: bold !important;
+hi StatusLineBroken				  -a color: #000000  !important; background-color: #afafff  !important;
+hi StatusLineSecure				  -a color: #000000  !important; background-color: #afffaf  !important;
+hi StatusLineExtended			  -a color: #000000  !important; background-color: #afffaf  !important;
 
-highlight CompGroup          font-size: 9px; color: #111;
-highlight CompTitle          font-size: 9px; letter-spacing: 2px; color: #333; background: #CCC;
-highlight CompItem           padding: 0 0; font-family: "DejaVu Sans Mono", monospace;
-highlight CompItem[selected] background-color: #DDD;
-highlight CompDesc           color: #888;
-" highlight CompMsg
-highlight Gradient           background-color: #FFF;
-highlight GradientLeft       background-color: #FFF;
-highlight GradientRight      background-color: #FFF;
+"CmdLine settings excluding Gradient
+hi Normal						  -a color: #000000; background: #ffffff; font-weight: bold !important;
+hi CmdLine						  -a color: inherit; background: inherit; font-weight: normal !important;
+hi CompDesc						  -a color: inherit; width: 50%; font-size: 8pt;
+hi CompGroup					  -a color: inherit; font-weight: bold !important;
+hi CompIcon						  -a display: none;
+hi CompItem						  -a color: inherit; background: inherit; font-weight: bold !important;
+hi CompItem[selected]			  -a color: #eeeeee !important; background: #222222; font-weight: bold !important;
+hi CompLess						  -a text-align: center; height: 0; line-height: .5ex; padding-top: 1ex;
+hi CompMore						  -a text-align: center; height: .5ex; line-height: .5ex; margin-bottom: -.5ex;
+hi CompMsg						  -a font-style: italic;
+hi CompResult					  -a width: 45%; overflow: hidden; font-size: 8pt; font-family: monospace; font-weight: normal;
+hi CompTitle					  -a color: #000000 !important; background: #ffffff !important; font-weight: bold !important;
+hi CompTitle>*					  -a padding: 0 .5ex;
+hi CompTitleSep					  -a background: #00bbff; background: -moz-linear-gradient(0deg, #000000, #cccccc);
 
-highlight ErrorMsg background-color: #E00; color: #F5F5F5;
-highlight Filter font-weight: bold; color: #000;
+"Options for Filter, uncomment the one you want and make sure others are commented
+""Switches from maroon to light blue when selected
+"hi Filter						  -a font-weight: bold; color: #8b0000 !important;
+"hi 'CompItem[selected] Filter'	  -a color: #00bfff !important;
 
-highlight StatusLine       font-size: 12px !important; font-weight: normal !important; color: #222 !important; background: #EEE !important;
-highlight StatusLineBroken font-size: 12px !important; font-weight: normal !important; color: #222 !important; background: #FDD !important;
-highlight StatusLineSecure font-size: 12px !important; font-weight: normal !important; color: #222 !important; background: #DDF !important;
+""No switch, stays at olive
+"hi Filter						  -a font-weight: bold; color: #808000 !important;
+"hi 'CompItem[selected] Filter'	  -a color: #808000 !important;
 
-" highlight WarningMsg
-highlight Hint font-family: "DejaVu Sans Mono", monospace; font-size: 12px; font-weight: normal; color: white; background-color: black; padding: 0px 4px; opacity: 0.6;
+""Same as HintActive color
+hi Filter						  -a font-weight: bold; color: #4682b4 !important;
+hi 'CompItem[selected] Filter'	  -a color: #4682b4 !important;
 
-highlight HintElem background-color: #00CC000;
-" highlight HintActive
+""Stays at saddle brown
+"hi Filter						 -a font-weight: bold; color: #8b4513 !important;
+"hi 'CompItem[selected] Filter'  -a color: #8b4513 !important;
 
-highlight Title font-size: 12px; letter-spacing: 2px; color: #333; background: #CCC;
+"Used with ]f and [f
+hi FrameIndicator				  -a background-color: #222222; opacity: 0.5; z-index: 999; position: fixed; top: 0; bottom: 0; left: 0; right: 0;
 
-style -name statusbar chrome://* <<EOM
-#status-bar statusbarpanel { padding: 2px !important; }
-statusbarpanel > * { margin: 0 !important; padding: 0 !important; }
-EOM
+
+"Hint section
+hi Hint							  font-family: Sans; font-size: 11px !important; font-weight: bold !important; color: #ffffff !important; background-color: rgba(0, 0, 0, 0.6) !important; border: solid 1px #000000 !important; position: absolute !important;
+hi Hint::after					  content: attr(number);
+hi HintActive					  background: #4682b4 !important; color: #ffffff !important;
+hi HintElem						  background-color: inherit !important;
+hi HintImage					  opacity: .5 !important;
+
+
+"Other important stuff
+hi Bell							  -a border: 0 none; background-color: inherit;
+"I don't bother with Disabled and Enabled since they're both satisfactory to me
+hi ErrorMsg						  -a color: red !important; background: #ffffff !important;
+hi Function						  -a color: lightgreen !important; background: inherit !important;
+hi Indicator					  -a color: #8b0000 !important; font-weight: bold; width: 4px;
+hi InfoMsg						  -a color: inherit !important; background: inherit !important;
+hi LineNr						  -a color: red !important; background: inherit !important;
+hi Message						  -a color: inherit !important; background: inherit !important; font-weight: bold; white-space: normal; min-width: 100%; padding-left: 2em; text-indent: -2em; display: block;
+"CmdLine when Not in Use
+hi ModeMsg						  -a color: inherit !important; background: inherit !important; font-weight: bold !important;
+hi MoreMsg						  -a color: inherit !important; background: inherit !important;
+hi NonText						  -a color: lightblue !important; min-height: 16px; padding-left: 2px;
+hi Question						  -a color: inherit !important; background: inherit !important; font-weight: bold;
+hi Search						  -a font-size: inherit !important; padding: 0; color: inherit !important; background-color: yellow; padding: 0;
+hi Tag							  -a color: inherit !important; background: inherit !important;
+hi Title						  -a color: #222222 !important; background: inherit !important; font-weight: bold;
+hi URL							  -a text-decoration: none; color: inherit; background: inherit;
+hi URL:hover					  -a text-decoration: underline; cursor: pointer;
+hi WarningMsg					  -a color: red !important; background: #ffffff !important;
+
+"For other descriptions of each item, please see :h 'highlight'
+
+"style -name statusbar chrome://* <<EOM
+"#status-bar statusbarpanel { padding: 0 1px !important; }
+"statusbarpanel > * { margin: 0 !important; padding: 0 2px 0 0 !important; }
+"EOM
 
