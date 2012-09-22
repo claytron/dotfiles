@@ -60,8 +60,6 @@ if checkPath colordiff; then
 else
     alias -g CD='| vim -R "+syntax on" -'
 fi
-# bootstrap with distribute
-alias -g bootstrap='bootstrap.py --distribute'
 
 # cvs setup
 export CVSROOT=:pserver:clayton@cvs:/var/cvsroot
