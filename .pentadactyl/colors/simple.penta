@@ -2,6 +2,7 @@
 " name: Simple
 " ==Simple_Colorscheme_Settings==
 
+hi clear
 
 "StatusLine settings
 "hi StatusLine					  -a color: #000000 !important; background-color: white !important; font-weight: bold !important;
