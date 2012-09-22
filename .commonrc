@@ -255,7 +255,6 @@ else
 fi
 alias tm=teamocil
 alias tmh='tm --here'
-alias tmhr='rvm use 1.9.3@teamocil && tmh'
 
 # Pretty LS_COLORS explanation: 
 # http://www.mjxg.com/index.py/geek/lscolors_and_ls_colors
@@ -272,8 +271,6 @@ if [ -d $VIRTUALENVS_DIR ]; then
     fi
 fi
 
-[[ -s /usr/local/lib/rvm ]] && source /usr/local/lib/rvm
-[[ -s $HOME/.rvm ]] && source $HOME/.rvm/scripts/rvm
 
 # Tmuxinator setup
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
