@@ -72,7 +72,7 @@ set complete=lS
 set maxitems=35
 
 " use a different color scheme
-colorscheme simple
+colorscheme solarized-light
 
 " set a stupid title
 set titlestring="oh hai!"
