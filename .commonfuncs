@@ -147,3 +147,9 @@ weShouldUpdate() {
     fi
     return 1
 }
+
+search_movies() {
+    local movies
+    movies=`/Applications/Plex\ Media\ Server.app/Contents/MacOS/Plex\ Media\ Scanner -l -c 1 | awk -F: '{print $2}'`
+    echo $movies | grep -i $1
+}
