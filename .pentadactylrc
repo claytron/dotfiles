@@ -80,6 +80,9 @@ set titlestring="oh hai!"
 " only show the tab bar if there are more than 1 tabs
 set showtabline=multitab
 
+" load plugins that are css as well
+set loadplugins='\.(css|js|penta)$'
+
 " Searching                                                    {{{1
 " -----------------------------------------------------------------
 
