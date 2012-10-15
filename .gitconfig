@@ -38,3 +38,5 @@
 	merge = master
 [svn]
 	authorsfile = /Users/clayton/.git-authorsfile
+[branch]
+	autosetuprebase = always
