@@ -10,7 +10,7 @@ env.dotfiles = 'https://svn.sixfeetup.com/svn/private/claytron/dotfiles/trunk'
 env.dotfiles_local = "$HOME/.dotfiles"
 
 
-def push_dotfiles(rsync=None, dry=None):
+def push_dotfiles(rsync=None, dry=None, port=None):
     """Push my dotfiles to a specific server
 
     rsync::
@@ -30,15 +30,16 @@ def push_dotfiles(rsync=None, dry=None):
     if rsync is None:
         run('svn co %s .dotfiles' % env.dotfiles)
     else:
+        options = []
         if dry is not None:
-            dry = '-n'
-        else:
-            dry = ''
+            options.append('-n')
+        if port is not None:
+            options.append("--port=%s" % port)
         # rsync to the host deleting files that don't exist here
         # TODO: use built-in fabric command?
         # NOTE: I still use svn as the main repo, so ignore git
         local('rsync %s -av --delete --exclude=".git" %s/ %s:.dotfiles' % (
-            dry, env.dotfiles_local, env.host_string))
+            ' '.join(options), env.dotfiles_local, env.host_string))
     run('.dotfiles/create_links.sh remove')
     run('.dotfiles/create_links.sh')
 
