@@ -155,6 +155,9 @@ nmap -builtin d <silent> <Nop>
 " Never wanted to go back when I hit delete, now it won't
 nmap -builtin <bs> <nop>
 
+" The auto number incremeting is kind of annoying
+nmap -builtin <C-a> <nop>
+
 " Go into pass through mode when invoking group tabs
 nmap -builtin <M-S-E> <C-z><M-S-E>
 
