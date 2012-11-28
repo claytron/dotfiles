@@ -973,6 +973,10 @@ map <C-W><C-L> <C-W>L
 map <C-W>e <C-W>W
 map <C-W><C-E> <C-W>W
 
+" Window splits like I have mapped in tmux (- horizontal, | vertical)
+map <C-W>- <C-W>s
+map <C-W>\| <C-W>v
+
 " equalize without W
 " XXX: doesn't work
 "map <C-=> <C-W>=
