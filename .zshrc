@@ -49,6 +49,7 @@ alias -g site-packages='-c "from distutils.sysconfig import get_python_lib; prin
 alias -g spriv='https://svn.sixfeetup.com/svn/private/'
 alias -g spub='https://svn.sixfeetup.com/svn/public/'
 alias -g collective='https://svn.plone.org/svn/collective/'
+alias -g sgit='https://git.sixfeetup.com/git/'
 # some pipes
 alias -g G='| sgrep'
 alias -g L='| less'
