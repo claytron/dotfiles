@@ -45,10 +45,6 @@
 "    <leader>r       -- Fuzzy MRU mode (CtrlP)
 "    <leader>e       -- Fuzzy buffer mode (CtrlP)
 "
-" Command line shortcuts
-"
-"    w!!             -- Save the following file using sudo to avoid
-"                       the [readonly] flag
 "
 " I have set up some custom commands that might be of interest
 "
@@ -59,6 +55,8 @@
 "                       scratch buffer
 "    TidyXML         -- Runs tidy in XML mode on the current buffer
 "    TabStyle        -- Set the tab style and number, :TabStyle space 4
+"    W               -- Save the following file using sudo to avoid
+"                       the [readonly] flag.
 
 " General setting                                              {{{1
 " -----------------------------------------------------------------
@@ -93,9 +91,6 @@ set nrformats=""
 
 " set up jj as mode switch
 map! jj <ESC>
-
-" Take care of forgetting to use sudo with :w!!
-cmap w!! w !sudo tee % > /dev/null
 
 " Set the shell to sh, zsh and vim don't seem to play nice
 set shell=sh
@@ -610,6 +605,13 @@ function! RegisterToFile(...)
     echo getreg(l:register)
     redir END
 endfunction
+
+" Save a file with sudo when it is [readonly]                  {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" Taken from command line fu.
+" http://www.commandlinefu.com/commands/view/9425
+command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
 " Plugins                                                      {{{1
 " -----------------------------------------------------------------
