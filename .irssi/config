@@ -5,7 +5,7 @@ settings = {
     nick = "claytron";
   };
   "fe-text" = { actlist_sort = "refnum"; };
-  "fe-common/core" = { theme = "solarized"; };
+  "fe-common/core" = { autolog = "yes"; };
   "perl/core/scripts" = {
     neat_colorize = "yes";
     neat_allow_shrinking = "ON";
@@ -20,6 +20,8 @@ settings = {
     tmux_away_message = "someone pressed my power button";
     awl_display_key = "$Q%K|%n$H$C$S";
     awl_block = "-15";
+    smshilights_delay_min = "300";
+    mailhilights_delay_min = "30";
   };
 };
 
@@ -31,22 +33,34 @@ servers = (
     use_ssl = "no";
     ssl_verify = "no";
     autoconnect = "yes";
+  },
+  {
+    address = "s2.what-network.net";
+    chatnet = "whatcd";
+    port = "6697";
+    use_ssl = "yes";
+    ssl_verify = "no";
+    autoconnect = "yes";
   }
 );
 
-chatnets = { freenode = { type = "IRC"; nick = "claytron"; }; };
+chatnets = {
+  freenode = { type = "IRC"; nick = "claytron"; };
+  whatcd = { type = "IRC"; nick = "claytron"; };
+};
 
 channels = (
-  { name = "#karl"; chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "#sixfeetup"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "#plone"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "#plone-docs"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "#plone-tuneup"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "#plone.org"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "#pylons"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "#pyramid"; chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "#karl"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "#repoze"; chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#sixfeetup"; chatnet = "freenode"; autojoin = "Yes"; },
-  { name = "#zsh"; chatnet = "freenode"; autojoin = "Yes"; }
+  { name = "#zsh"; chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "#what.cd"; chatnet = "whatcd"; autojoin = "Yes"; }
 );
 
 aliases = {
@@ -214,13 +228,6 @@ statusbar = {
         barend = { priority = "100"; alignment = "right"; };
       };
     };
-    awl_1 = {
-      items = {
-        barstart = { priority = "100"; };
-        awl_1 = { };
-        barend = { priority = "100"; alignment = "right"; };
-      };
-    };
   };
 };
 ignores = (
@@ -232,6 +239,12 @@ ignores = (
     level = "CRAP MSGS NOTICES SNOTES CTCPS JOINS PARTS QUITS KICKS MODES TOPICS WALLOPS INVITES NICKS DCC DCCMSGS CLIENTNOTICES CLIENTCRAP CLIENTERRORS HILIGHTS";
   }
 );
+hilights = (
+  { text = "claytron"; nick = "yes"; word = "yes"; },
+  { text = "six feet up"; nick = "yes"; word = "yes"; },
+  { text = "lineage"; nick = "yes"; word = "yes"; }
+);
+logs = { };
 windows = {
   1 = { immortal = "yes"; name = "(status)"; level = "ALL"; };
   2 = {
@@ -337,12 +350,6 @@ windows = {
   12 = { name = "hilight"; sticky = "yes"; };
 };
 mainwindows = {
-  1 = { first_line = "8"; lines = "50"; };
+  1 = { first_line = "8"; lines = "74"; };
   12 = { first_line = "1"; lines = "7"; };
 };
-hilights = (
-  { text = "claytron"; nick = "yes"; word = "yes"; },
-  { text = "six feet up"; nick = "yes"; word = "yes"; },
-  { text = "lineage"; nick = "yes"; word = "yes"; }
-);
-logs = { };
