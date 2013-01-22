@@ -1,8 +1,8 @@
 UNAME=$(uname)
 
 makeMeLaugh() {
+  clear
   if checkPath fortune; then
-    clear
     local FORTUNE
     # display the fortune requested
     if [ -n "$1" ]; then
@@ -18,6 +18,8 @@ makeMeLaugh() {
         FORTUNE=$(cowthink -d -f small -W72 $FORTUNE)
     fi
     echo -e "\n$FORTUNE\n"
+  else
+    echo "No fortunes for you!"
   fi
 }
 
