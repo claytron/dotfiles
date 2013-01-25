@@ -253,8 +253,6 @@ else
     alias ta='t attach -t '
     alias tn='t new-session -s '
 fi
-alias tm=teamocil
-alias tmh='tm --here'
 
 # Pretty LS_COLORS explanation: 
 # http://www.mjxg.com/index.py/geek/lscolors_and_ls_colors

@@ -155,3 +155,11 @@ search_movies() {
     movies=`/Applications/Plex\ Media\ Server.app/Contents/MacOS/Plex\ Media\ Scanner -l -c 1 | awk -F: '{print $2}'`
     echo $movies | grep -i $1
 }
+
+tmh() {
+    [[ -z "$1" ]] && echo 'project name is required' && return 1
+    local location
+    export T_PROJ=$1
+    [[ -z "$2" ]] && location=vm || location="$2"
+    teamocil --here $location
+}
