@@ -176,24 +176,5 @@ map -builtin <silent> ,x :open javascript:var%20s%20=%20document.createElement('
 " Save to delicious
 map -builtin <silent> ,d :open javascript:(function(){function%20f(i){if(i.origin!==e+""+n&&i.origin!==t+""+n){return}if(i.data==="destroy_bookmarklet"){var%20s=document.getElementById(r);if(s){document.body.removeChild(s);s=null}}}var%20e="http://",t="https://",n="delicious.com",r="DELI_bookmarklet_iframe",i=document.getElementById(r);if(i){return}var%20s=e+""+n+"/save?",o=document.createElement("iframe");o.id=r;o.src=s+"url="+encodeURIComponent(window.location.href)+"&title="+encodeURIComponent(document.title)+"&note="+encodeURIComponent(""+(window.getSelection?window.getSelection():document.getSelection?document.getSelection():document.selection.createRange().text))+"&v=1.1";o.style.position="fixed";o.style.top="0";o.style.left="0";o.style.height="100%25";o.style.width="100%25";o.style.zIndex="9999999";o.style.border="none";o.style.visibility="hidden";o.onload=function(){this.style.visibility="visible"};document.body.appendChild(o);var%20u=window.addEventListener?"addEventListener":"attachEvent";var%20a=u=="attachEvent"?"onmessage":"message";window[u](a,f,false)})()<CR>
 
-
-" Interface Tweaks                                             {{{1
-" -----------------------------------------------------------------
-
-" Move buttons from the normal toolbar into the status bar.
-" Currently this just moves the last pass and delicious tag buttons.
-javascript <<EOF
-(function() {
-    var buttons = ['lpt_lastpass-compact-btn', 'feed-button'];
-    for (var i = 0; i < buttons.length; i++) {
-        var button_id = buttons[i];
-        var new_button = document.createElement("new_button");
-        new_button.setAttribute("id", button_id + "-clone");
-        new_button.appendChild(document.getElementById(button_id));
-        document.getElementById("status-bar").insertBefore(new_button, document.getElementById("security-button"));
-    }
-})();
-EOF
-
 " turn on folds
 " vim: fdm=marker
