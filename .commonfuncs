@@ -161,5 +161,8 @@ tmh() {
     local location
     export T_PROJ=$1
     [[ -z "$2" ]] && location=vm || location="$2"
+    if [[ -n "$3" ]]; then
+        export T_BUILD="$3"
+    fi
     teamocil --here $location
 }
