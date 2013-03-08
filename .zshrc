@@ -87,7 +87,7 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 setopt EXTENDED_HISTORY
 alias histappend="fc -AI"
-alias histread="fc -AI"
+alias histread="fc -R"
 
 # Look for a command that started like the one starting on the command line.
 # taken from: http://www.xsteve.at/prg/zsh/.zshrc (not sure of original source)
