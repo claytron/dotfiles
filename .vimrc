@@ -883,6 +883,9 @@ if has("autocmd")
     " Vagrant files
     au BufNewFile,BufRead Vagrantfile set filetype=ruby
 
+    " psql sessions in Postgres
+    au BufNewFile,BufRead psql.edit.* set filetype=sql
+
     " Zope and Plone files
     " -----------------------------------------------------------------
     " set up zope page templates as the zpt filetype
