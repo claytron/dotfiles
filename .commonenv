@@ -142,7 +142,7 @@ fi
 # for FreeBSD
 # Pretty LSCOLORS explanation:
 # http://www.mjxg.com/index.py/geek/lscolors_and_ls_colors
-export LSCOLORS="cxgxCxdxbxegedabagacdx"
+export LSCOLORS="exFxbxbhcxfxgxdxdhebeb"
 
 # set the ACK match color scheme
 export ACK_COLOR_MATCH="red"
