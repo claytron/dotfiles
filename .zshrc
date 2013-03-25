@@ -61,6 +61,7 @@ if checkPath colordiff; then
 else
     alias -g CD='| vim -R "+syntax on" -'
 fi
+alias -g purdy_json="| python -mjson.tool | vim -R +'set ft=javascript' -"
 
 # cvs setup
 export CVSROOT=:pserver:clayton@cvs:/var/cvsroot
