@@ -12,30 +12,38 @@
 " The mapleader has been switched from '\' to ',' anytime you see
 " <leader> that is what this refers to.
 "
-"    tt              -- opens up the taglist
-"    <leader>h       -- toggles the highlight search
-"    <leader>n       -- toggles the line numbers
-"    <leader>a       -- starts an ack search in the CWD
-"    <leader>f       -- shows the current file in the NERDTree. This
+"    tt              -- Opens up the taglist
+"    <leader>h       -- Toggles the highlight search
+"    <leader>H       -- Clear the current search highlight
+"    <leader>n       -- Toggles the line numbers
 "    <leader>nn      -- Toggles relative line numbers
+"    <leader>a       -- Starts an ack search in the CWD
+"    <leader>ee      -- Show current :Errors
+"    <leader>f       -- Shows the current file in the NERDTree. This
 "                       is the TextMate equivalent of ctrl+cmd+r
+"    <leader>g       -- Toggle gundo
 "    <leader>T       -- Run tidy xml on the current file
-"    <leader>i       -- toggles invisible characters
-"    <leader>w       -- removes trailing whitespace characters
-"    <leader>\       -- toggle line wrapping
-"    <leader>y       -- show the yankring
-"    <leader>z       -- push default register to remote server's
+"    <leader>i       -- Toggles invisible characters
+"    <leader>I       -- Toggle indent guides
+"    <leader>w       -- Removes trailing whitespace characters
+"    <leader>\       -- Toggle line wrapping
+"    <leader>y       -- Show the yankring
+"    Y               -- Yank to the end of the line, no newline
+"    YY              -- Yank the current line, no newline
+"    <leader>V       -- Sort a buildout versions.cfg file
+"    <leader>uni     -- Find the next non-ascii character
+"    <leader>z       -- Push default register to remote server's
 "                       pbcopy. Basically copy from VM -> OS X.
-"    <leader>x       -- toggles NERDTree drawer
-"    <leader>b       -- shortcut for getting to NERDTree bookmarks
+"    <leader>x       -- Toggles NERDTree drawer
+"    <leader>b       -- Shortcut for getting to NERDTree bookmarks
 "    <leader>q       -- Toggle the quickfix window
-"    <leader><Enter> -- opens a line at the current column (this is
+"    <leader><Enter> -- Opens a line at the current column (this is
 "                       the reverse of J)
 "    <leader>c       -- Switch between light and dark colors
-"    jj              -- alternative to <ESC>
+"    jj              -- Alternative to <ESC>
 "    ctrl + tab      -- cycle through buffers
-"    <Enter>         -- open a new line (non-insert)
-"    <S-Enter>       -- open a new line above (non-insert)
+"    <Enter>         -- Open a new line (non-insert)
+"    <S-Enter>       -- Open a new line above (non-insert)
 "    <leader>s       -- Toggle spell checking
 "    <F2>            -- Toggle smart indent on paste
 "    +               -- Make the current window taller
@@ -45,7 +53,21 @@
 "    <leader>ft      -- Fuzzy tag mode (CtrlP)
 "    <leader>r       -- Fuzzy MRU mode (CtrlP)
 "    <leader>e       -- Fuzzy buffer mode (CtrlP)
+"    <leader>v       -- Edit the current user's vimrc
+"    <leader>h1      -- Set a highlight for the current word (1)
+"    <leader>h2      -- Set a highlight for the current word (2)
+"    <leader>h3      -- Set a highlight for the current word (3)
+"    <leader>ftj     -- Change current filetype to Javascript
+"    <leader>ftm     -- Change current filetype to Markdown
+"    <leader>ftp     -- Change current filetype to Python
+"    <leader>ftr     -- Change current filetype to reStructuredText
+"    <leader>ftv     -- Change current filetype to Vim
+"    <leader>ftw     -- Change current filetype to Wiki
 "
+" Command line mappings
+"
+"    <C-a>           -- Beginning of the line
+"    <C-c>           -- End of the line
 "
 " I have set up some custom commands that might be of interest
 "
