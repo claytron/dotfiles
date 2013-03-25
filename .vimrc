@@ -17,6 +17,7 @@
 "    <leader>n       -- toggles the line numbers
 "    <leader>a       -- starts an ack search in the CWD
 "    <leader>f       -- shows the current file in the NERDTree. This
+"    <leader>nn      -- Toggles relative line numbers
 "                       is the TextMate equivalent of ctrl+cmd+r
 "    <leader>T       -- Run tidy xml on the current file
 "    <leader>i       -- toggles invisible characters
@@ -214,8 +215,11 @@ set cursorline
 
 " turn on line numbers, aww yeah
 set number
+set relativenumber
 " shortcut to turn off line numbers
 map <silent> <leader>n :set number!<CR>
+" toggle relative number
+map <silent> <leader>nn :set relativenumber!<CR>
 
 " don't redraw during macros
 set lazyredraw
