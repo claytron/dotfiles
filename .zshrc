@@ -215,10 +215,12 @@ if [ -z $MY_ZSH_PLUGINS_LOADED ] && is-at-least 4.3; then
     # stop that from happening
     MY_ZSH_PLUGINS_LOADED="true"
 
-    source $HOME/.zsh.d/zsh-syntax-highlighting.zsh
+    source $HOME/.zsh.d/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     source $HOME/.zsh.d/opp.zsh
     source $HOME/.zsh.d/opp/[^.]*
 
+    # Set up zsh highlighters
+    ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor root)
     # set up command line syntax highlighting overrides
     ZSH_HIGHLIGHT_STYLES[alias]='fg=black,bg=green'
     ZSH_HIGHLIGHT_STYLES[builtin]='fg=green,bold'
