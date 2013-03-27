@@ -900,6 +900,9 @@ if has("autocmd")
     " use markdown for karl
     au BufNewFile,BufRead *karl.sixfeetup.com.* set filetype=markdown.html
 
+    " anything with the wiki extension should be treated as such
+    au BufNewFile,BufRead *.wiki set filetype=wiki
+
     " shell files
     au BufNewFile,BufRead .common* set filetype=sh
 
