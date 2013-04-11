@@ -1,7 +1,6 @@
 UNAME=$(uname)
 
 makeMeLaugh() {
-  clear
   if checkPath fortune; then
     local FORTUNE
     # display the fortune requested
