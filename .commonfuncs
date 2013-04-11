@@ -163,5 +163,8 @@ tmh() {
     if [[ -n "$3" ]]; then
         export T_BUILD="$3"
     fi
+    if [[ -n "$4" ]]; then
+        export T_PREFIX="$4"
+    fi
     teamocil --here $location
 }
