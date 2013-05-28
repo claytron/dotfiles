@@ -237,7 +237,6 @@ set cursorline
 
 " turn on line numbers, aww yeah
 set number
-set relativenumber
 " shortcut to turn off line numbers
 map <silent> <leader>n :set number!<CR>
 " toggle relative number
