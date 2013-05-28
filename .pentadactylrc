@@ -114,8 +114,8 @@ imap -builtin <M-a> <pass>
 imap -builtin <M-x> <pass>
 
 " jj as esc
-cmap jj <Esc>
-imap jj <Esc>
+map jj <Esc>
+"imap jj <Esc>
 tmap jj <Esc>
 
 " smooth scroll setting
