@@ -112,9 +112,6 @@ fi
 # get crazy with python, and the cheese whiz
 export PYTHONSTARTUP=$HOME/.pystartup
 
-# prefer to use distribute for virtualenvs
-export VIRTUALENV_USE_DISTRIBUTE="TRUE"
-
 # pip settings
 export PIP_FIND_LINKS="http://dist.sixfeetup.com/public/"
 export PIP_DOWNLOAD_CACHE="$HOME/.pip_download_cache"
