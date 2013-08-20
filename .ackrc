@@ -27,3 +27,6 @@
 
 # types to ignore by default
 --nogettext
+
+# Don't search through generated tox dir
+--ignore-dir=.tox
