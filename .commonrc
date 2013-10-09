@@ -109,6 +109,7 @@ export sfupublic='https://svn.sixfeetup.com/svn/public'
 
 # zope runs most QA/Staging instances...
 alias zu='sudo -H -u zope'
+alias ku='sudo -H -u karl'
 
 # buildout...
 alias bbn='bin/buildout'
