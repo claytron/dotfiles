@@ -5,18 +5,13 @@ source $HOME/.commonfuncs
 # set up npm completion
 checkPath npm && . <(npm completion)
 
-alias h=history
 # what freakin' linux is this?
 alias what_linux="cat /etc/issue"
 
-# source my .zshrc
-alias zRehash='source ~/.zshrc'
 # switch over to the simple prompt
 alias sp='source ~/.zshprompt_simple'
 # re link all the conf files
 alias qs='$HOME/.dotfiles/create_links.sh'
-
-alias killflash="psg '[F]lash Player.plugin' | awk '{print \$1}' | xargs kill -9"
 
 # prefer vim over vi
 if checkPath vim; then
@@ -44,13 +39,6 @@ if checkPath git-achievements; then
     alias git=git-achievements
 fi
 
-# shortcut for long descrip checking
-alias py_long_descrip="python2.4 setup.py --long-description"
-# use cat to show the file
-alias descrip_check="py_long_descrip > /tmp/package.rst; rst2html.py /tmp/package.rst /tmp/package.html; cat -n /tmp/package.rst"
-# run the setup.py descrip through docutils, then open it with Firefox (Minefield)
-alias descrip_check_open="py_long_descrip | rst2html.py > /tmp/foo.html; open file:///tmp/foo.html"
-
 # some OS X specific stuff
 if [[ $UNAME == "Darwin" ]]; then
 
@@ -66,12 +54,6 @@ if [[ $UNAME == "Darwin" ]]; then
         alias mysql='mysql5'
     fi
     
-    # open it up in TextMate instead of cat
-    alias descrip_check="py_long_descrip > /tmp/package.rst; rst2html.py /tmp/package.rst /tmp/package.html; mate /tmp/package.rst"
-
-    # pylons buildout madness
-    alias pfg='bin/paster serve --reload src/sixieminutes/development.ini'
-
     # iPhone doesn't have a defaults command...yet
     if checkPath defaults; then
         # also set up the osx path
@@ -92,15 +74,11 @@ else
     #alias grep='grep -EIn --exclude-dir=".svn" --exclude-dir="CVS" --exclude=".DS_STORE" --exclude="*pyc" --color=always'
     alias sgrep='grep -EIn --exclude=".DS_STORE" --exclude="*pyc" --color=always'
     alias sgrep='grep -ir'
-    alias sgrepnoi='grep -r'
-    alias sgrepnor='grep -i'
-    alias sgrepnoir='grep'
 fi
 
 ## processes
 alias psa='ps axwww'
 alias psau='psa -u'
-alias psag='psa | grep -iv "Google Chrome"'
 # pipe into grep to find a proc
 alias psg='psa | sgrep'
 # search for python procs
@@ -121,25 +99,12 @@ alias lsofp="sudo lsof -p"
 alias delpyc="find . -name '*.pyc' -delete"
 alias brokensymlinks="find -L . -type l"
 
-# pypi shortcuts (need to look into setup.py aliases)
-alias sdist_upload="python2.4 setup.py mregister sdist mupload -r skillet"
-alias sdist_upload_pypi="python2.4 setup.py mregister sdist mupload -r pypi"
-
 # svn helpers
 alias svnps="svn propset svn:externals -F EXTERNALS.txt ."
 alias svnpsi="svn propset svn:ignore -F IGNORE.txt ."
-alias svndiff="svn --dif-cmd=colordif"
 # Needs to be a better way to do this... (global aliases + zsh, see the .zshrc)
 export sfuprivate='https://svn.sixfeetup.com/svn/private'
 export sfupublic='https://svn.sixfeetup.com/svn/public'
-
-# zope shortcuts based on our old zeo/zss setup
-# this was before buildout :)
-alias zRunzope='zss/bin/zeoctl start;zeo/bin/zopectl fg'
-alias zStart='zss/bin/zeoctl start;zeo/bin/zopectl start'
-alias zStop='zeo/bin/zopectl stop;zss/bin/zeoctl stop'
-alias zCtl='zeo/bin/zopectl'
-alias z1Ctl='zss/bin/zeoctl'
 
 # zope runs most QA/Staging instances...
 alias zu='sudo -H -u zope'
@@ -147,15 +112,7 @@ alias zu='sudo -H -u zope'
 # buildout...
 alias bbn='bin/buildout'
 alias bbN='bin/buildout -N'
-alias bbnew="python2.4 bootstrap.py && bbN"
-alias bbk='bbn -U'
-alias bbkd='bbk -c development.cfg'
-alias bbit="bin/instance test --nowarn"
-alias bbpin="bin/buildout -Nvvvvv plonesite:enabled=false | sed -ne 's/^Picked: //p' | sort | uniq"
 alias bbc="rm -rf parts develop-eggs fake-eggs .installed.cfg"
-alias bbcwipe="bbc var/filestorage/Data.fs*"
-alias bbrefresh="bs; rm .installed.cfg var/filestorage/Data.fs*; bbn -N"
-alias bbcextreme="bbc ~/.buildout/eggs/* ~/.buildout/downloads/* ~/.buildout/zope/*"
 # mr.developer shortcuts
 alias bd="bin/develop"
 alias bdu="bd up -v"
