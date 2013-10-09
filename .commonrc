@@ -30,6 +30,7 @@ else
 fi
 
 alias v=vim
+# Open vim with nerdtree open
 alias vn="vim -c ':NERDTree | wincmd l'"
 
 # use gitx with "all branches"
