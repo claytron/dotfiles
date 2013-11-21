@@ -34,6 +34,8 @@
 "    L        -- Move current tab to the right
 "    <C-e>    -- Open textarea in external editor
 "    <M-S-E>  -- Map the group tab shortcut to start pass through first
+"    <C-;>    -- Go to the next tab group
+"    <C-'>    -- Go to the previous tab group
 "
 " Keyboard mappings that have been disabled
 "
@@ -134,9 +136,8 @@ map -builtin <C-h> <C-p>
 map -builtin <C-l> <C-n>
 
 " Go to the next / previous tab group
-" XXX: the tilde doesn't work, just sends tick :(
-map <C-;> <C-~>
-map <C-''> <C-`>
+map -builtin <C-;> <C-S-~>
+map -builtin <C-''> <C-`>
 
 " Move the current tab
 map -builtin H <Esc>:tabmove! -1<CR>
