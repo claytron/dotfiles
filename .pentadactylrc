@@ -22,7 +22,6 @@
 "    ,y       -- show the tab bar
 "    ,u       -- turn off the tab bar
 "    ,t       -- show a list of tabs/buffers
-"    ,p       -- open up the preferences pane
 "    jj       -- Alternative for <Esc> in all modes
 "    w        -- Horizontal scroll left
 "    e        -- Horizontal scroll right
@@ -41,6 +40,7 @@
 "
 "    d        -- Turned off delete current tab
 "    <bs>     -- Turned off backspace as "back"
+"    <C-a>    -- Turned off auto increment because it is annoying
 
 " General settings                                             {{{1
 " -----------------------------------------------------------------
