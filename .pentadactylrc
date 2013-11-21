@@ -15,12 +15,14 @@
 "    ,g       -- turns the GUI back on
 "    ,G       -- turns the GUI back off
 "    ,b       -- shows the bookmark toolbar
+"    ,bd      -- Bookmark in Delicious
+"    ,bp      -- Add video to Plex
+"    ,br      -- Read later in Pocket
+"    ,bx      -- Kick ass!
 "    ,y       -- show the tab bar
 "    ,u       -- turn off the tab bar
 "    ,t       -- show a list of tabs/buffers
 "    ,p       -- open up the preferences pane
-"    ,d       -- Bookmark in delicious
-"    ,x       -- kick ass!
 "    jj       -- Alternative for <Esc> in all modes
 "    w        -- Horizontal scroll left
 "    e        -- Horizontal scroll right
@@ -32,8 +34,6 @@
 "    L        -- Move current tab to the right
 "    <C-e>    -- Open textarea in external editor
 "    <M-S-E>  -- Map the group tab shortcut to start pass through first
-"    <C-r>    -- Use readability bookmarklet
-"    <C-R>    -- Add current page to Readability
 "
 " Keyboard mappings that have been disabled
 "
@@ -164,17 +164,20 @@ nmap -builtin <M-S-E> <C-z><M-S-E>
 " Bookmarklets                                                 {{{2
 " -----------------------------------------------------------------
 
-" use the readability bookmarklet on the current page
-map -builtin <silent> ,r :open javascript:(function(){readStyle='style-ebook';readSize='size-medium';readMargin='margin-x-narrow';_readability_script=document.createElement('SCRIPT');_readability_script.type='text/javascript';_readability_script.src='http://lab.arc90.com/experiments/readability/js/readability.js?x='+(Math.random());document.getElementsByTagName('head')[0].appendChild(_readability_script);_readability_css=document.createElement('LINK');_readability_css.rel='stylesheet';_readability_css.href='http://lab.arc90.com/experiments/readability/css/readability.css';_readability_css.type='text/css';_readability_css.media='all';document.getElementsByTagName('head')[0].appendChild(_readability_css);_readability_print_css=document.createElement('LINK');_readability_print_css.rel='stylesheet';_readability_print_css.href='http://lab.arc90.com/experiments/readability/css/readability-print.css';_readability_print_css.media='print';_readability_print_css.type='text/css';document.getElementsByTagName('head')[0].appendChild(_readability_print_css);})();<CR>
+" NOTE: These are bookmarks in Firefox with keywords. You'll have
+"       to add the bookmarks if they don't exist.
 
-" Save page to Read It Later
-map -builtin <silent> ,R :open javascript:(function(){ISRIL_H='4ceb';ISRIL_SCRIPT=document.createElement('SCRIPT');ISRIL_SCRIPT.type='text/javascript';ISRIL_SCRIPT.src='http://readitlaterlist.com/b/r.js';document.getElementsByTagName('head')[0].appendChild(ISRIL_SCRIPT)})();<CR>
+" Save page to Pocket
+map -builtin <silent> ,br :open bkm-pocket<CR>
 
 " destroy a website asteroids style
-map -builtin <silent> ,x :open javascript:var%20s%20=%20document.createElement('script');s.type='text/javascript';document.body.appendChild(s);s.src='http://erkie.github.com/asteroids.min.js';void(0);<CR> <C-Z>
+map -builtin <silent> ,bx :open bkm-asteroids<CR> <C-Z>
 
-" Save to delicious
-map -builtin <silent> ,d :open javascript:(function(e,t){var%20n=e.document;setTimeout(function(){function%20a(e){if(e.data==="destroy_bookmarklet"){var%20r=n.getElementById(t);if(r){n.body.removeChild(r);r=null}}}var%20t="DELI_bookmarklet_iframe",r=n.getElementById(t);if(r){return}var%20i="https://delicious.com/save?",s=n.createElement("iframe");s.id=t;s.src=i+"url="+encodeURIComponent(e.location.href)+"&title="+encodeURIComponent(n.title)+"&note="+encodeURIComponent(""+(e.getSelection?e.getSelection():n.getSelection?n.getSelection():n.selection.createRange().text))+"&v=1.1";s.style.position="fixed";s.style.top="0";s.style.left="0";s.style.height="100%25";s.style.width="100%25";s.style.zIndex="16777270";s.style.border="none";s.style.visibility="hidden";s.onload=function(){this.style.visibility="visible"};n.body.appendChild(s);var%20o=e.addEventListener?"addEventListener":"attachEvent";var%20u=o=="attachEvent"?"onmessage":"message";e[o](u,a,false)},1)})(window)<CR>
+" Save to Delicious
+map -builtin <silent> ,bd :open bkm-delicious<CR>
+
+" Add video on the page to Plex
+map -builtin <silent> ,bp :open bkm-plex<CR>
 
 " turn on folds
 " vim: fdm=marker
