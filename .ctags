@@ -25,6 +25,10 @@
 --regex-zcml=/.*value=".*\.(.[^"]*)"/\1/w,workflow/
 --regex-zcml=/.*title=".*\.(.[^"]*)"/\1/w,workflow/
 
+--regex-python=/.*grok.name\('(.[^']*)'.*/\1/v,variables/
+--regex-python=/.*grok.require\('(.[^']*)'.*/\1/v,variables/
+--regex-python=/.*grok.subscribe\((.[^,]*),.*/\1/c,classes/
+
 --langdef=ini
 --langmap=ini:.cfg.ini
 --regex-ini=/^\[(.*)\]/\1/s,section/
