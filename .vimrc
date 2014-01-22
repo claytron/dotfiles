@@ -802,6 +802,26 @@ let g:Powerline_symbols = 'fancy'
 " Better unicode dividers that work with Inconsolata
 "let g:Powerline_dividers_override = [ "◤ ", " ⤷ ", " ◥", "⤶ " ]
 
+" Airline                                                      {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+let g:airline_theme='solarized'
+let g:airline_powerline_fonts=1
+let g:airline#extensions#whitespace#enabled = 0
+
+" init dict
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+" Old school powerline symbols
+let g:airline_left_sep = '⮀'
+let g:airline_left_alt_sep = '⮁'
+let g:airline_right_sep = '⮂'
+let g:airline_right_alt_sep = '⮃'
+let g:airline_symbols.branch = '⭠'
+let g:airline_symbols.readonly = '⭤'
+let g:airline_symbols.linenr = '⭡'
+
+
 " syntastic                                                    {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " Enable signs support to visually see where errors/warnings appear
