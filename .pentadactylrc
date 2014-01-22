@@ -134,6 +134,8 @@ map -builtin K <C-b>
 " Go to the next/previous tab
 map -builtin <C-h> <C-p>
 map -builtin <C-l> <C-n>
+map -builtin <M-[> <C-p>
+map -builtin <M-]> <C-n>
 
 " Go to the next / previous tab group
 map -builtin <C-;> <C-S-~>
