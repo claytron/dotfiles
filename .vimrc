@@ -975,7 +975,7 @@ nnoremap Y yg_
 nnoremap YY ^yg_
 
 " sort versions in a versions.cfg
-map <leader>V /\[versions\]<CR>jVG:g/^#/d<CR>gv:g/^$/d<CR>gv:sort i<CR>
+map <leader>V /\[versions\]<CR>jVG:g/^#/d<CR>gv:g/^$/d<CR>gv:sort i<CR>:w<CR>
 
 " set up the invisible characters
 set listchars+=tab:▸\ ,eol:¬
