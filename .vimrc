@@ -804,7 +804,7 @@ let g:Powerline_symbols = 'fancy'
 
 " Airline                                                      {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-let g:airline_theme='solarized'
+let g:airline_theme='airlineish'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#whitespace#enabled = 0
 
