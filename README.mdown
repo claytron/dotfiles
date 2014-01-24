@@ -173,3 +173,5 @@ script by passing it the `remove` argument
     Unlinked /home/clayton/.pystartup
 
 In addition to the `remove` argument there is `cleanup`. This will not only remove all the symlinks, but it will also remove all the other items created by the script. This can be slightly dangerous since that includes **everything**, including unversioned files.
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/claytron/dotfiles/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
