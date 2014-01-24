@@ -9,21 +9,16 @@
 if exists("g:loaded_syntastic_sh_checkbashisms_checker")
     finish
 endif
-let g:loaded_syntastic_sh_checkbashisms_checker=1
+let g:loaded_syntastic_sh_checkbashisms_checker = 1
 
+let s:save_cpo = &cpo
+set cpo&vim
 
-function! SyntaxCheckers_sh_checkbashisms_IsAvailable()
-    return executable('checkbashisms')
-endfunction
-
-
-function! SyntaxCheckers_sh_checkbashisms_GetLocList()
-    let makeprg = syntastic#makeprg#build({
-        \ 'exe': 'checkbashisms',
-        \ 'args': '-fpx',
-        \ 'subchecker': 'checkbashisms'})
+function! SyntaxCheckers_sh_checkbashisms_GetLocList() dict
+    let makeprg = self.makeprgBuild({ 'args': '-fx' })
 
     let errorformat =
+        \ '%-Gscript %f is already a bash script; skipping,' .
         \ '%Eerror: %f: %m\, opened in line %l,' .
         \ '%Eerror: %f: %m,' .
         \ '%Ecannot open script %f for reading: %m,' .
@@ -31,10 +26,17 @@ function! SyntaxCheckers_sh_checkbashisms_GetLocList()
         \ '%Wpossible bashism in %f line %l (%m):,%C%.%#,%Z.%#,' .
         \ '%-G%.%#'
 
-    return SyntasticMake({'makeprg': makeprg, 'errorformat': errorformat, 'subtype': 'Style'})
+    return SyntasticMake({
+        \ 'makeprg': makeprg,
+        \ 'errorformat': errorformat,
+        \ 'subtype': 'Style' })
 endfunction
-
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({
     \ 'filetype': 'sh',
-    \ 'name': 'checkbashisms'})
+    \ 'name': 'checkbashisms' })
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
+
+" vim: set et sts=4 sw=4:

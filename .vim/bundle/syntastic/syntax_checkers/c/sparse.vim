@@ -16,33 +16,37 @@
 "
 "   let g:syntastic_sparse_config_file = '.config'
 
-if exists("loaded_sparse_syntax_checker")
+if exists("g:loaded_syntastic_c_sparse_checker")
     finish
 endif
-let loaded_sparse_syntax_checker = 1
-
-function! SyntaxCheckers_c_sparse_IsAvailable()
-    return executable("sparse")
-endfunction
+let g:loaded_syntastic_c_sparse_checker = 1
 
 if !exists('g:syntastic_sparse_config_file')
     let g:syntastic_sparse_config_file = '.syntastic_sparse_config'
 endif
 
-function! SyntaxCheckers_c_sparse_GetLocList()
-    let makeprg = syntastic#makeprg#build({
-                \ 'exe': 'sparse',
-                \ 'args': '-ftabstop=' . &ts . ' ' . syntastic#c#ReadConfig(g:syntastic_sparse_config_file),
-                \ 'subchecker': 'sparse' })
+let s:save_cpo = &cpo
+set cpo&vim
+
+function! SyntaxCheckers_c_sparse_GetLocList() dict
+    let makeprg = self.makeprgBuild({
+        \ 'args': '-ftabstop=' . &ts . ' ' . syntastic#c#ReadConfig(g:syntastic_sparse_config_file) })
 
     let errorformat = '%f:%l:%v: %trror: %m,%f:%l:%v: %tarning: %m,'
 
-    let loclist = SyntasticMake({ 'makeprg': makeprg,
-                                \ 'errorformat': errorformat,
-                                \ 'defaults': {'bufnr': bufnr("")} })
+    let loclist = SyntasticMake({
+        \ 'makeprg': makeprg,
+        \ 'errorformat': errorformat,
+        \ 'defaults': {'bufnr': bufnr("")},
+        \ 'returns': [0] })
     return loclist
 endfunction
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({
     \ 'filetype': 'c',
     \ 'name': 'sparse'})
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
+
+" vim: set et sts=4 sw=4:

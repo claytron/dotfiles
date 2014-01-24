@@ -12,25 +12,33 @@
 " Use a BufWritePre autocommand to that end:
 "   autocmd FileType go autocmd BufWritePre <buffer> Fmt
 "============================================================================
+
 if exists("g:loaded_syntastic_go_gofmt_checker")
     finish
 endif
-let g:loaded_syntastic_go_gofmt_checker=1
+let g:loaded_syntastic_go_gofmt_checker = 1
 
-function! SyntaxCheckers_go_gofmt_IsAvailable()
-    return executable('go')
-endfunction
+let s:save_cpo = &cpo
+set cpo&vim
 
-function! SyntaxCheckers_go_gofmt_GetLocList()
-    let makeprg = syntastic#makeprg#build({
-                \ 'exe': 'gofmt',
-                \ 'args': '-l',
-                \ 'tail': '1>' . syntastic#util#DevNull(),
-                \ 'subchecker': 'gofmt' })
+function! SyntaxCheckers_go_gofmt_GetLocList() dict
+    let makeprg = self.makeprgBuild({
+        \ 'args': '-l',
+        \ 'tail': '> ' . syntastic#util#DevNull() })
+
     let errorformat = '%f:%l:%c: %m,%-G%.%#'
-    return SyntasticMake({ 'makeprg': makeprg, 'errorformat': errorformat, 'defaults': {'type': 'e'} })
+
+    return SyntasticMake({
+        \ 'makeprg': makeprg,
+        \ 'errorformat': errorformat,
+        \ 'defaults': {'type': 'e'} })
 endfunction
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({
     \ 'filetype': 'go',
     \ 'name': 'gofmt'})
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
+
+" vim: set et sts=4 sw=4:

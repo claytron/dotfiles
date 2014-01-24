@@ -20,7 +20,7 @@
 if exists("g:loaded_syntastic_less_lessc_checker")
     finish
 endif
-let g:loaded_syntastic_less_lessc_checker=1
+let g:loaded_syntastic_less_lessc_checker = 1
 
 if !exists("g:syntastic_less_options")
     let g:syntastic_less_options = "--no-color"
@@ -30,29 +30,41 @@ if !exists("g:syntastic_less_use_less_lint")
     let g:syntastic_less_use_less_lint = 0
 endif
 
+let s:save_cpo = &cpo
+set cpo&vim
+
 if g:syntastic_less_use_less_lint
-    let s:check_file = 'node ' . expand('<sfile>:p:h') . '/less-lint.js'
+    let s:check_file = 'node ' . expand('<sfile>:p:h') . syntastic#util#Slash() . 'less-lint.js'
 else
     let s:check_file = 'lessc'
-end
+endif
 
-function! SyntaxCheckers_less_lessc_IsAvailable()
-    return executable('lessc')
+function! SyntaxCheckers_less_lessc_IsAvailable() dict
+    return g:syntastic_less_use_less_lint ? executable('node') : executable('lessc')
 endfunction
 
-function! SyntaxCheckers_less_lessc_GetLocList()
-    let makeprg = syntastic#makeprg#build({
-                \ 'exe': s:check_file,
-                \ 'args': g:syntastic_less_options,
-                \ 'tail': syntastic#util#DevNull(),
-                \ 'subchecker': 'lessc' })
-    let errorformat = '%m in %f:%l:%c'
+function! SyntaxCheckers_less_lessc_GetLocList() dict
+    let makeprg = self.makeprgBuild({
+        \ 'exe': s:check_file,
+        \ 'args': g:syntastic_less_options,
+        \ 'tail': syntastic#util#DevNull() })
 
-    return SyntasticMake({ 'makeprg': makeprg,
-                         \ 'errorformat': errorformat,
-                         \ 'defaults': {'bufnr': bufnr(""), 'text': "Syntax error"} })
+    let errorformat =
+        \ '%m in %f on line %l\, column %c:,' .
+        \ '%m in %f:%l:%c,' .
+        \ '%-G%.%#'
+
+    return SyntasticMake({
+        \ 'makeprg': makeprg,
+        \ 'errorformat': errorformat,
+        \ 'defaults': {'bufnr': bufnr(""), 'text': "Syntax error"} })
 endfunction
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({
     \ 'filetype': 'less',
     \ 'name': 'lessc'})
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
+
+" vim: set et sts=4 sw=4:

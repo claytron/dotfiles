@@ -24,34 +24,52 @@
 if exists("g:loaded_syntastic_javascript_closurecompiler_checker")
     finish
 endif
-let g:loaded_syntastic_javascript_closurecompiler_checker=1
+let g:loaded_syntastic_javascript_closurecompiler_checker = 1
 
 if !exists("g:syntastic_javascript_closure_compiler_options")
     let g:syntastic_javascript_closure_compiler_options = ""
 endif
 
-function! SyntaxCheckers_javascript_closurecompiler_IsAvailable()
-    return exists("g:syntastic_javascript_closure_compiler_path")
+let s:save_cpo = &cpo
+set cpo&vim
+
+function! SyntaxCheckers_javascript_closurecompiler_IsAvailable() dict
+    return
+        \ executable("java") &&
+        \ exists("g:syntastic_javascript_closure_compiler_path") &&
+        \ filereadable(g:syntastic_javascript_closure_compiler_path)
 endfunction
 
-function! SyntaxCheckers_javascript_closurecompiler_GetLocList()
+function! SyntaxCheckers_javascript_closurecompiler_GetLocList() dict
     if exists("g:syntastic_javascript_closure_compiler_file_list")
         let file_list = join(readfile(g:syntastic_javascript_closure_compiler_file_list), ' ')
     else
-        let file_list = shellescape(expand('%'))
+        let file_list = syntastic#util#shexpand('%')
     endif
 
-    let makeprg = syntastic#makeprg#build({
-                \ 'exe': 'java -jar ' . g:syntastic_javascript_closure_compiler_path,
-                \ 'args': g:syntastic_javascript_closure_compiler_options . ' --js' ,
-                \ 'fname': file_list,
-                \ 'subchecker': 'closurecompiler' })
+    let makeprg = self.makeprgBuild({
+        \ 'exe': 'java -jar ' . g:syntastic_javascript_closure_compiler_path,
+        \ 'args': g:syntastic_javascript_closure_compiler_options . ' --js' ,
+        \ 'fname': file_list })
 
-    let errorformat = '%-GOK,%E%f:%l: ERROR - %m,%Z%p^,%W%f:%l: WARNING - %m,%Z%p^'
-    return SyntasticMake({ 'makeprg': makeprg, 'errorformat': errorformat })
+    let errorformat =
+        \ '%-GOK,'.
+        \ '%E%f:%l: ERROR - %m,'.
+        \ '%Z%p^,'.
+        \ '%W%f:%l: WARNING - %m,'.
+        \ '%Z%p^'
+
+    return SyntasticMake({
+        \ 'makeprg': makeprg,
+        \ 'errorformat': errorformat })
 endfunction
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({
     \ 'filetype': 'javascript',
-    \ 'name': 'closurecompiler'})
+    \ 'name': 'closurecompiler',
+    \ 'exec': 'java'})
 
+let &cpo = s:save_cpo
+unlet s:save_cpo
+
+" vim: set et sts=4 sw=4:

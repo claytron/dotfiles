@@ -51,16 +51,18 @@
 if exists("g:loaded_syntastic_ocaml_camlp4o_checker")
     finish
 endif
-let g:loaded_syntastic_ocaml_camlp4o_checker=1
+let g:loaded_syntastic_ocaml_camlp4o_checker = 1
 
-if exists('g:syntastic_ocaml_camlp4r') &&
-    \ g:syntastic_ocaml_camlp4r != 0
+if exists('g:syntastic_ocaml_camlp4r') && g:syntastic_ocaml_camlp4r != 0
     let s:ocamlpp="camlp4r"
 else
     let s:ocamlpp="camlp4o"
 endif
 
-function! SyntaxCheckers_ocaml_camlp4o_IsAvailable()
+let s:save_cpo = &cpo
+set cpo&vim
+
+function! SyntaxCheckers_ocaml_camlp4o_IsAvailable() dict
     return executable(s:ocamlpp)
 endfunction
 
@@ -76,26 +78,27 @@ if !exists('g:syntastic_ocaml_use_ocamlbuild') || !executable("ocamlbuild")
     let g:syntastic_ocaml_use_ocamlbuild = 0
 endif
 
-function! SyntaxCheckers_ocaml_camlp4o_GetLocList()
+function! SyntaxCheckers_ocaml_camlp4o_GetLocList() dict
     let makeprg = s:GetMakeprg()
     if makeprg == ""
         return []
     endif
 
-    let errorformat = '%AFile "%f"\, line %l\, characters %c-%*\d:,'.
-                \ '%AFile "%f"\, line %l\, characters %c-%*\d (end at line %*\d\, character %*\d):,'.
-                \ '%AFile "%f"\, line %l\, character %c:,'.
-                \ '%AFile "%f"\, line %l\, character %c:%m,'.
-                \ '%-GPreprocessing error %.%#,'.
-                \ '%-GCommand exited %.%#,'.
-                \ '%C%tarning %n: %m,'.
-                \ '%C%m,'.
-                \ '%-G+%.%#'
+    let errorformat =
+        \ '%AFile "%f"\, line %l\, characters %c-%*\d:,'.
+        \ '%AFile "%f"\, line %l\, characters %c-%*\d (end at line %*\d\, character %*\d):,'.
+        \ '%AFile "%f"\, line %l\, character %c:,'.
+        \ '%AFile "%f"\, line %l\, character %c:%m,'.
+        \ '%-GPreprocessing error %.%#,'.
+        \ '%-GCommand exited %.%#,'.
+        \ '%C%tarning %n: %m,'.
+        \ '%C%m,'.
+        \ '%-G+%.%#'
 
     return SyntasticMake({ 'makeprg': makeprg, 'errorformat': errorformat })
 endfunction
 
-function s:GetMakeprg()
+function! s:GetMakeprg()
     if g:syntastic_ocaml_use_ocamlc
         return s:GetOcamlcMakeprg()
     endif
@@ -107,23 +110,23 @@ function s:GetMakeprg()
     return s:GetOtherMakeprg()
 endfunction
 
-function s:GetOcamlcMakeprg()
+function! s:GetOcamlcMakeprg()
     if g:syntastic_ocaml_use_janestreet_core
         let build_cmd = "ocamlc -I "
         let build_cmd .= expand(g:syntastic_ocaml_janestreet_core_dir)
-        let build_cmd .= " -c ".expand('%')
+        let build_cmd .= " -c " . syntastic#util#shexpand('%')
         return build_cmd
     else
-        return "ocamlc -c ". expand('%')
+        return "ocamlc -c " . syntastic#util#shexpand('%')
     endif
 endfunction
 
-function s:GetOcamlBuildMakeprg()
-    return "ocamlbuild -quiet -no-log -tag annot,". s:ocamlpp. " -no-links -no-hygiene -no-sanitize ".
-                \ shellescape(expand('%:r')).".cmi"
+function! s:GetOcamlBuildMakeprg()
+    return "ocamlbuild -quiet -no-log -tag annot," . s:ocamlpp . " -no-links -no-hygiene -no-sanitize " .
+                \ syntastic#util#shexpand('%:r') . ".cmi"
 endfunction
 
-function s:GetOtherMakeprg()
+function! s:GetOtherMakeprg()
     "TODO: give this function a better name?
     "
     "TODO: should use throw/catch instead of returning an empty makeprg
@@ -131,13 +134,13 @@ function s:GetOtherMakeprg()
     let extension = expand('%:e')
     let makeprg = ""
 
-    if match(extension, 'mly') >= 0 && executable("menhir")
+    if stridx(extension, 'mly') >= 0 && executable("menhir")
         " ocamlyacc output can't be redirected, so use menhir
-        let makeprg = "menhir --only-preprocess ".shellescape(expand('%')) . " >/dev/null"
-    elseif match(extension,'mll') >= 0 && executable("ocamllex")
-        let makeprg = "ocamllex -q -o /dev/null ".shellescape(expand('%'))
+        let makeprg = "menhir --only-preprocess " . syntastic#util#shexpand('%') . " >" . syntastic#util#DevNull()
+    elseif stridx(extension,'mll') >= 0 && executable("ocamllex")
+        let makeprg = "ocamllex -q " . syntastic#c#NullOutput() . " " . syntastic#util#shexpand('%')
     else
-        let makeprg = "camlp4o -o /dev/null ".shellescape(expand('%'))
+        let makeprg = "camlp4o " . syntastic#c#NullOutput() . " " . syntastic#util#shexpand('%')
     endif
 
     return makeprg
@@ -146,3 +149,8 @@ endfunction
 call g:SyntasticRegistry.CreateAndRegisterChecker({
     \ 'filetype': 'ocaml',
     \ 'name': 'camlp4o'})
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
+
+" vim: set et sts=4 sw=4:

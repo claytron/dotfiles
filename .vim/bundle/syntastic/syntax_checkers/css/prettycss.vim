@@ -18,24 +18,21 @@
 if exists("g:loaded_syntastic_css_prettycss_checker")
     finish
 endif
-let g:loaded_syntastic_css_prettycss_checker=1
+let g:loaded_syntastic_css_prettycss_checker = 1
 
-function! SyntaxCheckers_css_prettycss_IsAvailable()
-    return executable('prettycss')
-endfunction
+let s:save_cpo = &cpo
+set cpo&vim
 
 function! SyntaxCheckers_css_prettycss_GetHighlightRegex(item)
-    let term = matchstr(a:item["text"], ' (\zs[^)]\+\ze)$')
+    let term = matchstr(a:item["text"], '\m (\zs[^)]\+\ze)$')
     if term != ''
         let term = '\V' . term
     endif
     return term
 endfunction
 
-function! SyntaxCheckers_css_prettycss_GetLocList()
-    let makeprg = syntastic#makeprg#build({
-        \ 'exe': 'prettycss',
-        \ 'subchecker': 'prettycss' })
+function! SyntaxCheckers_css_prettycss_GetLocList() dict
+    let makeprg = self.makeprgBuild({})
 
     " Print CSS Lint's error/warning messages from compact format. Ignores blank lines.
     let errorformat =
@@ -43,18 +40,24 @@ function! SyntaxCheckers_css_prettycss_GetLocList()
         \ '%WWarning:  %m\, line %l\, char %c),' .
         \ '%-G%.%#'
 
-    let loclist = SyntasticMake({ 'makeprg': makeprg, 'errorformat': errorformat, 'defaults': {'bufnr': bufnr("")} })
-    for n in range(0, len(loclist) - 1)
-        let loclist[n]["text"] .= ')'
+    let loclist = SyntasticMake({
+        \ 'makeprg': makeprg,
+        \ 'errorformat': errorformat,
+        \ 'defaults': {'bufnr': bufnr("")},
+        \ 'postprocess': ['sort'] })
+
+    for e in loclist
+        let e["text"] .= ')'
     endfor
 
-    return sort(loclist, 's:CmpLoclist')
-endfunction
-
-function! s:CmpLoclist(a, b)
-    return a:a['lnum'] - a:b['lnum']
+    return loclist
 endfunction
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({
     \ 'filetype': 'css',
     \ 'name': 'prettycss'})
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
+
+" vim: set et sts=4 sw=4:

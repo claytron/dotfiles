@@ -13,35 +13,45 @@
 if exists("g:loaded_syntastic_slim_slimrb_checker")
     finish
 endif
-let g:loaded_syntastic_slim_slimrb_checker=1
+let g:loaded_syntastic_slim_slimrb_checker = 1
 
-function! SyntaxCheckers_slim_slimrb_IsAvailable()
-    return executable("slimrb")
-endfunction
+let s:save_cpo = &cpo
+set cpo&vim
 
 function! s:SlimrbVersion()
     if !exists('s:slimrb_version')
-        let output = system("slimrb --version 2>/dev/null")
-        let output = substitute(output, '\n$', '', '')
-        let output = substitute(output, '^slim ', '', 'i')
-        let s:slimrb_version = split(output, '\.')
-    end
+        let s:slimrb_version = syntastic#util#getVersion('slimrb --version 2>' . syntastic#util#DevNull())
+    endif
     return s:slimrb_version
 endfunction
 
-function! SyntaxCheckers_slim_slimrb_GetLocList()
-    let makeprg = syntastic#makeprg#build({
-                \ 'exe': 'slimrb',
-                \ 'args': '-c',
-                \ 'subchecker': 'slimrb' })
+function! SyntaxCheckers_slim_slimrb_GetLocList() dict
+    let makeprg = self.makeprgBuild({ 'args': '-c' })
+
     if syntastic#util#versionIsAtLeast(s:SlimrbVersion(), [1,3,1])
-        let errorformat = '%C\ %#%f\, Line %l\, Column %c,%-G\ %.%#,%ESlim::Parser::SyntaxError: %m,%+C%.%#'
+        let errorformat =
+            \ '%C\ %#%f\, Line %l\, Column %c,'.
+            \ '%-G\ %.%#,'.
+            \ '%ESlim::Parser::SyntaxError: %m,'.
+            \ '%+C%.%#'
     else
-        let errorformat = '%C\ %#%f\, Line %l,%-G\ %.%#,%ESlim::Parser::SyntaxError: %m,%+C%.%#'
+        let errorformat =
+            \ '%C\ %#%f\, Line %l,'.
+            \ '%-G\ %.%#,'.
+            \ '%ESlim::Parser::SyntaxError: %m,'.
+            \ '%+C%.%#'
     endif
-    return SyntasticMake({ 'makeprg': makeprg, 'errorformat': errorformat })
+
+    return SyntasticMake({
+        \ 'makeprg': makeprg,
+        \ 'errorformat': errorformat })
 endfunction
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({
     \ 'filetype': 'slim',
     \ 'name': 'slimrb'})
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
+
+" vim: set et sts=4 sw=4:

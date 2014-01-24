@@ -13,21 +13,17 @@
 " See here for details of phpcs
 "    - phpcs (see http://pear.php.net/package/PHP_CodeSniffer)
 "
+
 if exists("g:loaded_syntastic_css_phpcs_checker")
     finish
 endif
-let g:loaded_syntastic_css_phpcs_checker=1
+let g:loaded_syntastic_css_phpcs_checker = 1
 
-runtime syntax_checkers/php/phpcs.vim
-
-function! SyntaxCheckers_css_phpcs_IsAvailable()
-    return SyntaxCheckers_php_phpcs_IsAvailable()
-endfunction
-
-function! SyntaxCheckers_css_phpcs_GetLocList()
-    return SyntaxCheckers_php_phpcs_GetLocList()
-endfunction
+runtime! syntax_checkers/php/*.vim
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({
     \ 'filetype': 'css',
-    \ 'name': 'phpcs'})
+    \ 'name': 'phpcs',
+    \ 'redirect': 'php/phpcs'})
+
+" vim: set et sts=4 sw=4:
