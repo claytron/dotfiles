@@ -18,7 +18,7 @@ function! s:Creator._bindMappings()
     command! -buffer -complete=customlist,nerdtree#completeBookmarks -nargs=* ClearBookmarks call nerdtree#clearBookmarks('<args>')
     command! -buffer -complete=customlist,nerdtree#completeBookmarks -nargs=+ BookmarkToRoot call g:NERDTreeBookmark.ToRoot('<args>')
     command! -buffer -nargs=0 ClearAllBookmarks call g:NERDTreeBookmark.ClearAll() <bar> call nerdtree#renderView()
-    command! -buffer -nargs=0 ReadBookmarks call g:NERDTreeBookmark.CacheBookmarks(0) <bar> call nerdtree#renderView()
+    command! -buffer -nargs=0 ReadBookmarks call g:NERDTreeBookmark.CacheBookmarks(1) <bar> call nerdtree#renderView()
     command! -buffer -nargs=0 WriteBookmarks call g:NERDTreeBookmark.Write()
 endfunction
 

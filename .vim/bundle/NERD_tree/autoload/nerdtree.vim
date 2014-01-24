@@ -242,7 +242,7 @@ endfunction
 
 " FUNCTION: nerdtree#postSourceActions() {{{2
 function! nerdtree#postSourceActions()
-    call g:NERDTreeBookmark.CacheBookmarks(0)
+    call g:NERDTreeBookmark.CacheBookmarks(1)
     call nerdtree#createDefaultBindings()
 
     "load all nerdtree plugins
