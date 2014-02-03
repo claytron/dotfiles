@@ -253,7 +253,7 @@ function bfg() {
         if [[ -x "bin/$i" ]]; then
             instance=$i
             break
-        elif [[ -x "bin/$i1" ]]; then
+        elif [[ -x "bin/${i}1" ]]; then
             instance="${i}1"
             break
         fi
