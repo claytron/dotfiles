@@ -40,3 +40,5 @@
 	authorsfile = /Users/clayton/.git-authorsfile
 [branch]
 	autosetuprebase = always
+[push]
+	default = simple
