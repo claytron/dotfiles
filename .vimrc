@@ -903,6 +903,12 @@ let g:yankring_manage_numbered_reg = 1
 " don't leave the history in my home dir
 let g:yankring_history_dir = '$HOME/.backup/vim'
 
+" Signify                                                      {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+" Only show these VCS differences
+let g:signify_vcs_list = ['git', 'hg', 'svn']
+
 " Auto command settings                                        {{{1
 " -----------------------------------------------------------------
 
