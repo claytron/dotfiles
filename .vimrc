@@ -329,6 +329,7 @@ let g:zenburn_alternate_Error = 1
 
 " Solarized settings
 let g:solarized_termcolors=16
+let g:solarized_diffmode='high'
 
 " Command to call the ColorSwitch funciton
 command! -nargs=? -complete=customlist,s:completeColorSchemes ColorSwitcher :call s:colorSwitch(<q-args>)
