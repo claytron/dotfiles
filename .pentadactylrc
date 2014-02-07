@@ -11,17 +11,16 @@
 "
 "  Keyboard mappings
 "
-"    ,h       -- toggles the highlight search
-"    ,g       -- turns the GUI back on
-"    ,G       -- turns the GUI back off
-"    ,b       -- shows the bookmark toolbar
-"    ,bd      -- Bookmark in Delicious
-"    ,bp      -- Add video to Plex
-"    ,br      -- Read later in Pocket
-"    ,bx      -- Kick ass!
-"    ,y       -- show the tab bar
-"    ,u       -- turn off the tab bar
-"    ,t       -- show a list of tabs/buffers
+"    coh      -- toggles the highlight search
+"    cog      -- turns the GUI back on
+"    coG      -- turns the GUI back off
+"    cob      -- shows the bookmark toolbar
+"    cot      -- show the tab bar
+"    coy      -- turn off the tab bar
+"    bd       -- Bookmark in Delicious
+"    bp       -- Add video to Plex
+"    br       -- Read later in Pocket
+"    bx       -- Kick ass!
 "    jj       -- Alternative for <Esc> in all modes
 "    w        -- Horizontal scroll left
 "    e        -- Horizontal scroll right
@@ -95,7 +94,7 @@ set hlfind
 " unless they contain upper-case letters
 set findcase=smart
 " a toggle for search highlight
-map <silent> ,h :set hlfind!<CR>
+map <silent> coh :set hlfind!<CR>
 " Set up google as the default search engine
 set defsearch=google
 
@@ -103,11 +102,11 @@ set defsearch=google
 " -----------------------------------------------------------------
 
 " bring back/hide portions of the GUI
-map -builtin <silent> ,g :set guioptions+=mBT<CR>
-map -builtin <silent> ,G :set guioptions-=mBT<CR>
-map -builtin <silent> ,b :toolbartoggle Bookmarks Toolbar<CR>
-map -builtin <silent> ,y :set showtabline=always<CR>
-map -builtin <silent> ,u :set showtabline=never<CR>
+map -builtin <silent> cog :set guioptions+=mBT<CR>
+map -builtin <silent> coG :set guioptions-=mBT<CR>
+map -builtin <silent> cob :toolbartoggle Bookmarks Toolbar<CR>
+map -builtin <silent> cot :set showtabline=always<CR>
+map -builtin <silent> coT :set showtabline=never<CR>
 
 " temporary workaround for copy paste in text boxes
 " https://code.google.com/p/dactyl/issues/detail?id=517
@@ -145,9 +144,6 @@ map -builtin <C-''> <C-`>
 map -builtin H <Esc>:tabmove! -1<CR>
 map -builtin L <Esc>:tabmove! +1<CR>
 
-" show the available tabs
-map -builtin ,t :buffers<CR>
-
 " Also assign ctrl + e as that is easier to type, and what I have
 " set up in thunderbird :)
 imap -builtin <C-e> <C-i>
@@ -171,16 +167,16 @@ nmap -builtin <M-S-E> <C-z><M-S-E>
 "       to add the bookmarks if they don't exist.
 
 " Save page to Pocket
-map -builtin <silent> ,br :open bkm-pocket<CR>
+map -builtin <silent> br :open bkm-pocket<CR>
 
 " destroy a website asteroids style
-map -builtin <silent> ,bx :open bkm-asteroids<CR> <C-Z>
+map -builtin <silent> bx :open bkm-asteroids<CR> <C-Z>
 
 " Save to Delicious
-map -builtin <silent> ,bd :open bkm-delicious<CR>
+map -builtin <silent> bd :open bkm-delicious<CR>
 
 " Add video on the page to Plex
-map -builtin <silent> ,bp :open bkm-plex<CR>
+map -builtin <silent> bp :open bkm-plex<CR>
 
 " turn on folds
 " vim: fdm=marker
