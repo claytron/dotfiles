@@ -12,57 +12,69 @@
 " The mapleader has been switched from '\' to ',' anytime you see
 " <leader> that is what this refers to.
 "
+" Change Option mnemonic
+"    coa             -- Starts an ack search in the CWD
+"    coc             -- Switch between light and dark colors
+"    coe             -- Show current :Errors
+"    coH             -- Clear the current search highlight
+"    coh             -- Toggles the highlight search
+"    coi             -- Toggles invisible characters
+"    con             -- Toggles the line numbers
+"    conn            -- Toggles relative line numbers
+"    coq             -- Toggle the quickfix window
+"    cos             -- Toggle spell checking
+"    cov             -- Edit the current user's vimrc
+"    cow             -- Toggle line wrapping
+"    cox             -- Toggles NERDTree drawer
+"
+" Clean Up mnemonic
+"    cuw             -- Removes trailing whitespace characters
+"    cut             -- Run tidy xml on the current file
+"    cuv             -- Sort a buildout versions.cfg file
+"
+" File Type mnemonic
+"    ftj             -- Change current filetype to Javascript
+"    ftm             -- Change current filetype to Markdown
+"    ftp             -- Change current filetype to Python
+"    ftr             -- Change current filetype to reStructuredText
+"    ftv             -- Change current filetype to Vim
+"    ftw             -- Change current filetype to Wiki
+"
+" Fuzzy Finder mnemonic
+"    fft             -- Fuzzy tag mode (CtrlP)
+"    ffr             -- Fuzzy MRU mode (CtrlP)
+"    ffe             -- Fuzzy buffer mode (CtrlP)
 "    tt              -- Opens up the taglist
-"    <leader>h       -- Toggles the highlight search
-"    <leader>H       -- Clear the current search highlight
-"    <leader>n       -- Toggles the line numbers
-"    <leader>nn      -- Toggles relative line numbers
-"    <leader>a       -- Starts an ack search in the CWD
-"    <leader>ee      -- Show current :Errors
-"    <leader>f       -- Shows the current file in the NERDTree. This
+"
+" Tell Me mnemonic
+"    tmf             -- Shows the current file in the NERDTree. This
 "                       is the TextMate equivalent of ctrl+cmd+r
-"    <leader>g       -- Toggle gundo
-"    <leader>T       -- Run tidy xml on the current file
-"    <leader>i       -- Toggles invisible characters
-"    <leader>I       -- Toggle indent guides
-"    <leader>w       -- Removes trailing whitespace characters
-"    <leader>\       -- Toggle line wrapping
-"    <leader>y       -- Show the yankring
+"    tmi             -- Toggle indent guides
+"    tmy             -- Show the yankring
+"    tmz             -- Push default register to remote server's
+"                       pbcopy. Basically copy from VM -> OS X.
+"    tmb             -- Shortcut for getting to NERDTree bookmarks
+"    tm1             -- Set a highlight for the current word (1)
+"    tm2             -- Set a highlight for the current word (2)
+"    tm3             -- Set a highlight for the current word (3)
+"
+" Other random stuff
+"    cqp             -- Previous quickfix change
+"    cqn             -- Next quickfix change
+"    clp             -- Previous location list change
+"    cln             -- Next location list change
 "    Y               -- Yank to the end of the line, no newline
 "    YY              -- Yank the current line, no newline
-"    <leader>V       -- Sort a buildout versions.cfg file
-"    <leader>uni     -- Find the next non-ascii character
-"    <leader>z       -- Push default register to remote server's
-"                       pbcopy. Basically copy from VM -> OS X.
-"    <leader>x       -- Toggles NERDTree drawer
-"    <leader>b       -- Shortcut for getting to NERDTree bookmarks
-"    <leader>q       -- Toggle the quickfix window
-"    <leader><Enter> -- Opens a line at the current column (this is
-"                       the reverse of J)
-"    <leader>c       -- Switch between light and dark colors
+"    funi            -- Find the next non-ascii character (funny)
 "    jj              -- Alternative to <ESC>
 "    ctrl + tab      -- cycle through buffers
 "    <Enter>         -- Open a new line (non-insert)
 "    <S-Enter>       -- Open a new line above (non-insert)
-"    <leader>s       -- Toggle spell checking
 "    <F2>            -- Toggle smart indent on paste
 "    +               -- Make the current window taller
 "    -               -- Make the current window shorter
 "    <C-a>           -- Make the current window more narrow
 "    <C-s>           -- Make the current window wider
-"    <leader>ft      -- Fuzzy tag mode (CtrlP)
-"    <leader>r       -- Fuzzy MRU mode (CtrlP)
-"    <leader>e       -- Fuzzy buffer mode (CtrlP)
-"    <leader>v       -- Edit the current user's vimrc
-"    <leader>h1      -- Set a highlight for the current word (1)
-"    <leader>h2      -- Set a highlight for the current word (2)
-"    <leader>h3      -- Set a highlight for the current word (3)
-"    <leader>ftj     -- Change current filetype to Javascript
-"    <leader>ftm     -- Change current filetype to Markdown
-"    <leader>ftp     -- Change current filetype to Python
-"    <leader>ftr     -- Change current filetype to reStructuredText
-"    <leader>ftv     -- Change current filetype to Vim
-"    <leader>ftw     -- Change current filetype to Wiki
 "
 " Command line mappings
 "
@@ -160,33 +172,33 @@ cnoremap <C-A> <Home>
 cnoremap <C-E> <End>
 
 " open up my vimrc in a tab for modifications
-map <leader>v :tabedit $MYVIMRC<CR>
+map cov :tabedit $MYVIMRC<CR>
 
 " Highlight the word under the cursor
 " Taken from https://bitbucket.org/sjl/dotfiles/src/tip/vim/.vimrc
-nnoremap <silent> <leader>h1 :execute 'match InterestingWord1 /\<<c-r><c-w>\>/'<cr>
-nnoremap <silent> <leader>h2 :execute '2match InterestingWord2 /\<<c-r><c-w>\>/'<cr>
-nnoremap <silent> <leader>h3 :execute '3match InterestingWord3 /\<<c-r><c-w>\>/'<cr>
+nnoremap <silent> tm1 :execute 'match InterestingWord1 /\<<c-r><c-w>\>/'<cr>
+nnoremap <silent> tm2 :execute '2match InterestingWord2 /\<<c-r><c-w>\>/'<cr>
+nnoremap <silent> tm3 :execute '3match InterestingWord3 /\<<c-r><c-w>\>/'<cr>
 
 " shortcut to cycle through quickfix list
-nnoremap ¬ :cnext<cr>
-nnoremap ˙ :cprevious<cr>
+nnoremap cqn :cnext<cr>
+nnoremap cqp :cprevious<cr>
 
 " shortcut to cycle through location list
-nnoremap ∆ :lnext<cr>
-nnoremap ˚ :lprevious<cr>
+nnoremap cln :lnext<cr>
+nnoremap clp :lprevious<cr>
 
 " Use sane regexes.
 nnoremap / /\v
 vnoremap / /\v
 
 " Easy filetype switching
-nnoremap <leader>ftm :set ft=markdown<CR>
-nnoremap <leader>ftp :set ft=python<CR>
-nnoremap <leader>ftw :set ft=wiki<CR>
-nnoremap <leader>ftr :set ft=rst<CR>
-nnoremap <leader>ftv :set ft=vim<CR>
-nnoremap <leader>ftj :set ft=javascript<CR>
+nnoremap ftm :set ft=markdown<CR>
+nnoremap ftp :set ft=python<CR>
+nnoremap ftw :set ft=wiki<CR>
+nnoremap ftr :set ft=rst<CR>
+nnoremap ftv :set ft=vim<CR>
+nnoremap ftj :set ft=javascript<CR>
 
 " Visual settings                                              {{{1
 " -----------------------------------------------------------------
@@ -208,7 +220,7 @@ set wildmenu
 set wildmode=list:longest,full
 set wildignore+=*.pyc,*.pyo,CVS,.svn,.git,*.mo,.DS_Store,*.pt.cache,*.Python,*.o,*.lo,*.la,*~,.AppleDouble,*/blobstorage/*,*/Paste*-*.egg/*
 
-map <silent> <leader>s :set spell!<CR>
+map <silent> cos :set spell!<CR>
 set nospell
 
 " This setting will cause the cursor to very briefly jump to a
@@ -238,9 +250,9 @@ set cursorline
 " turn on line numbers, aww yeah
 set number
 " shortcut to turn off line numbers
-map <silent> <leader>n :set number!<CR>
+map <silent> con :set number!<CR>
 " toggle relative number
-map <silent> <leader>nn :set relativenumber!<CR>
+map <silent> conn :set relativenumber!<CR>
 
 " don't redraw during macros
 set lazyredraw
@@ -255,7 +267,7 @@ set sidescroll=5
 set listchars+=precedes:←,extends:→
 
 " toggle line wrapping on/off
-map <silent> <leader>\ :set wrap!<CR>
+map <silent> cow :set wrap!<CR>
 
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
@@ -280,7 +292,7 @@ let g:paste_server = 'clyde.local'
 " Pipe the output of the default register to ssh, then pbcopy on that machine
 " NOTE: The sed and perl in this are necessary because the RegisterToFile
 " function is putting extra characters in the file.
-map <silent> <leader>z :call RegisterToFile(g:paste_file) \| exe "silent !cat " . g:paste_file . " \| sed 1d \| perl -pe 'chomp if eof' \| ssh " . g:paste_server . " 'pbcopy'" \| redraw!<CR>
+map <silent> tmz :call RegisterToFile(g:paste_file) \| exe "silent !cat " . g:paste_file . " \| sed 1d \| perl -pe 'chomp if eof' \| ssh " . g:paste_server . " 'pbcopy'" \| redraw!<CR>
 
 " Searching                                                    {{{1
 " -----------------------------------------------------------------
@@ -294,14 +306,14 @@ set ignorecase
 " unless they contain upper-case letters
 set smartcase
 " a toggle for search highlight
-map <silent> <leader>h :set hlsearch!<CR>
+map <silent> coh :set hlsearch!<CR>
 
 " Shortcut to clear out the search pattern (and thus turn off the highlighting)
 " from http://stackoverflow.com/questions/657447/vim-clear-last-search-highlighting
-map <silent> <leader>H :let @/ = ""<CR>
+map <silent> coH :let @/ = ""<CR>
 
 " Find any non-ascii character
-map <silent> <leader>uni /[^ -~]<CR>
+map <silent> funi /[^ -~]<CR>
 
 " Colors and Syntax                                            {{{1
 " -----------------------------------------------------------------
@@ -477,7 +489,7 @@ function! s:StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 
-map <leader>w :StripTrailingWhitespaces<CR>
+map cuw :StripTrailingWhitespaces<CR>
 
 " Markdown                                                     {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -496,7 +508,7 @@ command! -nargs=0 MarkdownFromHTML  %!pandoc -f html -t markdown "%"
 
 " xml tidy
 command! -complete=file -nargs=* TidyXML call s:TidyXML()
-map <silent> <leader>T :TidyXML<CR>
+map <silent> cut :TidyXML<CR>
 
 function! s:TidyXML()
     " Preparation: save last search, and cursor position.
@@ -524,7 +536,7 @@ function! ErrorsToggle(forced)
   endif
 endfunction
 
-nnoremap <silent> <leader>ee :ErrorsToggle<CR>
+nnoremap <silent> coe :ErrorsToggle<CR>
 
 " Quickfix                                                     {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -542,7 +554,7 @@ function! QFixToggle(forced)
   endif
 endfunction
 
-nnoremap <silent> <leader>q :QFix<CR>
+nnoremap <silent> coq :QFix<CR>
 
 " Copy search matches to register                              {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -610,7 +622,7 @@ function! IndentGuides() " {{{
         execute '2match IndentGuides /\%(\_^\s*\)\@<=\%(\%'.(0*&sw+1).'v\|\%'.(1*&sw+1).'v\|\%'.(2*&sw+1).'v\|\%'.(3*&sw+1).'v\|\%'.(4*&sw+1).'v\|\%'.(5*&sw+1).'v\|\%'.(6*&sw+1).'v\|\%'.(7*&sw+1).'v\)\s/'
     endif
 endfunction " }}}
-nnoremap <silent> <leader>I :call IndentGuides()<cr>
+nnoremap <silent> tmi :call IndentGuides()<cr>
 
 " Push register out to file                                    {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -700,11 +712,11 @@ let g:ctrlp_max_height = 50
 let g:ctrlp_lazy_update = 1000
 
 " Use the CtrlPTag mode
-nmap <leader>ft :CtrlPTag<CR>
+nmap fft :CtrlPTag<CR>
 " Use the CtrlPMRUFiles mode
-nmap <leader>r :CtrlPMRUFiles<CR>
+nmap ffr :CtrlPMRUFiles<CR>
 " Use the buffer mode
-nmap <leader>e :CtrlPBuffer<CR>
+nmap ffe :CtrlPBuffer<CR>
 
 " Fuzzy Finder                                                 {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -728,7 +740,7 @@ let g:FuzzyFinderOptions = {
 let g:FuzzyFinderOptions.File.smart_bs = 0
 
 " Shortcuts for opening fuzzy finder
-nmap <leader>ff :FufFile<Space>**/
+"nmap <leader>ff :FufFile<Space>**/
 "nmap <leader>t :FufCoverageFile<Space>
 "nmap <leader>ft :FufTag<Space>
 
@@ -754,9 +766,9 @@ let g:miniBufExplCheckDupeBufs = 0
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 " set project folder to x
-map <leader>x :NERDTreeToggle<CR>
-map <leader>b :NERDTreeFromBookmark<Space>
-nnoremap <silent> <leader>f :NERDTreeFind<CR>
+map cox :NERDTreeToggle<CR>
+map tmb :NERDTreeFromBookmark<Space>
+nnoremap <silent> tmf :NERDTreeFind<CR>
 " files/dirs to ignore in NERDTree (mostly the same as my svn ignores)
 let NERDTreeIgnore=[
     \'\~$',
@@ -889,7 +901,7 @@ let VCSCommandDeleteOnHide = 1
 " Yankring                                                     {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " Show and hide the yankring history
-nnoremap <silent> <leader>y :YRShow<CR>
+nnoremap <silent> tmy :YRShow<CR>
 " Set the maximum number of history
 let g:yankring_max_history = 200
 " Make the yankring set the numbered registers
@@ -992,14 +1004,14 @@ nnoremap Y yg_
 nnoremap YY ^yg_
 
 " sort versions in a versions.cfg
-map <leader>V /\[versions\]<CR>jVG:g/^#/d<CR>gv:g/^$/d<CR>gv:sort i<CR>:w<CR>
+map cuv /\[versions\]<CR>jVG:g/^#/d<CR>gv:g/^$/d<CR>gv:sort i<CR>:w<CR>
 
 " set up the invisible characters
 set listchars+=tab:▸\ ,eol:¬
 " show invisible characters by default
 set list
 " toggle invisible characters
-noremap <silent> <leader>i :set list!<CR>
+noremap <silent> coi :set list!<CR>
 
 " Window management settings                                    {{{1
 " -----------------------------------------------------------------
