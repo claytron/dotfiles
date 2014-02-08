@@ -346,10 +346,10 @@ command! -nargs=? -complete=customlist,s:completeColorSchemes ColorSwitcher :cal
 
 function! s:extraHighlights()
     " Syntax highlights for the mappings set above
-    hi InterestingWord1 guifg=#000000 guibg=#FF4300
-    hi InterestingWord2 guifg=#000000 guibg=#53FF00
-    hi InterestingWord3 guifg=#000000 guibg=#FF74F8
-    hi IndentGuides                   guibg=#373737
+    hi InterestingWord1 guifg=#000000 guibg=#FF4300 ctermfg=16 ctermbg=196
+    hi InterestingWord2 guifg=#000000 guibg=#53FF00 ctermfg=16 ctermbg=82
+    hi InterestingWord3 guifg=#000000 guibg=#FF74F8 ctermfg=16 ctermbg=165
+    hi IndentGuides                   guibg=#373737            ctermbg=237
 endfunction
 
 " A function to toggle between light and dark colors
