@@ -274,8 +274,6 @@ au BufReadPost COMMIT_EDITMSG* exe "normal! gg"
 
 " turn off smart indentation when pasting
 set pastetoggle=<F2>
-" shortcut for pasting clipboard contents
-map <silent> <leader>* "+gP
 
 let g:paste_file = '~/.backup/vim/pastie.txt'
 let g:paste_server = 'clyde.local'
@@ -734,10 +732,6 @@ nmap <leader>ff :FufFile<Space>**/
 "nmap <leader>t :FufCoverageFile<Space>
 "nmap <leader>ft :FufTag<Space>
 
-" Gundo                                                        {{{2
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-nnoremap <leader>g :GundoToggle<CR>
-
 " Lodgeit                                                      {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 let g:lodgeit_url = "https://paste.sixfeetup.com"
@@ -991,12 +985,6 @@ if bufwinnr(1)
   nnoremap <C-a> <C-W>>
   nnoremap <C-s> <C-W><
 endif
-
-" Insert newlines with enter and shift + enter
-"map <S-Enter> O<ESC>
-"map <Enter> o<ESC>
-" open a new line from the current spot (sort of the opposite of J)
-map <leader><Enter> i<CR><ESC>
 
 " Yank from the cursor to the end of the line, to be consistent with C and D.
 nnoremap Y yg_
