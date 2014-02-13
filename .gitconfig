@@ -22,7 +22,8 @@
 	untracked = cyan
 [alias]
 	st = status
-	ci = commit
+	ci = commit --verbose
+	commit = commit --verbose
 	br = branch
 	co = checkout
 	df = diff
