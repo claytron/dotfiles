@@ -10,8 +10,3 @@ au BufWinEnter,BufEnter *.{v,c,}py let w:m2=matchadd('ErrorMsg', '\%>79v.\+', -1
 
 " remove trailing whitespace on save
 autocmd BufWritePre *.{v,c,}py :StripTrailingWhitespaces
-
-" run pep8 on the current file
-map <leader>p :Shell pep8 --repeat --show-source %<CR>
-" run pep8 on the src dir
-map <leader>o :Shell pep8 --repeat --show-source --exclude=paste src<CR>
