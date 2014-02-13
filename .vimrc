@@ -70,6 +70,7 @@
 "    ctrl + tab      -- cycle through buffers
 "    <Enter>         -- Open a new line (non-insert)
 "    <S-Enter>       -- Open a new line above (non-insert)
+"    <leader>Enter   -- Split line at current cursor in normal mode
 "    <F2>            -- Toggle smart indent on paste
 "    +               -- Make the current window taller
 "    -               -- Make the current window shorter
@@ -997,6 +998,9 @@ if bufwinnr(1)
   nnoremap <C-a> <C-W>>
   nnoremap <C-s> <C-W><
 endif
+
+" open a new line from the current spot (sort of the opposite of J)
+map <leader><Enter> i<CR><ESC>
 
 " Yank from the cursor to the end of the line, to be consistent with C and D.
 nnoremap Y yg_
