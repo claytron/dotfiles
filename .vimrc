@@ -648,6 +648,25 @@ endfunction
 " http://www.commandlinefu.com/commands/view/9425
 command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
+" Git Commit Dance                                             {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+function! GitCommitDance()
+    " Disable scrolloff
+    set scrolloff=0
+    " Find the last line of the git file list / first line before diff
+    execute "normal G?^#\<CR>"
+    let curline=line('.')
+    " Split the window so we can see the diff and the commit message
+    split
+    " show only the git message on top, set it to that height
+    execute "normal ggz". curline ."\<CR>"
+    " Start the diff window at the top of the diff
+    execute "normal \<C-W>j". curline ."Gjz\<CR>"
+    " Go back to the commit editing
+    execute "normal \<C-W>k"
+endfunction
+
 " Plugins                                                      {{{1
 " -----------------------------------------------------------------
 
@@ -947,6 +966,9 @@ if has("autocmd")
 
     " psql sessions in Postgres
     au BufNewFile,BufRead psql.edit.* set filetype=sql
+
+    " Set up a split window for git verbose commit
+    au BufNewFile,BufRead COMMIT_EDITMSG call GitCommitDance()
 
     " Zope and Plone files
     " -----------------------------------------------------------------
