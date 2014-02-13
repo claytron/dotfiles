@@ -68,8 +68,6 @@
 "    funi            -- Find the next non-ascii character (funny)
 "    jj              -- Alternative to <ESC>
 "    ctrl + tab      -- cycle through buffers
-"    <Enter>         -- Open a new line (non-insert)
-"    <S-Enter>       -- Open a new line above (non-insert)
 "    <leader>Enter   -- Split line at current cursor in normal mode
 "    <F2>            -- Toggle smart indent on paste
 "    +               -- Make the current window taller
