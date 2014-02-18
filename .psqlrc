@@ -1,0 +1,20 @@
+-- Mostly coming from a blog post by Craig Kerstiens
+-- http://www.craigkerstiens.com/2013/02/21/more-out-of-psql/
+
+-- Some nicer table output
+\pset linestyle unicode
+\pset border 2
+
+-- Fancy character for null values so it is more obvious
+\pset null ¤
+
+-- More visual settings
+\pset format wrapped
+\pset pager off
+
+-- Fancy pants prompt
+-- http://i-dba.blogspot.de/2014/02/colorizing-psql-prompt-guide.html
+\set PROMPT1 '\n%[%033[1;31;40m%] ➤ %[%033[32m%]psql:%[%033[36m%]//%n%[%033[34m%]@%[%033[36m%]%`hostname`:%>%[%033[33m%]/%/ %[%033[K%]%[%033[0m%]\n%[%033[1;33m%]%#%[%033[0m%] '
+
+-- Show query times
+\timing
