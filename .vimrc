@@ -41,6 +41,7 @@
 "    ftw             -- Change current filetype to Wiki
 "
 " Fuzzy Finder mnemonic
+"    ff              -- Fuzzy file mode (CtrlP)
 "    fft             -- Fuzzy tag mode (CtrlP)
 "    ffr             -- Fuzzy MRU mode (CtrlP)
 "    ffe             -- Fuzzy buffer mode (CtrlP)
@@ -695,7 +696,7 @@ endfunction
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 " use my normal mapping
-let g:ctrlp_map = '<leader>t'
+let g:ctrlp_map = 'ff'
 
 " load ctrlp extensions
 let g:ctrlp_extensions = ['tag']
