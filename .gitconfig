@@ -49,3 +49,5 @@
 	autosetuprebase = always
 [push]
 	default = upstream
+[diff]
+	algorithm = patience
