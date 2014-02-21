@@ -32,6 +32,10 @@
 # Use bang to be able to re-use the alias above (with pretty format) and add to it
 	lga = !git lg --branches --remotes
 	lgp = !git lg -p
+	sp = stash pop
+	sa = stash apply
+	ss = stash save
+	sh = stash show -p
 [achievement]
 	upload = true
 [github]
