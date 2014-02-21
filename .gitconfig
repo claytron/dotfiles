@@ -24,6 +24,8 @@
 	st = status
 	ci = commit --verbose
 	commit = commit --verbose
+# Try to pull and rebase, but then stash and pop if it's dirty
+	up = !git pull --rebase || ( git stash save && git pull --rebase && git stash pop )
 	br = branch
 	co = checkout
 	df = diff
