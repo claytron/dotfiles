@@ -292,7 +292,10 @@ let g:paste_server = 'clyde.local'
 " Pipe the output of the default register to ssh, then pbcopy on that machine
 " NOTE: The sed and perl in this are necessary because the RegisterToFile
 " function is putting extra characters in the file.
-map <silent> tmz :call RegisterToFile(g:paste_file) \| exe "silent !cat " . g:paste_file . " \| sed 1d \| perl -pe 'chomp if eof' \| ssh " . g:paste_server . " 'pbcopy'" \| redraw!<CR>
+"map <silent> tmz :call RegisterToFile(g:paste_file) \| exe "silent !cat " . g:paste_file . " \| sed 1d \| perl -pe 'chomp if eof' \| ssh " . g:paste_server . " 'pbcopy'" \| redraw!<CR>
+
+" Send register back to my computer's clipboard
+map <silent> tmz :call PushRegister(@")<CR>
 
 " Searching                                                    {{{1
 " -----------------------------------------------------------------
@@ -640,6 +643,15 @@ function! RegisterToFile(...)
     exe "redir! > " . l:filename
     echo getreg(l:register)
     redir END
+endfunction
+
+" Push a register back to my clipboard                         {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+function! PushRegister(text)
+    silent !clear
+    silent execute '!echo '. shellescape(a:text, 1) .' | nc localhost 2224'
+    silent execute ':redraw!'
 endfunction
 
 " Save a file with sudo when it is [readonly]                  {{{2
