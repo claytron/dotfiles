@@ -80,6 +80,9 @@ export PATH
 #   * don't clear the screen on exit (-X)
 export LESS="-IMRX"
 
+# Force C style sorting (e.g. dotfiles, then Uppercase then lowercase)
+export LC_COLLATE=C
+
 # use a fancy terminal if we aren't using tmux
 [ -z "$TMUX" ] && export TERM=xterm-256color
 
