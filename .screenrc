@@ -40,3 +40,7 @@ sorendition 10 99 # default!
 hardstatus alwayslastline "[%c, %D, %d/%m/%y] %-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%<"
 #hardstatus alwayslastline 
 #hardstatus string "%{gk}[ %{G}%H %{g}][%= %{wk}%?%-Lw%?%{r}(%{W}%n*%f %t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m/%d %{W}%c %{g}]"
+
+# Copy text to the screen exchange (like my tmux mapping)
+# Still requires manual intervention afterwards
+bind ^c writebuf -e utf8 $HOME/.screx
