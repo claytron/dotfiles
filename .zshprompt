@@ -9,7 +9,6 @@ function precmd {
     rehash
 
     local HOST_DOTS
-    local HOST_LEN
     HOST_DOTS=`hostname | grep -o "\." | wc -l | sed 's/ *//'`
     HOST_LEN=`expr $HOST_DOTS - 1`
 
