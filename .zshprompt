@@ -8,6 +8,11 @@ function precmd {
     # make sure that all new commands are available
     rehash
 
+    local HOST_DOTS
+    local HOST_LEN
+    HOST_DOTS=`hostname | grep -o "\." | wc -l | sed 's/ *//'`
+    HOST_LEN=`expr $HOST_DOTS - 1`
+
     local TERMWIDTH
     (( TERMWIDTH = ${COLUMNS} - 1 ))
     
@@ -98,7 +103,7 @@ $PR_SHIFT_IN$PR_HBAR$PR_HBAR${(e)PR_FILLBAR}$PR_HBAR$PR_SHIFT_OUT\
 $PR_SHIFT_IN$PR_HBAR$PR_URCORNER$PR_SHIFT_OUT\
 
 $PR_SHIFT_IN$PR_LLCORNER$PR_HBAR$PR_SHIFT_OUT\
-%m%#\
+%${host_LEN}m%#\
 $PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT '
 
     RPROMPT=' $PR_SHIFT_IN$PR_HBAR$PR_HBAR$PR_SHIFT_OUT\

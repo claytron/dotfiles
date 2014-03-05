@@ -2,6 +2,11 @@ function precmd {
     # make sure that all new commands are available
     rehash
 
+    local HOST_DOTS
+    local HOST_LEN
+    HOST_DOTS=`hostname | grep -o "\." | wc -l | sed 's/ *//'`
+    HOST_LEN=`expr $HOST_DOTS - 1`
+
     # Only show user in the prompt if it isn't yourself
     # Make sure and set the $ME var in .zshrc
     PR_IMPOSTER=""
@@ -16,7 +21,7 @@ setprompt () {
     RPROMPT=''
     PROMPT='$PR_IMPOSTER
 %D{%a %h %e, %H:%M} $(git_super_status) | %/
-%m%# '
+%${HOST_LEN}m%# '
     PS2=''
 }
 
