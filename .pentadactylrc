@@ -37,7 +37,6 @@
 "    <C-'>    -- Go to the previous tab group
 " Other Stuff:
 "    f        -- Remapped to ;; to only focus hint
-"    jj       -- Alternative for <Esc> in all modes
 "    <C-e>    -- Open textarea in external editor
 "    <M-S-E>  -- Map the group tab shortcut to start pass through first
 "
@@ -120,11 +119,6 @@ map -builtin <silent> coT :set showtabline=never<CR>
 imap -builtin <M-z> <pass>
 imap -builtin <M-a> <pass>
 imap -builtin <M-x> <pass>
-
-" jj as esc
-map jj <Esc>
-"imap jj <Esc>
-tmap jj <Esc>
 
 " smooth scroll setting
 set scrollsteps=10
