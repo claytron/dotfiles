@@ -87,6 +87,9 @@ set showtabline=multitab
 " load plugins that are css as well
 set loadplugins='\.(css|js|penta)$'
 
+" Open diverted links automatically
+set activate+=diverted
+
 " Searching                                                    {{{1
 " -----------------------------------------------------------------
 
