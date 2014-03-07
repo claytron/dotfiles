@@ -34,6 +34,7 @@
 "    <M-S-E>  -- Map the group tab shortcut to start pass through first
 "    <C-;>    -- Go to the next tab group
 "    <C-'>    -- Go to the previous tab group
+"    f        -- Remapped to ;; to only focus hint
 "
 " Keyboard mappings that have been disabled
 "
@@ -46,8 +47,6 @@
 
 " Use home row letters for hints instead of numbers
 set hintkeys=asdfg;lkjh
-" Don't follow a hint immediately
-set followhints=1
 
 set editor="/Users/clayton/bin/mvim -f"
 
@@ -100,6 +99,9 @@ set defsearch=google
 
 " Mappings                                                     {{{1
 " -----------------------------------------------------------------
+"
+" Don't follow a hint immediately
+map -builtin f ;;
 
 " bring back/hide portions of the GUI
 map -builtin <silent> cog :set guioptions+=mBT<CR>
