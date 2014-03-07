@@ -121,8 +121,8 @@ imap -builtin <M-a> <pass>
 imap -builtin <M-x> <pass>
 
 " smooth scroll setting
-set scrollsteps=10
-set scrolltime=300
+set scrollsteps=20
+set scrolltime=200
 
 " Scroll settings
 map -builtin w 10h
