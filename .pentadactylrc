@@ -18,6 +18,7 @@
 "    cot      -- show the tab bar
 "    coy      -- turn off the tab bar
 "    bd       -- Bookmark in Delicious
+"    bdm      -- Start the dev meeting
 "    bp       -- Add video to Plex
 "    br       -- Read later in Pocket
 "    bx       -- Kick ass!
@@ -176,6 +177,9 @@ map -builtin <silent> bx :open bkm-asteroids<CR> <C-Z>
 
 " Save to Delicious
 map -builtin <silent> bd :open bkm-delicious<CR>
+
+" Start up the dev meeting
+map -builtin <silent> bdm :open bkm-dev-meeting<CR>
 
 " Add video on the page to Plex
 map -builtin <silent> bp :open bkm-plex<CR>
