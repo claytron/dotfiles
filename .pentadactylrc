@@ -11,18 +11,20 @@
 "
 "  Keyboard mappings
 "
+" Change Option:
 "    coh      -- toggles the highlight search
 "    cog      -- turns the GUI back on
 "    coG      -- turns the GUI back off
 "    cob      -- shows the bookmark toolbar
 "    cot      -- show the tab bar
 "    coy      -- turn off the tab bar
+" Bookmark:
 "    bd       -- Bookmark in Delicious
 "    bdm      -- Start the dev meeting
 "    bp       -- Add video to Plex
 "    br       -- Read later in Pocket
 "    bx       -- Kick ass!
-"    jj       -- Alternative for <Esc> in all modes
+" Movement:
 "    w        -- Horizontal scroll left
 "    e        -- Horizontal scroll right
 "    J        -- Alternative to <C-f>
@@ -31,11 +33,13 @@
 "    <C-l>    -- Switch to next tab to the right
 "    H        -- Move current tab to the left
 "    L        -- Move current tab to the right
-"    <C-e>    -- Open textarea in external editor
-"    <M-S-E>  -- Map the group tab shortcut to start pass through first
 "    <C-;>    -- Go to the next tab group
 "    <C-'>    -- Go to the previous tab group
+" Other Stuff:
 "    f        -- Remapped to ;; to only focus hint
+"    jj       -- Alternative for <Esc> in all modes
+"    <C-e>    -- Open textarea in external editor
+"    <M-S-E>  -- Map the group tab shortcut to start pass through first
 "
 " Keyboard mappings that have been disabled
 "
