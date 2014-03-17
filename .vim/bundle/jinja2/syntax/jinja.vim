@@ -12,12 +12,30 @@
 "
 "     2008 May 9:     Added support for Jinja2 changes (new keyword rules)
 
+" .vimrc variable to disable html highlighting
+if !exists('g:jinja_syntax_html')
+   let g:jinja_syntax_html=1
+endif
+
 " For version 5.x: Clear all syntax items
 " For version 6.x: Quit when a syntax file was already loaded
-if version < 600
-  syntax clear
-elseif exists("b:current_syntax")
+if !exists("main_syntax")
+  if version < 600
+    syntax clear
+  elseif exists("b:current_syntax")
   finish
+endif
+  let main_syntax = 'jinja'
+endif
+
+" Pull in the HTML syntax.
+if g:jinja_syntax_html
+  if version < 600
+    so <sfile>:p:h/html.vim
+  else
+    runtime! syntax/html.vim
+    unlet b:current_syntax
+  endif
 endif
 
 syntax case match
@@ -31,14 +49,14 @@ syn keyword jinjaStatement containedin=jinjaTagBlock contained macro skipwhite n
 syn keyword jinjaStatement containedin=jinjaTagBlock contained block skipwhite nextgroup=jinjaBlockName
 
 " Variable Names
-syn match jinjaVariable containedin=jinjaVarBlock,jinjaTagBlock,jinjaNested contained skipwhite /[a-zA-Z_][a-zA-Z0-9_]*/
-syn keyword jinjaSpecial containedin=jinjaVarBlock,jinjaTagBlock,jinjaNested contained false true none loop super caller varargs kwargs
+syn match jinjaVariable containedin=jinjaVarBlock,jinjaTagBlock,jinjaNested contained /[a-zA-Z_][a-zA-Z0-9_]*/
+syn keyword jinjaSpecial containedin=jinjaVarBlock,jinjaTagBlock,jinjaNested contained false true none False True None loop super caller varargs kwargs
 
 " Filters
-syn match jinjaOperator "|" containedin=jinjaVarBlock,jinjaTagBlock,jinjaNested contained nextgroup=jinjaFilter
-syn match jinjaFilter contained skipwhite /[a-zA-Z_][a-zA-Z0-9_]*/
-syn match jinjaFunction contained skipwhite /[a-zA-Z_][a-zA-Z0-9_]*/
-syn match jinjaBlockName contained skipwhite /[a-zA-Z_][a-zA-Z0-9_]*/
+syn match jinjaOperator "|" containedin=jinjaVarBlock,jinjaTagBlock,jinjaNested contained skipwhite nextgroup=jinjaFilter
+syn match jinjaFilter contained /[a-zA-Z_][a-zA-Z0-9_]*/
+syn match jinjaFunction contained /[a-zA-Z_][a-zA-Z0-9_]*/
+syn match jinjaBlockName contained /[a-zA-Z_][a-zA-Z0-9_]*/
 
 " Jinja template constants
 syn region jinjaString containedin=jinjaVarBlock,jinjaTagBlock,jinjaNested contained start=/"/ skip=/\\"/ end=/"/
@@ -55,7 +73,7 @@ syn match jinjaAttribute contained /[a-zA-Z_][a-zA-Z0-9_]*/
 syn region jinjaNested matchgroup=jinjaOperator start="(" end=")" transparent display containedin=jinjaVarBlock,jinjaTagBlock,jinjaNested contained
 syn region jinjaNested matchgroup=jinjaOperator start="\[" end="\]" transparent display containedin=jinjaVarBlock,jinjaTagBlock,jinjaNested contained
 syn region jinjaNested matchgroup=jinjaOperator start="{" end="}" transparent display containedin=jinjaVarBlock,jinjaTagBlock,jinjaNested contained
-syn region jinjaTagBlock matchgroup=jinjaTagDelim start=/{%-\?/ end=/-\?%}/ skipwhite containedin=ALLBUT,jinjaTagBlock,jinjaVarBlock,jinjaRaw,jinjaString,jinjaNested,jinjaComment
+syn region jinjaTagBlock matchgroup=jinjaTagDelim start=/{%-\?/ end=/-\?%}/ containedin=ALLBUT,jinjaTagBlock,jinjaVarBlock,jinjaRaw,jinjaString,jinjaNested,jinjaComment
 
 syn region jinjaVarBlock matchgroup=jinjaVarDelim start=/{{-\?/ end=/-\?}}/ containedin=ALLBUT,jinjaTagBlock,jinjaVarBlock,jinjaRaw,jinjaString,jinjaNested,jinjaComment
 
@@ -68,10 +86,10 @@ syn region jinjaComment matchgroup=jinjaCommentDelim start="{#" end="#}" contain
 " Block start keywords.  A bit tricker.  We only highlight at the start of a
 " tag block and only if the name is not followed by a comma or equals sign
 " which usually means that we have to deal with an assignment.
-syn match jinjaStatement containedin=jinjaTagBlock contained skipwhite /\({%-\?\s*\)\@<=\<[a-zA-Z_][a-zA-Z0-9_]*\>\(\s*[,=]\)\@!/
+syn match jinjaStatement containedin=jinjaTagBlock contained /\({%-\?\s*\)\@<=\<[a-zA-Z_][a-zA-Z0-9_]*\>\(\s*[,=]\)\@!/
 
 " and context modifiers
-syn match jinjaStatement containedin=jinjaTagBlock contained /\<with\(out\)\?\s\+context\>/ skipwhite
+syn match jinjaStatement containedin=jinjaTagBlock contained /\<with\(out\)\?\s\+context\>/
 
 
 " Define the default highlighting.
@@ -111,3 +129,7 @@ if version >= 508 || !exists("did_jinja_syn_inits")
 endif
 
 let b:current_syntax = "jinja"
+
+if main_syntax == 'jinja'
+  unlet main_syntax
+endif
