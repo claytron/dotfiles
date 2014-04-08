@@ -85,6 +85,9 @@ for actual_dotfile in $HOME/.dotfiles/.*
 #       aren't under version control.
 ###################################################################
 
+# make the .subversion dir if it doesn't exist already
+[ ! -d "$HOME/.subversion" ] && mkdir "$HOME/.subversion"
+
 # take care of the .subversion/config file
 # -----------------------------------------------------------------
 actual_dotfile="$dotfiles_loc/config"
@@ -101,14 +104,24 @@ to_create="$HOME/.subversion/$dotfile"
 # actually create/remove the link
 linkDotfile $dotfile $to_create $actual_dotfile
 
-# take care of the .subversion/servers file
+# take care of the ~/.ssh/authorized_keys
 # -----------------------------------------------------------------
+# make the .ssh dir if it doesn't exist already
+[ ! -d "$HOME/.ssh" ] && mkdir "$HOME/.ssh" && chmod 700 "$HOME/.ssh"
 actual_dotfile="$dotfiles_loc/authorized_keys"
-dotfile="authorized_keys"
-to_create="$HOME/.ssh/$dotfile"
-# actually create/remove the link
-linkDotfile $dotfile $to_create $actual_dotfile
-
+to_create="$HOME/.ssh/authorized_keys"
+# remove the old symlink if it is there
+[ -h "$to_create" ] && rm "$to_create" && echo "removed symlink for $to_create"
+# Create the file if it doesn't exist
+[ ! -e "$to_create" ] && touch "$to_create"
+# For each key, see if it exists, if not, add it
+while read skey; do
+if ! grep -q "$skey" "$to_create"; then
+      echo "$skey" >> "$to_create"
+      key_name=`echo $skey | awk '{print $3}'`
+      echo "Added $key_name"
+  fi
+done < "$actual_dotfile"
 # Take care of awesome configs
 # -----------------------------------------------------------------
 if [ -d "$HOME/.config" ]; then
