@@ -961,7 +961,7 @@ if has("autocmd")
 
     " automatically use the wiki text for trac.sixfeetup.com when
     " using it's all text
-    au BufNewFile,BufRead *trac.sixfeetup.com.* set filetype=wiki
+    au BufNewFile,BufRead *trac.sixfeetup.com* set filetype=wiki
     " use markdown for karl
     au BufNewFile,BufRead *karl.sixfeetup.com.* set filetype=markdown.html
 
