@@ -33,7 +33,7 @@ notExcluded() {
     if [ -z "$1" ]; then
         return
     fi
-    
+
     for i in ${excluded[@]}
     do
         if [ $i == $1 ]; then
@@ -122,7 +122,7 @@ fi
 # NOTE: None of these files are under version control...
 # -----------------------------------------------------------------
 if [ ! "$remove" = "remove" ]; then
-    
+
     # warn the user what is about to happen
     if [ "$remove" = "cleanup" ]; then
         echo '
@@ -132,7 +132,7 @@ Deleting them will remove them immediately
 ******************************************
 '
     fi
-    
+
     # touch extra files needed by the confs
     # -------------------------------------------------------------
     touch_me=(
@@ -163,7 +163,7 @@ Deleting them will remove them immediately
                 chmod 600 "$TOUCH_FILE"
             fi
         done
-    
+
     DIRS_TO_MAKE=(
         "$HOME"/bin
         "$HOME"/.backup
@@ -176,7 +176,7 @@ Deleting them will remove them immediately
         "$HOME"/.buildout/zope
         "$HOME"/.buildout/extends
     )
-    
+
     # create the $DIRS_TO_MAKE
     # -------------------------------------------------------------
     processDotDir() {
@@ -200,12 +200,12 @@ Deleting them will remove them immediately
             echo "something in the way of $dot_directory being created"
         fi
     }
-    
+
     for dir in "${DIRS_TO_MAKE[@]}"
         do
             processDotDir $dir
         done
-    
+
     # create a buildout directory structure
     # -------------------------------------------------------------
     BUILDOUT_DIR="$HOME"/.buildout
@@ -227,11 +227,11 @@ EOF
         echo "You can modify the $BUILDOUT_DIR/default.cfg to your liking"
         echo
     fi
-    
+
     FILES_TO_MAKE=(
         "$HOME"/.pypirc
     )
-    
+
     # create some uncontrolled files
     # -------------------------------------------------------------
     processDotFiles() {
@@ -254,7 +254,7 @@ EOF
                 (
                 cat <<EOF
 #[distutils]
-#index-servers = 
+#index-servers =
 #    pypi
 #    skillet
 #    plone.org
@@ -280,10 +280,10 @@ EOF
         chmod 600 "$dot_file"
         fi
     }
-    
+
     for dot_file in "${FILES_TO_MAKE[@]}"
         do
             processDotFiles $dot_file
         done
-    
+
 fi
