@@ -141,6 +141,7 @@ Deleting them will remove them immediately
         .zshextras
         .zshenv_extras
         .bash_extras
+        .tmux.local
     )
     for to_touch in "${touch_me[@]}"
         do
