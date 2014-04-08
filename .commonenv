@@ -23,6 +23,7 @@ expected_path=(
   /opt/local/lib/postgresql91/bin
   /opt/local/lib/postgresql90/bin
   /opt/local/lib/postgresql83/bin
+  /opt/local/lib/mysql56/bin
   /opt/local/lib/mysql55/bin
   /opt/local/lib/mysql5/bin
   /opt/local/lib/mysql4/bin
