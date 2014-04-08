@@ -48,7 +48,7 @@ fi
 
 # Set the lowest common options
 fpath+=(
-    /opt/zsh/zsh-completions
+    /opt/zsh/zsh-completions/src
     /opt/zsh/other-completions
     /usr/local/share/zsh/functions
     /usr/local/share/zsh/site-functions
