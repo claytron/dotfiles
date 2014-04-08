@@ -49,7 +49,7 @@
 	authorsfile = /Users/clayton/.git-authorsfile
 [branch]
 	autosetuprebase = always
-[push]
-	default = upstream
+#[push]
+#	default = upstream
 [diff]
 	algorithm = patience
