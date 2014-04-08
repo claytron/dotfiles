@@ -86,9 +86,6 @@ export LC_COLLATE=C
 # use a fancy terminal if we aren't using tmux
 [ -z "$TMUX" ] && export TERM=xterm-256color
 
-# use the SFU package server for FreeBSD
-export PACKAGESITE=http://sfuppkg01.sixfeetup.com/FreeBSD/8.0/packages/All/
-
 # conditionally set the editor variable
 # TODO: get mvim -f to work with crontab some day :)
 if checkPath vim; then
