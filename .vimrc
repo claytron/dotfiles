@@ -650,7 +650,7 @@ endfunction
 
 function! PushRegister(text)
     silent !clear
-    silent execute '!echo '. shellescape(a:text, 1) .' | nc localhost 2224'
+    silent execute '!printf "\%s" '. shellescape(a:text, 1) .' | nc localhost 2224'
     silent execute ':redraw!'
 endfunction
 
