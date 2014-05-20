@@ -287,13 +287,6 @@ au BufReadPost COMMIT_EDITMSG* exe "normal! gg"
 " turn off smart indentation when pasting
 set pastetoggle=<F2>
 
-let g:paste_file = '~/.backup/vim/pastie.txt'
-let g:paste_server = 'clyde.local'
-" Pipe the output of the default register to ssh, then pbcopy on that machine
-" NOTE: The sed and perl in this are necessary because the RegisterToFile
-" function is putting extra characters in the file.
-"map <silent> tmz :call RegisterToFile(g:paste_file) \| exe "silent !cat " . g:paste_file . " \| sed 1d \| perl -pe 'chomp if eof' \| ssh " . g:paste_server . " 'pbcopy'" \| redraw!<CR>
-
 " Send register back to my computer's clipboard
 map <silent> tmz :call PushRegister(@")<CR>
 
