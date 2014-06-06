@@ -13,8 +13,8 @@ expected_path=(
   "$HOME/bin/git_achievements"
   "$HOME/.rvm/bin"
   "$HOME/.gem/ruby/1.8/bin"
-  "$HOME/Documents/android-sdk-mac_x86/tools"
-  "$HOME/Documents/android-sdk-mac_x86/platform-tools"
+  "$HOME/Documents/android-sdk-mac-x86_64-20140321/tools"
+  "$HOME/Documents/android-sdk-mac-x86_64-20140321/platform-tools"
   /opt/local/apache2/bin
   /opt/python/bin
   /opt/local/bin
