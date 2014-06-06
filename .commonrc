@@ -81,7 +81,7 @@ fi
 alias psa='ps axwww'
 alias psau='psa -u'
 # pipe into grep to find a proc
-alias psg='psa | sgrep'
+alias psg='psa | grep -i'
 # search for python procs
 alias ispy='psg "[p]ython"'
 # search for ruby procs

@@ -51,7 +51,7 @@ alias -g spub='https://svn.sixfeetup.com/svn/public/'
 alias -g scollective='https://svn.plone.org/svn/collective/'
 alias -g sgit='https://git.sixfeetup.com/git/'
 # some pipes
-alias -g G='| sgrep'
+alias -g G='| grep -i'
 alias -g L='| less'
 alias -g M='| more'
 alias -g T='| tail'
