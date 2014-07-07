@@ -15,6 +15,7 @@ expected_path=(
   "$HOME/.gem/ruby/1.8/bin"
   "$HOME/Documents/android-sdk-mac-x86_64-20140321/tools"
   "$HOME/Documents/android-sdk-mac-x86_64-20140321/platform-tools"
+  /opt/php53/bin
   /opt/local/apache2/bin
   /opt/python/bin
   /opt/local/bin
