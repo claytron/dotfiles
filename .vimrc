@@ -497,7 +497,7 @@ command! -nargs=0 MarkdownToHTMLReplace  %!Markdown.pl "%"
 " copy the html version of the markdown to the clipboard (os x)
 command! -nargs=0 MarkdownToHTMLCopy  !Markdown.pl "%" | pbcopy
 " use pandoc to convert from html into markdown
-command! -nargs=0 MarkdownFromHTML  %!pandoc -f html -t markdown "%"
+command! -nargs=0 MarkdownFromHTML  %!pandoc -f html -t markdown_github "%"
 
 " Tidy                                                         {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
