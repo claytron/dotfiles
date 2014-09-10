@@ -801,6 +801,7 @@ let NERDTreeIgnore=[
     \'\.svn$',
     \'\.git*$',
     \'\.pyc$',
+    \'__pycache__$',
     \'\.pyo$',
     \'\.mo$',
     \'\.o$',

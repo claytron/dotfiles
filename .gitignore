@@ -30,3 +30,5 @@ svn-commit.tmp
 .long-description.html
 .irssi/startup
 .irssi/saved_colors
+.coverage
+htmlcov/
