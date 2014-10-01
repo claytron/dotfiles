@@ -16,8 +16,8 @@
 "    cog      -- turns the GUI back on
 "    coG      -- turns the GUI back off
 "    cob      -- shows the bookmark toolbar
-"    cot      -- show the tab bar
-"    coy      -- turn off the tab bar
+"    coT      -- show the tab bar
+"    cot      -- hide the tab bar
 " Bookmark:
 "    bd       -- Bookmark in Delicious
 "    bdm      -- Start the dev meeting
@@ -114,8 +114,8 @@ map -builtin f ;;
 map -builtin <silent> cog :set guioptions+=mBT<CR>
 map -builtin <silent> coG :set guioptions-=mBT<CR>
 map -builtin <silent> cob :toolbartoggle Bookmarks Toolbar<CR>
-map -builtin <silent> cot :set showtabline=always<CR>
-map -builtin <silent> coT :set showtabline=never<CR>
+map -builtin <silent> coT :set showtabline=always<CR>
+map -builtin <silent> cot :set showtabline=never<CR>
 
 " temporary workaround for copy paste in text boxes
 " https://code.google.com/p/dactyl/issues/detail?id=517
