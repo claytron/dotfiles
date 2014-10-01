@@ -185,5 +185,18 @@ map -builtin <silent> bdm :tabopen bkm-dev-meeting<CR>
 " Add video on the page to Plex
 map -builtin <silent> bp :open bkm-plex<CR>
 
+" Interface Tweaks                                             {{{1
+" -----------------------------------------------------------------
+
+" Get rid of the tab group / tab selector arrow at the top of the
+" vertical tab bar when using Tree Style Tab. This can't be done
+" through the interface customization for some reason.
+javascript <<EOF
+(function() {
+    var alltabs = document.getElementById('alltabs-button');
+    alltabs.parentNode.removeChild(alltabs);
+})();
+EOF
+
 " turn on folds
 " vim: fdm=marker
