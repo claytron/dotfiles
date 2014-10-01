@@ -68,6 +68,7 @@
 "    YY              -- Yank the current line, no newline
 "    funi            -- Find the next non-ascii character (funny)
 "    jj              -- Alternative to <ESC>
+"    jk              -- Alternative to <ESC>
 "    ctrl + tab      -- cycle through buffers
 "    <leader>Enter   -- Split line at current cursor in normal mode
 "    <F2>            -- Toggle smart indent on paste
@@ -126,6 +127,7 @@ set nrformats=""
 
 " set up jj as mode switch
 map! jj <ESC>
+map! jk <ESC>
 
 " Set the shell to sh, zsh and vim don't seem to play nice
 set shell=sh
