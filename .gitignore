@@ -32,3 +32,4 @@ svn-commit.tmp
 .irssi/saved_colors
 .coverage
 htmlcov/
+.idea/
