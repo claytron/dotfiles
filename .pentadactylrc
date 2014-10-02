@@ -152,6 +152,9 @@ map -builtin L <Esc>:tabmove! +1<CR>
 " set up in thunderbird :)
 imap -builtin <C-e> <C-i>
 
+" Clearly doesn't invoke anymore, this forces it
+map -builtin <M-C-r> :emenu Tools.Clearly<CR>
+
 " I tend to tap the 'd' key on my keyboard on accident
 nmap -builtin d <silent> <Nop>
 
