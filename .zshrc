@@ -202,7 +202,7 @@ if checkPath git and checkPath python; then
     export ZSH_THEME_GIT_PROMPT_NOCACHE="True"
     source ~/.zsh/git-prompt/gitstatus.sh
 else
-    NOGITPROMPT='true'
+    alias git_super_status='echo'
 fi
 
 # use some crazy ass shell prompt

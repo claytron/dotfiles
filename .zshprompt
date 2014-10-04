@@ -32,9 +32,6 @@ function precmd {
     # Make sure and set the $ME var in .zshrc
     [ -n "$ME" ] && [ $(whoami) != "$ME" ] && PR_IMPOSTER="(%n%)"
 
-    # Test to see if the git prompt should show
-    [ -z "$NOGITPROMPT" ] && PR_GIT_STATUS=$(git_super_status)
-    
     PR_PROJECT=""
     local THIRD_DIR="$(pwd | cut -f 4,5 -d /)"
     if [ "$THIRD_DIR" = "sixfeetup/projects" ]; then
@@ -61,6 +58,9 @@ setprompt () {
     setopt prompt_subst
     
     PR_NO_COLOUR="%{$terminfo[sgr0]%}"
+    
+    # Test to see if the git prompt should show
+    [ -z "$PR_SHOW_GIT" ] && PR_GIT_STATUS=
     
     # See if we can use extended characters to look nicer.
     typeset -A altchar
@@ -95,7 +95,7 @@ setprompt () {
     fi
     
     # Finally, the prompt (removed the color - claytron)
-    PROMPT='$PR_IMPOSTER$PR_GIT_STATUS
+    PROMPT='$PR_IMPOSTER $(git_super_status)
 $PR_SET_CHARSET$PR_STITLE${(e)PR_TITLEBAR}\
 $PR_SHIFT_IN$PR_ULCORNER$PR_HBAR$PR_SHIFT_OUT\
 %D{%a,%b %d}\
