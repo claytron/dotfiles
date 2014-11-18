@@ -165,7 +165,7 @@ nmap -builtin <bs> <nop>
 nmap -builtin <C-a> <nop>
 
 " Go into pass through mode when invoking group tabs
-nmap -builtin <M-S-E> <C-z><M-S-E>
+"nmap -builtin <M-S-E> <C-z><M-S-E>
 
 " Bookmarklets                                                 {{{2
 " -----------------------------------------------------------------
