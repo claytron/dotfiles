@@ -42,3 +42,8 @@
 --regex-markdown=/^#{5} (.*)(#{5})?/\1/5,header5/
 --regex-markdown=/^#{6} (.*)(#{6})?/\1/6,header6/
 --regex-markdown=/^#{7} (.*)(#{7})?/\1/7,header7/
+
+--langdef=yaml
+--langmap=yaml:.yml.sls
+--regex-yaml=/^([a-zA-Z0-9_\/-]+):/\1/d,definition/
+--regex-yaml=/.*- name: (.*)/\1/n,name/

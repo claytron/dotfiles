@@ -918,6 +918,21 @@ let g:tagbar_type_markdown = {
     \ ]
 \ }
 
+let g:tagbar_type_yaml = {
+    \ 'ctagstype': 'yaml',
+    \ 'kinds': [
+          \ 'd:definition',
+          \ 'n:name'
+    \ ]
+\ }
+
+let g:tagbar_type_sls = {
+    \ 'ctagstype': 'yaml',
+    \ 'kinds': [
+          \ 'd:definition',
+          \ 'n:name'
+    \ ]
+\ }
 
 " VCSCommand                                                   {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
