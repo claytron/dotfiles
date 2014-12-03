@@ -127,7 +127,7 @@ else
 fi
 
 # pep8 that can scan a `src` dir
-alias pep8scan="pep8 --repeat --show-source --statistics --exclude='paste,*PasteDeploy*'"
+alias pep8scan="pep8 --repeat --show-source --statistics --exclude='paste,*PasteDeploy*,bootstrap.py'"
 
 # I have a folder of custom made fortunes...
 if checkPath fortune && [ -d /opt/local/share/games/fortune/comedy ]; then
