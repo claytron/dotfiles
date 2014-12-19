@@ -38,6 +38,7 @@
 	sa = stash apply
 	ss = stash save
 	sh = stash show -p
+	psh = push origin HEAD
 [achievement]
 	upload = true
 [github]
@@ -49,7 +50,5 @@
 	authorsfile = /Users/clayton/.git-authorsfile
 [branch]
 	autosetuprebase = always
-#[push]
-#	default = upstream
 [diff]
 	algorithm = patience
