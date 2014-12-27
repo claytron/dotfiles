@@ -144,7 +144,7 @@ if v:version >= 703
 endif
 
 " have fifty lines of command-line (etc) history:
-set history=100000
+set history=10000
 
 if has('mouse')
     " have the mouse enabled all the time
