@@ -14,6 +14,9 @@ let s:e = g:_riv_e
 " the searchpos and setpos version
 " it's heavy though.
 fun! s:get_all_list(row) "{{{
+    " return the current list's row number
+    " return 0 if not exists.
+    
     let row = prevnonblank(a:row)
 
     let save_pos = getpos('.')
@@ -365,7 +368,7 @@ fun! s:nr2num(n,type) "{{{
 endfun "}}}
 fun! s:next_list_num(num,...) "{{{
     let is_roman = a:0 ? a:1 : 0
-    if a:num == ''
+    if a:num == '' || a:num == '#'
         return a:num
     elseif a:num =~ '\d\+'
         return a:num+1

@@ -3,10 +3,43 @@
 "    File: link.vim
 " Summary: link ref and targets.
 "  Author: Rykka G.F
-"  Update: 2012-09-13
+"  Update: 2014-08-28
 "=============================================
 let s:cpo_save = &cpo
 set cpo-=C
+
+let s:p = g:_riv_p
+let s:sys = function('riv#system')
+
+fun! riv#link#browse(link) "{{{
+    " use browser to open link
+    " add 'mailto:' to 'mail@example.com', otherwise browser will open 
+    " example.com
+    let link = a:link
+    if link =~ s:p.link_mail
+        let link = 'mailto:' . link
+    endif
+    call s:sys(g:riv_web_browser." ". escape(link,'#%')." &")
+endfun "}}}
+fun! s:cursor(row, col) "{{{
+    " Move to cursor with jumplist changed.
+    
+    if a:row == 0 | return  | endif
+
+    " add to jumplist
+    norm! m'
+    call cursor(a:row, a:col)
+
+    " sometime column is not moved to, so use this.
+    " FIXED: maybe caused by `norm! z.`
+    " if getpos('.')[2] != a:col
+    "     exe 'norm! 0'.a:col. 'l'
+    " endif
+
+    " openfold, put center and redraw
+    normal! zvzz
+
+endfun "}}}
 
 fun! riv#link#get_last_foot() "{{{
     " return  [ id , row]
@@ -23,10 +56,7 @@ endfun "}}}
 fun! riv#link#finder(dir) "{{{
     let flag = a:dir=="b" ? 'Wnb' : 'Wn'
     let [srow,scol] = searchpos(riv#ptn#link_all(),flag,0,100)
-    if srow[0] != 0
-        call setpos("'`",getpos('.'))
-        call cursor(srow, scol)
-    endif
+    call s:cursor(srow, scol)
 endfun "}}}
 fun! s:normal_ptn(text) "{{{
     let text = substitute(a:text ,'\v(^__=|_=_$)','','g')
@@ -46,6 +76,10 @@ fun! s:reference_ptn(text) "{{{
 endfun "}}}
 
 fun! s:find_tar(text) "{{{
+    " XXX
+    " THIS function may should rewrite
+    " norm_ptn 
+    " with create.vim 's norm_ref and norm_tar
 
     if a:text =~ g:_riv_p.link_ref_anonymous
         let [a_row, a_col] = searchpos(g:_riv_p.link_tar_anonymous, 'wn', 0 , 100)
@@ -53,12 +87,11 @@ fun! s:find_tar(text) "{{{
     endif
 
     let norm_ptn = s:normal_ptn(a:text)
-    let [c_row,c_col] = getpos('.')[1:2]
 
     " The section title are implicit targets.
-    let row = s:find_sect('\v\c^\s*'.norm_ptn.'\s*$')
+    let [row, col]  = s:find_sect('\v\c^\s*'.norm_ptn.'\s*$')
     if row > 0
-        return [row, c_col]
+        return [row, col]
     endif
     let tar_ptn = s:target_ptn(norm_ptn)
     let [a_row, a_col] = searchpos(tar_ptn, 'wn', 0 , 100)
@@ -86,13 +119,19 @@ fun! s:find_sect(ptn) "{{{
                 let line = getline(sect.bgn+1)
             endif
             if line =~ a:ptn
-                return sect.bgn
+                let col = match(line, '\v\S') + 1
+                return [sect.bgn, col]
             endif
         endfor
     endif
+    return [0, 0]
 endfun "}}}
 
-fun! riv#link#open() "{{{
+fun! s:is_file(file) "{{{
+    return filereadable(a:file)
+endfun "}}}
+
+fun! riv#link#open(...) "{{{
 
     let [row,col] = getpos('.')[1:2]
     let line = getline(row)
@@ -100,43 +139,91 @@ fun! riv#link#open() "{{{
     let idx = s:get_link_idx(line,col)
 
     if idx == -1
-        return 
+        return
     endif
-    
+
     let mo = riv#ptn#match_object(line, riv#ptn#link_all(), idx)
 
     if empty(mo) || mo.start+1 > col || mo.end < col
         return
     endif
+    " s:p['link_all'.i] =
+    "             \  '\v('. link_target 
+    "             \ . ')|(' . link_reference
+    "             \ . ')|(' . link_uri 
+    "             \ . ')|(' . link_file{i}
+    "             \ . ')|(' . ext_file_link
+    "             \. ')'
+    " Link_target
     if !empty(mo.groups[1])
         " at it's target , find it's referrence
         let [sr,sc] = s:find_ref(mo.str)
         if sr != 0
-            call setpos("'`",getpos('.'))
-            call cursor(sr,sc)
-            normal! zvz.
+            call s:cursor(sr, sc)
             return 1
         else
             call riv#warning(g:_riv_e.REF_NOT_FOUND)
             return -1
         endif
+    " Link Reference
     elseif !empty(mo.groups[2])
         " check if it's embbed link
-        let em = matchstr(mo.groups[2], '`[^`]*\s<\zs[^`]*\ze>`_')
-        if empty(em)
+        let loc = matchstr(mo.groups[2], s:p.loc_embed)
+        let [sr, sc] = [0, 0]
+        if empty(loc)
             let [sr,sc] = s:find_tar(mo.str)
             if sr != 0
-                call setpos("'`",getpos('.'))
-                call cursor(sr,sc)
-                normal! zvz.
+
+                " let norm_ptn = s:normal_ptn(a:text)
+                " let tar_ptn = s:target_ptn(norm_ptn)
+                " >>> echo mo
+                " >>> echo s:p.location
+
+                let loc = matchstr(getline(sr), s:p.location)
+
+                if empty(loc)
+                    let [srx, scx] = searchpos('\S', 'n', 0 , 100)
+                    if srx == 0
+                        call riv#warning(g:_riv_e.TAR_NOT_FOUND)
+                        return -2
+                    endif
+                    call s:cursor(sr, sc)
+                    return 2
+                else
+                    let sc = match(getline(sr), s:p.location)
+                endif
+
             else
-                call riv#warning(g:_riv_e.REF_NOT_FOUND)
+                call riv#warning(g:_riv_e.TAR_NOT_FOUND)
                 return -2
             endif
-        else
-            sil! exe "!".g:riv_web_browser." ". escape(em,'#%')." &"
         endif
+
+        let pwd = expand('%:p')
+
+        let move_only = a:0 ? a:1 : 0
+        if move_only != 1 && g:riv_open_link_location == 1 
+            " Open file have extenstins or exists
+            if loc =~ s:p.link_uri
+                call riv#link#browse(loc)
+                " call riv#echo("Use :RivLinkShow <C-E>ks to move to link's location.")
+                return 2
+            else
+                if fnamemodify(loc, ":e") == 'html'
+                    let loc = fnamemodify(loc, ":s?html?rst?")
+                endif
+                if s:is_file(loc) || loc =~ s:p.ext_file_link
+                    call riv#file#edit(loc)
+                    " call riv#echo("Use :RivLinkShow <C-E>ks to move to link's location.")
+                    return 2
+              endif
+            endif
+        endif
+        " put cursor on location
+        call s:cursor(sr, sc+1)
+
         return 2
+
     elseif !empty(mo.groups[3])
         if !empty(mo.groups[4])             " it's file://xxx
             if mo.str =~ '^file'
@@ -144,13 +231,13 @@ fun! riv#link#open() "{{{
                 call riv#file#edit(expand(mo.groups[4]))
             else
                 " vim will expand the # and % , so escape it.
-                sil! exe "!".g:riv_web_browser." ". escape(mo.groups[4],'#%')." &"
+                call riv#link#browse(mo.groups[4])
             endif
         else
-            if mo.groups[3] =~ g:_riv_p.link_mail
+            if mo.groups[3] =~ s:p.link_mail
                 let mo.groups[3] = 'mailto:' . mo.groups[3]
             endif
-            sil! exe "!".g:riv_web_browser." ". escape(mo.groups[3],'#%')." &"
+            call riv#link#browse(mo.groups[3])
         endif
         return 3
     elseif !empty(mo.groups[5])
@@ -203,7 +290,7 @@ fun! riv#link#path(str) "{{{
 
     let [f,t] = riv#ptn#get_file(a:str)
     if riv#path#is_relative(f)
-        let file = expand('%:p:h').'/' . f
+        let file = riv#path#join(expand('%:p:h'), f)
     else
         " if it have '/' at start. 
         " it is the doc root for sphinx and moinmoin 
@@ -244,7 +331,7 @@ fun! riv#link#hi_hover() "{{{
     let [s:hl_row, s:hl_bgn,s:hl_end] = [row, 0 , 0]
 
     let line = getline(row)
-    let idx = s:get_link_idx(line,col)
+    let idx = s:get_link_idx(line, col)
     
     if idx != -1
         let obj = riv#ptn#match_object(line, riv#ptn#link_all(), idx)
@@ -285,7 +372,7 @@ fun! riv#link#hi_hover() "{{{
 endfun "}}}
 
 if expand('<sfile>:p') == expand('%:p') "{{{
-    call riv#test#doctest('%','%',2)
+    call doctest#start()
 endif "}}}
 let &cpo = s:cpo_save
 unlet s:cpo_save

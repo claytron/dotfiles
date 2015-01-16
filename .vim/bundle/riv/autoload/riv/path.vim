@@ -8,43 +8,50 @@
 let s:cpo_save = &cpo
 set cpo-=C
 
-let s:slash = has('win32') || has('win64') ? '\' : '/'
-let s:win =  has('win32') || has('win64') ? 1 : 0
+let s:slash = g:_riv_c.slash
+
 
 let s:c = g:_riv_c
+let s:id = function("riv#id")
+
 fun! riv#path#root(...) "{{{
-    return g:_riv_c.p[a:0 ? a:1 : riv#id()]._root_path
+    return s:c.p[a:0 ? a:1 : s:id()]._root_path
+endfun "}}}
+fun! riv#path#root_index(...) "{{{
+    let id = a:0 ? a:1 : s:id()
+    return riv#path#root(id) . riv#path#idx_file(id)
 endfun "}}}
 
 fun! riv#path#build_ft(ft,...) "{{{
-    return g:_riv_c.p[a:0 ? a:1 : riv#id()]._build_path . a:ft . s:slash
+    " return the build's filetype path
+    return s:c.p[a:0 ? a:1 : s:id()]._build_path . a:ft . s:slash
 endfun "}}}
 fun! riv#path#p_build(...) "{{{
     " >>> echo riv#path#p_build()
     " _build
-    return g:_riv_c.p[a:0 ? a:1 : riv#id()].build_path
+    return s:c.p[a:0 ? a:1 : s:id()].build_path
 endfun "}}}
 fun! riv#path#build_path(...) "{{{
-    return g:_riv_c.p[a:0 ? a:1 : riv#id()]._build_path
+    return s:c.p[a:0 ? a:1 : s:id()]._build_path
 endfun "}}}
 fun! riv#path#scratch_path(...) "{{{
-    return g:_riv_c.p[a:0 ? a:1 : riv#id()]._scratch_path
+    return s:c.p[a:0 ? a:1 : s:id()]._scratch_path
 endfun "}}}
 fun! riv#path#file_link_style(...) "{{{
-    return g:_riv_c.p[a:0 ? a:1 : riv#id()].file_link_style
+    return s:c.p[a:0 ? a:1 : s:id()].file_link_style
 endfun "}}}
 
 fun! riv#path#ext(...) "{{{
     " file suffix 
     " >>> echo riv#path#ext()
     " .rst
-    return g:_riv_c.p[a:0 ? a:1 : riv#id()].source_suffix
+    return s:c.p[a:0 ? a:1 : s:id()].source_suffix
 endfun "}}}
 fun! riv#path#idx(...) "{{{
     " project master doc.
     " >>> echo riv#path#idx()
     " index
-    return g:_riv_c.p[a:0 ? a:1 : riv#id()].master_doc
+    return s:c.p[a:0 ? a:1 : s:id()].master_doc
 endfun "}}}
 fun! riv#path#idx_file(...) "{{{
     " >>> echo riv#path#idx_file()
@@ -53,7 +60,7 @@ fun! riv#path#idx_file(...) "{{{
 endfun "}}}
 
 fun! riv#path#p_ext(...) "{{{
-    return g:_riv_c.p[a:0 ? a:1 : riv#id()]._source_suffix
+    return s:c.p[a:0 ? a:1 : s:id()]._source_suffix
 endfun "}}}
 
 fun! riv#path#is_ext(file) "{{{
@@ -68,7 +75,14 @@ fun! riv#path#directory(path) "{{{
     return riv#path#is_directory(a:path) ? a:path : a:path . s:slash
 endfun "}}}
 fun! riv#path#rel_to(dir, path) "{{{
-    " return the related path to 'dir', default is current file's dir
+    " return the relative path to 'dir', 
+    "
+    " >>> echom riv#path#rel_to('/etc/X11/', '/etc/X11/home')
+    " home
+    " >>> echom riv#path#rel_to('/etc/X11/', '/etc/home')
+    " ../home
+    " >>> echom riv#path#rel_to('/etc/X11/', '/tc/home')
+    " Riv: Note a related path
     
     let dir = riv#path#is_directory(a:dir) ? a:dir : fnamemodify(a:dir,':h') . '/'
     let dir = fnamemodify(dir, ':gs?\?/?') 
@@ -86,7 +100,8 @@ fun! riv#path#rel_to(dir, path) "{{{
     return substitute(path, dir, '', '')
 endfun "}}}
 fun! riv#path#is_rel_to(dir, path) "{{{
-    
+    " check if path is relatetive to dir
+    "
     let dir = riv#path#is_directory(a:dir) ? a:dir : a:dir.'/'
     let dir = fnamemodify(dir, ':gs?\?/?') 
     let path = fnamemodify(a:path, ':gs?\?/?') 
@@ -106,7 +121,6 @@ endfun "}}}
 fun! riv#path#par_to(dir,path) "{{{
     let dir = riv#path#is_directory(a:dir) ? a:dir : a:dir.'/'
     let dir = fnamemodify(dir, ':gs?\?/?') 
- 
     let path = fnamemodify(a:path, ':gs?\?/?') 
     if match(dir, path) == -1
         throw g:_riv_e.NOT_REL_PATH
@@ -120,10 +134,10 @@ fun! riv#path#is_relative(name) "{{{
     return a:name !~ '^[~/]\|^[a-zA-Z]:'
 endfun "}}}
 fun! riv#path#is_directory(name) "{{{
-    return a:name =~ '[\\/]$' 
+    return a:name =~ '\w[\\/]$' 
 endfun "}}}
 
-fun! riv#path#ext_to(file, ft) "{{{
+fun! riv#path#ext_with(file, ft) "{{{
     return fnamemodify(a:file, ":r") . '.' . a:ft
 endfun "}}}
 fun! riv#path#ext_tail(file, ft) "{{{
@@ -142,17 +156,17 @@ fun! riv#path#join(a, ...)
     for b in a:000
         if !riv#path#is_relative(b)
             let path = b
-        elseif  path == '' ||  path =~ '/$'
+        elseif  path == '' ||  path =~ '[/\]$'
             let path .= b
         else 
-            let path .= '/' . b
+            let path .= s:slash . b
         endif
     endfor
     return path
 endfun
 
 if expand('<sfile>:p') == expand('%:p') "{{{
-    call riv#test#doctest('%','%',2)
+    call doctest#start()
 endif "}}}
 let &cpo = s:cpo_save
 unlet s:cpo_save

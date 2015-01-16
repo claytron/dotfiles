@@ -9,11 +9,22 @@
 let s:cpo_save = &cpo
 set cpo-=C
 
+let s:p = g:_riv_p
+
 fun! riv#file#edit(file) "{{{
-    exe "edit +let\\ b:riv_p_id=".riv#id() a:file
+    " edit file with it's full absolute path.
+    let file = a:file
+    if riv#path#is_relative(file)
+        let file = riv#path#join(expand('%:p:h'), file)
+    endif
+    exe "edit ".file
 endfun "}}}
 fun! riv#file#split(file) "{{{
-    exe "split +let\\ b:riv_p_id=".riv#id()  a:file
+    let file = a:file
+    if riv#path#is_relative(file)
+        let file = riv#path#join(expand('%:p:h'), file)
+    endif
+    exe "split " file
 endfun "}}}
 
 " Helper:  "{{{1
@@ -207,7 +218,7 @@ fun! riv#file#section_helper() "{{{
 endfun "}}}
 
 if expand('<sfile>:p') == expand('%:p') "{{{
-    call riv#test#doctest('%','%',2)
+    call doctest#start()
 endif "}}}
 
 let &cpo = s:cpo_save

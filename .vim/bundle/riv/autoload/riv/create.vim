@@ -3,13 +3,45 @@
 "    File: riv/create.vim
 " Summary: Create miscellaneous things.
 "  Author: Rykka G.Forest
-"  Update: 2012-09-17
+"  Update: 2014-08-16
 "=============================================
 let s:cpo_save = &cpo
 set cpo-=C
 
+let s:p = g:_riv_p
+
 let s:months = g:_riv_t.month_names
 " link "{{{
+
+fun! s:norm_ref(str) "{{{
+    " return normalized ref name
+    if a:str !~ '\v^'.s:p.ref_name.'$'
+        return '`'.a:str.'`_'
+    else
+        return ''.a:str.'_'
+    endif
+endfun "}}}
+fun! s:norm_tar(str) "{{{
+    " return normalized tar name
+    " >>> echo s:norm_tar_line('其他', 'hello.rst')
+    " .. _其他: hello.rst
+    " >>> echo s:norm_tar_line('sep one.rst', 'hello.rst')
+    " .. _`sep one.rst`: hello.rst
+    if a:str !~ '\v^'.s:p.ref_name.'$'
+        return '.. _`'.a:str.'`: '
+    else
+        return '.. _'.a:str.': '
+    endif
+endfun "}}}
+fun! s:normal_phase(text) "{{{
+    " remove the __ `` []
+    " >>> echo s:normal_phase('`te fe | st:_`_')
+    " te fe | st:_
+    let text = substitute(a:text ,'\v(^__=|_=_$)','','g')
+    let text = substitute(text ,'\v(^`|`$)','','g')
+    let text = substitute(text ,'\v(^\[|\]$)','','g')
+    return text
+endfun "}}}
 
 fun! s:expand_file_link(file) "{{{
     " all with ``
@@ -26,82 +58,72 @@ fun! s:expand_file_link(file) "{{{
         let file = matchstr(file, '^\[\zs.*\ze\]$')
     endif
     if !riv#path#is_relative(file)
-            let tar = s:str_to_tar(file,file)
+            let tar = file
+            let loc = file
     elseif riv#path#is_directory(file)
-        let tar = s:str_to_tar(file, file.'index.html')
+        let tar = file 
+        let loc = file.'index.html'
     else
         if riv#path#is_ext(file)
-            let tar = s:str_to_tar(file, fnamemodify(file, ':r').'.html') 
+            let tar = file 
+            let loc = fnamemodify(file, ':r').'.html' 
         elseif fnamemodify(file, ':e') == '' && riv#path#file_link_style() == 2
-            let tar = s:str_to_tar(file, file.'index.html')
+            let tar = file 
+            let loc = file.'index.html'
         else
-            let tar = s:str_to_tar(file,file)
+            let tar = file 
+            let loc = file.'index.html'
         endif
     endif
-    let ref = s:str_to_ref(file)
-    return [ref, tar]
-endfun "}}}
-fun! s:str_to_ref(str) "{{{
-    if a:str !~ '[[:alnum:]._-]'
-        return '`'.a:str.'`_'
-    else
-        return ''.a:str.'_'
-    endif
-endfun "}}}
-fun! s:str_to_tar(str,loc) "{{{
-    if a:str =~ '[`\\]'
-        return '.. _`'.a:str.'`: '.a:loc
-    else
-        return '.. _'.a:str.': '.a:loc
-    endif
+    let ref = s:norm_ref(file)
+    return [ref, tar, loc]
 endfun "}}}
 
-fun! s:expand_link(word) "{{{
+fun! s:expand_link(word,...) "{{{
     " expand file, and let the refname expand
     let word = a:word
     if word=~ riv#ptn#link_file()
         return s:expand_file_link(word)
     else
-        if word =~ '\v^'.g:_riv_p.ref_name.'$'
-            if word =~ '^[[:alnum:]]\{40}$'
-                let [ref, tar] = [word[:7].'_', '.. _' . word[:7].': '.word]
-            else
-                let ref = word.'_'
-                let tar = '.. _'.word.': '.word
-            endif
-        elseif word =~ g:_riv_p.link_ref_footnote
-            " footnote
+        if word =~ '^[[:alnum:]]\{40}$' && !a:0 
+            " For github
+            let loc = word
+            let [ref, tar] = [word[:7].'_', '.. _' . word[:7].': ']
+        elseif word =~ s:p.link_ref_footnote
+            " footnote, remove '[' and ']'
             let trim = strpart(word,  0 , len(word)-1)
             let ref = word
-            let tar = '.. '.trim.' '.trim
-        elseif word =~ g:_riv_p.link_ref_normal
+            let loc = a:0 ? a:1 : word
+            let tar = '.. '.trim.' '
+        elseif word =~ s:p.link_ref_normal
             let trim = strpart(word,  0 , len(word)-1)
             let ref = word
-            let tar = '.. _'.trim.': '.trim
-        elseif word =~ g:_riv_p.link_ref_anonymous
+            let loc = a:0 ? a:1 : trim
+            let tar = '.. _'.trim.': '
+        elseif word =~ s:p.link_ref_anonymous
             " anonymous link
             let ref = word
-            let tar = '__ '.s:normal_phase(word)
-        elseif word =~ g:_riv_p.link_ref_phase
+            let loc = a:0 ? a:1 : s:normal_phase(word)
+            let tar = '__ '
+        elseif word =~ s:p.link_ref_phase
             let trim = s:normal_phase(word)
             let ref = word
-            let tar = '.. _'.trim.': '.trim
+            let _tar = substitute(word, '\v(^__=|_=_$)','','g')
+            let loc = a:0 ? a:1 : trim
+            let tar = '.. _'._tar.': '
         else
-            let ref = s:str_to_ref(word)
-            let tar = s:str_to_tar(word, word)
+            let loc = a:0 ? a:1 : word
+            let ref = s:norm_ref(word)
+            let tar = s:norm_tar(word)
         endif
-        return [ref, tar]
+        return [ref, tar, loc]
     endif
 endfun "}}}
 
-
-fun! s:normal_phase(text) "{{{
-    let text = substitute(a:text ,'\v(^__=|_=_$)','','g')
-    let text = substitute(text ,'\v(^`|`$)','','g')
-    let text = substitute(text ,'\v(^\[|\]$)','','g')
-    return text
-endfun "}}}
 fun! s:get_cWORD_obj() "{{{
+    " return current cWORD 
+    " str, start ,end
+    " NOTE: This is unicode compatible.
     let line = getline('.')
     let ptn = printf('\%%%dc.', col('.'))
     let obj = {}
@@ -114,7 +136,7 @@ fun! s:get_cWORD_obj() "{{{
     return obj
 endfun "}}}
 fun! s:get_phase_obj() "{{{
-    " if cursor is in a phase ,return it's idx , else return -1
+    " return current `xxx xxx`__
     let line = getline('.')
     let col = col('.')
     let ptn = printf('`[^`]*\%%%dc[^`]*`__\?\|\%%%dc`[^`]*`__\?', col, col)
@@ -127,41 +149,79 @@ fun! s:get_phase_obj() "{{{
     endif
     return obj
 endfun "}}}
-fun! riv#create#link() "{{{
+fun! riv#create#link(...) range "{{{
+    " TODO: add visual mode support for creating phase link.
+    " if a:0 && a:1 == 'v'
+    "     echom 'V'
+    "     let _v = @v
+    "     " get visual lines
+    "     norm! gv"vy
+    "     let vs = @v
+    "     let @v = _v
+    "     echom vs
+    " endif
+    "
     let [row, col] = [line('.'), col('.')]
     let line = getline(row)
+    let eof = line('$')
 
     let obj = s:get_phase_obj()
     if empty(obj)
         let obj = s:get_cWORD_obj()
     endif
+
     if !empty(obj)
         let word = obj.str
         let idx  = obj.start + 1
         let end  = obj.end + 1
     else
-        let word = input("Input a link name:")
-        if word =~ '^\s*$'
-            return
-        endif
+        let word = input("Input link name:")
+        if word =~ '^\s*$' | return | endif
         let idx = col
         let end = col
     endif
 
-    let [ref, tar] = s:expand_link(word)
+    let _loc = word
 
-    let line = substitute(line, '\%'.idx.'c.\{'.(end-idx).'}', ref, '')
-
-    call setline(row , line)
-    if g:riv_create_link_pos == '$' && tar !~ '^__'
-        call append(line('$'), ["",tar])
-        exe "normal! G0f:2lv$\<C-G>"
+    " If it's a relative file path, then expand to PATH/index.rst
+    if riv#path#is_directory(_loc) 
+        \ && riv#path#is_relative(_loc)
+        let _loc = _loc . riv#path#idx_file()
+        " remove the final slash
+        " NOTE: removed all '/' though this should not be happended
+        let word = substitute(word, '/\+$', '' ,'')
+        let [ref, tar, loc] = s:expand_link(word, _loc)
     else
-        call append(row, ["",tar])
-        exe "normal! jj0f:2lv$\<C-G>"
+        let [ref, tar, loc] = s:expand_link(word)
     endif
+
+    let loc = input("Input link location of '". ref . "':\n", loc, "file")
+
+    if loc =~ '^\s*$' | return | endif
+
+    let tar_line = tar.loc
+    
+    " Change current line with Ref
+    let line = substitute(line, '\%>'.(idx-1).'c.*\%<'.(end+1).'c', ref, '')
+    call setline(row , line)
+    
+    " Append target line
+    if g:riv_create_link_pos == '$' && tar !~ '^__'
+        if  getline(eof) =~ '\v^\s*$|^\.\.%(\s|$)'
+            call append(eof, [tar_line])
+        else
+            call append(eof, ["",tar_line])
+        endif
+    else
+        " anonymous line
+        call append(row, ["",tar_line])
+    endif
+    redraw
+    call riv#echo('Link Created.')
+
 endfun "}}}
 "}}}
+
 " scratch "{{{
 fun! riv#create#scratch() "{{{
     call riv#file#split(riv#path#scratch_path() . strftime("%Y-%m-%d") . riv#path#ext())
@@ -258,7 +318,7 @@ fun! riv#create#delete() "{{{
                 call setline(i, substitute(getline(i), ptn ,'','g'))
             endfor
             update | redraw
-            echo len(f_idx) ' relative link in index deleted.'
+            call riv#echo(len(f_idx).' relative link in index deleted.')
         endif
     endif
 
@@ -278,7 +338,7 @@ fun! riv#create#foot() "{{{
     let id = riv#link#get_last_foot()[1] + 1
     let line = getline('.') 
 
-    if line =~ g:_riv_p.table
+    if line =~ s:p.table
         let tar = substitute(line,'\%' . col(".") . 'c' , ' ['.id.']_ ', '')
     elseif line =~ '\S\@<!$'
     " have \s before eol.
@@ -308,13 +368,30 @@ fun! riv#create#auto_mkdir() "{{{
 endfun "}}}
 fun! riv#create#git_commit_url() "{{{
     if !exists("*fugitive#repo")
-        call riv#warning("NO fugitive")
+        call riv#warning(" NO fugitive installed.")
         return
     endif
-    let sha = fugitive#repo().rev_parse('HEAD')
+    try
+        let sha = fugitive#repo().rev_parse('HEAD')
+    catch
+        call riv#warning(" NOT a valid repo.")
+        return
+    endtry
 
-    let [ref, tar] = s:expand_link(sha)
-    call append(line('.'), [ref,"",tar])
+    let [ref, tar, loc] = s:expand_link(sha)
+
+    call append(line('.'), [ref])
+
+    if g:riv_create_link_pos == '$' 
+        let eof = line('$')
+        if  getline(eof) =~ '\v^\s*$|^\.\.%(\s|$)'
+            call append(eof, [tar.loc])
+        else
+            call append(eof, ["",tar.loc])
+        endif
+    else
+        call append(line('.'), ["",tar.loc])
+    endif
 endfun "}}}
 
 fun! riv#create#wrap_inline(sign,mode) "{{{
@@ -357,24 +434,17 @@ fun! riv#create#cmd_helper() "{{{
     " let s:cmd.maps['<2-leftmouse>'] = 'riv#create#enter'
     " let s:cmd.syntax_func  = "riv#create#syn_hi"
     let s:cmd.contents = [s:load_cmd(),
-                \filter(copy(s:cmd.contents[0]),'v:val=~g:_riv_p.todo_done '),
-                \filter(copy(s:cmd.contents[0]),'v:val!~g:_riv_p.todo_done '),
+                \filter(copy(s:cmd.contents[0]),'v:val=~s:p.todo_done '),
+                \filter(copy(s:cmd.contents[0]),'v:val!~s:p.todo_done '),
                 \]
     let s:cmd.input=""
     cal s:cmd.win()
 endfun "}}}
 "}}}
 
-fun! s:SID() "{{{
-    return matchstr(expand('<sfile>'), '<SNR>\zs\d\+\ze_SID$')
-endfun "}}}
-fun! riv#create#SID() "{{{
-    return '<SNR>'.s:SID().'_'
-endfun "}}}
-
-if expand('<sfile>:p') == expand('%:p') 
-    call riv#test#doctest('%','%',2)
-endif
+if expand('<sfile>:p') == expand('%:p') "{{{
+    call doctest#start()
+endif "}}}
 
 let &cpo = s:cpo_save
 unlet s:cpo_save

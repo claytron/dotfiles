@@ -1,13 +1,15 @@
 " Vim syntax file
 " Language:         reStructuredText documentation format
 " Maintainer:       Nikolai Weibull <now@bitwi.se>
-" Latest Revision:  2012-10-09
+" Latest Revision:  2014-08-14
 
 if exists("b:current_syntax")
   finish
 endif
 let s:cpo_save = &cpo
 set cpo&vim
+
+call riv#load_opt()
 
 syn match   rstTodo         '\v(<|:)%(FIXME|TODO|XXX|NOTE)%(:|\_s@=)' contained
 
@@ -26,21 +28,21 @@ syn cluster rstCruft                contains=rstEmphasis,rstStrongEmphasis,
 " A blank line is needed after the LiteralBlock
 syn region  rstLiteralBlock         matchgroup=rstDelimiter
       \ start='::\_s*\n\s*\n\ze\z(\s\+\)' skip='^$' end='^\z1\@!'
-      \ contains=@NoSpell
+      \ contains=@Spell
 
 syn region  rstLineBlock
       \ start='^\s*\ze|\_s' end='^\s*$'
-      \ contains=@NoSpell
+      \ contains=@Spell
 
 syn region  rstQuotedLiteralBlock   matchgroup=rstDelimiter
       \ start="::\_s*\n\ze\z([!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]\)"
-      \ end='^\z1\@!' contains=@NoSpell
+      \ end='^\z1\@!' contains=@Spell
 
 syn region  rstDoctestBlock         display matchgroup=rstDelimiter
       \ start='^>>>\s' end='^\s*$'
 
 syn region  rstTable                transparent start='\%(\_^\s*\n\)\@<=\s*+[-=+]\+' end='^\s*$'
-      \ contains=rstTableLines,@rstCruft
+      \ contains=rstTableLines,@rstCruft,@Spell
 syn match   rstTableLines           contained display '|\|+\%(=\+\|-\+\)\='
 
 syn region  rstSimpleTable          transparent
@@ -55,26 +57,52 @@ syn match   rstSimpleTableLines     contained display
 syn cluster rstDirectives           contains=rstFootnote,rstCitation,
       \ rstHyperlinkTarget,rstExDirective
 
-syn match   rstExplicitMarkup       '^\.\.\_s'
-      \ nextgroup=@rstDirectives,rstComment,rstSubstitutionDefinition
-
-let s:ReferenceName = '[[:alnum:]]\+\%([_.-][[:alnum:]]\+\)*'
 
 
-execute 'syn region rstComment contained' .
-      \ ' start=/.*/'
-      \ ' skip=+^$+' 
-      \ ' end=/^\s\@!/ contains=@rstCommentGroup'
+" NOTE: Fix #66 https://github.com/Rykka/riv.vim/pull/66
+" Here we match all the whitespace that's more than 'z1' and ignore it. (skip=#^\(\(\z1\s\+\)\@>\S\)#')
+" See 'syn-skip', 'syn-keepend' and '\@>'
+"
+execute 'syn region rstExplicitMarkup keepend'
+        \ ' start=#^\z(\s*\)\.\.\s#'
+        \ ' skip=#^\(\(\z1\s\+\)\@>\S\|\s*$\)#'
+        \ ' end=#^\ze\s*\S#'
+        \ ' contains=rstExplicitMarkupDot,@rstDirectives,rstSubstitutionDefinition,rstComment'
+
+syn match   rstExplicitMarkupDot       '^\s*\.\.\_s' contained
+      \ nextgroup=@rstDirectives,rstSubstitutionDefinition,rstComment
+
+" NOTE: the rst recongnize unicode_char_ target and refernce
+" So use [^[:punct:][:space:]] here.
+if g:riv_unicode_ref_name == 1
+    let s:ReferenceName = '[^[:cntrl:][:punct:][:space:]]\+\%([_.-][^[:space:][:punct:][:cntrl:]]\+\)*'
+" XXX
+" unicode mathing seems a bit slow
+else
+    let s:ReferenceName = '\w\+\%([_.-]\w\+\)*'
+endif
+
+" NOTE: #66 If we use '.*' all explicit markup will became comment.
+" So use '[^.]' here. us \_s to skip the exdirective match
+" See '/collection' 
+" Also use '\@='to match \_s with zero width
+execute 'syn region rstComment contained'
+        \ ' start=#[^.|[_[:blank:]]\+[^:[:blank:]]\_s\@=#'
+        \ ' skip=+^$+' .
+        \ ' end=+^\s\@!+'
+        \ ' contains=@rstCommentGroup,@Spell'
 
 execute 'syn region rstFootnote contained matchgroup=rstDirective' .
       \ ' start=+\[\%(\d\+\|#\%(' . s:ReferenceName . '\)\=\|\*\)\]\_s+' .
       \ ' skip=+^$+' .
-      \ ' end=+^\s\@!+ contains=@rstCruft,@NoSpell'
+      \ ' end=+^\s\@!+'
+      \ ' contains=@rstCruft,@Spell'
 
 execute 'syn region rstCitation contained matchgroup=rstDirective' .
       \ ' start=+\[' . s:ReferenceName . '\]\_s+' .
       \ ' skip=+^$+' .
-      \ ' end=+^\s\@!+ contains=@s:ReferenceNamerstCruft,@NoSpell'
+      \ ' end=+^\s\@!+'
+      \ ' contains=@s:ReferenceNamerstCruft,@Spell'
 
 syn region rstHyperlinkTarget contained matchgroup=rstDirective
       \ start='_\%(_\|[^:\\]*\%(\\.[^:\\]*\)*\):\_s' skip=+^$+ end=+^\s\@!+
@@ -85,8 +113,10 @@ syn region rstHyperlinkTarget contained matchgroup=rstDirective
 syn region rstHyperlinkTarget matchgroup=rstDirective
       \ start=+^__\_s+ skip=+^$+ end=+^\s\@!+
 
+" To Fix #61 (https://github.com/Rykka/riv.vim/issues/61) , I removed the SubstitutionDefinition from 
+" ExDirective's inline hightlight group
 syn cluster rstONECruft                contains=
-      \ rstInterpretedText,rstInlineLiteral,rstSubstitutionReference,
+      \ rstInterpretedText,rstInlineLiteral,
       \ rstInlineInternalTargets,rstFootnoteReference,rstHyperlinkReference
 
 " For Strong/Emphasis. Only oneline pattern could be used here.
@@ -166,6 +196,7 @@ hi def link rstDoctestBlock                 PreProc
 hi def link rstTableLines                   rstDelimiter
 hi def link rstSimpleTableLines             rstTableLines
 hi def link rstExplicitMarkup               rstDirective
+hi def link rstExplicitMarkupDot            PreProc
 hi def link rstDirective                    Keyword
 hi def link rstFootnote                     String
 hi def link rstCitation                     String
@@ -177,7 +208,7 @@ hi def link rstDelimiter                    Delimiter
 hi def      rstEmphasis                     term=italic cterm=italic gui=italic
 hi def link rstStrongEmphasis               Special
 "term=bold cterm=bold gui=bold
-hi def link rstInterpretedTextOrHyperlinkReference  Identifier
+hi def link rstInterpretedTextOrHyperlinkReference Float 
 hi def link rstInlineLiteral                String
 hi def link rstSubstitutionReference        PreProc
 hi def link rstInlineInternalTargets        Identifier
