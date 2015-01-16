@@ -957,6 +957,12 @@ let g:yankring_history_dir = '$HOME/.backup/vim'
 " Only show these VCS differences
 let g:signify_vcs_list = ['git', 'hg', 'svn']
 
+" Riv                                                          {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Auto open folds on file open
+" Couldn't figure out how to do this with the available riv options
+au BufReadPost *.rst :normal zR
+
 " Auto command settings                                        {{{1
 " -----------------------------------------------------------------
 
