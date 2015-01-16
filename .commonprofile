@@ -8,6 +8,8 @@ makeMeLaugh
 # subversion control and subversion is available
 if checkPath svn && [ -d $HOME/.dotfiles/.svn ] && weShouldUpdate; then
     svn up $HOME/.dotfiles
+elif checkPath git && [ -d $HOME/.dotfiles/.git ] && weShouldUpdate; then
+    cd $HOME/.dotfiles && git up && cd
 fi
 
 # set up my .gitconfig with variables I don't want public
