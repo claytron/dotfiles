@@ -74,8 +74,6 @@
 "    <F2>            -- Toggle smart indent on paste
 "    +               -- Make the current window taller
 "    -               -- Make the current window shorter
-"    <C-a>           -- Make the current window more narrow
-"    <C-s>           -- Make the current window wider
 "
 " Command line mappings
 "
@@ -1047,8 +1045,6 @@ map E ge
 if bufwinnr(1)
   nnoremap + <C-W>+
   nnoremap - <C-W>-
-  nnoremap <C-a> <C-W>>
-  nnoremap <C-s> <C-W><
 endif
 
 " open a new line from the current spot (sort of the opposite of J)
