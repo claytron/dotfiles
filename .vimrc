@@ -968,6 +968,9 @@ if has("autocmd")
     " automatically re-source the vimrc on save
     "autocmd bufwritepost .vimrc source $MYVIMRC
 
+    " jinja syntax automagically
+    au BufNewFile,BufRead *.jinja set filetype=jinja
+
     " vimperator and pentadactyl files
     au BufNewFile,BufRead *.vimp,*.penta,.vimperatorrc,.pentadactylrc set filetype=vim
 
