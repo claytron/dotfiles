@@ -19,6 +19,7 @@
 "    coH             -- Clear the current search highlight
 "    coh             -- Toggles the highlight search
 "    coi             -- Toggles invisible characters
+"    col             -- Clears line length highlight in Python
 "    con             -- Toggles the line numbers
 "    conn            -- Toggles relative line numbers
 "    coq             -- Toggle the quickfix window

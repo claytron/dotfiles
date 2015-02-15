@@ -7,6 +7,8 @@ setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 smartindent autoindent s
 " Highlight lines past column 80 in python files
 au BufWinEnter,BufEnter * call clearmatches()
 au BufWinEnter,BufEnter *.{v,c,}py let w:m2=matchadd('ErrorMsg', '\%>79v.\+', -1)
+" Clear the line length highlight
+noremap <silent> col :call clearmatches()<CR>
 
 " remove trailing whitespace on save
 autocmd BufWritePre *.{v,c,}py :StripTrailingWhitespaces
