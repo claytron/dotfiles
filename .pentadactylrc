@@ -188,6 +188,9 @@ map -builtin <silent> bdm :tabopen bkm-dev-meeting<CR>
 " Add video on the page to Plex
 map -builtin <silent> bp :open bkm-plex<CR>
 
+" InstantRst vim plugin
+map -builtin <silent> bi :open bkm-instantrst<CR>
+
 " Interface Tweaks                                             {{{1
 " -----------------------------------------------------------------
 
