@@ -59,6 +59,10 @@
 "    tm1             -- Set a highlight for the current word (1)
 "    tm2             -- Set a highlight for the current word (2)
 "    tm3             -- Set a highlight for the current word (3)
+"    tmr             -- Show me reST preview
+"    tmrk            -- Stop reST preview
+"    tmm             -- Show me Markdown preview
+"    tmmk            -- Stop Markdown preview
 "    tms             -- Save the file
 "
 " Other random stuff
@@ -965,6 +969,16 @@ let g:signify_vcs_list = ['git', 'hg', 'svn']
 " Auto open folds on file open
 " Couldn't figure out how to do this with the available riv options
 au BufReadPost *.rst :normal zR
+
+" livedown                                                     {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nmap tmm :LivedownPreview<CR>
+nmap tmmk :LivedownKill<CR>
+
+" instant-rst                                                  {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nmap tmr :InstantRst<CR>
+nmap tmrk :StopInstantRst<CR>
 
 " Auto command settings                                        {{{1
 " -----------------------------------------------------------------
