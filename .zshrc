@@ -237,3 +237,5 @@ if [ -z $MY_ZSH_PLUGINS_LOADED ] && is-at-least 4.3; then
     ZSH_HIGHLIGHT_STYLES[globbing]='fg=white,bold,bg=blue'
     ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=white,bold,bg=blue'
 fi
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
