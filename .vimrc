@@ -59,6 +59,7 @@
 "    tm1             -- Set a highlight for the current word (1)
 "    tm2             -- Set a highlight for the current word (2)
 "    tm3             -- Set a highlight for the current word (3)
+"    tms             -- Save the file
 "
 " Other random stuff
 "    cqp             -- Previous quickfix change
@@ -127,6 +128,9 @@ set nrformats=""
 " set up jj as mode switch
 map! jj <ESC>
 map! jk <ESC>
+
+" Save shortcut
+nnoremap tms :w<CR>
 
 " Set the shell to sh, zsh and vim don't seem to play nice
 set shell=sh
