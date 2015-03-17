@@ -1,0 +1,3 @@
+" Auto create end statement
+" XXX: this doesn't seem to work...
+imap <S-CR> <CR><CR>end<Esc>-cc
