@@ -1,4 +1,3 @@
-#!/home/vagrant/.virtualenvs/i3pystatus/bin/python
 import subprocess
 
 from i3pystatus import Status
