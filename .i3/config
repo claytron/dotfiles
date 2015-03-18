@@ -176,3 +176,8 @@ bar {
         urgent_workspace       $yellow $yellow $baseB3
     }
 }
+
+# Run some things
+
+# Make sure the background is set
+exec --no-startup-id test -e ~/Pictures/wallpaper/bonespin.png && feh --bg-fill ~/Pictures/wallpaper/bonespin.png
