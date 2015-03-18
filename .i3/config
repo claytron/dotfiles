@@ -127,9 +127,52 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# Solarized theme
+# Inspired by
+# https://github.com/okraits/j4-make-config/blob/master/themes/solarized
+
+# solarized dark
+set $baseA3 #002b36
+set $baseA2 #073642
+set $baseA1 #586e75
+set $baseA0 #657b83
+set $baseB0 #839496
+set $baseB1 #93a1a1
+set $baseB2 #eee8d5
+set $baseB3 #fdf6e3
+# solarized accents
+set $yellow #b58900
+set $orange #cb4b16
+set $red    #dc322f
+set $magenta    #d33682
+set $violet #6c71c4
+set $blue   #268bd2
+set $cyan   #2aa198
+set $green  #859900
+
+# clientclass           border  bg      text    indicator
+client.focused          $blue   $blue   $baseB3 $blue
+client.focused_inactive $cyan   $cyan   $baseB2 $violet
+client.unfocused        $baseA2 $baseA2 $baseB1 $baseA1
+client.urgent           $yellow $yellow $baseB3 $orange
+
 # Python based status bar
 bar {
     status_command ~/.i3/env/bin/python ~/.i3/status.py
     position top
     workspace_buttons yes
+
+    colors {
+        # status
+        separator $blue
+        background $baseA3
+        statusline $baseB2
+
+        # workclass            border  bg      text
+        focused_workspace      $green  $green  $baseA3
+        active_workspace       $cyan   $cyan   $baseA2
+        inactive_workspace     $baseA2 $baseA2 $baseB1
+        urgent_workspace       $orange $orange $baseB3
+        urgent_workspace       $yellow $yellow $baseB3
+    }
 }
