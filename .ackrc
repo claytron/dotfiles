@@ -24,6 +24,9 @@
 --type-set=csv=.txt,.csv,.tsv
 # add in a type for gettext messages
 --type-set=gettext=.pot,.po
+# Ruby
+--type-add=ruby=.slim
+--type-set=rubytemplates=.slim,.erb
 
 # types to ignore by default
 --nogettext
