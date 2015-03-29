@@ -60,6 +60,8 @@ expected_path=(
   /usr/local/games
   /usr/games
   /etc
+  "$HOME/.virtualenvs/tools/bin"
+  "$HOME/.virtualenvs/tools3/bin"
 )
 
 for element in "${expected_path[@]}"
