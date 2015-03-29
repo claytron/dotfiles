@@ -123,6 +123,9 @@ call pathogen#helptags()
 let mapleader = ","
 let g:mapleader = ","
 
+" Set a shorter timeout length to make jk and jj easier to use
+set timeoutlen=350
+
 " set the default encoding
 set enc=utf-8
 
