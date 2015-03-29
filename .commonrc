@@ -195,9 +195,9 @@ else
 fi
 
 # use gnome-open if it is available
-if checkPath gnome-open; then
+if checkPath xdg-open; then
     # can't break the OS X habit :)
-    alias open=gnome-open
+    alias open=xdg-open
 fi
 
 # etckeeper aliases
