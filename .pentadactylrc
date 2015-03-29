@@ -140,6 +140,10 @@ map -builtin <C-l> <C-n>
 map -builtin <M-[> <C-p>
 map -builtin <M-]> <C-n>
 
+" Go back and forward in history of the current page
+map -builtin <C-[> :back<CR>
+map -builtin <C-]> :forward<CR>
+
 " Go to the next / previous tab group
 map -builtin <C-;> <C-S-~>
 map -builtin <C-''> <C-`>
