@@ -8,6 +8,7 @@ source $HOME/.commonfuncs
 # like the one in .zshenv
 new_path=""
 expected_path=(
+  ./bin
   "$HOME/bin/$MACHTYPE-$OSTYPE"
   "$HOME/bin"
   "$HOME/bin/git_achievements"
