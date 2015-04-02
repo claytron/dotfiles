@@ -734,6 +734,9 @@ let g:ctrlp_clear_cache_on_exit = 0
 " follow symlinks
 let g:ctrlp_follow_symlinks = 1
 
+" Show hidden files
+let g:ctrlp_show_hidden = 1
+
 " unlimited amount of files
 let g:ctrlp_max_files = 0
 let g:ctrlp_max_depth = 100
