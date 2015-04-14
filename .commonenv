@@ -121,7 +121,6 @@ export PYTHONSTARTUP=$HOME/.pystartup
 
 # pip settings
 export PIP_FIND_LINKS="https://dist.sixfeetup.com/public/"
-export PIP_DOWNLOAD_CACHE="$HOME/.pip_download_cache"
 
 # set up some more OS X specific stuff
 if [ $UNAME = "Darwin" ]; then
