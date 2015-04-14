@@ -30,8 +30,8 @@ def load_gem(gem, &block)
     if unbundled_require gem
       yield if block_given?
     end
-  rescue Exception => err
-    warn "Couldn't load #{gem}: #{err}"
+  rescue Exception
+    # We will silently ignore the error
   end
 end
 
