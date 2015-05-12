@@ -55,13 +55,16 @@ alias -g G='| grep -i'
 alias -g L='| less'
 alias -g M='| more'
 alias -g T='| tail'
-alias -g TT='| tail -n20'
 if checkPath colordiff; then
     alias -g CD='| colordiff'
 else
     alias -g CD='| vim -R "+syntax on" -'
 fi
 alias -g pretty_json="| python -mjson.tool | vim -R +'set ft=javascript' -"
+
+# moreutils
+alias -g VI='| vipe'
+alias -g TS='| ts -i'
 
 # cvs setup
 export CVSROOT=:pserver:clayton@cvs:/var/cvsroot
