@@ -961,6 +961,8 @@ let g:signify_vcs_list = ['git', 'hg', 'svn']
 " Auto open folds on file open
 " Couldn't figure out how to do this with the available riv options
 au BufReadPost *.rst :normal zR
+" Manually decide when to break a line based on grammar
+au BufReadPost *.rst :set textwidth=0
 
 " livedown                                                     {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
