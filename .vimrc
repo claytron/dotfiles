@@ -165,7 +165,7 @@ map! jk <ESC>
 nnoremap tms :w<CR>
 
 " Set the shell to sh, zsh and vim don't seem to play nice
-set shell=sh
+set shell=zsh
 
 " hide the backup and swap files
 set backupdir=~/.backup/vim,.,/tmp
