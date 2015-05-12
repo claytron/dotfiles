@@ -12,7 +12,8 @@
 " The mapleader has been switched from '\' to ',' anytime you see
 " <leader> that is what this refers to.
 "
-" Change Option mnemonic
+" Change Option mnemonic                                       {{{2
+" -----------------------------------------------------------------
 "    coa             -- Starts an ack search in the CWD
 "    coc             -- Switch between light and dark colors
 "    coe             -- Show current :Errors
@@ -28,12 +29,14 @@
 "    cow             -- Toggle line wrapping
 "    cox             -- Toggles NERDTree drawer
 "
-" Clean Up mnemonic
+" Clean Up mnemonic                                            {{{2
+" -----------------------------------------------------------------
 "    cuw             -- Removes trailing whitespace characters
 "    cut             -- Run tidy xml on the current file
 "    cuv             -- Sort a buildout versions.cfg file
 "
-" File Type mnemonic
+" File Type mnemonic                                           {{{2
+" -----------------------------------------------------------------
 "    ftj             -- Change current filetype to Javascript
 "    ftm             -- Change current filetype to Markdown
 "    ftp             -- Change current filetype to Python
@@ -41,14 +44,16 @@
 "    ftv             -- Change current filetype to Vim
 "    ftw             -- Change current filetype to Wiki
 "
-" Fuzzy Finder mnemonic
+" Fuzzy Finder mnemonic                                        {{{2
+" -----------------------------------------------------------------
 "    ff              -- Fuzzy file mode (CtrlP)
 "    fft             -- Fuzzy tag mode (CtrlP)
 "    ffr             -- Fuzzy MRU mode (CtrlP)
 "    ffe             -- Fuzzy buffer mode (CtrlP)
 "    tt              -- Opens up the taglist
 "
-" Tell Me mnemonic
+" Tell Me mnemonic                                             {{{2
+" -----------------------------------------------------------------
 "    tmf             -- Shows the current file in the NERDTree. This
 "                       is the TextMate equivalent of ctrl+cmd+r
 "    tmi             -- Toggle indent guides
@@ -65,7 +70,8 @@
 "    tmmk            -- Stop Markdown preview
 "    tms             -- Save the file
 "
-" Other random stuff
+" Other random stuff                                           {{{2
+" -----------------------------------------------------------------
 "    cqp             -- Previous quickfix change
 "    cqn             -- Next quickfix change
 "    clp             -- Previous location list change
@@ -81,10 +87,14 @@
 "    +               -- Make the current window taller
 "    -               -- Make the current window shorter
 "
-" Command line mappings
+" Command line mappings                                        {{{2
+" -----------------------------------------------------------------
 "
 "    <C-a>           -- Beginning of the line
 "    <C-c>           -- End of the line
+"
+" Custom Commands                                              {{{2
+" -----------------------------------------------------------------
 "
 " I have set up some custom commands that might be of interest
 "
