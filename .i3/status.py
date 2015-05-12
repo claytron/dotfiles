@@ -1,4 +1,3 @@
-import subprocess
 from i3pystatus import Status
 
 # Solarized Colors
