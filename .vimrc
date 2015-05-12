@@ -70,6 +70,23 @@
 "    tmmk            -- Stop Markdown preview
 "    tms             -- Save the file
 "
+" Window Management                                            {{{2
+" -----------------------------------------------------------------
+"    <C-W>-          -- Horizontal split
+"    <C-W>|          -- Vertical split
+"    <C-W><C-E>      -- Cycle through windows
+"    <C-H>           -- Move left to window
+"    <C-J>           -- Move up to window
+"    <C-K>           -- Move down to window
+"    <C-L>           -- Move right to window
+"    <C-W><C-H>      -- Move left to next tab
+"    <C-W><C-L>      -- Move right to next tab
+"    <C-W><C-N>      -- Create a new tab
+"    <C-W><C-I>      -- Edit current file in a new tab
+"    <C-W><C-X>      -- Close the current tab
+"    +               -- Make the current window taller
+"    -               -- Make the current window shorter
+"
 " Other random stuff                                           {{{2
 " -----------------------------------------------------------------
 "    cqp             -- Previous quickfix change
@@ -84,8 +101,6 @@
 "    ctrl + tab      -- cycle through buffers
 "    <leader>Enter   -- Split line at current cursor in normal mode
 "    <F2>            -- Toggle smart indent on paste
-"    +               -- Make the current window taller
-"    -               -- Make the current window shorter
 "
 " Command line mappings                                        {{{2
 " -----------------------------------------------------------------
@@ -1103,11 +1118,16 @@ map <C-J> <C-W>j
 map <C-K> <C-W>k
 map <C-L> <C-W>l
 
-" allow chording of window movement
-map <C-W><C-H> <C-W>H
-map <C-W><C-J> <C-W>J
-map <C-W><C-K> <C-W>K
-map <C-W><C-L> <C-W>L
+" Move between tabs
+map <silent> <C-W><C-H> :tabnext<CR>
+map <silent> <C-W><C-L> :tabprevious<CR>
+
+" Create a new tab
+map <silent> <C-W><C-N> :tabnew<CR>
+" Edit current buffer in a tab (think tmux zoom)
+map <silent> <C-W><C-I> :tabedit %<CR>
+" Close the current tab
+map <silent> <C-W><C-X> :tabclose<CR>
 
 " cycle windows
 map <C-W>e <C-W>W
@@ -1116,23 +1136,6 @@ map <C-W><C-E> <C-W>W
 " Window splits like I have mapped in tmux (- horizontal, | vertical)
 map <C-W>- <C-W>s
 map <C-W>\| <C-W>v
-
-" equalize without W
-" XXX: doesn't work
-"map <C-=> <C-W>=
-
-" Maximize the current window
-" XXX: no way to do this in vim?
-map <silent> <C-w>; :resize +999<CR>
-" XXX: doesn't work
-"map <C-;> :resize +999<CR>
-map <silent> <C-w><C-;> :resize +999<CR>
-
-" Minimize the current window
-map <silent> <C-w>' :resize -999<CR>
-" XXX: doesn't work
-"map <C-'> :resize -999<CR>
-map <silent> <C-w><C-'> :resize -999<CR>
 
 " GUI settings                                                 {{{1
 " -----------------------------------------------------------------
