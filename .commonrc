@@ -195,9 +195,17 @@ else
     alias whatsmyip="curl -s ip.appspot.com"
 fi
 
-# use gnome-open if it is available
-if checkPath xdg-open; then
-    # can't break the OS X habit :)
+# can't break the OS X habit :)
+if checkPath open; then
+    # Don't do anything
+elif checkPath rifle; then
+    # Use Ranger's Rifle
+    alias open=rifle
+elif checkPath gnome-open; then
+    # Use Gnome's opener
+    alias open=gnome-open
+elif checkPath xdg-open; then
+    # Use the X opener
     alias open=xdg-open
 fi
 
