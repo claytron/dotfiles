@@ -99,6 +99,15 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
+# Scratchpad
+# Move a window into the scratchpad
+bindsym $mod+Ctrl+s move scratchpad
+# Get a window out of the scratchpad
+bindsym $mod+Ctrl+h scratchpad show
+bindsym $mod+Ctrl+j [class="X-terminal-emulator"] scratchpad show
+bindsym $mod+Ctrl+k [class="Git-cola"] scratchpad show
+
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
