@@ -55,7 +55,8 @@ if [[ $UNAME == "Darwin" ]]; then
         alias mysql='mysql5'
     fi
     
-    # iPhone doesn't have a defaults command...yet
+    # For OS X >= 10.8, you'll need the EnvPane pref pane
+    # http://diaryproducts.net/EnvPane
     if checkPath defaults; then
         # also set up the osx path
         # (this will overwrite the PATH everytime we open a shell)
