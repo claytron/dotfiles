@@ -51,7 +51,6 @@
 "    fft             -- Fuzzy tag mode (CtrlP)
 "    ffr             -- Fuzzy MRU mode (CtrlP)
 "    ffe             -- Fuzzy buffer mode (CtrlP)
-"    tt              -- Opens up the taglist
 "
 " Tell Me mnemonic                                             {{{2
 " -----------------------------------------------------------------
@@ -94,12 +93,12 @@
 "    cqn             -- Next quickfix change
 "    clp             -- Previous location list change
 "    cln             -- Next location list change
+"    tt              -- Opens up the taglist
 "    Y               -- Yank to the end of the line, no newline
 "    YY              -- Yank the current line, no newline
 "    funi            -- Find the next non-ascii character (funny)
 "    jj              -- Alternative to <ESC>
 "    jk              -- Alternative to <ESC>
-"    ctrl + tab      -- cycle through buffers
 "    <leader>Enter   -- Split line at current cursor in normal mode
 "    <F2>            -- Toggle smart indent on paste
 "
