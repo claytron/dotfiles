@@ -1131,8 +1131,8 @@ map <C-K> <C-W>k
 map <C-L> <C-W>l
 
 " Move between tabs
-map <silent> <C-W><C-H> :tabnext<CR>
-map <silent> <C-W><C-L> :tabprevious<CR>
+map <silent> <C-W><C-L> :tabnext<CR>
+map <silent> <C-W><C-H> :tabprevious<CR>
 
 " Create a new tab
 map <silent> <C-W><C-N> :tabnew<CR>
