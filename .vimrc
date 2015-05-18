@@ -1200,7 +1200,7 @@ if has("gui_running")
         " fancy powerline!
         let g:Powerline_symbols = 'fancy'
         " use Monaco with no antialiasing
-        set guifont=Inconsolata-dz\ for\ Powerline:h10,Inconsolata-dz:h10,Inconsolata:h12,Monaco:h10
+        set guifont=Inconsolata-dz\ for\ Powerline:h11,Inconsolata-dz:h10,Inconsolata:h12,Monaco:h10
         set antialias
         " maybe set the transparency
         " XXX: getting annoyed by the transparency
