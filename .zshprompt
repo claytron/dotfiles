@@ -1,6 +1,5 @@
-# This is a modified version of Phil's prompt
-# I removed the battery monitor, color and simplified
-# the title bar to just the host
+# This used to be modified version of Phil's prompt,
+# but now it is mostly unrecognizable.
 #
 # http://aperiodic.net/phil/prompt/
 
@@ -12,40 +11,24 @@ function precmd {
     HOST_DOTS=`hostname | grep -o "\." | wc -l | sed 's/ *//'`
     HOST_LEN=`expr $HOST_DOTS - 1`
 
-    local TERMWIDTH
-    (( TERMWIDTH = ${COLUMNS} - 1 ))
-    
-    # Truncate the path if it's too long.
-    PR_FILLBAR=""
-    PR_PWDLEN=""
-    
-    local promptsize=${#${(%):---%D{%a\,%b %d}-----}}
-    local pwdsize=${#${(%):-%d}}
-    
-    if [[ "$promptsize + $pwdsize" -gt $TERMWIDTH ]]; then
-            ((PR_PWDLEN=$TERMWIDTH - $promptsize))
-    else
-        PR_FILLBAR="\${(l.(($TERMWIDTH - ($promptsize + $pwdsize)))..${PR_HBAR}.)}"
-    fi
-
     # Only show user in the prompt if it isn't yourself
     # Make sure and set the $ME var in .zshrc
-    [ -n "$ME" ] && [ $(whoami) != "$ME" ] && PR_IMPOSTER="(%n%)"
+    [ -n "$ME" ] && [ $(whoami) != "$ME" ] && PR_IMPOSTER="(u:%n%)"
 
-    PR_PROJECT=""
-    local THIRD_DIR="$(pwd | cut -f 4,5 -d /)"
-    if [ "$THIRD_DIR" = "sixfeetup/projects" ]; then
-        PR_PROJECT="$(pwd | cut -f 6 -d /)"
-        [ ! "$PR_PROJECT" = "" ] && PR_PROJECT="($PR_PROJECT)"
-    fi
-    local OTHER_THIRD_DIR="$(pwd | cut -f 5,6 -d /)"
-    if [ "$OTHER_THIRD_DIR" = "sixfeetup/projects" ]; then
-        PR_PROJECT="$(pwd | cut -f 7 -d /)"
-        [ ! "$PR_PROJECT" = "" ] && PR_PROJECT="($PR_PROJECT)"
+    # Get Virtual Env
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        # Strip out the path and just leave the env name
+        VENV="(v:${VIRTUAL_ENV##*/})"
+    else
+        # In case you don't have one activated
+        VENV=''
     fi
 }
 
 setopt extended_glob
+# We'll take care of placing the venv name ourselves
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
 preexec () {
     if [[ "$TERM" == "screen" ]]; then
         local CMD=${1[(wr)^(*=*|sudo|-*)]}
@@ -69,15 +52,16 @@ setprompt () {
     PR_SHIFT_IN="%{$terminfo[smacs]%}"
     PR_SHIFT_OUT="%{$terminfo[rmacs]%}"
     PR_HBAR=${altchar[q]:--}
+    PR_VBAR=${altchar[n]:--}
     PR_ULCORNER=${altchar[l]:--}
     PR_LLCORNER=${altchar[m]:--}
     PR_LRCORNER=${altchar[j]:--}
     PR_URCORNER=${altchar[k]:--}
-    
+
     # Decide if we need to set titlebar text.
     case $TERM in
        xterm*)
-           PR_TITLEBAR=$'%{\e]0;%m $PR_IMPOSTER $PR_PROJECT\a%}'
+           PR_TITLEBAR=$'%{\e]0;%m $PR_IMPOSTER\a%}'
            ;;
        screen)
            PR_TITLEBAR=$'%{\e_screen \005 (\005t) | %m $PR_IMPOSTER\e\\%}'
@@ -95,21 +79,23 @@ setprompt () {
     fi
     
     # Finally, the prompt (removed the color - claytron)
-    PROMPT='$PR_IMPOSTER $(git_super_status)
-$PR_SET_CHARSET$PR_STITLE${(e)PR_TITLEBAR}\
-$PR_SHIFT_IN$PR_ULCORNER$PR_HBAR$PR_SHIFT_OUT\
-%D{%a,%b %d}\
-$PR_SHIFT_IN$PR_HBAR$PR_HBAR${(e)PR_FILLBAR}$PR_HBAR$PR_SHIFT_OUT\
-%$PR_PWDLEN<...<%d%<<\
-$PR_SHIFT_IN$PR_HBAR$PR_URCORNER$PR_SHIFT_OUT\
+    PROMPT='
+$PR_SET_CHARSET\
+$PR_STITLE${(e)PR_TITLEBAR}\
+ $PR_SHIFT_IN$PR_ULCORNER$PR_HBAR$PR_SHIFT_OUT\
+ %T %D{%a, %b %d}\
+$PR_SHIFT_IN$PR_HBAR$PR_HBAR$PR_SHIFT_OUT\
+%d\
+$PR_SHIFT_IN$PR_HBAR$PR_HBAR$PR_URCORNER$PR_SHIFT_OUT\
 
-$PR_SHIFT_IN$PR_LLCORNER$PR_HBAR$PR_SHIFT_OUT\
-%${HOST_LEN}m%#\
+$PR_SHIFT_IN$PR_HBAR$PR_VBAR$PR_HBAR$PR_SHIFT_OUT\
+ $PR_IMPOSTER$VENV$(git_super_status)\
+
+ $PR_SHIFT_IN$PR_LLCORNER$PR_HBAR$PR_SHIFT_OUT\
+ %${HOST_LEN}m%#\
 $PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT '
 
-    RPROMPT=' $PR_SHIFT_IN$PR_HBAR$PR_HBAR$PR_SHIFT_OUT\
-%T\
-$PR_SHIFT_IN$PR_HBAR$PR_LRCORNER$PR_SHIFT_OUT'
+    RPROMPT=''
 
     PS2='$PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT\
 $PR_SHIFT_IN$PR_HBAR$PR_SHIFT_OUT(\
