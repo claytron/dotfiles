@@ -25,6 +25,7 @@
 "    conn            -- Toggles relative line numbers
 "    coq             -- Toggle the quickfix window
 "    cos             -- Toggle spell checking
+"    cot             -- Change the tab name
 "    cov             -- Edit the current user's vimrc
 "    cow             -- Toggle line wrapping
 "    cox             -- Toggles NERDTree drawer
@@ -998,6 +999,18 @@ nmap tmmk :LivedownKill<CR>
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 nmap tmr :InstantRst<CR>
 nmap tmrk :StopInstantRst<CR>
+
+" Taboo                                                        {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Set the tab formats
+let g:taboo_tab_format=" (%N.%W) %f%m "
+let g:taboo_renamed_tab_format=" (%N.%W) %l%m "
+
+" Set the modified flag
+let g:taboo_modified_tab_flag="+"
+
+" Mapping to quickly rename a tab
+map cot :TabooRename<Space>
 
 " Auto command settings                                        {{{1
 " -----------------------------------------------------------------
