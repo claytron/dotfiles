@@ -3,11 +3,11 @@ source $HOME/.commonfuncs
 
 # Log dir hash
 hash -d L=/var/log
-hash -d RA=/var/db/rails
-hash -d R=/usr/local/etc/rc.d
-hash -d Z=/var/db/zope
 hash -d P=$HOME/sixfeetup/projects
-hash -d VP=/Volumes/home/clayton/sixfeetup/projects
+
+[ -d /usr/local/etc/rc.d ] && hash -d R=/usr/local/etc/rc.d
+[ -d /var/db/zope ] && hash -d Z=/var/db/zope
+[ -d /data ] && hash -d Z=/data
 
 # OS X specific settings
 if [ $UNAME = "Darwin" ]; then
@@ -19,8 +19,8 @@ if [ $UNAME = "Darwin" ]; then
     hash -d DB25=$HOME/Documents/sixfeetup/dev-bundle-2.5
     hash -d OP=$HOME/Documents/sixfeetup/projects
     hash -d PP=$HOME/sixfeetup/presentation
-    hash -d EP=/Volumes/MUZAK/zope
     hash -d S=$HOME/Sites
+    hash -d D=$HOME/Documents
 
     # Set up global aliases for copy / pasting in tmux
     if checkPath reattach-to-user-namespace && [ -n "$TMUX" ]; then
