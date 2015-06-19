@@ -135,6 +135,13 @@ alias ru='rvm use'
 alias rud='rvm use default'
 alias rum='rvm use default@mailcatcher'
 
+# Zeus.
+alias z='bin/zeus'
+alias zss='z start'
+alias zs='z server Puma -p 3001'
+alias zc='z console'
+alias zr='z rake'
+
 # I have a folder of custom made fortunes...
 if checkPath fortune && [ -d /opt/local/share/games/fortune/comedy ]; then
     alias laugh='echo; fortune comedy ;echo'
