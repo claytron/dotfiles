@@ -55,6 +55,11 @@ alias -g G='| grep -i'
 alias -g L='| less'
 alias -g M='| more'
 alias -g T='| tail'
+if checkPath pbcopy; then
+    alias -g C='| pbcopy'
+elif checkPath xclip; then
+    alias -g C='| xclip'
+fi
 if checkPath colordiff; then
     alias -g CD='| colordiff'
 else
