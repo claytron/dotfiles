@@ -7,6 +7,7 @@ $if mode=vi
     "G": end-of-history
     set keymap vi-insert
     "jj": vi-movement-mode
+    "jk": vi-movement-mode
 $endif
 # ignore that case biatch
 set completion-ignore-case on
