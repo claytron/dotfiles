@@ -203,5 +203,10 @@ javascript <<EOF
 })();
 EOF
 
+
+" Overrides for local machine                                  {{{1
+" -----------------------------------------------------------------
+source! ~/.pentadactylrc.local
+
 " turn on folds
 " vim: fdm=marker
