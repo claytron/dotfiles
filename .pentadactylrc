@@ -58,11 +58,8 @@ set visualbell
 " turn off the freakin' bell
 hi Bell display: none;
 "
-" remove the right and bottom scrollbars
-set guioptions-=rb
-
-" get rid of the tab bar, that is valuable space!
-"set showtabline=0
+" Only show the command line and status bar
+set guioptions=Cs
 
 " set wild mode to show completions as you type
 set wildmode="list:full"
