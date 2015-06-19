@@ -13,11 +13,9 @@
 "
 " Change Option:
 "    coh      -- toggles the highlight search
-"    cog      -- turns the GUI back on
-"    coG      -- turns the GUI back off
+"    cog      -- Toggle the gui on or off
 "    cob      -- shows the bookmark toolbar
-"    coT      -- show the tab bar
-"    cot      -- hide the tab bar
+"    cot      -- Toggle the tab bar on or off
 " Bookmark:
 "    bd       -- Bookmark in Delicious
 "    bdm      -- Start the dev meeting
@@ -106,11 +104,9 @@ set defsearch=google
 map -builtin f ;;
 
 " bring back/hide portions of the GUI
-map -builtin <silent> cog :set guioptions+=mBT<CR>
-map -builtin <silent> coG :set guioptions-=mBT<CR>
+map -builtin <silent> cog :set guioptions!=mBT<CR>
 map -builtin <silent> cob :toolbartoggle Bookmarks Toolbar<CR>
-map -builtin <silent> coT :set showtabline=always<CR>
-map -builtin <silent> cot :set showtabline=never<CR>
+map -builtin <silent> cot :set showtabline!=never,always<CR>
 
 " temporary workaround for copy paste in text boxes
 " https://code.google.com/p/dactyl/issues/detail?id=517
