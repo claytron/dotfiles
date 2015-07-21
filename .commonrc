@@ -132,8 +132,8 @@ alias pep8scan="pep8 --repeat --show-source --statistics --exclude='paste,*Paste
 
 # Ruby and rvm stuff
 alias ru='rvm use'
-alias rud='rvm use default'
-alias rum='rvm use default@mailcatcher'
+alias rud='ru default@tb'
+alias rum='ru default@mailcatcher'
 
 # Zeus.
 alias z='bin/zeus'
