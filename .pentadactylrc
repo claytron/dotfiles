@@ -195,7 +195,9 @@ map -builtin <silent> bi :open bkm-instantrst<CR>
 javascript <<EOF
 (function() {
     var alltabs = document.getElementById('alltabs-button');
+    if (alltabs !== null) {
     alltabs.parentNode.removeChild(alltabs);
+    };
 })();
 EOF
 
