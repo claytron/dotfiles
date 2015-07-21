@@ -2,9 +2,6 @@ UNAME=$(uname)
 
 source $HOME/.commonfuncs
 
-# set up npm completion
-checkPath npm && . <(npm completion)
-
 # what freakin' linux is this?
 alias what_linux="cat /etc/issue"
 
