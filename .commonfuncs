@@ -159,7 +159,7 @@ tmh() {
     [[ -z "$1" ]] && echo 'project name is required' && return 1
     local location
     export T_PROJ=$1
-    [[ -z "$2" ]] && location=vm || location="$2"
+    [[ -z "$2" ]] && location=local || location="$2"
     if [[ -n "$3" ]]; then
         export T_BUILD="$3"
     fi
