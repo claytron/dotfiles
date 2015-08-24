@@ -25,11 +25,20 @@
 # add in a type for gettext messages
 --type-set=gettext=.pot,.po
 # Ruby
---type-add=ruby=.slim
+--type-set=slim=.slim
+--type-set=haml=.haml
 --type-set=rubytemplates=.slim,.erb
+# Emblem
+--type-set=emblem=.emblem
+# Sass
+--type-set=sass=.sass,.scss
+# Mustaches and such
+--type-set=mustache=.mustache,.mu,.handlebars,.hbs,.hbars
 
 # types to ignore by default
 --nogettext
 
-# Don't search through generated tox dir
+# Don't search through generated dirs
 --ignore-dir=.tox
+--ignore-dir=node_modules
+--ignore-dir=log
