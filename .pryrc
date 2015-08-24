@@ -8,3 +8,15 @@ Pry.config.prompt_name = 'oh no!'
 Pry::Commands.command(/^$/, "repeat last command") do
   _pry_.run_command Pry.history.to_a.last
 end
+
+# Single letter and pdb like aliases
+if defined?(PryByebug)
+  Pry.commands.alias_command 'c', 'continue'
+  Pry.commands.alias_command 's', 'step'
+  Pry.commands.alias_command 'n', 'next'
+  Pry.commands.alias_command 'return', 'finish'
+  Pry.commands.alias_command 'r', 'finish'
+  Pry.commands.alias_command 'f', 'finish'
+  Pry.commands.alias_command 'q', 'exit-program'
+  Pry.commands.alias_command 'quit', 'exit-program'
+end
