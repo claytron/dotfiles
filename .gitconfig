@@ -39,6 +39,7 @@
 	ss = stash save
 	sh = stash show -p
 	psh = push origin HEAD
+	pshf = push origin HEAD --force
 [achievement]
 	upload = true
 [github]
