@@ -233,9 +233,11 @@ vnoremap / /\v
 nnoremap ftm :set ft=markdown<CR>
 nnoremap ftp :set ft=python<CR>
 nnoremap ftw :set ft=wiki<CR>
-nnoremap ftr :set ft=rst<CR>
+nnoremap ftr :set ft=ruby<CR>
+nnoremap ftrs :set ft=rst<CR>
 nnoremap ftv :set ft=vim<CR>
 nnoremap ftj :set ft=javascript<CR>
+nnoremap fts :set ft=sql<CR>
 
 " Visual settings                                              {{{1
 " -----------------------------------------------------------------
