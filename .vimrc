@@ -1135,9 +1135,11 @@ map <C-L> <C-W>l
 " Move between tabs
 map <silent> <C-W><C-L> :tabnext<CR>
 map <silent> <C-W><C-H> :tabprevious<CR>
+map <silent> <C-W><C-N> :tabnext<CR>
+map <silent> <C-W><C-P> :tabprevious<CR>
 
 " Create a new tab
-map <silent> <C-W><C-N> :tabnew<CR>
+map <silent> <C-W><C-T> :tabnew<CR>
 " Edit current buffer in a tab (think tmux zoom)
 map <silent> <C-W><C-I> :tabedit %<CR>
 " Close the current tab
