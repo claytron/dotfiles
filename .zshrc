@@ -178,6 +178,10 @@ SAVEHIST=50000
 HISTFILE=~/.zsh_history
 export HISTFILE HISTSIZE SAVEHIST
 
+# Append history after 30 minutes of inactivity
+export TMOUT=900
+function TRAPALRM() { histappend }
+
 ## old style completions
 # supervisor
 if checkPath supervisorctl; then
