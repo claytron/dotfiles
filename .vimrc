@@ -712,6 +712,18 @@ function! GitCommitDance()
     execute "normal \<C-W>k"
 endfunction
 
+" Show dev TODO list                                           {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+command! Todo :call s:ShowTodoList()
+
+function! s:ShowTodoList(...)
+    let l:orig_ackprg = g:ackprg
+    let g:ackprg='{ git diff --name-only dev..HEAD & git diff --name-only & git diff --staged --name-only; } \| sort \| uniq \| ack -x'
+    Ack '(TODO: |XXX: )'
+    let g:ackprg = l:orig_ackprg
+endfunction
+
 " Plugins                                                      {{{1
 " -----------------------------------------------------------------
 
