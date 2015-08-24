@@ -54,3 +54,5 @@
 	autosetuprebase = always
 [diff]
 	algorithm = patience
+[push]
+	default = current
