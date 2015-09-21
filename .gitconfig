@@ -34,11 +34,11 @@
 # Use bang to be able to re-use the alias above (with pretty format) and add to it
 	lga = !git lg --branches --remotes
 	lgp = !git lg -p
-	sp = stash pop
-	sa = stash apply
-	ss = stash save
-	sl = stash list
-	sh = stash show -p
+	spo = stash pop
+	sap = stash apply
+	ssa = stash save
+	sls = stash list
+	ssh = stash show -p
 	psh = push origin HEAD
 	pshf = push origin HEAD --force
 [achievement]
