@@ -9,21 +9,19 @@
 "             See http://sam.zoy.org/wtfpl/COPYING for more details.
 "============================================================================
 
-if exists("g:loaded_syntastic_javascript_gjslint_checker")
+if exists('g:loaded_syntastic_javascript_gjslint_checker')
     finish
 endif
 let g:loaded_syntastic_javascript_gjslint_checker = 1
-
-if !exists("g:syntastic_javascript_gjslint_conf")
-    let g:syntastic_javascript_gjslint_conf = ""
-endif
 
 let s:save_cpo = &cpo
 set cpo&vim
 
 function! SyntaxCheckers_javascript_gjslint_GetLocList() dict
+    call syntastic#log#deprecationWarn('javascript_gjslint_conf', 'javascript_gjslint_args')
+
     let makeprg = self.makeprgBuild({
-        \ 'args': g:syntastic_javascript_gjslint_conf . " --nosummary --unix_mode --nodebug_indentation --nobeep" })
+        \ 'args_after': '--nosummary --unix_mode --nodebug_indentation --nobeep' })
 
     let errorformat =
         \ "%f:%l:(New Error -%\\?\%n) %m," .
@@ -44,4 +42,4 @@ call g:SyntasticRegistry.CreateAndRegisterChecker({
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
-" vim: set et sts=4 sw=4:
+" vim: set sw=4 sts=4 et fdm=marker:

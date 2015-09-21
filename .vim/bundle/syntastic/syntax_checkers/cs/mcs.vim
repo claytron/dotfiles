@@ -10,7 +10,7 @@
 "
 "============================================================================
 
-if exists("g:loaded_syntastic_cs_mcs_checker")
+if exists('g:loaded_syntastic_cs_mcs_checker')
     finish
 endif
 let g:loaded_syntastic_cs_mcs_checker = 1
@@ -19,14 +19,14 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 function! SyntaxCheckers_cs_mcs_GetLocList() dict
-    let makeprg = self.makeprgBuild({ 'args': '--parse' })
+    let makeprg = self.makeprgBuild({ 'args_after': '--parse' })
 
     let errorformat = '%f(%l\,%c): %trror %m'
 
     return SyntasticMake({
         \ 'makeprg': makeprg,
         \ 'errorformat': errorformat,
-        \ 'defaults': {'bufnr': bufnr("")} })
+        \ 'defaults': {'bufnr': bufnr('')} })
 endfunction
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({
@@ -36,4 +36,4 @@ call g:SyntasticRegistry.CreateAndRegisterChecker({
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
-" vim: set et sts=4 sw=4:
+" vim: set sw=4 sts=4 et fdm=marker:

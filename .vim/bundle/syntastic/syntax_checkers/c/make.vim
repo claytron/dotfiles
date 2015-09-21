@@ -19,7 +19,7 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 function! SyntaxCheckers_c_make_GetLocList() dict
-    let makeprg = self.getExec() . ' -sk'
+    let makeprg = self.makeprgBuild({ 'args': '-sk', 'fname': '' })
 
     let errorformat =
         \ '%-G%f:%s:,' .
@@ -58,4 +58,4 @@ call g:SyntasticRegistry.CreateAndRegisterChecker({
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
-" vim: set et sts=4 sw=4:
+" vim: set sw=4 sts=4 et fdm=marker:

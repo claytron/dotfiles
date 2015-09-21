@@ -13,7 +13,7 @@
 " Note: this script requires CoffeeScript version 1.6.2 or newer.
 "
 
-if exists("g:loaded_syntastic_coffee_coffee_checker")
+if exists('g:loaded_syntastic_coffee_coffee_checker')
     finish
 endif
 let g:loaded_syntastic_coffee_coffee_checker = 1
@@ -22,13 +22,15 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 function! SyntaxCheckers_coffee_coffee_IsAvailable() dict
-    let exe = self.getExec()
-    return executable(exe) &&
-        \ syntastic#util#versionIsAtLeast(syntastic#util#getVersion(exe . ' --version 2>' . syntastic#util#DevNull()), [1,6,2])
+    if !executable(self.getExec())
+        return 0
+    endif
+    let ver = self.getVersion(self.getExecEscaped() . ' --version 2>' . syntastic#util#DevNull())
+    return syntastic#util#versionIsAtLeast(ver, [1, 6, 2])
 endfunction
 
 function! SyntaxCheckers_coffee_coffee_GetLocList() dict
-    let makeprg = self.makeprgBuild({ 'args': '-cp' })
+    let makeprg = self.makeprgBuild({ 'args_after': '-cp' })
 
     let errorformat =
         \ '%E%f:%l:%c: %trror: %m,' .
@@ -53,4 +55,4 @@ call g:SyntasticRegistry.CreateAndRegisterChecker({
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
-" vim: set et sts=4 sw=4:
+" vim: set sw=4 sts=4 et fdm=marker:

@@ -10,7 +10,7 @@
 "
 "============================================================================
 
-if exists("g:loaded_syntastic_perl_podchecker_checker")
+if exists('g:loaded_syntastic_perl_podchecker_checker')
     finish
 endif
 let g:loaded_syntastic_perl_podchecker_checker = 1
@@ -22,4 +22,4 @@ call g:SyntasticRegistry.CreateAndRegisterChecker({
     \ 'name': 'podchecker',
     \ 'redirect': 'pod/podchecker'})
 
-" vim: set et sts=4 sw=4:
+" vim: set sw=4 sts=4 et fdm=marker:

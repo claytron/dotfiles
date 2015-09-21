@@ -8,15 +8,8 @@
 "             Want To Public License, Version 2, as published by Sam Hocevar.
 "             See http://sam.zoy.org/wtfpl/COPYING for more details.
 "============================================================================
-"
-" The setting 'g:syntastic_splint_config_file' allows you to define a file
-" that contains additional compiler arguments like include directories or
-" CFLAGS. The file is expected to contain one option per line. If none is
-" given the filename defaults to '.syntastic_splint_config':
-"
-"   let g:syntastic_splint_config_file = '.config'
 
-if exists("g:loaded_syntastic_c_splint_checker")
+if exists('g:loaded_syntastic_c_splint_checker')
     finish
 endif
 let g:loaded_syntastic_c_splint_checker = 1
@@ -30,12 +23,16 @@ set cpo&vim
 
 function! SyntaxCheckers_c_splint_GetLocList() dict
     let makeprg = self.makeprgBuild({
-        \ 'post_args': '-showfunc -hints +quiet ' . syntastic#c#ReadConfig(g:syntastic_splint_config_file) })
+        \ 'args': syntastic#c#ReadConfig(g:syntastic_splint_config_file),
+        \ 'args_after': '-showfunc -hints +quiet' })
 
     let errorformat =
         \ '%-G%f:%l:%v: %[%#]%[%#]%[%#] Internal Bug %.%#,' .
+        \ '%-G%f(%l\,%v): %[%#]%[%#]%[%#] Internal Bug %.%#,' .
         \ '%W%f:%l:%v: %m,' .
+        \ '%W%f(%l\,%v): %m,' .
         \ '%W%f:%l: %m,' .
+        \ '%W%f(%l): %m,' .
         \ '%-C %\+In file included from %.%#,' .
         \ '%-C %\+from %.%#,' .
         \ '%+C %.%#'
@@ -55,4 +52,4 @@ call g:SyntasticRegistry.CreateAndRegisterChecker({
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
-" vim: set et sts=4 sw=4:
+" vim: set sw=4 sts=4 et fdm=marker:

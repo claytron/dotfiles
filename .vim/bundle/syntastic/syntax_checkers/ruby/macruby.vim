@@ -9,7 +9,7 @@
 "
 "============================================================================
 
-if exists("g:loaded_syntastic_ruby_macruby_checker")
+if exists('g:loaded_syntastic_ruby_macruby_checker')
     finish
 endif
 let g:loaded_syntastic_ruby_macruby_checker = 1
@@ -19,8 +19,8 @@ set cpo&vim
 
 function! SyntaxCheckers_ruby_macruby_GetLocList() dict
     let makeprg = self.makeprgBuild({
-        \ 'exe': 'RUBYOPT= ' . self.getExec(),
-        \ 'args': '-W1 -c' })
+        \ 'args': '-W1',
+        \ 'args_after': '-c' })
 
     let errorformat =
         \ '%-GSyntax OK,'.
@@ -31,9 +31,12 @@ function! SyntaxCheckers_ruby_macruby_GetLocList() dict
         \ '%W%f:%l: %m,'.
         \ '%-C%.%#'
 
+    let env = { 'RUBYOPT': '' }
+
     return SyntasticMake({
         \ 'makeprg': makeprg,
-        \ 'errorformat': errorformat })
+        \ 'errorformat': errorformat,
+        \ 'env': env })
 endfunction
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({
@@ -43,4 +46,4 @@ call g:SyntasticRegistry.CreateAndRegisterChecker({
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
-" vim: set et sts=4 sw=4:
+" vim: set sw=4 sts=4 et fdm=marker:

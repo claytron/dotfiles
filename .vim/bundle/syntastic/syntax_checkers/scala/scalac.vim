@@ -10,21 +10,18 @@
 "
 "============================================================================
 
-if exists("g:loaded_syntastic_scala_scalac_checker")
+if exists('g:loaded_syntastic_scala_scalac_checker')
     finish
 endif
 let g:loaded_syntastic_scala_scalac_checker = 1
-
-if !exists('g:syntastic_scala_options')
-    let g:syntastic_scala_options = ''
-endif
 
 let s:save_cpo = &cpo
 set cpo&vim
 
 function! SyntaxCheckers_scala_scalac_GetLocList() dict
-    let makeprg = self.makeprgBuild({
-        \ 'args': '-Ystop-after:parser ' . g:syntastic_scala_options })
+    call syntastic#log#deprecationWarn('scala_options', 'scala_scalac_args')
+
+    let makeprg = self.makeprgBuild({ 'args_after': '-Ystop-after:parser' })
 
     let errorformat =
         \ '%E%f:%l: %trror: %m,' .
@@ -43,4 +40,4 @@ call g:SyntasticRegistry.CreateAndRegisterChecker({
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
-" vim: set et sts=4 sw=4:
+" vim: set sw=4 sts=4 et fdm=marker:

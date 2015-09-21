@@ -10,7 +10,7 @@
 "
 "============================================================================
 
-if exists("g:loaded_syntastic_po_msgfmt_checker")
+if exists('g:loaded_syntastic_po_msgfmt_checker')
     finish
 endif
 let g:loaded_syntastic_po_msgfmt_checker = 1
@@ -20,11 +20,11 @@ set cpo&vim
 
 function! SyntaxCheckers_po_msgfmt_GetHighlightRegex(item)
     let term = matchstr(a:item['text'], '\mkeyword "\zs[^"]\+\ze" unknown')
-    return !empty(term) ? '\V' . term : ''
+    return term !=# '' ? '\V' . escape(term, '\') : ''
 endfunction
 
 function! SyntaxCheckers_po_msgfmt_GetLocList() dict
-    let makeprg = self.makeprgBuild({ 'args': '-c ' . syntastic#c#NullOutput() })
+    let makeprg = self.makeprgBuild({ 'args_after': '-c ' . syntastic#c#NullOutput() })
 
     let errorformat =
         \ '%W%f:%l: warning: %m,' .
@@ -47,4 +47,4 @@ call g:SyntasticRegistry.CreateAndRegisterChecker({
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
-" vim: set et sts=4 sw=4:
+" vim: set sw=4 sts=4 et fdm=marker:

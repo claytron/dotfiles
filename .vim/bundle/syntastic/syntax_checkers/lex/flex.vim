@@ -10,7 +10,7 @@
 "
 "============================================================================
 
-if exists("g:loaded_syntastic_lex_flex_checker")
+if exists('g:loaded_syntastic_lex_flex_checker')
     finish
 endif
 let g:loaded_syntastic_lex_flex_checker = 1
@@ -21,17 +21,17 @@ set cpo&vim
 function! SyntaxCheckers_lex_flex_GetHighlightRegex(item)
     let term = matchstr(a:item['text'],
         \ '\m^\(unrecognized %option\|bad <start condition>\|bad character\( class expression\)\=\): \zs.*')
-    if term == ''
+    if term ==# ''
         let term = matchstr(a:item['text'],
             \ '\m^\(Definition value for\|undefined definition\) \zs{[^}]\+}\ze')
     endif
 
-    return term != '' ? '\V' . term : ''
+    return term !=# '' ? '\V' . escape(term, '\') : ''
 endfunction
 
 function! SyntaxCheckers_lex_flex_GetLocList() dict
     let makeprg = self.makeprgBuild({
-        \ 'exe': self.getExec() . ' ' . syntastic#c#NullOutput() })
+        \ 'args_after': syntastic#c#NullOutput() })
 
     let errorformat = '%f:%l: %m'
 
@@ -47,4 +47,4 @@ call g:SyntasticRegistry.CreateAndRegisterChecker({
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
-" vim: set et sts=4 sw=4:
+" vim: set sw=4 sts=4 et fdm=marker:

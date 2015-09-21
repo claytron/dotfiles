@@ -16,20 +16,20 @@ if exists('g:loaded_syntastic_cobol_cobc_checker')
 endif
 let g:loaded_syntastic_cobol_cobc_checker = 1
 
-if !exists('g:syntastic_cobol_compiler')
-    let g:syntastic_cobol_compiler = 'cobc'
+if !exists('g:syntastic_cobol_compiler_options')
+    let g:syntastic_cobol_compiler_options = ''
 endif
 
 let s:save_cpo = &cpo
 set cpo&vim
 
 function! SyntaxCheckers_cobol_cobc_IsAvailable() dict
-    return executable(expand(g:syntastic_cobol_compiler))
+    if !exists('g:syntastic_cobol_compiler')
+        let g:syntastic_cobol_compiler = self.getExec()
+    endif
+    call self.log('g:syntastic_cobol_compiler =', g:syntastic_cobol_compiler)
+    return executable(expand(g:syntastic_cobol_compiler, 1))
 endfunction
-
-if !exists('g:syntastic_cobol_compiler_options')
-    let g:syntastic_cobol_compiler_options = ''
-endif
 
 function! SyntaxCheckers_cobol_cobc_GetLocList() dict
     return syntastic#c#GetLocList('cobol', 'cobc', {
@@ -39,9 +39,9 @@ endfunction
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({
     \ 'filetype': 'cobol',
-    \ 'name': 'cobc'})
+    \ 'name': 'cobc' })
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
-" vim: set et sts=4 sw=4:
+" vim: set sw=4 sts=4 et fdm=marker:

@@ -10,7 +10,7 @@
 "
 "============================================================================
 
-if exists("g:loaded_syntastic_twig_twiglint_checker")
+if exists('g:loaded_syntastic_twig_twiglint_checker')
     finish
 endif
 let g:loaded_syntastic_twig_twiglint_checker = 1
@@ -19,7 +19,9 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 function! SyntaxCheckers_twig_twiglint_GetLocList() dict
-    let makeprg = self.makeprgBuild({ 'args': 'lint --format=csv' })
+    let makeprg = self.makeprgBuild({
+        \ 'args_before': 'lint',
+        \ 'args_after': '--format=csv' })
 
     let errorformat = '"%f"\,%l\,%m'
 
@@ -36,4 +38,4 @@ call g:SyntasticRegistry.CreateAndRegisterChecker({
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
-" vim: set et sts=4 sw=4:
+" vim: set sw=4 sts=4 et fdm=marker:

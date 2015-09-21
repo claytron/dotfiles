@@ -25,7 +25,7 @@
 "
 "============================================================================
 
-if exists("g:loaded_syntastic_applescript_osacompile_checker")
+if exists('g:loaded_syntastic_applescript_osacompile_checker')
     finish
 endif
 let g:loaded_syntastic_applescript_osacompile_checker = 1
@@ -34,7 +34,7 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 function! SyntaxCheckers_applescript_osacompile_GetLocList() dict
-    let makeprg = self.makeprgBuild({ 'args': '-o ' . tempname() . '.scpt' })
+    let makeprg = self.makeprgBuild({ 'args_after': '-o ' . tempname() . '.scpt' })
     let errorformat = '%f:%l:%m'
     return SyntasticMake({ 'makeprg': makeprg, 'errorformat': errorformat })
 endfunction
@@ -46,4 +46,4 @@ call g:SyntasticRegistry.CreateAndRegisterChecker({
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
-" vim: set et sts=4 sw=4:
+" vim: set sw=4 sts=4 et fdm=marker:

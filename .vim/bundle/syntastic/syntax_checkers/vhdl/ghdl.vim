@@ -10,7 +10,7 @@
 "
 "============================================================================
 
-if exists("g:loaded_syntastic_vhdl_ghdl_checker")
+if exists('g:loaded_syntastic_vhdl_ghdl_checker')
     finish
 endif
 let g:loaded_syntastic_vhdl_ghdl_checker = 1
@@ -19,7 +19,7 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 function! SyntaxCheckers_vhdl_ghdl_GetLocList() dict
-    let makeprg = self.makeprgBuild({ 'args': '-s' })
+    let makeprg = self.makeprgBuild({ 'args_before': '-s' })
 
     let errorformat =  '%f:%l:%c: %m'
 
@@ -35,4 +35,4 @@ call g:SyntasticRegistry.CreateAndRegisterChecker({
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
-" vim: set et sts=4 sw=4:
+" vim: set sw=4 sts=4 et fdm=marker:

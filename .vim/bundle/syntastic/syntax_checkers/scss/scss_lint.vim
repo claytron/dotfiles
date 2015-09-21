@@ -9,7 +9,7 @@
 "             See http://sam.zoy.org/wtfpl/COPYING for more details.
 "============================================================================
 
-if exists("g:loaded_syntastic_scss_scss_lint_checker")
+if exists('g:loaded_syntastic_scss_scss_lint_checker')
     finish
 endif
 let g:loaded_syntastic_scss_scss_lint_checker = 1
@@ -17,13 +17,33 @@ let g:loaded_syntastic_scss_scss_lint_checker = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
+function! SyntaxCheckers_scss_scss_lint_IsAvailable() dict
+    if !executable(self.getExec())
+        return 0
+    endif
+    return syntastic#util#versionIsAtLeast(self.getVersion(), [0, 12])
+endfunction
+
 function! SyntaxCheckers_scss_scss_lint_GetLocList() dict
     let makeprg = self.makeprgBuild({})
+
     let errorformat = '%f:%l [%t] %m'
-    return SyntasticMake({
+
+    let loclist = SyntasticMake({
         \ 'makeprg': makeprg,
         \ 'errorformat': errorformat,
-        \ 'subtype': 'Style'})
+        \ 'returns': [0, 1, 2, 65, 66] })
+
+    let cutoff = strlen('Syntax Error: ')
+    for e in loclist
+        if e['text'][: cutoff-1] ==# 'Syntax Error: '
+            let e['text'] = e['text'][cutoff :]
+        else
+            let e['subtype'] = 'Style'
+        endif
+    endfor
+
+    return loclist
 endfunction
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({
@@ -34,4 +54,4 @@ call g:SyntasticRegistry.CreateAndRegisterChecker({
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
-" vim: set et sts=4 sw=4:
+" vim: set sw=4 sts=4 et fdm=marker:

@@ -10,7 +10,7 @@
 "
 "============================================================================
 
-if exists("g:loaded_syntastic_hss_hss_checker")
+if exists('g:loaded_syntastic_hss_hss_checker')
     finish
 endif
 let g:loaded_syntastic_hss_hss_checker = 1
@@ -19,7 +19,7 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 function! SyntaxCheckers_hss_hss_GetLocList() dict
-    let makeprg = self.makeprgBuild({ 'args' : '-output ' . syntastic#util#DevNull() })
+    let makeprg = self.makeprgBuild({ 'args_after' : '-output ' . syntastic#util#DevNull() })
 
     let errorformat = '%E%f:%l: %m'
 
@@ -35,4 +35,4 @@ call g:SyntasticRegistry.CreateAndRegisterChecker({
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
-" vim: set et sts=4 sw=4:
+" vim: set sw=4 sts=4 et fdm=marker:

@@ -11,70 +11,67 @@
 " Tested with checkstyle 5.5
 "============================================================================
 
-if exists("g:loaded_syntastic_java_checkstyle_checker")
+if exists('g:loaded_syntastic_java_checkstyle_checker')
     finish
 endif
 let g:loaded_syntastic_java_checkstyle_checker = 1
 
-if !exists("g:syntastic_java_checkstyle_classpath")
-    let g:syntastic_java_checkstyle_classpath = 'checkstyle-5.5-all.jar'
+if !exists('g:syntastic_java_checkstyle_classpath')
+    let g:syntastic_java_checkstyle_classpath = 'checkstyle-6.10.1-all.jar'
 endif
 
-if !exists("g:syntastic_java_checkstyle_conf_file")
+if !exists('g:syntastic_java_checkstyle_conf_file')
     let g:syntastic_java_checkstyle_conf_file = 'sun_checks.xml'
 endif
 
 let s:save_cpo = &cpo
 set cpo&vim
 
-function! SyntaxCheckers_java_checkstyle_Preprocess(errors)
-    let out = []
-    let fname = expand('%')
-    for err in a:errors
-        if match(err, '\m<error\>') > -1
-            let line = str2nr(matchstr(err, '\m\<line="\zs\d\+\ze"'))
-            if line == 0
-                continue
-            endif
+function! SyntaxCheckers_java_checkstyle_IsAvailable() dict
+    if !executable(self.getExec())
+        return 0
+    endif
 
-            let col = str2nr(matchstr(err, '\m\<column="\zs\d\+\ze"'))
+    let conf_file = expand(g:syntastic_java_checkstyle_conf_file, 1)
+    call self.log('filereadable(' . string(conf_file) . ') = ' . filereadable(conf_file))
 
-            let type = matchstr(err, '\m\<severity="\zs.\ze')
-            if type !~? '^[EW]'
-                let type = 'E'
-            endif
-
-            let message = syntastic#util#decodeXMLEntities(matchstr(err, '\m\<message="\zs[^"]\+\ze"'))
-
-            call add(out, join([fname, type, line, col, message], ':'))
-        elseif match(err, '\m<file name="') > -1
-            let fname = syntastic#util#decodeXMLEntities(matchstr(err, '\v\<file name\="\zs[^"]+\ze"'))
-        endif
-    endfor
-    return out
+    return filereadable(conf_file)
 endfunction
 
 function! SyntaxCheckers_java_checkstyle_GetLocList() dict
 
-    let fname = syntastic#util#shescape( expand('%:p:h') . '/' . expand('%:t') )
+    " classpath
+    if !exists('s:sep')
+        let s:sep = syntastic#util#isRunningWindows() || has('win32unix') ? ';' : ':'
+    endif
+    let classpath = join(map( split(g:syntastic_java_checkstyle_classpath, s:sep, 1), 'expand(v:val, 1)' ), s:sep)
+    call self.log('classpath =', classpath)
 
+    " forced options
+    let opts = []
+    if classpath !=# ''
+        call extend(opts, ['-cp', classpath])
+    endif
+    call extend(opts, [
+        \ 'com.puppycrawl.tools.checkstyle.Main',
+        \ '-c', expand(g:syntastic_java_checkstyle_conf_file, 1),
+        \ '-f', 'xml' ])
+
+    " filename
+    let fname = syntastic#util#shescape( expand('%:p:h', 1) . syntastic#util#Slash() . expand('%:t', 1) )
     if has('win32unix')
-        let fname = substitute(system('cygpath -m ' . fname), '\m\%x00', '', 'g')
+        let fname = substitute(syntastic#util#system('cygpath -m ' . fname), '\m\%x00', '', 'g')
     endif
 
-    let makeprg = self.makeprgBuild({
-        \ 'args': '-cp ' . g:syntastic_java_checkstyle_classpath .
-        \         ' com.puppycrawl.tools.checkstyle.Main -c ' . g:syntastic_java_checkstyle_conf_file .
-        \         ' -f xml',
-        \ 'fname': fname })
+    let makeprg = self.makeprgBuild({ 'args_after': opts, 'fname': fname })
 
     let errorformat = '%f:%t:%l:%c:%m'
 
     return SyntasticMake({
         \ 'makeprg': makeprg,
         \ 'errorformat': errorformat,
-        \ 'subtype': 'Style',
-        \ 'preprocess': 'SyntaxCheckers_java_checkstyle_Preprocess' })
+        \ 'preprocess': 'checkstyle',
+        \ 'subtype': 'Style' })
 endfunction
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({
@@ -85,4 +82,4 @@ call g:SyntasticRegistry.CreateAndRegisterChecker({
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
-" vim: set et sts=4 sw=4:
+" vim: set sw=4 sts=4 et fdm=marker:

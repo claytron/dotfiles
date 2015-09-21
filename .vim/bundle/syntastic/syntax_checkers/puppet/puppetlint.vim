@@ -10,7 +10,7 @@
 "
 "============================================================================
 
-if exists("g:loaded_syntastic_puppet_puppetlint_checker")
+if exists('g:loaded_syntastic_puppet_puppetlint_checker')
     finish
 endif
 let g:loaded_syntastic_puppet_puppetlint_checker = 1
@@ -18,22 +18,21 @@ let g:loaded_syntastic_puppet_puppetlint_checker = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
-if exists("g:syntastic_puppet_lint_arguments")
-    let g:syntastic_puppet_puppetlint_args = g:syntastic_puppet_lint_arguments
-    call syntastic#log#deprecationWarn("variable g:syntastic_puppet_lint_arguments is deprecated, please use g:syntastic_puppet_puppetlint_args instead")
-endif
-
 function! SyntaxCheckers_puppet_puppetlint_IsAvailable() dict
-    return
-        \ executable("puppet") &&
-        \ executable("puppet-lint") &&
-        \ syntastic#util#versionIsAtLeast(syntastic#util#getVersion('puppet-lint --version 2>' .
-        \     syntastic#util#DevNull()), [0,1,10])
+    if !executable(self.getExec())
+        return 0
+    endif
+    let s:puppetlint_new = syntastic#util#versionIsAtLeast(self.getVersion(), [1])
+    return syntastic#util#versionIsAtLeast(self.getVersion(), [0, 2])
 endfunction
 
 function! SyntaxCheckers_puppet_puppetlint_GetLocList() dict
+    call syntastic#log#deprecationWarn('puppet_lint_arguments', 'puppet_puppetlint_args')
+
     let makeprg = self.makeprgBuild({
-        \ 'post_args': '--log-format "%{KIND} [%{check}] %{message} at %{fullpath}:%{linenumber}"' })
+        \ 'args_after':
+        \       '--log-format "%{KIND} [%{check}] %{message} at %{fullpath}:' .
+        \       (s:puppetlint_new ? '%{line}' : '%{linenumber}') . '"' })
 
     let errorformat = '%t%*[a-zA-Z] %m at %f:%l'
 
@@ -50,4 +49,4 @@ call g:SyntasticRegistry.CreateAndRegisterChecker({
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
-" vim: set et sts=4 sw=4:
+" vim: set sw=4 sts=4 et fdm=marker:
