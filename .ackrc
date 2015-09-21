@@ -34,6 +34,8 @@
 --type-set=sass=.sass,.scss
 # Mustaches and such
 --type-set=mustache=.mustache,.mu,.handlebars,.hbs,.hbars
+# Specific RoR locales
+--type-set=en:is:en.yml
 
 # types to ignore by default
 --nogettext
