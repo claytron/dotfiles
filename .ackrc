@@ -44,3 +44,6 @@
 --ignore-dir=.tox
 --ignore-dir=node_modules
 --ignore-dir=log
+# Don't search generated files
+--ignore-file=is:ignite-ember.js
+--ignore-file=is:ignite-emblem.js
