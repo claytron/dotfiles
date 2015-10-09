@@ -901,6 +901,8 @@ let g:syntastic_enable_signs=1
 " Automatically open the location list when there are errors
 let g:syntastic_auto_loc_list=0
 let g:syntastic_check_on_open=1
+" Run all enabled checkers
+let g:syntastic_aggregate_errors=1
 
 " Be specific about what checkers to use
 let g:syntastic_python_checkers=['flake8']
