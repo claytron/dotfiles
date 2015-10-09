@@ -17,8 +17,8 @@
 "    coa             -- Starts an ack search in the CWD
 "    coc             -- Switch between light and dark colors
 "    coe             -- Show current :Errors
-"    coH             -- Clear the current search highlight
-"    coh             -- Toggles the highlight search
+"    coh             -- Clear the current search highlight
+"    coH             -- Toggles the highlight search
 "    coi             -- Toggles invisible characters
 "    col             -- Clears line length highlight in Python
 "    con             -- Toggles the line numbers
@@ -341,11 +341,11 @@ set ignorecase
 " unless they contain upper-case letters
 set smartcase
 " a toggle for search highlight
-map <silent> coh :set hlsearch!<CR>
+map <silent> coH :set hlsearch!<CR>
 
 " Shortcut to clear out the search pattern (and thus turn off the highlighting)
 " from http://stackoverflow.com/questions/657447/vim-clear-last-search-highlighting
-map <silent> coH :let @/ = ""<CR>
+map <silent> coh :let @/ = ""<CR>
 
 " Find any non-ascii character
 map <silent> funi /[^ -~]<CR>
