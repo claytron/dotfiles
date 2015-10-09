@@ -1031,6 +1031,10 @@ let g:taboo_modified_tab_flag="+"
 " Mapping to quickly rename a tab
 map cot :TabooRename<Space>
 
+" Javascript                                                   {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+let g:javascript_fold=0
+
 " Auto command settings                                        {{{1
 " -----------------------------------------------------------------
 
