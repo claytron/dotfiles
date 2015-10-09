@@ -238,6 +238,7 @@ nnoremap ftrs :set ft=rst<CR>
 nnoremap ftv :set ft=vim<CR>
 nnoremap ftj :set ft=javascript<CR>
 nnoremap fts :set ft=sql<CR>
+nnoremap ftsh :set ft=sh<CR>
 
 " Visual settings                                              {{{1
 " -----------------------------------------------------------------
