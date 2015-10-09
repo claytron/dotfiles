@@ -902,8 +902,10 @@ let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=0
 let g:syntastic_check_on_open=1
 
+" Be specific about what checkers to use
 let g:syntastic_python_checkers=['flake8']
-let g:syntastic_ruby_checkers=['rubocop', 'mri']
+let g:syntastic_ruby_checkers=['rubocop', 'mri', 'flog']
+let g:syntastic_javascript_checkers=['eslint']
 
 " Tagbar                                                       {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
