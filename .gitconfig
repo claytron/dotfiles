@@ -27,6 +27,7 @@
 # Try to pull and rebase, but then stash and pop if it's dirty
 	up = !git pull --rebase || ( git stash save && git pull --rebase && git stash pop )
 	br = branch
+    brdel = !git branch --merged | grep -v '*' | grep -v master | grep -v dev | vipe | xargs -n 1 git branch -d
 # Create a copy of the current branch, usually before rebasing. Prefix the branch with 'BAK_'
 # Idea from: # http://kevinold.com/2012/07/06/git-backup-branches.html
 	bak = !git branch `git branch | grep '*' | sed -e 's/* /BAK_/'`
