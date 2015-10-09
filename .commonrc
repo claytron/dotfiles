@@ -133,7 +133,7 @@ alias rud='ru default@tb'
 alias rum='ru default@mailcatcher'
 
 # Zeus.
-alias z='bin/zeus'
+alias z='zeus'
 alias zss='z start'
 alias zs='z server Puma -p 3001'
 alias zc='z console'
@@ -146,11 +146,12 @@ alias vssh="vagrant ssh"
 vs() {
     vagrant ssh -c "rvm use default@tb && cd /vagrant && $1"
 }
-alias vss="vs 'bin/zeus start'"
-alias vsc="vs 'bin/zeus console'"
-alias vsr="vs 'bin/zeus server Puma -p 3001'"
-alias vst="vs 'bin/zeus test'"
-alias vsd="vs 'bin/zeus dbconsole'"
+alias vsss="vs 'zeus start'"
+alias vss="vs 'zeus server Puma -p 3001'"
+alias vsc="vs 'zeus console'"
+alias vsr="vs 'zeus rake'"
+alias vst="vs 'zeus test'"
+alias vsd="vs 'zeus dbconsole'"
 
 # I have a folder of custom made fortunes...
 if checkPath fortune && [ -d /opt/local/share/games/fortune/comedy ]; then
