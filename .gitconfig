@@ -52,6 +52,8 @@
 	rbs = !git rebase -i `git merge-base HEAD origin/dev`
 	rbc = rebase --continue
 	rba = rebase --abort
+	resolve = !vim $(git status -s | awk '/^UU / {print $2}' | head -1)
+	resolved = !git add $(git status -s | awk '/^UU / {print $2}' | head -1)
 [achievement]
 	upload = true
 [github]
