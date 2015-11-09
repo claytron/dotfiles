@@ -132,6 +132,9 @@ alias ru='rvm use'
 alias rud='ru default@tb'
 alias rum='ru default@mailcatcher'
 
+# bundler
+alias be='bundle exec'
+
 # Zeus.
 alias z='zeus'
 alias zss='z start'
