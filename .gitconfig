@@ -45,7 +45,7 @@
 	spo = stash pop
 	sap = stash apply
 	ssa = stash save
-	sls = stash list
+	sls = !git --no-pager stash list
 	ssh = stash show -p
 	psh = push origin HEAD
 	pshf = push origin HEAD --force
