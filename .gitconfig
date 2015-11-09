@@ -49,7 +49,7 @@
 	ssh = stash show -p
 	psh = push origin HEAD
 	pshf = push origin HEAD --force
-	rbs = !git rebase -i `git merge-base HEAD dev`
+	rbs = !git rebase -i `git merge-base HEAD origin/dev`
 [achievement]
 	upload = true
 [github]
