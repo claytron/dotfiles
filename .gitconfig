@@ -50,6 +50,8 @@
 	psh = push origin HEAD
 	pshf = push origin HEAD --force
 	rbs = !git rebase -i `git merge-base HEAD origin/dev`
+	rbc = rebase --continue
+	rba = rebase --abort
 [achievement]
 	upload = true
 [github]
