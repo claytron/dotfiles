@@ -38,7 +38,9 @@
 	dfs = diff --staged
 	lg = log --graph --pretty=format:'%Cred%h%Creset %Cblue%an%Creset %C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 # Use bang to be able to re-use the alias above (with pretty format) and add to it
+	lgn = !git lg --branches --remotes --no-merges
 	lga = !git lg --branches --remotes
+	lgan = !git lg --branches --remotes --no-merges
 	lgp = !git lg -p
 	spo = stash pop
 	sap = stash apply
