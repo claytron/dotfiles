@@ -21,7 +21,9 @@
 	changed = green
 	untracked = cyan
 [alias]
-	st = status
+	st = status -s
+	stu = status -s -uno
+	stl = status --long
 	ci = commit --verbose
 	commit = commit --verbose
 # Try to pull and rebase, but then stash and pop if it's dirty
