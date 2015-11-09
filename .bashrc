@@ -13,10 +13,10 @@ fi
 ## User specific aliases and functions
 
 # set up common env vars between bourne shells
-source $HOME/.commonenv
+source ~/.commonenv
 
 # set up common aliases between bourne shells
-source $HOME/.commonrc
+source ~/.commonrc
 
 # seriously, i want to use vi
 set -o vi
@@ -39,7 +39,7 @@ shopt -s histappend
 # Make sure and set the $ME var
 ME="clayton"
 PR_IMPOSTER=""
-if [ $(whoami) != $ME ]; then
+if [ "$(whoami)" != $ME ]; then
    PR_IMPOSTER="\n(\u)"
 fi
 

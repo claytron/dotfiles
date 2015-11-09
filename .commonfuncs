@@ -14,7 +14,7 @@ makeMeLaugh() {
         FORTUNE=$(fortune -a)
     fi
     if checkPath cowthink; then
-        FORTUNE=$(cowthink -d -f small -W72 $FORTUNE)
+        FORTUNE=$(cowthink -d -f small -W72 "$FORTUNE")
     fi
     echo -e "\n$FORTUNE\n"
   else

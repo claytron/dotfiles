@@ -6,20 +6,20 @@ makeMeLaugh
 # only update once a day, according to the weShouldUpdate function
 # update the confs so they are in sync, but only if under
 # subversion control and subversion is available
-if checkPath svn && [ -d $HOME/.dotfiles/.svn ] && weShouldUpdate; then
-    svn up $HOME/.dotfiles
-elif checkPath git && [ -d $HOME/.dotfiles/.git ] && weShouldUpdate; then
-    cd $HOME/.dotfiles && git up && cd
+if checkPath svn && [ -d ~/.dotfiles/.svn ] && weShouldUpdate; then
+    svn up ~/.dotfiles
+elif checkPath git && [ -d ~/.dotfiles/.git ] && weShouldUpdate; then
+    cd ~/.dotfiles && git up && cd
 fi
 
 # set up my .gitconfig with variables I don't want public
 # or can't be set properly (i'm looking at you excludesfile)
-if checkPath git && [[ -a $HOME/.githack ]]; then
+if checkPath git && [[ -a ~/.githack ]]; then
 (
   while read line
   do
-     eval $line
+     eval "$line"
   done
-) < $HOME/.githack
+) < ~/.githack
 
 fi
