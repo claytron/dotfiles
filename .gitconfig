@@ -21,7 +21,7 @@
 	changed = green
 	untracked = cyan
 [alias]
-	st = status -s
+	st = status -sb
 	stu = status -s -uno
 	stl = status --long
 	ci = commit --verbose
