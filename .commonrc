@@ -11,7 +11,10 @@ alias sp='source ~/.zshprompt_simple'
 alias qs='$HOME/.dotfiles/create_links.sh'
 
 # prefer vim over vi
-if checkPath vim; then
+if checkPath nvim; then
+    alias vi=nvim
+    alias vim=nvim
+elif checkPath vim; then
     alias vi=vim
 else
     # keep me honest
