@@ -47,3 +47,5 @@
 # Don't search generated files
 --ignore-file=is:ignite-ember.js
 --ignore-file=is:ignite-emblem.js
+--ignore-file=is:.tags
+--ignore-file=is:tags
