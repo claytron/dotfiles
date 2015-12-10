@@ -21,6 +21,9 @@
 .netrwhist
 tags
 tags-*
+.tags
+.tags_*
+.tags-*
 en.utf-8.add.spl
 svn-commit.tmp
 .AppleDouble
