@@ -3,7 +3,7 @@ source $HOME/.commonfuncs
 
 # Log dir hash
 hash -d L=/var/log
-hash -d P=$HOME/sixfeetup/projects
+hash -d P=$HOME/work/projects
 
 [ -d /usr/local/etc/rc.d ] && hash -d R=/usr/local/etc/rc.d
 [ -d /var/db/zope ] && hash -d Z=/var/db/zope
@@ -13,12 +13,7 @@ hash -d P=$HOME/sixfeetup/projects
 if [ $UNAME = "Darwin" ]; then
     
     # set up dir hashes
-    hash -d OB=$HOME/sixfeetup/bundles
-    hash -d B=$HOME/Documents/sixfeetup/bundles
-    hash -d DB=$HOME/Documents/sixfeetup/bundles-dev
-    hash -d DB25=$HOME/Documents/sixfeetup/dev-bundle-2.5
-    hash -d OP=$HOME/Documents/sixfeetup/projects
-    hash -d PP=$HOME/sixfeetup/presentation
+    hash -d PP=$HOME/work/presentation
     hash -d S=$HOME/Sites
     hash -d D=$HOME/Documents
 
