@@ -36,3 +36,4 @@ svn-commit.tmp
 .coverage
 htmlcov/
 .idea/
+.vim/init.vim
