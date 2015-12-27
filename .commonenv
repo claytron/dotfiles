@@ -154,3 +154,7 @@ export LSCOLORS="exFxbxbhcxfxgxdxdhebeb"
 export ACK_COLOR_MATCH="red"
 
 export GREP_COLORS="ms=01;31:mc=01;31:sl=:cx=:fn=32:ln=36:bn=32:se=39"
+
+# FZF
+export FZF_DEFAULT_COMMAND='find . -type f | grep -v ".git" | sed "s|^\./||"'
+export FZF_DEFAULT_OPTS='--prompt="fzf> "'

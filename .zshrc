@@ -66,6 +66,10 @@ alias -g pretty_json="| python -mjson.tool | vim -R +'set ft=javascript' -"
 alias -g VI='| vipe'
 alias -g TS='| ts -i'
 
+# fuzzy finder
+alias -g FZ='| fzf -m'
+alias -g FZF='| fzf -m'
+
 # cvs setup
 export CVSROOT=:pserver:clayton@cvs:/var/cvsroot
 
@@ -246,3 +250,5 @@ if [ -z $MY_ZSH_PLUGINS_LOADED ] && is-at-least 4.3; then
 fi
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
