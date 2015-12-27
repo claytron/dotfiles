@@ -139,10 +139,8 @@ set nomodeline
 " bugs and limitations.
 set nocompatible
 
-" Set up pathogen
-filetype off
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+" Load up all vim plugins
+source ~/.vim_plugins.vim
 
 " set the mapleader key
 let mapleader = ","
