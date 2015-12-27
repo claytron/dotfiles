@@ -89,6 +89,9 @@ else
     alias sgrep='grep -ir'
 fi
 
+## ctags
+alias ctags='ctags --exclude=node_modules'
+
 ## processes
 alias psa='ps axwww'
 alias psau='psa -u'
