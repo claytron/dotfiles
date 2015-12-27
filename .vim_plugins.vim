@@ -33,6 +33,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'bling/vim-airline' | Plug 'paranoida/vim-airlineish'
 Plug 'gcmt/taboo.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'majutsushi/tagbar'
 Plug 'mhinz/vim-signify'
