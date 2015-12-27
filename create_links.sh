@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Exit after first error
+set -e
+
 ########################################
 # This is the list of conf files that we
 # want to automagically link after
@@ -10,7 +13,7 @@
 # 'cleanup' means to remove all the files created by this script
 remove="$1"
 
-dotfiles_loc=$(cd `dirname $0` && pwd)
+dotfiles_loc=$(cd "$(dirname "$0")" && pwd)
 excluded=(
     .svn
     .git
@@ -20,9 +23,9 @@ excluded=(
     .AppleDouble
 )
 # make sure the dotfiles are only rwx by the owner
-chmod 700 $dotfiles_loc
+chmod 700 "$dotfiles_loc"
 # make sure my home dir is secured
-chmod 700 $HOME
+chmod 700 "$HOME"
 
 notExcluded() {
     # check that the value exists
@@ -30,9 +33,9 @@ notExcluded() {
         return
     fi
 
-    for i in ${excluded[@]}
+    for i in "${excluded[@]}"
     do
-        if [ $i == $1 ]; then
+        if [ "$i" == "$1" ]; then
             # the item exists
             return 1
         fi
@@ -55,7 +58,7 @@ linkDotfile() {
         # symlink the conf file
         if [ ! -e "$to_create" ]; then
             echo "linking $dotfile"
-            ln -s $actual_dotfile $to_create
+            ln -s "$actual_dotfile" "$to_create"
         fi
         # warn the user that an existing file is in the way
         if [ ! -h "$to_create" -a -e "$to_create" ]; then
@@ -68,11 +71,11 @@ linkDotfile() {
 # -----------------------------------------------------------------
 for actual_dotfile in $HOME/.dotfiles/.*
     do
-        dotfile=$(echo $actual_dotfile | awk -F"$dotfiles_loc/" '{print $2}')
+        dotfile=$(echo "$actual_dotfile" | awk -F"$dotfiles_loc/" '{print $2}')
         # ignore certain directories
-        if notExcluded $dotfile; then
+        if notExcluded "$dotfile"; then
             to_create="$HOME/$dotfile"
-            linkDotfile $dotfile $to_create $actual_dotfile
+            linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
         fi
     done
 
@@ -90,7 +93,7 @@ actual_dotfile="$dotfiles_loc/config"
 dotfile="config"
 to_create="$HOME/.subversion/$dotfile"
 # actually create/remove the link
-linkDotfile $dotfile $to_create $actual_dotfile
+linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
 
 # take care of the .subversion/servers file
 # -----------------------------------------------------------------
@@ -98,7 +101,7 @@ actual_dotfile="$dotfiles_loc/servers"
 dotfile="servers"
 to_create="$HOME/.subversion/$dotfile"
 # actually create/remove the link
-linkDotfile $dotfile $to_create $actual_dotfile
+linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
 
 # take care of the ~/.ssh/authorized_keys
 # -----------------------------------------------------------------
@@ -114,7 +117,7 @@ to_create="$HOME/.ssh/authorized_keys"
 while read skey; do
 if ! grep -q "$skey" "$to_create"; then
       echo "$skey" >> "$to_create"
-      key_name=`echo $skey | awk '{print $3}'`
+      key_name=$(echo "$skey" | awk '{print $3}')
       echo "Added $key_name"
   fi
 done < "$actual_dotfile"
@@ -131,7 +134,7 @@ if [ -d "$HOME/.config" ]; then
     dotfile="awesome"
     to_create="$HOME/.config/$dotfile"
     # actually create/remove the link
-    linkDotfile $dotfile $to_create $actual_dotfile
+    linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
 fi
 
 # NOTE: None of these files are under version control...
@@ -218,7 +221,7 @@ Deleting them will remove them immediately
 
     for dir in "${DIRS_TO_MAKE[@]}"
         do
-            processDotDir $dir
+            processDotDir "$dir"
         done
 
     # create a buildout directory structure
@@ -226,7 +229,7 @@ Deleting them will remove them immediately
     BUILDOUT_DIR="$HOME"/.buildout
     if [[ -d "$BUILDOUT_DIR" ]] && [ ! -e "$BUILDOUT_DIR/default.cfg" ]; then
         # create the default.cfg file
-        cat > $BUILDOUT_DIR/default.cfg <<EOF
+        cat > "$BUILDOUT_DIR/default.cfg" <<EOF
 #[buildout]
 #eggs-directory = $HOME/.buildout/eggs
 #download-cache = $HOME/.buildout/downloads
@@ -298,7 +301,7 @@ EOF
 
     for dot_file in "${FILES_TO_MAKE[@]}"
         do
-            processDotFiles $dot_file
+            processDotFiles "$dot_file"
         done
 
 fi
