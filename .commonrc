@@ -74,8 +74,14 @@ fi
 
 # grepping (or acking)
 # sgrep stands for super grep, meaning recursive and case insensitive
-if checkPath ack; then
+if checkPath pt; then
+    alias sgrep=pt
+elif checkPath ag; then
+    alias sgrep=ag
+elif checkPath ack; then
     alias sgrep=ack
+elif checkPath ack-grep; then
+    alias sgrep=ack-grep
 else
     # using the GNU grep trunk with the exclude dir opt
     #alias grep='grep -EIn --exclude-dir=".svn" --exclude-dir="CVS" --exclude=".DS_STORE" --exclude="*pyc" --color=always'
