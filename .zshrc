@@ -11,7 +11,6 @@ hash -d P=$HOME/work/projects
 
 # OS X specific settings
 if [ $UNAME = "Darwin" ]; then
-    
     # set up dir hashes
     hash -d PP=$HOME/work/presentation
     hash -d S=$HOME/Sites
@@ -45,16 +44,27 @@ alias -g spriv='https://svn.sixfeetup.com/svn/private/'
 alias -g spub='https://svn.sixfeetup.com/svn/public/'
 alias -g scollective='https://svn.plone.org/svn/collective/'
 alias -g sgit='https://git.sixfeetup.com/git/'
+
 # some pipes
+alias -g S='| sed'
+alias -g A='| awk'
 alias -g G='| grep -i'
+alias -g C='| copy'
 alias -g L='| less'
 alias -g M='| more'
+alias -g H='| head'
 alias -g T='| tail'
+
+# copying
 if checkPath pbcopy; then
-    alias -g C='| pbcopy'
+    alias -g CP='| pbcopy'
+elif checkPath xsel; then
+    alias -g CP='| xsel'
 elif checkPath xclip; then
-    alias -g C='| xclip'
+    alias -g CP='| xclip'
 fi
+
+# Diffing
 if checkPath colordiff; then
     alias -g CD='| colordiff'
 else
