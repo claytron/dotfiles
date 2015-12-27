@@ -1,9 +1,0 @@
-------------
-Contributors
-------------
-
-* Kang Zhang
-* Tarek Ziade
-* Marcin Kasperski
-* Steve Borho
-* Michael Gruenewald
