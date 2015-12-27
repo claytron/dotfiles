@@ -137,6 +137,9 @@ if [ -d "$HOME/.config" ]; then
     linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
 fi
 
+# Install the vim plugins
+which vim && vim -c PlugInstall -c qa
+
 # NOTE: None of these files are under version control...
 # -----------------------------------------------------------------
 if [ ! "$remove" = "remove" ]; then
