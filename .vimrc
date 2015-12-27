@@ -999,6 +999,10 @@ let g:yankring_history_dir = '$HOME/.backup/vim'
 " Only show these VCS differences
 let g:signify_vcs_list = ['git', 'hg', 'svn']
 
+" Markdown                                                     {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+let g:vim_markdown_folding_disabled=1
+
 " Riv                                                          {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " Auto open folds on file open
