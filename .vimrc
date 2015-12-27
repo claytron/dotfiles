@@ -751,7 +751,7 @@ endfunction
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 " use my normal mapping
-let g:ctrlp_map = 'ff'
+let g:ctrlp_map = ''
 
 " load ctrlp extensions
 let g:ctrlp_extensions = ['tag']
@@ -789,11 +789,11 @@ let g:ctrlp_max_height = 50
 let g:ctrlp_lazy_update = 1000
 
 " Use the CtrlPTag mode
-nmap fft :CtrlPTag<CR>
+"nmap fft :CtrlPTag<CR>
 " Use the CtrlPMRUFiles mode
-nmap ffr :CtrlPMRUFiles<CR>
+"nmap ffr :CtrlPMRUFiles<CR>
 " Use the buffer mode
-nmap ffe :CtrlPBuffer<CR>
+"nmap ffe :CtrlPBuffer<CR>
 
 " Fuzzy Finder                                                 {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
