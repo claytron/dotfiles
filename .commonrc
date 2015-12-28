@@ -293,6 +293,13 @@ fi
 # Nix setup
 if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi
 
+# Chruby
+if [ -d /usr/local/share/chruby ]; then
+    source /usr/local/share/chruby/chruby.sh
+    # use a default version
+    chruby 2.2.3
+fi
+
 ## Functions
 
 # start up a buildout given a myriad of ways to try
