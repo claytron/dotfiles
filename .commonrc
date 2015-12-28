@@ -185,11 +185,11 @@ alias mv='mv -i'
 # conditionally set up coloring on different OS types for ls
 # Using the variable trick from:
 # http://www.xsteve.at/prg/zsh/.zshrc
-if [ $UNAME = "FreeBSD" ] || [ $UNAME = "Darwin" ]; then
+if [ "$UNAME" = "FreeBSD" ] || [ "$UNAME" = "Darwin" ]; then
    LS_COLOR_OPTION="-G"
-elif [ $UNAME = "Linux" ]; then
+elif [ "$UNAME" = "Linux" ]; then
    LS_COLOR_OPTION="--color=auto"
-elif [ $UNAME = 'SunOS' ]; then
+elif [ "$UNAME" = 'SunOS' ]; then
    LS_COLOR_OPTION="--color=always"
 fi
 
@@ -277,7 +277,7 @@ export LS_COLORS="no=00:fi=00:di=32:ln=36:pi=40;33:so=01;35:bd=40;33;01:cd=40;33
 
 VIRTUALENVS_DIR=$HOME/.virtualenvs
 # if the virutalenv wrapper is available, then source it
-if [ -d $VIRTUALENVS_DIR ]; then
+if [ -d "$VIRTUALENVS_DIR" ]; then
     export WORKON_HOME=$VIRTUALENVS_DIR
     if checkPath virtualenvwrapper_bashrc; then
         source virtualenvwrapper_bashrc
@@ -288,10 +288,10 @@ fi
 
 
 # Tmuxinator setup
-[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+[[ -s ~/.tmuxinator/scripts/tmuxinator ]] && source ~/.tmuxinator/scripts/tmuxinator
 
 # Nix setup
-if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi
+if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi
 
 # Chruby
 if [ -d /usr/local/share/chruby ]; then
@@ -311,7 +311,7 @@ function bfg() {
     instance=
     instance_names=(instance client)
     # Devine an instance executable, sometimes called "client", and sometimes with a number
-    for i in ${instance_names[@]}
+    for i in "${instance_names[@]}"
     do
         if [[ -x "bin/$i" ]]; then
             instance=$i
@@ -325,7 +325,7 @@ function bfg() {
     zeo=
     zeo_names=(zeo zeoserver)
     # Devine a zeo executable, most of the time either zeoserver or zeo
-    for i in ${zeo_names[@]}
+    for i in "${zeo_names[@]}"
     do
         if [[ -x "bin/$i" ]]; then
             zeo=$i
@@ -339,7 +339,7 @@ function bfg() {
             bin/supervisord
             # XXX: instance shouldn't be set, but seems to be anyway...
             if [ -x "bin/$instance" ]; then
-                bin/$instance fg
+                "bin/$instance" fg
             fi
         else
             bin/supervisorctl shutdown
@@ -361,14 +361,14 @@ function bfg() {
     # no script, just use the executables directly
     elif [ -n "$zeo" ] && [ -n "$instance" ]; then
         if [[ $ACTION == "start" ]]; then
-            bin/$zeo start
-            bin/$instance fg
+            "bin/$zeo" start
+            "bin/$instance" fg
         else
-            bin/$zeo stop
+            "bin/$zeo" stop
         fi
     # no zeoserver, just use the instance
     elif [[ $ACTION == "start" ]] && [ -n "$instance" ]; then
-        bin/$instance fg
+        "bin/$instance" fg
     else
         print "Couldn't find a start script. Is this a third party buildout?"
     fi
