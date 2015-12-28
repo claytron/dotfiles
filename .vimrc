@@ -1040,7 +1040,7 @@ let g:javascript_fold=0
 " fzf                                                          {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 nmap ff :Files<CR>
-nmap ft :Tags<CR>
+nmap fft :Tags<CR>
 nmap ffe :Buffers<CR>
 nmap ffr :FZFMru<CR>
 
