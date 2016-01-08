@@ -67,33 +67,7 @@ lulz() {
 # executable.  useful for checks across different
 # systems.
 checkPath() {
-    local execpath
-    local OIFS
-    # the bash compatible version of this
-    OIFS=$IFS
-    IFS=':'
-    for dir in $PATH
-    do 
-        execpath="$dir/$1" 
-        if [ -x $execpath ]; then
-            IFS=$OIFS
-            return 0
-        fi
-    done
-
-    # set the file separator back to normal
-    IFS=$OIFS
-    
-    # the zsh compatible version
-    for dir in $path
-    do 
-        execpath="$dir/$1"
-        if [ -x $execpath ]; then
-            return 0
-        fi
-    done
-    
-    return 1
+    which $1 &>/dev/null
 }
 
 isiPhone() {
