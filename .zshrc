@@ -46,9 +46,13 @@ alias -g scollective='https://svn.plone.org/svn/collective/'
 alias -g sgit='https://git.sixfeetup.com/git/'
 
 # some pipes
-alias -g S='| sed'
+if [ $UNAME = "Darwin" ]; then
+  alias -g S='| sed -Ee'
+else
+  alias -g S='| sed -re'
+fi
 alias -g A='| awk'
-alias -g G='| grep -i'
+alias -g G='| grep -Ei'
 alias -g C='| cut'
 alias -g CF='| cut -d" " -f'
 alias -g L='| less'
