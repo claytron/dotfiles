@@ -142,3 +142,55 @@ tmh() {
     fi
     teamocil --here $location
 }
+
+# Git stash + fzf = awesome
+stache() {
+    which fzf &>/dev/null || (echo "fzf is not installed. Install it and try again"; return)
+
+    local stash stashes stash_choices action opts show_all choice_count prev_action prev_choices
+
+    while getopts "a" OPTION; do
+      case $OPTION in
+        a) show_all="yes";;
+      esac
+    done
+
+    while true; do
+        # Get our list of stashes, cleaned up for human consumption
+        stashes=$(git stash list | sed -Ee 's/^stash@\{([^}]+)\}: (.*)/[\1] \2/')
+        if [[ -z "$show_all" ]]; then
+            # get only named stashes, this is the default
+            stashes=$(echo $stashes | grep -v WIP | sed -Ee 's/On [^:]+: //')
+        fi
+
+        stash_choices=$(echo $stashes | fzf -m -q "$prev_choices" --header="::::> choose a stash <::::$prev_action")
+        prev_choices=''
+        [[ $? -gt 0 ]] && return
+        stash_choices=$(echo $stash_choices | sed -En 's/\[(.*)\].*/\1/p')
+
+        # TODO: Ask for confirmation on destructive actions
+        action=$(echo "quit\nshow\napply\npop\ndrop" | fzf --header='::::> choose an action <::::')
+
+        # Bail out
+        [[ $? -gt 0 ]] && return
+        [[ "$action" == "quit" ]] && return
+
+        # Set extra options
+        if [[ "$action" == "show" ]]; then
+            opts='-p'
+            prev_choices=$(echo "$stash_choices" | sed -Ee 's/(.*)/^[\1] |/' | tr '\n' ' ' | sed 's/| $//')
+        fi
+
+        # Summary for the next round
+        choice_count=$(echo "$stash_choices" | wc -l | sed 's/ //g')
+        prev_action=$(echo "\n\n$action $choice_count item(s) complete")
+
+        # Loop over the selected items and perform the action
+        while read -r stash; do
+            git stash $action $opts stash@\{$stash\} || return
+        done <<< "$stash_choices"
+
+        # clear out opts that were set
+        opts=''
+    done
+}
