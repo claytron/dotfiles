@@ -35,6 +35,8 @@
 # Idea from: # http://kevinold.com/2012/07/06/git-backup-branches.html
 	bak = !git branch `git branch | grep '*' | sed -e 's/* /BAK_/'`
 	co = checkout
+	cof = !git checkout $(git branch | grep -v '*' | fzf)
+	cob = checkout -b
 	df = diff
 	dfs = diff --staged
 	lg = log --graph --pretty=format:'%Cred%h%Creset %Cgreen(%cr)%Creset %Cblue%an%Creset %s %C(yellow)%d%Creset' --abbrev-commit --date=relative
