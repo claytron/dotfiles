@@ -58,4 +58,5 @@ Plug 'mileszs/ack.vim'
 Plug 'thinca/vim-visualstar'
 Plug 'vim-scripts/TaskList.vim'
 Plug 'vim-scripts/YankRing.vim'
+Plug 'yegappan/mru'
 call plug#end()

@@ -1042,20 +1042,21 @@ let g:javascript_fold=0
 nmap ff :Files<CR>
 nmap fft :Tags<CR>
 nmap ffe :Buffers<CR>
-nmap ffr :FZFMru<CR>
+nmap ffr :MRUFilesCWD<CR>
 
 " MRU handling, limited to current directory
-command! FZFMru call fzf#run({
-\ 'source':  uniq(s:all_files()),
-\ 'sink':    'edit',
-\ 'options': '-m -x +s --query="^' . getcwd() . ' "',
-\ 'down':    '40%' })
+command! MRUFilesCWD call fzf#run({
+\  'source':  s:mru_files_for_cwd(),
+\  'sink':    'edit',
+\  'options': '-m -x +s --prompt="MRU> "',
+\  'down':    '40%' })
 
-function! s:all_files()
-  return extend(
-  \ filter(copy(v:oldfiles),
-  \        "v:val !~ 'fugitive:\\|NERD_tree\\|^/tmp/\\|.git/'"),
-  \ map(filter(range(1, bufnr('$')), 'buflisted(v:val)'), 'bufname(v:val)'))
+" This relies on the yegappan/mru plugin for live MRU updating
+function! s:mru_files_for_cwd()
+  return map(filter(
+  \  systemlist("sed -n '2,$p' ~/.vim_mru_files"),
+  \  "v:val =~ '^" . getcwd() . "' && v:val !~ '__Tagbar__\\|\\[YankRing]\\|fugitive:\\|NERD_tree\\|^/tmp/\\|.git/'"
+  \ ), 'fnamemodify(v:val, ":p:.")')
 endfunction
 
 " Auto command settings                                        {{{1
