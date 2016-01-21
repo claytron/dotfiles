@@ -1048,7 +1048,7 @@ nmap ffr :MRUFilesCWD<CR>
 command! MRUFilesCWD call fzf#run({
 \  'source':  s:mru_files_for_cwd(),
 \  'sink':    'edit',
-\  'options': '-m -x +s --prompt="MRU> "',
+\  'options': '-m -x +s --prompt=MRU:'.shellescape(pathshorten(getcwd())).'/',
 \  'down':    '40%' })
 
 " This relies on the yegappan/mru plugin for live MRU updating
