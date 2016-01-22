@@ -57,6 +57,8 @@
 	rba = rebase --abort
 	resolve = !vim $(git status -s | awk '/^UU / {print $2}' | head -1)
 	resolved = !git add $(git status -s | awk '/^UU / {print $2}' | head -1)
+# Add github pr numbers as refs
+	trackpr = config --add remote.origin.fetch '+refs/pull/*/head:refs/remotes/origin/pull/*'
 [achievement]
 	upload = true
 [github]
