@@ -21,37 +21,46 @@
 	changed = green
 	untracked = cyan
 [alias]
+# Status helpers
 	st = status -sb
 	stu = status -s -uno
 	stl = status --long
+# Commit shortcuts and verbosity
 	ci = commit --verbose
 	commit = commit --verbose
 # Try to pull and rebase, but then stash and pop if it's dirty
 	up = !git pull --rebase || ( git stash save && git pull --rebase && git stash pop )
 	upd = !git pull --rebase origin dev || ( git stash save && git pull --rebase origin dev && git stash pop )
+# Branches
 	br = branch
 	brdel = !git branch --merged | grep -v '*' | grep -v master | grep -v dev | vipe | xargs -n 1 git branch -d
 # Create a copy of the current branch, usually before rebasing. Prefix the branch with 'BAK_'
 # Idea from: # http://kevinold.com/2012/07/06/git-backup-branches.html
 	bak = !git branch `git branch | grep '*' | sed -e 's/* /BAK_/'`
+# Branch switching / creation
 	co = checkout
 	cof = !git checkout $(git branch | grep -v '*' | fzf)
 	cob = checkout -b
+# Diffing
 	df = diff
 	dfs = diff --staged
+# Better log commands
 	lg = log --graph --pretty=format:'%Cred%h%Creset %Cgreen(%cr)%Creset %Cblue%an%Creset %s %C(yellow)%d%Creset' --abbrev-commit --date=relative
 # Use bang to be able to re-use the alias above (with pretty format) and add to it
 	lgn = !git lg --branches --remotes --no-merges
 	lga = !git lg --branches --remotes
 	lgan = !git lg --branches --remotes --no-merges
 	lgp = !git lg -p
+# Stash helpers
 	spo = stash pop
 	sap = stash apply
 	ssa = stash save
 	sls = !git --no-pager stash list
 	ssh = stash show -p
+# Push shortcuts
 	psh = push origin HEAD
 	pshf = push origin HEAD --force
+# Helpers for rebasing and resolving conflicts
 	rbs = !git rebase -i `git merge-base HEAD origin/dev`
 	rbc = rebase --continue
 	rba = rebase --abort
