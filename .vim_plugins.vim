@@ -28,6 +28,8 @@ Plug 'vim-scripts/python_match.vim'
 
 " Color schemes
 Plug 'altercation/vim-colors-solarized'
+Plug 'GertjanReynaert/cobalt2-vim-theme'
+Plug 'junegunn/seoul256.vim'
 Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'jnurmine/Zenburn'
 Plug 'IngoHeimbach/vim-mac-classic-theme'
