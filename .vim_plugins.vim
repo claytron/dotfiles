@@ -28,6 +28,12 @@ Plug 'vim-scripts/python_match.vim'
 
 " Color schemes
 Plug 'altercation/vim-colors-solarized'
+Plug 'chriskempson/vim-tomorrow-theme'
+Plug 'jnurmine/Zenburn'
+Plug 'IngoHeimbach/vim-mac-classic-theme'
+Plug 'vim-scripts/marklar.vim'
+Plug 'vim-scripts/simplewhite.vim'
+Plug 'tomasr/molokai'
 
 " UI
 Plug 'bling/vim-airline' | Plug 'paranoida/vim-airlineish'
