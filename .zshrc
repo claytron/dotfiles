@@ -48,8 +48,10 @@ alias -g sgit='https://git.sixfeetup.com/git/'
 # some pipes
 if [ $UNAME = "Darwin" ]; then
   alias -g S='| sed -Ee'
+  alias -g SP='| sed -n -Ee'
 else
   alias -g S='| sed -re'
+  alias -g SP='| sed -n -re'
 fi
 alias -g A='| awk'
 alias -g G='| grep -Ei'
