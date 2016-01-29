@@ -61,6 +61,8 @@ alias -g L='| less'
 alias -g M='| more'
 alias -g H='| head'
 alias -g T='| tail'
+alias -g W='| wc'
+alias -g WL='| wc -l'
 
 # copying
 if checkPath pbcopy; then
