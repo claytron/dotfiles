@@ -1042,6 +1042,7 @@ let g:javascript_fold=0
 nmap ff :Files<CR>
 nmap fft :Tags<CR>
 nmap ffe :Buffers<CR>
+nmap ffc :Colors<CR>
 nmap ffr :MRUFilesCWD<CR>
 
 " MRU handling, limited to current directory
