@@ -1,4 +1,4 @@
-call plug#begin('~/.vim_plugged')
+call plug#begin('~/.vim/bundle')
 " Language Syntax
 Plug 'chrisbra/csv.vim'
 Plug 'evanmiller/nginx-vim-syntax'

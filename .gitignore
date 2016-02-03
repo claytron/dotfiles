@@ -37,3 +37,4 @@ svn-commit.tmp
 htmlcov/
 .idea/
 .vim/init.vim
+.vim/bundle/
