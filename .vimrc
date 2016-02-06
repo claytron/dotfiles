@@ -982,6 +982,10 @@ let g:tagbar_type_sls = {
 " Delete buffers when i'm done with them in VCSCommand
 let VCSCommandDeleteOnHide = 1
 
+" yankstack                                                    {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nnoremap <C-p> <Plug>yankstack_substitute_older_paste
+nnoremap <silent> tmy :Yanks<CR>
 
 " Signify                                                      {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

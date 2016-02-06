@@ -1,4 +1,7 @@
 call plug#begin('~/.vim/bundle')
+" Yank integration first since it maps all kinds of things
+Plug 'maxbrunsfeld/vim-yankstack'
+
 " Language Syntax
 Plug 'chrisbra/csv.vim'
 Plug 'evanmiller/nginx-vim-syntax'
