@@ -21,7 +21,7 @@
 "    coh             -- Clear the current search highlight
 "    coH             -- Toggles the highlight search
 "    coi             -- Toggles invisible characters
-"    col             -- Clears line length highlight in Python
+"    col             -- Toggles the location list
 "    con             -- Toggles the line numbers
 "    conn            -- Toggles relative line numbers
 "    coq             -- Toggle the quickfix window
@@ -90,10 +90,10 @@
 "
 " Other random stuff                                           {{{2
 " -----------------------------------------------------------------
-"    cqp             -- Previous quickfix change
-"    cqn             -- Next quickfix change
-"    clp             -- Previous location list change
-"    cln             -- Next location list change
+"    ]q              -- Previous quickfix change
+"    [q              -- Next quickfix change
+"    ]w              -- Previous location list change
+"    [w              -- Next location list change
 "    tt              -- Opens up the taglist
 "    Y               -- Yank to the end of the line, no newline
 "    YY              -- Yank the current line, no newline
@@ -217,12 +217,12 @@ nnoremap <silent> tm2 :execute '2match InterestingWord2 /\<<c-r><c-w>\>/'<cr>
 nnoremap <silent> tm3 :execute '3match InterestingWord3 /\<<c-r><c-w>\>/'<cr>
 
 " shortcut to cycle through quickfix list
-nnoremap cqn :cnext<cr>
-nnoremap cqp :cprevious<cr>
+nnoremap ]q :cnext<cr>
+nnoremap [q :cprevious<cr>
 
 " shortcut to cycle through location list
-nnoremap cln :lnext<cr>
-nnoremap clp :lprevious<cr>
+nnoremap ]w :lnext<cr>
+nnoremap [w :lprevious<cr>
 
 " Use sane regexes.
 nnoremap / /\v
@@ -590,6 +590,7 @@ function! QFixToggle(forced)
 endfunction
 
 nnoremap <silent> coq :QFix<CR>
+nnoremap <silent> col :lopen<CR>
 
 " Copy search matches to register                              {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
