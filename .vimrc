@@ -823,12 +823,6 @@ let g:FuzzyFinderOptions.File.smart_bs = 0
 "nmap <leader>t :FufCoverageFile<Space>
 "nmap <leader>ft :FufTag<Space>
 
-" Lodgeit                                                      {{{2
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-let g:lodgeit_url = "https://paste.sixfeetup.com"
-let g:lodgeit_username = "clayton"
-let g:lodgeit_secure = 1
-
 " Mini buf explorer                                            {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
