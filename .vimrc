@@ -1090,6 +1090,9 @@ if has("autocmd")
     " Set up a split window for git verbose commit
     au BufNewFile,BufRead COMMIT_EDITMSG call GitCommitDance()
 
+    " Turn off folding in git windows
+    au Syntax git setlocal nofoldenable
+
     " Zope and Plone files
     " -----------------------------------------------------------------
     " set up zope page templates as the zpt filetype
