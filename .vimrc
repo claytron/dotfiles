@@ -1,5 +1,6 @@
 " My vimrc uses folds
 "
+" zi    toggle all folds (open or closed)
 " zR    open all folds
 " zM    close all folds
 " za    toggle fold at cursor position
