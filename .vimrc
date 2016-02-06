@@ -48,10 +48,11 @@
 "
 " Fuzzy Finder mnemonic                                        {{{2
 " -----------------------------------------------------------------
-"    ff              -- Fuzzy file mode (CtrlP)
-"    fft             -- Fuzzy tag mode (CtrlP)
-"    ffr             -- Fuzzy MRU mode (CtrlP)
-"    ffe             -- Fuzzy buffer mode (CtrlP)
+"    ff              -- Fuzzy file mode
+"    fft             -- Fuzzy tag mode
+"    ffr             -- Fuzzy MRU mode
+"    ffe             -- Fuzzy buffer mode
+"    ffc             -- Fuzzy :colors mode
 "
 " Tell Me mnemonic                                             {{{2
 " -----------------------------------------------------------------
@@ -749,92 +750,6 @@ function! Csv_tsv()
   let b:col=substitute(b:col, ',', '\t', 'g')
 endfunction
 
-" CtrlP                                                        {{{2
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-" use my normal mapping
-let g:ctrlp_map = ''
-
-" load ctrlp extensions
-let g:ctrlp_extensions = ['tag']
-
-" search by filename
-let g:ctrlp_by_filename = 1
-
-" working path setup
-let g:ctrlp_root_markers = ['bootstrap.py', 'buildout.cfg']
-" The above won't work with the omelette since it will open items
-" that are symlinked in other directories.
-let g:ctrlp_working_path_mode = 0
-
-" ctrlp caching
-let g:ctrlp_use_caching = 1
-let g:ctrlp_clear_cache_on_exit = 0
-
-" follow symlinks
-let g:ctrlp_follow_symlinks = 1
-
-" Show hidden files
-let g:ctrlp_show_hidden = 1
-
-" unlimited amount of files
-let g:ctrlp_max_files = 0
-let g:ctrlp_max_depth = 100
-
-" Save the last 1000 files for MRU mode
-let g:ctrlp_mruf_max = 1000
-
-" show more items by default
-let g:ctrlp_max_height = 50
-
-" Only update the search after 1 second
-let g:ctrlp_lazy_update = 1000
-
-" Use the CtrlPTag mode
-"nmap fft :CtrlPTag<CR>
-" Use the CtrlPMRUFiles mode
-"nmap ffr :CtrlPMRUFiles<CR>
-" Use the buffer mode
-"nmap ffe :CtrlPBuffer<CR>
-
-" Fuzzy Finder                                                 {{{2
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-" max results, lot o' files in a buildout :)
-let g:fuzzy_ceiling=35000
-" show full paths
-let g:fuzzy_path_display = 'highlighted_path'
-" ignored files
-let g:fuzzy_ignore = "*.png;*.PNG;*.pyc;*.pyo;*.JPG;*.jpg;*.GIF;*.gif;.svn/**;.git/**;*.mo;.DS_Store;.AppleDouble"
-" available modes
-let g:FuzzyFinderOptions = {
-    \'File': {'mode_available': 1},
-    \'Buffer': {'mode_available': 0},
-    \'Dir': {'mode_available': 0},
-    \'MruFile': {'mode_available': 0},
-    \'MruCmd': {'mode_available': 0},
-    \'Bookmark': {'mode_available': 0},
-    \}
-" Don't delete a full path when using backspace in file mode
-let g:FuzzyFinderOptions.File.smart_bs = 0
-
-" Shortcuts for opening fuzzy finder
-"nmap <leader>ff :FufFile<Space>**/
-"nmap <leader>t :FufCoverageFile<Space>
-"nmap <leader>ft :FufTag<Space>
-
-" Mini buf explorer                                            {{{2
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-" single click open of a buffer
-let g:miniBufExplUseSingleClick = 1
-" use ctrl + tab to cycle through tabs
-let g:miniBufExplMapCTabSwitchBufs = 1
-" better window management
-let g:miniBufExplModSelTarget = 1
-" Don't show dupes for now
-let g:miniBufExplCheckDupeBufs = 0
-
 " NERDTree                                                     {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -874,14 +789,6 @@ let NERDTreeDirArrows=1
 " turn off the mini buf explorer when using the debugger so the
 " windows get initialized properly
 let g:debuggerMiniBufExpl = 1
-
-" Powerline                                                    {{{2
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-let g:Powerline_theme = 'distinguished'
-" show the unicode symbols in the terminal, fancy is set in gui below
-let g:Powerline_symbols = 'fancy'
-" Better unicode dividers that work with Inconsolata
-"let g:Powerline_dividers_override = [ "◤ ", " ⤷ ", " ◥", "⤶ " ]
 
 " Airline                                                      {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -971,12 +878,6 @@ let g:tagbar_type_sls = {
           \ 'n:name'
     \ ]
 \ }
-
-" VCSCommand                                                   {{{2
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-" Delete buffers when i'm done with them in VCSCommand
-let VCSCommandDeleteOnHide = 1
 
 " yankstack                                                    {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

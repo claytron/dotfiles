@@ -59,7 +59,6 @@ Plug 'shime/vim-livedown'
 
 " VCS
 Plug 'tpope/vim-fugitive' | Plug 'int3/vim-extradite'
-Plug 'vim-scripts/vcscommand.vim'
 
 " Random
 Plug 'claytron/RevealExtends'
