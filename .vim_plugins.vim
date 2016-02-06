@@ -66,6 +66,5 @@ Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim' | Plug 'garbas/vim-
 Plug 'mileszs/ack.vim'
 Plug 'thinca/vim-visualstar'
 Plug 'vim-scripts/TaskList.vim'
-Plug 'vim-scripts/YankRing.vim'
 Plug 'yegappan/mru'
 call plug#end()

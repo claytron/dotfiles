@@ -982,16 +982,6 @@ let g:tagbar_type_sls = {
 " Delete buffers when i'm done with them in VCSCommand
 let VCSCommandDeleteOnHide = 1
 
-" Yankring                                                     {{{2
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" Show and hide the yankring history
-nnoremap <silent> tmy :YRShow<CR>
-" Set the maximum number of history
-let g:yankring_max_history = 200
-" Make the yankring set the numbered registers
-let g:yankring_manage_numbered_reg = 1
-" don't leave the history in my home dir
-let g:yankring_history_dir = '$HOME/.backup/vim'
 
 " Signify                                                      {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
