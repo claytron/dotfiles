@@ -982,7 +982,7 @@ if has("autocmd")
     au BufNewFile,BufRead psql.edit.* set filetype=sql
 
     " Set up a split window for git verbose commit
-    au BufNewFile,BufRead COMMIT_EDITMSG call GitCommitDance()
+    "au BufNewFile,BufRead COMMIT_EDITMSG call GitCommitDance()
 
     " Turn off folding in git windows
     au Syntax git setlocal nofoldenable
