@@ -134,8 +134,7 @@ if has('win32') || has('win64')
   set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
 endif
 
-" FreeBSD security advisory for this one...
-set nomodeline
+set modeline
 
 " This setting prevents vim from emulating the original vi's
 " bugs and limitations.
