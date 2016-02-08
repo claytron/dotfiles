@@ -71,6 +71,8 @@
 "    tmm             -- Show me Markdown preview
 "    tmmk            -- Stop Markdown preview
 "    tms             -- Save the file
+"    tmg             -- Git status
+"    tmgd            -- Git diff
 "
 " Window Management                                            {{{2
 " -----------------------------------------------------------------
@@ -949,6 +951,11 @@ function! s:mru_files_for_cwd()
   \  "v:val =~ '^" . getcwd() . "' && v:val !~ '__Tagbar__\\|\\[YankRing]\\|fugitive:\\|NERD_tree\\|^/tmp/\\|.git/'"
   \ ), 'fnamemodify(v:val, ":p:.")')
 endfunction
+
+" fugitive                                                     {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nmap tmg :Gstatus<CR>
+nmap tmgd :Gdiff<CR>
 
 " Auto command settings                                        {{{1
 " -----------------------------------------------------------------
