@@ -8,6 +8,7 @@ $if mode=vi
     set keymap vi-insert
     "jj": vi-movement-mode
     "jk": vi-movement-mode
+    Control-l: clear-screen
 $endif
 # ignore that case biatch
 set completion-ignore-case on
