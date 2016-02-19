@@ -956,6 +956,8 @@ endfunction
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 nmap tmg :Gstatus<CR>
 nmap tmgd :Gdiff<CR>
+nmap tmgl :Glog -100 -- %<CR>
+nmap tmgll :Glog -100 --<CR>
 
 " Auto command settings                                        {{{1
 " -----------------------------------------------------------------
