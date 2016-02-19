@@ -1107,6 +1107,17 @@ map <leader>3 :VSSelectWindowSize ginourmous<CR>
 map <leader>4 :VSSelectWindowSize 1280screen<CR>
 map <leader>5 :VSSelectWindowSize bigandtall<CR>
 
+if has('nvim')
+    " Temporary fix for neovim/neovim#2048
+    " Shoutout to @vilhalmer for the idea for this fix
+    " https://github.com/vilhalmer/System/commit/a40ff262918a83e88fb643bad31dde3c45211bba
+    "
+    " Fix for window movement
+    nmap <bs> <C-w>h
+    " Fix for tab movement
+    nmap <C-w><bs> :tabprevious<CR>
+endif
+
 if has("gui_running")
 
     " turn off the cursor blinking (who thinks that is a good idea?)
