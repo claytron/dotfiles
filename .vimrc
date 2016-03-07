@@ -727,6 +727,12 @@ function! s:ShowTodoList(...)
     let g:ackprg = l:orig_ackprg
 endfunction
 
+" Open help in a tab                                           {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" via http://stackoverflow.com/a/7515418/34530
+cnoreabbrev <expr> help getcmdtype() == ":" && getcmdline() == 'help' ? 'tab help' : 'help'
+cnoreabbrev <expr> h getcmdtype() == ":" && getcmdline() == 'h' ? 'tab help' : 'h'
+
 " Plugins                                                      {{{1
 " -----------------------------------------------------------------
 
