@@ -469,7 +469,7 @@ function! s:TabChanger(...)
     endif
 endfunction
 
-TabStyle space 4
+TabStyle space 2
 
 " Shell as scratch buffer                                      {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
