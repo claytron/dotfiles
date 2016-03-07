@@ -251,10 +251,6 @@ set visualbell t_vb=
 set title
 set titlestring=%f%(\ [%M]%)
 
-" Ignore those annoying "hit enter to coninue" messages
-" XXX there has to be a better way to accomplish this
-set cmdheight=2
-
 " Enhanced command menu ctrl + d to expand directories
 set wildmenu
 " comand <Tab> completion, list matches, then longest common part, then all.
@@ -277,8 +273,6 @@ set scrolloff=4
 " lines to scroll when cursor leaves screen
 set scrolljump=0
 
-" set a custom status line similar to that of ":set ruler"
-set statusline=\ \ \ \ \ line:%l\ column:%c\ \ \ %M%Y%r%=%-14.(%t%)\ %p%%
 " show the statusline in all windows
 set laststatus=2
 
