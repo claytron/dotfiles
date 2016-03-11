@@ -1,0 +1,7 @@
+# Ignore the following rules
+#
+# MD002: Start at any header level
+# MD013: No line length restriction, use Semantic Line Feeds
+#        http://rhodesmill.org/brandon/2012/one-sentence-per-line/
+# MD014: Allow for cli examples to start with dollar sign
+rules "~MD002", "~MD013", "~MD014"
