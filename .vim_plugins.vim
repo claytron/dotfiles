@@ -58,7 +58,7 @@ Plug 'Rykka/InstantRst'
 Plug 'shime/vim-livedown'
 
 " VCS
-Plug 'tpope/vim-fugitive' | Plug 'int3/vim-extradite'
+Plug 'tpope/vim-fugitive' | Plug 'int3/vim-extradite' | Plug 'tpope/vim-rhubarb'
 
 " Random
 Plug 'claytron/RevealExtends'
