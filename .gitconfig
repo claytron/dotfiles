@@ -13,9 +13,15 @@
 [color "diff"]
 	whitespace = red reverse
 	meta = yellow
+	commit = green
 	frag = magenta
 	old = red
 	new = green
+[color "diff-highlight"]
+	oldNormal = red
+	oldHighlight = red 55
+	newNormal = green
+	newHighlight = green 22
 [color "status"]
 	added = yellow
 	changed = green
