@@ -12,3 +12,6 @@ noremap <silent> col :call clearmatches()<CR>
 
 " remove trailing whitespace on save
 autocmd BufWritePre *.{v,c,}py :StripTrailingWhitespaces
+
+" Use 4 space indents
+TabStyle space 4
