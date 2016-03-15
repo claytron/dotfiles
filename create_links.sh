@@ -137,6 +137,16 @@ if [ -d "$HOME/.config" ]; then
     linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
 fi
 
+# Take care of neovim config
+# -----------------------------------------------------------------
+if [ -d "$HOME/.config" ]; then
+    actual_dotfile="$dotfiles_loc/.vim"
+    dotfile="nvim"
+    to_create="$HOME/.config/$dotfile"
+    # actually create/remove the link
+    linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
+fi
+
 # Install the vim plugins
 which vim && vim -c PlugInstall -c qa
 
