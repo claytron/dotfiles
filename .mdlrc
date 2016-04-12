@@ -4,4 +4,5 @@
 # MD013: No line length restriction, use Semantic Line Feeds
 #        http://rhodesmill.org/brandon/2012/one-sentence-per-line/
 # MD014: Allow for cli examples to start with dollar sign
-rules "~MD002", "~MD013", "~MD014"
+# MD034: Who cares if urls are bound by angle brackets
+rules "~MD002", "~MD013", "~MD014", "~MD034"
