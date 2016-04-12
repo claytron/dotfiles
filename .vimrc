@@ -811,8 +811,9 @@ let g:syntastic_aggregate_errors=1
 " Be specific about what checkers to use
 let g:syntastic_python_checkers=['flake8']
 let g:syntastic_ruby_checkers=['rubocop', 'mri']
-let g:syntastic_javascript_checkers=['jshint']
+let g:syntastic_javascript_checkers=['eslint']
 let g:syntastic_yaml_checkers=['yamlxs']
+let g:syntastic_slim_checkers=['slim_lint']
 
 " Tagbar                                                       {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
