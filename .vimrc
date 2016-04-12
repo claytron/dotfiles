@@ -259,6 +259,9 @@ set wildmode=list:longest,full
 set wildignore+=*.pyc,*.pyo,CVS,.svn,.git,*.mo,.DS_Store,*.pt.cache,*.Python,*.o,*.lo,*.la,*~,.AppleDouble,*/blobstorage/*,*/Paste*-*.egg/*
 
 map <silent> cos :set spell!<CR>
+if version >= 700
+  set spl=en spell
+endif
 set nospell
 
 " This setting will cause the cursor to very briefly jump to a
