@@ -15,7 +15,6 @@
 "
 " Change Option mnemonic                                       {{{2
 " -----------------------------------------------------------------
-"    coa             -- Starts an ack search in the CWD
 "    coc             -- Switch between light and dark colors
 "    coe             -- Show current :Errors
 "    coh             -- Clear the current search highlight
@@ -56,6 +55,7 @@
 "
 " Tell Me mnemonic                                             {{{2
 " -----------------------------------------------------------------
+"    tma             -- Starts an ack search in the CWD
 "    tmf             -- Shows the current file in the NERDTree. This
 "                       is the TextMate equivalent of ctrl+cmd+r
 "    tmi             -- Toggle indent guides
@@ -738,7 +738,7 @@ filetype plugin indent on  " enables filetype specific plugins
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 " shortcut for ack search
-map <leader>a :Ack!<Space>
+map tma :Ack!<Space>
 " highlight search term matches
 let g:ackhighlight = 1
 
