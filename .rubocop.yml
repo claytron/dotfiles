@@ -1,0 +1,31 @@
+AllCops:
+  DisplayCopNames: true
+
+Style/Documentation:
+  Enabled: false
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/RedundantSelf:
+  Enabled: false
+
+Style/IndentationWidth:
+  Enabled: false
+
+# Alignment so that changing var / method does not change all lines in diff
+Style/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+Style/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Style/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+Lint/EndAlignment:
+  AlignWith: variable
+  AutoCorrect: true
