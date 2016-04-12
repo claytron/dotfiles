@@ -164,14 +164,11 @@ alias zt='z test'
 alias vssh="vagrant ssh"
 
 vs() {
-    vagrant ssh -c "rvm use default@tb && cd /vagrant && $1"
+    vagrant ssh -c "cd /vagrant && $*"
 }
-alias vsss="vs 'zeus start'"
-alias vss="vs 'zeus server Puma -p 3001'"
-alias vsc="vs 'zeus console'"
-alias vsr="vs 'zeus rake'"
-alias vst="vs 'zeus test'"
-alias vsd="vs 'zeus dbconsole'"
+vsbe() {
+    vagrant ssh -c "cd /vagrant && bundle exec $*"
+}
 
 # I have a folder of custom made fortunes...
 if checkPath fortune && [ -d /opt/local/share/games/fortune/comedy ]; then
