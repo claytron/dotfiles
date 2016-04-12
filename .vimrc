@@ -169,6 +169,9 @@ nnoremap tms :w<CR>
 " Set the shell to bash, zsh and vim don't seem to play nice
 set shell=bash
 
+" :terminal settings
+let g:terminal_scrollback_buffer_size=100000
+
 " hide the backup and swap files
 set backupdir=~/.backup/vim,.,/tmp
 set directory=~/.backup/vim/swap,.,/tmp
