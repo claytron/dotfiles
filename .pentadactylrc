@@ -180,6 +180,11 @@ map -builtin <silent> bd :open bkm-delicious<CR>
 " Start up the dev meeting
 map -builtin <silent> bdm :tabopen bkm-dev-meeting<CR>
 
+" Shortcuts for GitHub Pull Requests
+map -builtin <silent> bpr :tabopen bkm-prs-review<CR>
+map -builtin <silent> bpq :tabopen bkm-prs-qa<CR>
+
+
 " Add video on the page to Plex
 map -builtin <silent> bp :open bkm-plex<CR>
 
