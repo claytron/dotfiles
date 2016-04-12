@@ -72,6 +72,7 @@
 "    tmmk            -- Stop Markdown preview
 "    tms             -- Save the file
 "    tmg             -- Git status
+"    tmgg            -- Git grep
 "    tmgd            -- Git diff
 "
 " Window Management                                            {{{2
@@ -957,6 +958,7 @@ endfunction
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 nmap tmg :Gstatus<CR>
 nmap tmgd :Gdiff<CR>
+nmap tmgg :Ggrep -Ei<space>
 nmap tmgl :Glog -100 -- %<CR>
 nmap tmgll :Glog -100 --<CR>
 
