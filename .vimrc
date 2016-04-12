@@ -439,7 +439,7 @@ endfunction
 ColorSwitcher g:dark_theme
 
 " switch between light and dark colors
-map <silent> <leader>c :ColorSwitcher<CR>
+map <silent> coc :ColorSwitcher<CR>
 
 " Custom functions and commands                                {{{1
 " -----------------------------------------------------------------
