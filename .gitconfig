@@ -45,6 +45,8 @@
 	bak = !git branch `git branch | grep '*' | sed -e 's/* /BAK_/'`
 # Branch switching / creation
 	co = checkout
+# In the case where something like solano has the same branch...
+	coo = !sh -c 'git checkout -b $1 origin/$1' -
 	cof = !git checkout $(git branch | grep -v '*' | fzf)
 	cob = checkout -b
 # Diffing
