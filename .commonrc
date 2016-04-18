@@ -7,8 +7,6 @@ alias what_linux="cat /etc/issue"
 
 # switch over to the simple prompt
 alias sp='source ~/.zshprompt_simple'
-# re link all the conf files
-alias qs='$HOME/.dotfiles/create_links.sh'
 
 # prefer vim over vi
 if checkPath nvim; then

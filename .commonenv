@@ -9,6 +9,7 @@ source ~/.commonfuncs
 # like the one in .zshenv
 new_path=""
 expected_path=(
+  "$HOME/.dotfiles"
   ./bin
   "$HOME/bin/$MACHTYPE-$OSTYPE"
   "$HOME/bin"

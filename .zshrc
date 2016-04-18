@@ -27,8 +27,6 @@ fi
 # set up common aliases between shells
 source $HOME/.commonrc
 
-alias qs='~/.dotfiles/create_links.sh;source $HOME/.dotfiles/.zshrc'
-
 ## global aliases
 # disable the plonesite part in a buildout run, example: $ bin/buildout -N psef
 alias -g psef="plonesite:enabled=false"

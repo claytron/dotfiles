@@ -66,12 +66,13 @@ $ ssh some-machine
 dotfiles updated:
 U .dotfiles/.bashrc
 At revision 10712.
-
-$ qs
 ```
 
-Since `qs` is an alias for `.dotfiles/create_links.sh` the latest confs are in
-place.
+This puts the latest confs are in place and activates the changes.
+
+```
+$ create_links.sh && source ~/.zshrc
+```
 
 If you ever want to remove all the symlinks you can use the `create_links.sh`
 script by passing it the `remove` argument
