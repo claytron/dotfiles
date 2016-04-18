@@ -969,6 +969,18 @@ nmap tmgg :Ggrep -Ei<space>
 nmap tmgl :Glog -100 -- %<CR>
 nmap tmgll :Glog -100 --<CR>
 
+" Tmuxline                                                     {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Add the current window flag
+let g:tmuxline_preset = {
+    \'a': '#S',
+    \'win': '#I#F #W ',
+    \'cwin': '#I#F #W',
+    \'y': '%Y-%m-%d %H:%M',
+    \'z': '#h',
+    \'options' : {'status-justify' : 'left'},
+    \}
+
 " Auto command settings                                        {{{1
 " -----------------------------------------------------------------
 
