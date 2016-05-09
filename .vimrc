@@ -719,6 +719,8 @@ endfunction
 " via http://stackoverflow.com/a/7515418/34530
 cnoreabbrev <expr> help getcmdtype() == ":" && getcmdline() == 'help' ? 'tab help' : 'help'
 cnoreabbrev <expr> h getcmdtype() == ":" && getcmdline() == 'h' ? 'tab help' : 'h'
+cnoreabbrev <expr> helpgrep getcmdtype() == ":" && getcmdline() == 'helpgrep' ? 'tab helpgrep' : 'helpgrep'
+cnoreabbrev <expr> helpg getcmdtype() == ":" && getcmdline() == 'helpg' ? 'tab helpg' : 'helpg'
 
 " Plugins                                                      {{{1
 " -----------------------------------------------------------------
