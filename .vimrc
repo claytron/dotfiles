@@ -365,9 +365,6 @@ let python_highlight_all=1
 " gui and terminal compatible color scheme
 set t_Co=256
 set background=dark
-" set global variables that will define the colorscheme
-let g:light_theme='solarized'
-let g:dark_theme='solarized'
 
 " Use the "original" molokai theme colors instead of "dark"
 let g:molokai_original=1
@@ -390,25 +387,16 @@ function! s:extraHighlights()
     hi IndentGuides                   guibg=#373737            ctermbg=237
 endfunction
 
-" A function to toggle between light and dark colors
+" A function to toggle between light and dark colors, or switch to
+" the given theme.
 function! s:colorSwitch(...)
-    " function to switch colorscheme
-    function! ChangeMe(theme)
-        execute('colorscheme '.a:theme)
-        try
-            execute('colorscheme '.a:theme.'_custom')
-        catch /E185:/
-            " There was no '_custom' scheme...
-        endtry
-    endfunction
-
-    " Change to the specified theme
+    " Change to the specified theme, if there were args
     if eval('a:1') != ""
         " check to see if we are passing in an existing var
         if exists(a:1)
-            call ChangeMe(eval(a:1))
+            execute('colorscheme '.eval(a:1))
         else
-            call ChangeMe(a:1)
+            execute('colorscheme '.a:1)
         endif
         " Put the extra highlights back in place
         call s:extraHighlights()
@@ -419,10 +407,8 @@ function! s:colorSwitch(...)
     " This also takes care of the solarized scheme
     if &background == 'dark'
         set background=light
-        call ChangeMe(g:light_theme)
     elseif &background == 'light'
         set background=dark
-        call ChangeMe(g:dark_theme)
     endif
 
     " Put the extra highlights back in place
@@ -442,7 +428,7 @@ function! s:completeColorSchemes(A,L,P)
 endfunction
 
 " set the colorscheme
-ColorSwitcher g:dark_theme
+ColorSwitcher solarized
 
 " switch between light and dark colors
 map <silent> coc :ColorSwitcher<CR>
