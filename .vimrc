@@ -257,7 +257,7 @@ set titlestring=%f%(\ [%M]%)
 
 " Enhanced command menu ctrl + d to expand directories
 set wildmenu
-" comand <Tab> completion, list matches, then longest common part, then all.
+" command <Tab> completion, list matches, then longest common part, then all.
 set wildmode=list:longest,full
 set wildignore+=*.pyc,*.pyo,CVS,.svn,.git,*.mo,.DS_Store,*.pt.cache,*.Python,*.o,*.lo,*.la,*~,.AppleDouble,*/blobstorage/*,*/Paste*-*.egg/*
 
@@ -792,7 +792,7 @@ let NERDTreeChDirMode=2
 " use fancy ass arrows
 let NERDTreeDirArrows=1
 
-" php debugger                                                  {{{2
+" php debugger                                                 {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " turn off the mini buf explorer when using the debugger so the
 " windows get initialized properly
@@ -1085,7 +1085,7 @@ set list
 " toggle invisible characters
 noremap <silent> coi :set list!<CR>
 
-" Window management settings                                    {{{1
+" Window management settings                                   {{{1
 " -----------------------------------------------------------------
 
 " turn on writeroom
