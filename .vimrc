@@ -364,7 +364,7 @@ let python_highlight_all=1
 
 " gui and terminal compatible color scheme
 set t_Co=256
-set background=dark
+set background=light
 
 " Use the "original" molokai theme colors instead of "dark"
 let g:molokai_original=1
@@ -428,7 +428,7 @@ function! s:completeColorSchemes(A,L,P)
 endfunction
 
 " set the colorscheme
-ColorSwitcher solarized
+ColorSwitcher PaperColor
 
 " switch between light and dark colors
 map <silent> coc :ColorSwitcher<CR>
