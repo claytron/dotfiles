@@ -960,9 +960,9 @@ nmap tmgll :Glog -100 --<CR>
 " Add the current window flag
 let g:tmuxline_preset = {
     \'a': '#S',
-    \'win': '#I#F #W ',
-    \'cwin': '#I#F #W',
-    \'y': '%Y-%m-%d %H:%M',
+    \'win': ['#I#F', '#W'],
+    \'cwin': ['#I#F', '#W'],
+    \'y': ['%Y-%m-%d', '%H:%M'],
     \'z': '#h',
     \'options' : {'status-justify' : 'left'},
     \}
