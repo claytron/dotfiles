@@ -296,8 +296,6 @@ if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile
 # Chruby
 if [ -d /usr/local/share/chruby ]; then
     source /usr/local/share/chruby/chruby.sh
-    # use a default version
-    chruby 2.2.3
 fi
 
 ## Functions
