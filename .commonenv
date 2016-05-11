@@ -26,6 +26,7 @@ expected_path=(
   /opt/python/bin
   /opt/local/bin
   /opt/local/sbin
+  /opt/local/lib/postgresql94/bin
   /opt/local/lib/postgresql93/bin
   /opt/local/lib/postgresql91/bin
   /opt/local/lib/postgresql90/bin
