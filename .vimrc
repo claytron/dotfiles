@@ -924,7 +924,7 @@ map cot :TabooRename<Space>
 
 " Javascript                                                   {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-let g:javascript_fold=0
+let g:javascript_enable_domhtmlcss = 1
 
 " fzf                                                          {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
