@@ -20,6 +20,8 @@ if defined?(PryByebug)
   Pry.commands.alias_command 'return', 'finish'
   Pry.commands.alias_command 'r', 'finish'
   Pry.commands.alias_command 'f', 'finish'
+  Pry.commands.alias_command 'l', 'whereami'
+  Pry.commands.alias_command 'list', 'whereami'
   Pry.commands.alias_command 'q', 'exit-program'
   Pry.commands.alias_command 'quit', 'exit-program'
 end
