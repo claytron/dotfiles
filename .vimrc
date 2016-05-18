@@ -17,6 +17,7 @@
 " -----------------------------------------------------------------
 "    coc             -- Switch between light and dark colors
 "    coe             -- Show current :Errors
+"    cog             -- Toggle the gutter and clear signs
 "    coh             -- Clear the current search highlight
 "    coH             -- Toggles the highlight search
 "    coi             -- Toggles invisible characters
@@ -441,6 +442,28 @@ ColorSwitcher PaperColor
 
 " switch between light and dark colors
 map <silent> coc :ColorSwitcher<CR>
+
+" Toggle the gutter
+function! s:toggleGutterSigns()
+  " Toggle the signify plugin
+  SignifyToggle
+
+  " Take care of syntastic
+  if g:syntastic_enable_signs == 1
+    " clear the signs
+    SyntasticReset
+    let g:syntastic_enable_signs = 0
+  else
+    let g:syntastic_enable_signs = 1
+    " Run a check to get the signs back
+    SyntasticCheck
+  endif
+endfunction
+
+command! ToggleGutterSigns :call s:toggleGutterSigns()
+
+" Toggle the gutter on and off
+map <silent> cog :ToggleGutterSigns<cr>
 
 " Custom functions and commands                                {{{1
 " -----------------------------------------------------------------
