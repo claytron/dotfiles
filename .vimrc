@@ -380,10 +380,7 @@ let g:zenburn_alternate_Error = 1
 let g:solarized_termcolors=16
 let g:solarized_diffmode='high'
 
-" Command to call the ColorSwitch funciton
-command! -nargs=? -complete=customlist,s:completeColorSchemes ColorSwitcher :call s:colorSwitch(<q-args>)
-
-" Function to quickly apply custom highlights
+" Function to quickly apply and reset custom highlights
 function! s:extraHighlights()
     " Syntax highlights for the mappings set above
     hi InterestingWord1 guifg=#000000 guibg=#FF4300 ctermfg=16 ctermbg=196
@@ -437,11 +434,14 @@ function! s:completeColorSchemes(A,L,P)
     return filter(colorscheme_names, 'v:val =~ "^' . a:A . '"')
 endfunction
 
-" set the colorscheme
-ColorSwitcher PaperColor
+" Command to call the ColorSwitch funciton
+command! -nargs=? -complete=customlist,s:completeColorSchemes ColorSwitcher :call s:colorSwitch(<q-args>)
 
 " switch between light and dark colors
 map <silent> coc :ColorSwitcher<CR>
+
+" set the colorscheme
+ColorSwitcher PaperColor
 
 " Toggle the gutter
 function! s:toggleGutterSigns()
