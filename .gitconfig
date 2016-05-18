@@ -52,6 +52,10 @@
 	cod = checkout dev
 # Diffing
 	df = diff
+# Alternatively use vimdiff
+	dft = difftool
+# Side-by-side, if icdiff is available
+	dfts = difftool --tool=icdiff
 	dfs = diff --staged
 # Better log commands
 	lg = log --graph --pretty=format:'%Cred%h%Creset %Cgreen(%cr)%Creset %Cblue%an%Creset %s %C(yellow)%d%Creset' --abbrev-commit --date=relative
@@ -90,5 +94,14 @@
 	autosetuprebase = always
 [diff]
 	algorithm = patience
+  tool = vimdiff
+[difftool]
+	prompt = false
+[difftool "colordiff"]
+# Side by side, full file
+	cmd = colordiff -ydw -W 160 $LOCAL $REMOTE
+[difftool "icdiff"]
+# Side by side, with only the context of the changes, more advanced highlighting
+	cmd = icdiff --head=5000 --highlight --line-numbers -L \"$BASE\" -L \"$REMOTE\" \"$LOCAL\" \"$REMOTE\"
 [push]
 	default = current
