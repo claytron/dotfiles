@@ -221,6 +221,9 @@ map cov :tabedit $MYVIMRC<CR>
 nnoremap <silent> tm1 :execute 'match InterestingWord1 /\<<c-r><c-w>\>/'<cr>
 nnoremap <silent> tm2 :execute '2match InterestingWord2 /\<<c-r><c-w>\>/'<cr>
 nnoremap <silent> tm3 :execute '3match InterestingWord3 /\<<c-r><c-w>\>/'<cr>
+" Re-initialize interesting words to select different ones.
+nnoremap <silent> tm0 :ExtraHighlightsInit<cr>
+
 
 " shortcut to cycle through quickfix list
 nnoremap ]q :cnext<cr>
@@ -379,13 +382,19 @@ let g:solarized_diffmode='high'
 " Command to call the ColorSwitch funciton
 command! -nargs=? -complete=customlist,s:completeColorSchemes ColorSwitcher :call s:colorSwitch(<q-args>)
 
+" Function to quickly apply custom highlights
 function! s:extraHighlights()
     " Syntax highlights for the mappings set above
     hi InterestingWord1 guifg=#000000 guibg=#FF4300 ctermfg=16 ctermbg=196
     hi InterestingWord2 guifg=#000000 guibg=#53FF00 ctermfg=16 ctermbg=82
     hi InterestingWord3 guifg=#000000 guibg=#FF74F8 ctermfg=16 ctermbg=165
     hi IndentGuides                   guibg=#373737            ctermbg=237
+    match none
+    2match none
+    3match none
 endfunction
+
+command! ExtraHighlightsInit :call s:extraHighlights()
 
 " A function to toggle between light and dark colors, or switch to
 " the given theme.
