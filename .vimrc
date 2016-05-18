@@ -911,7 +911,9 @@ let g:tagbar_type_sls = {
 
 " yankstack                                                    {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-nnoremap <C-p> <Plug>yankstack_substitute_older_paste
+let g:yankstack_map_keys = 0
+imap <C-f> <Plug>yankstack_substitute_older_paste
+imap <C-g> <Plug>yankstack_substitute_newer_paste
 nnoremap <silent> tmy :Yanks<CR>
 
 " Signify                                                      {{{2
