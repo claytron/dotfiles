@@ -1008,7 +1008,7 @@ let g:tmuxline_preset = {
 
 if has("autocmd")
     " automatically re-source the vimrc on save
-    "autocmd bufwritepost .vimrc source $MYVIMRC
+    autocmd bufwritepost .vimrc source $MYVIMRC
 
     " jinja syntax automagically
     au BufNewFile,BufRead *.jinja set filetype=jinja
