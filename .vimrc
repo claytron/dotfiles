@@ -713,7 +713,7 @@ endfunction
 
 " Taken from command line fu.
 " http://www.commandlinefu.com/commands/view/9425
-command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
+command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
 " Git Commit Dance                                             {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
