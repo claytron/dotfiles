@@ -15,7 +15,7 @@ expected_path=(
   "$HOME/bin"
   "$HOME/bin/git_achievements"
   "$HOME/.rbenv/shims"
-  "$HOME/.rbenv/versions/2.2.2/bin"
+  "$HOME/.rbenv/versions/2.3.1/bin"
   "$HOME/.rvm/bin"
   "$HOME/.gem/ruby/1.8/bin"
   "$HOME/Documents/android-sdk-mac-x86_64-20140321/tools"
