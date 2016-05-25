@@ -21,6 +21,7 @@ expected_path=(
   "$HOME/Documents/android-sdk-mac-x86_64-20140321/tools"
   "$HOME/Documents/android-sdk-mac-x86_64-20140321/platform-tools"
   "$HOME/node_modules/jshint/bin"
+  /usr/local/texlive/2015/bin/x86_64-darwin
   /opt/php53/bin
   /opt/local/apache2/bin
   /opt/python/bin
