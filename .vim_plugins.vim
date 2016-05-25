@@ -44,6 +44,7 @@ Plug 'vim-scripts/marklar.vim'
 Plug 'vim-scripts/simplewhite.vim'
 Plug 'tomasr/molokai'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'sonjapeterson/1989.vim'
 
 " UI
 Plug 'vim-airline/vim-airline' | Plug 'paranoida/vim-airlineish' | Plug 'vim-airline/vim-airline-themes'
