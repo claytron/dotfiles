@@ -155,7 +155,9 @@ let g:mapleader = ","
 set timeoutlen=350
 
 " set the default encoding
-set enc=utf-8
+if !has('nvim')
+  set enc=utf-8
+endif
 
 " only increment numbers and letters
 set nrformats=""
