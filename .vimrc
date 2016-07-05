@@ -756,6 +756,20 @@ cnoreabbrev <expr> h getcmdtype() == ":" && getcmdline() == 'h' ? 'tab help' : '
 cnoreabbrev <expr> helpgrep getcmdtype() == ":" && getcmdline() == 'helpgrep' ? 'tab helpgrep' : 'helpgrep'
 cnoreabbrev <expr> helpg getcmdtype() == ":" && getcmdline() == 'helpg' ? 'tab helpg' : 'helpg'
 
+" Search i18n-tasks for a string                               {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function! s:I18nTasksFind(...)
+  " TODO: Check for bundle or the command itself
+  execute("setlocal makeprg=bundle\\ exec\\ i18n-tasks\\ find\\ '". a:1 ."'")
+  " TODO: Handle the multi-line format properly
+  setlocal errorformat=\ \ %f:%l\ %m
+  " TODO: Make this async...
+  silent make
+  copen
+endfunction
+
+command! -nargs=1 I18nTasksFind :call s:I18nTasksFind(<q-args>)
+
 " Plugins                                                      {{{1
 " -----------------------------------------------------------------
 
