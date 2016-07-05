@@ -1174,6 +1174,14 @@ map <C-W><C-E> <C-W>W
 map <C-W>- <C-W>s
 map <C-W>\| <C-W>v
 
+" Deal with neovim terminals and window movement
+if has('nvim')
+  tnoremap <C-h> <C-\><C-n><C-h>
+  tnoremap <C-j> <C-\><C-n><C-j>
+  tnoremap <C-k> <C-\><C-n><C-k>
+  tnoremap <C-l> <C-\><C-n><C-l>
+endif
+
 " GUI settings                                                 {{{1
 " -----------------------------------------------------------------
 
