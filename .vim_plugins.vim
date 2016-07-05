@@ -58,6 +58,7 @@ Plug 'mhinz/vim-signify'
 Plug 'mtth/scratch.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
+Plug 'janko-m/vim-test'
 
 " File Previews
 Plug 'Rykka/InstantRst'

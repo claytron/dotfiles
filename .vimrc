@@ -46,6 +46,12 @@
 "    ftv             -- Change current filetype to Vim
 "    ftw             -- Change current filetype to Wiki
 "
+" TeSt mnemonic
+" -----------------------------------------------------------------
+"    tsl             -- :TestNearest
+"    ts;             -- :TestFile
+"    ts'             -- :TestSuite
+"
 " Fuzzy Finder mnemonic                                        {{{2
 " -----------------------------------------------------------------
 "    ff              -- Fuzzy file mode
@@ -1018,6 +1024,18 @@ let g:tmuxline_preset = {
     \'z': '#h',
     \'options' : {'status-justify' : 'left'},
     \}
+
+" vim-test                                                     {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+if has('nvim')
+  let test#strategy = "neovim"
+
+  " All that madness at the end is to get out of :terminal and back to
+  " the file we started in
+  noremap tsl :TestNearest<CR><C-\><C-n>12<C-w>_<C-w><C-p>
+  noremap ts; :TestFile<CR><C-\><C-n>12<C-w>_<C-w><C-p>
+  noremap ts' :TestSuite<CR><C-\><C-n>12<C-w>_<C-w><C-p>
+endif
 
 " Auto command settings                                        {{{1
 " -----------------------------------------------------------------
