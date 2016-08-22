@@ -376,7 +376,7 @@ let python_highlight_all=1
 
 " gui and terminal compatible color scheme
 set t_Co=256
-set background=light
+set background=dark
 
 " Use the "original" molokai theme colors instead of "dark"
 let g:molokai_original=1
