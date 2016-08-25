@@ -1051,7 +1051,7 @@ nmap tgll :Glog -100 --<CR>
 
 " History of additions / removals of the search word in diffs
 " In the current file:
-nmap tgh :Glog --pickaxe-regex -S
+nmap tgh :Glog --pickaxe-regex -S -- %<Left><Left><Left><Left><Left>
 " Across all files:
 nmap tghh :Glog --pickaxe-regex -S --<Left><Left><Left>
 
