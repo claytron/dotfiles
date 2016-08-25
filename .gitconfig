@@ -95,6 +95,7 @@
 [diff]
 	algorithm = patience
   tool = vimdiff
+	renameLimit = 1000
 [difftool]
 	prompt = false
 [difftool "colordiff"]
