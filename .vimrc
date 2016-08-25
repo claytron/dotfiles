@@ -319,9 +319,6 @@ set linebreak
 " Scroll in smaller increments when going horizontal
 set sidescroll=5
 
-" Set the characters showing horizontal scrolling
-set listchars+=precedes:←,extends:→
-
 " toggle line wrapping on/off
 map <silent> cow :set wrap!<CR>
 
@@ -1136,8 +1133,12 @@ nnoremap YY ^yg_
 " sort versions in a versions.cfg
 map cuv /\[versions\]<CR>jVG:g/^#/d<CR>gv:g/^$/d<CR>gv:sort i<CR>:w<CR>
 
+" Set the fill characters so they aren't annoying
+set fillchars=vert:┃,diff:·,fold:·
+
 " set up the invisible characters
-set listchars+=tab:▸\ ,eol:¬
+set listchars=tab:▸\ ,eol:¬,trail:·,nbsp:·,extends:›,precedes:‹
+
 " show invisible characters by default
 set list
 " toggle invisible characters
