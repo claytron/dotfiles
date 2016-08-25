@@ -78,6 +78,7 @@
 "    tmm             -- Show me Markdown preview
 "    tmmk            -- Stop Markdown preview
 "    tms             -- Save the file
+"    tmg             -- Toggle signify folds (show only vcs changes)
 "
 "    tg              -- Git status (tmg was too hard, so tg)
 "    tgg             -- Git grep
@@ -963,6 +964,9 @@ nnoremap <silent> tmy :Yanks<CR>
 
 " Only show these VCS differences
 let g:signify_vcs_list = ['git', 'hg', 'svn']
+
+" Toggle signify folds
+nmap <silent> tmg :SignifyFold!<CR>
 
 " Markdown                                                     {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
