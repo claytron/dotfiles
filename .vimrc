@@ -271,6 +271,8 @@ set titlestring=%f%(\ [%M]%)
 set wildmenu
 " command <Tab> completion, list matches, then longest common part, then all.
 set wildmode=list:longest,full
+" Ignore case when tab completing
+set wildignorecase
 set wildignore+=*.pyc,*.pyo,CVS,.svn,.git,*.mo,.DS_Store,*.pt.cache,*.Python,*.o,*.lo,*.la,*~,.AppleDouble,*/blobstorage/*,*/Paste*-*.egg/*
 
 map <silent> cos :set spell!<CR>
