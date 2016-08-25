@@ -1010,6 +1010,12 @@ nmap ffe :Buffers<CR>
 nmap ffc :Colors<CR>
 nmap ffr :MRUFilesCWD<CR>
 
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
 " MRU handling, limited to current directory
 command! MRUFilesCWD call fzf#run({
 \  'source':  s:mru_files_for_cwd(),
