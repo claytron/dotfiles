@@ -469,7 +469,7 @@ command! -nargs=? -complete=customlist,s:completeColorSchemes ColorSwitcher :cal
 map <silent> coc :ColorSwitcher<CR>
 
 " set the colorscheme
-ColorSwitcher PaperColor
+ColorSwitcher solarized
 
 " Toggle the gutter
 function! s:toggleGutterSigns()
