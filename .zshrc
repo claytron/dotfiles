@@ -255,10 +255,9 @@ if [ -z $MY_ZSH_PLUGINS_LOADED ] && is-at-least 4.3; then
     # Set up zsh highlighters
     ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor root)
     # set up command line syntax highlighting overrides
-    ZSH_HIGHLIGHT_STYLES[alias]='fg=white,bg=green'
     ZSH_HIGHLIGHT_STYLES[builtin]='fg=green,bold'
     ZSH_HIGHLIGHT_STYLES[function]='fg=green,underline'
-    ZSH_HIGHLIGHT_STYLES[alias]='fg=white,bg=green'
+    ZSH_HIGHLIGHT_STYLES[alias]='fg=black,bg=green'
     ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=yellow'
     ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=yellow'
     ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=yellow,underline'
