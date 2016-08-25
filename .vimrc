@@ -235,12 +235,12 @@ nnoremap <silent> tm0 :ExtraHighlightsInit<cr>
 
 
 " shortcut to cycle through quickfix list
-nnoremap ]q :cnext<cr>
-nnoremap [q :cprevious<cr>
+nnoremap [q :cnext<cr>
+nnoremap ]q :cprevious<cr>
 
 " shortcut to cycle through location list
-nnoremap ]w :lnext<cr>
-nnoremap [w :lprevious<cr>
+nnoremap [w :lnext<cr>
+nnoremap ]w :lprevious<cr>
 
 " Use sane regexes.
 nnoremap / /\v
