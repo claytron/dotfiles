@@ -6,7 +6,7 @@ from fabric.api import local
 from fabric.utils import abort
 from fabric.contrib.files import exists
 
-env.dotfiles = 'https://svn.sixfeetup.com/svn/private/claytron/dotfiles/trunk'
+env.dotfiles = 'git://github.com/claytron/dotfiles'
 env.dotfiles_local = "$HOME/.dotfiles"
 
 
@@ -28,7 +28,7 @@ def push_dotfiles(rsync=None, dry=None, port=None):
     if rsync is None and exists(".dotfiles"):
         abort("The .dotfiles directory already exists")
     if rsync is None:
-        run('svn co %s .dotfiles' % env.dotfiles)
+        run('git clone %s .dotfiles' % env.dotfiles)
     else:
         options = []
         if dry is not None:
@@ -58,6 +58,6 @@ def remove_dotfiles(ignore=None):
     msg = "There are local changes, commit or revert before continuing"
     if output and ignore is None:
         abort(msg)
-    run('svn up .dotfiles')
+    run('git status .dotfiles')
     run('.dotfiles/create_links.sh cleanup')
     run('rm -rf .dotfiles')
