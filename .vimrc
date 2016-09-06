@@ -84,6 +84,7 @@
 "    tgg             -- Git grep
 "    //              -- Git grep (double tap to start)
 "    tgd             -- Git diff
+"    tgb             -- Git blame
 "    tgl             -- Git log on the current file (back 100)
 "    tgll            -- Git log on the current project (back 100)
 "    tgh             -- Git log search looking for + / - of term
@@ -1040,6 +1041,8 @@ endfunction
 nmap tg :Gstatus<CR>
 
 nmap tgd :Gdiff<CR>
+
+nmap tgb :Gblame<CR>
 
 " Search the current working copy
 nmap tgg :Ggrep -Ei<space>
