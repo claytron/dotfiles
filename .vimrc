@@ -1087,6 +1087,9 @@ if has('nvim')
   noremap ts' :TestSuite<CR><C-\><C-n>12<C-w>_<C-w><C-p>
 endif
 
+" Ignore deprecation warnings so I can see the results
+let test#ruby#rspec#options = '--deprecation-out /dev/null'
+
 " Auto command settings                                        {{{1
 " -----------------------------------------------------------------
 
