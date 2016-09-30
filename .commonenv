@@ -126,6 +126,13 @@ fi
 # get crazy with python, and the cheese whiz
 export PYTHONSTARTUP=$HOME/.pystartup
 
+# Make sure ruby-build gets access to readline
+# To check if it worked, do the following:
+#   $ ruby -rreadline -e 'puts Readline::VERSION'
+#   6.3
+# You should see a version number and NOT 'editline'
+[ -d "/opt/local" ] && export RUBY_CONFIGURE_OPTS="--with-readline-dir=/opt/local"
+
 # pip settings
 export PIP_FIND_LINKS="https://dist.sixfeetup.com/public/"
 
