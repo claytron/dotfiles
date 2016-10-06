@@ -1087,6 +1087,10 @@ if has('nvim')
   noremap tsl :TestNearest<CR><C-\><C-n>12<C-w>_<C-w><C-p>
   noremap ts; :TestFile<CR><C-\><C-n>12<C-w>_<C-w><C-p>
   noremap ts' :TestSuite<CR><C-\><C-n>12<C-w>_<C-w><C-p>
+else
+  noremap tsl :TestNearest<CR>
+  noremap ts; :TestFile<CR>
+  noremap ts' :TestSuite<CR>
 endif
 
 " Ignore deprecation warnings so I can see the results
