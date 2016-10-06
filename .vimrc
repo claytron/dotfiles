@@ -79,6 +79,8 @@
 "    tmmk            -- Stop Markdown preview
 "    tms             -- Save the file
 "    tmg             -- Toggle signify folds (show only vcs changes)
+"    tmt             -- Show translations for the current key (rails)
+"    tmte            -- Expand the current YAML key (rails)
 "
 "    tg              -- Git status (tmg was too hard, so tg)
 "    tgg             -- Git grep
@@ -1089,6 +1091,11 @@ endif
 
 " Ignore deprecation warnings so I can see the results
 let test#ruby#rspec#options = '--deprecation-out /dev/null'
+
+" localorie                                                    {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nnoremap <silent> tmt :call localorie#translate()<CR>
+nnoremap <silent> tmte :call localorie#expand_key()<CR>
 
 " Auto command settings                                        {{{1
 " -----------------------------------------------------------------
