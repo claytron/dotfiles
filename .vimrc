@@ -256,6 +256,7 @@ nnoremap ]w :lprevious<cr>
 " Use sane regexes.
 nnoremap / /\v
 vnoremap / /\v
+nnoremap //// :tab helpg \v\c<Left><Left>
 
 " Easy filetype switching
 nnoremap ftm :set ft=markdown<CR>
