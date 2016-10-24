@@ -1281,22 +1281,7 @@ if has("gui_running")
 
     if has("autocmd")
         " Default size of window
-        "autocmd VimEnter * exe 'VSSelectWindowSize bigger'
-
-        " automagically open NERDTree in a GUI
-        autocmd VimEnter * exe 'NERDTreeToggle' | wincmd l
-        " close the NERDTree when opening it's all text and vimperator
-        " editors
-        autocmd VimEnter,BufNewFile,BufRead /*/itsalltext/*,vimperator-*.tmp,*pentadactyl*.txt exe 'NERDTreeClose'
-        autocmd VimEnter,BufNewFile,BufRead /*/itsalltext/* set nospell
-        " Close the NERDTree when external editing emails
-        autocmd VimEnter,BufNewFile,BufRead *.eml exe 'NERDTreeClose'
-        " Close the NERDTree if we open a svn commit message
-        autocmd VimEnter,BufNewFile,BufRead svn-{commit,prop}.*tmp exe 'NERDTreeClose'
-        " Close the NERDTree if we open a git commit message
-        autocmd VimEnter,BufNewFile,BufRead COMMIT_EDITMSG exe 'NERDTreeClose'
-        " Close the NERDTree if we open a zsh command line
-        autocmd VimEnter,BufNewFile,BufRead /*/tmp/zsh* exe 'NERDTreeClose'
+        autocmd VimEnter * exe 'VSSelectWindowSize bigger'
     endif
 
     " turn off the gui elements
