@@ -1297,18 +1297,12 @@ if has("gui_running")
         " fancy powerline!
         let g:Powerline_symbols = 'fancy'
         " use Monaco with no antialiasing
-        set guifont=Inconsolata-dz\ for\ Powerline:h11,Inconsolata-dz:h10,Inconsolata:h12,Monaco:h10
+        set guifont=Fira\ Code:h12,Inconsolata-dz\ for\ Powerline:h11,Inconsolata-dz:h10,Inconsolata:h12,Monaco:h10
         set antialias
-        " maybe set the transparency
-        " XXX: getting annoyed by the transparency
-        "set transparency=2
-
-        " turn off transparency
-        noremap <leader>TT :set transparency=0<CR>
     endif
 
     if has("gui_gtk2")
-        set guifont=Inconsolata\ Medium\ 10,Droid\ Sans\ Mono\ 9,Liberation\ Mono\ 10,LucidaTypewriter\ Medium\ 10,Terminal
+        set guifont=Fira\ Code\ 12,Inconsolata\ Medium\ 10,Droid\ Sans\ Mono\ 9,Liberation\ Mono\ 10,LucidaTypewriter\ Medium\ 10,Terminal
         autocmd GUIEnter * set vb t_vb=
     endif
 endif
