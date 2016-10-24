@@ -1141,6 +1141,11 @@ if has("autocmd")
     " Turn off folding in git windows
     au Syntax git setlocal nofoldenable
 
+    if has('nvim')
+      " Don't show invisibles in the terminal
+      au TermOpen * setlocal nolist
+    endif
+
     " Zope and Plone files
     " -----------------------------------------------------------------
     " set up zope page templates as the zpt filetype
