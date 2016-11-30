@@ -73,10 +73,11 @@
 # Push shortcuts
 	psh = push origin HEAD
 	pshf = push origin HEAD --force
-# Helpers for rebasing and resolving conflicts
+# Helpers for rebasing
 	rbs = !git rebase -i `git merge-base HEAD origin/dev`
 	rbc = rebase --continue
 	rba = rebase --abort
+# Helpers for resolving conflicts
 	resolve = !vim $(git status -s | awk '/^UU / {print $2}' | head -1)
 	resolved = !git add $(git status -s | awk '/^UU / {print $2}' | head -1)
 # Add github pr numbers as refs
