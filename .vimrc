@@ -630,22 +630,38 @@ nnoremap <silent> coe :ErrorsToggle<CR>
 
 " Quickfix                                                     {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Borrowed from
+" http://vim.wikia.com/wiki/Toggle_to_open_or_close_the_quickfix_window
 
-command! -bang -nargs=? QFix call QFixToggle(<bang>0)
+function! GetBufferList()
+  redir =>buflist
+  silent! ls!
+  redir END
+  return buflist
+endfunction
 
-" Function to toggle the quickfix window open and close
-function! QFixToggle(forced)
-  if exists("g:qfix_win") && a:forced == 0
-    cclose
-    unlet g:qfix_win
-  else
-    copen 10
-    let g:qfix_win = bufnr("$")
+function! ToggleList(bufname, pfx)
+  let buflist = GetBufferList()
+  for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
+    if bufwinnr(bufnum) != -1
+      exec(a:pfx.'close')
+      return
+    endif
+  endfor
+  if a:pfx == 'l' && len(getloclist(0)) == 0
+      echohl ErrorMsg
+      echo "Location List is Empty."
+      return
+  endif
+  let winnr = winnr()
+  exec(a:pfx.'open')
+  if winnr() != winnr
+    wincmd p
   endif
 endfunction
 
-nnoremap <silent> coq :QFix<CR>
-nnoremap <silent> col :lopen<CR>
+nnoremap <silent> coq :call ToggleList("Quickfix List", 'c')<CR>
+nnoremap <silent> col :call ToggleList("Location List", 'l')<CR>
 
 " Copy search matches to register                              {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
