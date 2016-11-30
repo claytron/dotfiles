@@ -38,6 +38,7 @@ expected_path=(
   /opt/local/lib/mysql4/bin
   /opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin
   /opt/local/Library/Frameworks/Python.framework/Versions/2.4/bin
+  /opt/local/libexec/qt5/bin
   /fuck/bin
   /sw/bin
   /sw/sbin
