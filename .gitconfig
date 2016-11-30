@@ -72,7 +72,7 @@
 	ssh = stash show -p
 # Push shortcuts
 	psh = push origin HEAD
-	pshf = push origin HEAD --force
+	pshf = push origin HEAD --force-with-lease
 # Helpers for rebasing
 	rbs = !git rebase -i `git merge-base HEAD origin/dev`
 	rbc = rebase --continue
