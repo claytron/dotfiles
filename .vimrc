@@ -1149,6 +1149,9 @@ if has("autocmd")
     " Vagrant files
     au BufNewFile,BufRead Vagrantfile set filetype=ruby
 
+    " csvbuilder files in rails
+    au BufNewFile,BufRead *.csvbuilder set filetype=ruby
+
     " psql sessions in Postgres
     au BufNewFile,BufRead psql.edit.* set filetype=sql
 
