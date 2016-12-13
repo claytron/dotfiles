@@ -24,3 +24,6 @@ if defined?(PryByebug)
   Pry.commands.alias_command 'q', 'exit-program'
   Pry.commands.alias_command 'quit', 'exit-program'
 end
+
+# Load rails files if present
+Rails.application.eager_load! if defined?(Rails)
