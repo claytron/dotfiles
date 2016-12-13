@@ -174,11 +174,11 @@ map -builtin <silent> br :open bkm-pocket<CR>
 " destroy a website asteroids style
 map -builtin <silent> bx :open bkm-asteroids<CR> <C-Z>
 
-" Save to Delicious
-map -builtin <silent> bd :open bkm-delicious<CR>
+" Save to bookmarking service (Pinboard currently)
+map -builtin <silent> bb :open bkm-bookmark<CR>
 
 " Start up the dev meeting
-map -builtin <silent> bdm :tabopen bkm-dev-meeting<CR>
+map -builtin <silent> bd :tabopen bkm-dev-meeting<CR>
 
 " Shortcuts for GitHub Pull Requests
 map -builtin <silent> bpr :tabopen bkm-prs-review<CR>
