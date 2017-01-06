@@ -34,7 +34,7 @@
 " Clean Up mnemonic                                            {{{2
 " -----------------------------------------------------------------
 "    cuw             -- Removes trailing whitespace characters
-"    cut             -- Run tidy xml on the current file
+"    cuf             -- Clean up the current file using autoformat
 "    cuv             -- Sort a buildout versions.cfg file
 "
 " File Type mnemonic                                           {{{2
@@ -562,29 +562,6 @@ function! s:RunShellCommand(cmdline)
   1
 endfunction
 
-" Whitespace                                                   {{{2
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-" Call the strip trailing whitespace function as a command
-command! StripTrailingWhitespaces call s:StripTrailingWhitespaces()
-
-" A function to strip trailing whitespace and clean up afterwards so
-" that the search history remains intact and cursor does not move.
-" Taken from: http://vimcasts.org/episodes/tidying-whitespace
-function! s:StripTrailingWhitespaces()
-    " Preparation: save last search, and cursor position.
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    " Do the business:
-    %s/\s\+$//e
-    " Clean up: restore previous search history, and cursor position
-    let @/=_s
-    call cursor(l, c)
-endfunction
-
-map cuw :StripTrailingWhitespaces<CR>
-
 " Markdown                                                     {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -596,23 +573,6 @@ command! -nargs=0 MarkdownToHTMLReplace  %!Markdown.pl "%"
 command! -nargs=0 MarkdownToHTMLCopy  !Markdown.pl "%" | pbcopy
 " use pandoc to convert from html into markdown
 command! -nargs=0 MarkdownFromHTML  %!pandoc -f html -t markdown_github "%"
-
-" Tidy                                                         {{{2
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-" xml tidy
-command! -complete=file -nargs=* TidyXML call s:TidyXML()
-map <silent> cut :TidyXML<CR>
-
-function! s:TidyXML()
-    " Preparation: save last search, and cursor position.
-    let l = line(".")
-    let c = col(".")
-    " Do the business:
-    %!tidy -xml -i -q -w 0
-    " Clean up cursor position
-    call cursor(l, c)
-endfunction
 
 " Error Toggle                                                 {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1124,6 +1084,15 @@ let test#ruby#rspec#options = '--deprecation-out /dev/null'
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 nnoremap <silent> tmt :call localorie#translate()<CR>
 nnoremap <silent> tmte :call localorie#expand_key()<CR>
+
+" autoformat                                                   {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nnoremap <silent> cuf :Autoformat<CR>:w<CR>
+nnoremap <silent> cuw :RemoveTrailingSpaces<CR>:w<CR>
+
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
 
 " Auto command settings                                        {{{1
 " -----------------------------------------------------------------

@@ -78,4 +78,5 @@ Plug 'thinca/vim-visualstar'
 Plug 'vim-scripts/TaskList.vim'
 Plug 'yegappan/mru'
 Plug 'rizzatti/dash.vim'
+Plug 'Chiel92/vim-autoformat'
 call plug#end()
