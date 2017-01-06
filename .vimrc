@@ -192,6 +192,10 @@ set shell=bash
 " :terminal settings
 let g:terminal_scrollback_buffer_size=100000
 
+" Python support via virtualenvs
+let g:python_host_prog = expand('~/.virtualenvs/neovim-py2/bin/python', ':p')
+let g:python3_host_prog = expand('~/.virtualenvs/neovim/bin/python', ':p')
+
 " hide the backup and swap files
 set backupdir=~/.backup/vim,.,/tmp
 set directory=~/.backup/vim/swap,.,/tmp
