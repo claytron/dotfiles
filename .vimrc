@@ -994,6 +994,7 @@ let g:javascript_enable_domhtmlcss = 1
 nmap ff :Files<CR>
 nmap fft :Tags<CR>
 nmap ffe :Buffers<CR>
+nmap ffb :Buffers<CR>
 nmap ffc :Colors<CR>
 nmap ffr :MRUFilesCWD<CR>
 
