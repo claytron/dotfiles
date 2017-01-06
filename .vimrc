@@ -991,7 +991,8 @@ let g:javascript_enable_domhtmlcss = 1
 
 " fzf                                                          {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-nmap ff :Files<CR>
+nmap ff :GFiles<CR>
+nmap ffa :Files<CR>
 nmap fft :Tags<CR>
 nmap ffe :Buffers<CR>
 nmap ffb :Buffers<CR>
