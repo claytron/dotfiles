@@ -290,9 +290,6 @@ fi
 # Tmuxinator setup
 [[ -s ~/.tmuxinator/scripts/tmuxinator ]] && source ~/.tmuxinator/scripts/tmuxinator
 
-# Nix setup
-if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi
-
 # Chruby
 if [ -d /usr/local/share/chruby ]; then
     source /usr/local/share/chruby/chruby.sh
