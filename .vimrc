@@ -748,18 +748,6 @@ function! GitCommitDance()
     execute "normal \<C-W>k"
 endfunction
 
-" Show dev TODO list                                           {{{2
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-command! Todo :call s:ShowTodoList()
-
-function! s:ShowTodoList(...)
-    let l:orig_ackprg = g:ackprg
-    let g:ackprg='{ git diff --name-only dev..HEAD & git diff --name-only & git diff --staged --name-only; } \| sort \| uniq \| ack -x'
-    Ack '(TODO: |XXX: )'
-    let g:ackprg = l:orig_ackprg
-endfunction
-
 " Open help in a tab                                           {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " via http://stackoverflow.com/a/7515418/34530
@@ -789,13 +777,23 @@ command! -nargs=1 I18nTasksFind :call s:I18nTasksFind(<q-args>)
 filetype on                " enables filetype detection
 filetype plugin indent on  " enables filetype specific plugins
 
-" Ack                                                          {{{2
+" Grepper                                                      {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+map /// :Grepper<cr>
+map // :Grepper -tool git<cr>
 
-" shortcut for ack search
-map tma :Ack!<Space>
-" highlight search term matches
-let g:ackhighlight = 1
+let g:grepper = {}
+
+" Available list of grepping tools
+let g:grepper.tools = ['ack', 'git', 'git_case', 'grep']
+" Modify git args to be case insensitive
+let g:grepper.git = {'grepprg': 'git grep -nIi'}
+let g:grepper.git_case = {'grepprg': 'git grep -nI'}
+
+" Highlight matches
+let g:grepper.highlight = 1
+" Don't open and switch to the Quickfix window, manually open it
+let g:grepper.open = 0
 
 " CSV                                                          {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1027,10 +1025,6 @@ nmap tg :Gstatus<CR>
 nmap tgd :Gdiff<CR>
 
 nmap tgb :Gblame<CR>
-
-" Search the current working copy
-nmap tgg :Ggrep -Ei<space>
-nmap // tgg
 
 " Navigate through historical diffs
 nmap tgl :Glog -100 -- %<CR>
