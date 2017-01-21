@@ -338,17 +338,21 @@ set sidescroll=5
 " toggle line wrapping on/off
 map <silent> cow :set wrap!<CR>
 
-" When editing a file, always jump to the last known cursor position.
-" Don't do it when the position is invalid or when inside an event handler
-" (happens when dropping a file on gvim).
-" Also don't do it when the mark is in the first line, that is the default
-" position when opening a file.
-autocmd BufReadPost *  if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+augroup PreservingFilePosition
+  autocmd!
 
-" always jump to the top of commit messages
-" NOTE: mercurial and bazaar use temporary files, so this isn't necessary
-au BufReadPost svn-commit*.tmp exe "normal! gg"
-au BufReadPost COMMIT_EDITMSG* exe "normal! gg"
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it when the position is invalid or when inside an event handler
+  " (happens when dropping a file on gvim).
+  " Also don't do it when the mark is in the first line, that is the default
+  " position when opening a file.
+  autocmd BufReadPost *  if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+
+  " always jump to the top of commit messages
+  " NOTE: mercurial and bazaar use temporary files, so this isn't necessary
+  autocmd BufReadPost svn-commit*.tmp exe "normal! gg"
+  autocmd BufReadPost COMMIT_EDITMSG* exe "normal! gg"
+augroup END
 
 " Borrowed from
 " http://dhruvasagar.com/2013/03/28/vim-better-foldtext
@@ -957,11 +961,15 @@ let g:vim_markdown_folding_disabled=1
 
 " Riv                                                          {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" Auto open folds on file open
-" Couldn't figure out how to do this with the available riv options
-au BufReadPost *.rst :normal zR
-" Manually decide when to break a line based on grammar
-au BufReadPost *.rst :set textwidth=0
+augroup RivExpandFolds
+  autocmd!
+
+  " Auto open folds on file open
+  " Couldn't figure out how to do this with the available riv options
+  autocmd BufReadPost *.rst :normal zR
+  " Manually decide when to break a line based on grammar
+  autocmd BufReadPost *.rst :set textwidth=0
+augroup END
 
 " livedown                                                     {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1094,62 +1102,65 @@ let g:autoformat_remove_trailing_spaces = 0
 " -----------------------------------------------------------------
 
 if has("autocmd")
+  augroup FileTypes
+    autocmd!
+
     " automatically re-source the vimrc on save
     autocmd bufwritepost .vimrc source $MYVIMRC
 
     " jinja syntax automagically
-    au BufNewFile,BufRead *.jinja set filetype=jinja
+    autocmd BufNewFile,BufRead *.jinja set filetype=jinja
 
     " vimperator and pentadactyl files
-    au BufNewFile,BufRead *.vimp,*.penta,.vimperatorrc,.pentadactylrc set filetype=vim
+    autocmd BufNewFile,BufRead *.vimp,*.penta,.vimperatorrc,.pentadactylrc set filetype=vim
 
     " vim pager settings"
-    au BufNewFile,BufRead .vimpagerrc set filetype=vim
+    autocmd BufNewFile,BufRead .vimpagerrc set filetype=vim
 
     " anything with the wiki extension should be treated as such
-    au BufNewFile,BufRead *.wiki set filetype=wiki
+    autocmd BufNewFile,BufRead *.wiki set filetype=wiki
 
     " shell files
-    au BufNewFile,BufRead .common* set filetype=sh
+    autocmd BufNewFile,BufRead .common* set filetype=sh
 
     " vim help files
-    au BufNewFile,BufRead /*/doc/*.txt set filetype=help
+    autocmd BufNewFile,BufRead /*/doc/*.txt set filetype=help
 
     " Vagrant files
-    au BufNewFile,BufRead Vagrantfile set filetype=ruby
+    autocmd BufNewFile,BufRead Vagrantfile set filetype=ruby
 
     " csvbuilder files in rails
-    au BufNewFile,BufRead *.csvbuilder set filetype=ruby
+    autocmd BufNewFile,BufRead *.csvbuilder set filetype=ruby
 
     " psql sessions in Postgres
-    au BufNewFile,BufRead psql.edit.* set filetype=sql
+    autocmd BufNewFile,BufRead psql.edit.* set filetype=sql
 
     " Set up a split window for git verbose commit
-    "au BufNewFile,BufRead COMMIT_EDITMSG call GitCommitDance()
+    "autocmd BufNewFile,BufRead COMMIT_EDITMSG call GitCommitDance()
 
     " Turn off folding in git windows
-    au Syntax git setlocal nofoldenable
+    autocmd Syntax git setlocal nofoldenable
 
     if has('nvim')
       " Don't show invisibles in the terminal
-      au TermOpen * setlocal nolist
+      autocmd TermOpen * setlocal nolist
     endif
 
     " Zope and Plone files
     " -----------------------------------------------------------------
     " set up zope page templates as the zpt filetype
-    au BufNewFile,BufRead *.pt,*.cpt,*.zpt set filetype=zpt syntax=xml
+    autocmd BufNewFile,BufRead *.pt,*.cpt,*.zpt set filetype=zpt syntax=xml
     " xml syntax for zcml files
-    au BufNewFile,BufRead *.zcml set filetype=zcml syntax=xml
+    autocmd BufNewFile,BufRead *.zcml set filetype=zcml syntax=xml
     " css.dtml as css
-    au BufNewFile,BufRead *.css.dtml set filetype=css.dtml
+    autocmd BufNewFile,BufRead *.css.dtml set filetype=css.dtml
     " kss files as css
-    au BufNewFile,BufRead *.kss set filetype=kss.css
+    autocmd BufNewFile,BufRead *.kss set filetype=kss.css
     " js.dtml as javascript
-    au BufNewFile,BufRead *.js.dtml set filetype=javascript.dtml
+    autocmd BufNewFile,BufRead *.js.dtml set filetype=javascript.dtml
     " any txt file in a `tests` directory is a doctest
-    au BufNewFile,BufRead /*/tests/*.txt set filetype=doctest.rst
-
+    autocmd BufNewFile,BufRead /*/tests/*.txt set filetype=doctest.rst
+  augroup END
 endif
 
 " Cursor and window controls                                   {{{1
