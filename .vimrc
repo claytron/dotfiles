@@ -1150,19 +1150,6 @@ if has("autocmd")
     " any txt file in a `tests` directory is a doctest
     au BufNewFile,BufRead /*/tests/*.txt set filetype=doctest.rst
 
-    " automatically give executable permissions if file begins with #! and contains
-    " Automatic `:!chmod +x %`.
-    " taken from https://gist.github.com/791189
-
-    " XXX: Turning this off for now...
-    "autocmd BufWritePost * call s:auto_chmod()
-    function! s:auto_chmod()
-        if !exists('b:disable_auto_chmod')
-        \ && getfperm(expand('%'))[2] !=# 'x'
-        \ && getline(1) =~# '^#!'
-            !chmod +x %
-        endif
-    endfunction
 endif
 
 " Cursor and window controls                                   {{{1
