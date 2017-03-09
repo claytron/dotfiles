@@ -37,6 +37,7 @@
 # Try to pull and rebase, but then stash and pop if it's dirty
 	up = !git pull --rebase || ( git stash save && git pull --rebase && git stash pop )
 	upd = !git pull --rebase origin dev || ( git stash save && git pull --rebase origin dev && git stash pop )
+	upm = !git pull --rebase origin master || ( git stash save && git pull --rebase origin master && git stash pop )
 # Branches
 	br = branch
 	brdel = !git branch --merged | grep -v '*' | grep -v master | grep -v dev | vipe | xargs -n 1 git branch -d
@@ -50,6 +51,7 @@
 	coo = !sh -c 'git checkout -b $1 origin/$1' -
 	cof = !git checkout $(git branch | grep -v '*' | fzf)
 	cob = checkout -b
+	com = checkout master
 	cod = checkout dev
 # Diffing
 	df = diff
