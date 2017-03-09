@@ -51,7 +51,7 @@
 set hintkeys=asdfg;lkjh
 
 " tell the bell to go beep itself!
-set visualbell
+set novisualbell
 "
 " turn off the freakin' bell
 hi Bell display: none;
@@ -75,7 +75,7 @@ colorscheme solarized-light
 set titlestring="oh hai!"
 
 " only show the tab bar if there are more than 1 tabs
-set showtabline=multitab
+set showtabline='multitab'
 
 " load plugins that are css as well
 set loadplugins='\.(css|js|penta)$'
