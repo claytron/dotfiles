@@ -1291,6 +1291,8 @@ if has("gui_running")
         set fuoptions=maxvert,maxhorz
         " fancy powerline!
         let g:Powerline_symbols = 'fancy'
+        " Use fancy ligatures
+        set macligatures
         " use Monaco with no antialiasing
         set guifont=Fira\ Code:h12,Inconsolata-dz\ for\ Powerline:h11,Inconsolata-dz:h10,Inconsolata:h12,Monaco:h10
         set antialias
