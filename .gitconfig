@@ -60,6 +60,9 @@
 # Side-by-side, if icdiff is available
 	dfts = difftool --tool=icdiff
 	dfs = diff --staged
+# Show the changes on the current branch
+	dfd = !git show `git merge-base HEAD origin/dev`..HEAD
+	dfm = !git show `git merge-base HEAD origin/master`..HEAD
 # Better log commands
 	lg = log --graph --pretty=format:'%Cred%h%Creset %Cgreen(%cr)%Creset %Cblue%an%Creset %s %C(yellow)%d%Creset' --abbrev-commit --date=relative
 # Use bang to be able to re-use the alias above (with pretty format) and add to it
