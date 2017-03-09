@@ -267,9 +267,8 @@ alias mkv=mkvirtualenv
 alias cds=cdsitepackages
 
 # Lastpass
-alias l=lpass
-alias lcp="lpass ls -l | fzf | sed -Ee 's/.*\[id\: ([0-9]+)\]/\1/' | xargs lpass show -c --password"
-alias lcpu="lpass ls -l | fzf | sed -Ee 's/.*\[id\: ([0-9]+)\]/\1/' | xargs lpass show -c --username"
+alias lpcp="lpass ls -l | fzf | sed -Ee 's/.*\[id\: ([0-9]+)\]/\1/' | xargs lpass show -c --password"
+alias lpcpu="lpass ls -l | fzf | sed -Ee 's/.*\[id\: ([0-9]+)\]/\1/' | xargs lpass show -c --username"
 
 # Pretty LS_COLORS explanation: 
 # http://www.mjxg.com/index.py/geek/lscolors_and_ls_colors
