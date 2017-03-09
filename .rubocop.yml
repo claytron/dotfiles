@@ -27,5 +27,5 @@ Style/MultilineOperationIndentation:
   EnforcedStyle: indented
 
 Lint/EndAlignment:
-  AlignWith: variable
+  EnforceStyleAlignWith: variable
   AutoCorrect: true
