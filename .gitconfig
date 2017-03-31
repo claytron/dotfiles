@@ -89,8 +89,8 @@
 	cpa = cherry-pick --abort
 	cpc = cherry-pick --continue
 # Helpers for resolving conflicts
-	resolve = !vim $(git status -s | awk '/^UU / {print $2}' | head -1)
-	resolved = !git add $(git status -s | awk '/^UU / {print $2}' | head -1)
+	resolve = !vim $(git status --porcelain | awk '/^UU / {print $2}' | head -1)
+	resolved = !git add $(git status --porcelain | awk '/^UU / {print $2}' | head -1)
 # Add github pr numbers as refs
 	trackpr = config --add remote.origin.fetch '+refs/pull/*/head:refs/remotes/origin/pull/*'
 [achievement]
