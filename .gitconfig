@@ -40,6 +40,7 @@
 	upm = !git pull --rebase origin master || ( git stash save && git pull --rebase origin master && git stash pop )
 # Branches
 	br = branch
+# This one requires `vipe` (editable pipe with your editor) from moreutils, remove that bit to delete indiscriminately
 	brdel = !git branch --merged | grep -v '*' | grep -v master | grep -v dev | vipe | xargs -n 1 git branch -d
 # Create a copy of the current branch, usually before rebasing.
 # Idea from: http://kevinold.com/2012/07/06/git-backup-branches.html
