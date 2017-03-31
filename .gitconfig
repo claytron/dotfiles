@@ -34,6 +34,8 @@
 # Commit shortcuts and verbosity
 	ci = commit --verbose
 	commit = commit --verbose
+# Pop the last commit into the working copy
+	pop = !git --no-pager log -n 1 HEAD && git reset HEAD^
 # Try to pull and rebase, but then stash and pop if it's dirty
 	up = !git pull --rebase || ( git stash save && git pull --rebase && git stash pop )
 	upd = !git pull --rebase origin dev || ( git stash save && git pull --rebase origin dev && git stash pop )
