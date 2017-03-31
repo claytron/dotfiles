@@ -1132,6 +1132,9 @@ if has("autocmd")
     " csvbuilder files in rails
     autocmd BufNewFile,BufRead *.csvbuilder set filetype=ruby
 
+    " Pry config is ruby
+    autocmd BufNewFile,BufRead .pryrc set filetype=ruby
+
     " psql sessions in Postgres
     autocmd BufNewFile,BufRead psql.edit.* set filetype=sql
 
