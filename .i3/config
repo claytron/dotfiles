@@ -245,3 +245,5 @@ exec --no-startup-id qterminal -e ranger
 exec --no-startup-id parcellite
 # Bluetooth applet
 exec --no-startup-id blueman-applet
+# Auto lock and suspend
+exec_always --no-startup-id xautolock -time 5 -locker "/home/clayton/.i3/i3exit lock" -killtime 10 -killer "/home/clayton/.i3/i3exit suspend"
