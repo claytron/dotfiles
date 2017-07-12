@@ -117,6 +117,9 @@ bindsym $mod+Ctrl+8 [instance="Telegram"] scratchpad show; [instance="whats-app-
 for_window [class="git-cola" window_type="normal"] resize set 1920 1055, move position 0 25, move window to scratchpad
 bindsym $mod+Ctrl+7 [class="git-cola"] scratchpad show
 
+# for_window [title="Shell No. 1"] move window to scratchpad
+bindsym $mod+Ctrl+6 [title="Shell No. 1"] scratchpad show
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -205,3 +208,5 @@ exec --no-startup-id /opt/Telegram/Telegram
 exec --no-startup-id slack
 # Git browser
 exec --no-startup-id git-cola
+# File browser
+exec --no-startup-id qterminal -e ranger
