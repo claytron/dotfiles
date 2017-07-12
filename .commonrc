@@ -283,7 +283,9 @@ VIRTUALENVS_DIR=$HOME/.virtualenvs
 # if the virutalenv wrapper is available, then source it
 if [ -d "$VIRTUALENVS_DIR" ]; then
     export WORKON_HOME=$VIRTUALENVS_DIR
-    if checkPath virtualenvwrapper_bashrc; then
+    if [ -n /usr/share/virtualenvwrapper/virtualenvwrapper.sh ]; then
+      source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+    elif checkPath virtualenvwrapper_bashrc; then
         source virtualenvwrapper_bashrc
     elif checkPath virtualenvwrapper.sh; then
         source virtualenvwrapper.sh
