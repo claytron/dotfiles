@@ -25,7 +25,7 @@ status = Status(standalone=True)
 status.register(
     'clock',
     color=BASE0,
-    format=' %a %-d %b %H:%M',
+    format=' %a %b %-d %H:%M',
 )
 
 # Fake iStat Menus
