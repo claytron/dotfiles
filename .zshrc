@@ -66,7 +66,7 @@ alias -g WL='| wc -l'
 if checkPath pbcopy; then
     alias -g CP='| pbcopy'
 elif checkPath xsel; then
-    alias -g CP='| xsel'
+    alias -g CP='| xsel -ib'
 elif checkPath xclip; then
     alias -g CP='| xclip'
 fi
