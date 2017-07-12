@@ -211,6 +211,10 @@ bar {
 # Run some things
 # Make sure the background is set
 exec --no-startup-id test -e ~/Pictures/Wallpaper/bonespin.png && feh --bg-fill ~/Pictures/Wallpaper/bonespin.png
+# Wireless settings
+exec --no-startup-id nm-applet
+# Launcher
+exec --no-startup-id kupfer
 # Chat with friends
 exec --no-startup-id /opt/Telegram/Telegram
 # Connect with coworkers
@@ -219,3 +223,7 @@ exec --no-startup-id slack
 exec --no-startup-id git-cola
 # File browser
 exec --no-startup-id qterminal -e ranger
+# Clipboard history
+exec --no-startup-id parcellite
+# Bluetooth applet
+exec --no-startup-id blueman-applet
