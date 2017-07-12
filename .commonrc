@@ -38,6 +38,11 @@ if checkPath git-achievements; then
     alias git=git-achievements
 fi
 
+# Can't break the os x habit
+if checkPath spd-say; then
+  alias say=spd-say
+fi
+
 # some OS X specific stuff
 if [[ $UNAME == "Darwin" ]]; then
     os_majorversion=$(sw_vers | awk '/ProductVersion/ {print $2}' | cut -f2 -d'.')
