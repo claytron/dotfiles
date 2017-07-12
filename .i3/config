@@ -209,9 +209,8 @@ bar {
 }
 
 # Run some things
-
 # Make sure the background is set
-exec --no-startup-id test -e ~/Pictures/wallpaper/bonespin.png && feh --bg-fill ~/Pictures/wallpaper/bonespin.png
+exec --no-startup-id test -e ~/Pictures/Wallpaper/bonespin.png && feh --bg-fill ~/Pictures/Wallpaper/bonespin.png
 # Chat with friends
 exec --no-startup-id /opt/Telegram/Telegram
 # Connect with coworkers
