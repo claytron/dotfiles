@@ -71,7 +71,7 @@ set maxitems=35
 set focuscontent
 
 " use a different color scheme
-colorscheme simple
+colorscheme solarized_light
 
 " set a stupid title
 set titlestring="oh hai!"
