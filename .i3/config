@@ -108,6 +108,9 @@ bindsym $mod+Ctrl+h scratchpad show
 # Find certain scratchpads
 bindsym $mod+Ctrl+0 [instance="x-terminal-emulator"] scratchpad show
 
+for_window [instance="slack" window_type="browser-window"] move window to scratchpad
+bindsym $mod+Ctrl+9 [instance="slack"] scratchpad show
+
 for_window [class="git-cola" window_type="normal"] resize set 1920 1055, move position 0 25, move window to scratchpad
 bindsym $mod+Ctrl+7 [class="git-cola"] scratchpad show
 
@@ -193,5 +196,7 @@ bar {
 
 # Make sure the background is set
 exec --no-startup-id test -e ~/Pictures/wallpaper/bonespin.png && feh --bg-fill ~/Pictures/wallpaper/bonespin.png
+# Connect with coworkers
+exec --no-startup-id slack
 # Git browser
 exec --no-startup-id git-cola
