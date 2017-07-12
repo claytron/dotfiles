@@ -118,10 +118,10 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # resize window (you can also use the mouse for that)
 mode "resize" {
     # Vim style
-    bindsym h resize shrink width 5 px or 5 ppt
-    bindsym j resize grow height 5 px or 5 ppt
-    bindsym k resize shrink height 5 px or 5 ppt
-    bindsym l resize grow width 5 px or 5 ppt
+    bindsym h resize shrink width 20 px or 20 ppt
+    bindsym j resize grow height 20 px or 20 ppt
+    bindsym k resize shrink height 20 px or 20 ppt
+    bindsym l resize grow width 20 px or 20 ppt
 
     # same bindings, but for the arrow keys
     bindsym Left resize shrink width 5 px or 5 ppt
