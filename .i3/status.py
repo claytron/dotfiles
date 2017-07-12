@@ -57,4 +57,16 @@ status.register(
     format=' Disk {percentage_used}% ',
 )
 
+status.register(
+    'battery',
+    interval=15,
+    format=' {percentage_design:.0f}%[ ({remaining:%h:%M})] ',
+    alert=True,
+    alert_percentage=10,
+    color=YELLOW,
+    full_color=BASE0,
+    charging_color=GREEN,
+    critical_color=RED,
+)
+
 status.run()
