@@ -168,7 +168,6 @@ client.urgent           $yellow $yellow $baseB3 $orange
 # Python based status bar
 bar {
     status_command ~/.i3/env/bin/python ~/.i3/status.py
-    #status_command ~/.i3/env/bin/python ~/.i3/status_demo.py
     position top
     workspace_buttons yes
 
