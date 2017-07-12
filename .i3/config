@@ -127,6 +127,11 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
+# Media keys
+# Sreen brightness controls
+# Requires the light package: https://github.com/haikarainen/light
+bindsym XF86MonBrightnessUp exec light -A 5
+bindsym XF86MonBrightnessDown exec light -U 5
 # resize window (you can also use the mouse for that)
 mode "resize" {
     # Vim style
