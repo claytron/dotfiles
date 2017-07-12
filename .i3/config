@@ -132,6 +132,11 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # Requires the light package: https://github.com/haikarainen/light
 bindsym XF86MonBrightnessUp exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
+# Volume
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-mute 0 toggle && pactl set-sink-volume 0 +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-mute 0 toggle && pactl set-sink-volume 0 -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
     # Vim style
