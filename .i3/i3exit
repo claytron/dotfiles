@@ -1,0 +1,31 @@
+#!/bin/sh
+lock() {
+  random_png=$(find ~/Pictures/Wallpaper -type f -name '*.png' | shuf | head -1)
+  i3lock -i "$random_png" -c cccccc -t -e
+}
+
+case "$1" in
+  lock)
+    lock
+    ;;
+  logout)
+    i3-msg exit
+    ;;
+  suspend)
+    lock && systemctl suspend
+    ;;
+  hibernate)
+    lock && systemctl hibernate
+    ;;
+  reboot)
+    systemctl reboot
+    ;;
+  shutdown)
+    systemctl poweroff
+    ;;
+  *)
+    echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|shutdown}"
+    exit 2
+esac
+
+exit 0
