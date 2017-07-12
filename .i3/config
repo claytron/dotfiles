@@ -104,9 +104,10 @@ bindsym $mod+Shift+0 move container to workspace 10
 bindsym $mod+Ctrl+s move scratchpad
 # Get a window out of the scratchpad
 bindsym $mod+Ctrl+h scratchpad show
-bindsym $mod+Ctrl+j [class="X-terminal-emulator"] scratchpad show
 bindsym $mod+Ctrl+k [class="Git-cola"] scratchpad show
 
+# Find certain scratchpads
+bindsym $mod+Ctrl+0 [instance="x-terminal-emulator"] scratchpad show
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
