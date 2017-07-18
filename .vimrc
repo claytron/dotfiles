@@ -1168,6 +1168,11 @@ if has("autocmd")
     autocmd BufNewFile,BufRead *.js.dtml set filetype=javascript.dtml
     " any txt file in a `tests` directory is a doctest
     autocmd BufNewFile,BufRead /*/tests/*.txt set filetype=doctest.rst
+
+    " Chef and foodcritic
+    autocmd BufNewFile,BufRead /*/cookbooks/*.rb set filetype=ruby.chef
+    autocmd BufNewFile,BufRead /*/cookbooks/*.erb set filetype=eruby.chef
+    autocmd BufNewFile,BufRead /*/cookbooks/*.yml set filetype=yaml.chef
   augroup END
 endif
 
