@@ -90,7 +90,8 @@
 	psh = push origin HEAD
 	pshf = push origin HEAD --force-with-lease
 # Helpers for rebasing
-	rbs = !git rebase -i `git merge-base HEAD origin/dev`
+	rbsd = !git rebase -i `git merge-base HEAD origin/dev`
+	rbsm = !git rebase -i `git merge-base HEAD origin/master`
 	rbc = rebase --continue
 	rba = rebase --abort
 # Cherry pickin'
