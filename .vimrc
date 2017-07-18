@@ -786,13 +786,13 @@ filetype plugin indent on  " enables filetype specific plugins
 map /// :Grepper<cr>
 map // :Grepper -tool git<cr>
 
-let g:grepper = {}
+" initialize g:grepper with defaults
+runtime plugin/grepper.vim
 
 " Available list of grepping tools
-let g:grepper.tools = ['ack', 'git', 'git_case', 'grep']
+let g:grepper.tools = ['ack', 'git', 'grep']
 " Modify git args to be case insensitive
-let g:grepper.git = {'grepprg': 'git grep -nIi'}
-let g:grepper.git_case = {'grepprg': 'git grep -nI'}
+let g:grepper.git.grepprg = 'git grep -nIi $* .'
 
 " Highlight matches
 let g:grepper.highlight = 1
