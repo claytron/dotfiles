@@ -20,6 +20,7 @@ expected_path=(
   "$HOME/.rbenv/versions/2.2.6/bin"
   "$HOME/.rvm/bin"
   "$HOME/.gem/ruby/1.8/bin"
+  "$HOME/.cargo/bin"
   "$HOME/Documents/android-sdk-mac-x86_64-20140321/tools"
   "$HOME/Documents/android-sdk-mac-x86_64-20140321/platform-tools"
   "$HOME/node_modules/jshint/bin"
@@ -34,6 +35,8 @@ expected_path=(
   /opt/local/lib/postgresql91/bin
   /opt/local/lib/postgresql90/bin
   /opt/local/lib/postgresql83/bin
+  /usr/local/opt/mysql@5.6/bin
+  /usr/local/opt/mysql@5.7/bin
   /opt/local/lib/mysql56/bin
   /opt/local/lib/mysql55/bin
   /opt/local/lib/mysql5/bin
@@ -41,6 +44,8 @@ expected_path=(
   /opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin
   /opt/local/Library/Frameworks/Python.framework/Versions/2.4/bin
   /opt/local/libexec/qt5/bin
+  /usr/local/opt/qt/bin
+  /usr/local/opt/node@6/bin
   /fuck/bin
   /sw/bin
   /sw/sbin
