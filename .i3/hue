@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# This uses the following cli interface:
+# https://github.com/bahamas10/hue-cli
+
+all_lights() {
+  echo $(hue lights | awk '{print $1}' | paste -sd ,)
+}
+
+last_light() {
+  echo "$1" > /tmp/hues
+}
+
+toggle_all() {
+  light_ids=$(all_lights)
+  last_light "$light_ids"
+  all_cmd="hue lights $light_ids"
+  $all_cmd | awk '{print $2}' |  grep 'on' -q
+  if [ $? -eq 0 ]; then
+    $all_cmd off
+  else
+    $all_cmd on
+  fi
+}
+
+toggle() {
+  hue lights $1 | grep 'on' -q && hue lights $1 off || hue lights $1 on
+  last_light "$1"
+}
+
+case $1 in
+  toggle_all) toggle_all ;;
+  toggle) toggle $2 ;;
+  last_light) last_light "$2" ;;
+esac
