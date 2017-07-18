@@ -285,6 +285,8 @@ exec --no-startup-id kupfer
 exec --no-startup-id /opt/Telegram/Telegram
 # Connect with coworkers
 exec --no-startup-id slack
+# GTD
+exec --no-startup-id rememberthemilk
 # Git browser
 exec --no-startup-id git-cola
 # File browser
