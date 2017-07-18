@@ -124,6 +124,9 @@ bindsym $mod+Ctrl+7 [class="git-cola"] scratchpad show
 # for_window [title="Shell No. 1"] move window to scratchpad
 bindsym $mod+Ctrl+6 [title="Shell No. 1"] scratchpad show
 
+for_window [instance="remember the milk"] move window to scratchpad
+bindsym $mod+Ctrl+5 [instance="remember the milk"] scratchpad show
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
