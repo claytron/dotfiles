@@ -147,16 +147,19 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 # resize window (you can also use the mouse for that)
 mode "resize" {
     # Vim style
-    bindsym h resize shrink width 20 px or 20 ppt
-    bindsym j resize grow height 20 px or 20 ppt
-    bindsym k resize shrink height 20 px or 20 ppt
-    bindsym l resize grow width 20 px or 20 ppt
+    bindsym h resize shrink width 50 px or 20 ppt
+    bindsym j resize grow height 50 px or 20 ppt
+    bindsym k resize shrink height 50 px or 20 ppt
+    bindsym l resize grow width 50 px or 20 ppt
 
     # same bindings, but for the arrow keys
-    bindsym Left resize shrink width 5 px or 5 ppt
-    bindsym Down resize grow height 5 px or 5 ppt
-    bindsym Up resize shrink height 5 px or 5 ppt
-    bindsym Right resize grow width 5 px or 5 ppt
+    bindsym Left resize shrink width 10 px or 5 ppt
+    bindsym Down resize grow height 10 px or 5 ppt
+    bindsym Up resize shrink height 10 px or 5 ppt
+    bindsym Right resize grow width 10 px or 5 ppt
+
+    # recenter
+    bindsym equal move position center
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
