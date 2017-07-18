@@ -25,5 +25,18 @@ if defined?(PryByebug)
   Pry.commands.alias_command 'quit', 'exit-program'
 end
 
-# Load rails files if present
-Rails.application.eager_load! if defined?(Rails)
+if defined? Rails
+  # Load rails files if present
+  Rails.application.eager_load!
+
+  # Add custom commands for the rails console
+  Pry::Commands.create_command 'faker load i18n' do
+    description 'Make faker work with i18n'
+
+    def process
+      require 'faker'
+      Faker::Config.locale = 'en'
+      I18n.reload!
+    end
+  end
+end
