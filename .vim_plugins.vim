@@ -58,7 +58,7 @@ Plug 'majutsushi/tagbar'
 Plug 'mhinz/vim-signify'
 Plug 'mtth/scratch.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale'
 Plug 'janko-m/vim-test'
 
 " File Previews

@@ -854,22 +854,24 @@ let g:airline_theme='base16'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#whitespace#enabled = 0
 
-" syntastic                                                    {{{2
+" ALE                                                          {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" Enable signs support to visually see where errors/warnings appear
-let g:syntastic_enable_signs=1
-" Automatically open the location list when there are errors
-let g:syntastic_auto_loc_list=0
-let g:syntastic_check_on_open=1
-" Run all enabled checkers
-let g:syntastic_aggregate_errors=1
+let g:airline#extensions#ale#error_symbol = '⨉:'
+let g:airline#extensions#ale#warning_symbol = '⚠ :'
+" Delay slightly more before running the linter
+let g:ale_lint_delay = 1500
+" Always lint on save too
+let g:ale_lint_on_save=1
+" Enable only particular linters
+let g:ale_linters = {
+\  'javascript': ['eslint'],
+\  'chef': ['foodcritic'],
+\  'ruby': ['rubocop', 'ruby'],
+\}
 
-" Be specific about what checkers to use
-let g:syntastic_python_checkers=['flake8']
-let g:syntastic_ruby_checkers=['rubocop', 'mri']
-let g:syntastic_javascript_checkers=['eslint']
-let g:syntastic_yaml_checkers=['yamlxs']
-let g:syntastic_slim_checkers=['slim_lint']
+" Specific options for linters
+" make foodcritic pick up the config at the root dir
+let g:ale_chef_foodcritic_executable = 'foodcritic -r .foodcritic'
 
 " Tagbar                                                       {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
