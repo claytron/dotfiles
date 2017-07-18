@@ -116,7 +116,7 @@ for_window [instance="slack" window_type="browser-window"] move window to scratc
 bindsym $mod+Ctrl+9 [instance="slack"] scratchpad show
 
 for_window [instance="Telegram"] move window to scratchpad
-bindsym $mod+Ctrl+8 [instance="Telegram"] scratchpad show; [instance="whats-app-web-nativefier-d40211"] scratchpad show
+bindsym $mod+Ctrl+8 [instance="whats-app-web-nativefier-d40211"] scratchpad show, [instance="Telegram"] scratchpad show
 
 for_window [class="git-cola" window_type="normal"] resize set 1920 1055, move position 0 25, move window to scratchpad
 bindsym $mod+Ctrl+7 [class="git-cola"] scratchpad show
