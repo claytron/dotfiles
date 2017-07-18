@@ -137,6 +137,17 @@ if [ -d "$HOME/.config" ]; then
     linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
 fi
 
+# Take care of yamllint configs
+# -----------------------------------------------------------------
+if [ -d "$HOME/.config" ]; then
+    actual_dotfile="$dotfiles_loc/yamllint"
+    dotfile="yamllint"
+    [ -d "$HOME/.config/$dotfile" ] || mkdir "$HOME/.config/$dotfile"
+    to_create="$HOME/.config/$dotfile/config"
+    # actually create/remove the link
+    linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
+fi
+
 # Take care of neovim config
 # -----------------------------------------------------------------
 if [ -d "$HOME/.config" ]; then
