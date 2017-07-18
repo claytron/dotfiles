@@ -1093,12 +1093,15 @@ nnoremap <silent> tmte :call localorie#expand_key()<CR>
 
 " autoformat                                                   {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-nnoremap <silent> cuf :Autoformat<CR>:w<CR>
 nnoremap <silent> cuw :RemoveTrailingSpaces<CR>:w<CR>
 
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
 let g:autoformat_remove_trailing_spaces = 0
+
+" neoformat                                                    {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nnoremap <silent> cuf :Neoformat<CR>:w<CR>
 
 " Auto command settings                                        {{{1
 " -----------------------------------------------------------------
