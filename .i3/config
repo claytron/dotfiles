@@ -127,6 +127,11 @@ bindsym $mod+Ctrl+6 [title="Shell No. 1"] scratchpad show
 for_window [instance="remember the milk"] move window to scratchpad
 bindsym $mod+Ctrl+5 [instance="remember the milk"] scratchpad show
 
+# Tunes
+for_window [instance="spotify"] move window to scratchpad
+bindsym $mod+Ctrl+4 [instance="spotify"] scratchpad show
+exec --no-startup-id spotify
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
