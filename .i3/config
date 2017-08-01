@@ -112,20 +112,30 @@ bindsym $mod+Ctrl+h scratchpad show
 # Find certain scratchpads
 bindsym $mod+Ctrl+0 [instance="x-terminal-emulator"] scratchpad show
 
+# Connect with coworkers
 for_window [instance="slack" window_type="browser-window"] move window to scratchpad
 bindsym $mod+Ctrl+9 [instance="slack"] scratchpad show
+exec --no-startup-id slack
 
+# Chat with friends
 for_window [instance="Telegram"] move window to scratchpad
 bindsym $mod+Ctrl+8 [instance="whats-app-web-nativefier-d40211"] scratchpad show, [instance="Telegram"] scratchpad show
+exec --no-startup-id /opt/Telegram/Telegram
 
+# Git browser
 for_window [class="git-cola" window_type="normal"] resize set 1920 1055, move position 0 25, move window to scratchpad
 bindsym $mod+Ctrl+7 [class="git-cola"] scratchpad show
+exec --no-startup-id git-cola
 
+# File browser
 # for_window [title="Shell No. 1"] move window to scratchpad
 bindsym $mod+Ctrl+6 [title="Shell No. 1"] scratchpad show
+exec --no-startup-id qterminal -e ranger
 
+# GTD
 for_window [instance="remember the milk"] move window to scratchpad
 bindsym $mod+Ctrl+5 [instance="remember the milk"] scratchpad show
+exec --no-startup-id rememberthemilk
 
 # Tunes
 for_window [instance="spotify"] move window to scratchpad
@@ -291,16 +301,6 @@ exec --no-startup-id test -e ~/Pictures/Wallpaper/bonespin.png && feh --bg-fill 
 exec --no-startup-id nm-applet
 # Launcher
 exec --no-startup-id kupfer
-# Chat with friends
-exec --no-startup-id /opt/Telegram/Telegram
-# Connect with coworkers
-exec --no-startup-id slack
-# GTD
-exec --no-startup-id rememberthemilk
-# Git browser
-exec --no-startup-id git-cola
-# File browser
-exec --no-startup-id qterminal -e ranger
 # Clipboard history
 exec --no-startup-id parcellite
 # Bluetooth applet
