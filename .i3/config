@@ -258,8 +258,8 @@ set $green  #859900
 
 # clientclass           border  bg      text    indicator
 client.focused          $blue   $blue   $baseB3 $blue
-client.focused_inactive $cyan   $cyan   $baseB2 $violet
-client.unfocused        $baseA2 $baseA2 $baseB1 $baseA1
+client.focused_inactive $cyan   $cyan   $baseA3 $violet
+client.unfocused        $baseB1 $baseB1 $baseA3 $baseA1
 client.urgent           $yellow $yellow $baseB3 $orange
 
 # Python based status bar
