@@ -26,6 +26,7 @@ status.register(
     'clock',
     color=BASE0,
     format=' %a %b %-d %H:%M',
+    on_leftclick='i3-msg "workspace 4"',
 )
 
 # Fake iStat Menus
@@ -67,6 +68,29 @@ status.register(
     full_color=BASE0,
     charging_color=GREEN,
     critical_color=RED,
+)
+
+status.register(
+    'shell',
+    command="~/.i3/input_status.sh",
+    color=BASE0,
+)
+
+status.register(
+    'pulseaudio',
+    format=' ♪ {volume} ',
+    step=1,
+    color_muted=RED,
+    color_unmuted=BASE0,
+)
+
+# What's playing?
+status.register(
+    'lastfm',
+    apikey='a1f3cd783836d3bb96e981b0efc8ac55',
+    playing_format=' {track} FROM {album} BY {artist} ',
+    user='claytron',
+    playing_color=BASE0,
 )
 
 status.run()
