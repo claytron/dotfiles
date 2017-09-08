@@ -783,7 +783,7 @@ filetype plugin indent on  " enables filetype specific plugins
 
 " Grepper                                                      {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-map /// :Grepper<cr>
+map /// :Grepper -tool ack<cr>
 map // :Grepper -tool git<cr>
 
 " initialize g:grepper with defaults
