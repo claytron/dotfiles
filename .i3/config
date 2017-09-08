@@ -179,6 +179,8 @@ bindsym $mod+XF86MonBrightnessDown exec light -U 1
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-mute 0 0 && pactl set-sink-volume 0 +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-mute 0 0 && pactl set-sink-volume 0 -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+# Toggle the microphone, kind of like Shush on os x
+bindsym $mod+XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Capture toggle
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
