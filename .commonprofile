@@ -23,3 +23,7 @@ if checkPath git && [[ -a ~/.githack ]]; then
 ) < ~/.githack
 
 fi
+
+if checkPath keychain; then
+  eval `keychain --agents ssh --eval id_rsa`
+fi
