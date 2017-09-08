@@ -102,5 +102,8 @@ noremap <silent> bpr :tabopen bkm-prs-review<CR>
 " Add video on the page to Plex
 noremap <silent> bp :open bkm-plex<CR>
 
+" Lastpass vault
+noremap <silent> bl :tabopen resource://support-at-lastpass-dot-com/data/vault.html?lplanguage=<CR>
+
 " turn on folds
 " vim: fdm=marker
