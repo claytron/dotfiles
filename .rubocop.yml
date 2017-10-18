@@ -1,3 +1,4 @@
+---
 AllCops:
   DisplayCopNames: true
 
@@ -13,17 +14,17 @@ Style/TrailingCommaInLiteral:
 Style/RedundantSelf:
   Enabled: false
 
-Style/IndentationWidth:
+Layout/IndentationWidth:
   Enabled: false
 
 # Alignment so that changing var / method does not change all lines in diff
-Style/AlignParameters:
+Layout/AlignParameters:
   EnforcedStyle: with_fixed_indentation
 
-Style/MultilineMethodCallIndentation:
+Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
 
-Style/MultilineOperationIndentation:
+Layout/MultilineOperationIndentation:
   EnforcedStyle: indented
 
 Lint/EndAlignment:
