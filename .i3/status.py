@@ -73,6 +73,7 @@ status.register(
 status.register(
     'shell',
     command="~/.i3/input_status.sh",
+    interval=1,
     color=BASE0,
 )
 
