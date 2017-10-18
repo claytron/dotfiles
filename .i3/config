@@ -187,19 +187,20 @@ bindsym $mod+XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Capture 
 # resize window (you can also use the mouse for that)
 mode "resize" {
     # Vim style
-    bindsym h resize shrink width 50 px or 20 ppt
-    bindsym j resize grow height 50 px or 20 ppt
-    bindsym k resize shrink height 50 px or 20 ppt
-    bindsym l resize grow width 50 px or 20 ppt
+    bindsym h resize shrink width 50 px or 20 ppt, move position center
+    bindsym j resize grow height 50 px or 20 ppt, move position center
+    bindsym k resize shrink height 50 px or 20 ppt, move position center
+    bindsym l resize grow width 50 px or 20 ppt, move position center
 
     # same bindings, but for the arrow keys
-    bindsym Left resize shrink width 10 px or 5 ppt
-    bindsym Down resize grow height 10 px or 5 ppt
-    bindsym Up resize shrink height 10 px or 5 ppt
-    bindsym Right resize grow width 10 px or 5 ppt
+    bindsym Left resize shrink width 10 px or 5 ppt, move position center
+    bindsym Down resize grow height 10 px or 5 ppt, move position center
+    bindsym Up resize shrink height 10 px or 5 ppt, move position center
+    bindsym Right resize grow width 10 px or 5 ppt, move position center
 
     # recenter
     bindsym equal move position center
+    bindsym 1 resize set 1400 840, move position center
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
