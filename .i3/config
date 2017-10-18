@@ -323,7 +323,7 @@ exec --no-startup-id kupfer
 # Share some files
 exec --no-startup-id dropbox start -i
 # Clipboard history
-exec --no-startup-id parcellite
+exec --no-startup-id clipit
 # Bluetooth applet
 exec --no-startup-id blueman-applet
 
