@@ -26,7 +26,7 @@ status.register(
     'clock',
     color=BASE0,
     format=' %a %b %-d %H:%M',
-    on_leftclick='i3-msg "workspace 4"',
+    on_leftclick='i3-msg "workspace 4: cal"',
 )
 
 # Fake iStat Menus
