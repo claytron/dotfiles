@@ -1106,6 +1106,10 @@ let g:autoformat_remove_trailing_spaces = 0
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 nnoremap <silent> cuf :Neoformat<CR>:w<CR>
 
+" python-syntax                                                {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+let g:python_highlight_all=1
+
 " Auto command settings                                        {{{1
 " -----------------------------------------------------------------
 

@@ -22,7 +22,7 @@ Plug 'airblade/vim-localorie'
 Plug 'vim-scripts/bbcode'
 Plug 'pangloss/vim-javascript', { 'branch': 'develop' }
 Plug 'elzr/vim-json'
-Plug 'hdima/python-syntax'
+Plug 'vim-python/python-syntax'
 
 " Object manipulation
 Plug 'godlygeek/tabular'
