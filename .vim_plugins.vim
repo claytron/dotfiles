@@ -4,7 +4,7 @@ Plug 'maxbrunsfeld/vim-yankstack'
 
 " Language Syntax
 Plug 'chrisbra/csv.vim'
-Plug 'evanmiller/nginx-vim-syntax'
+Plug 'chr4/nginx.vim'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
 Plug 'heartsentwined/vim-emblem'
