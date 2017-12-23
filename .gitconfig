@@ -39,7 +39,7 @@
 	cirm = !git commit --reedit-message=$(git reflog | grep -E '.+HEAD[^:]+: commit:' | fzf | sed -Ee 's/.+(HEAD[^:]+):.*/\\1/')
 # Commit a work in progress
 	ciw = !git add -u && git commit -m 'watch me WIP'
-	cia = commit --amend
+	cia = commit --amend -v
 	wip = !git ciw
 # Pop the last commit into the working copy
 	pop = !git --no-pager log -n 1 HEAD && git reset HEAD^
