@@ -279,3 +279,8 @@ select2
 deliverability
 SaaS
 URLs
+Redis
+util
+redis
+monit
+resque
