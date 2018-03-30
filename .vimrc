@@ -795,7 +795,7 @@ runtime plugin/grepper.vim
 " Available list of grepping tools
 let g:grepper.tools = ['ack', 'git', 'grep']
 " Modify git args to be case insensitive
-let g:grepper.git.grepprg = 'git grep -nIi $* .'
+let g:grepper.git.grepprg = 'git grep -nEIi'
 
 " Highlight matches
 let g:grepper.highlight = 1
