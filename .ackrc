@@ -42,7 +42,12 @@
 
 # Don't search through generated dirs
 --ignore-dir=.tox
+# Some local dev things
 --ignore-dir=node_modules
+--ignore-dir=frontend/node_modules
+--ignore-dir=frontend/tmp
+--ignore-dir=frontend/bower_components
+--ignore-dir=tmp
 --ignore-dir=log
 # Don't search generated files
 --ignore-file=is:ignite-ember.js
