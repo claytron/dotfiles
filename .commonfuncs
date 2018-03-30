@@ -1,30 +1,40 @@
 UNAME=$(uname)
 
 makeMeLaugh() {
-  if checkPath fortune; then
-    local FORTUNE
-    # display the fortune requested
-    if [ -n "$1" ]; then
-        FORTUNE=$(fortune -e "$1")
-    # try to run my custom comedy folder of goodness
-    elif [ -d /opt/local/share/games/fortune/comedy ] ||
-         [ -d /usr/share/games/fortune/comedy ] ||
-         [ -d /usr/share/games/fortunes/comedy ] ||
-         [ -d /usr/share/fortune/comedy ] ||
-         [ -d /usr/local/share/games/fortunes/comedy ]; then
-        FORTUNE=$(fortune -e comedy)
-    # otherwise just any old fortune will do
-    else
-        FORTUNE=$(fortune -a)
-    fi
-    # Spice it up if we can
-    if checkPath cowthink; then
-        FORTUNE=$(cowthink -d -W72 "$FORTUNE")
-    fi
-    echo -e "\n$FORTUNE\n"
-  else
+  local output width term_width
+
+  if ! checkPath fortune; then
     echo "No fortunes for you!"
+    return 0
   fi
+
+  width=72
+  term_width=$(tput cols)
+  if [ "$term_width" -lt "$width" ]; then
+      width=$((term_width - 5))
+  fi
+
+  # display the fortune requested
+  if [ -n "$1" ]; then
+      output=$(fortune -e "$1")
+  # try to run my custom comedy folder of goodness
+  elif [ -d /opt/local/share/games/fortune/comedy ] ||
+       [ -d /usr/share/games/fortune/comedy ] ||
+       [ -d /usr/share/games/fortunes/comedy ] ||
+       [ -d /usr/share/fortune/comedy ] ||
+       [ -d /usr/local/share/games/fortunes/comedy ]; then
+      output=$(fortune -e comedy)
+  # otherwise just any old fortune will do
+  else
+      output=$(fortune -a)
+  fi
+
+  # Spice it up if we can
+  if checkPath cowthink; then
+      output=$(cowthink -d -W "$width" "$output")
+  fi
+
+  echo -e "\n$output\n"
 }
 
 lulz() {
