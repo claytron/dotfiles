@@ -72,7 +72,9 @@
 	dfs = diff --staged
 # Show the changes on the current branch
 	dfd = !git show `git merge-base HEAD origin/dev`..HEAD
+	dfds = !git diff `git merge-base HEAD origin/dev` HEAD --stat
 	dfm = !git show `git merge-base HEAD origin/master`..HEAD
+	dfms = !git diff `git merge-base HEAD origin/master` HEAD --stat
 # Better log commands
 	lg = log --graph --pretty=format:'%Cred%h%Creset %Cgreen(%cr)%Creset %Cblue%an%Creset %s %C(yellow)%d%Creset' --abbrev-commit --date=relative
 # Use bang to be able to re-use the alias above (with pretty format) and add to it
