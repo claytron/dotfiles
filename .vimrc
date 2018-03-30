@@ -793,12 +793,21 @@ map // :Grepper -tool git<cr>
 runtime plugin/grepper.vim
 
 " Available list of grepping tools
-let g:grepper.tools = ['ack', 'git', 'giti', 'grep']
+let g:grepper.tools = ['ack', 'git', 'giti', 'grep', 'branch', 'branchd']
 " Modify git args to be case insensitive
 let g:grepper.git.grepprg = 'git grep -nEIi'
 " Case sensitive search is good sometimes though
 let g:grepper.giti = {
   \ 'grepprg':    'git grep -nEI',
+  \ 'grepformat': '%f:%l:%m',
+  \ }
+" Search across files modified in the current branch against master / dev
+let g:grepper.branch = {
+  \ 'grepprg':    "git grep -nE $* -- `git diff --name-only origin/master...`",
+  \ 'grepformat': '%f:%l:%m',
+  \ }
+let g:grepper.branchd = {
+  \ 'grepprg':    "git grep -nE $* -- `git diff --name-only origin/dev...`",
   \ 'grepformat': '%f:%l:%m',
   \ }
 
