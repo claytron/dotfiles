@@ -234,10 +234,7 @@ else
 fi
 
 # can't break the OS X habit :)
-if checkPath open; then
-    # Don't do anything
-    true
-elif checkPath rifle; then
+if checkPath rifle; then
     # Use Ranger's Rifle
     alias open=rifle
 elif checkPath gnome-open; then
