@@ -109,7 +109,9 @@ export LC_COLLATE=C
 
 # conditionally set the editor variable
 # TODO: get mvim -f to work with crontab some day :)
-if checkPath vim; then
+if checkPath nvim; then
+    PREFERRED_EDITOR=nvim
+elif checkPath vim; then
     PREFERRED_EDITOR=vim
 elif checkPath mate_wait; then
     # to set this up you need to symlink the mate command
