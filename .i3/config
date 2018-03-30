@@ -29,12 +29,6 @@ bindsym $mod+d exec kupfer
 bindsym $mod+Tab workspace next
 bindsym $mod+grave workspace prev
 
-# change focus (vim style)
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
-
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -69,12 +63,6 @@ bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
-
-# focus the parent container
-bindsym $mod+p focus parent
-
-# focus the child container
-bindsym $mod+c focus child
 
 # Turn the bar on or off
 bindsym $mod+minus bar mode invisible
@@ -143,11 +131,6 @@ for_window [class="git-cola" window_type="normal"] resize set 1920 1055, move po
 bindsym $mod+Ctrl+7 [class="git-cola"] scratchpad show
 exec --no-startup-id git-cola
 
-# File browser
-# for_window [title="Shell No. 1"] move window to scratchpad
-bindsym $mod+Ctrl+6 [title="Shell No. 1"] scratchpad show
-exec --no-startup-id qterminal -e ranger
-
 # GTD
 for_window [instance="remember the milk"] move window to scratchpad
 bindsym $mod+Ctrl+5 [instance="remember the milk"] scratchpad show
@@ -162,8 +145,6 @@ for_window [instance="simplenote"] move window to scratchpad
 bindsym $mod+Ctrl+3 [instance="simplenote"] scratchpad show
 exec --no-startup-id /usr/share/simplenote/simplenote
 
-# reload the configuration file
-bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
