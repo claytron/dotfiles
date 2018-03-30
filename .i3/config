@@ -184,11 +184,11 @@ mode "resize" {
     # recenter
     bindsym equal move position center
     bindsym 1 resize set 1400 840, move position center
+    bindsym $mod+r resize set 1400 840, move position center, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
-    bindsym $mod+r mode "default"
 }
 
 bindsym $mod+r mode "resize"
