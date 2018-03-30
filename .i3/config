@@ -127,9 +127,10 @@ bindsym $mod+Ctrl+8 [instance="whats-app-web-nativefier-d40211"] scratchpad show
 exec --no-startup-id /opt/Telegram/Telegram
 
 # Git browser
-for_window [class="git-cola" window_type="normal"] resize set 1920 1055, move position 0 25, move window to scratchpad
+for_window [class="git-cola" window_type="normal"] move window to scratchpad
 bindsym $mod+Ctrl+7 [class="git-cola"] scratchpad show
-exec --no-startup-id git-cola
+exec --no-startup-id git-cola dag -r ~/.dotfiles
+exec --no-startup-id git-cola -r ~/.dotfiles
 
 # GTD
 for_window [instance="remember the milk"] move window to scratchpad
