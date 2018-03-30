@@ -56,9 +56,6 @@ bindsym $mod+Shift+Right move right
 # split in horizontal orientation
 bindsym $mod+bar split h
 
-# split in vertical orientation
-bindsym $mod+minus split v
-
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
 
@@ -78,6 +75,10 @@ bindsym $mod+p focus parent
 
 # focus the child container
 bindsym $mod+c focus child
+
+# Turn the bar on or off
+bindsym $mod+minus bar mode invisible
+bindsym $mod+equal bar mode dock
 
 # define workspaces
 set $ws1 1: web
