@@ -84,7 +84,7 @@ set $ws1 1: web
 set $ws2 2: work
 set $ws3 3: mail
 set $ws4 4: cal
-set $ws5 5
+set $ws5 5: rando
 set $ws6 6
 set $ws7 7
 set $ws8 8
