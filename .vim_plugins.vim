@@ -60,6 +60,9 @@ Plug 'mtth/scratch.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'w0rp/ale'
 Plug 'janko-m/vim-test'
+if has('nvim')
+  Plug 'roxma/nvim-completion-manager'
+endif
 
 " File Previews
 Plug 'Rykka/InstantRst'
