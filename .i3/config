@@ -139,7 +139,7 @@ exec --no-startup-id rememberthemilk
 
 # Tunes
 for_window [instance="spotify"] move window to scratchpad
-bindsym $mod+Ctrl+4 [instance="spotify"] scratchpad show
+bindsym $mod+Ctrl+6 [instance="spotify"] scratchpad show
 exec --no-startup-id spotify
 
 for_window [instance="simplenote"] move window to scratchpad
