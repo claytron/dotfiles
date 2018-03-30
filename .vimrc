@@ -35,6 +35,7 @@
 " -----------------------------------------------------------------
 "    cuw             -- Removes trailing whitespace characters
 "    cuf             -- Clean up the current file using autoformat
+"    cut             -- Find things to clean up. TODO, XXX, etc.
 "    cuv             -- Sort a buildout versions.cfg file
 "
 " File Type mnemonic                                           {{{2
@@ -788,6 +789,7 @@ filetype plugin indent on  " enables filetype specific plugins
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 map /// :Grepper -tool ack<cr>
 map // :Grepper -tool git<cr>
+map cut :Grepper -tool branchd -highlight -query '\b(TODO\|XXX\|HACK\|FIXME\|NOTE)\b'<cr>
 
 " initialize g:grepper with defaults
 runtime plugin/grepper.vim
