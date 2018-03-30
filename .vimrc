@@ -793,9 +793,14 @@ map // :Grepper -tool git<cr>
 runtime plugin/grepper.vim
 
 " Available list of grepping tools
-let g:grepper.tools = ['ack', 'git', 'grep']
+let g:grepper.tools = ['ack', 'git', 'giti', 'grep']
 " Modify git args to be case insensitive
 let g:grepper.git.grepprg = 'git grep -nEIi'
+" Case sensitive search is good sometimes though
+let g:grepper.giti = {
+  \ 'grepprg':    'git grep -nEI',
+  \ 'grepformat': '%f:%l:%m',
+  \ }
 
 " Highlight matches
 let g:grepper.highlight = 1
