@@ -121,9 +121,6 @@ alias brokensymlinks="find -L . -type l"
 # svn helpers
 alias svnps="svn propset svn:externals -F EXTERNALS.txt ."
 alias svnpsi="svn propset svn:ignore -F IGNORE.txt ."
-# Needs to be a better way to do this... (global aliases + zsh, see the .zshrc)
-export sfuprivate='https://svn.sixfeetup.com/svn/private'
-export sfupublic='https://svn.sixfeetup.com/svn/public'
 
 # zope runs most QA/Staging instances...
 alias zu='sudo -H -u zope'

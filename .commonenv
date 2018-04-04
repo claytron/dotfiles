@@ -143,9 +143,6 @@ export PYTHONSTARTUP=$HOME/.pystartup
 # You should see a version number and NOT 'editline'
 [ -d "/opt/local" ] && export RUBY_CONFIGURE_OPTS="--with-readline-dir=/opt/local"
 
-# pip settings
-export PIP_FIND_LINKS="https://dist.sixfeetup.com/public/"
-
 # set up some more OS X specific stuff
 if [ "$UNAME" = "Darwin" ]; then
     # Figure out the major and minor version of OS X

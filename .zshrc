@@ -34,14 +34,6 @@ alias -g psef="plonesite:enabled=false"
 alias -g pssr="plonesite:site-replace=true"
 # easily get to the site packages dir of any python install, example: $ cd $(python2.5 site-packages)
 alias -g site-packages='-c "from distutils.sysconfig import get_python_lib; print get_python_lib()"'
-# SVN repos
-# 
-# NOTE: you can expand aliases with "_expand_alias"
-#       see bindkey for more info $ bindkey -M viins
-alias -g spriv='https://svn.sixfeetup.com/svn/private/'
-alias -g spub='https://svn.sixfeetup.com/svn/public/'
-alias -g scollective='https://svn.plone.org/svn/collective/'
-alias -g sgit='https://git.sixfeetup.com/git/'
 
 # some pipes
 if [ $UNAME = "Darwin" ]; then

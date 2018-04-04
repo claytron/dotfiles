@@ -298,20 +298,8 @@ EOF
 #[distutils]
 #index-servers =
 #    pypi
-#    skillet
-#    plone.org
 #
 #[pypi]
-#Username: USERNAME
-#Password: PASSWORD
-#
-#[skillet]
-#repository: http://skillet.sixfeetup.com
-#Username: USERNAME
-#Password: PASSWORD
-#
-#[plone.org]
-#repository: http://plone.org/products
 #Username: USERNAME
 #Password: PASSWORD
 EOF
