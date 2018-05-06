@@ -14,9 +14,8 @@ expected_path=(
   "$HOME/bin/$MACHTYPE-$OSTYPE"
   "$HOME/bin"
   "$HOME/bin/git_achievements"
-  "$HOME/elasticsearch-1.7.6/bin"
   "$HOME/.rbenv/shims"
-  "$HOME/.rbenv/versions/2.3.1/bin"
+  "$HOME/.rbenv/versions/2.3.3/bin"
   "$HOME/.rbenv/versions/2.2.6/bin"
   "$HOME/.rvm/bin"
   "$HOME/.gem/ruby/1.8/bin"
@@ -25,6 +24,7 @@ expected_path=(
   "$HOME/Documents/android-sdk-mac-x86_64-20140321/platform-tools"
   "$HOME/node_modules/jshint/bin"
   /usr/local/texlive/2015/bin/x86_64-darwin
+  /usr/share/elasticsearch/bin
   /opt/php53/bin
   /opt/local/apache2/bin
   /opt/python/bin
