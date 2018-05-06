@@ -174,12 +174,17 @@ mode "resize" {
     bindsym j resize grow height 50 px or 20 ppt, move position center
     bindsym k resize shrink height 50 px or 20 ppt, move position center
     bindsym l resize grow width 50 px or 20 ppt, move position center
+    # Same but don't re-center each time
+    bindsym $mod+h resize shrink width 50 px or 20 ppt
+    bindsym $mod+j resize grow height 50 px or 20 ppt
+    bindsym $mod+k resize shrink height 50 px or 20 ppt
+    bindsym $mod+l resize grow width 50 px or 20 ppt
 
     # same bindings, but for the arrow keys
-    bindsym Left resize shrink width 10 px or 5 ppt, move position center
-    bindsym Down resize grow height 10 px or 5 ppt, move position center
-    bindsym Up resize shrink height 10 px or 5 ppt, move position center
-    bindsym Right resize grow width 10 px or 5 ppt, move position center
+    bindsym Left resize shrink width 10 px or 5 ppt
+    bindsym Down resize grow height 10 px or 5 ppt
+    bindsym Up resize shrink height 10 px or 5 ppt
+    bindsym Right resize grow width 10 px or 5 ppt
 
     # recenter
     bindsym equal move position center
