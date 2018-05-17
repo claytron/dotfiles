@@ -65,11 +65,9 @@
 	cod = checkout dev
 # Diffing
 	df = diff
-# Alternatively use vimdiff
-	dft = difftool
-# Side-by-side, if icdiff is available
-	dfts = difftool --tool=icdiff
 	dfs = diff --staged
+# Alternatively use diff.tool
+	dft = difftool
 # Show the changes on the current branch
 	dfd = !git show `git merge-base HEAD origin/dev`..HEAD --reverse
 	dfds = !git difftool `git merge-base HEAD origin/dev`..HEAD --reverse
@@ -120,7 +118,7 @@
 	autosetuprebase = always
 [diff]
 	algorithm = patience
-  tool = vimdiff
+	tool = icdiff
 	renameLimit = 1000
 [difftool]
 	prompt = false
