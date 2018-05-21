@@ -69,8 +69,6 @@
 "                       is the TextMate equivalent of ctrl+cmd+r
 "    tmi             -- Toggle indent guides
 "    tmy             -- Show the yankring
-"    tmz             -- Push default register to remote server's
-"                       pbcopy. Basically copy from VM -> OS X.
 "    tmb             -- Shortcut for getting to NERDTree bookmarks
 "    tm1             -- Set a highlight for the current word (1)
 "    tm2             -- Set a highlight for the current word (2)
@@ -378,9 +376,6 @@ set foldtext=NeatFoldText()
 
 " turn off smart indentation when pasting
 set pastetoggle=<F2>
-
-" Send register back to my computer's clipboard
-map <silent> tmz :call PushRegister(@")<CR>
 
 " Searching                                                    {{{1
 " -----------------------------------------------------------------
@@ -702,33 +697,6 @@ function! IndentGuides() " {{{
     endif
 endfunction " }}}
 nnoremap <silent> tmi :call IndentGuides()<cr>
-
-" Push register out to file                                    {{{2
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-function! RegisterToFile(...)
-    " TODO: use a tmpfile, then clean it up afterwards
-    let l:filename = a:1
-    if !exists('a:2')
-        let l:register = '"'
-    else
-        let l:register = a:2
-    endif
-    " XXX: Make it so this doesn't push an empty first line and trailing
-    " newline to the file
-    exe "redir! > " . l:filename
-    echo getreg(l:register)
-    redir END
-endfunction
-
-" Push a register back to my clipboard                         {{{2
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-function! PushRegister(text)
-    silent !clear
-    silent execute '!printf "\%s" '. shellescape(a:text, 1) .' | nc localhost 2224'
-    silent execute ':redraw!'
-endfunction
 
 " Save a file with sudo when it is [readonly]                  {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
