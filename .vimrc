@@ -1096,6 +1096,13 @@ nnoremap <silent> cuf :Neoformat<CR>:w<CR>
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 let g:python_highlight_all=1
 
+" vim-commentary                                               {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Unknown to the plugin
+autocmd FileType xdefaults setlocal commentstring=\!\ %s
+" It was preferring the erb style, so forcing yaml comment here
+autocmd FileType eruby.yaml setlocal commentstring=#\ %s
+
 " Auto command settings                                        {{{1
 " -----------------------------------------------------------------
 
