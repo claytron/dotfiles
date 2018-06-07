@@ -75,9 +75,6 @@ alias -g TS='| ts -i'
 alias -g FZ='| fzf -m'
 alias -g FZF='| fzf -m'
 
-# cvs setup
-export CVSROOT=:pserver:clayton@cvs:/var/cvsroot
-
 # automatically print timing statistics if the command took longer
 # than a minute
 export REPORTTIME=60
