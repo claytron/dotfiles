@@ -840,6 +840,7 @@ let g:debuggerMiniBufExpl = 1
 let g:airline_theme='base16_grayscale'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#whitespace#enabled = 0
+let g:airline_section_z='%4l/%-4L|%-3c'
 
 " ALE                                                          {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
