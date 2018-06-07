@@ -1,26 +1,32 @@
-#!/usr/bin/env python
-# -*- coding: UTF-8 -*-
+#!/usr/bin/env python3
+
+# Taken from:
+# https://github.com/olivierverdier/zsh-git-prompt
 
 from __future__ import print_function
 
-# change those symbols to whatever you prefer
-symbols = {'ahead of': '↑', 'behind': '↓', 'prehash':':'}
+# change this symbol to whatever you prefer
+prehash = ':'
 
 from subprocess import Popen, PIPE
 
+import sys
 gitsym = Popen(['git', 'symbolic-ref', 'HEAD'], stdout=PIPE, stderr=PIPE)
 branch, error = gitsym.communicate()
 
 error_string = error.decode('utf-8')
+error_string.lower()
 
-if error_string.find('fatal: Not a git repository') != -1:
-	import sys
+if 'fatal: not a git repository' in error_string:
 	sys.exit(0)
 
-branch = branch.strip()[11:]
+branch = branch.decode("utf-8").strip()[11:]
 
-
-changed_files = [namestat[0] for namestat in Popen(['git','diff','--name-status'], stdout=PIPE).communicate()[0].splitlines()]
+res, err = Popen(['git','diff','--name-status'], stdout=PIPE, stderr=PIPE).communicate()
+err_string = err.decode('utf-8')
+if 'fatal' in err_string:
+	sys.exit(0)
+changed_files = [namestat[0] for namestat in res.decode("utf-8").splitlines()]
 staged_files = [namestat[0] for namestat in Popen(['git','diff', '--staged','--name-status'], stdout=PIPE).communicate()[0].splitlines()]
 nb_changed = len(changed_files) - changed_files.count('U')
 nb_U = staged_files.count('U')
@@ -28,21 +34,17 @@ nb_staged = len(staged_files) - nb_U
 staged = str(nb_staged)
 conflicts = str(nb_U)
 changed = str(nb_changed)
-nb_untracked = len(Popen(['git','ls-files','--others','--exclude-standard'],stdout=PIPE).communicate()[0].splitlines())
+nb_untracked = len([0 for status in Popen(['git','status','--porcelain',],stdout=PIPE).communicate()[0].decode("utf-8").splitlines() if status.startswith('??')])
 untracked = str(nb_untracked)
-if not nb_changed and not nb_staged and not nb_U and not nb_untracked:
-	clean = '1'
-else:
-	clean = '0'
 
-remote = ''
+ahead, behind = 0,0
 
 if not branch: # not on any branch
-	branch = symbols['prehash']+ Popen(['git','rev-parse','--short','HEAD'], stdout=PIPE).communicate()[0][:-1]
+	branch = prehash + Popen(['git','rev-parse','--short','HEAD'], stdout=PIPE).communicate()[0].decode("utf-8")[:-1]
 else:
-	remote_name = Popen(['git','config','branch.%s.remote' % branch], stdout=PIPE).communicate()[0].strip()
+	remote_name = Popen(['git','config','branch.%s.remote' % branch], stdout=PIPE).communicate()[0].decode("utf-8").strip()
 	if remote_name:
-		merge_name = Popen(['git','config','branch.%s.merge' % branch], stdout=PIPE).communicate()[0].strip()
+		merge_name = Popen(['git','config','branch.%s.merge' % branch], stdout=PIPE).communicate()[0].decode("utf-8").strip()
 		if remote_name == '.': # local
 			remote_ref = merge_name
 		else:
@@ -51,21 +53,17 @@ else:
 		revlist = revgit.communicate()[0]
 		if revgit.poll(): # fallback to local
 			revlist = Popen(['git', 'rev-list', '--left-right', '%s...HEAD' % merge_name],stdout=PIPE, stderr=PIPE).communicate()[0]
-		behead = revlist.splitlines()
+		behead = revlist.decode("utf-8").splitlines()
 		ahead = len([x for x in behead if x[0]=='>'])
 		behind = len(behead) - ahead
-		if behind:
-			remote += '%s%s' % (symbols['behind'], behind)
-		if ahead:
-			remote += '%s%s' % (symbols['ahead of'], ahead)
 
-out = '\n'.join([
-	str(branch),
-	remote,
+out = ' '.join([
+	branch,
+	str(ahead),
+	str(behind),
 	staged,
 	conflicts,
 	changed,
 	untracked,
-	clean])
-print(out)
-
+	])
+print(out, end='')
