@@ -843,8 +843,9 @@ let g:airline#extensions#whitespace#enabled = 0
 
 " ALE                                                          {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-let g:airline#extensions#ale#error_symbol = '⨉:'
-let g:airline#extensions#ale#warning_symbol = '⚠ :'
+let g:airline#extensions#ale#error_symbol = ''
+let g:airline#extensions#ale#warning_symbol = ''
+let g:airline#extensions#ale#show_line_numbers = 0
 " Delay slightly more before running the linter
 let g:ale_lint_delay = 1500
 " Always lint on save too
