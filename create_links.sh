@@ -127,33 +127,38 @@ if [ -e "$HOME/.ssh/authorized_keys" ]; then
     chmod 600 "$HOME/.ssh/authorized_keys"
 fi
 
-# Take care of awesome configs
-# -----------------------------------------------------------------
 if [ -d "$HOME/.config" ]; then
+    # Take care of awesome configs
+    # -----------------------------------------------------------------
     actual_dotfile="$dotfiles_loc/awesome"
     dotfile="awesome"
     to_create="$HOME/.config/$dotfile"
     # actually create/remove the link
     linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
-fi
 
-# Take care of yamllint configs
-# -----------------------------------------------------------------
-if [ -d "$HOME/.config" ]; then
+    # Take care of yamllint configs
+    # -----------------------------------------------------------------
     actual_dotfile="$dotfiles_loc/yamllint"
     dotfile="yamllint"
     [ -d "$HOME/.config/$dotfile" ] || mkdir "$HOME/.config/$dotfile"
     to_create="$HOME/.config/$dotfile/config"
     # actually create/remove the link
     linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
-fi
 
-# Take care of neovim config
-# -----------------------------------------------------------------
-if [ -d "$HOME/.config" ]; then
+    # Take care of neovim config
+    # -----------------------------------------------------------------
     actual_dotfile="$dotfiles_loc/.vim"
     dotfile="nvim"
     to_create="$HOME/.config/$dotfile"
+    # actually create/remove the link
+    linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
+
+    # Take care of kitty configs
+    # -----------------------------------------------------------------
+    actual_dotfile="$dotfiles_loc/kitty.conf"
+    dotfile="kitty"
+    [ -d "$HOME/.config/$dotfile" ] || mkdir "$HOME/.config/$dotfile"
+    to_create="$HOME/.config/$dotfile/$dotfile.conf"
     # actually create/remove the link
     linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
 fi
