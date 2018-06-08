@@ -186,7 +186,7 @@ map! jk <ESC>
 nnoremap tms :w<CR>
 
 " Set the shell to bash, zsh and vim don't seem to play nice
-set shell=bash
+set shell=$SHELL
 
 " :terminal settings
 let g:terminal_scrollback_buffer_size=100000
@@ -861,6 +861,8 @@ let g:ale_linters = {
 " Specific options for linters
 " make foodcritic pick up the config at the root dir
 let g:ale_chef_foodcritic_executable = 'foodcritic -r .foodcritic'
+" Pick up the project's rubocop
+let g:ale_ruby_rubocop_executable = 'bundle'
 
 " Tagbar                                                       {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
