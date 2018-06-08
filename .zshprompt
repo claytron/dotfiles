@@ -39,12 +39,12 @@ preexec () {
 setprompt () {
     # Need this so the prompt will work.
     setopt prompt_subst
-    
+
     PR_NO_COLOUR="%{$terminfo[sgr0]%}"
-    
+
     # Test to see if the git prompt should show
     [ -z "$PR_SHOW_GIT" ] && PR_GIT_STATUS=
-    
+
     # See if we can use extended characters to look nicer.
     # More info about these characters in the VT100 user guide
     # http://vt100.net/docs/vt100-ug/table3-9.html
@@ -72,14 +72,14 @@ setprompt () {
            PR_TITLEBAR=''
            ;;
     esac
-    
+
     # Decide whether to set a screen title
     if [[ "$TERM" == "screen" ]]; then
         PR_STITLE=$'%{\ekzsh\e\\%}'
     else
         PR_STITLE=''
     fi
-    
+
     # Finally, the prompt (removed the color - claytron)
     PROMPT='
 $PR_SET_CHARSET\
