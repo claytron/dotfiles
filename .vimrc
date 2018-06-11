@@ -427,6 +427,8 @@ function! s:extraHighlights()
     hi InterestingWord1 guifg=#000000 guibg=#FF4300 ctermfg=16 ctermbg=196
     hi InterestingWord2 guifg=#000000 guibg=#53FF00 ctermfg=16 ctermbg=82
     hi InterestingWord3 guifg=#000000 guibg=#FF74F8 ctermfg=16 ctermbg=165
+
+    " Setting the highlight for the IndentGuides function above
     hi IndentGuides                   guibg=#373737            ctermbg=237
     match none
     2match none
