@@ -433,6 +433,9 @@ function! s:extraHighlights()
     match none
     2match none
     3match none
+
+    " Set comments to italic to use the power of Operator Mono
+    hi Comment cterm=italic
 endfunction
 
 command! ExtraHighlightsInit :call s:extraHighlights()
