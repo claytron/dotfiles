@@ -7,18 +7,7 @@ hash -d P=$HOME/work/projects
 hash -d PP=$HOME/work/presentation
 hash -d D=$HOME/Documents
 [ -d "$HOME/Sites" ] && hash -d S=$HOME/Sites
-[ -d /usr/local/etc/rc.d ] && hash -d R=/usr/local/etc/rc.d
-[ -d /var/db/zope ] && hash -d Z=/var/db/zope
 [ -d /data ] && hash -d Z=/data
-
-# OS X specific settings
-if [ $UNAME = "Darwin" ]; then
-    # Set up global aliases for copy / pasting in tmux
-    if checkPath reattach-to-user-namespace && [ -n "$TMUX" ]; then
-        alias -g pbcopy="reattach-to-user-namespace pbcopy"
-        alias -g pbpaste="reattach-to-user-namespace pbpaste"
-    fi
-fi
 
 # set up common aliases between shells
 source $HOME/.commonrc
@@ -183,22 +172,10 @@ export HISTFILE HISTSIZE SAVEHIST
 export TMOUT=900
 function TRAPALRM() { histappend }
 
-## old style completions
-# supervisor
-if checkPath supervisorctl; then
-    # set up completions for supervisor
-    compctl -s "$(supervisorctl status >/dev/null 2>&1 | awk -F' ' '{print $1}')" supervisorctl
+# custom completions
+if [ -d '/usr/share/games/fortunes' ]; then
+  compctl -s '$(\ls /usr/share/games/fortunes | grep .dat | sed "s/.dat//")' fortune makeMeLaugh lulz
 fi
-# zope
-compctl -s 'fg kill start logreopen reload shell status wait help logtail restart show stop' zeoserver zeoctl
-compctl -s 'fg kill start logreopen reload shell status wait help logtail restart show stop run adduser test debug' instance zopectl
-
-# gitify completion
-compctl -s 'fetch gitify help h push update up' gitify
-
-# noguivm completions
-compctl -s '$(\ls -d $VM_LIBRARY/*.vmwarevm | sed -e "s|$VM_LIBRARY/||" -e "s/.vmwarevm//")' noguivm
-compctl -s '$(\ls /opt/local/share/games/fortune | grep .dat | sed "s/.dat//")' fortune makeMeLaugh lulz
 
 ## Completions
 autoload -U compinit
@@ -249,7 +226,5 @@ if [ -z $MY_ZSH_PLUGINS_LOADED ] && is-at-least 4.3; then
     ZSH_HIGHLIGHT_STYLES[globbing]='fg=white,bold,bg=blue'
     ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=white,bold,bg=blue'
 fi
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-UNAME=$(uname)
 source ~/.commonfuncs
 
 # let's set a proper PATH
@@ -11,42 +9,25 @@ new_path=""
 expected_path=(
   "$HOME/.dotfiles"
   ./bin
-  "$HOME/bin/$MACHTYPE-$OSTYPE"
   "$HOME/bin"
   "$HOME/bin/git_achievements"
   "$HOME/.rbenv/shims"
   "$HOME/.rbenv/versions/2.3.3/bin"
-  "$HOME/.rbenv/versions/2.2.6/bin"
   "$HOME/.rvm/bin"
-  "$HOME/.gem/ruby/1.8/bin"
   "$HOME/.cargo/bin"
-  "$HOME/Documents/android-sdk-mac-x86_64-20140321/tools"
-  "$HOME/Documents/android-sdk-mac-x86_64-20140321/platform-tools"
-  "$HOME/node_modules/jshint/bin"
-  /usr/local/texlive/2015/bin/x86_64-darwin
   /usr/share/elasticsearch/bin
-  /opt/php53/bin
   /opt/local/apache2/bin
   /opt/python/bin
   /opt/local/bin
   /opt/local/sbin
-  /opt/local/lib/postgresql94/bin
-  /opt/local/lib/postgresql93/bin
-  /opt/local/lib/postgresql91/bin
-  /opt/local/lib/postgresql90/bin
-  /opt/local/lib/postgresql83/bin
-  /usr/local/opt/mysql@5.6/bin
+  /opt/local/lib/postgresql95/bin
   /usr/local/opt/mysql@5.7/bin
-  /opt/local/lib/mysql56/bin
-  /opt/local/lib/mysql55/bin
+  /opt/local/lib/mysql57/bin
   /opt/local/lib/mysql5/bin
-  /opt/local/lib/mysql4/bin
   /opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin
-  /opt/local/Library/Frameworks/Python.framework/Versions/2.4/bin
   /opt/local/libexec/qt5/bin
   /usr/local/opt/qt/bin
   /usr/local/opt/node@6/bin
-  /fuck/bin
   /sw/bin
   /sw/sbin
   /usr/bin/perlbin/site
@@ -142,23 +123,6 @@ export PYTHONSTARTUP=$HOME/.pystartup
 #   6.3
 # You should see a version number and NOT 'editline'
 [ -d "/opt/local" ] && export RUBY_CONFIGURE_OPTS="--with-readline-dir=/opt/local"
-
-# set up some more OS X specific stuff
-if [ "$UNAME" = "Darwin" ]; then
-    # Figure out the major and minor version of OS X
-    os_majorversion=$(sw_vers | awk '/ProductVersion/ {print $2}' | cut -f2 -d'.')
-    os_minorversion=$(sw_vers | awk '/ProductVersion/ {print $2}' | cut -f3 -d'.')
-
-    # to not tar up resource forks, you'll need this
-    if [ "$os_majorversion" -ge 5 ]; then
-        # Leopard version (and beyond??)
-        export COPYFILE_DISABLE="True"
-    elif [ "$os_majorversion" -eq 4 ] && [ "$os_minorversion" -ge 6 ]; then
-        # Tiger version
-        export COPY_EXTENDED_ATTRIBUTES_DISABLE="True"
-    fi
-
-fi
 
 # colors!!!
 ###########

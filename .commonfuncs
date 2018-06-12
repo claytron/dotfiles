@@ -85,28 +85,6 @@ checkPath() {
     which $1 &>/dev/null
 }
 
-isiPhone() {
-    if checkPath sw_vers; then
-        [ $(sw_vers | awk '/ProductName/ {print $2}') = "iPhone" ] && return 0
-    fi
-    return 1
-}
-
-# a little function to print the full path to a file.
-fullpath() {
-    local fullpath
-    fullpath=$(pwd)/$1
-    echo -n "\"$fullpath\""
-    
-    # on OS X copy it to the clipboard too :)
-    if checkPath pbcopy && [ $UNAME = "Darwin" ]; then
-        echo -n "\"$fullpath\"" | pbcopy
-    fi
-
-    # on linux use xclip to copy to the clipboard
-    checkPath xclip && echo -n "\"$fullpath\"" | xclip
-}
-
 weShouldUpdate() {
     local time_to_update
     local time_marker
@@ -136,26 +114,6 @@ weShouldUpdate() {
         return 0
     fi
     return 1
-}
-
-search_movies() {
-    local movies
-    movies=`/Applications/Plex\ Media\ Server.app/Contents/MacOS/Plex\ Media\ Scanner -l -c 1 | awk -F: '{print $2}'`
-    echo $movies | grep -i $1
-}
-
-tmh() {
-    [[ -z "$1" ]] && echo 'project name is required' && return 1
-    local location
-    export T_PROJ=$1
-    [[ -z "$2" ]] && location=local || location="$2"
-    if [[ -n "$3" ]]; then
-        export T_BUILD="$3"
-    fi
-    if [[ -n "$4" ]]; then
-        export T_PREFIX="$4"
-    fi
-    teamocil --here $location
 }
 
 # Git stash + fzf = awesome

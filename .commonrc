@@ -152,14 +152,6 @@ alias rum='ru default@mailcatcher'
 # bundler
 alias be='bundle exec'
 
-# Zeus.
-alias z='zeus'
-alias zss='z start'
-alias zs='z server Puma -p 3001'
-alias zc='z console'
-alias zr='z rake'
-alias zt='z test'
-
 # Vagrant ssh commands
 alias vssh="vagrant ssh"
 
@@ -169,11 +161,6 @@ vs() {
 vsbe() {
     vagrant ssh -c "cd /vagrant && bundle exec $*"
 }
-
-# I have a folder of custom made fortunes...
-if checkPath fortune && [ -d /opt/local/share/games/fortune/comedy ]; then
-    alias laugh='echo; fortune comedy ;echo'
-fi
 
 # make cp and move ask before replacing files
 alias cp='cp -iv'
@@ -208,7 +195,6 @@ alias lsdot='lsd .*'
 alias df='df -h'
 
 # tar aliases.  ignore OS X meta files
-# NOTE: on OS X tar is freaked out by resource forks.  see .zshenv for the fix.
 alias targzc='tar --exclude=".DS_Store" --exclude="*pyc" -zcvf'
 alias tarbzc='tar --exclude=".DS_Store" --exclude="*pyc" -jcvf'
 alias targzx='tar -zxvf'
@@ -239,11 +225,6 @@ elif checkPath xdg-open; then
     # Use the X opener
     alias open=xdg-open
 fi
-
-# etckeeper aliases
-alias etck="sudo etckeeper"
-alias etckv="etck vcs"
-alias etcks="etckv status"
 
 # Shortened commands
 alias g=git
@@ -297,106 +278,3 @@ fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
-## Functions
-
-# start up a buildout given a myriad of ways to try
-function bfg() {
-    ACTION="start"
-    # Any argument causes a shutdown
-    [[ -n "$1" ]] && ACTION="stop"
-
-    instance=
-    instance_names=(instance client)
-    # Devine an instance executable, sometimes called "client", and sometimes with a number
-    for i in "${instance_names[@]}"
-    do
-        if [[ -x "bin/$i" ]]; then
-            instance=$i
-            break
-        elif [[ -x "bin/${i}1" ]]; then
-            instance="${i}1"
-            break
-        fi
-    done
-
-    zeo=
-    zeo_names=(zeo zeoserver)
-    # Devine a zeo executable, most of the time either zeoserver or zeo
-    for i in "${zeo_names[@]}"
-    do
-        if [[ -x "bin/$i" ]]; then
-            zeo=$i
-            break
-        fi
-    done
-
-    # start or stop a supervisor based install
-    if [ -x bin/supervisord ]; then
-        if [[ $ACTION == "start" ]]; then
-            bin/supervisord
-            # XXX: instance shouldn't be set, but seems to be anyway...
-            if [ -x "bin/$instance" ]; then
-                "bin/$instance" fg
-            fi
-        else
-            bin/supervisorctl shutdown
-        fi
-    # use the old control script
-    elif [ -x bin/control ]; then
-        if [[ $ACTION == "start" ]]; then
-            bin/control fg
-        else
-            bin/control stop
-        fi
-    # use the new control script
-    elif [ -x scripts/control ]; then
-        if [[ $ACTION == "start" ]]; then
-            scripts/control fg
-        else
-            scripts/control stop
-        fi
-    # no script, just use the executables directly
-    elif [ -n "$zeo" ] && [ -n "$instance" ]; then
-        if [[ $ACTION == "start" ]]; then
-            "bin/$zeo" start
-            "bin/$instance" fg
-        else
-            "bin/$zeo" stop
-        fi
-    # no zeoserver, just use the instance
-    elif [[ $ACTION == "start" ]] && [ -n "$instance" ]; then
-        "bin/$instance" fg
-    else
-        print "Couldn't find a start script. Is this a third party buildout?"
-    fi
-}
-
-# launch a VMWare vm in the background
-#
-# Set $VM_LIBRARY and $VM_VMRUN to alternate locations if
-# necessary
-export VM_LIBRARY="$HOME/Documents/Virtual Machines.localized"
-if [ -e "/Library/Application Support/VMWare Fusion/vmrun" ]; then
-    export VM_VMRUN="/Library/Application Support/VMware Fusion/vmrun"
-else
-    export VM_VMRUN="/Applications/VMware Fusion.app/Contents/Library/vmrun"
-fi
-function noguivm() {
-    local vmx_name
-    local vm_location
-    # the vmx filename will be based on the first arg given
-    vmx_name="$1.vmwarevm/$1.vmx"
-    # We will default to FreeBSD since that is the one used most
-    [ -z "$1" ] && vmx_name="FreeBSD.vmwarevm/FreeBSD.vmx"
-    vm_location="$VM_LIBRARY/$vmx_name"
-    # If that file exists, let's start up the VM
-    # XXX: couldn't get the test to work...
-    if [[ -e $vm_location ]]; then
-        print "Starting $vm_location"
-        # XXX: This is silly, wtf.
-        eval "'$VM_VMRUN'" -T fusion start "'$vm_location'" nogui
-    else
-        print "VM not available: $vm_location"
-    fi
-}
