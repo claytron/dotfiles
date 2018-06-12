@@ -12,18 +12,6 @@ elif checkPath git && [ -d ~/.dotfiles/.git ] && weShouldUpdate; then
     cd ~/.dotfiles && git up && cd
 fi
 
-# set up my .gitconfig with variables I don't want public
-# or can't be set properly (i'm looking at you excludesfile)
-if checkPath git && [[ -a ~/.githack ]]; then
-(
-  while read line
-  do
-     eval "$line"
-  done
-) < ~/.githack
-
-fi
-
 if checkPath keychain; then
   eval `keychain --agents ssh --eval id_rsa`
 fi
