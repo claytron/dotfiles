@@ -1,5 +1,5 @@
 # shellcheck shell=bash
-source $HOME/.commonfuncs
+source "$HOME/.commonfuncs"
 
 # run the fortune function....and...laugh
 makeMeLaugh
@@ -10,5 +10,5 @@ if checkPath git && [ -d ~/.dotfiles/.git ] && weShouldUpdate; then
 fi
 
 if checkPath keychain; then
-  eval `keychain --agents ssh --eval id_rsa`
+    eval "$(keychain --agents ssh --eval id_rsa)"
 fi

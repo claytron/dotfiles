@@ -23,12 +23,8 @@ else
 fi
 
 # use gvim or mvim for either command
-if checkPath gvim; then
-    alias mvim=gvim
-else
-    # keep me honest
-    alias gvim=mvim
-fi
+checkPath gvim && alias mvim=gvim
+checkPath mvim && alias gvim=mvim
 
 alias v=vim
 # Open vim with nerdtree open
@@ -43,7 +39,7 @@ fi
 
 # Can't break the os x habit
 if checkPath spd-say; then
-  alias say=spd-say
+    alias say=spd-say
 fi
 
 # some OS X specific stuff
@@ -254,14 +250,13 @@ VIRTUALENVS_DIR=$HOME/.virtualenvs
 if [ -d "$VIRTUALENVS_DIR" ]; then
     export WORKON_HOME=$VIRTUALENVS_DIR
     if [ -e /usr/share/virtualenvwrapper/virtualenvwrapper.sh ]; then
-      source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+        source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
     elif checkPath virtualenvwrapper_bashrc; then
         source virtualenvwrapper_bashrc
     elif checkPath virtualenvwrapper.sh; then
         source virtualenvwrapper.sh
     fi
 fi
-
 
 # Tmuxinator setup
 [[ -s ~/.tmuxinator/scripts/tmuxinator ]] && source ~/.tmuxinator/scripts/tmuxinator

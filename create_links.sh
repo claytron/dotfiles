@@ -164,7 +164,7 @@ if [ -d "$HOME/.config" ]; then
 fi
 
 # Install the vim plugins
-which vim && vim -c PlugInstall -c qa
+which vim >/dev/null && vim -c PlugInstall -c qa >/dev/null 2>&1
 
 # NOTE: None of these files are under version control...
 # -----------------------------------------------------------------

@@ -1,88 +1,88 @@
 # shellcheck shell=bash
 
 makeMeLaugh() {
-  local output width term_width
+    local output width term_width
 
-  if ! checkPath fortune; then
-    echo "No fortunes for you!"
-    return 0
-  fi
+    if ! checkPath fortune; then
+        echo "No fortunes for you!"
+        return 0
+    fi
 
-  width=72
-  term_width=$(tput cols)
-  if [ "$term_width" -lt "$width" ]; then
-      width=$((term_width - 5))
-  fi
+    width=72
+    term_width=$(tput cols)
+    if [ "$term_width" -lt "$width" ]; then
+        width=$((term_width - 5))
+    fi
 
-  # display the fortune requested
-  if [ -n "$1" ]; then
-      output=$(fortune -e "$1")
-  # try to run my custom comedy folder of goodness
-  elif [ -d /opt/local/share/games/fortune/comedy ] ||
-       [ -d /usr/share/games/fortune/comedy ] ||
-       [ -d /usr/share/games/fortunes/comedy ] ||
-       [ -d /usr/share/fortune/comedy ] ||
-       [ -d /usr/local/share/games/fortunes/comedy ]; then
-      output=$(fortune -e comedy)
-  # otherwise just any old fortune will do
-  else
-      output=$(fortune -a)
-  fi
+    # display the fortune requested
+    if [ -n "$1" ]; then
+        output=$(fortune -e "$1")
+    # try to run my custom comedy folder of goodness
+    elif [ -d /opt/local/share/games/fortune/comedy ] ||
+      [ -d /usr/share/games/fortune/comedy ] ||
+      [ -d /usr/share/games/fortunes/comedy ] ||
+      [ -d /usr/share/fortune/comedy ] ||
+      [ -d /usr/local/share/games/fortunes/comedy ]; then
+         output=$(fortune -e comedy)
+    # otherwise just any old fortune will do
+    else
+        output=$(fortune -a)
+    fi
 
-  # Spice it up if we can
-  if checkPath cowthink; then
-      output=$(cowthink -d -W "$width" "$output")
-  fi
+    # Spice it up if we can
+    if checkPath cowthink; then
+        output=$(cowthink -d -W "$width" "$output")
+    fi
 
-  echo -e "\n$output\n"
+    echo -e "\n$output\n"
 }
 
 lulz() {
-  local VOICE
-  local msg
-  local comedian
+    local VOICE
+    local msg
+    local comedian
 
-  while getopts "v:" OPTION
-  do
-       case $OPTION in
-           v)
-               VOICE=$OPTARG
-               shift $((OPTIND-1))
-               ;;
-           ?)
-               echo "Not a valid option"
-               exit 1
-               ;;
-       esac
-  done
+    while getopts "v:" OPTION
+    do
+        case $OPTION in
+            v)
+                VOICE=$OPTARG
+                shift $((OPTIND-1))
+                ;;
+            ?)
+                echo "Not a valid option"
+                exit 1
+                ;;
+        esac
+    done
 
-  if [ -z "$VOICE" ]; then
-      VOICE="Fred"
-  fi
+    if [ -z "$VOICE" ]; then
+        VOICE="Fred"
+    fi
 
-  msg="I cannot make you have lulz"
-  if checkPath fortune && checkPath say; then
-    if [ -n "$1" ]; then
-        comedian="$1"
-    elif [ -d /opt/local/share/games/fortune/comedy_short ]; then
-        comedian=comedy_short
+    msg="I cannot make you have lulz"
+    if checkPath fortune && checkPath say; then
+        if [ -n "$1" ]; then
+            comedian="$1"
+        elif [ -d /opt/local/share/games/fortune/comedy_short ]; then
+            comedian=comedy_short
+        else
+            echo "$msg"
+        fi
+        if [ -n "$comedian" ]; then
+            # pipe through sed to get rid of the attribution line, then say it
+            fortune $comedian | sed -E '$,/^(-{1,2} |Deep Thoughts)/d' | say -v $VOICE
+        fi
     else
-        echo $msg
+        echo "$msg"
     fi
-    if [ -n "$comedian" ]; then
-        # pipe through sed to get rid of the attribution line, then say it
-        fortune $comedian | sed -E '$,/^(-{1,2} |Deep Thoughts)/d' | say -v $VOICE
-    fi
-  else
-    echo $msg
-  fi
 }
 
 # helper function to search the $PATH for a given
 # executable.  useful for checks across different
 # systems.
 checkPath() {
-    which $1 &>/dev/null
+    which "$1" &>/dev/null
 }
 
 weShouldUpdate() {
@@ -97,16 +97,14 @@ weShouldUpdate() {
     time_marker="$HOME/.dotfiles"
     # if the file doesn't exist we'll end up touching it
     last_mod=0
-    if [ -e $touchy_file ]; then
-        # stat is different between flavas
-        case $(uname) in
-            Linux) last_mod=$(stat -c %Y "$time_marker") ;;
-            FreeBSD|Darwin) last_mod=$(stat -f %a "$time_marker") ;;
-        esac
-    fi
+    # stat is different between flavas
+    case $(uname) in
+        Linux) last_mod=$(stat -c %Y "$time_marker") ;;
+        FreeBSD|Darwin) last_mod=$(stat -f %a "$time_marker") ;;
+    esac
     current_time=$(date +%s)
     # see what the difference is in seconds
-    time_diff=$(( $current_time - $last_mod ))
+    time_diff=$(( current_time - last_mod ))
     if [ $time_diff -gt $time_to_update ]; then
         touch "$time_marker"
         echo "It's been a while since we updated the dotfiles..."
@@ -122,9 +120,9 @@ stache() {
     local stash stashes stash_choices action opts show_all choice_count prev_action prev_choices
 
     while getopts "a" OPTION; do
-      case $OPTION in
-        a) show_all="yes";;
-      esac
+        case $OPTION in
+            a) show_all="yes";;
+        esac
     done
 
     while true; do
@@ -132,13 +130,13 @@ stache() {
         stashes=$(git stash list | sed -Ee 's/^stash@\{([^}]+)\}: (.*)/[\1] \2/')
         if [[ -z "$show_all" ]]; then
             # get only named stashes, this is the default
-            stashes=$(echo $stashes | grep -v WIP | sed -Ee 's/On [^:]+: //')
+            stashes=$(echo "$stashes" | grep -v WIP | sed -Ee 's/On [^:]+: //')
         fi
 
-        stash_choices=$(echo $stashes | fzf -m -q "$prev_choices" --header="::::> choose a stash <::::$prev_action")
+        stash_choices=$(echo "$stashes" | fzf -m -q "$prev_choices" --header="::::> choose a stash <::::$prev_action")
         prev_choices=''
         [[ $? -gt 0 ]] && return
-        stash_choices=$(echo $stash_choices | sed -En 's/\[(.*)\].*/\1/p')
+        stash_choices=$(echo "$stash_choices" | sed -En 's/\[(.*)\].*/\1/p')
 
         # TODO: Ask for confirmation on destructive actions
         action=$(echo "quit\nshow\napply\npop\ndrop" | fzf --header='::::> choose an action <::::')
@@ -159,7 +157,7 @@ stache() {
 
         # Loop over the selected items and perform the action
         while read -r stash; do
-            git stash $action $opts stash@\{$stash\} || return
+            git stash "$action" "$opts" stash@\{"$stash"\} || return
         done <<< "$stash_choices"
 
         # clear out opts that were set
