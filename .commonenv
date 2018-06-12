@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 source ~/.commonfuncs
 
 # let's set a proper PATH

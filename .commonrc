@@ -1,3 +1,7 @@
+# shellcheck shell=bash
+# Ignore source location info
+SHELLCHECK_OPTS+="-e SC1090"
+export SHELLCHECK_OPTS
 UNAME=$(uname)
 
 source ~/.commonfuncs
