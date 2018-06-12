@@ -23,6 +23,7 @@ Plug 'vim-scripts/bbcode'
 Plug 'pangloss/vim-javascript', { 'branch': 'develop' }
 Plug 'elzr/vim-json'
 Plug 'vim-python/python-syntax'
+Plug 'fatih/vim-go'
 
 " Object manipulation
 Plug 'godlygeek/tabular'
