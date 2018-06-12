@@ -1147,6 +1147,9 @@ if has("autocmd")
     " Pry config is ruby
     autocmd BufNewFile,BufRead .pryrc set filetype=ruby
 
+    " ERD config is yaml
+    autocmd BufNewFile,BufRead .erdconfig set filetype=yaml
+
     " psql sessions in Postgres
     autocmd BufNewFile,BufRead psql.edit.* set filetype=sql
 
