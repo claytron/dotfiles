@@ -1,5 +1,4 @@
 # shellcheck shell=bash
-UNAME=$(uname)
 
 makeMeLaugh() {
   local output width term_width
@@ -100,11 +99,10 @@ weShouldUpdate() {
     last_mod=0
     if [ -e $touchy_file ]; then
         # stat is different between flavas
-        if [ $UNAME = "Linux" ] || isiPhone; then
-            last_mod=$(stat -c %Y "$time_marker")
-        elif [ $UNAME = "FreeBSD" ] || [ $UNAME = "Darwin" ]; then
-            last_mod=$(stat -f %a "$time_marker")
-        fi
+        case $(uname) in
+            Linux) last_mod=$(stat -c %Y "$time_marker") ;;
+            FreeBSD|Darwin) last_mod=$(stat -f %a "$time_marker") ;;
+        esac
     fi
     current_time=$(date +%s)
     # see what the difference is in seconds

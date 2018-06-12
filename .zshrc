@@ -1,4 +1,3 @@
-UNAME=$(uname)
 source $HOME/.commonfuncs
 
 # set up dir hashes
@@ -21,7 +20,7 @@ alias -g pssr="plonesite:site-replace=true"
 alias -g site-packages='-c "from distutils.sysconfig import get_python_lib; print get_python_lib()"'
 
 # some pipes
-if [ $UNAME = "Darwin" ]; then
+if [ $(uname) = "Darwin" ]; then
   alias -g S='| sed -Ee'
   alias -g SP='| sed -n -Ee'
 else
