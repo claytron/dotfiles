@@ -222,8 +222,8 @@ if [ -z $MY_ZSH_PLUGINS_LOADED ] && is-at-least 4.3; then
     ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=yellow'
     ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=yellow'
     ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=yellow,underline'
-    ZSH_HIGHLIGHT_STYLES[globbing]='fg=white,bold,bg=blue'
-    ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=white,bold,bg=blue'
+    ZSH_HIGHLIGHT_STYLES[globbing]='fg=black,bold,bg=blue'
+    ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=black,bold,bg=blue'
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
