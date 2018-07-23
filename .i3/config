@@ -25,10 +25,6 @@ bindsym $mod+Shift+q kill
 # start dmenu (a program launcher)
 bindsym $mod+d exec kupfer
 
-# alt tab style switching
-bindsym $mod+Tab workspace next
-bindsym $mod+grave workspace prev
-
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
