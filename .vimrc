@@ -765,7 +765,8 @@ map // :Grepper -tool git<cr>
 map cut :Grepper -tool branchd -highlight -query '\b(TODO\|XXX\|HACK\|FIXME\|NOTE)\b'<cr>
 
 " initialize g:grepper with defaults
-runtime plugin/grepper.vim
+let g:grepper = {}
+runtime autoload/grepper.vim
 
 " Available list of grepping tools
 let g:grepper.tools = ['ack', 'git', 'giti', 'grep', 'branch', 'branchd']
