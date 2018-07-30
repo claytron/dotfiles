@@ -863,6 +863,9 @@ let g:ale_linters = {
 \  'chef': ['foodcritic'],
 \  'ruby': ['rubocop', 'ruby'],
 \}
+" Set up some fixers
+let g:ale_fixers = {}
+let g:ale_fixers.ruby = ['rubocop']
 
 " Specific options for linters
 " make foodcritic pick up the config at the root dir
