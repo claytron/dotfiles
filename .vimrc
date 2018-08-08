@@ -1074,6 +1074,9 @@ if has('nvim')
   noremap ts' :TestSuite<CR><C-\><C-n>99-12<C-w>_<C-w><C-p>
   noremap tss :TestLast<CR><C-\><C-n>99-12<C-w>_<C-w><C-p>
 else
+  if version >= 801
+    let test#strategy = "vimterminal"
+  endif
   noremap tsl :TestNearest<CR>
   noremap ts; :TestFile<CR>
   noremap ts' :TestSuite<CR>
