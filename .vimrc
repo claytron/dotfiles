@@ -297,7 +297,7 @@ map <silent> cos :set spell!<CR>
 if version >= 700
   set spl=en spell
 endif
-set nospell
+set spell
 
 " This setting will cause the cursor to very briefly jump to a
 " brace/parenthese/bracket's "match" whenever you type a closing or
