@@ -54,7 +54,7 @@
 # Create a copy of the current branch, usually before rebasing.
 # Idea from: http://kevinold.com/2012/07/06/git-backup-branches.html
 # Also, copy it to the clipboard
-	brcp = !git branch $(git branch | grep '*' | sed -e 's/* //' -e "s/$/_COPY_`date +'%Y-%m-%d_%H.%M.%S'`/" | xsel -ib | xsel -ob )
+	brcp = !git branch $(git branch | grep '*' | sed -e 's/* //' -e "s/$/_COPY_`date +'%Y-%m-%d_%H.%M.%S'`/" | pbcopy | pbpaste )
 # Branch switching / creation
 	co = checkout
 # In the case where something like solano has the same branch...
