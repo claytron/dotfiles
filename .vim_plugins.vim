@@ -37,6 +37,7 @@ Plug 'vim-scripts/python_match.vim'
 
 " Color schemes
 Plug 'altercation/vim-colors-solarized'
+Plug 'icymind/NeoSolarized'
 Plug 'GertjanReynaert/cobalt2-vim-theme'
 Plug 'junegunn/seoul256.vim'
 Plug 'chriskempson/vim-tomorrow-theme'
