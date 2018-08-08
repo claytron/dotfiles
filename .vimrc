@@ -206,7 +206,7 @@ if v:version >= 703
     set undodir=~/.backup/vim/undo,~/tmp,/tmp
 endif
 
-" have fifty lines of command-line (etc) history:
+" have fifty lines of command-line (etc.) history:
 set history=10000
 
 if has('mouse')
@@ -300,8 +300,8 @@ endif
 set spell
 
 " This setting will cause the cursor to very briefly jump to a
-" brace/parenthese/bracket's "match" whenever you type a closing or
-" opening brace/parenthese/bracket.
+" brace/parentheses/bracket's "match" whenever you type a closing or
+" opening brace/parentheses/bracket.
 set showmatch
 
 " Display an incomplete command in the lower right corner of the Vim window
@@ -480,7 +480,7 @@ function! s:completeColorSchemes(A,L,P)
     return filter(colorscheme_names, 'v:val =~ "^' . a:A . '"')
 endfunction
 
-" Command to call the ColorSwitch funciton
+" Command to call the ColorSwitch function
 command! -nargs=? -complete=customlist,s:completeColorSchemes ColorSwitcher :call s:colorSwitch(<q-args>)
 
 " switch between light and dark colors
