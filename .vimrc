@@ -494,15 +494,14 @@ function! s:toggleGutterSigns()
   " Toggle the signify plugin
   SignifyToggle
 
-  " Take care of syntastic
-  if g:syntastic_enable_signs == 1
-    " clear the signs
-    SyntasticReset
-    let g:syntastic_enable_signs = 0
+  " Take care of ALE
+  if g:ale_enabled == 1
+    ALEDisable
+    let g:ale_enabled = 0
   else
-    let g:syntastic_enable_signs = 1
-    " Run a check to get the signs back
-    SyntasticCheck
+    let g:ale_enabled = 1
+    ALEEnable
+    ALELint
   endif
 endfunction
 
@@ -592,7 +591,6 @@ function! ErrorsToggle(forced)
     lclose
     unlet g:llist_win
   else
-    exec "Errors"
     lopen
     let g:llist_win = bufnr("$")
   endif
