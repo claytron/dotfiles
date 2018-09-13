@@ -82,8 +82,9 @@
 "    tmt             -- Show translations for the current key (rails)
 "    tmte            -- Expand the current YAML key (rails)
 "
-"    tg              -- Git status (tmg was too hard, so tg)
-"    tgg             -- Git grep
+" Git stuff                                                    {{{2
+" -----------------------------------------------------------------
+"    tgg             -- Git status (tmg was too hard, so tg)
 "    //              -- Git grep (double tap to start)
 "    tgd             -- Git diff
 "    tgb             -- Git blame
@@ -1029,7 +1030,7 @@ endfunction
 
 " fugitive                                                     {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-nmap tg :Gstatus<CR>
+nmap tgg :Gstatus<CR>
 
 nmap tgd :Gdiff<CR>
 
