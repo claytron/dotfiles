@@ -87,4 +87,5 @@ Plug 'rizzatti/dash.vim'
 " Only for whitespace cleanup now.
 Plug 'Chiel92/vim-autoformat'
 Plug 'ianks/neoformat'
+Plug 'urbainvaes/vim-remembrall'
 call plug#end()

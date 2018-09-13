@@ -1116,6 +1116,16 @@ autocmd FileType eruby.yaml setlocal commentstring=#\ %s
 " Apache config
 autocmd FileType apache setlocal commentstring=#%s
 
+" vim-remembrall                                               {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Shows the commands for the mappings
+nnoremap <silent> <expr> co Remembrall('co')
+nnoremap <silent> <expr> cu Remembrall('cu')
+nnoremap <silent> <expr> ft Remembrall('ft')
+nnoremap <silent> <expr> tm Remembrall('tm')
+nnoremap <silent> <expr> tg Remembrall('tg')
+nnoremap <silent> <expr> , Remembrall(',')
+
 " Auto command settings                                        {{{1
 " -----------------------------------------------------------------
 
