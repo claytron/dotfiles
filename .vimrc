@@ -1246,10 +1246,6 @@ noremap <silent> coi :set list!<CR>
 
 " Window management settings                                   {{{1
 " -----------------------------------------------------------------
-
-" turn on writeroom
-map <silent> <F8> :source ~/.vim/nightroom.vim<CR>
-
 " Mapping window commands directly
 map <C-H> <C-W>h
 map <C-J> <C-W>j
