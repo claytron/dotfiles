@@ -97,6 +97,7 @@
 " -----------------------------------------------------------------
 "    <C-W>-          -- Horizontal split
 "    <C-W>|          -- Vertical split
+"    <C-W>z          -- Zoom in on the current buffer
 "    <C-W><C-E>      -- Cycle through windows
 "    <C-H>           -- Move left to window
 "    <C-J>           -- Move up to window
@@ -1272,6 +1273,8 @@ map <C-W><C-E> <C-W>W
 " Window splits like I have mapped in tmux (- horizontal, | vertical)
 map <C-W>- <C-W>s
 map <C-W>\| <C-W>v
+" Zoom like in tmux too
+map <C-W>z <C-w>o
 
 " Deal with neovim terminals and window movement
 if has('nvim')
