@@ -34,9 +34,6 @@
 # Commit shortcuts and verbosity
 	ci = commit --verbose
 	commit = commit --verbose
-	cim = commit -m
-# Re-use a previous commit message
-	cirm = !git commit --reedit-message=$(git reflog | grep -E '.+HEAD[^:]+: commit:' | fzf | sed -Ee 's/.+(HEAD[^:]+):.*/\\1/')
 # Commit a work in progress
 	wip = !git add -u && git commit -m 'watch me @wip, watch me [skip ci]'
 	cia = commit --amend -v
@@ -78,9 +75,7 @@
 # Better log commands
 	lg = log --graph --pretty=format:'%Cred%h%Creset %Cgreen(%cr)%Creset %Cblue%an%Creset %s %C(yellow)%d%Creset' --abbrev-commit --date=relative
 # Use bang to be able to re-use the alias above (with pretty format) and add to it
-	lgn = !git lg --branches --remotes --no-merges
 	lga = !git lg --branches --remotes
-	lgan = !git lg --branches --remotes --no-merges
 	lgp = !git lg -p
 # Stash helpers
 	spo = stash pop
