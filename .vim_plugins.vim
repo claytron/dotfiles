@@ -1,6 +1,7 @@
 silent! call plug#begin('~/.vim/bundle')
 " Yank integration first since it maps all kinds of things
 Plug 'maxbrunsfeld/vim-yankstack'
+Plug 'junegunn/vim-peekaboo'
 
 " Language Syntax
 Plug 'chrisbra/csv.vim'
