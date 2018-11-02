@@ -65,6 +65,7 @@ Plug 'janko-m/vim-test'
 if has('nvim')
   Plug 'ncm2/ncm2'
 endif
+Plug 'google/vim-searchindex'
 
 " File Previews
 Plug 'Rykka/InstantRst'
