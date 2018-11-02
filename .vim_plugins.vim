@@ -20,7 +20,6 @@ Plug 'tpope/vim-haml'
 Plug 'tpope/vim-rails'
 Plug 'airblade/vim-localorie'
 Plug 'vim-scripts/bbcode'
-Plug 'pangloss/vim-javascript', { 'branch': 'develop' }
 Plug 'elzr/vim-json'
 Plug 'vim-python/python-syntax'
 Plug 'fatih/vim-go'
