@@ -62,7 +62,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'w0rp/ale'
 Plug 'janko-m/vim-test'
 if has('nvim')
-  Plug 'roxma/nvim-completion-manager'
+  Plug 'ncm2/ncm2'
 endif
 
 " File Previews
