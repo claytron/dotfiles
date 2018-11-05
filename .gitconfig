@@ -27,78 +27,78 @@
 	changed = green
 	untracked = cyan
 [alias]
-# Status helpers
+	# Status helpers
 	st = status -sb
 	stu = status -s -uno
 	stl = status --long
-# Commit shortcuts and verbosity
+	# Commit shortcuts and verbosity
 	ci = commit --verbose
 	commit = commit --verbose
-# Commit a work in progress
+	# Commit a work in progress
 	wip = !git add -u && git commit -m 'watch me @wip, watch me [skip ci]'
 	cia = commit --amend -v
-# Pop the last commit into the working copy
+	# Pop the last commit into the working copy
 	pop = !git --no-pager log -n 1 HEAD && git reset HEAD^
-# Try to pull and rebase, but then stash and pop if it's dirty
+	# Try to pull and rebase, but then stash and pop if it's dirty
 	up = !git pull --rebase || ( git stash save && git pull --rebase && git stash pop )
 	upd = !git pull --rebase origin dev || ( git stash save && git pull --rebase origin dev && git stash pop )
 	upm = !git pull --rebase origin master || ( git stash save && git pull --rebase origin master && git stash pop )
-# Branches
+	# Branches
 	br = branch
-# This one requires `vipe` (editable pipe with your editor) from moreutils, remove that bit to delete indiscriminately
+	# This one requires `vipe` (editable pipe with your editor) from moreutils, remove that bit to delete indiscriminately
 	brdel = !git branch --merged | grep -v '*' | grep -v master | grep -v dev | vipe | xargs -n 1 git branch -d
-# Create a copy of the current branch, usually before rebasing.
-# Idea from: http://kevinold.com/2012/07/06/git-backup-branches.html
-# Also, copy it to the clipboard
+	# Create a copy of the current branch, usually before rebasing.
+	# Idea from: http://kevinold.com/2012/07/06/git-backup-branches.html
+	# Also, copy it to the clipboard
 	brcp = !git branch $(git branch | grep '*' | sed -e 's/* //' -e "s/$/_COPY_`date +'%Y-%m-%d_%H.%M.%S'`/" | pbcopy && pbpaste)
-# Branch switching / creation
+	# Branch switching / creation
 	co = checkout
-# In the case where something like solano has the same branch...
+	# In the case where something like solano has the same branch...
 	coo = !sh -c 'git checkout -b $1 origin/$1' -
 	cof = !git checkout $(git branch | grep -v '*' | fzf)
 	cob = checkout -b
 	com = checkout master
 	cod = checkout dev
 	pristine = !git reset --hard origin/$(git symbolic-ref --short HEAD)
-# Diffing
+	# Diffing
 	df = diff
 	dfs = diff --staged
-# Alternatively use diff.tool
-  dft = !git difftool | ${PAGER:=less}
-# Show the changes on the current branch
+	# Alternatively use diff.tool
+	dft = !git difftool | ${PAGER:=less}
+	# Show the changes on the current branch
 	dfd = !git show `git merge-base HEAD origin/dev`..HEAD --reverse
 	dfds = !git difftool `git merge-base HEAD origin/dev`..HEAD --reverse | ${PAGER:=less}
 	dfdlc = !git diff `git merge-base HEAD origin/dev` HEAD --stat
 	dfm = !git show `git merge-base HEAD origin/master`..HEAD --reverse
 	dfms = !git difftool `git merge-base HEAD origin/master`..HEAD --reverse | ${PAGER:=less}
 	dfmlc = !git diff `git merge-base HEAD origin/master` HEAD --stat
-# Better log commands
+	# Better log commands
 	lg = log --graph --pretty=format:'%Cred%h%Creset %Cgreen(%cr)%Creset %Cblue%an%Creset %s %C(yellow)%d%Creset' --abbrev-commit --date=relative
-# Use bang to be able to re-use the alias above (with pretty format) and add to it
+	# Use bang to be able to re-use the alias above (with pretty format) and add to it
 	lga = !git lg --branches --remotes
 	lgp = !git lg -p
-# Stash helpers
+	# Stash helpers
 	spo = stash pop
 	sap = stash apply
 	ssa = stash save
 	sls = !git --no-pager stash list
 	ssh = stash show -p
-# Push shortcuts
+	# Push shortcuts
 	psh = push origin HEAD
 	pshf = push origin HEAD --force-with-lease
-# Helpers for rebasing
+	# Helpers for rebasing
 	rbsd = !git rebase -i `git merge-base HEAD origin/dev`
 	rbsm = !git rebase -i `git merge-base HEAD origin/master`
 	rbc = rebase --continue
 	rba = rebase --abort
-# Cherry pickin'
+	# Cherry pickin'
 	cp = cherry-pick
 	cpa = cherry-pick --abort
 	cpc = cherry-pick --continue
-# Helpers for resolving conflicts
+	# Helpers for resolving conflicts
 	resolve = !${EDITOR:=vi} $(git status --porcelain | awk '/^UU / {print $2}' | head -1)
 	resolved = !git add $(git status --porcelain | awk '/^UU / {print $2}' | head -1)
-# Add github pr numbers as refs
+	# Add github pr numbers as refs
 	trackpr = config --add remote.origin.fetch '+refs/pull/*/head:refs/remotes/origin/pull/*'
 [achievement]
 	upload = true
