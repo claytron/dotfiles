@@ -1201,6 +1201,9 @@ if has("autocmd")
     autocmd BufNewFile,BufRead /*/cookbooks/*.rb set filetype=ruby.chef
     autocmd BufNewFile,BufRead /*/cookbooks/*.erb set filetype=eruby.chef
     autocmd BufNewFile,BufRead /*/cookbooks/*.yml set filetype=yaml.chef
+
+    " Proselint
+    autocmd BufNewFile,BufRead .proselintrc set filetype=json
   augroup END
 endif
 
