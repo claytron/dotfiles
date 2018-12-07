@@ -1071,10 +1071,10 @@ if has('nvim')
 
   " All that madness at the end is to get out of :terminal and back to
   " the file we started in
-  noremap tsl :TestNearest<CR><C-\><C-n>99-12<C-w>_<C-w><C-p>
-  noremap ts; :TestFile<CR><C-\><C-n>99-12<C-w>_<C-w><C-p>
-  noremap ts' :TestSuite<CR><C-\><C-n>99-12<C-w>_<C-w><C-p>
-  noremap tss :TestLast<CR><C-\><C-n>99-12<C-w>_<C-w><C-p>
+  noremap tsl :TestNearest<CR>
+  noremap ts; :TestFile<CR>
+  noremap ts' :TestSuite<CR>
+  noremap tss :TestLast<CR>
 else
   if version >= 801
     let test#strategy = "vimterminal"
@@ -1181,8 +1181,12 @@ if has("autocmd")
     autocmd Syntax git setlocal nofoldenable
 
     if has('nvim')
-      " Don't show invisibles in the terminal
+      " Don't show invisibles in the terminal. Also go into insert mode.
       autocmd TermOpen * setlocal nolist
+      autocmd TermOpen * startinsert
+      " Go back to normal mode in the terminal once process is
+      " complete, this stops the any key to close behavior.
+      autocmd TermClose * call feedkeys("\<C-\>\<C-n>")
     endif
 
     " Zope and Plone files
