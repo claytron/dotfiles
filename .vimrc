@@ -1135,6 +1135,9 @@ if has("autocmd")
   augroup FileTypes
     autocmd!
 
+    " Turn off spelling for quickfix
+    autocmd WinEnter * if &buftype == 'quickfix' | setlocal nospell | endif
+
     " automatically re-source the vimrc on save
     autocmd bufwritepost .vimrc source $MYVIMRC
 
