@@ -768,7 +768,7 @@ map cut :Grepper -tool branchd -highlight -query '\b(TODO\|XXX\|HACK\|FIXME\|NOT
 runtime plugin/grepper.vim
 
 " Available list of grepping tools
-let g:grepper.tools = ['ack', 'git', 'giti', 'grep', 'branch', 'branchd']
+let g:grepper.tools = ['rg', 'git', 'giti', 'grep', 'branch', 'branchd']
 " Modify git args to be case insensitive
 let g:grepper.git.grepprg = 'git grep -nEIi'
 " Case sensitive search is good sometimes though

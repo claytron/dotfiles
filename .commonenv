@@ -136,6 +136,9 @@ export LSCOLORS="exFxbxbhcxfxgxdxdhebeb"
 # set the ACK match color scheme
 export ACK_COLOR_MATCH="red"
 
+# Ripgrep config
+export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
+
 export GREP_COLORS="ms=01;31:mc=01;31:sl=:cx=:fn=32:ln=36:bn=32:se=39"
 
 # FZF

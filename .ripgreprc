@@ -1,0 +1,56 @@
+# General settings                                              {{{1
+# ------------------------------------------------------------------
+# Limit the wall of text (-M0 to disable)
+--max-columns=200
+# Case sensitive when mixed case query
+--smart-case
+# Follow symlinks
+--follow
+# Don't tell me I'm doing it wrong
+--no-messages
+# Search all the things (ignoring VCS dirs and more below)
+-uu
+
+# Custom Types                                                  {{{1
+# ------------------------------------------------------------------
+# add some more zope files to the plone type
+--type-add=plone:*.{zcml,props,dtml,vpy,cpy,kss}
+--type-add=python:*.{cpy,vpy}
+# add specific type for page templates
+--type-add=zpt:*.{pt,cpt}
+# add a specific type for ZCML files
+--type-add=zcml:*.zcml
+# Documentation formats
+--type-add=docs:include:md,rst,tex,textile,txt
+# plain text CSV files
+--type-add=csv:*.{csv,tsv}
+# Ruby
+--type-add=slim:*.slim
+--type-add=haml:*.haml
+--type-add=rubytemplates:*.{slim,erb,haml}
+# Emblem
+--type-add=emblem:*.emblem
+# Mustaches and such
+--type-add=hbs:*.{mustache,mu,handlebars,hbars}
+# Specific RoR locales
+--type-add=en:en.yml
+
+# Ignores                                                       {{{1
+# ------------------------------------------------------------------
+# I'm using -uu so ignoring these
+--glob=!.git/
+--glob=!.svn/
+--glob=!.hg/
+# Generated development files
+--glob=!dist/
+--glob=!tmp/
+--glob=!log/
+--glob=!.tox
+--glob=!.tags
+--glob=!/tags
+--glob=!/coverage/index.html
+--glob=!ignite-ember.js
+--glob=!ignite-emblem.js
+--glob=!*.min.js
+
+# vim: fdm=marker
