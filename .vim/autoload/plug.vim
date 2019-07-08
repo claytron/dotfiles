@@ -434,8 +434,8 @@ endfunction
 
 function! s:dobufread(names)
   for name in a:names
-    let path = s:rtp(g:plugs[name]).'/**'
-    for dir in ['ftdetect', 'ftplugin']
+    let path = s:rtp(g:plugs[name])
+    for dir in ['ftdetect', 'ftplugin', 'after/ftdetect', 'after/ftplugin']
       if len(finddir(dir, path))
         if exists('#BufRead')
           doautocmd BufRead
@@ -811,7 +811,7 @@ function! s:bang(cmd, ...)
     if s:is_win
       let batchfile = tempname().'.bat'
       call writefile(["@echo off\r", cmd . "\r"], batchfile)
-      let cmd = batchfile
+      let cmd = s:shellesc(batchfile)
     endif
     let g:_plug_bang = (s:is_win && has('gui_running') ? 'silent ' : '').'!'.escape(cmd, '#!%')
     execute "normal! :execute g:_plug_bang\<cr>\<cr>"
@@ -1210,7 +1210,7 @@ function! s:spawn(name, cmd, opts)
   let cmd = has_key(a:opts, 'dir') ? s:with_cd(a:cmd, a:opts.dir) : a:cmd
   if !empty(job.batchfile)
     call writefile(["@echo off\r", cmd . "\r"], job.batchfile)
-    let cmd = job.batchfile
+    let cmd = s:shellesc(job.batchfile)
   endif
   let argv = add(s:is_win ? ['cmd', '/c'] : ['sh', '-c'], cmd)
 
@@ -2037,9 +2037,9 @@ function! s:system(cmd, ...)
     if s:is_win
       let batchfile = tempname().'.bat'
       call writefile(["@echo off\r", cmd . "\r"], batchfile)
-      let cmd = batchfile
+      let cmd = s:shellesc(batchfile)
     endif
-    return system(s:is_win ? '('.cmd.')' : cmd)
+    return system(cmd)
   finally
     let [&shell, &shellcmdflag, &shellredir] = [sh, shellcmdflag, shrd]
     if s:is_win
@@ -2224,7 +2224,7 @@ function! s:upgrade()
   let new = tmp . '/plug.vim'
 
   try
-    let out = s:system(printf('git clone --depth 1 %s %s', s:plug_src, tmp))
+    let out = s:system(printf('git clone --depth 1 %s %s', s:shellesc(s:plug_src), s:shellesc(tmp)))
     if v:shell_error
       return s:err('Error upgrading vim-plug: '. out)
     endif
@@ -2420,7 +2420,11 @@ function! s:diff()
     call s:append_ul(2, origin ? 'Pending updates:' : 'Last update:')
     for [k, v] in plugs
       let range = origin ? '..origin/'.v.branch : 'HEAD@{1}..'
-      let diff = s:system_chomp('git log --graph --color=never '.join(map(['--pretty=format:%x01%h%x01%d%x01%s%x01%cr', range], 's:shellesc(v:val)')), v.dir)
+      let cmd = 'git log --graph --color=never '.join(map(['--pretty=format:%x01%h%x01%d%x01%s%x01%cr', range], 's:shellesc(v:val)'))
+      if has_key(v, 'rtp')
+        let cmd .= ' -- '.s:shellesc(v.rtp)
+      endif
+      let diff = s:system_chomp(cmd, v.dir)
       if !empty(diff)
         let ref = has_key(v, 'tag') ? (' (tag: '.v.tag.')') : has_key(v, 'commit') ? (' '.v.commit) : ''
         call append(5, extend(['', '- '.k.':'.ref], map(s:lines(diff), 's:format_git_log(v:val)')))
