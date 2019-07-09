@@ -4,26 +4,14 @@ Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'junegunn/vim-peekaboo'
 
 " Language Syntax
-Plug 'chrisbra/csv.vim'
-Plug 'chr4/nginx.vim'
-Plug 'Glench/Vim-Jinja2-Syntax'
-Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
-Plug 'heartsentwined/vim-emblem'
-Plug 'JulesWang/css.vim' | Plug 'genoma/vim-less'
-Plug 'pangloss/vim-javascript' | Plug 'mxw/vim-jsx'
-Plug 'Rykka/riv.vim'
 Plug 'saltstack/salt-vim'
-Plug 'slim-template/vim-slim'
 Plug 'smancill/conky-syntax.vim'
 Plug 'sukima/xmledit'
-Plug 'superbrothers/vim-vimperator'
-Plug 'tpope/vim-haml'
 Plug 'tpope/vim-rails'
 Plug 'airblade/vim-localorie'
 Plug 'vim-scripts/bbcode'
-Plug 'elzr/vim-json'
-Plug 'vim-python/python-syntax'
-Plug 'fatih/vim-go'
+" Check if this has it before adding a new one...
+Plug 'sheerun/vim-polyglot'
 
 " Object manipulation
 Plug 'godlygeek/tabular'
