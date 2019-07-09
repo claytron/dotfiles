@@ -1123,6 +1123,8 @@ autocmd FileType xdefaults setlocal commentstring=\!\ %s
 autocmd FileType eruby.yaml setlocal commentstring=#\ %s
 " Apache config
 autocmd FileType apache setlocal commentstring=#%s
+" sql style
+autocmd FileType sql setlocal commentstring=--\ %s
 
 " vim-remembrall                                               {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
