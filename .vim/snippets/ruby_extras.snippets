@@ -4,3 +4,36 @@ snippet pryr
 	require 'pry-remote'; binding.remote_pry
 snippet putsl
 	puts 'the lotion on its skin'
+snippet railsrunner
+	# frozen_string_literal: true
+	
+	require 'optparse'
+	options = {}
+	OptionParser.new { |opts|
+	  opts.banner = 'Usage: bin/rails runner this_script [options]'
+	
+	  opts.on('-n', '--[no-]dry-run', 'Run without changing any data') do |v|
+	    options[:dry_run] = v
+	  end
+	}.parse!
+	
+	# Trap ctrl-c so it doesn't create Sentry errors
+	trap 'SIGINT' do
+	  puts 'Migration cancelled'
+	  exit 130
+	end
+	
+	# Uncomment to see all SQL statements
+	# ActiveRecord::Base.logger = Logger.new(STDOUT)
+	
+	# print logs out to the console
+	Rails.logger = Logger.new(STDOUT)
+	Rails.logger.info('Starting script')
+	
+	begin
+	  ${1:code}
+	rescue StandardError => e
+	  Rails.logger.error(e.message)
+	end
+	
+	Rails.logger.info 'All done'
