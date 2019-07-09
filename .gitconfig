@@ -98,7 +98,7 @@
 	# Helpers for resolving conflicts
 	resolve = !${EDITOR:=vi} $(git status --porcelain | awk '/^UU / {print $2}' | head -1)
 	resolved = !git add $(git status --porcelain | awk '/^UU / {print $2}' | head -1)
-	# Add github pr numbers as refs
+	# Add github pr numbers as refs (run once per repo to set up)
 	trackpr = config --add remote.origin.fetch '+refs/pull/*/head:refs/remotes/origin/pull/*'
 [achievement]
 	upload = true
