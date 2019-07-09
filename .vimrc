@@ -828,6 +828,8 @@ let NERDTreeIgnore=[
     \'\..*.rej$',
     \'\.rej$',
     \'\.\~lock.*#$',
+    \'tndrbox_Images.*gif.*',
+    \'tndrbox_.*[Ll]ogo.*',
     \'\.AppleDouble$',
     \'\.pt.py$',
     \'\.DS_Store$']
@@ -1215,6 +1217,11 @@ if has("autocmd")
 
     " Proselint
     autocmd BufNewFile,BufRead .proselintrc set filetype=json
+
+    " Dynamics CRM WebResources
+    autocmd BufNewFile,BufRead *css[0-9a-zA-Z]\\\{8\}-[0-9a-zA-Z]\\\{4\}-[0-9a-zA-Z]\\\{4\}-[0-9a-zA-Z]\\\{4\}-[0-9a-zA-Z]\\\{12\} set filetype=css
+    autocmd BufNewFile,BufRead *js[0-9a-zA-Z]\\\{8\}-[0-9a-zA-Z]\\\{4\}-[0-9a-zA-Z]\\\{4\}-[0-9a-zA-Z]\\\{4\}-[0-9a-zA-Z]\\\{12\} set filetype=javascript
+    autocmd BufNewFile,BufRead *html[0-9a-zA-Z]\\\{8\}-[0-9a-zA-Z]\\\{4\}-[0-9a-zA-Z]\\\{4\}-[0-9a-zA-Z]\\\{4\}-[0-9a-zA-Z]\\\{12\} set filetype=html
   augroup END
 endif
 
