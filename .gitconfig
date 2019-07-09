@@ -59,7 +59,7 @@
 	cob = checkout -b
 	com = checkout master
 	cod = checkout dev
-	pristine = !git reset --hard origin/$(git symbolic-ref --short HEAD)
+	pristine = !git fetch && git reset --hard origin/$(git symbolic-ref --short HEAD)
 	# Diffing
 	df = diff
 	dfs = diff --staged
