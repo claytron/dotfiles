@@ -40,6 +40,8 @@
 "
 " File Type mnemonic                                           {{{2
 " -----------------------------------------------------------------
+"    ftc             -- Change current filetype to CSS
+"    fth             -- Change current filetype to HTML
 "    ftj             -- Change current filetype to Javascript
 "    ftm             -- Change current filetype to Markdown
 "    ftp             -- Change current filetype to Python
@@ -276,6 +278,8 @@ nnoremap ftv :set ft=vim<CR>
 nnoremap ftj :set ft=javascript<CR>
 nnoremap fts :set ft=sql<CR>
 nnoremap ftsh :set ft=sh<CR>
+nnoremap ftc :set ft=css<CR>
+nnoremap fth :set ft=html<CR>
 
 " Visual settings                                              {{{1
 " -----------------------------------------------------------------
