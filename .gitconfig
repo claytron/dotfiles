@@ -67,9 +67,11 @@
 	dft = !git difftool | ${PAGER:=less}
 	# Show the changes on the current branch
 	dfd = !git show `git merge-base HEAD origin/dev`..HEAD --reverse
+	dfda = !git diff `git merge-base HEAD origin/dev`..HEAD
 	dfds = !git difftool `git merge-base HEAD origin/dev`..HEAD --reverse | ${PAGER:=less}
 	dfdlc = !git diff `git merge-base HEAD origin/dev` HEAD --stat
 	dfm = !git show `git merge-base HEAD origin/master`..HEAD --reverse
+	dfma = !git diff `git merge-base HEAD origin/master`..HEAD
 	dfms = !git difftool `git merge-base HEAD origin/master`..HEAD --reverse | ${PAGER:=less}
 	dfmlc = !git diff `git merge-base HEAD origin/master` HEAD --stat
 	# Better log commands
