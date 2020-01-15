@@ -21,7 +21,7 @@ Layout/IndentationWidth:
   Enabled: false
 
 # Alignment so that changing var / method does not change all lines in diff
-Layout/AlignParameters:
+Layout/ParameterAlignment:
   EnforcedStyle: with_fixed_indentation
 
 Layout/MultilineMethodCallIndentation:
@@ -33,3 +33,7 @@ Layout/MultilineOperationIndentation:
 Layout/EndAlignment:
   EnforcedStyleAlignWith: variable
   AutoCorrect: true
+
+Layout/CaseIndentation:
+  EnforcedStyle: end
+  IndentOneStep: true
