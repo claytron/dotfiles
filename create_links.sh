@@ -161,6 +161,14 @@ if [ -d "$HOME/.config" ]; then
     to_create="$HOME/.config/$dotfile/$dotfile.conf"
     # actually create/remove the link
     linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
+
+    # Take care of vscode configs
+    # -----------------------------------------------------------------
+    actual_dotfile="$dotfiles_loc/vscode/settings.json"
+    dotfile="vscode"
+    to_create="$HOME/Library/Application Support/Code/User/settings.json"
+    # actually create/remove the link
+    linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
 fi
 
 # Install the vim plugins
