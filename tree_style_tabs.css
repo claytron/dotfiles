@@ -1,0 +1,36 @@
+/* hide new tab button */
+.newtab-button-box {
+  display: none;
+}
+#tabbar {
+  bottom: 0 !important; /* Eliminate dead space on bottom */
+}
+
+/* hide tab close until hover */
+.tab:not(:hover) .closebox {
+  display: none;
+}
+
+/* this was needed for the dark theme.
+.tab {
+  border-left: solid 1px #605D63;
+}
+*/
+
+
+/* make container tabs stick out */
+.contextual-identity-marker {
+  position: absolute !important;
+  pointer-events: none;
+  z-index: 0;
+
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: 0 !important;
+
+  width: unset !important;
+  height: unset !important;
+
+  opacity: 0.25;
+}
