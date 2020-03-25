@@ -1136,6 +1136,11 @@ nnoremap <silent> <expr> tm Remembrall('tm')
 nnoremap <silent> <expr> tg Remembrall('tg')
 nnoremap <silent> <expr> , Remembrall(',')
 
+" OmniSharp-vim                                                {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Use the stdio version of OmniSharp-roslyn:
+let g:OmniSharp_server_stdio = 1
+
 " Auto command settings                                        {{{1
 " -----------------------------------------------------------------
 

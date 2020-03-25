@@ -16,6 +16,7 @@ expected_path=(
   "$HOME/.rbenv/versions/2.3.3/bin"
   "$HOME/.rvm/bin"
   "$HOME/.cargo/bin"
+  /Library/Frameworks/Mono.framework/Versions/Current/Commands
   /usr/share/elasticsearch/bin
   /opt/local/apache2/bin
   /opt/python/bin
