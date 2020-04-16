@@ -29,7 +29,7 @@ expected_path=(
   /opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin
   /opt/local/libexec/qt5/bin
   /usr/local/opt/qt/bin
-  /usr/local/opt/node@6/bin
+  /usr/local/opt/node@8/bin
   /sw/bin
   /sw/sbin
   /usr/bin/perlbin/site
