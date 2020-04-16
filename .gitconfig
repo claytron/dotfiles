@@ -42,12 +42,13 @@
 	pop = !git --no-pager log -n 1 HEAD && git reset HEAD^
 	# Try to pull and rebase, but then stash and pop if it's dirty
 	up = !git pull --rebase || ( git stash save && git pull --rebase && git stash pop )
-	upd = !git pull --rebase origin dev || ( git stash save && git pull --rebase origin dev && git stash pop )
+	upde = !git pull --rebase origin dev || ( git stash save && git pull --rebase origin dev && git stash pop )
+	upd = !git pull --rebase origin develop || ( git stash save && git pull --rebase origin develop && git stash pop )
 	upm = !git pull --rebase origin master || ( git stash save && git pull --rebase origin master && git stash pop )
 	# Branches
 	br = branch
 	# This one requires `vipe` (editable pipe with your editor) from moreutils, remove that bit to delete indiscriminately
-	brdel = !git branch --merged | grep -v '*' | grep -v master | grep -v dev | vipe | xargs -n 1 git branch -d
+	brdel = !git branch --merged | grep -v '*' | grep -v master | grep -v dev | grep -v develop | vipe | xargs -n 1 git branch -d
 	# Create a copy of the current branch, usually before rebasing.
 	# Idea from: http://kevinold.com/2012/07/06/git-backup-branches.html
 	# Also, copy it to the clipboard
@@ -59,7 +60,8 @@
 	cof = !git checkout $(git branch | grep -v '*' | fzf)
 	cob = checkout -b
 	com = checkout master
-	cod = checkout dev
+	code = checkout dev
+	cod = checkout develop
 	pristine = !git fetch && git reset --hard origin/$(git symbolic-ref --short HEAD)
 	# Diffing
 	df = diff
@@ -67,10 +69,16 @@
 	# Alternatively use diff.tool
 	dft = !git difftool | ${PAGER:=less}
 	# Show the changes on the current branch
-	dfd = !git show `git merge-base HEAD origin/dev`..HEAD --reverse
-	dfda = !git diff `git merge-base HEAD origin/dev`..HEAD
-	dfds = !git difftool `git merge-base HEAD origin/dev`..HEAD --reverse | ${PAGER:=less}
-	dfdlc = !git diff `git merge-base HEAD origin/dev` HEAD --stat
+	dfd = !git show `git merge-base HEAD origin/develop`..HEAD --reverse
+	dfda = !git diff `git merge-base HEAD origin/develop`..HEAD
+	dfds = !git difftool `git merge-base HEAD origin/develop`..HEAD --reverse | ${PAGER:=less}
+	dfdlc = !git diff `git merge-base HEAD origin/develop` HEAD --stat
+
+	dfde = !git show `git merge-base HEAD origin/dev`..HEAD --reverse
+	dfdea = !git diff `git merge-base HEAD origin/dev`..HEAD
+	dfdes = !git difftool `git merge-base HEAD origin/dev`..HEAD --reverse | ${PAGER:=less}
+	dfdelc = !git diff `git merge-base HEAD origin/dev` HEAD --stat
+
 	dfm = !git show `git merge-base HEAD origin/master`..HEAD --reverse
 	dfma = !git diff `git merge-base HEAD origin/master`..HEAD
 	dfms = !git difftool `git merge-base HEAD origin/master`..HEAD --reverse | ${PAGER:=less}
@@ -90,7 +98,8 @@
 	psh = push origin HEAD
 	pshf = push origin HEAD --force-with-lease
 	# Helpers for rebasing
-	rbsd = !git rebase -i `git merge-base HEAD origin/dev`
+	rbsde = !git rebase -i `git merge-base HEAD origin/dev`
+	rbsd = !git rebase -i `git merge-base HEAD origin/develop`
 	rbsm = !git rebase -i `git merge-base HEAD origin/master`
 	rbc = rebase --continue
 	rba = rebase --abort
