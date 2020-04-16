@@ -37,6 +37,7 @@
 	# Commit a work in progress
 	wip = !git add -u && git commit -m 'watch me @wip, watch me [skip ci]'
 	cia = commit --amend -v
+	addz = !git ls-files -m -o --exclude-standard | fzf --print0 -m | xargs -0 -t -o git add
 	# Pop the last commit into the working copy
 	pop = !git --no-pager log -n 1 HEAD && git reset HEAD^
 	# Try to pull and rebase, but then stash and pop if it's dirty
