@@ -17,6 +17,7 @@ expected_path=(
   "$HOME/.rvm/bin"
   "$HOME/.cargo/bin"
   /Library/Frameworks/Mono.framework/Versions/Current/Commands
+  /Library/TeX/texbin
   /usr/share/elasticsearch/bin
   /opt/local/apache2/bin
   /opt/python/bin
