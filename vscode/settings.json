@@ -71,6 +71,7 @@
             "commands": ["workbench.action.splitEditorDown"]
         },
     ],
+    "editor.wordWrap": "on",
     // "vim.normalModeKeyBindingsNonRecursive": [
     //     {
     //         "before": ["j"],
