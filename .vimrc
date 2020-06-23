@@ -426,6 +426,7 @@ let g:zenburn_alternate_Error = 1
 " Solarized settings
 let g:solarized_termcolors=16
 let g:solarized_diffmode='high'
+let g:neosolarized_termtrans=1
 
 " Function to quickly apply and reset custom highlights
 function! s:extraHighlights()
