@@ -765,7 +765,7 @@ filetype plugin indent on  " enables filetype specific plugins
 
 " Grepper                                                      {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-map /// :Grepper -tool ack<cr>
+map /// :Grepper -tool rg<cr>
 map // :Grepper -tool git<cr>
 map cut :Grepper -tool branchd -highlight -query '\b(TODO\|XXX\|HACK\|FIXME\|NOTE)\b'<cr>
 
