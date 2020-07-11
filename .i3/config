@@ -123,16 +123,15 @@ for_window [instance="Telegram"] move window to scratchpad
 bindsym $mod+Ctrl+8 [instance="whats-app-web-nativefier-d40211"] scratchpad show, [instance="Telegram"] scratchpad show
 exec --no-startup-id /opt/Telegram/Telegram
 
-# Git browser
-for_window [class="git-cola" window_type="normal"] move window to scratchpad
-bindsym $mod+Ctrl+7 [class="git-cola"] scratchpad show
-exec --no-startup-id git-cola dag -r ~/.dotfiles
-exec --no-startup-id git-cola -r ~/.dotfiles
 
 # GTD
 for_window [instance="remember the milk"] move window to scratchpad
 bindsym $mod+Ctrl+5 [instance="remember the milk"] scratchpad show
 exec --no-startup-id rememberthemilk
+# More tunes
+for_window [class="Plexamp"] move window to scratchpad
+bindsym $mod+Ctrl+7 [class="Plexamp"] scratchpad show
+exec --no-startup-id /home/clayton/Applications/Plexamp-3.1.1.AppImage
 
 # Tunes
 for_window [instance="spotify"] move window to scratchpad
@@ -142,6 +141,12 @@ exec --no-startup-id spotify
 for_window [instance="simplenote"] move window to scratchpad
 bindsym $mod+Ctrl+4 [instance="simplenote"] scratchpad show
 exec --no-startup-id /usr/local/bin/simplenote
+
+# Git browser
+for_window [class="git-cola" window_type="normal"] move window to scratchpad
+bindsym $mod+Ctrl+2 [class="git-cola"] scratchpad show
+exec --no-startup-id git-cola dag -r ~/.dotfiles
+exec --no-startup-id git-cola -r ~/.dotfiles
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
