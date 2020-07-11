@@ -77,7 +77,7 @@ set $ws9 9
 set $ws10 10
 
 # Start up apps on workspaces
-exec i3-msg 'workspace $ws2; exec /home/clayton/.local/kitty.app/bin/kitty; workspace $ws3; exec thunderbird; workspace $ws4; exec ~/home-calendar-linux-x64/home-calendar; exec ~/work-calendar-linux-x64/work-calendar'
+exec i3-msg 'workspace $ws2; exec /home/clayton/.local/kitty.app/bin/kitty; workspace $ws3; exec thunderbird; workspace $ws4'
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
