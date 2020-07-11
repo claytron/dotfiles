@@ -123,11 +123,6 @@ for_window [instance="Telegram"] move window to scratchpad
 bindsym $mod+Ctrl+8 [instance="whats-app-web-nativefier-d40211"] scratchpad show, [instance="Telegram"] scratchpad show
 exec --no-startup-id /opt/Telegram/Telegram
 
-
-# GTD
-for_window [instance="remember the milk"] move window to scratchpad
-bindsym $mod+Ctrl+5 [instance="remember the milk"] scratchpad show
-exec --no-startup-id rememberthemilk
 # More tunes
 for_window [class="Plexamp"] move window to scratchpad
 bindsym $mod+Ctrl+7 [class="Plexamp"] scratchpad show
@@ -137,6 +132,11 @@ exec --no-startup-id /home/clayton/Applications/Plexamp-3.1.1.AppImage
 for_window [instance="spotify"] move window to scratchpad
 bindsym $mod+Ctrl+6 [instance="spotify"] scratchpad show
 exec --no-startup-id spotify
+
+# GTD
+for_window [instance="remember the milk"] move window to scratchpad
+bindsym $mod+Ctrl+5 [instance="remember the milk"] scratchpad show
+exec --no-startup-id rememberthemilk
 
 for_window [instance="simplenote"] move window to scratchpad
 bindsym $mod+Ctrl+4 [instance="simplenote"] scratchpad show
