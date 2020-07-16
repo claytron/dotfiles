@@ -162,6 +162,15 @@ if [ -d "$HOME/.config" ]; then
     # actually create/remove the link
     linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
 
+    # Take care of ranger config
+    # -----------------------------------------------------------------
+    actual_dotfile="$dotfiles_loc/rifle.conf"
+    dotfile="rifle"
+    [ -d "$HOME/.config/ranger" ] || mkdir "$HOME/.config/ranger"
+    to_create="$HOME/.config/ranger/$dotfile.conf"
+    # actually create/remove the link
+    linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
+
     # Take care of vscode configs
     # -----------------------------------------------------------------
     if [ -d "$HOME/Library" ]; then
