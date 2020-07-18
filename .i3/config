@@ -223,44 +223,6 @@ mode "$mode_system" {
 }
 bindsym Print mode "$mode_system"
 
-# Why not? :)
-set $mode_hue Hue toggle (1) Living Room, (2) Kitchen, (3) Bedroom, (a) All, (c) Random Color, (p) Partay!, (x) Clear Effects, (r) Reset, (- / =) Brightness min max
-mode "$mode_hue" {
-    # Toggle specific areas
-    bindsym 1 exec --no-startup-id ~/.i3/hue toggle 1
-    bindsym 2 exec --no-startup-id ~/.i3/hue toggle 2
-    bindsym 3 exec --no-startup-id ~/.i3/hue toggle 3
-    bindsym a exec --no-startup-id ~/.i3/hue toggle_all
-
-    # Choose a light to control
-    bindsym $mod+1 exec --no-startup-id ~/.i3/hue last_light 1
-    bindsym $mod+2 exec --no-startup-id ~/.i3/hue last_light 2
-    bindsym $mod+3 exec --no-startup-id ~/.i3/hue last_light 3
-    bindsym $mod+a exec --no-startup-id "~/.i3/hue last_light 1,2,3"
-
-    # Change the currently selected light
-    # Brightness
-    bindsym XF86MonBrightnessUp exec --no-startup-id hue lights $(cat /tmp/hues) +10
-    bindsym XF86MonBrightnessDown exec --no-startup-id hue lights $(cat /tmp/hues) -10
-    bindsym minus exec --no-startup-id hue lights $(cat /tmp/hues) =0
-    bindsym equal exec --no-startup-id hue lights $(cat /tmp/hues) =255
-    # Party mode
-    bindsym p exec --no-startup-id hue lights $(cat /tmp/hues) colorloop
-    # Random color
-    bindsym c exec --no-startup-id hue lights $(cat /tmp/hues) $(printf %02X%02X%02X `shuf -i 0-255 -n 1` `shuf -i 0-255 -n 1` `shuf -i 0-255 -n 1`)
-    # Clear out all the effects
-    bindsym x exec --no-startup-id hue lights $(cat /tmp/hues) clear
-    # Reset lights
-    bindsym r exec --no-startup-id hue lights $(cat /tmp/hues) reset
-    # Blinky lights
-    bindsym b exec --no-startup-id hue lights $(cat /tmp/hues) alert
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+l mode "$mode_hue"
-
 # Solarized theme
 # Inspired by
 # https://github.com/okraits/j4-make-config/blob/master/themes/solarized
