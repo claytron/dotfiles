@@ -2,7 +2,7 @@
 source "$HOME/.commonfuncs"
 
 # run the fortune function....and...laugh
-makeMeLaugh
+[ -z "$NO_LAUGHS" ] && makeMeLaugh
 
 # only update once a day
 if checkPath git && [ -d ~/.dotfiles/.git ] && weShouldUpdate; then
