@@ -856,6 +856,9 @@ let g:airline_section_z='%4l/%-4L|%-3c'
 
 " ALE                                                          {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nnoremap <silent> cuw :ALEFix trim_whitespace<CR>
+nnoremap <silent> cuf :ALEFix<CR>
+
 let g:airline#extensions#ale#error_symbol = ''
 let g:airline#extensions#ale#warning_symbol = ''
 let g:airline#extensions#ale#show_line_numbers = 0
@@ -870,8 +873,10 @@ let g:ale_linters = {
 \  'ruby': ['rubocop', 'ruby'],
 \}
 " Set up some fixers
-let g:ale_fixers = {}
-let g:ale_fixers.ruby = ['rubocop']
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'ruby': ['rubocop'],
+\}
 
 " Specific options for linters
 " make foodcritic pick up the config at the root dir
@@ -1099,18 +1104,6 @@ let test#ruby#rspec#options = '--deprecation-out /dev/null'
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 nnoremap <silent> tmt :call localorie#translate()<CR>
 nnoremap <silent> tmte :call localorie#expand_key()<CR>
-
-" autoformat                                                   {{{2
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-nnoremap <silent> cuw :RemoveTrailingSpaces<CR>:w<CR>
-
-let g:autoformat_autoindent = 0
-let g:autoformat_retab = 0
-let g:autoformat_remove_trailing_spaces = 0
-
-" neoformat                                                    {{{2
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-nnoremap <silent> cuf :Neoformat<CR>:w<CR>
 
 " python-syntax                                                {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
