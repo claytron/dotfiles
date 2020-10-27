@@ -4,14 +4,15 @@ import __future__
 
 # first try and set up rlcompleter2
 try:
-    import rlcompleter2
+    import fancycompleter
+    fancycompleter.interact(persist_history=True)
     print('')
-    rlcompleter2.setup()
-    del rlcompleter2
+    del fancycompleter
 except ImportError:
     # then try and setup plain ol' readline
     try:
-        import rlcompleter, readline
+        import rlcompleter
+        import readline
         readline.parse_and_bind('tab: complete')
         print('')
         print("NO rlcompleter2 for nice experiences")

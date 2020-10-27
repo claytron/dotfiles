@@ -871,11 +871,13 @@ let g:ale_linters = {
 \  'javascript': ['eslint'],
 \  'chef': ['foodcritic'],
 \  'ruby': ['rubocop', 'ruby'],
+\  'python': ['flake8'],
 \}
 " Set up some fixers
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'ruby': ['rubocop'],
+\   'python': ['black', 'isort'],
 \}
 
 " Specific options for linters
@@ -883,6 +885,8 @@ let g:ale_fixers = {
 let g:ale_chef_foodcritic_executable = 'foodcritic -r .foodcritic'
 " Pick up the project's rubocop
 let g:ale_ruby_rubocop_executable = 'bundle'
+" Use the black profile to play nice with that fixer
+let g:ale_python_isort_options = '--profile=black'
 
 " Tagbar                                                       {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
