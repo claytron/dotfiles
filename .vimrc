@@ -431,9 +431,9 @@ let g:neosolarized_termtrans=1
 " Function to quickly apply and reset custom highlights
 function! s:extraHighlights()
     " Syntax highlights for the mappings set above
-    hi InterestingWord1 guifg=#000000 guibg=#FF4300 ctermfg=16 ctermbg=196
-    hi InterestingWord2 guifg=#000000 guibg=#53FF00 ctermfg=16 ctermbg=82
-    hi InterestingWord3 guifg=#000000 guibg=#FF74F8 ctermfg=16 ctermbg=165
+    hi InterestingWord1 guifg=#eee8d5 guibg=#FF4300 ctermfg=254 ctermbg=166
+    hi InterestingWord2 guifg=#eee8d5 guibg=#859900 ctermfg=254 ctermbg=64
+    hi InterestingWord3 guifg=#eee8d5 guibg=#268bd2 ctermfg=254 ctermbg=33
 
     " Setting the highlight for the IndentGuides function above
     hi IndentGuides                   guibg=#373737            ctermbg=237
