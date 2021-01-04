@@ -10,8 +10,5 @@ if checkPath git && [ -d ~/.dotfiles/.git ] && weShouldUpdate; then
 fi
 
 if checkPath keychain; then
-    eval "$(keychain --agents ssh --eval id_rsa)"
-    if [ -f ~/.ssh/conga_ey_rsa ]; then
-        eval "$(keychain --agents ssh --eval conga_ey_rsa)"
-    fi
+    eval "$(keychain -q --agents ssh --eval id_rsa)"
 fi
