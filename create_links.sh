@@ -177,7 +177,7 @@ if [ -d "$HOME/.config" ]; then
 
     # Take care of vscode configs
     # -----------------------------------------------------------------
-    if [ -d "$HOME/Library" ]; then
+    if [ -d "$HOME/Library/Application Support/Code" ]; then
       actual_dotfile="$dotfiles_loc/vscode/settings.json"
       dotfile="vscode"
       to_create="$HOME/Library/Application Support/Code/User/settings.json"
