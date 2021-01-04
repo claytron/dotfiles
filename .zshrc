@@ -41,10 +41,10 @@ alias -g WL='| wc -l'
 # copying
 if checkPath pbcopy; then
     alias -g CP='| pbcopy'
+elif checkPath xclip; then
+    alias -g CP='| xclip -i -selection clipboard'
 elif checkPath xsel; then
     alias -g CP='| xsel -ib'
-elif checkPath xclip; then
-    alias -g CP='| xclip'
 fi
 
 # Diffing
