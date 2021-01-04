@@ -1070,6 +1070,10 @@ endif
 " Ignore deprecation warnings so I can see the results
 let test#ruby#rspec#options = '--deprecation-out /dev/null'
 
+" Typical python testing setup
+let test#python#runner = 'pytest'
+let test#python#pytest#executable = './env/bin/pytest -s'
+
 " localorie                                                    {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 nnoremap <silent> tmt :call localorie#translate()<CR>
