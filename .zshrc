@@ -39,7 +39,9 @@ alias -g W='| wc'
 alias -g WL='| wc -l'
 
 # copying
-if checkPath pbcopy; then
+if checkPath clipboard; then
+    alias -g CP='| clipboard'
+elif checkPath pbcopy; then
     alias -g CP='| pbcopy'
 elif checkPath xclip; then
     alias -g CP='| xclip -i -selection clipboard'

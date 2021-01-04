@@ -600,8 +600,8 @@ endfunction
 command! -nargs=0 MarkdownToHTML  call s:RunShellCommand('Markdown.pl %')
 " replace the current buffer with the html version of the markdown
 command! -nargs=0 MarkdownToHTMLReplace  %!Markdown.pl "%"
-" copy the html version of the markdown to the clipboard (os x)
-command! -nargs=0 MarkdownToHTMLCopy  !Markdown.pl "%" | pbcopy
+" copy the html version of the markdown to the clipboard
+command! -nargs=0 MarkdownToHTMLCopy  !Markdown.pl "%" | clipboard
 " use pandoc to convert from html into markdown
 command! -nargs=0 MarkdownFromHTML  %!pandoc -f html -t markdown_github "%"
 
