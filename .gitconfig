@@ -49,6 +49,7 @@
 	br = branch
 	# This one requires `vipe` (editable pipe with your editor) from moreutils, remove that bit to delete indiscriminately
 	brdel = !git branch --merged | grep -v '*' | grep -v master | grep -v dev | grep -v develop | vipe | xargs -n 1 git branch -d
+	brpo = remote prune origin
 	# Create a copy of the current branch, usually before rebasing.
 	# Idea from: http://kevinold.com/2012/07/06/git-backup-branches.html
 	# Also, copy it to the clipboard
