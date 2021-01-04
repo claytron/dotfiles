@@ -97,6 +97,7 @@
 	ssh = stash show -p
 	# Push shortcuts
 	psh = push origin HEAD
+	psht = push origin HEAD --tags
 	pshf = push origin HEAD --force-with-lease
 	# Helpers for rebasing
 	rbsde = !git rebase -i `git merge-base HEAD origin/dev`
