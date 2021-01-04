@@ -12,6 +12,7 @@ expected_path=(
   ./bin
   "$HOME/bin"
   "$HOME/bin/git_achievements"
+  "$HOME/.rbenv/bin"
   "$HOME/.rbenv/shims"
   "$HOME/.rbenv/versions/2.3.3/bin"
   "$HOME/.rvm/bin"
