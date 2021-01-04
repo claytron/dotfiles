@@ -138,3 +138,5 @@
 	cmd = icdiff --head=5000 --highlight --line-numbers -L \"$BASE\" -L \"$REMOTE\" \"$LOCAL\" \"$REMOTE\"
 [push]
 	default = current
+[cola]
+	spellcheck = true
