@@ -7,7 +7,7 @@ au BufWinEnter,BufEnter *.{v,c,}py let w:m2=matchadd('ErrorMsg', '\%>79v.\+', -1
 noremap <silent> col :call clearmatches()<CR>
 
 " remove trailing whitespace on save
-autocmd BufWritePre *.{v,c,}py :ALEFix trim_whitespace
+autocmd BufWritePre *.{v,c,}py :TrimWhitespace
 
 " Use 4 space indents
 TabStyle space 4

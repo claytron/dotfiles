@@ -49,11 +49,8 @@ Plug 'majutsushi/tagbar'
 Plug 'mhinz/vim-signify'
 Plug 'mtth/scratch.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'w0rp/ale'
 Plug 'janko-m/vim-test'
-if has('nvim')
-  Plug 'ncm2/ncm2'
-endif
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'google/vim-searchindex'
 
 " File Previews

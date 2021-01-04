@@ -520,6 +520,19 @@ map <silent> cog :ToggleGutterSigns<cr>
 " Custom functions and commands                                {{{1
 " -----------------------------------------------------------------
 
+" Strip whitespace                                             {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Taken from here:
+" https://vi.stackexchange.com/a/456/5433
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+
+command! TrimWhitespace call TrimWhitespace()
+nnoremap <silent> cuw :TrimWhitespace<cr>
+
 " Tabs and spaces                                              {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -587,23 +600,6 @@ command! -nargs=0 MarkdownToHTMLReplace  %!Markdown.pl "%"
 command! -nargs=0 MarkdownToHTMLCopy  !Markdown.pl "%" | pbcopy
 " use pandoc to convert from html into markdown
 command! -nargs=0 MarkdownFromHTML  %!pandoc -f html -t markdown_github "%"
-
-" Error Toggle                                                 {{{2
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-command! -bang -nargs=? ErrorsToggle call ErrorsToggle(<bang>0)
-
-function! ErrorsToggle(forced)
-  if exists("g:llist_win") && a:forced == 0
-    lclose
-    unlet g:llist_win
-  else
-    lopen
-    let g:llist_win = bufnr("$")
-  endif
-endfunction
-
-nnoremap <silent> coe :ErrorsToggle<CR>
 
 " Quickfix                                                     {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -853,40 +849,6 @@ let g:airline_theme='base16_grayscale'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline_section_z='%4l/%-4L|%-3c'
-
-" ALE                                                          {{{2
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-nnoremap <silent> cuw :ALEFix trim_whitespace<CR>
-nnoremap <silent> cuf :ALEFix<CR>
-
-let g:airline#extensions#ale#error_symbol = ''
-let g:airline#extensions#ale#warning_symbol = ''
-let g:airline#extensions#ale#show_line_numbers = 0
-" Delay slightly more before running the linter
-let g:ale_lint_delay = 1500
-" Always lint on save too
-let g:ale_lint_on_save=1
-" Enable only particular linters
-let g:ale_linters = {
-\  'javascript': ['eslint'],
-\  'chef': ['foodcritic'],
-\  'ruby': ['rubocop', 'ruby'],
-\  'python': ['flake8'],
-\}
-" Set up some fixers
-let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'ruby': ['rubocop'],
-\   'python': ['black', 'isort'],
-\}
-
-" Specific options for linters
-" make foodcritic pick up the config at the root dir
-let g:ale_chef_foodcritic_executable = 'foodcritic -r .foodcritic'
-" Pick up the project's rubocop
-let g:ale_ruby_rubocop_executable = 'bundle'
-" Use the black profile to play nice with that fixer
-let g:ale_python_isort_options = '--profile=black'
 
 " Tagbar                                                       {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1138,6 +1100,30 @@ nnoremap <silent> <expr> , Remembrall(',')
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " Use the stdio version of OmniSharp-roslyn:
 let g:OmniSharp_server_stdio = 1
+
+" coc                                                          {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+let g:coc_global_extensions = [
+  \ 'coc-css',
+  \ 'coc-diagnostic',
+  \ 'coc-emoji',
+  \ 'coc-go',
+  \ 'coc-html',
+  \ 'coc-json',
+  \ 'coc-markdownlint',
+  \ 'coc-pyright',
+  \ 'coc-sh',
+  \ 'coc-solargraph',
+  \ 'coc-tag',
+  \ 'coc-vimlsp',
+  \ 'coc-yaml',
+\ ]
+
+" Show errors list
+nnoremap <silent> coe :CocDiagnostics<CR>
+
+" Fix up the current file
+nnoremap <silent> cuf :call CocAction('format')<CR>
 
 " Auto command settings                                        {{{1
 " -----------------------------------------------------------------
