@@ -3,20 +3,13 @@
   display: none;
 }
 #tabbar {
-  bottom: 0 !important; /* Eliminate dead space on bottom */
+  bottom: 23px !important; /* Eliminate dead space on bottom */
 }
 
 /* hide tab close until hover */
 .tab:not(:hover) .closebox {
   display: none;
 }
-
-/* this was needed for the dark theme.
-.tab {
-  border-left: solid 1px #605D63;
-}
-*/
-
 
 /* make container tabs stick out */
 .contextual-identity-marker {
