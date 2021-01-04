@@ -324,6 +324,10 @@ set laststatus=2
 " set all window splits equal
 set equalalways
 
+" more natural split direction
+set splitbelow
+set splitright
+
 " highlight the cursor line
 set cursorline
 
@@ -1100,6 +1104,13 @@ nnoremap <silent> <expr> , Remembrall(',')
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " Use the stdio version of OmniSharp-roslyn:
 let g:OmniSharp_server_stdio = 1
+
+" vim-go                                                       {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" run commands in a re-usable terminal window
+let g:go_term_mode = "10split"
+let g:go_term_enabled = 1
+let g:go_term_reuse = 1
 
 " coc                                                          {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

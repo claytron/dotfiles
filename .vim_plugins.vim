@@ -10,6 +10,9 @@ Plug 'sukima/xmledit'
 Plug 'tpope/vim-rails'
 Plug 'airblade/vim-localorie'
 Plug 'vim-scripts/bbcode'
+Plug 'fatih/vim-go'
+" not sure why go doesn't work in polyglot...
+let g:polyglot_disabled = ['go']
 " Check if this has it before adding a new one...
 Plug 'sheerun/vim-polyglot'
 Plug 'OmniSharp/omnisharp-vim'
