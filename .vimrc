@@ -1339,6 +1339,8 @@ if has('nvim')
 endif
 
 if has("gui_running")
+    " One more time here to match the terminal for some reason...
+    ColorSwitcher
 
     " turn off the cursor blinking (who thinks that is a good idea?)
     set guicursor+=a:blinkon0
