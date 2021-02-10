@@ -1,4 +1,10 @@
 {
+  "coc.source.emoji.filetypes": [
+    "markdown",
+    "gitcommit",
+    "text"
+  ],
+
   "python.linting.flake8Enabled": true,
   "python.pythonPath": "env/bin/python",
   "python.formatting.provider": "black",
