@@ -149,7 +149,14 @@ export FZF_DEFAULT_COMMAND='find -L . -type f -o -type d -o -type l | sed 1d | c
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 export FZF_DEFAULT_OPTS='--extended --multi --inline-info --prompt="fzf> "'
 
-# NVM
+# NVM, here for some reason
 export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# rbenv, here for some reason
+if [ -d "$HOME/.rbenv" ]; then
+  eval "$(rbenv init -)"
+fi
