@@ -16,7 +16,7 @@
       "command": "proselint",
       "isStdout": true,
       "isStderr": false,
-      "debounce": 100,
+      "debounce": 5000,
       "args": ["-"],
       "offsetLine": 0,
       "offsetColumn": 0,
