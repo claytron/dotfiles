@@ -502,17 +502,10 @@ ColorSwitcher NeoSolarized
 
 " Toggle the gutter
 function! s:toggleGutterSigns()
-  " Toggle the signify plugin
-  SignifyToggle
-
-  " Take care of ALE
-  if g:ale_enabled == 1
-    ALEDisable
-    let g:ale_enabled = 0
+  if &signcolumn =~ '\v(auto|yes)'
+    set signcolumn=no
   else
-    let g:ale_enabled = 1
-    ALEEnable
-    ALELint
+    set signcolumn=auto
   endif
 endfunction
 
