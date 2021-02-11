@@ -64,5 +64,8 @@ typeset -U fpath
 # sake more than anything.
 rationalize-path fpath
 
+autoload -Uz compinit
+compinit
+
 # extra per environment settings
 source $HOME/.zshenv_extras

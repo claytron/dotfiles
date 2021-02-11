@@ -1,5 +1,6 @@
 # Basic necessities
 brew 'zsh'
+brew 'zsh-completions'
 brew 'bash'
 brew 'git'
 brew 'vim'
