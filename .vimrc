@@ -976,6 +976,8 @@ let g:javascript_enable_domhtmlcss = 1
 " fzf                                                          {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 nmap ff :GFiles<CR>
+" Show files changed on the current branch compared to master
+nmap ffd :call fzf#run(fzf#wrap({'source': 'git diff --name-only `git merge-base HEAD origin/master`..HEAD \| sort -rf', 'options': '-m --prompt "GitChanged> " --preview "git diff --color=always master {}"'}))<CR>
 nmap ffa :Files<CR>
 nmap fft :Tags<CR>
 nmap ffe :Buffers<CR>
