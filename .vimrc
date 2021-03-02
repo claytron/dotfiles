@@ -1117,6 +1117,7 @@ let g:coc_global_extensions = [
   \ 'coc-css',
   \ 'coc-diagnostic',
   \ 'coc-emoji',
+  \ 'coc-eslint',
   \ 'coc-go',
   \ 'coc-html',
   \ 'coc-json',
