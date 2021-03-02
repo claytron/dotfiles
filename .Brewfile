@@ -13,6 +13,7 @@ brew 'tmux'
 # Helpers for dotfiles related stuff
 brew 'moreutils'
 brew 'keychain'
+brew 'icdiff'
 
 # For development
 brew 'go'
