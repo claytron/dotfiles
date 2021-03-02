@@ -153,6 +153,9 @@ alias ru='rvm use'
 alias rud='ru default@tb'
 alias rum='ru default@mailcatcher'
 
+# rbenv
+alias re='rbenv exec'
+
 # bundler
 alias be='bundle exec'
 
