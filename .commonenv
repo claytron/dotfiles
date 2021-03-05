@@ -110,14 +110,6 @@ fi
 
 export EDITOR=$PREFERRED_EDITOR
 
-if checkPath vimpager; then
-    export PAGER=vimpager
-    alias less=vimpager
-    alias zless=vimpager
-    # vim pager doesn't currently support ansi colors
-    export GIT_PAGER=less
-fi
-
 # get crazy with python, and the cheese whiz
 export PYTHONSTARTUP=$HOME/.pystartup
 
@@ -138,6 +130,14 @@ export LSCOLORS="exFxbxbhcxfxgxdxdhebeb"
 
 # set the ACK match color scheme
 export ACK_COLOR_MATCH="red"
+
+# Bat
+export BAT_THEME="Solarized (light)"
+
+# Fancy git output
+if checkPath delta; then
+    export GIT_PAGER=delta
+fi
 
 # Ripgrep config
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc

@@ -13,6 +13,8 @@ brew 'tmux'
 brew 'moreutils'
 brew 'keychain'
 brew 'icdiff'
+brew 'git-delta'
+brew 'bat'
 
 # For development
 brew 'go'
