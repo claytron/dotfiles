@@ -3,7 +3,6 @@ brew 'zsh'
 brew 'zsh-completions'
 brew 'bash'
 brew 'git'
-brew 'vim'
 brew 'nvim'
 brew 'tmux'
 # TODO: pick a dotfile manager
