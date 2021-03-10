@@ -5,6 +5,7 @@ brew 'bash'
 brew 'git'
 brew 'nvim'
 brew 'tmux'
+brew 'pwgen'
 # TODO: pick a dotfile manager
 # brew 'chezmoi'
 # brew 'yadm'
