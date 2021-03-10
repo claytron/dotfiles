@@ -8,7 +8,7 @@ Pry.config.prompt_name = 'oh no!'
 Pry::Commands.command(/^$/, 'repeat last command') do
   last_command = Pry.history.to_a.last
   ignored_command = %w(c continue q exit-program quit).include?(last_command)
-  _pry_.run_command(last_command) unless ignored_command
+  pry_instance.run_command(last_command) unless ignored_command
 end
 
 # Single letter and pdb like aliases
