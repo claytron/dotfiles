@@ -86,6 +86,9 @@ export PATH
 #   * don't clear the screen on exit (-X)
 export LESS="-IMRX"
 
+# Make bat and delta act like less as setup above
+export BAT_PAGER="less $LESS"
+
 # Force C style sorting (e.g. dotfiles, then Uppercase then lowercase)
 export LC_COLLATE=C
 
