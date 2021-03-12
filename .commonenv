@@ -139,7 +139,7 @@ export BAT_THEME="Solarized (light)"
 
 # Fancy git output
 if checkPath delta; then
-    export GIT_PAGER=delta
+    export GIT_PAGER='delta --line-numbers --side-by-side'
 fi
 
 # Ripgrep config
