@@ -27,6 +27,11 @@
 	changed = green
 	untracked = cyan
 [alias]
+	# Helpers for mainline and dev branches
+	br-main = !git config --local --get br.main || git config --global --get br.main
+	br-main-set = !sh -c 'git config --local --add br.main $1' -
+	br-dev = !git config --local --get br.dev || git config --global --get br.dev
+	br-dev-set = !sh -c 'git config --local --add br.dev $1' -
 	# Status helpers
 	st = status -sb
 	stu = status -s -uno
@@ -42,13 +47,12 @@
 	pop = !git --no-pager log -n 1 HEAD && git reset HEAD^
 	# Try to pull and rebase, but then stash and pop if it's dirty
 	up = !git pull --rebase || ( git stash save && git pull --rebase && git stash pop )
-	upde = !git pull --rebase origin dev || ( git stash save && git pull --rebase origin dev && git stash pop )
-	upd = !git pull --rebase origin develop || ( git stash save && git pull --rebase origin develop && git stash pop )
-	upm = !git pull --rebase origin master || ( git stash save && git pull --rebase origin master && git stash pop )
+	upd = !git pull --rebase origin $(git br-dev) || ( git stash save && git pull --rebase origin $(git br-dev) && git stash pop )
+	upm = !git pull --rebase origin $(git br-main) || ( git stash save && git pull --rebase origin $(git br-main) && git stash pop )
 	# Branches
 	br = branch
 	# This one requires `vipe` (editable pipe with your editor) from moreutils, remove that bit to delete indiscriminately
-	brdel = !git branch --merged | grep -v '*' | grep -v master | grep -v dev | grep -v develop | vipe | xargs -n 1 git branch -d
+	brdel = !git branch --merged | grep -v '*' | grep -v $(git br-main) | grep -v $(git br-dev) | vipe | xargs -n 1 git branch -d
 	brpo = remote prune origin
 	# Create a copy of the current branch, usually before rebasing.
 	# Idea from: http://kevinold.com/2012/07/06/git-backup-branches.html
@@ -60,30 +64,24 @@
 	coo = !sh -c 'git checkout -b $1 origin/$1' -
 	cof = !git checkout $(git branch | grep -v '*' | fzf)
 	cob = checkout -b
-	com = checkout master
-	code = checkout dev
-	cod = checkout develop
+	com = !git checkout $(git br-main)
+	cod = !git checkout $(git br-dev)
 	pristine = !git fetch && git reset --hard origin/$(git symbolic-ref --short HEAD)
 	# Diffing
 	df = diff
 	dfs = diff --staged
 	# Alternatively use diff.tool
 	dft = !git difftool | ${PAGER:=less}
-	# Show the changes on the current branch
-	dfd = !git show `git merge-base HEAD origin/develop`..HEAD --reverse
-	dfda = !git diff `git merge-base HEAD origin/develop`..HEAD
-	dfds = !git difftool `git merge-base HEAD origin/develop`..HEAD --reverse | ${PAGER:=less}
-	dfdlc = !git diff `git merge-base HEAD origin/develop` HEAD --stat
-
-	dfde = !git show `git merge-base HEAD origin/dev`..HEAD --reverse
-	dfdea = !git diff `git merge-base HEAD origin/dev`..HEAD
-	dfdes = !git difftool `git merge-base HEAD origin/dev`..HEAD --reverse | ${PAGER:=less}
-	dfdelc = !git diff `git merge-base HEAD origin/dev` HEAD --stat
-
-	dfm = !git show `git merge-base HEAD origin/master`..HEAD --reverse
-	dfma = !git diff `git merge-base HEAD origin/master`..HEAD
-	dfms = !git difftool `git merge-base HEAD origin/master`..HEAD --reverse | ${PAGER:=less}
-	dfmlc = !git diff `git merge-base HEAD origin/master` HEAD --stat
+	# Show the changes on the current branch compared to development branch
+	dfd = !git show `git merge-base HEAD origin/$(git br-dev)`..HEAD --reverse
+	dfda = !git diff `git merge-base HEAD origin/$(git br-dev)`..HEAD
+	dfds = !git difftool `git merge-base HEAD origin/$(git br-dev)`..HEAD --reverse | ${PAGER:=less}
+	dfdlc = !git diff `git merge-base HEAD origin/$(git br-dev)` HEAD --stat
+	# and compared to the mainline
+	dfm = !git show `git merge-base HEAD origin/$(git br-main)`..HEAD --reverse
+	dfma = !git diff `git merge-base HEAD origin/$(git br-main)`..HEAD
+	dfms = !git difftool `git merge-base HEAD origin/$(git br-main)`..HEAD --reverse | ${PAGER:=less}
+	dfmlc = !git diff `git merge-base HEAD origin/$(git br-main)` HEAD --stat
 	# Better log commands
 	lg = log --graph --pretty=format:'%Cred%h%Creset %Cgreen(%cr)%Creset %Cblue%an%Creset %s %C(yellow)%d%Creset' --abbrev-commit --date=relative
 	# Use bang to be able to re-use the alias above (with pretty format) and add to it
@@ -100,9 +98,8 @@
 	psht = push origin HEAD --tags
 	pshf = push origin HEAD --force-with-lease
 	# Helpers for rebasing
-	rbsde = !git rebase -i `git merge-base HEAD origin/dev`
-	rbsd = !git rebase -i `git merge-base HEAD origin/develop`
-	rbsm = !git rebase -i `git merge-base HEAD origin/master`
+	rbsd = !git rebase -i `git merge-base HEAD origin/$(git br-dev)`
+	rbsm = !git rebase -i `git merge-base HEAD origin/$(git br-main)`
 	rbc = rebase --continue
 	rba = rebase --abort
 	# Cherry pickin'
@@ -125,6 +122,9 @@
 	authorsfile = /Users/clayton/.git-authorsfile
 [branch]
 	autosetuprebase = always
+[br]
+	main = master
+	dev = develop
 [diff]
 	algorithm = patience
 	tool = icdiff
