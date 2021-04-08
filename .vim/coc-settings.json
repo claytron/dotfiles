@@ -13,6 +13,8 @@
   "solargraph.diagnostics": true,
   "solargraph.formatting": true,
 
+  "yaml.schemaStore.enable": false,
+
   "diagnostic-languageserver.filetypes": {
     "text": ["proselint"],
     "markdown": ["proselint"]
