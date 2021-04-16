@@ -17,7 +17,8 @@
 
   "diagnostic-languageserver.filetypes": {
     "text": ["proselint"],
-    "markdown": ["proselint"]
+    "markdown": ["proselint"],
+    "ruby": ["rubocop"]
   },
   "diagnostic-languageserver.linters": {
     "proselint": {
@@ -41,6 +42,30 @@
       ],
       "securities": {
         " ": "info"
+      }
+    },
+    "rubocop": {
+      "command": "bundle",
+      "sourceName": "rubocop",
+      "debounce": 100,
+      "args": [
+        "exec", 
+        "rubocop",
+        "--format",
+        "json",
+        "--force-exclusion",
+        "%filepath"
+      ],
+      "parseJson": {
+        "errorsRoot": "files[0].offenses",
+        "line": "location.line",
+        "column": "location.column",
+        "message": "[${cop_name}] ${message}",
+        "security": "severity"
+      },
+      "securities": {
+        "fatal": "error",
+        "warning": "warning"
       }
     }
   }

@@ -1124,7 +1124,6 @@ let g:coc_global_extensions = [
   \ 'coc-markdownlint',
   \ 'coc-pyright',
   \ 'coc-sh',
-  \ 'coc-solargraph',
   \ 'coc-tag',
   \ 'coc-vimlsp',
   \ 'coc-yaml',
