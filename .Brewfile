@@ -29,6 +29,8 @@ brew 'nvm'
 ## Dev utils
 brew 'jq'
 brew 'ripgrep'
+## Ops utils
+brew 'sipcalc'
 
 # Apps
 cask 'firefox'
