@@ -141,9 +141,8 @@ else
 fi
 
 # docker
-alias dcu='docker-compose up'
-alias dcr='docker-compose run'
-alias dce='docker-compose exec'
+alias d='docker'
+alias dco='docker-compose'
 
 # pep8 that can scan a `src` dir
 alias pep8scan="pep8 --repeat --show-source --statistics --exclude='paste,*PasteDeploy*,bootstrap.py'"
