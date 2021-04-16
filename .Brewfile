@@ -40,10 +40,6 @@ cask 'macvim'
 cask 'sourcetree'
 cask 'virtualbox'
 cask 'virtualbox-extension-pack'
-## app store
-mas "Telegram", id: 747648890
-mas "Slack", id: 803453959
-mas "Simplenote", id: 692867256
 
 # Other fun stuff
 brew 'cowsay'
