@@ -26,6 +26,9 @@
 	added = yellow
 	changed = green
 	untracked = cyan
+[delta]
+	line-numbers = true
+	side-by-side = true
 [alias]
 	# Helpers for mainline and dev branches
 	br-main = !git config --local --get br.main || git config --global --get br.main

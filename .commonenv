@@ -139,7 +139,8 @@ export BAT_THEME="Solarized (light)"
 
 # Fancy git output
 if checkPath delta; then
-    export GIT_PAGER='delta --line-numbers --side-by-side'
+    # NOTE: delta style and config is in ~/.gitconfig for any delta invocation
+    export GIT_PAGER=delta
 fi
 
 # Ripgrep config
