@@ -29,6 +29,8 @@
 [delta]
 	line-numbers = true
 	side-by-side = true
+	file-decoration-style = blue ul ol
+	hunk-header-decoration-style = blue
 [alias]
 	# Helpers for mainline and dev branches
 	br-main = !git config --local --get br.main || git config --global --get br.main
