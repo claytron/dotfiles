@@ -9,7 +9,6 @@ $if mode=vi
     "jk": vi-movement-mode
     Control-l: clear-screen
 $endif
-# ignore that case biatch
 set completion-ignore-case on
 # actually tab the first time :)
 set show-all-if-ambiguous on
