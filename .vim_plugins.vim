@@ -74,4 +74,5 @@ Plug 'vim-scripts/TaskList.vim'
 Plug 'yegappan/mru'
 Plug 'rizzatti/dash.vim'
 Plug 'urbainvaes/vim-remembrall'
+Plug 'liuchengxu/graphviz.vim'
 call plug#end()

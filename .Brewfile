@@ -50,3 +50,4 @@ cask 'virtualbox-extension-pack'
 # Other fun stuff
 brew 'cowsay'
 brew 'fortune'
+brew 'graphviz'
