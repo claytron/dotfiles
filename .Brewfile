@@ -11,6 +11,10 @@ brew 'wget'
 # brew 'chezmoi'
 # brew 'yadm'
 
+# Fonts!
+tap "homebrew/cask-fonts"
+cask "font-victor-mono"
+
 # Helpers for dotfiles related stuff
 brew 'moreutils'
 brew 'keychain'

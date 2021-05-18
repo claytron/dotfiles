@@ -1360,7 +1360,7 @@ if has("gui_running")
         " Use fancy ligatures
         set macligatures
         " use Monaco with no antialiasing
-        set guifont=Fira\ Code:h12,Inconsolata-dz\ for\ Powerline:h11,Inconsolata-dz:h10,Inconsolata:h12,Monaco:h10
+        set guifont=VictorMono-Regular:h12,OperatorMonoLig-Book:h11,Fira\ Code:h12,Inconsolata-dz\ for\ Powerline:h11,Inconsolata-dz:h10,Inconsolata:h12,Monaco:h10
         set antialias
     endif
 
