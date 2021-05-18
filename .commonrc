@@ -144,6 +144,15 @@ fi
 alias d='docker'
 alias dco='docker-compose'
 
+# terraform
+alias tf='terraform'
+alias tfi='terraform init'
+alias tfs='terraform show'
+alias tfp='terraform plan'
+alias tfa='terraform apply'
+alias tfpo='terraform plan --out=tfplan'
+alias tfap='terraform apply tfplan'
+
 # pep8 that can scan a `src` dir
 alias pep8scan="pep8 --repeat --show-source --statistics --exclude='paste,*PasteDeploy*,bootstrap.py'"
 

@@ -35,6 +35,7 @@ brew 'jq'
 brew 'ripgrep'
 ## Ops utils
 brew 'sipcalc'
+brew 'tfenv'
 
 # Apps
 cask 'firefox'
