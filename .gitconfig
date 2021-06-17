@@ -35,7 +35,8 @@
 	# Helpers for mainline and dev branches
 	br-main = !git config --local --get br.main || git config --global --get br.main
 	br-main-set = !sh -c 'git config --local --add br.main $1' -
-	br-dev = !git config --local --get br.dev || git config --global --get br.dev
+	## fallback to main if dev isn't set
+	br-dev = !git config --local --get br.dev || git br-main
 	br-dev-set = !sh -c 'git config --local --add br.dev $1' -
 	# Status helpers
 	st = status -sb
@@ -129,7 +130,6 @@
 	autosetuprebase = always
 [br]
 	main = master
-	dev = develop
 [diff]
 	algorithm = patience
 	tool = icdiff
