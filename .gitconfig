@@ -76,17 +76,13 @@
 	# Diffing
 	df = diff
 	dfs = diff --staged
-	# Alternatively use diff.tool
-	dft = !git difftool | ${PAGER:=less}
 	# Show the changes on the current branch compared to development branch
 	dfd = !git show `git merge-base HEAD origin/$(git br-dev)`..HEAD --reverse
 	dfda = !git diff `git merge-base HEAD origin/$(git br-dev)`..HEAD
-	dfds = !git difftool `git merge-base HEAD origin/$(git br-dev)`..HEAD --reverse | ${PAGER:=less}
 	dfdlc = !git diff `git merge-base HEAD origin/$(git br-dev)` HEAD --stat
 	# and compared to the mainline
 	dfm = !git show `git merge-base HEAD origin/$(git br-main)`..HEAD --reverse
 	dfma = !git diff `git merge-base HEAD origin/$(git br-main)`..HEAD
-	dfms = !git difftool `git merge-base HEAD origin/$(git br-main)`..HEAD --reverse | ${PAGER:=less}
 	dfmlc = !git diff `git merge-base HEAD origin/$(git br-main)` HEAD --stat
 	# Better log commands
 	lg = log --graph --pretty=format:'%Cred%h%Creset %Cgreen(%cr)%Creset %Cblue%an%Creset %s %C(yellow)%d%Creset' --abbrev-commit --date=relative
