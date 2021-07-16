@@ -424,3 +424,6 @@ s3
 Sidekiq
 CircleCI
 c1aytr0n
+Ansible
+Fargate
+terraform
