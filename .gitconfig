@@ -84,6 +84,8 @@
 	dfm = !git show `git merge-base HEAD origin/$(git br-main)`..HEAD --reverse
 	dfma = !git diff `git merge-base HEAD origin/$(git br-main)`..HEAD
 	dfmlc = !git diff `git merge-base HEAD origin/$(git br-main)` HEAD --stat
+	# compare current branch to the latest tagged version
+	dft = !git diff `git semver-latest`..HEAD
 	# Better log commands
 	lg = log --graph --pretty=format:'%Cred%h%Creset %Cgreen(%cr)%Creset %Cblue%an%Creset %s %C(yellow)%d%Creset' --abbrev-commit --date=relative
 	# Use bang to be able to re-use the alias above (with pretty format) and add to it
@@ -95,6 +97,9 @@
 	ssa = stash save
 	sls = !git --no-pager stash list
 	ssh = stash show -p
+	# Tags
+	semver = !git tag | grep '^v' | sort -V
+	semver-latest = !git semver | tail -n 1
 	# Push shortcuts
 	psh = push origin HEAD
 	psht = push origin HEAD --tags
