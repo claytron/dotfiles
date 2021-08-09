@@ -16,34 +16,9 @@
   "yaml.schemaStore.enable": false,
 
   "diagnostic-languageserver.filetypes": {
-    "text": ["proselint"],
-    "markdown": ["proselint"],
     "ruby": ["rubocop"]
   },
   "diagnostic-languageserver.linters": {
-    "proselint": {
-      "command": "proselint",
-      "isStdout": true,
-      "isStderr": false,
-      "debounce": 5000,
-      "args": ["-"],
-      "offsetLine": 0,
-      "offsetColumn": 0,
-      "sourceName": "proselint",
-      "formatLines": 1,
-      "formatPattern": [
-        "^[^:]+:(\\d+):(\\d+):(\\s)(.*)$",
-        {
-          "line": 1,
-          "column": 2,
-          "security": 3,
-          "message": 4
-        }
-      ],
-      "securities": {
-        " ": "info"
-      }
-    },
     "rubocop": {
       "command": "bundle",
       "sourceName": "rubocop",
