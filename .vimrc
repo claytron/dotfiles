@@ -1136,6 +1136,10 @@ nnoremap <silent> coe :CocDiagnostics<CR>
 " Fix up the current file
 nnoremap <silent> cuf :call CocAction('format')<CR>
 
+" vim-snipmate                                                 {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+let g:snipMate = { 'snippet_version' : 0 }
+
 " Auto command settings                                        {{{1
 " -----------------------------------------------------------------
 
