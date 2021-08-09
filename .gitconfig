@@ -72,6 +72,9 @@
 	cob = checkout -b
 	com = !git checkout $(git br-main)
 	cod = !git checkout $(git br-dev)
+	# Put things back to the way they were
+	r = reset
+	rh = reset --hard
 	pristine = !git fetch && git reset --hard origin/$(git symbolic-ref --short HEAD)
 	# Diffing
 	df = diff
