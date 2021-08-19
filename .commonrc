@@ -146,8 +146,9 @@ alias dco='docker-compose'
 
 # terraform
 alias tf='terraform'
+alias tff='terraform fmt -recursive'
 alias tfi='terraform init'
-alias tfs='terraform show'
+alias tfs='terraform show -no-color'
 alias tfp='terraform plan'
 alias tfa='terraform apply'
 alias tfpo='terraform plan --out=tfplan'
