@@ -1,0 +1,52 @@
+snippet remark
+	<!DOCTYPE html>
+	<html>
+	  <head>
+	    <title>${1}</title>
+	    <meta charset="utf-8">
+	    <link rel="icon" type="image/png" href="images/favicon.ico">
+	    <style>
+	      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+	      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+	      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+	
+	      body { font-family: 'Droid Serif'; }
+	      h1, h2, h3 {
+	        font-family: 'Yanone Kaffeesatz';
+	        font-weight: normal;
+	      }
+	      a:link, a:hover, a:active, a:visited {
+	        color: blue;
+	        text-decoration: none;
+	      }
+	      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+	      .remark-inline-code { color: #cb4b16 }
+	    </style>
+	  </head>
+	  <body>
+	    <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+	    <script>
+	      var slideshow = remark.create({
+	        // Serve this file up with python:
+	        //   python3 -m http.server
+	        //
+	        // Have to set this property in the about:config in Firefox to false:
+	        //   security.fileuri.strict_origin_policy
+	        // or else you get a CORS error
+	        sourceUrl: 'slides.md',
+	        // no slide count
+	        slideNumberFormat: '',
+	        navigation: {
+	          scroll: false,
+	          touch: false,
+	          click: false
+	        }
+	      });
+	
+	      remark.macros.scale = function (percentage) {
+	        var url = this;
+	        return '<img src="' + url + '" style="width: ' + percentage + '" />';
+	      };
+	    </script>
+	  </body>
+	</html>
