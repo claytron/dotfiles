@@ -1008,26 +1008,26 @@ endfunction
 
 " fugitive                                                     {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-nmap tgg :Gstatus<CR>
+nmap tgg :Git<CR>
 
 nmap tgd :Gdiff<CR>
 
-nmap tgb :Gblame<CR>
+nmap tgb :Git blame<CR>
 
 " Navigate through historical diffs
-nmap tgl :Glog -100 -- %<CR>
-nmap tgll :Glog -100 --<CR>
+nmap tgl :Gclog -100 -- %<CR>
+nmap tgll :Gclog -100 --<CR>
 
 " History of additions / removals of the search word in diffs
 " In the current file:
-nmap tgh :Glog --pickaxe-regex -S -- %<Left><Left><Left><Left><Left>
+nmap tgh :Gclog --pickaxe-regex -S -- %<Left><Left><Left><Left><Left>
 " Across all files:
-nmap tghh :Glog --pickaxe-regex -S --<Left><Left><Left>
+nmap tghh :Gclog --pickaxe-regex -S --<Left><Left><Left>
 
 " Search log messages
-nmap tgs :Glog --grep<space>
+nmap tgs :Gclog --grep<space>
 " Search for occurrences of the search word in diffs
-nmap tgss :Glog -G
+nmap tgss :Gclog -G
 
 " Tmuxline                                                     {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
