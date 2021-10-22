@@ -432,3 +432,7 @@ gitconfig
 Sourcetree
 repos
 rebasing
+ETL
+quickbase
+pyscopg2
+performant
