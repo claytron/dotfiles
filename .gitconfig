@@ -52,9 +52,9 @@
 	# Pop the last commit into the working copy
 	pop = !git --no-pager log -n 1 HEAD && git reset HEAD^
 	# Try to pull and rebase, but then stash and pop if it's dirty
-	up = !git pull --rebase || ( git stash save && git pull --rebase && git stash pop )
-	upd = !git pull --rebase origin $(git br-dev) || ( git stash save && git pull --rebase origin $(git br-dev) && git stash pop )
-	upm = !git pull --rebase origin $(git br-main) || ( git stash save && git pull --rebase origin $(git br-main) && git stash pop )
+	up = !git pull || ( git stash save && git pull && git stash pop )
+	upd = !git pull origin $(git br-dev) || ( git stash save && git pull origin $(git br-dev) && git stash pop )
+	upm = !git pull origin $(git br-main) || ( git stash save && git pull origin $(git br-main) && git stash pop )
 	# Branches
 	br = branch
 	# This one requires `vipe` (editable pipe with your editor) from moreutils, remove that bit to delete indiscriminately
@@ -148,5 +148,7 @@
 	cmd = icdiff --head=5000 --highlight --line-numbers -L \"$BASE\" -L \"$REMOTE\" \"$LOCAL\" \"$REMOTE\"
 [push]
 	default = current
+[pull]
+	rebase = true
 [cola]
 	spellcheck = true
