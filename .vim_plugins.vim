@@ -15,7 +15,6 @@ Plug 'fatih/vim-go'
 let g:polyglot_disabled = ['go']
 " Check if this has it before adding a new one...
 Plug 'sheerun/vim-polyglot'
-Plug 'OmniSharp/omnisharp-vim'
 
 " Object manipulation
 Plug 'godlygeek/tabular'
