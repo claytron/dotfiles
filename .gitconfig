@@ -150,3 +150,5 @@
 	rebase = true
 [cola]
 	spellcheck = true
+[init]
+	defaultBranch = main
