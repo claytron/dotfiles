@@ -31,6 +31,7 @@ brew 'rbenv'
 brew 'rbenv-gemset'
 brew 'nvm'
 ## Dev utils
+brew 'ctags'
 brew 'jq'
 brew 'ripgrep'
 ## Ops utils
