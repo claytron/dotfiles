@@ -184,7 +184,7 @@ alias mv='mv -i'
 
 if checkPath exa; then
     alias ls='exa -F'
-    alias ll='ls -la'
+    alias ll='ls -lag'
     alias lsa=ll
     alias lss='ll --reverse --sort=size'
     alias lsdate='ll --sort=modified'
