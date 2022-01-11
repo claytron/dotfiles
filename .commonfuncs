@@ -17,6 +17,8 @@ makeMeLaugh() {
     # display the fortune requested
     if [ -n "$1" ]; then
         output=$(fortune -e "$1")
+    elif [ -d "$HOME/.fortunes" ]; then
+        output=$(fortune -e "$HOME/.fortunes")
     # try to run my custom comedy folder of goodness
     elif [ -d /opt/local/share/games/fortune/comedy ] ||
       [ -d /usr/share/games/fortune/comedy ] ||
