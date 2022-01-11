@@ -21,6 +21,7 @@ brew 'keychain'
 brew 'icdiff'
 brew 'git-delta'
 brew 'bat'
+brew 'exa'
 
 # For development
 brew 'go'

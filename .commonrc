@@ -182,25 +182,36 @@ vsbe() {
 alias cp='cp -iv'
 alias mv='mv -i'
 
-# Use colors and filetype characters with ls by default
-# conditionally setting up coloring on different OS types
-case $(uname) in
-    FreeBSD|Darwin) alias ls='ls -FG' ;;
-    Linux) alias ls='ls -F --color=auto' ;;
-    SunOS) alias ls='ls -F --color=always' ;;
-esac
-# show me all files (long list)
-alias ll='ls -al'
-# show me everything human readable
-alias lsa='ll -h'
-# sort by size
-alias lss='lsa -Sr'
-# sort by date modified
-alias lsdate='lsa -tr'
-# don't list directories
-alias lsd='lsa -d'
-# list all dot files
-alias lsdot='lsd .*'
+if checkPath exa; then
+    alias ls='exa -F'
+    alias ll='ls -la'
+    alias lsa=ll
+    alias lss='ll --reverse --sort=size'
+    alias lsdate='ll --sort=modified'
+    alias lsd='lsa -d'
+    alias lsdot='lsd .*'
+else
+    # Use colors and filetype characters with ls by default
+    # conditionally setting up coloring on different OS types
+    case $(uname) in
+        FreeBSD|Darwin) alias ls='ls -FG' ;;
+        Linux) alias ls='ls -F --color=auto' ;;
+        SunOS) alias ls='ls -F --color=always' ;;
+    esac
+
+    # show me all files (long list)
+    alias ll='ls -al'
+    # show me everything human readable
+    alias lsa='ll -h'
+    # sort by size
+    alias lss='lsa -Sr'
+    # sort by date modified
+    alias lsdate='lsa -tr'
+    # don't list directories
+    alias lsd='lsa -d'
+    # list all dot files
+    alias lsdot='lsd .*'
+fi
 
 alias df='df -h'
 
