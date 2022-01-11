@@ -1140,6 +1140,10 @@ nnoremap <silent> cuf :call CocAction('format')<CR>
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 let g:snipMate = { 'snippet_version' : 0 }
 
+" vim-terraform                                                {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" let g:terraform_fmt_on_save = 1
+
 " Auto command settings                                        {{{1
 " -----------------------------------------------------------------
 
