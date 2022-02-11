@@ -39,6 +39,7 @@ brew 'ripgrep'
 brew 'sipcalc'
 brew 'tfenv'
 brew 'rename'
+brew 'dog'
 
 # Apps
 cask 'firefox'
