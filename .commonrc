@@ -146,6 +146,7 @@ alias dco='docker-compose'
 
 # terraform
 alias tf='terraform'
+alias tfc='terraform console'
 alias tff='terraform fmt -recursive'
 alias tfi='terraform init'
 alias tfs='terraform show -no-color'
