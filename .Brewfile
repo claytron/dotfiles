@@ -25,12 +25,7 @@ brew 'exa'
 
 # For development
 brew 'go'
-## TODO: use asdf instead?
-brew 'pyenv'
-brew 'pyenv-virtualenv'
-brew 'rbenv'
-brew 'rbenv-gemset'
-brew 'nvm'
+brew 'asdf'
 ## Dev utils
 brew 'ctags'
 brew 'jq'

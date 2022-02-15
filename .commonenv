@@ -13,9 +13,9 @@ expected_path=(
   "$HOME/bin"
   "$HOME/bin/git_achievements"
   ./node_modules/.bin
+  "$HOME/.asdf/shims"
   "$HOME/.rbenv/bin"
   "$HOME/.rbenv/shims"
-  "$HOME/.rbenv/versions/2.3.3/bin"
   "$HOME/.rvm/bin"
   "$HOME/.cargo/bin"
   /Library/Frameworks/Mono.framework/Versions/Current/Commands
@@ -153,39 +153,3 @@ export GREP_COLORS="ms=01;31:mc=01;31:sl=:cx=:fn=32:ln=36:bn=32:se=39"
 export FZF_DEFAULT_COMMAND='find -L . -type f -o -type d -o -type l | sed 1d | cut -b3- | grep -v -e .git/ -e .svn/ -e .hg/'
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 export FZF_DEFAULT_OPTS='--extended --multi --inline-info --prompt="fzf> "'
-
-# NVM, here for some reason
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
-if [ -d "$NVM_DIR" ]; then
-    # place this after nvm initialization!
-    autoload -U add-zsh-hook
-    load-nvmrc() {
-      local node_version="$(nvm version)"
-      local nvmrc_path="$(nvm_find_nvmrc)"
-
-      if [ -n "$nvmrc_path" ]; then
-        local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-        if [ "$nvmrc_node_version" = "N/A" ]; then
-          nvm install
-        elif [ "$nvmrc_node_version" != "$node_version" ]; then
-          nvm use
-        fi
-      elif [ "$node_version" != "$(nvm version default)" ]; then
-        echo "Reverting to nvm default version"
-        nvm use default
-      fi
-    }
-    add-zsh-hook chpwd load-nvmrc
-    load-nvmrc
-fi
-
-# rbenv, here for some reason
-if [ -d "$HOME/.rbenv" ]; then
-  eval "$(rbenv init -)"
-fi

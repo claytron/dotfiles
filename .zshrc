@@ -8,7 +8,7 @@ hash -d D=$HOME/Documents
 [ -d "$HOME/Sites" ] && hash -d S=$HOME/Sites
 [ -d /data ] && hash -d Z=/data
 
-# set up common aliases between shells (stuff like rbenv, nvm, pyenv etc.)
+# set up common aliases between shells (stuff like rbenv, nvm, pyenv, asdf etc.)
 source $HOME/.commonrc
 
 ## global aliases
