@@ -178,10 +178,6 @@ if [ -d '/usr/share/games/fortunes' ]; then
   compctl -s '$(\ls /usr/share/games/fortunes | grep .dat | sed "s/.dat//")' fortune makeMeLaugh lulz
 fi
 
-## Completions
-autoload -U compinit
-compinit -C
-
 # make sure git-achievements can complete like git
 compdef git-achievements=git
 
