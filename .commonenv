@@ -18,31 +18,13 @@ expected_path=(
   "$HOME/.rbenv/shims"
   "$HOME/.rvm/bin"
   "$HOME/.cargo/bin"
-  /Library/Frameworks/Mono.framework/Versions/Current/Commands
-  /Library/TeX/texbin
-  /usr/share/elasticsearch/bin
-  /opt/local/apache2/bin
   /opt/python/bin
   /opt/local/bin
   /opt/local/sbin
-  /opt/local/lib/postgresql95/bin
-  /usr/local/opt/mysql@5.7/bin
-  /opt/local/lib/mysql57/bin
-  /opt/local/lib/mysql5/bin
-  /opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin
-  /opt/local/libexec/qt5/bin
-  /usr/local/opt/qt/bin
-  /usr/local/opt/node@8/bin
   /sw/bin
   /sw/sbin
-  /usr/bin/perlbin/site
-  /usr/bin/perlbin/vendor
-  /usr/bin/perlbin/core
-  /usr/local/Cellar/python/2.7/bin
   /usr/local/bin
   /usr/local/sbin
-  /usr/local/etc
-  /usr/Programs/bin
   /sbin
   /bin
   /usr/bin
@@ -50,20 +32,13 @@ expected_path=(
   /usr/ucb
   /usr/bsd
   /usr/libexec
-  /Developer/Tools
-  /opt/ruby1.8/bin
   /usr/X11R6/bin
   /usr/X11/bin
   /usr/bin/X11
   /usr/local/X11/bin
-  /usr/local/contrib/lib/kde/bin
-  /usr/local/tex/bin
-  /usr/local/lib/zsh/scr
   /usr/local/games
   /usr/games
-  /etc
   "$HOME/.virtualenvs/tools/bin"
-  "$HOME/.virtualenvs/tools3/bin"
 )
 
 for element in "${expected_path[@]}"
