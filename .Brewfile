@@ -22,6 +22,7 @@ brew 'icdiff'
 brew 'git-delta'
 brew 'bat'
 brew 'exa'
+brew 'shellcheck'
 
 # For development
 brew 'go'

@@ -16,7 +16,8 @@
   "yaml.schemaStore.enable": false,
 
   "diagnostic-languageserver.filetypes": {
-    "ruby": ["rubocop"]
+    "ruby": ["rubocop"],
+    "sh": ["shellcheck"]
   },
   "diagnostic-languageserver.linters": {
     "rubocop": {

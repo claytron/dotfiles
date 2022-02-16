@@ -1,6 +1,6 @@
 # shellcheck shell=bash
 # Ignore source location info
-SHELLCHECK_OPTS+="-e SC1090"
+SHELLCHECK_OPTS+=" -e SC1090"
 export SHELLCHECK_OPTS
 
 source ~/.commonfuncs
