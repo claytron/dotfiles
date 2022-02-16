@@ -1,6 +1,5 @@
-#!/usr/bin/env zsh
 # -------------------------------------------------------------------------------------------------
-# Copyright (c) 2010-2011 zsh-syntax-highlighting contributors
+# Copyright (c) 2010-2016 zsh-syntax-highlighting contributors
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification, are permitted
@@ -28,8 +27,36 @@
 # vim: ft=zsh sw=2 ts=2 et
 # -------------------------------------------------------------------------------------------------
 
-BUFFER='A=1'
 
-expected_region_highlight=(
-  "1 3 $ZSH_HIGHLIGHT_STYLES[assign]" # A=1
-)
+# List of keyword and color pairs.
+typeset -gA ZSH_HIGHLIGHT_REGEXP
+
+# Whether the pattern highlighter should be called or not.
+_zsh_highlight_highlighter_regexp_predicate()
+{
+  _zsh_highlight_buffer_modified
+}
+
+# Pattern syntax highlighting function.
+_zsh_highlight_highlighter_regexp_paint()
+{
+  setopt localoptions extendedglob
+  local pattern
+  for pattern in ${(k)ZSH_HIGHLIGHT_REGEXP}; do
+    _zsh_highlight_regexp_highlighter_loop "$BUFFER" "$pattern"
+  done
+}
+
+_zsh_highlight_regexp_highlighter_loop()
+{
+  local buf="$1" pat="$2"
+  integer OFFSET=0
+  local MATCH; integer MBEGIN MEND
+  local -a match mbegin mend
+  while true; do
+    [[ "$buf" =~ "$pat" ]] || return;
+    region_highlight+=("$((MBEGIN - 1 + OFFSET)) $((MEND + OFFSET)) $ZSH_HIGHLIGHT_REGEXP[$pat], memo=zsh-syntax-highlighting")
+    buf="$buf[$(($MEND+1)),-1]"
+    OFFSET=$((MEND+OFFSET));
+  done
+}

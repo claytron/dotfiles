@@ -1,4 +1,3 @@
-#!/usr/bin/env zsh
 # -------------------------------------------------------------------------------------------------
 # Copyright (c) 2010-2011 zsh-syntax-highlighting contributors
 # All rights reserved.
@@ -28,12 +27,18 @@
 # vim: ft=zsh sw=2 ts=2 et
 # -------------------------------------------------------------------------------------------------
 
-BUFFER='ps aux | grep java'
 
-expected_region_highlight=(
-  "1  2  $ZSH_HIGHLIGHT_STYLES[command]" # ps
-  "4  6  $ZSH_HIGHLIGHT_STYLES[default]" # aux
-  "8  8  $ZSH_HIGHLIGHT_STYLES[default]" # |
-  "9  12 $ZSH_HIGHLIGHT_STYLES[command]" # grep
-  "14 17 $ZSH_HIGHLIGHT_STYLES[default]" # java
-)
+# Define default styles.
+: ${ZSH_HIGHLIGHT_STYLES[line]:=}
+
+# Whether the root highlighter should be called or not.
+_zsh_highlight_highlighter_line_predicate()
+{
+  _zsh_highlight_buffer_modified
+}
+
+# root highlighting function.
+_zsh_highlight_highlighter_line_paint()
+{
+  _zsh_highlight_add_highlight 0 $#BUFFER line
+}
