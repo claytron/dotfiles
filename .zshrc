@@ -208,8 +208,6 @@ if [ -z $MY_ZSH_PLUGINS_LOADED ] && is-at-least 4.3; then
     MY_ZSH_PLUGINS_LOADED="true"
 
     source $HOME/.zsh.d/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    source $HOME/.zsh.d/opp.zsh
-    source $HOME/.zsh.d/opp/[^.]*
 
     # Set up zsh highlighters
     ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor root)
