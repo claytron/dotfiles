@@ -4,6 +4,9 @@ Pry.config.pager = false
 # Make the prompt silly.
 Pry.config.prompt_name = 'oh no!'
 
+# Save the history per project / dir
+Pry.config.history_file = "~/.pry_history_#{File.basename(Dir.getwd).gsub(/[ -]/, '_')}"
+
 # Hit Enter to repeat last command
 Pry::Commands.command(/^$/, 'repeat last command') do
   last_command = Pry.history.to_a.last
