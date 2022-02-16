@@ -1049,22 +1049,16 @@ let g:tmuxline_preset = {
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 if has('nvim')
   let test#strategy = "neovim"
-
-  " All that madness at the end is to get out of :terminal and back to
-  " the file we started in
-  noremap tsl :TestNearest<CR>
-  noremap ts; :TestFile<CR>
-  noremap ts' :TestSuite<CR>
-  noremap tss :TestLast<CR>
 else
   if version >= 801
     let test#strategy = "vimterminal"
   endif
-  noremap tsl :TestNearest<CR>
-  noremap ts; :TestFile<CR>
-  noremap ts' :TestSuite<CR>
-  noremap tss :TestLast<CR>
 endif
+
+noremap tsl :TestNearest<CR>
+noremap ts; :TestFile<CR>
+noremap ts' :TestSuite<CR>
+noremap tss :TestLast<CR>
 
 " Ignore deprecation warnings so I can see the results
 let test#ruby#rspec#options = '--deprecation-out /dev/null'
