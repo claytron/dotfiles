@@ -504,8 +504,10 @@ ColorSwitcher NeoSolarized
 function! s:toggleGutterSigns()
   if &signcolumn =~ '\v(auto|yes)'
     set signcolumn=no
+    CocDisable
   else
     set signcolumn=auto
+    CocEnable
   endif
 endfunction
 
