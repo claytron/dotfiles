@@ -1122,6 +1122,7 @@ let g:coc_global_extensions = [
   \ 'coc-markdownlint',
   \ 'coc-pyright',
   \ 'coc-sh',
+  \ 'coc-sqlfluff',
   \ 'coc-tag',
   \ 'coc-tsserver',
   \ 'coc-vimlsp',
