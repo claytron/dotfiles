@@ -59,6 +59,8 @@
 	br = branch
 	# This one requires `vipe` (editable pipe with your editor) from moreutils, remove that bit to delete indiscriminately
 	brdel = !git branch --merged | grep -v '*' | grep -v $(git br-main) | grep -v $(git br-dev) | vipe | xargs -n 1 git branch -d
+    # Also requires `vipe`. Use the list of remotes that would be cleaned up to delete local branches (useful in a squash and merge PR situation)
+	brdelr = !bash -c 'source ~/.commonfuncs && git_clean_remotes'
 	brpo = remote prune origin
 	# Create a copy of the current branch, usually before rebasing.
 	# Idea from: http://kevinold.com/2012/07/06/git-backup-branches.html

@@ -166,3 +166,9 @@ stache() {
         opts=''
     done
 }
+
+# Helper to clean up branches that were pushed, but no longer exist.
+# The main reason for this is cleaning up branches that were squash and merged.
+git_clean_remotes () {
+  comm -12 <(git remote prune -n origin | grep '\*' | sed 's/.* origin\///' | sort) <(git branch | grep -v "$(git br-main)" | sed 's/ //g' | sort) | vipe | xargs git branch -D
+}
