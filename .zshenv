@@ -64,13 +64,5 @@ typeset -U fpath
 # sake more than anything.
 rationalize-path fpath
 
-## Completions
-autoload -Uz compinit
-for dump in ~/.zcompdump(N.mh+24); do
-  compinit
-done
-
-compinit -C
-
 # extra per environment settings
 source $HOME/.zshenv_extras

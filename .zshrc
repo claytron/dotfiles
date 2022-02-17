@@ -173,6 +173,14 @@ export HISTFILE HISTSIZE SAVEHIST
 export TMOUT=900
 function TRAPALRM() { histappend }
 
+## Completions
+autoload -Uz compinit
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+
+compinit -C
+
 # custom completions
 if [ -d '/usr/share/games/fortunes' ]; then
   compctl -s '$(\ls /usr/share/games/fortunes | grep .dat | sed "s/.dat//")' fortune makeMeLaugh lulz
