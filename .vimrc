@@ -424,7 +424,7 @@ let python_highlight_all=1
 
 " gui and terminal compatible color scheme
 set t_Co=256
-set background=dark
+set background=light
 
 " Use the "original" molokai theme colors instead of "dark"
 let g:molokai_original=1
@@ -460,20 +460,18 @@ command! ExtraHighlightsInit :call s:extraHighlights()
 " the given theme.
 function! s:colorSwitch(...)
     " Change to the specified theme, if there were args
-    if eval('a:1') != ""
-        " check to see if we are passing in an existing var
-        if exists(a:1)
-            execute('colorscheme '.eval(a:1))
-        else
-            execute('colorscheme '.a:1)
-        endif
+    if !empty(a:1)
+        " clear out the syntax so the new theme gets applied properly
+        hi clear
+        execute('colorscheme ' . a:1)
+
         " Put the extra highlights back in place
         call s:extraHighlights()
+
         return
     endif
 
     " Toggle between a light and dark vim colorscheme
-    " This also takes care of the solarized scheme
     if &background == 'dark'
         set background=light
     elseif &background == 'light'
@@ -1350,9 +1348,6 @@ if has('nvim')
 endif
 
 if has("gui_running")
-    " One more time here to match the terminal for some reason...
-    ColorSwitcher
-
     " turn off the cursor blinking (who thinks that is a good idea?)
     set guicursor+=a:blinkon0
 
