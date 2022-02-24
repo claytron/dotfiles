@@ -92,6 +92,15 @@ export EDITOR=$PREFERRED_EDITOR
 # get crazy with python, and the cheese whiz
 export PYTHONSTARTUP=$HOME/.pystartup
 
+# Set diff tool for rails / thor
+if checkPath nvim; then
+    MERGETOOL="nvim -d"
+elif checkPath vim; then
+    MERGETOOL="vimdiff"
+fi
+
+export THOR_MERGE=$MERGETOOL
+
 # Make sure ruby-build gets access to readline
 # To check if it worked, do the following:
 #   $ ruby -rreadline -e 'puts Readline::VERSION'

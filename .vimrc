@@ -519,6 +519,15 @@ command! ToggleGutterSigns :call s:toggleGutterSigns()
 " Toggle the gutter on and off
 map <silent> cog :ToggleGutterSigns<cr>
 
+" Diff mode settings                                           {{{1
+" -----------------------------------------------------------------
+" Handle diff mode a bit different as there are some things that don't make
+" sense to run
+if &diff
+  " Disable CoC
+  let g:coc_start_at_startup=0
+endif
+
 " Custom functions and commands                                {{{1
 " -----------------------------------------------------------------
 
