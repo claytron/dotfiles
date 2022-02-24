@@ -238,6 +238,7 @@ Deleting them will remove them immediately
         "$HOME"/bin
         "$HOME"/.backup
         "$HOME"/.backup/vim/undo
+        "$HOME"/.backup/vim/undo_vim
         "$HOME"/.backup/vim/swap
         "$HOME"/.virtualenvs
         "$HOME"/.buildout
