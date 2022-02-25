@@ -452,6 +452,12 @@ function! s:extraHighlights()
 
     " Set comments to italic to use the power of Operator Mono
     hi Comment cterm=italic
+
+    " The PaperColor highlights were a bit much for me.
+    " Set the spell bad to underline and don't highlight rare words.
+    hi clear SpellBad
+    hi clear SpellRare
+    hi SpellBad cterm=undercurl gui=undercurl guisp=black
 endfunction
 
 command! ExtraHighlightsInit :call s:extraHighlights()
@@ -501,7 +507,7 @@ command! -nargs=? -complete=customlist,s:completeColorSchemes ColorSwitcher :cal
 map <silent> coc :ColorSwitcher<CR>
 
 " set the colorscheme
-ColorSwitcher NeoSolarized
+ColorSwitcher PaperColor
 
 " Toggle the gutter
 function! s:toggleGutterSigns()

@@ -162,8 +162,8 @@ if [ -d "$HOME/.config" ]; then
     # actually create/remove the link
     linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
 
-    if [ ! -d "$HOME/.config/kitty/kitty-themes" ]; then
-      $(cd "$HOME"/.config/kitty;  git clone git@github.com:dexpota/kitty-themes.git)
+    if [ ! -d "$HOME/.config/kitty/papercolor-kitty" ]; then
+      $(cd "$HOME"/.config/kitty;  git clone git@github.com:craffate/papercolor-kitty.git)
     fi
 
     # Take care of ranger config

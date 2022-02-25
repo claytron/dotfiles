@@ -120,7 +120,7 @@ export LSCOLORS="exFxbxbhcxfxgxdxdhebeb"
 export ACK_COLOR_MATCH="red"
 
 # Bat
-export BAT_THEME="Solarized (light)"
+export BAT_THEME="OneHalfLight"
 
 # Fancy git output
 if checkPath delta; then
