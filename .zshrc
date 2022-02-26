@@ -192,18 +192,23 @@ compdef git-achievements=git
 ## case-insensitive (all),partial-word and then substring completion
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
-if checkPath git and checkPath python; then
-    # Make git status information available
-    export ZSH_THEME_GIT_PROMPT_NOCACHE="True"
-    source ~/.zsh/git-prompt/gitstatus.sh
+# Use starship prompt if it's available
+if checkPath starship; then
+  eval "$(starship init zsh)"
 else
-    alias git_super_status='echo'
-fi
+  if checkPath git and checkPath python; then
+      # Make git status information available
+      export ZSH_THEME_GIT_PROMPT_NOCACHE="True"
+      source ~/.zsh/git-prompt/gitstatus.sh
+  else
+      alias git_super_status='echo'
+  fi
 
-# use some crazy ass shell prompt
-# thanks to for the basis: http://aperiodic.net/phil/prompt/
-ME="clayton"
-source ~/.zshprompt
+  # use some crazy ass shell prompt
+  # thanks to for the basis: http://aperiodic.net/phil/prompt/
+  ME="clayton"
+  source ~/.zshprompt
+fi
 
 # load up per environment extras
 source ~/.zshextras

@@ -175,6 +175,14 @@ if [ -d "$HOME/.config" ]; then
     # actually create/remove the link
     linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
 
+    # Take care of starship config
+    # -----------------------------------------------------------------
+    actual_dotfile="$dotfiles_loc/starship.toml"
+    dotfile="starship"
+    to_create="$HOME/.config/$dotfile.toml"
+    # actually create/remove the link
+    linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
+
     # Take care of vscode configs
     # -----------------------------------------------------------------
     if [ -d "$HOME/Library/Application Support/Code" ]; then
