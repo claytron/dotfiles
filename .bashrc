@@ -1,4 +1,4 @@
-## .bashrc
+# shellcheck shell=bash
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
