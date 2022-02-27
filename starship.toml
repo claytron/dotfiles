@@ -3,7 +3,7 @@ command_timeout = 2000
 
 format = """
 ┌─ $status$time ── ${custom.directory}──┐
-│  $username$git_branch$git_status$git_state$ruby$python${custom.python_env}$nodejs$terraform$golang$rust
+│  ${custom.username}$git_branch$git_status$git_state$ruby$python${custom.python_env}$nodejs$terraform$golang$rust
 └─ $hostname$shell ── """
 
 [status]
@@ -34,8 +34,11 @@ style = "bold cyan"
 ssh_only = false
 format = "[$hostname]($style)"
 
-[username]
-format = "[(u:$user) ]($style)"
+[custom.username]
+when = "test $USER != 'clayton'"
+format = "[\\(u:$output\\)]($style) "
+command = "echo $USER"
+style = "bold red"
 
 [git_branch]
 format = "[$symbol$branch]($style) "
