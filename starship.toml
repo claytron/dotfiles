@@ -2,7 +2,7 @@ add_newline = true
 command_timeout = 2000
 
 format = """
-┌─ $status$time ── $directory──┐
+┌─ $status$time ── ${custom.directory}──┐
 │  $username$git_branch$git_status$git_state$ruby$python$nodejs$terraform$golang$rust
 └─ $hostname$shell ── """
 
@@ -23,6 +23,12 @@ zsh_indicator = "%%"
 [directory]
 truncation_length = 0
 truncate_to_repo = false
+
+[custom.directory]
+when = "true"
+format = "[$output]($style) "
+command = "pwd"
+style = "bold cyan"
 
 [hostname]
 ssh_only = false
