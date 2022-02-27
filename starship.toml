@@ -3,7 +3,7 @@ command_timeout = 2000
 
 format = """
 ┌─ $status$time ── ${custom.directory}──┐
-│  $username$git_branch$git_status$git_state$ruby$python$nodejs$terraform$golang$rust
+│  $username$git_branch$git_status$git_state$ruby$python${custom.python_env}$nodejs$terraform$golang$rust
 └─ $hostname$shell ── """
 
 [status]
@@ -62,6 +62,12 @@ format = "[$symbol($version )]($style)"
 
 [python]
 format = "[$symbol($version )]($style)"
+
+[custom.python_env]
+when = 'test -n "$VIRTUAL_ENV"'
+format = "[\\($output\\)]($style) "
+command = "basename $VIRTUAL_ENV"
+style = "bold yellow"
 
 [terraform]
 format = "[$symbol($version )]($style)"
