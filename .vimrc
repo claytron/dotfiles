@@ -458,6 +458,7 @@ function! s:extraHighlights()
     hi clear SpellBad
     hi clear SpellRare
     hi SpellBad cterm=undercurl gui=undercurl guisp=black
+    hi ErrorMsg ctermfg=8 ctermbg=1 guifg=White guibg=Red
 endfunction
 
 command! ExtraHighlightsInit :call s:extraHighlights()
