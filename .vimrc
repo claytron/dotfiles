@@ -481,8 +481,10 @@ function! s:colorSwitch(...)
     " Toggle between a light and dark vim colorscheme
     if &background == 'dark'
         set background=light
+        silent !kitty +kitten themes --reload-in=all Papercolor-light
     elseif &background == 'light'
         set background=dark
+        silent !kitty +kitten themes --reload-in=all Papercolor-dark
     endif
 
     " Put the extra highlights back in place
