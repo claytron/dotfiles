@@ -195,6 +195,11 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:
 # Use starship prompt if it's available
 if checkPath starship; then
   eval "$(starship init zsh)"
+
+  function precmd {
+    # make sure that all new commands are available
+    rehash
+  }
 else
   if checkPath git and checkPath python; then
       # Make git status information available
