@@ -8,6 +8,7 @@ brew 'nvim'
 brew 'tmux'
 brew 'pwgen'
 brew 'wget'
+brew 'dust'
 # TODO: pick a dotfile manager
 # brew 'chezmoi'
 # brew 'yadm'
