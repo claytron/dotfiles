@@ -12,6 +12,7 @@ disabled = false
 [time]
 disabled = false
 format = "[$time]($style)"
+style = "bold cyan"
 time_format = "%R %a, %b %e"
 
 [shell]
@@ -61,18 +62,20 @@ staged = "[●${count}](red)"
 [nodejs]
 format = "[$symbol($version )]($style)"
 symbol = "js "
+style = "bold yellow"
 
 [ruby]
 format = "[$symbol($version )]($style)"
 
 [python]
 format = "[$symbol($version )]($style)"
+style = "bold green"
 
 [custom.python_env]
 when = 'test -n "$VIRTUAL_ENV"'
 format = "[\\($output\\)]($style) "
 command = "basename $VIRTUAL_ENV"
-style = "bold yellow"
+style = "bold green"
 
 [terraform]
 format = "[$symbol($version )]($style)"
