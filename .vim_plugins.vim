@@ -11,6 +11,10 @@ Plug 'tpope/vim-rails'
 Plug 'airblade/vim-localorie'
 Plug 'vim-scripts/bbcode'
 Plug 'fatih/vim-go'
+if !has('nvim')
+  " This only works in standard vim
+  Plug 'bfrg/vim-jqplay'
+endif
 " not sure why go doesn't work in polyglot...
 let g:polyglot_disabled = ['go']
 " Check if this has it before adding a new one...
