@@ -296,3 +296,8 @@ if [ ! -d "$HOME/.teamocil" ]; then
     echo "There's no I in Teamocil. At least not where you think"
     git clone git@github.com:claytron/teamocil-config.git ~/.teamocil
 fi
+
+if [ ! -d "$HOME/work" ]; then
+    mkdir -p "$HOME/work/projects"
+    chmod 700 "$HOME/work"
+fi
