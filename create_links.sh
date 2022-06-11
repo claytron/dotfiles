@@ -285,3 +285,8 @@ Deleting them will remove them immediately
             processDotDir "$dir"
         done
 fi
+
+if [ ! -d "$HOME/.tmux/plugins" ]; then
+    echo "Install TMUX Plugin Manager"
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
