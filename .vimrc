@@ -1258,6 +1258,9 @@ if has("autocmd")
     autocmd BufNewFile,BufRead *css[0-9a-zA-Z]\\\{8\}-[0-9a-zA-Z]\\\{4\}-[0-9a-zA-Z]\\\{4\}-[0-9a-zA-Z]\\\{4\}-[0-9a-zA-Z]\\\{12\} set filetype=css
     autocmd BufNewFile,BufRead *js[0-9a-zA-Z]\\\{8\}-[0-9a-zA-Z]\\\{4\}-[0-9a-zA-Z]\\\{4\}-[0-9a-zA-Z]\\\{4\}-[0-9a-zA-Z]\\\{12\} set filetype=javascript
     autocmd BufNewFile,BufRead *html[0-9a-zA-Z]\\\{8\}-[0-9a-zA-Z]\\\{4\}-[0-9a-zA-Z]\\\{4\}-[0-9a-zA-Z]\\\{4\}-[0-9a-zA-Z]\\\{12\} set filetype=html
+
+    " Tmux files
+    autocmd BufNewFile,BufRead *.tmux set filetype=tmux
   augroup END
 endif
 
