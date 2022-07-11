@@ -19,7 +19,7 @@ time_format = "%R %a, %b %e"
 disabled = false
 format = "[$indicator]($style)"
 bash_indicator = "\\$"
-zsh_indicator = "%%"
+zsh_indicator = "%"
 
 [directory]
 truncation_length = 0
