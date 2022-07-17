@@ -301,3 +301,6 @@ if [ ! -d "$HOME/work" ]; then
     mkdir -p "$HOME/work/projects"
     chmod 700 "$HOME/work"
 fi
+
+# Set up zi / zplugin / zinit
+sh -c "$(curl -fsSL https://git.io/get-zi)" -- -i skip

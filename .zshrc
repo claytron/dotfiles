@@ -1,5 +1,16 @@
 source $HOME/.commonfuncs
 
+# Set up zi / zplugin / zinit
+typeset -A ZI
+ZI[BIN_DIR]="${HOME}/.zi/bin"
+source "${ZI[BIN_DIR]}/zi.zsh"
+# zi completions
+autoload -Uz _zi
+(( ${+_comps} )) && _comps[zi]=_zi
+
+# load all the zi plugins
+source $HOME/.zsh_plugins
+
 # set up dir hashes
 hash -d L=/var/log
 hash -d P=$HOME/work/projects
@@ -218,26 +229,16 @@ fi
 # load up per environment extras
 source ~/.zshextras
 
-# Load up some plugins and enhancments
-autoload -U is-at-least
-if [ -z $MY_ZSH_PLUGINS_LOADED ] && is-at-least 4.3; then
-    # sourcing these plugins again can cause issues, this var will
-    # stop that from happening
-    MY_ZSH_PLUGINS_LOADED="true"
-
-    source $HOME/.zsh.d/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-    # Set up zsh highlighters
-    ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor root)
-    # set up command line syntax highlighting overrides
-    ZSH_HIGHLIGHT_STYLES[builtin]='fg=green,bold'
-    ZSH_HIGHLIGHT_STYLES[function]='fg=green,underline'
-    ZSH_HIGHLIGHT_STYLES[alias]='fg=black,bg=green'
-    ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=yellow'
-    ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=yellow'
-    ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=yellow,underline'
-    ZSH_HIGHLIGHT_STYLES[globbing]='fg=black,bold,bg=blue'
-    ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=black,bold,bg=blue'
-fi
+# Set up zsh highlighters
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor root)
+# set up command line syntax highlighting overrides
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=green,bold'
+ZSH_HIGHLIGHT_STYLES[function]='fg=green,underline'
+ZSH_HIGHLIGHT_STYLES[alias]='fg=black,bg=green'
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=yellow'
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=yellow'
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=yellow,underline'
+ZSH_HIGHLIGHT_STYLES[globbing]='fg=black,bold,bg=blue'
+ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=black,bold,bg=blue'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
