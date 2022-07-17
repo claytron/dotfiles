@@ -172,3 +172,14 @@ stache() {
 git_clean_remotes () {
   comm -12 <(git remote prune -n origin | grep '\*' | sed 's/.* origin\///' | sort) <(git branch | grep -v "$(git br-main)" | sed 's/ //g' | sort) | vipe | xargs git branch -D
 }
+
+# Generate a pin code with pwgen
+pwgen_pin () {
+    local length
+    if [[ -n "$1" ]]; then
+        length=$1
+    else
+        length=4
+    fi
+    pwgen -Anr abcdefghijklmnopqrstuvwxyz $length 1
+}
