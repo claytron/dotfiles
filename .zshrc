@@ -48,6 +48,7 @@ alias -g H='| head'
 alias -g T='| tail'
 alias -g W='| wc'
 alias -g WL='| wc -l'
+alias -g JQ='| jq -r'
 
 # copying
 if checkPath clipboard; then
