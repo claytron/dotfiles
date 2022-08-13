@@ -114,7 +114,7 @@ to_create="$HOME/.ssh/authorized_keys"
 # Create the file if it doesn't exist
 [ ! -e "$to_create" ] && touch "$to_create"
 # For each key, see if it exists, if not, add it
-while read skey; do
+while read -r skey; do
 if ! grep -q "$skey" "$to_create"; then
       echo "$skey" >> "$to_create"
       key_name=$(echo "$skey" | awk '{print $3}')
@@ -163,7 +163,7 @@ if [ -d "$HOME/.config" ]; then
     linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
 
     if [ ! -d "$HOME/.config/kitty/themes" ]; then
-      $(cd "$HOME"/.config/kitty;  git clone -b better-light git@github.com:claytron/papercolor-kitty.git themes)
+      cd "$HOME"/.config/kitty; git clone -b better-light git@github.com:claytron/papercolor-kitty.git themes; cd -
     fi
 
     # Take care of ranger config
