@@ -101,31 +101,6 @@ setopt EXTENDED_HISTORY
 alias histappend="fc -AI"
 alias histread="fc -R"
 
-# Look for a command that started like the one starting on the command line.
-# taken from: http://www.xsteve.at/prg/zsh/.zshrc (not sure of original source)
-function history-search-end {
-    integer ocursor=$CURSOR
-
-    if [[ $LASTWIDGET = history-beginning-search-*-end ]]; then
-      # Last widget called set $hbs_pos.
-      CURSOR=$hbs_pos
-    else
-      hbs_pos=$CURSOR
-    fi
-
-    if zle .${WIDGET%-end}; then
-      # success, go to end of line
-      zle .end-of-line
-    else
-      # failure, restore position
-      CURSOR=$ocursor
-      return 1
-    fi
-}
-
-zle -N history-beginning-search-backward-end history-search-end
-zle -N history-beginning-search-forward-end history-search-end
-
 # set up the history-complete-older and newer
 zstyle ':completion:*:history-words' stop yes
 zstyle ':completion:*:history-words' remove-all-dups yes
@@ -160,14 +135,16 @@ bindkey -M vicmd '^F' history-incremental-pattern-search-forward
 # set up for insert mode too
 bindkey -M viins '^R' history-incremental-pattern-search-backward
 bindkey -M viins '^F' history-incremental-pattern-search-forward
-# complete previous occurences of the command up till now on the command line
-bindkey -M viins "^[OA" history-beginning-search-backward-end
-bindkey -M viins "^[[A" history-beginning-search-backward-end
-bindkey -M vicmd "k" history-beginning-search-backward-end
-bindkey -M vicmd "j" history-beginning-search-backward-end
+
+# whole line completion with zsh-users/zsh-history-substring-search plugin
+bindkey -M viins "^[OA" history-substring-search-up
+bindkey -M viins "^[[A" history-substring-search-up
+bindkey -M vicmd "k" history-substring-search-up
+bindkey -M vicmd "j" history-substring-search-up
+bindkey -M viins "^[OB" history-substring-search-down
+bindkey -M viins "^[[B" history-substring-search-down
+
 bindkey -M viins "^N" up-line-or-search
-bindkey -M viins "^[OB" history-beginning-search-forward-end
-bindkey -M viins "^[[B" history-beginning-search-forward-end
 bindkey -M viins "^P" down-line-or-search
 
 # edit current command in $EDITOR
