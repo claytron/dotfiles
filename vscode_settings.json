@@ -1,0 +1,80 @@
+{
+    "editor.minimap.enabled": false,
+    "editor.renderWhitespace": "none",
+    "editor.renderControlCharacters": true,
+    "editor.fontFamily": "'VictorMono Regular', OperatorMonoLig-Book, Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 12,
+    "editor.fontLigatures": true,
+    "editor.matchBrackets": "near",
+    "editor.renderLineHighlight": "gutter",
+    "workbench.iconTheme": "file-icons",
+
+    "diffEditor.ignoreTrimWhitespace": true,
+    "diffEditor.renderSideBySide": false,
+
+    "ruby.lint": {
+        "rubocop": {
+          "useBundler": true
+        }
+    },
+    "ruby.useBundler": true,
+
+    "gitlens.views.repositories.location": "scm",
+    "gitlens.views.fileHistory.location": "scm",
+    "gitlens.views.lineHistory.location": "scm",
+    "gitlens.views.compare.location": "scm",
+    "gitlens.views.search.location": "scm",
+    "gitlens.currentLine.enabled": false,
+    "gitlens.hovers.currentLine.over": "line",
+    "gitlens.codeLens.enabled": false,
+    "gitlens.statusBar.format": "${author}, ${agoOrDate} • ${message}",
+
+    "vim.useSystemClipboard": true,
+    "vim.vimrc.enable": false,
+    "vim.visualstar": true,
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["j", "k"],
+            "after": ["esc"]
+        }
+    ],
+    "vim.normalModeKeyBindings": [
+        {
+            "before": ["<C-h>"],
+            "commands": ["workbench.action.focusPreviousGroup"]
+        },
+        {
+            "before": ["<C-l>"],
+            "commands": ["workbench.action.focusNextGroup"]
+        },
+        {
+            "before": ["<C-j>"],
+            "commands": ["workbench.action.focusBelowGroup"]
+        },
+        {
+            "before": ["<C-k>"],
+            "commands": ["workbench.action.focusAboveGroup"]
+        },
+        {
+            "before": ["<C-w>", "r"],
+            "commands": ["workbench.action.showAllEditorsByMostRecentlyUsed"]
+        },
+        {
+            "before": ["<C-w>", "|"],
+            "commands": ["workbench.action.splitEditorRight"]
+        },
+        {
+            "before": ["<C-w>", "-"],
+            "commands": ["workbench.action.splitEditorDown"]
+        }
+    ],
+    "workbench.editor.enablePreview": false,
+    "terminal.external.osxExec": "Kitty.app",
+    "files.associations": {
+        "Makefile": "makefile"
+    },
+    "explorer.sortOrder": "mixed",
+    "workbench.colorTheme": "PaperColor Redux",
+    "terminal.integrated.letterSpacing": 1,
+    "ruby.rubocop.useBundler": true
+}
