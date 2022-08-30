@@ -38,6 +38,7 @@ brew 'sipcalc'
 brew 'tfenv'
 brew 'rename'
 brew 'dog'
+cask 'aws-vault'
 
 # Apps
 cask 'firefox'
