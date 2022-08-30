@@ -90,6 +90,7 @@
 "    //              -- Git grep (double tap to start)
 "    tgd             -- Git diff
 "    tgb             -- Git blame
+"    tgbb            -- Show commit in browser
 "    tgl             -- Git log on the current file (back 100)
 "    tgll            -- Git log on the current project (back 100)
 "    tgh             -- Git log search looking for + / - of term
@@ -1038,6 +1039,8 @@ nmap tgg :Git<CR>
 nmap tgd :Gdiff<CR>
 
 nmap tgb :Git blame<CR>
+
+nmap tgbb :GBrowse<CR>
 
 " Navigate through historical diffs
 nmap tgl :Gclog -100 -- %<CR>
