@@ -91,6 +91,11 @@ else
     alias sgrep='grep -ir'
 fi
 
+# Use gojq if it's available
+if checkPath gojq; then
+    alias jq=gojq
+fi
+
 ## ctags
 alias ctags='ctags --exclude=node_modules'
 
