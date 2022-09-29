@@ -96,6 +96,9 @@
 	# Use bang to be able to re-use the alias above (with pretty format) and add to it
 	lga = !git lg --branches --remotes
 	lgp = !git lg -p
+	# Only log changes on the current branch vs the mainline or dev branch
+	lgm = !git lg origin/$(git br-main)..
+	lgd = !git lg origin/$(git br-dev)..
 	# Stash helpers
 	spo = stash pop
 	sap = stash apply
