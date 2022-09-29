@@ -82,13 +82,13 @@
 	df = diff
 	dfs = diff --staged
 	# Show the changes on the current branch compared to development branch
-	dfd = !git show `git merge-base HEAD origin/$(git br-dev)`..HEAD --reverse
-	dfda = !git diff `git merge-base HEAD origin/$(git br-dev)`..HEAD
-	dfdlc = !git diff `git merge-base HEAD origin/$(git br-dev)` HEAD --stat
+	dfd = !git show origin/$(git br-dev)...HEAD --reverse
+	dfda = !git diff origin/$(git br-dev...HEAD
+	dfdlc = !git diff origin/$(git br-dev) HEAD --stat
 	# and compared to the mainline
-	dfm = !git show `git merge-base HEAD origin/$(git br-main)`..HEAD --reverse
-	dfma = !git diff `git merge-base HEAD origin/$(git br-main)`..HEAD
-	dfmlc = !git diff `git merge-base HEAD origin/$(git br-main)` HEAD --stat
+	dfm = !git show origin/$(git br-main)...HEAD --reverse
+	dfma = !git diff origin/$(git br-main)...HEAD
+	dfmlc = !git diff origin/$(git br-main) HEAD --stat
 	# compare current branch to the latest tagged version
 	dft = !git diff `git semver-latest`..HEAD
 	# Better log commands
