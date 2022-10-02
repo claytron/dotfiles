@@ -39,6 +39,7 @@ brew 'tfenv'
 brew 'rename'
 brew 'dog'
 cask 'aws-vault'
+brew 'hadolint'
 
 # Apps
 cask 'firefox'

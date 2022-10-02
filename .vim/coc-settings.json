@@ -17,6 +17,7 @@
 
   "diagnostic-languageserver.filetypes": {
     "ruby": ["rubocop"],
+    "dockerfile": ["hadolint"],
     "sh": ["shellcheck"]
   },
   "diagnostic-languageserver.linters": {
