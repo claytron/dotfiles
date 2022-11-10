@@ -98,7 +98,9 @@
 	lgp = !git lg -p
 	# Only log changes on the current branch vs the mainline or dev branch
 	lgm = !git lg origin/$(git br-main)..
+	lgmp = !git lgm -p
 	lgd = !git lg origin/$(git br-dev)..
+	lgdp = !git lgd -p
 	# Stash helpers
 	spo = stash pop
 	sap = stash apply
