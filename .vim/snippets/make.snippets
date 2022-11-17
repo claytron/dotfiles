@@ -1,0 +1,6 @@
+snippet make
+	# Add a double hash comment after each make target to have it show up in the "help"
+	all:
+		@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/^/make /' | sed -e '/^/G' | sed -e 's/##/\n  /'
+	
+	help: all
