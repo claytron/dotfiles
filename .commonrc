@@ -161,6 +161,10 @@ alias tfa='terraform apply'
 alias tfpo='terraform plan --out=tfplan'
 alias tfap='terraform apply tfplan'
 
+# aws vault
+alias ave='aws-vault exec work --'
+alias aveh='aws-vault exec home --'
+
 # pep8 that can scan a `src` dir
 alias pep8scan="pep8 --repeat --show-source --statistics --exclude='paste,*PasteDeploy*,bootstrap.py'"
 
