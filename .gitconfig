@@ -138,7 +138,7 @@
 	autosetuprebase = always
 	autosetupmerge = true
 [br]
-	main = master
+	main = main
 [diff]
 	algorithm = patience
 	tool = icdiff
