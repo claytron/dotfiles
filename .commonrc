@@ -240,7 +240,7 @@ alias ssh="TERM=screen-256color ssh"
 alias sshc="ssh -C -c blowfish"
 
 # get my external ip address
-alias whatsmyip="curl ipinfo.io/ip"
+alias whatsmyip="curl ipinfo.io/ip; echo"
 
 # can't break the OS X habit :)
 if checkPath open; then
