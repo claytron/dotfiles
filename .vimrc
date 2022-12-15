@@ -1072,7 +1072,13 @@ let g:tmuxline_preset = {
 " vim-test                                                     {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 if has('nvim')
-  let test#strategy = "neovim"
+  " Use the terminal in neovim for nearest and neomake for longer running
+  " items + quickfix
+  let test#strategy = {
+    \ 'nearest': 'neovim',
+    \ 'file': 'neomake',
+    \ 'suite': 'neomake',
+  \}
 else
   if version >= 801
     let test#strategy = "vimterminal"
@@ -1084,8 +1090,14 @@ noremap ts; :TestFile<CR>
 noremap ts' :TestSuite<CR>
 noremap tss :TestLast<CR>
 
-" Ignore deprecation warnings so I can see the results
-let test#ruby#rspec#options = '--deprecation-out /dev/null'
+" Ignore deprecation warnings so I can see the results.
+" Ignore all stdout for neomake and format so that quickfix can pick
+" up the files.
+let g:test#ruby#rspec#options = {
+  \ 'all': '--deprecation-out /dev/null',
+  \ 'file': '--out /dev/null -f failures',
+  \ 'suite': '--out /dev/null -f failures',
+\}
 
 " Typical python testing setup
 let test#python#runner = 'pytest'

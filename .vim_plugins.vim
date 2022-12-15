@@ -78,4 +78,5 @@ Plug 'yegappan/mru'
 Plug 'rizzatti/dash.vim'
 Plug 'urbainvaes/vim-remembrall'
 Plug 'liuchengxu/graphviz.vim'
+Plug 'neomake/neomake'
 call plug#end()
