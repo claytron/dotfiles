@@ -79,4 +79,5 @@ Plug 'rizzatti/dash.vim'
 Plug 'urbainvaes/vim-remembrall'
 Plug 'liuchengxu/graphviz.vim'
 Plug 'neomake/neomake'
+Plug 'pedrohdz/vim-yaml-folds'
 call plug#end()
