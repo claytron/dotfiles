@@ -183,3 +183,25 @@ pwgen_pin () {
     fi
     pwgen -Anr abcdefghijklmnopqrstuvwxyz $length 1
 }
+
+# requires neovim-remote python package and scripts in your path
+vim_quit_all () {
+    local inst
+    local session_count
+
+    for inst in $(nvr --serverlist); do
+        nvr --servername "$inst" --remote-send ''
+        echo "closing $(nvr --servername "$inst" --remote-expr 'getcwd()')"
+        nvr --servername "$inst" --remote-send ':wqa<cr>'
+    done
+
+
+    session_count=$(nvr --serverlist | wc -l)
+    echo "$session_count vim instances left"
+    return "$session_count"
+}
+
+tmux_exit_all_idle () {
+    # close out any tmux pane that is running zsh (presumed idle)
+    tmux list-panes -a -F "#D #{pane_current_command}" | grep ' zsh$' | cut -d' ' -f1 | xargs -n1 -I{} tmux send-keys -t{} "exit" Enter
+}
