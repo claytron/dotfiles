@@ -77,6 +77,8 @@
 	# Put things back to the way they were
 	r = reset
 	rh = reset --hard
+	res = restore
+	ress = restore --staged
 	pristine = !git fetch && git reset --hard origin/$(git symbolic-ref --short HEAD)
 	# Diffing
 	df = diff
