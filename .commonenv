@@ -18,6 +18,7 @@ expected_path=(
   "$HOME/.rbenv/shims"
   "$HOME/.rvm/bin"
   "$HOME/.cargo/bin"
+  /opt/homebrew/bin
   /opt/python/bin
   /opt/local/bin
   /opt/local/sbin
