@@ -205,3 +205,26 @@ tmux_exit_all_idle () {
     # close out any tmux pane that is running zsh (presumed idle)
     tmux list-panes -a -F "#D #{pane_current_command}" | grep ' zsh$' | cut -d' ' -f1 | xargs -n1 -I{} tmux send-keys -t{} "exit" Enter
 }
+
+dark_mode () {
+    local inst
+    local bg_init
+
+    if [ "$1" = 'off' ]; then
+        bg_init=dark
+        dark_mode=false
+    else
+        bg_init=light
+        dark_mode=true
+    fi
+
+    # set the system dark mode
+    osascript -l JavaScript -e "Application('System Events').appearancePreferences.darkMode = $dark_mode" > /dev/null 2>&1
+
+    # Set all neovim instances to dark mode
+    for inst in $(nvr --serverlist); do
+        # Set the dark mode to the opposite of what we are trying to switch to so my custom ColorSwitcher function inverts it
+        nvr --servername "$inst" --remote-send ":set background=${bg_init}<cr>"
+        nvr --servername "$inst" --remote-send ':ColorSwitcher<cr>'
+    done
+}
