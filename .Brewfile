@@ -12,6 +12,7 @@ brew 'dust'
 # TODO: pick a dotfile manager
 # brew 'chezmoi'
 # brew 'yadm'
+cask '1password/tap/1password-cli'
 
 # Fonts!
 tap "homebrew/cask-fonts"
