@@ -78,7 +78,9 @@
 	r = reset
 	rh = reset --hard
 	res = restore
+	resz = !git diff --name-only | fzf --print0 -m | xargs -0 -t -o git res
 	ress = restore --staged
+	ressz = !git diff --name-only --staged | fzf --print0 -m | xargs -0 -t -o git ress
 	pristine = !git fetch && git reset --hard origin/$(git symbolic-ref --short HEAD)
 	# Diffing
 	df = diff
