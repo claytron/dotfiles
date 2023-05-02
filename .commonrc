@@ -44,7 +44,7 @@ fi
 
 # some OS X specific stuff
 if [ "$(uname)" = "Darwin" ]; then
-    os_majorversion=$(sw_vers | awk '/ProductVersion/ {print $2}' | cut -f2 -d'.')
+    os_majorversion=$(sw_vers | awk '/ProductVersion/ {print $2}' | cut -f1 -d'.' | head -n 1)
 
     # set up a path in .profile for TextMate (zsh haterz)
     # NOTE: this will overwrite the .profile
