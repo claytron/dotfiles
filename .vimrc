@@ -293,6 +293,9 @@ nnoremap fth :set ft=html<CR>
 " tell the bell to go beep itself!
 set visualbell t_vb=
 
+" Always hide concealable content
+set conceallevel=2
+
 " set the title of the window
 set title
 set titlestring=%f%(\ [%M]%)
@@ -1178,6 +1181,16 @@ let g:snipMate = { 'snippet_version' : 0 }
 " vim-terraform                                                {{{2
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " let g:terraform_fmt_on_save = 1
+
+" vim-json                                                     {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" This setting seems to turn conceal off for markdown if it is not enabled
+let g:vim_json_syntax_conceal = 1
+
+" vim-markdown                                                 {{{2
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" Don't conceal code block markers as it isn't super obvious where they are
+let g:vim_markdown_conceal_code_blocks = 0
 
 " Auto command settings                                        {{{1
 " -----------------------------------------------------------------
