@@ -1,6 +1,52 @@
 snippet stdout
 	2>&1 >/dev/null
-snippet #! bash template
+snippet #! bash template simple
+	#!/usr/bin/env bash
+	set -euo pipefail
+	
+	usage() {
+	    cat << EOF
+	usage: $0 this_argument
+	
+	Describe the command here
+	
+	ARGS:
+	   this_argument   Describe an argument here
+	
+	OPTIONS:
+	   -e  Example option that is required
+	   -h  Show this message
+	EOF
+	}
+	
+	# Initialize options
+	example_opt=
+
+	while getopts "he:" OPTION
+	do
+	    case $OPTION in
+	        e)
+	            example_opt=$OPTARG
+	        h)
+	            usage
+	            exit 1
+	            ;;
+	        ?)
+	            usage
+	            exit 1
+	            ;;
+	    esac
+	done
+
+	if [ -z "$example_opt" ]; then
+	    echo Example opt is required
+	    exit 1
+	fi
+
+	this_argument=${@:$OPTIND:1}
+	
+	echo "$this_argument"
+snippet #! bash template logging
 	#!/usr/bin/env bash
 	set -euo pipefail
 	IFS=$'\n\t'
