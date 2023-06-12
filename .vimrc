@@ -1098,9 +1098,11 @@ noremap tss :TestLast<CR>
 " up the files.
 let g:test#ruby#rspec#options = {
   \ 'all': '--deprecation-out /dev/null',
-  \ 'file': '--out /dev/null -f failures',
-  \ 'suite': '--out /dev/null -f failures',
+  \ 'file': '--deprecation-out /dev/null --out /dev/null -f failures',
+  \ 'suite': '--deprecation-out /dev/null --out /dev/null -f failures',
 \}
+
+let g:airline#extensions#neomake#enabled = 1
 
 " Typical python testing setup
 let test#python#runner = 'pytest'
