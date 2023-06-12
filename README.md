@@ -1,11 +1,9 @@
-README
-======
+# README
 
 All of these confs were compiled by Clayton Parker, aka claytron.
 Most of the confs have comments describing why/what is happening.
 
-Caveats
--------
+## Caveats
 
 I would strongly urge you not to use my confs directly.
 I am very picky about things, and this would certainly drive you crazy.
@@ -16,8 +14,7 @@ This would likely throw most people off as they are used to the emacs mode.
 The only issue I've run into with the vi mode is when you move from the end of the line in insert mode.
 When you try and go back to the end you can't without going to command mode and using `a` to add to the line.
 
-A little history
-----------------
+## A little history
 
 To start off, here is a little background.
 Here in lies years of craziness all compiled into one nice little folder.
@@ -25,12 +22,11 @@ I've been using the command line since 2003 when I was given a job as a systems 
 I started on ZSH and have been using it ever since.
 At some point I decided to compile a set of confs that could be used with either ZSH or Bash (since most machines have at least bash).
 
-Usage in the wild
------------------
+## Usage in the wild
 
 Here is how I typically set up my shell on a new system.
 
-```
+```sh
 $ git clone https://github.com/claytron/dotfiles.dotfiles
 $ .dotfiles/create_links.sh
 linking .screenrc
@@ -52,7 +48,7 @@ linking .pystartup
 Notice that it says the .subversion/config is in the way.
 So let's fix that.
 
-```
+```sh
 $ rm .subversion/config
 $ .dotfiles/create_links.sh
 linking config
@@ -61,7 +57,7 @@ linking config
 Now we are all set.
 Next time we log in the confs will be updated so that any new changes are added.
 
-```
+```sh
 $ ssh some-machine
 
 dotfiles updated:
@@ -71,13 +67,13 @@ At revision 10712.
 
 This puts the latest confs are in place and activates the changes.
 
-```
+```sh
 $ create_links.sh && source ~/.zshrc
 ```
 
 If you ever want to remove all the symlinks you can use the `create_links.sh` script by passing it the `remove` argument.
 
-```
+```sh
 $ .dotfiles/create_links.sh unlink
 Unlinked /home/clayton/.screenrc
 Unlinked /home/clayton/.vimrc
