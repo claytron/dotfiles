@@ -6,7 +6,7 @@ snippet #! bash template simple
 	
 	usage() {
 	    cat << EOF
-	usage: $0 this_argument
+	usage: \$0 this_argument
 	
 	Describe the command here
 	
@@ -27,6 +27,7 @@ snippet #! bash template simple
 	    case $OPTION in
 	        e)
 	            example_opt=$OPTARG
+	            ;;
 	        h)
 	            usage
 	            exit 1
