@@ -33,6 +33,7 @@ style = "bold cyan"
 
 [hostname]
 ssh_only = false
+style = 'bold green'
 format = "[$hostname]($style)"
 
 [custom.username]
