@@ -93,7 +93,7 @@ fi
 
 # Use gojq if it's available
 if checkPath gojq; then
-    alias jq=gojq
+    alias jq='gojq -L.'
 fi
 
 ## ctags

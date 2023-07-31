@@ -33,6 +33,7 @@ brew 'asdf'
 ## Dev utils
 brew 'ctags'
 brew 'jq'
+brew 'gojq'
 brew 'ripgrep'
 ## Ops utils
 brew 'sipcalc'
