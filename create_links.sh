@@ -286,6 +286,11 @@ Deleting them will remove them immediately
         done
 fi
 
+if [ ! -d "$HOME/.terraform.d/plugin-cache" ]; then
+    echo "Create terraform plugin cache dir"
+    mkdir -p "$HOME"/.terraform.d/plugin-cache
+fi
+
 if [ ! -d "$HOME/.tmux/plugins" ]; then
     echo "Install TMUX Plugin Manager"
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
