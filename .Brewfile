@@ -24,7 +24,7 @@ brew 'keychain'
 brew 'icdiff'
 brew 'git-delta'
 brew 'bat'
-brew 'exa'
+brew 'eza'
 brew 'shellcheck'
 
 # For development
