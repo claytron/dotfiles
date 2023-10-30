@@ -1291,6 +1291,9 @@ if has("autocmd")
 
     " Tmux files
     autocmd BufNewFile,BufRead *.tmux set filetype=tmux
+
+    " helm files
+    autocmd BufNewFile,BufRead chart/*.yaml set filetype=helm
   augroup END
 endif
 
