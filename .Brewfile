@@ -38,7 +38,6 @@ brew 'ijq'
 brew 'ripgrep'
 ## Ops utils
 brew 'sipcalc'
-brew 'tfenv'
 brew 'rename'
 brew 'doggo'
 cask 'aws-vault'
