@@ -176,12 +176,10 @@ git_clean_remotes () {
 # Generate a pin code with pwgen
 pwgen_pin () {
     local length
-    if [[ -n "$1" ]]; then
-        length=$1
-    else
-        length=4
-    fi
-    pwgen -Anr abcdefghijklmnopqrstuvwxyz $length 1
+    local num
+    [ -n "$1" ] && length=$1 || length=4
+    [ -n "$2" ] && num=$2 || num=1
+    pwgen -Anr abcdefghijklmnopqrstuvwxyz $length $num
 }
 
 # requires neovim-remote python package and scripts in your path
