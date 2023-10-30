@@ -40,7 +40,7 @@ brew 'ripgrep'
 brew 'sipcalc'
 brew 'tfenv'
 brew 'rename'
-brew 'dog'
+brew 'doggo'
 cask 'aws-vault'
 brew 'hadolint'
 
