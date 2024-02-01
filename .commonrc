@@ -147,7 +147,8 @@ fi
 
 # docker
 alias d='docker'
-alias dco='docker-compose'
+alias dco='docker compose'
+alias dcorm='dco down --remove-orphans --volumes'
 
 # terraform
 alias tf='terraform'
