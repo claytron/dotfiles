@@ -141,6 +141,7 @@
 [branch]
 	autosetuprebase = always
 	autosetupmerge = true
+	sort = -committerdate
 [br]
 	main = main
 [diff]
