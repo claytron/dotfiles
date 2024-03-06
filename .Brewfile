@@ -41,6 +41,8 @@ brew 'ijq'
 brew 'ripgrep'
 brew 'make'
 brew 'dos2unix'
+tap 'danielgtaylor/restish'
+brew 'restish'
 ## Ops utils
 brew 'sipcalc'
 brew 'rename'
