@@ -52,6 +52,7 @@ fpath+=(
     /opt/zsh/other-completions
     /usr/local/share/zsh/functions
     /usr/local/share/zsh/site-functions
+    /opt/homebrew/share/zsh/site-functions
     /usr/share/zsh/site-functions
     /usr/share/zsh/functions
     "$fpath[@]"
