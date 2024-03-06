@@ -95,6 +95,7 @@ fi
 if checkPath gojq; then
     alias jq='gojq -L.'
 fi
+alias jqr="jq -r"
 
 ## ctags
 alias ctags='ctags --exclude=node_modules'
