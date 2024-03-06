@@ -58,8 +58,6 @@ cask 'omnidb'
 cask 'tunnelblick'
 cask 'macvim'
 cask 'sourcetree'
-cask 'virtualbox'
-cask 'virtualbox-extension-pack'
 
 # Other fun stuff
 brew 'cowsay'
