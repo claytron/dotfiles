@@ -53,6 +53,10 @@ brew 'hadolint'
 brew 'sshuttle'
 brew 'magic-wormhole'
 
+# art related stuff
+brew 'ffmpeg'
+brew 'imagemagick'
+
 # Apps
 cask 'firefox'
 cask 'google-chrome'
