@@ -197,7 +197,7 @@ alias cp='cp -iv'
 alias mv='mv -i'
 
 if checkPath eza; then
-    alias ls='eza -F'
+    alias ls='eza'
     alias ll='ls -lag'
     alias lsa=ll
     alias lss='ll --reverse --sort=size'
