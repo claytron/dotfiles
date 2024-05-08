@@ -28,7 +28,7 @@ makeMeLaugh() {
          output=$(fortune -e comedy)
     # otherwise just any old fortune will do
     else
-        output=$(fortune -a)
+        output=$(fortune)
     fi
 
     # Spice it up if we can
