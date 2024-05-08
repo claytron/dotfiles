@@ -1,9 +1,39 @@
 # Dependencies
 
+Install password manager.
+
+Open up Terminal and install brew.
+
+Put these dotfiles in place then:
+
+```
+$ brew bundle --global
+```
+
 ## Random things
 
 Put tree style tabs css in place both in the extension and userChrome in the Firefox profile.
+
+- Copy the `tree_style_tabs.css` into the browser extension
+- Set the `toolkit.legacyUserProfileCustomizations.stylesheets` to true in `about:config`
+- Create a chrome folder: `~/Library/Application Support/Firefox/Profiles/xxxxxx.default-release/chrome`
+- Symlink `userChrome.css` into `chrome/.`
+
 Hard to automate because of randomized profile name.
+
+## asdf plugins
+
+```sh
+asdf plugin add nodejs
+asdf plugin add python
+asdf plugin add ruby
+asdf plugin add terraform
+asdf plugin add perl
+asdf plugin add golang
+asdf plugin add rust
+
+asdf install
+```
 
 ## Apps
 
@@ -13,7 +43,6 @@ Some of these are installed by the `Brewfile` currently though.
 ### Basics
 
 - Authy Desktop
-- Firefox
 - Karabiner Elements
 - Remember The Milk
 - Simplenote
@@ -21,7 +50,6 @@ Some of these are installed by the `Brewfile` currently though.
 ### Development
 
 - Docker Desktop
-- Kitty
 - MacVim
 - Sourcetree
 - Table Plus
@@ -31,7 +59,6 @@ Some of these are installed by the `Brewfile` currently though.
 
 - Plex
 - Plexamp
-- VCV Rack
 - Spotify
 - Tidal
 - Steam
@@ -48,17 +75,36 @@ Some of these are installed by the `Brewfile` currently though.
 - Hex Color
 - Maccy
 - Rectangle
+- LogiOptions+ for mice
+- Logitune for cameras
+- Carbon Copy Cloner
+- Teensy
+- Toast 20
+- Garmin Express
 
-## asdf plugins
+### Art Stuff
 
-```sh
-asdf plugin add nodejs
-asdf plugin add python
-asdf plugin add ruby
-asdf plugin add terraform
-asdf plugin add perl
-asdf plugin add golang
-```
+- Digital Performer
+- Loopback
+- Audio Hijack
+- OBS
+- iLok
+- MoogerFooger Effects
+- VCV Rack
+- Blackmagic Video Driver (Desktop Video)
+- Boss DD-500 editor
+- TR-8S editor
+- Roland Cloud Manager
+- Focusrite tools
+- FH-2 configurator
+- MidiKeys
+- MIDI Monitor
+- MidiPipe
+- Sysex Librarian
+- VLC
+- Arturia Software Center
+- Arturia MIDI Control Center
+- Soundtoys Little Radiator
 
 ## Node
 
@@ -69,7 +115,7 @@ asdf plugin add golang
 ## Python
 
 - virtual env for neovim / neovim-py2
-- virtual env with tools (pip install black autopep8 flake8 glances yamllint sqlfluff)
+- virtual env with tools (pip install black autopep8 flake8 glances yamllint sqlfluff neovim-remote)
 
 ## Ruby
 
