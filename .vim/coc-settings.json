@@ -15,6 +15,15 @@
 
   "yaml.schemaStore.enable": false,
 
+  "languageserver":{
+    "arduino":{ 
+      "command":"/Users/clayton/.asdf/installs/golang/1.21.0/packages/bin/arduino-language-server",
+      "rootPatterns":["*.ino"],
+      "filetypes":["arduino"],
+      "args":["-cli", "/opt/homebrew/bin/arduino-cli", "-clangd", "/usr/bin/clangd", "-cli-config", "/Users/clayton/Library/Arduino15/arduino-cli.yaml"]
+    }
+  },
+
   "diagnostic-languageserver.filetypes": {
     "ruby": ["rubocop"],
     "dockerfile": ["hadolint"],

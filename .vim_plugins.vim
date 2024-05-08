@@ -80,5 +80,6 @@ Plug 'urbainvaes/vim-remembrall'
 Plug 'liuchengxu/graphviz.vim'
 Plug 'neomake/neomake'
 Plug 'pedrohdz/vim-yaml-folds'
+Plug 'stevearc/vim-arduino'
 Plug 'github/copilot.vim'
 call plug#end()
