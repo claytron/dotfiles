@@ -52,6 +52,7 @@ cask 'aws-vault'
 brew 'hadolint'
 brew 'sshuttle'
 brew 'magic-wormhole'
+brew '7zip'
 
 # art related stuff
 brew 'ffmpeg'
