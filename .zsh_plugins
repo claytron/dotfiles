@@ -1,2 +1,5 @@
 zi light zsh-users/zsh-syntax-highlighting
 zi light zsh-users/zsh-history-substring-search
+
+zi ice lucid wait"0a" from"gh-r" as"program" atload'eval "$(mcfly init zsh)"'
+zi light cantino/mcfly
