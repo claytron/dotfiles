@@ -7,7 +7,6 @@
     "editor.fontLigatures": true,
     "editor.matchBrackets": "near",
     "editor.renderLineHighlight": "gutter",
-    "workbench.iconTheme": "file-icons",
 
     "diffEditor.ignoreTrimWhitespace": true,
     "diffEditor.renderSideBySide": false,
@@ -74,7 +73,7 @@
         "Makefile": "makefile"
     },
     "explorer.sortOrder": "mixed",
-    "workbench.colorTheme": "PaperColor Redux",
     "terminal.integrated.letterSpacing": 1,
-    "ruby.rubocop.useBundler": true
+    "ruby.rubocop.useBundler": true,
+    "workbench.colorTheme": "PaperColor Redux"
 }
