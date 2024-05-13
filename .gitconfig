@@ -87,7 +87,7 @@
 	dfs = diff --staged
 	# Show the changes on the current branch compared to development branch
 	dfd = !git show origin/$(git br-dev)...HEAD --reverse
-	dfda = !git diff origin/$(git br-dev...HEAD
+	dfda = !git diff origin/$(git br-dev)...HEAD
 	dfdlc = !git diff origin/$(git br-dev) HEAD --stat
 	# and compared to the mainline
 	dfm = !git show origin/$(git br-main)...HEAD --reverse
