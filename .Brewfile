@@ -18,7 +18,6 @@ brew 'dust'
 cask '1password/tap/1password-cli'
 
 # Fonts!
-tap "homebrew/cask-fonts"
 cask "font-victor-mono"
 
 # Helpers for dotfiles related stuff
