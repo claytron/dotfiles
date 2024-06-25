@@ -513,6 +513,10 @@ command! -nargs=? -complete=customlist,s:completeColorSchemes ColorSwitcher :cal
 " switch between light and dark colors
 map <silent> coc :ColorSwitcher<CR>
 
+" Issue loading PaperColor color scheme in latest neovim:
+" https://github.com/NLKNguyen/papercolor-theme/issues/201
+set termguicolors
+
 " set the colorscheme
 ColorSwitcher PaperColor
 
