@@ -223,5 +223,5 @@ ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=black,bold,bg=blue'
 
 # Advanced shell history
 if checkPath atuin; then
-  eval "$(atuin init zsh)"
+  eval "$(atuin init zsh --disable-up-arrow)"
 fi
