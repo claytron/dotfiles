@@ -53,6 +53,7 @@ brew 'hadolint'
 brew 'sshuttle'
 brew 'magic-wormhole'
 brew '7zip'
+brew 'gh'
 
 # art related stuff
 brew 'ffmpeg'
