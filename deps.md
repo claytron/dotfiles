@@ -36,35 +36,12 @@ asdf install
 
 ## Apps
 
-Tried to use `mas` but it breaks `brew bundle --global` more often than not.
-Some of these are installed by the `Brewfile` currently though.
-
-### Basics
-
-- Authy Desktop
-- Karabiner Elements
-- Remember The Milk
-- Simplenote
-
 ### Development
 
-- Docker Desktop
-- MacVim
-- Sourcetree
-- Table Plus
 - VS Code
-
-### Media
-
-- Plex
-- Plexamp
-- Spotify
-- Tidal
-- Steam
 
 ### Chat
 
-- Discord
 - Slack
 - Telegram
 
@@ -72,8 +49,6 @@ Some of these are installed by the `Brewfile` currently though.
 
 - Dash
 - Hex Color
-- Maccy
-- Rectangle
 - LogiOptions+ for mice
 - Logitune for cameras
 - Carbon Copy Cloner
