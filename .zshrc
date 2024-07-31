@@ -220,3 +220,8 @@ ZSH_HIGHLIGHT_STYLES[globbing]='fg=black,bold,bg=blue'
 ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=black,bold,bg=blue'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Advanced shell history
+if checkPath atuin; then
+  eval "$(atuin init zsh)"
+fi

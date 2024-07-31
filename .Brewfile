@@ -16,6 +16,7 @@ brew 'dust'
 # brew 'chezmoi'
 # brew 'yadm'
 cask '1password/tap/1password-cli'
+brew 'atuin'
 
 # Fonts!
 cask "font-victor-mono"
