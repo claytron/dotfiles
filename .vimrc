@@ -1298,6 +1298,9 @@ if has("autocmd")
 
     " helm files
     autocmd BufNewFile,BufRead chart/*.yaml set filetype=helm
+
+    " Anything with Brewfile in it
+    autocmd BufNewFile,BufRead .Brewfile.*,Brewfile.* set filetype=ruby syntax=brewfile
   augroup END
 endif
 
