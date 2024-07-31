@@ -12,9 +12,8 @@ $ brew bundle --global
 
 ## Random things
 
-Put tree style tabs css in place both in the extension and userChrome in the Firefox profile.
+Put css in place in userChrome in the Firefox profile.
 
-- Copy the `tree_style_tabs.css` into the browser extension
 - Set the `toolkit.legacyUserProfileCustomizations.stylesheets` to true in `about:config`
 - Create a chrome folder: `~/Library/Application Support/Firefox/Profiles/xxxxxx.default-release/chrome`
 - Symlink `userChrome.css` into `chrome/.`
