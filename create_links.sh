@@ -307,5 +307,13 @@ if [ ! -d "$HOME/work" ]; then
     chmod 700 "$HOME/work"
 fi
 
+if [ $(defaults read -g com.apple.swipescrolldirection) -eq 1 ]; then
+    "$HOME"/.dotfiles/macos_defaults.sh
+    echo
+    echo "Setting up macos defaults since natural scrolling was on"
+    echo "Some settings may require a reboot / or logout"
+    echo
+fi
+
 # Set up zi / zplugin / zinit
 sh -c "$(curl -fsSL https://git.io/get-zi)" -- -i skip
