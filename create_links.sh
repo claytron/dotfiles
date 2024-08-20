@@ -169,6 +169,17 @@ if [ -d "$HOME/.config" ]; then
       )
     fi
 
+    if [ ! -d "$HOME/.config/kitty/icons" ]; then
+      (
+        cd "$HOME"/.config/kitty
+        git clone git@github.com:k0nserv/kitty-icon.git icons
+      )
+    fi
+    kitty_icon=neue_toxic.icns
+    kitty_icon_link="$HOME"/.config/kitty/kitty.app.icns
+    [ -L "$kitty_icon_link" ] && rm "$kitty_icon_link"
+    ln -s "$HOME"/.config/kitty/icons/build/"$kitty_icon" "$kitty_icon_link"
+
     # Take care of ranger config
     # -----------------------------------------------------------------
     actual_dotfile="$dotfiles_loc/rifle.conf"
