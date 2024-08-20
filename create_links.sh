@@ -163,7 +163,10 @@ if [ -d "$HOME/.config" ]; then
     linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
 
     if [ ! -d "$HOME/.config/kitty/themes" ]; then
-      cd "$HOME"/.config/kitty; git clone -b better-light git@github.com:claytron/papercolor-kitty.git themes; cd -
+      (
+        cd "$HOME"/.config/kitty
+        git clone -b better-light git@github.com:claytron/papercolor-kitty.git themes
+      )
     fi
 
     # Take care of ranger config
