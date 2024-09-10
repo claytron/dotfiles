@@ -65,5 +65,5 @@ typeset -U fpath
 # sake more than anything.
 rationalize-path fpath
 
-# extra per environment settings (for things like GITHUB_PACKAGE_AUTH, and OBJC_DISABLE_INITIALIZE_FORK_SAFETY)
+# extra per environment settings (for things like GITHUB_PACKAGE_AUTH, BUNDLE_ENTERPRISE__CONTRIBSYS__COM, and OBJC_DISABLE_INITIALIZE_FORK_SAFETY)
 source $HOME/.zshenv_extras
