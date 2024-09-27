@@ -54,6 +54,7 @@ brew 'sshuttle'
 brew 'magic-wormhole'
 brew '7zip'
 brew 'gh'
+brew 'exercism'
 
 # art related stuff
 brew 'ffmpeg'
