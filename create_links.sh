@@ -127,85 +127,107 @@ if [ -e "$HOME/.ssh/authorized_keys" ]; then
     chmod 600 "$HOME/.ssh/authorized_keys"
 fi
 
-if [ -d "$HOME/.config" ]; then
-    # Take care of awesome configs
-    # -----------------------------------------------------------------
-    actual_dotfile="$dotfiles_loc/awesome"
-    dotfile="awesome"
-    to_create="$HOME/.config/$dotfile"
-    # actually create/remove the link
-    linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
+# set up app configs
+[ -d "$HOME/.config" ] || mkdir "$HOME"/.config
 
-    # Take care of yamllint configs
-    # -----------------------------------------------------------------
-    actual_dotfile="$dotfiles_loc/yamllint"
-    dotfile="yamllint"
-    [ -d "$HOME/.config/$dotfile" ] || mkdir "$HOME/.config/$dotfile"
-    to_create="$HOME/.config/$dotfile/config"
-    # actually create/remove the link
-    linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
+# Take care of awesome configs
+# -----------------------------------------------------------------
+actual_dotfile="$dotfiles_loc/awesome"
+dotfile="awesome"
+to_create="$HOME/.config/$dotfile"
+# actually create/remove the link
+linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
 
-    # Take care of neovim config
-    # -----------------------------------------------------------------
-    actual_dotfile="$dotfiles_loc/.vim"
-    dotfile="nvim"
-    to_create="$HOME/.config/$dotfile"
-    # actually create/remove the link
-    linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
+# Take care of yamllint configs
+# -----------------------------------------------------------------
+actual_dotfile="$dotfiles_loc/yamllint"
+dotfile="yamllint"
+[ -d "$HOME/.config/$dotfile" ] || mkdir "$HOME/.config/$dotfile"
+to_create="$HOME/.config/$dotfile/config"
+# actually create/remove the link
+linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
 
-    # Take care of kitty configs
-    # -----------------------------------------------------------------
-    actual_dotfile="$dotfiles_loc/kitty.conf"
-    dotfile="kitty"
-    [ -d "$HOME/.config/$dotfile" ] || mkdir "$HOME/.config/$dotfile"
-    to_create="$HOME/.config/$dotfile/$dotfile.conf"
-    # actually create/remove the link
-    linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
+# Take care of neovim config
+# -----------------------------------------------------------------
+actual_dotfile="$dotfiles_loc/.vim"
+dotfile="nvim"
+to_create="$HOME/.config/$dotfile"
+# actually create/remove the link
+linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
 
-    if [ ! -d "$HOME/.config/kitty/themes" ]; then
-      (
-        cd "$HOME"/.config/kitty
-        git clone -b better-light git@github.com:claytron/papercolor-kitty.git themes
-      )
-    fi
+# Take care of kitty configs
+# -----------------------------------------------------------------
+actual_dotfile="$dotfiles_loc/kitty.conf"
+dotfile="kitty"
+[ -d "$HOME/.config/$dotfile" ] || mkdir "$HOME/.config/$dotfile"
+to_create="$HOME/.config/$dotfile/$dotfile.conf"
+# actually create/remove the link
+linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
 
-    if [ ! -d "$HOME/.config/kitty/icons" ]; then
-      (
-        cd "$HOME"/.config/kitty
-        git clone git@github.com:k0nserv/kitty-icon.git icons
-      )
-    fi
-    kitty_icon=neue_toxic.icns
-    kitty_icon_link="$HOME"/.config/kitty/kitty.app.icns
-    [ -L "$kitty_icon_link" ] && rm "$kitty_icon_link"
-    ln -s "$HOME"/.config/kitty/icons/build/"$kitty_icon" "$kitty_icon_link"
+if [ ! -d "$HOME/.config/kitty/themes" ]; then
+  (
+    cd "$HOME"/.config/kitty
+    git clone -b better-light git@github.com:claytron/papercolor-kitty.git themes
+  )
+fi
 
-    # Take care of ranger config
-    # -----------------------------------------------------------------
-    actual_dotfile="$dotfiles_loc/rifle.conf"
-    dotfile="rifle"
-    [ -d "$HOME/.config/ranger" ] || mkdir "$HOME/.config/ranger"
-    to_create="$HOME/.config/ranger/$dotfile.conf"
-    # actually create/remove the link
-    linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
+# Choose a kitty theme that's built in
+if which kitten >/dev/null; then
+    kitten themes --reload-in=all Catppuccin-Latte
+fi
 
-    # Take care of starship config
-    # -----------------------------------------------------------------
-    actual_dotfile="$dotfiles_loc/starship.toml"
-    dotfile="starship"
-    to_create="$HOME/.config/$dotfile.toml"
-    # actually create/remove the link
-    linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
+if [ ! -d "$HOME/.config/kitty/icons" ]; then
+  (
+    cd "$HOME"/.config/kitty
+    git clone git@github.com:k0nserv/kitty-icon.git icons
+  )
+fi
+kitty_icon=neue_toxic.icns
+kitty_icon_link="$HOME"/.config/kitty/kitty.app.icns
+[ -L "$kitty_icon_link" ] && rm "$kitty_icon_link"
+ln -s "$HOME"/.config/kitty/icons/build/"$kitty_icon" "$kitty_icon_link"
 
-    # Take care of vscode configs
-    # -----------------------------------------------------------------
-    if [ -d "$HOME/Library/Application Support/Code" ]; then
-      actual_dotfile="$dotfiles_loc/vscode_settings.json"
-      dotfile="vscode"
-      to_create="$HOME/Library/Application Support/Code/User/settings.json"
-      # actually create/remove the link
-      linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
-    fi
+# Take care of ranger config
+# -----------------------------------------------------------------
+actual_dotfile="$dotfiles_loc/rifle.conf"
+dotfile="rifle"
+[ -d "$HOME/.config/ranger" ] || mkdir "$HOME/.config/ranger"
+to_create="$HOME/.config/ranger/$dotfile.conf"
+# actually create/remove the link
+linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
+
+# Take care of starship config
+# -----------------------------------------------------------------
+actual_dotfile="$dotfiles_loc/starship.toml"
+dotfile="starship"
+to_create="$HOME/.config/$dotfile.toml"
+# actually create/remove the link
+linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
+
+# Take care of vscode configs
+# -----------------------------------------------------------------
+if [ -d "$HOME/Library/Application Support/Code" ]; then
+  actual_dotfile="$dotfiles_loc/vscode_settings.json"
+  dotfile="vscode"
+  to_create="$HOME/Library/Application Support/Code/User/settings.json"
+  # actually create/remove the link
+  linkDotfile "$dotfile" "$to_create" "$actual_dotfile"
+fi
+
+# Set up bat themes
+# -----------------------------------------------------------------
+if which bat >/dev/null; then
+    [ -d "$(bat --config-dir)" ] || mkdir -p "$(bat --config-dir)"
+
+    theme_dir="$(bat --config-dir)"/themes
+    [ ! -d "$theme_dir" ] || mkdir -p "$theme_dir"
+
+    wget --quiet -P "$theme_dir" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Latte.tmTheme
+    wget --quiet -P "$theme_dir" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Frappe.tmTheme
+    wget --quiet -P "$theme_dir" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
+    wget --quiet -P "$theme_dir" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
+
+    bat cache --build
 fi
 
 # Install the vim plugins

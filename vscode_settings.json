@@ -76,5 +76,5 @@
     "explorer.sortOrder": "mixed",
     "terminal.integrated.letterSpacing": 1,
     "ruby.rubocop.useBundler": true,
-    "workbench.colorTheme": "PaperColor Redux"
+    "workbench.colorTheme": "Catppuccin Latte"
 }

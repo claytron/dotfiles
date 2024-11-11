@@ -29,6 +29,7 @@ brew 'git-delta'
 brew 'bat'
 brew 'eza'
 brew 'shellcheck'
+brew 'vivid'
 
 # For development
 brew 'go'

@@ -459,10 +459,10 @@ function! s:extraHighlights()
 
     " The PaperColor highlights were a bit much for me.
     " Set the spell bad to underline and don't highlight rare words.
-    hi clear SpellBad
-    hi clear SpellRare
-    hi SpellBad cterm=undercurl gui=undercurl guisp=black
-    hi ErrorMsg ctermfg=8 ctermbg=1 guifg=White guibg=Red
+    " hi clear SpellBad
+    " hi clear SpellRare
+    " hi SpellBad cterm=undercurl gui=undercurl guisp=black
+    " hi ErrorMsg ctermfg=8 ctermbg=1 guifg=White guibg=Red
 endfunction
 
 command! ExtraHighlightsInit :call s:extraHighlights()
@@ -485,10 +485,10 @@ function! s:colorSwitch(...)
     " Toggle between a light and dark vim colorscheme
     if &background == 'dark'
         set background=light
-        silent !kitty +kitten themes --reload-in=all Papercolor-light
+        silent !kitty +kitten themes --reload-in=all catppuccin-latte
     elseif &background == 'light'
         set background=dark
-        silent !kitty +kitten themes --reload-in=all Papercolor-dark
+        silent !kitty +kitten themes --reload-in=all catppuccin-mocha
     endif
 
     " Put the extra highlights back in place
@@ -518,7 +518,7 @@ map <silent> coc :ColorSwitcher<CR>
 set termguicolors
 
 " set the colorscheme
-ColorSwitcher PaperColor
+ColorSwitcher catppuccin-latte
 
 " Toggle the gutter
 function! s:toggleGutterSigns()

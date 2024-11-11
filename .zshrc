@@ -212,11 +212,11 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor root)
 # set up command line syntax highlighting overrides
 ZSH_HIGHLIGHT_STYLES[builtin]='fg=green,bold'
 ZSH_HIGHLIGHT_STYLES[function]='fg=green,underline'
-ZSH_HIGHLIGHT_STYLES[alias]='fg=black,bg=green'
+ZSH_HIGHLIGHT_STYLES[alias]='fg=255,bg=green'
 ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=yellow'
 ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=yellow'
 ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=yellow,underline'
-ZSH_HIGHLIGHT_STYLES[globbing]='fg=black,bold,bg=blue'
+ZSH_HIGHLIGHT_STYLES[globbing]='fg=255,bold,bg=blue'
 ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=black,bold,bg=blue'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
