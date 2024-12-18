@@ -1,0 +1,10 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/usr/bin/env bash
+if which -s brew; then
+    echo "Homebrew already installed"
+else
+    echo "Installing homebrew"
+    xcode-select --install || true
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+{{ end -}}
