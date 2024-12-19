@@ -1,3 +1,4 @@
+{{- if eq .chezmoi.os "darwin" -}}
 #!/usr/bin/env bash
 set -eo pipefail
 
@@ -27,6 +28,8 @@ do
       ;;
   esac
 done
+
+echo "Setting up macos defaults"
 
 # TODO list
 # - Turn off all prediction and autocorrect when typing (Accessibility -> zoom -> use scroll gesture with keyboard shortcut)
@@ -84,3 +87,4 @@ APPS=(
 for APP in "${APPS[@]}"; do
     killall "$APP" &>/dev/null || true
 done
+{{ end -}}
