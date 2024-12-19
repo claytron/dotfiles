@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
+echo "set up tmux"
+
 # Get terminal settings correct for italics
-tic tmux.terminfo
-tic tmux-256color.terminfo
+tic $(chezmoi source-path)/tmux.terminfo
+tic $(chezmoi source-path)/tmux-256color.terminfo
 
 # File for per machine settings
 # TODO: use chezmoi for this part properly
