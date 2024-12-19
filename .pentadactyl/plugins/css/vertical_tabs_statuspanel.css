@@ -1,5 +1,0 @@
-@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
-statuspanel:-moz-locale-dir(rtl)[mirror],
-statuspanel:-moz-locale-dir(ltr):not([mirror]) {
-    display: inherit !important;
-}
