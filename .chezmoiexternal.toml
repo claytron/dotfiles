@@ -1,0 +1,3 @@
+[".teamocil"]
+    type = "git-repo"
+    url = "git@github.com:claytron/teamocil-config.git"
