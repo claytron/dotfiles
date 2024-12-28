@@ -43,7 +43,11 @@ Plug 'vim-scripts/simplewhite.vim'
 Plug 'tomasr/molokai'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'sonjapeterson/1989.vim'
-Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+if !has('nvim')
+  Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+else
+  Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+endif
 
 " UI
 Plug 'vim-airline/vim-airline' | Plug 'paranoida/vim-airlineish' | Plug 'vim-airline/vim-airline-themes'
