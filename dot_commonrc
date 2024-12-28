@@ -8,6 +8,12 @@ source ~/.commonfuncs
 # what freakin' linux is this?
 alias what_linux="cat /etc/issue"
 
+# chezmoi
+alias cm=chezmoi
+alias cma=chezmoi apply
+alias cmd=chezmoi diff
+alias cmu=chezmoi update
+
 # switch over to the simple prompt
 alias sp='source ~/.zshprompt_simple'
 
