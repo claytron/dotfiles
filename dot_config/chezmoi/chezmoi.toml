@@ -1,0 +1,4 @@
+[diff]
+command = "delta"
+pager = "delta"
+exclude = ["scripts"]
