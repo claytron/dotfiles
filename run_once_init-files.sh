@@ -3,10 +3,6 @@
 touch_me=(
     .zsh_history
     .bash_history
-    .zshextras
-    .zshenv_extras
-    .bash_extras
-    .tmux.local
 )
 
 for new_file in "${touch_me[@]}"; do

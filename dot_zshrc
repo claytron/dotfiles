@@ -204,9 +204,6 @@ else
   source ~/.zshprompt
 fi
 
-# load up per environment extras
-source ~/.zshextras
-
 # Set up zsh highlighters
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor root)
 # set up command line syntax highlighting overrides

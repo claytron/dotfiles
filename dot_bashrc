@@ -60,7 +60,4 @@ else
     PS1="$PR_IMPOSTER\n\d \A | \w\n\h\$ "
 fi
 
-# load up server specific extras
-source ~/.bash_extras
-
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
