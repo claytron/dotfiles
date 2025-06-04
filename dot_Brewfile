@@ -32,6 +32,9 @@ brew 'vivid'
 # For development
 brew 'go'
 brew 'asdf'
+# deps for building various things
+brew 'lua'
+brew 'libyaml'
 ## Dev utils
 brew 'ctags'
 brew 'jq'
