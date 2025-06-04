@@ -394,7 +394,9 @@ set foldtext=NeatFoldText()
 " -----------------------------------------------------------------
 
 " turn off smart indentation when pasting
-set pastetoggle=<F2>
+if !has('nvim')
+  set pastetoggle=<F2>
+endif
 
 " Searching                                                    {{{1
 " -----------------------------------------------------------------
