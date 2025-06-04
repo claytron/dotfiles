@@ -12,9 +12,7 @@ brew 'curl'
 brew 'rsync'
 brew 'telnet'
 brew 'dust'
-# TODO: pick a dotfile manager
-# brew 'chezmoi'
-# brew 'yadm'
+brew 'chezmoi'
 cask '1password/tap/1password-cli'
 brew 'atuin'
 
