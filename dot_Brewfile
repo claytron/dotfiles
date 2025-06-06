@@ -84,6 +84,7 @@ cask 'maccy'
 cask 'discord'
 cask 'telegram'
 cask 'stats'
+cask 'visual-studio-code'
 
 # Other fun stuff
 brew 'cowsay'
