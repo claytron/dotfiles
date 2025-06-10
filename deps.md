@@ -98,16 +98,6 @@ asdf install
 - neovim
 - solargraph?
 
-Set the bundler path
-
-```sh
-$ bundle config set path 'vendor/bundle'
-
-$ cat ~/.bundle/config
----
-BUNDLE_PATH: "vendor/bundle"
-```
-
 ## Perl
 
 WTF.
