@@ -1,6 +1,9 @@
 [".teamocil"]
     type = "git-repo"
     url = "git@github.com:claytron/teamocil-config.git"
+[".fortunes"]
+    type = "git-repo"
+    url = "git@github.com:claytron/fortunes.git"
 [".tmux/plugins/tpm"]
     type = "git-repo"
     url = "https://github.com/tmux-plugins/tpm"
