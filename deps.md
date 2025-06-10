@@ -48,12 +48,6 @@ Hard to automate because of randomized profile name.
 - Arturia MIDI Control Center
 - Soundtoys Little Radiator
 
-## Node
-
-- neovim
-- clipboard-cli (for cross platform copy / paste to from command line in tmux and git aliases)
-- livedown
-
 ## Python
 
 - virtual env for neovim / neovim-py2
