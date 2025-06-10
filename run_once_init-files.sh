@@ -30,3 +30,4 @@ done
 
 # TODO: maybe with chezmoi?
 chmod 700 "$HOME"/work
+chmod 700 "$HOME"
