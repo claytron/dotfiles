@@ -11,3 +11,7 @@ tmux.terminfo
 .Xmodmap
 .xmodmaprc
 {{ end }}
+
+{{ if ne .chezmoi.hostname "television" }}
+.config/atuin/server.toml
+{{ end }}

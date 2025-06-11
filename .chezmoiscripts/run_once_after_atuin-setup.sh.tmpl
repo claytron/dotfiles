@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo Setup atuin history sync
+atuin login -u '{{ onepasswordRead "op://Private/Atuin History sync/username" }}' -p '{{ onepasswordRead "op://Private/Atuin History sync/password" }}' -k '{{ onepasswordRead "op://Private/Atuin History sync/key" }}'
