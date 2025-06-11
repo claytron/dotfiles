@@ -520,7 +520,7 @@ map <silent> coc :ColorSwitcher<CR>
 set termguicolors
 
 " set the colorscheme
-ColorSwitcher catppuccin-latte
+ColorSwitcher catppuccin_latte
 
 " Toggle the gutter
 function! s:toggleGutterSigns()
