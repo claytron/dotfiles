@@ -10,5 +10,5 @@ source "$HOME/.commonfuncs"
 # fi
 
 if checkPath keychain && [ -f ~/.ssh/id_rsa ]; then
-    eval "$(keychain -q --agents ssh --eval id_rsa)"
+    eval "$(keychain -q --eval id_rsa)"
 fi
