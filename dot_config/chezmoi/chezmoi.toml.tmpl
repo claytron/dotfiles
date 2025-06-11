@@ -4,7 +4,7 @@ pager = "delta"
 exclude = ["scripts"]
 
 [data]
-{{- if (or (eq .chezmoi.hostname "charon") (eq .chezmoi.hostname "dotvm") ) }}
+{{- if (or (eq .chezmoi.hostname "charon")) }}
 work = true
 {{- else }}
 work = false
