@@ -143,6 +143,12 @@ export FZF_DEFAULT_OPTS='--extended --multi --inline-info --prompt="fzf> "'
 
 # Disable spring in rails
 export DISABLE_SPRING=true
+
+# Tomato time
+export PUSHOVER_USER={{ onepasswordRead "op://Private/pushover.net/tomato time/user" }}
+export PUSHOVER_TOKEN={{ onepasswordRead "op://Private/pushover.net/tomato time/token" }}
+# Token for each workspace to change
+export SLACK_APPS=({{ onepasswordRead "op://Private/pushover.net/tomato time/slack_tokens" }})
 {{- if .work }}
 
 # Work specific settings
