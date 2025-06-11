@@ -1,0 +1,11 @@
+[diff]
+command = "delta"
+pager = "delta"
+exclude = ["scripts"]
+
+[data]
+{{- if (or (eq .chezmoi.hostname "charon") (eq .chezmoi.hostname "dotvm") ) }}
+work = true
+{{- else }}
+work = false
+{{- end }}

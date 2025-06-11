@@ -1,0 +1,20 @@
+README.md
+
+# TODO: set this up dynamically for FF profiles
+userChrome.css
+
+# Term configs
+tmux-256color.terminfo
+tmux.terminfo
+
+{{ if ne .chezmoi.os "linux" }}
+.Xmodmap
+.xmodmaprc
+.config/awesome/
+.i3/
+.conky/
+{{ end }}
+
+{{ if ne .chezmoi.hostname "television" }}
+.config/atuin/server.toml
+{{ end }}

@@ -1,15 +1,5 @@
 # Dependencies
 
-Install password manager.
-
-Open up Terminal and install brew.
-
-Put these dotfiles in place then:
-
-```
-$ brew bundle --global
-```
-
 ## Random things
 
 Put css in place in userChrome in the Firefox profile.
@@ -21,30 +11,7 @@ Put css in place in userChrome in the Firefox profile.
 
 Hard to automate because of randomized profile name.
 
-## asdf plugins
-
-```sh
-asdf plugin add nodejs
-asdf plugin add python
-asdf plugin add ruby
-asdf plugin add terraform
-asdf plugin add perl
-asdf plugin add golang
-asdf plugin add rust
-
-asdf install
-```
-
 ## Apps
-
-### Development
-
-- VS Code
-
-### Chat
-
-- Slack
-- Telegram
 
 ### Utils
 
@@ -81,12 +48,6 @@ asdf install
 - Arturia MIDI Control Center
 - Soundtoys Little Radiator
 
-## Node
-
-- neovim
-- clipboard-cli (for cross platform copy / paste to from command line in tmux and git aliases)
-- livedown
-
 ## Python
 
 - virtual env for neovim / neovim-py2
@@ -97,16 +58,6 @@ asdf install
 - teamocil
 - neovim
 - solargraph?
-
-Set the bundler path
-
-```sh
-$ bundle config set path 'vendor/bundle'
-
-$ cat ~/.bundle/config
----
-BUNDLE_PATH: "vendor/bundle"
-```
 
 ## Perl
 

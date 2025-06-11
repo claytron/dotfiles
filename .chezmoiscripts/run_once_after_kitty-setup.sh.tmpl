@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+cd "$HOME/.config/kitty"
+
+if [ ! -d "themes" ]; then
+  git clone -b better-light git@github.com:claytron/papercolor-kitty.git themes
+fi
+
+# Choose a kitty theme that's built in
+if which kitten >/dev/null; then
+    kitten themes --reload-in=all Catppuccin-Latte
+fi
+
+if [ ! -d "icons" ]; then
+  git clone git@github.com:k0nserv/kitty-icon.git icons
+fi
+
+kitty_icon=neue_toxic.icns
+kitty_icon_link=kitty.app.icns
+[ -L "$kitty_icon_link" ] && rm "$kitty_icon_link"
+ln -s icons/build/"$kitty_icon" "$kitty_icon_link"
