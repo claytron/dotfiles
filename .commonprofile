@@ -5,9 +5,9 @@ source "$HOME/.commonfuncs"
 [ -z "$NO_LAUGHS" ] && makeMeLaugh
 
 # only update once a day
-if checkPath git && [ -d ~/.dotfiles/.git ] && weShouldUpdate; then
-    (cd ~/.dotfiles && git up)
-fi
+# if checkPath git && [ -d ~/.dotfiles/.git ] && weShouldUpdate; then
+#     (cd ~/.dotfiles && git up)
+# fi
 
 if checkPath keychain && [ -f ~/.ssh/id_rsa ]; then
     eval "$(keychain -q --agents ssh --eval id_rsa)"
