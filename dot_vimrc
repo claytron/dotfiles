@@ -1299,7 +1299,7 @@ if has("autocmd")
     autocmd BufNewFile,BufRead *.tmux set filetype=tmux
 
     " helm files
-    autocmd BufNewFile,BufRead chart/*.yaml set filetype=helm
+    autocmd BufNewFile,BufRead chart*/*.y*ml set filetype=helm
 
     " Anything with Brewfile in it
     autocmd BufNewFile,BufRead .Brewfile.*,Brewfile.* set filetype=ruby syntax=brewfile
