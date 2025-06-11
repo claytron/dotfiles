@@ -143,3 +143,10 @@ export FZF_DEFAULT_OPTS='--extended --multi --inline-info --prompt="fzf> "'
 
 # Disable spring in rails
 export DISABLE_SPRING=true
+{{- if .work }}
+
+# Work specific settings
+export BUNDLE_ENTERPRISE__CONTRIBSYS__COM={{ (bitwarden "item" "05a059eb-7164-47bc-99ab-ae290161ff54").login.username | quote }}
+export GITHUB_PACKAGE_AUTH={{ (bitwarden "item" "016e2ac9-1956-4cd3-9a00-af8201106e2e").login.password | quote }}
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY='YES'
+{{- end }}
