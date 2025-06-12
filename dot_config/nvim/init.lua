@@ -1,87 +1,15 @@
+-- kickstart {{{1
 --[[
-
-=====================================================================
-==================== READ THIS BEFORE CONTINUING ====================
-=====================================================================
-========                                    .-----.          ========
-========         .----------------------.   | === |          ========
-========         |.-""""""""""""""""""-.|   |-----|          ========
-========         ||                    ||   | === |          ========
-========         ||   KICKSTART.NVIM   ||   |-----|          ========
-========         ||                    ||   | === |          ========
-========         ||                    ||   |-----|          ========
-========         ||:Tutor              ||   |:::::|          ========
-========         |'-..................-'|   |____o|          ========
-========         `"")----------------(""`   ___________      ========
-========        /::::::::::|  |::::::::::\  \ no mouse \     ========
-========       /:::========|  |==hjkl==:::\  \ required \    ========
-========      '""""""""""""'  '""""""""""""'  '""""""""""'   ========
-========                                                     ========
-=====================================================================
-=====================================================================
-
-What is Kickstart?
-
-  Kickstart.nvim is *not* a distribution.
-
-  Kickstart.nvim is a starting point for your own configuration.
-    The goal is that you can read every line of code, top-to-bottom, understand
-    what your configuration is doing, and modify it to suit your needs.
-
-    Once you've done that, you can start exploring, configuring and tinkering to
-    make Neovim your own! That might mean leaving Kickstart just the way it is for a while
-    or immediately breaking it into modular pieces. It's up to you!
-
-    If you don't know anything about Lua, I recommend taking some time to read through
-    a guide. One possible example which will only take 10-15 minutes:
-      - https://learnxinyminutes.com/docs/lua/
 
     After understanding a bit more about Lua, you can use `:help lua-guide` as a
     reference for how Neovim integrates Lua.
     - :help lua-guide
     - (or HTML version): https://neovim.io/doc/user/lua-guide.html
 
-Kickstart Guide:
-
-  TODO: The very first thing you should do is to run the command `:Tutor` in Neovim.
-
-    If you don't know what this means, type the following:
-      - <escape key>
-      - :
-      - Tutor
-      - <enter key>
-
-    (If you already know the Neovim basics, you can skip this step.)
-
-  Once you've completed that, you can continue working through **AND READING** the rest
-  of the kickstart init.lua.
-
-  Next, run AND READ `:help`.
-    This will open up a help window with some basic information
-    about reading, navigating and searching the builtin help documentation.
-
-    This should be the first place you go to look when you're stuck or confused
-    with something. It's one of my favorite Neovim features.
-
     MOST IMPORTANTLY, we provide a keymap "<space>sh" to [s]earch the [h]elp documentation,
     which is very useful when you're not exactly sure of what you're looking for.
 
-  I have left several `:help X` comments throughout the init.lua
-    These are hints about where to find more information about the relevant settings,
-    plugins or Neovim features used in Kickstart.
-
-   NOTE: Look for lines like this
-
-    Throughout the file. These are for you, the reader, to help you understand what is happening.
-    Feel free to delete them once you know what you're doing, but they should serve as a guide
-    for when you are first encountering a few different constructs in your Neovim config.
-
 If you experience any errors while trying to install kickstart, run `:checkhealth` for more info.
-
-I hope you enjoy your Neovim journey,
-- TJ
-
-P.S. You can delete this when you're done too. It's your config now! :)
 --]]
 
 -- Set <space> as the leader key
@@ -218,6 +146,178 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.hl.on_yank()
   end,
 })
+
+-- My Config                                                    {{{1
+-- My vimrc uses folds
+--
+-- zi    toggle all folds (open or closed)
+-- zR    open all folds
+-- zM    close all folds
+-- za    toggle fold at cursor position
+-- zj    move down to start of next fold
+-- zk    move up to end of previous fold
+
+-- My vimrc command and mapping quick reference                 {{{1
+-- -----------------------------------------------------------------
+--
+-- The mapleader has been switched from '\' to ',' anytime you see
+-- <leader> that is what this refers to.
+--
+-- Change Option mnemonic                                       {{{2
+-- -----------------------------------------------------------------
+--    coc             -- Switch between light and dark colors
+--    coe             -- Show current :Errors
+--    cog             -- Toggle the gutter and clear signs
+--    coh             -- Clear the current search highlight
+--    coH             -- Toggles the highlight search
+--    coi             -- Toggles invisible characters
+--    col             -- Toggles the location list
+--    con             -- Toggles the line numbers
+--    conn            -- Toggles relative line numbers
+--    coq             -- Toggle the quickfix window
+--    cos             -- Toggle spell checking
+--    cot             -- Change the tab name
+--    cov             -- Edit the current user's vimrc
+--    cow             -- Toggle line wrapping
+--    cox             -- Toggles NERDTree drawer
+--
+-- Clean Up mnemonic                                            {{{2
+-- -----------------------------------------------------------------
+--    cuw             -- Removes trailing whitespace characters
+--    cuf             -- Clean up the current file using autoformat
+--    cut             -- Find things to clean up. TODO, XXX, etc.
+--    cuv             -- Sort a buildout versions.cfg file
+--
+-- File Type mnemonic                                           {{{2
+-- -----------------------------------------------------------------
+--    ftc             -- Change current filetype to CSS
+--    fth             -- Change current filetype to HTML
+--    ftj             -- Change current filetype to Javascript
+--    ftm             -- Change current filetype to Markdown
+--    ftp             -- Change current filetype to Python
+--    ftr             -- Change current filetype to reStructuredText
+--    ftv             -- Change current filetype to Vim
+--    ftw             -- Change current filetype to Wiki
+--
+-- TeSt mnemonic
+-- -----------------------------------------------------------------
+--    tsl             -- :TestNearest
+--    ts;             -- :TestFile
+--    ts'             -- :TestSuite
+--    tss             -- :TestLast
+--
+-- Fuzzy Finder mnemonic                                        {{{2
+-- -----------------------------------------------------------------
+--    ff              -- Fuzzy file mode
+--    fft             -- Fuzzy tag mode
+--    ffr             -- Fuzzy MRU mode
+--    ffe             -- Fuzzy buffer mode
+--    ffc             -- Fuzzy :colors mode
+--
+-- Tell Me mnemonic                                             {{{2
+-- -----------------------------------------------------------------
+--    tma             -- Starts an ack search in the CWD
+--    tmf             -- Shows the current file in the NERDTree. This
+--                       is the TextMate equivalent of ctrl+cmd+r
+--    tmi             -- Toggle indent guides
+--    tmy             -- Show the yankring
+--    tmb             -- Shortcut for getting to NERDTree bookmarks
+--    tm1             -- Set a highlight for the current word (1)
+--    tm2             -- Set a highlight for the current word (2)
+--    tm3             -- Set a highlight for the current word (3)
+--    tmr             -- Show me reST preview
+--    tmrk            -- Stop reST preview
+--    tmm             -- Show me Markdown preview
+--    tmmk            -- Stop Markdown preview
+--    tms             -- Save the file
+--    tmg             -- Toggle signify folds (show only vcs changes)
+--    tmt             -- Show translations for the current key (rails)
+--    tmte            -- Expand the current YAML key (rails)
+--
+-- Git stuff                                                    {{{2
+-- -----------------------------------------------------------------
+--    tgg             -- Git status (tmg was too hard, so tg)
+--    //              -- Git grep (double tap to start)
+--    tgd             -- Git diff
+--    tgb             -- Git blame
+--    tgbb            -- Show commit in browser
+--    tgl             -- Git log on the current file (back 100)
+--    tgll            -- Git log on the current project (back 100)
+--    tgh             -- Git log search looking for + / - of term
+--    tghh            -- Git log search with word in diff
+--
+-- Window Management                                            {{{2
+-- -----------------------------------------------------------------
+--    <C-W>-          -- Horizontal split
+--    <C-W>|          -- Vertical split
+--    <C-W>z          -- Zoom in on the current buffer
+--    <C-W><C-E>      -- Cycle through windows
+--    <C-H>           -- Move left to window
+--    <C-J>           -- Move up to window
+--    <C-K>           -- Move down to window
+--    <C-L>           -- Move right to window
+--    <C-W><C-H>      -- Move left to next tab
+--    <C-W><C-L>      -- Move right to next tab
+--    <C-W><C-N>      -- Create a new tab
+--    <C-W><C-I>      -- Edit current file in a new tab
+--    <C-W><C-X>      -- Close the current tab
+--    +               -- Make the current window taller
+--    -               -- Make the current window shorter
+--
+-- Other random stuff                                           {{{2
+-- -----------------------------------------------------------------
+--    ]q              -- Previous quickfix change
+--    [q              -- Next quickfix change
+--    ]w              -- Previous location list change
+--    [w              -- Next location list change
+--    tt              -- Opens up the taglist
+--    Y               -- Yank to the end of the line, no newline
+--    YY              -- Yank the current line, no newline
+--    funi            -- Find the next non-ascii character (funny)
+--    jj              -- Alternative to <ESC>
+--    jk              -- Alternative to <ESC>
+--    <leader>Enter   -- Split line at current cursor in normal mode
+--    <F2>            -- Toggle smart indent on paste
+--
+-- Command line mappings                                        {{{2
+-- -----------------------------------------------------------------
+--
+--    <C-a>           -- Beginning of the line
+--    <C-c>           -- End of the line
+--
+-- Custom Commands                                              {{{2
+-- -----------------------------------------------------------------
+--
+-- I have set up some custom commands that might be of interest
+--
+--    MarkdownToHTML  -- Converts the current buffer into HTML and
+--                       places it in a scratch buffer.
+--    MarkdownToHTMLCopy -- Same as previous, but copies to clipboard
+--    Shell           -- Runs a shell command and places it in the
+--                       scratch buffer
+--    TidyXML         -- Runs tidy in XML mode on the current buffer
+--    TabStyle        -- Set the tab style and number, :TabStyle space 4
+--    W               -- Save the following file using sudo to avoid
+--                       the [readonly] flag.
+
+-- General setting                                              {{{1
+--------------------------------------------------------------------
+-- Set a shorter timeout length to make jk and jj easier to use
+vim.o.timeoutlen = 350
+
+-- only increment numbers and letters
+vim.o.nrformats = ''
+
+-- set up jk as mode switch
+vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true })
+vim.keymap.set('i', 'jk', '<Esc>', { noremap = true, silent = true })
+
+-- hide the backup and swap files
+vim.o.backupdir = '~/.backup/vim,.,/tmp'
+vim.o.directory = '~/.backup/vim/swap,.,/tmp'
+vim.o.backupskip = '/tmp/*,/private/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*'
+
+-- My Config end                                                {{{1
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
@@ -1013,4 +1113,4 @@ require('lazy').setup({
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
+-- vim: fdm=marker ts=2 sts=2 sw=2 et
