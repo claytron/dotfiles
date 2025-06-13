@@ -1,4 +1,4 @@
--- kickstart {{{1
+-- kickstart                                                                     {{{1
 --[[
 
     After understanding a bit more about Lua, you can use `:help lua-guide` as a
@@ -12,12 +12,6 @@
 If you experience any errors while trying to install kickstart, run `:checkhealth` for more info.
 --]]
 
--- Set <space> as the leader key
--- See `:help mapleader`
---  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = false
 
@@ -26,48 +20,14 @@ vim.g.have_nerd_font = false
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
--- Make line numbers default
-vim.o.number = true
--- You can also add relative line numbers, to help with jumping.
---  Experiment for yourself to see if you like it!
--- vim.o.relativenumber = true
-
--- Enable mouse mode, can be useful for resizing splits for example!
-vim.o.mouse = 'a'
-
 -- Don't show the mode, since it's already in the status line
 vim.o.showmode = false
 
--- Sync clipboard between OS and Neovim.
---  Schedule the setting after `UiEnter` because it can increase startup-time.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.schedule(function()
-  vim.o.clipboard = 'unnamedplus'
-end)
-
 -- Enable break indent
-vim.o.breakindent = true
-
--- Save undo history
-vim.o.undofile = true
-
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-vim.o.ignorecase = true
-vim.o.smartcase = true
+-- vim.o.breakindent = true
 
 -- Keep signcolumn on by default
 vim.o.signcolumn = 'yes'
-
--- Decrease update time
-vim.o.updatetime = 250
-
--- Decrease mapped sequence wait time
-vim.o.timeoutlen = 300
-
--- Configure how new splits should be opened
-vim.o.splitright = true
-vim.o.splitbelow = true
 
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
@@ -160,7 +120,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- My vimrc command and mapping quick reference                 {{{1
 -- -----------------------------------------------------------------
 --
--- The mapleader has been switched from '\' to ',' anytime you see
+-- The mapleader has been switched from '\' to 'SPACE' anytime you see
 -- <leader> that is what this refers to.
 --
 -- Change Option mnemonic                                       {{{2
@@ -177,7 +137,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 --    coq             -- Toggle the quickfix window
 --    cos             -- Toggle spell checking
 --    cot             -- Change the tab name
---    cov             -- Edit the current user's vimrc
 --    cow             -- Toggle line wrapping
 --    cox             -- Toggles NERDTree drawer
 --
@@ -229,7 +188,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 --    tmrk            -- Stop reST preview
 --    tmm             -- Show me Markdown preview
 --    tmmk            -- Stop Markdown preview
---    tms             -- Save the file
 --    tmg             -- Toggle signify folds (show only vcs changes)
 --    tmt             -- Show translations for the current key (rails)
 --    tmte            -- Expand the current YAML key (rails)
@@ -302,6 +260,14 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- General setting                                              {{{1
 --------------------------------------------------------------------
+-- Set <space> as the leader key
+--  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
+-- Decrease update time
+vim.o.updatetime = 250
+
 -- Set a shorter timeout length to make jk and jj easier to use
 vim.o.timeoutlen = 350
 
@@ -312,12 +278,365 @@ vim.o.nrformats = ''
 vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true })
 vim.keymap.set('i', 'jk', '<Esc>', { noremap = true, silent = true })
 
+-- :terminal settings
+vim.g.terminal_scrollback_buffer_size = 100000
+
+-- TODO: what should this be set to?
+-- Python support via virtualenvs
+--vim.g.python_host_prog = vim.fn.expand("~/.virtualenvs/neovim-py2/bin/python", ":p")
+--vim.g.python3_host_prog = vim.fn.expand("~/.virtualenvs/neovim/bin/python", ":p")
+
 -- hide the backup and swap files
 vim.o.backupdir = '~/.backup/vim,.,/tmp'
 vim.o.directory = '~/.backup/vim/swap,.,/tmp'
 vim.o.backupskip = '/tmp/*,/private/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*'
 
+-- Save undo history
+vim.o.undofile = true
+vim.o.undodir = '~/.backup/vim/undo,~/tmp,/tmp'
+
+-- have fifty lines of command-line (etc.) history:
+-- TODO: is this just the default now?
+vim.o.history = 10000
+
+-- have the mouse enabled all the time
+vim.o.mouse = 'a'
+-- make a menu popup on right click
+-- TODO: does this still do a thing in nvim?
+vim.o.mousemodel = 'popup'
+
+-- allow for switching buffers when a file has changes
+vim.o.hidden = true
+
+-- allow backspacing over everything in insert mode
+vim.o.backspace = 'indent,eol,start'
+
+-- Use the clipboard
+vim.schedule(function()
+  vim.o.clipboard = 'unnamed,unnamedplus'
+end)
+
+-- The first setting tells vim to use "autoindent" (that is, use the current
+-- line's indent level to set the indent level of new lines). The second makes
+-- vim attempt to intelligently guess the indent level of any new line based on
+-- the previous line.
+vim.o.autoindent = true
+vim.o.smartindent = true
+
+-- Only one space after periods when formatting strings
+-- XXX: unknown option
+--vim.o.nojoinspaces = true
+
+-- Allow command line editing like emacs
+vim.keymap.set('c', '<C-A>', '<Home>', { desc = 'Command-line: Move to beginning' })
+vim.keymap.set('c', '<C-E>', '<End>', { desc = 'Command-line: Move to end' })
+
+-- Highlight the word under the cursor
+-- Adapted from https://bitbucket.org/sjl/dotfiles/src/tip/vim/.vimrc
+vim.keymap.set('n', 'tm1', [[:execute 'match InterestingWord1 /\<<c-r><c-w>\>/'<CR>]], { silent = true, desc = 'Highlight word (slot 1)' })
+vim.keymap.set('n', 'tm2', [[:execute '2match InterestingWord2 /\<<c-r><c-w>\>/'<CR>]], { silent = true, desc = 'Highlight word (slot 2)' })
+vim.keymap.set('n', 'tm3', [[:execute '3match InterestingWord3 /\<<c-r><c-w>\>/'<CR>]], { silent = true, desc = 'Highlight word (slot 3)' })
+vim.keymap.set('n', 'tm0', ':ExtraHighlightsInit<CR>', { silent = true, desc = 'Reset highlight slots' })
+
+-- Shortcut to cycle through quickfix list
+vim.keymap.set('n', '[q', ':cnext<CR>', { silent = true, desc = 'Next quickfix item' })
+vim.keymap.set('n', ']q', ':cprevious<CR>', { silent = true, desc = 'Previous quickfix item' })
+
+-- Shortcut to cycle through location list
+vim.keymap.set('n', '[w', ':lnext<CR>', { silent = true, desc = 'Next location item' })
+vim.keymap.set('n', ']w', ':lprevious<CR>', { silent = true, desc = 'Previous location item' })
+
+-- Use sane regexes
+vim.keymap.set('n', '/', '/\\v', { desc = 'Use very magic regex (normal)' })
+vim.keymap.set('v', '/', '/\\v', { desc = 'Use very magic regex (visual)' })
+vim.keymap.set('n', '////', ':tab helpg \\v\\c<Left><Left>', { desc = 'Search help (very magic, case-insensitive)' })
+
+-- Easy filetype switching
+vim.keymap.set('n', 'ftm', ':set ft=markdown<CR>', { desc = 'Set filetype: markdown' })
+vim.keymap.set('n', 'ftp', ':set ft=python<CR>', { desc = 'Set filetype: python' })
+vim.keymap.set('n', 'ftw', ':set ft=wiki<CR>', { desc = 'Set filetype: wiki' })
+vim.keymap.set('n', 'ftr', ':set ft=ruby<CR>', { desc = 'Set filetype: ruby' })
+vim.keymap.set('n', 'ftrs', ':set ft=rst<CR>', { desc = 'Set filetype: reStructuredText' })
+vim.keymap.set('n', 'ftv', ':set ft=vim<CR>', { desc = 'Set filetype: vim' })
+vim.keymap.set('n', 'ftj', ':set ft=javascript<CR>', { desc = 'Set filetype: javascript' })
+vim.keymap.set('n', 'fts', ':set ft=sql<CR>', { desc = 'Set filetype: sql' })
+vim.keymap.set('n', 'ftsh', ':set ft=sh<CR>', { desc = 'Set filetype: shell script' })
+vim.keymap.set('n', 'ftc', ':set ft=css<CR>', { desc = 'Set filetype: css' })
+vim.keymap.set('n', 'fth', ':set ft=html<CR>', { desc = 'Set filetype: html' })
+
+-- Visual settings                                              {{{1
+--------------------------------------------------------------------
+-- tell the bell to go beep itself!
+vim.o.visualbell = false
+
+-- Always hide concealable content
+vim.o.conceallevel = 2
+
+-- vim.o.the title of the window
+vim.o.title = true
+vim.o.titlestring = '%f%([%M]%)'
+
+-- Enhanced command menu ctrl + d to expand directories
+vim.o.wildmenu = true
+-- command <Tab> completion, list matches, then longest common part, then all.
+vim.o.wildmode = 'list:longest,full'
+-- Ignore case when tab completing
+vim.o.wildignorecase = true
+vim.opt.wildignore:append {
+  '*.pyc',
+  '*.pyo',
+  'CVS',
+  '.svn',
+  '.git',
+  '*.mo',
+  '.DS_Store',
+  '*.pt.cache',
+  '*.Python',
+  '*.o',
+  '*.lo',
+  '*.la',
+  '*~',
+  '.AppleDouble',
+  '*/blobstorage/*',
+  '*/Paste*-*.egg/*',
+}
+
+-- toggle spell checking
+vim.keymap.set('n', 'cos', ':set spell!<CR>', { silent = true })
+-- set spell language to English and enable spell checking
+vim.o.spelllang = 'en'
+vim.o.spell = true
+
+-- This setting will cause the cursor to very briefly jump to a
+-- brace/parentheses/bracket's "match" whenever you type a closing or
+-- opening brace/parentheses/bracket.
+vim.o.showmatch = true
+
+-- Display an incomplete command in the lower right corner of the Vim window
+vim.o.showcmd = true
+
+-- vim.o.a margin of lines when scrolling
+vim.o.scrolloff = 4
+-- lines to scroll when cursor leaves screen
+vim.o.scrolljump = 0
+
+-- show the statusline in all windows
+vim.o.laststatus = 2
+
+-- vim.o.all window splits equal
+vim.o.equalalways = true
+
+-- more natural split direction
+vim.o.splitbelow = true
+vim.o.splitright = true
+
+-- highlight the cursor line
+vim.o.cursorline = true
+
+-- turn on line numbers, aww yeah
+vim.o.number = true
+-- shortcut to turn off line numbers
+vim.keymap.set('n', 'con', ':set number!<CR>', { silent = true })
+-- toggle relative number
+vim.keymap.set('n', 'conn', ':set relativenumber!<CR>', { silent = true })
+
+-- don't redraw during macros
+vim.o.lazyredraw = true
+
+-- Set linebreak so words don't get split
+vim.o.linebreak = true
+
+-- Scroll in smaller increments when going horizontal
+vim.o.sidescroll = 5
+
+-- toggle line wrapping on/off
+vim.keymap.set('n', 'cow', ':set wrap!<CR>', { silent = true })
+
+vim.api.nvim_create_augroup('PreservingFilePosition', { clear = true })
+-- When editing a file, always jump to the last known cursor position.
+-- Don't do it when the position is invalid or when inside an event handler
+-- (happens when dropping a file on gvim).
+-- Also don't do it when the mark is in the first line, that is the default
+-- position when opening a file.
+vim.api.nvim_create_autocmd('BufReadPost', {
+  group = 'PreservingFilePosition',
+  callback = function()
+    local line = vim.fn.line
+    if line [['"]] > 1 and line [['"]] <= line '$' then
+      vim.cmd [[normal! g`"]]
+    end
+  end,
+})
+-- Jump to top for SVN and Git commit messages
+vim.api.nvim_create_autocmd('BufReadPost', {
+  group = 'PreservingFilePosition',
+  pattern = { 'svn-commit*.tmp', 'COMMIT_EDITMSG*' },
+  callback = function()
+    vim.cmd 'normal! gg'
+  end,
+})
+
+-- Define a Lua function to replicate NeatFoldText
+-- Adapted from
+-- http://dhruvasagar.com/2013/03/28/vim-better-foldtext
+function _G.NeatFoldText()
+  local start_line = vim.fn.getline(vim.v.foldstart)
+  local line = ' ' .. start_line:gsub([[^%s*"?%s*|%s*"?%s*{{{?%d*%s*]], '') .. ' '
+  local lines_count = vim.v.foldend - vim.v.foldstart + 1
+  local lines_count_text = '| ' .. string.format('%10s', lines_count .. ' lines') .. ' |'
+  local foldchar = vim.opt.fillchars:get().fold or '·' -- fallback if not set
+  local foldtextstart = string.sub('+' .. string.rep(foldchar, vim.v.foldlevel * 2) .. line, 1, math.floor((vim.fn.winwidth(0) * 2) / 3))
+  local foldtextend = lines_count_text .. string.rep(foldchar, 8)
+  local foldtextlength = vim.fn.strdisplaywidth(foldtextstart .. foldtextend) + vim.o.foldcolumn
+  return foldtextstart .. string.rep(foldchar, math.max(0, vim.fn.winwidth(0) - foldtextlength)) .. foldtextend
+end
+-- Set the foldtext to the custom function
+vim.opt.foldtext = 'v:lua.NeatFoldText()'
+
+-- Searching                                                    {{{1
+--------------------------------------------------------------------
+-- find as you type
+vim.o.incsearch = true
+-- highlight the terms
+vim.o.hlsearch = true
+-- make searches case-insensitive
+vim.o.ignorecase = true
+-- unless they contain upper-case letters
+vim.o.smartcase = true
+
+-- Colors and Syntax                                            {{{1
+--------------------------------------------------------------------
+
+-- TODO: is this needed?
+-- turn on syntax highlighting
+vim.cmd 'syntax on'
+
+-- TODO: is this needed?
+-- highlight all python syntax
+vim.g.python_highlight_all = 1
+
+-- TODO: is this needed?
+-- gui and terminal compatible color scheme
+vim.o.background = 'light'
+
+-- TODO: is this needed?
+-- Use the "original" molokai theme colors instead of "dark"
+vim.g.molokai_original = 1
+
+-- TODO: is this needed?
+-- Zenburn settings
+vim.g.zenburn_alternate_Error = 1
+
+-- TODO: is this needed?
+-- Solarized settings
+vim.g.solarized_termcolors = 16
+vim.g.solarized_diffmode = 'high'
+vim.g.neosolarized_termtrans = 1
+
+-- Function to quickly apply and reset custom highlights
+local function extra_highlights()
+  -- Syntax highlights for tm1/tm2/tm3
+  vim.cmd [[hi InterestingWord1 guifg=#eee8d5 guibg=#FF4300 ctermfg=254 ctermbg=166]]
+  vim.cmd [[hi InterestingWord2 guifg=#eee8d5 guibg=#859900 ctermfg=254 ctermbg=64]]
+  vim.cmd [[hi InterestingWord3 guifg=#eee8d5 guibg=#268bd2 ctermfg=254 ctermbg=33]]
+
+  -- Highlight for IndentGuides
+  vim.cmd [[hi IndentGuides guibg=#373737 ctermbg=237]]
+
+  -- Clear previous matches
+  vim.cmd [[match none | 2match none | 3match none]]
+
+  -- Italic comments
+  vim.cmd [[hi Comment cterm=italic]]
+
+  -- Optional: PaperColor tweaks
+  -- vim.cmd [[hi clear SpellBad]]
+  -- vim.cmd [[hi clear SpellRare]]
+  -- vim.cmd [[hi SpellBad cterm=undercurl gui=undercurl guisp=black]]
+  -- vim.cmd [[hi ErrorMsg ctermfg=8 ctermbg=1 guifg=White guibg=Red]]
+end
+
+vim.api.nvim_create_user_command('ExtraHighlightsInit', extra_highlights, {})
+
+-- A function to toggle between light and dark colors, or switch to a theme
+local function color_switcher(opts)
+  local theme = opts.args
+  if theme ~= '' then
+    vim.cmd 'hi clear'
+    vim.cmd('colorscheme ' .. theme)
+    extra_highlights()
+    return
+  end
+
+  -- Toggle light/dark theme
+  if vim.o.background == 'dark' then
+    vim.o.background = 'light'
+    vim.fn.system { 'kitty', '+kitten', 'themes', '--reload-in=all', 'catppuccin-latte' }
+  else
+    vim.o.background = 'dark'
+    vim.fn.system { 'kitty', '+kitten', 'themes', '--reload-in=all', 'catppuccin-mocha' }
+  end
+
+  extra_highlights()
+end
+
+-- Completion for colorscheme names
+local function complete_colorschemes(arglead, _, _)
+  local schemes = {}
+  local paths = vim.split(vim.fn.globpath(vim.o.runtimepath, 'colors/*.vim'), '\n')
+  for _, path in ipairs(paths) do
+    local name = vim.fn.fnamemodify(path, ':t:r')
+    if not name:match '_custom$' then
+      table.insert(schemes, name)
+    end
+  end
+  return vim.tbl_filter(function(val)
+    return val:match('^' .. arglead)
+  end, schemes)
+end
+
+vim.api.nvim_create_user_command('ColorSwitcher', color_switcher, {
+  nargs = '?',
+  complete = complete_colorschemes,
+})
+
+-- switch between light and dark colors
+vim.keymap.set('n', 'coc', ':ColorSwitcher<CR>', { silent = true, desc = 'Toggle light/dark theme or switch theme' })
+
+-- Enable true color
+vim.o.termguicolors = true
+
+-- set initial colorscheme
+--vim.cmd 'ColorSwitcher catppuccin-latte'
+
+-- Toggle the gutter
+local function toggle_gutter_signs()
+  if vim.o.signcolumn:match 'auto' or vim.o.signcolumn:match 'yes' then
+    vim.o.signcolumn = 'no'
+
+    -- TODO: is this needed?
+    --vim.cmd('CocDisable')
+  else
+    vim.o.signcolumn = 'auto'
+    -- TODO: is this needed?
+    --vim.cmd('CocEnable')
+  end
+end
+
+vim.api.nvim_create_user_command('ToggleGutterSigns', toggle_gutter_signs, {})
+
+-- Toggle the gutter on and off
+vim.keymap.set('n', 'cog', ':ToggleGutterSigns<CR>', { silent = true, desc = 'Toggle sign column' })
+
+--
+--
+--
+--
 -- My Config end                                                {{{1
+--
+--
+--
+--
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
@@ -691,28 +1010,28 @@ require('lazy').setup({
           --
           -- When you move your cursor, the highlights will be cleared (the second autocommand).
           local client = vim.lsp.get_client_by_id(event.data.client_id)
-          if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
-            local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
-            vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-              buffer = event.buf,
-              group = highlight_augroup,
-              callback = vim.lsp.buf.document_highlight,
-            })
+          --if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
+          --  local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
+          --  vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+          --    buffer = event.buf,
+          --    group = highlight_augroup,
+          --    callback = vim.lsp.buf.document_highlight,
+          --  })
 
-            vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
-              buffer = event.buf,
-              group = highlight_augroup,
-              callback = vim.lsp.buf.clear_references,
-            })
+          --  vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+          --    buffer = event.buf,
+          --    group = highlight_augroup,
+          --    callback = vim.lsp.buf.clear_references,
+          --  })
 
-            vim.api.nvim_create_autocmd('LspDetach', {
-              group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
-              callback = function(event2)
-                vim.lsp.buf.clear_references()
-                vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
-              end,
-            })
-          end
+          --  vim.api.nvim_create_autocmd('LspDetach', {
+          --    group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
+          --    callback = function(event2)
+          --      vim.lsp.buf.clear_references()
+          --      vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
+          --    end,
+          --  })
+          --end
 
           -- The following code creates a keymap to toggle inlay hints in your
           -- code, if the language server you are using supports them
@@ -976,25 +1295,12 @@ require('lazy').setup({
     },
   },
 
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
+  {
+    'catppuccin/nvim',
+    name = 'catppuccin',
+    priority = 1000,
     config = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require('tokyonight').setup {
-        styles = {
-          comments = { italic = false }, -- Disable italics in comments
-        },
-      }
-
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+      vim.cmd.colorscheme 'catppuccin-latte'
     end,
   },
 
