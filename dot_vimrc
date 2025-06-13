@@ -207,11 +207,7 @@ if v:version >= 703
     set undofile
 
     " keep a persistent backup file
-    if has('nvim')
-        set undodir=~/.backup/vim/undo,~/tmp,/tmp
-    else
-        set undodir=~/.backup/vim/undo_vim,~/tmp,/tmp
-    endif
+    set undodir=~/.backup/vim/undo_vim,~/tmp,/tmp
 endif
 
 " have fifty lines of command-line (etc.) history:
@@ -392,9 +388,7 @@ set foldtext=NeatFoldText()
 " -----------------------------------------------------------------
 
 " turn off smart indentation when pasting
-if !has('nvim')
-  set pastetoggle=<F2>
-endif
+set pastetoggle=<F2>
 
 " Searching                                                    {{{1
 " -----------------------------------------------------------------
@@ -1376,14 +1370,6 @@ map <C-W>\| <C-W>v
 " Zoom like in tmux too
 map <C-W>z <C-w>o
 
-" Deal with neovim terminals and window movement
-if has('nvim')
-  tnoremap <C-h> <C-\><C-n><C-h>
-  tnoremap <C-j> <C-\><C-n><C-j>
-  tnoremap <C-k> <C-\><C-n><C-k>
-  tnoremap <C-l> <C-\><C-n><C-l>
-endif
-
 " GUI settings                                                 {{{1
 " -----------------------------------------------------------------
 
@@ -1396,17 +1382,6 @@ map <leader>2 :VSSelectWindowSize bigger<CR>
 map <leader>3 :VSSelectWindowSize ginourmous<CR>
 map <leader>4 :VSSelectWindowSize 1280screen<CR>
 map <leader>5 :VSSelectWindowSize bigandtall<CR>
-
-if has('nvim')
-    " Temporary fix for neovim/neovim#2048
-    " Shoutout to @vilhalmer for the idea for this fix
-    " https://github.com/vilhalmer/System/commit/a40ff262918a83e88fb643bad31dde3c45211bba
-    "
-    " Fix for window movement
-    nmap <bs> <C-w>h
-    " Fix for tab movement
-    nmap <C-w><bs> :tabprevious<CR>
-endif
 
 if has("gui_running")
     " turn off the cursor blinking (who thinks that is a good idea?)
