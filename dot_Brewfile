@@ -30,12 +30,14 @@ brew 'bat'
 brew 'eza'
 brew 'shellcheck'
 brew 'vivid'
+brew 'fd'
 
 # For development
 brew 'go'
 brew 'asdf'
 # deps for building various things
 brew 'lua'
+brew 'luarocks'
 brew 'libyaml'
 ## Dev utils
 brew 'ctags'

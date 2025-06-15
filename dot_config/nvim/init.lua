@@ -1,20 +1,4 @@
 -- kickstart                                                                     {{{1
---[[
-
-    After understanding a bit more about Lua, you can use `:help lua-guide` as a
-    reference for how Neovim integrates Lua.
-    - :help lua-guide
-    - (or HTML version): https://neovim.io/doc/user/lua-guide.html
-
-    MOST IMPORTANTLY, we provide a keymap "<space>sh" to [s]earch the [h]elp documentation,
-    which is very useful when you're not exactly sure of what you're looking for.
-
-If you experience any errors while trying to install kickstart, run `:checkhealth` for more info.
---]]
--- [[ Setting options ]]
--- See `:help vim.o`
--- NOTE: You can change these options as you wish!
---  For more options, you can see `:help option-list`
 
 -- Don't show the mode, since it's already in the status line
 vim.o.showmode = false
@@ -22,28 +6,8 @@ vim.o.showmode = false
 -- Enable break indent
 -- vim.o.breakindent = true
 
--- Keep signcolumn on by default
-vim.o.signcolumn = 'yes'
-
--- Sets how neovim will display certain whitespace characters in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
---
---  Notice listchars is set using `vim.opt` instead of `vim.o`.
---  It is very similar to `vim.o` but offers an interface for conveniently interacting with tables.
---   See `:help lua-options`
---   and `:help lua-options-guide`
-vim.o.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
-
 -- Preview substitutions live, as you type!
 vim.o.inccommand = 'split'
-
--- Show which line your cursor is on
-vim.o.cursorline = true
-
--- Minimal number of screen lines to keep above and below the cursor.
-vim.o.scrolloff = 10
 
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
@@ -51,57 +15,18 @@ vim.o.scrolloff = 10
 vim.o.confirm = true
 
 -- [[ Basic Keymaps ]]
---  See `:help vim.keymap.set()`
-
--- Clear highlights on search when pressing <Esc> in normal mode
---  See `:help hlsearch`
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+-- TODO: I think I have a simlar one, but does it work?
+--vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
---
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
+-- TODO: does this work?
 -- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-
--- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
-
--- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
---
---  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-
--- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
--- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
--- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
--- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
--- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
-
--- [[ Basic Autocommands ]]
---  See `:help lua-guide-autocommands`
-
--- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.hl.on_yank()`
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function()
-    vim.hl.on_yank()
-  end,
-})
+--vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- My Config                                                    {{{1
 -- My vimrc uses folds
@@ -134,7 +59,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 --    cos             -- Toggle spell checking
 --    cot             -- Change the tab name
 --    cow             -- Toggle line wrapping
---    cox             -- Toggles NERDTree drawer
+--    cox             -- Toggles file drawer
 --
 -- Clean Up mnemonic                                            {{{2
 -- -----------------------------------------------------------------
@@ -257,7 +182,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- General setting                                              {{{1
 --------------------------------------------------------------------
 -- Set <space> as the leader key
---  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -609,7 +533,11 @@ vim.keymap.set('n', 'coc', ':ColorSwitcher<CR>', { silent = true, desc = 'Toggle
 vim.o.termguicolors = true
 
 -- set initial colorscheme
+-- TODO: move this to plugin config below?
 --vim.cmd 'ColorSwitcher catppuccin-latte'
+
+-- Keep signcolumn on by default
+vim.o.signcolumn = 'auto'
 
 -- Toggle the gutter
 local function toggle_gutter_signs()
@@ -884,6 +812,16 @@ end, { nargs = 1 })
 -- Auto command settings                                        {{{1
 --~-----------------------------------------------------------------
 
+-- Highlight when yanking (copying) text
+-- Taken from kickstart.nvim
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking (copying) text',
+  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  callback = function()
+    vim.hl.on_yank()
+  end,
+})
+
 -- augroup FileTypes
 local filetype_group = vim.api.nvim_create_augroup('FileTypes', { clear = true })
 
@@ -1134,13 +1072,13 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
 
 -- Make cursor move by visual lines instead of file lines (when wrapping)
 -- This makes me feel more at home :)
-vim.keymap.set('', '<up>', 'gk')
+vim.keymap.set('n', '<up>', 'gk')
 vim.keymap.set('n', 'k', 'gk')
 vim.keymap.set('i', '<up>', '<C-o>gk')
-vim.keymap.set('', '<down>', 'gj')
+vim.keymap.set('n', '<down>', 'gj')
 vim.keymap.set('n', 'j', 'gj')
 vim.keymap.set('i', '<down>', '<C-o>gj')
-vim.keymap.set('', 'E', 'ge')
+vim.keymap.set('n', 'E', 'ge')
 
 -- window resizing
 if vim.fn.bufwinnr(1) ~= -1 then
@@ -1183,36 +1121,36 @@ vim.keymap.set('n', 'coi', ':set list!<CR>', { silent = true })
 -- -----------------------------------------------------------------
 
 -- Mapping window commands directly
-vim.keymap.set('', '<C-H>', '<C-W>h')
-vim.keymap.set('', '<C-J>', '<C-W>j')
-vim.keymap.set('', '<C-K>', '<C-W>k')
-vim.keymap.set('', '<C-L>', '<C-W>l')
+vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Move between tabs
-vim.keymap.set('', '<C-W><C-L>', ':tabnext<CR>', { silent = true })
-vim.keymap.set('', '<C-W><C-H>', ':tabprevious<CR>', { silent = true })
-vim.keymap.set('', '<C-W><C-N>', ':tabnext<CR>', { silent = true })
-vim.keymap.set('', '<C-W><C-P>', ':tabprevious<CR>', { silent = true })
+vim.keymap.set('n', '<C-W><C-L>', ':tabnext<CR>', { silent = true, desc = 'Move focus to next tab' })
+vim.keymap.set('n', '<C-W><C-H>', ':tabprevious<CR>', { silent = true, desc = 'Move focus to previous tab' })
+vim.keymap.set('n', '<C-W><C-N>', ':tabnext<CR>', { silent = true, desc = 'Move focus to next tab' })
+vim.keymap.set('n', '<C-W><C-P>', ':tabprevious<CR>', { silent = true, desc = 'Move focus to previous tab' })
 
 -- Create a new tab
-vim.keymap.set('', '<C-W><C-T>', ':tabnew<CR>', { silent = true })
+vim.keymap.set('n', '<C-W><C-T>', ':tabnew<CR>', { silent = true })
 
 -- Edit current buffer in a tab (think tmux zoom)
-vim.keymap.set('', '<C-W><C-I>', ':tabedit %<CR>', { silent = true })
+vim.keymap.set('n', '<C-W><C-I>', ':tabedit %<CR>', { silent = true })
 
 -- Close the current tab
-vim.keymap.set('', '<C-W><C-X>', ':tabclose<CR>', { silent = true })
+vim.keymap.set('n', '<C-W><C-X>', ':tabclose<CR>', { silent = true })
 
 -- cycle windows
-vim.keymap.set('', '<C-W>e', '<C-W>W')
-vim.keymap.set('', '<C-W><C-E>', '<C-W>W')
+vim.keymap.set('n', '<C-W>e', '<C-W>W')
+vim.keymap.set('n', '<C-W><C-E>', '<C-W>W')
 
 -- Window splits like I have mapped in tmux (- horizontal, | vertical)
-vim.keymap.set('', '<C-W>-', '<C-W>s')
-vim.keymap.set('', '<C-W>|', '<C-W>v')
+vim.keymap.set('n', '<C-W>-', '<C-W>s')
+vim.keymap.set('n', '<C-W>|', '<C-W>v')
 
 -- Zoom like in tmux too
-vim.keymap.set('', '<C-W>z', '<C-W>o')
+vim.keymap.set('n', '<C-W>z', '<C-W>o')
 
 -- Deal with neovim terminals and window movement
 vim.keymap.set('t', '<C-h>', [[<C-\><C-n><C-h>]])
@@ -1242,6 +1180,20 @@ require('lazy').setup({
   --'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
 
   {
+    "andre-kotake/nvim-chezmoi",
+    dependencies = {
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-telescope/telescope.nvim" },
+    },
+    opts = {
+      edit = { apply_on_save = "confirm" },
+    },
+    config = function(_, opts)
+      require("nvim-chezmoi").setup(opts)
+    end,
+  },
+
+  {
     'lewis6991/gitsigns.nvim',
     opts = {
       signs = {
@@ -1258,7 +1210,7 @@ require('lazy').setup({
     'folke/which-key.nvim',
     event = 'VimEnter',
     opts = {
-      delay = 0,
+      delay = 400,
       icons = {
         -- set icon mappings to true if you have a Nerd Font
         mappings = vim.g.have_nerd_font,
@@ -1318,7 +1270,6 @@ require('lazy').setup({
         end,
       },
       { 'nvim-telescope/telescope-ui-select.nvim' },
-      -- Useful for getting pretty icons, but requires a Nerd Font.
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
     config = function()
@@ -1336,16 +1287,22 @@ require('lazy').setup({
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
-      vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-      vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
-      vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-      vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+
+      -- My old ways
+      vim.keymap.set('n', 'ff', builtin.git_files, { desc = 'Fuzzy find all files' })
+      vim.keymap.set('n', 'ffa', builtin.find_files, { desc = 'Fuzzy find all files' })
+      vim.keymap.set('n', 'ffb', builtin.buffers, { desc = 'Fuzzy find buffers' })
+      vim.keymap.set('n', 'ffh', builtin.help_tags, { desc = 'Fuzzy find help' })
+      vim.keymap.set('n', 'ffr', function()
+        builtin.oldfiles { only_cwd = true }
+      end, { desc = 'Fuzzy find Recent Files in CWD ("." for repeat)' })
+      vim.keymap.set('n', 'ffra', builtin.oldfiles, { desc = 'Fuzzy find Recent Files' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
@@ -1821,9 +1778,9 @@ require('lazy').setup({
     branch = 'v3.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
-      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+      'nvim-tree/nvim-web-devicons',
       'MunifTanjim/nui.nvim',
-      -- {"3rd/image.nvim", opts = {}}, -- Optional image support in preview window: See `# Preview Mode` for more information
+      {"3rd/image.nvim", opts = {}},
     },
     lazy = false, -- neo-tree will lazily load itself
     ---@module "neo-tree"
@@ -1831,6 +1788,9 @@ require('lazy').setup({
     opts = {
       -- fill any relevant options here
     },
+    config = function()
+      vim.keymap.set('n', 'cox', ':Neotree toggle<CR>', { desc = 'Toggle file drawer' })
+    end
   },
 
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
