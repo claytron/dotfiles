@@ -281,10 +281,8 @@ vim.keymap.set('i', 'jk', '<Esc>', { noremap = true, silent = true })
 -- :terminal settings
 vim.g.terminal_scrollback_buffer_size = 100000
 
--- TODO: what should this be set to?
 -- Python support via virtualenvs
---vim.g.python_host_prog = vim.fn.expand("~/.virtualenvs/neovim-py2/bin/python", ":p")
---vim.g.python3_host_prog = vim.fn.expand("~/.virtualenvs/neovim/bin/python", ":p")
+vim.g.python3_host_prog = vim.fn.expand("~/.virtualenvs/neovim/bin/python:p")
 
 -- hide the backup and swap files
 vim.o.backupdir = '~/.backup/vim,.,/tmp'
