@@ -1,9 +1,11 @@
 [".teamocil"]
     type = "git-repo"
     url = "git@github.com:claytron/teamocil-config.git"
+    refreshPeriod = '48h'
 [".fortunes"]
     type = "git-repo"
     url = "git@github.com:claytron/fortunes.git"
+    refreshPeriod = '48h'
 [".tmux/plugins/tpm"]
     type = "git-repo"
     url = "https://github.com/tmux-plugins/tpm"
