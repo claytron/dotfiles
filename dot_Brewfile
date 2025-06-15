@@ -19,6 +19,7 @@ brew 'atuin'
 
 # Fonts!
 cask "font-victor-mono"
+cask "font-victor-mono-nerd-font"
 
 # Helpers for dotfiles related stuff
 brew 'moreutils'

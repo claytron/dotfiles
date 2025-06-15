@@ -11,10 +11,6 @@
 
 If you experience any errors while trying to install kickstart, run `:checkhealth` for more info.
 --]]
-
--- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
-
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
@@ -364,6 +360,9 @@ vim.keymap.set('n', 'fth', ':set ft=html<CR>', { desc = 'Set filetype: html' })
 
 -- Visual settings                                              {{{1
 --------------------------------------------------------------------
+-- Used later to configure plugins to instruct them to use a nerd font
+vim.g.have_nerd_font = true
+
 -- tell the bell to go beep itself!
 vim.o.visualbell = false
 
