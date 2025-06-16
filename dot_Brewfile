@@ -19,6 +19,7 @@ brew 'atuin'
 
 # Fonts!
 cask "font-victor-mono"
+cask "font-victor-mono-nerd-font"
 
 # Helpers for dotfiles related stuff
 brew 'moreutils'
@@ -29,12 +30,14 @@ brew 'bat'
 brew 'eza'
 brew 'shellcheck'
 brew 'vivid'
+brew 'fd'
 
 # For development
 brew 'go'
 brew 'asdf'
 # deps for building various things
 brew 'lua'
+brew 'luarocks'
 brew 'libyaml'
 ## Dev utils
 brew 'ctags'

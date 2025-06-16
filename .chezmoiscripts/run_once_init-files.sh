@@ -15,6 +15,8 @@ dirs_to_make=(
     "$HOME"/.backup/vim/undo
     "$HOME"/.backup/vim/undo_vim
     "$HOME"/.backup/vim/swap
+    "$HOME"/.backup/nvim/undo
+    "$HOME"/.backup/nvim/swap
     "$HOME"/.virtualenvs
     "$HOME"/.buildout
     "$HOME"/.buildout/eggs

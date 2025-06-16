@@ -10,9 +10,10 @@ alias what_linux="cat /etc/issue"
 
 # chezmoi
 alias cm=chezmoi
-alias cma="chezmoi apply"
+alias cma="chezmoi --refresh-externals apply"
 alias cme="chezmoi edit"
 alias cmd="chezmoi diff"
+alias cmm="chezmoi merge-all"
 alias cmu="chezmoi update"
 
 # switch over to the simple prompt
@@ -22,6 +23,7 @@ alias sp='source ~/.zshprompt_simple'
 if checkPath nvim; then
     alias vi=nvim
     alias vim=nvim
+    alias vimdiff='nvim -d'
 elif checkPath vim; then
     alias vi=vim
 else
