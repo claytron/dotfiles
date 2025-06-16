@@ -149,6 +149,15 @@ export PUSHOVER_USER={{ onepasswordRead "op://Private/pushover.net/tomato time/u
 export PUSHOVER_TOKEN={{ onepasswordRead "op://Private/pushover.net/tomato time/token" }}
 # Token for each workspace to change
 export SLACK_APPS=({{ onepasswordRead "op://Private/pushover.net/tomato time/slack_tokens" }})
+
+# AI Stuff
+{{- if .work }}
+export ANTHROPIC_API_KEY={{ onepasswordRead "op://Private/Claude/neovim-work" }}
+export OPENAI_API_KEY={{ onepasswordRead "op://Private/OpenAI/neovim-work" }}
+{{- else }}
+export ANTHROPIC_API_KEY={{ onepasswordRead "op://Private/Claude/neovim-personal" }}
+export OPENAI_API_KEY={{ onepasswordRead "op://Private/OpenAI/neovim-personal" }}
+{{- end }}
 {{- if .work }}
 
 # Work specific settings
