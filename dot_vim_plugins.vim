@@ -11,10 +11,8 @@ Plug 'tpope/vim-rails'
 Plug 'airblade/vim-localorie'
 Plug 'vim-scripts/bbcode'
 Plug 'fatih/vim-go'
-if !has('nvim')
-  " This only works in standard vim
-  Plug 'bfrg/vim-jqplay'
-endif
+" This only works in standard vim
+Plug 'bfrg/vim-jqplay'
 " not sure why go doesn't work in polyglot...
 let g:polyglot_disabled = ['go']
 " Check if this has it before adding a new one...
@@ -43,11 +41,7 @@ Plug 'vim-scripts/simplewhite.vim'
 Plug 'tomasr/molokai'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'sonjapeterson/1989.vim'
-if !has('nvim')
-  Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
-else
-  Plug 'catppuccin/vim', { 'as': 'catppuccin' }
-endif
+Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 
 " UI
 Plug 'vim-airline/vim-airline' | Plug 'paranoida/vim-airlineish' | Plug 'vim-airline/vim-airline-themes'

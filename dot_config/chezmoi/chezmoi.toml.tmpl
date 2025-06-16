@@ -3,6 +3,15 @@ command = "delta"
 pager = "delta"
 exclude = ["scripts"]
 
+[merge]
+    command = "nvim"
+    args = [
+        "-d",
+        {{ printf "%q" "{{ .Destination }}" }},
+        {{ printf "%q" "{{ .Source }}" }},
+        {{ printf "%q" "{{ .Target }}" }},
+    ]
+
 [data]
 {{- if (or (eq .chezmoi.hostname "charon")) }}
 work = true
