@@ -1150,6 +1150,8 @@ require('lazy').setup {
     end,
   },
 
+  -- Gitsigns                                                   {{{2
+  --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   {
     'lewis6991/gitsigns.nvim',
     opts = {
@@ -1161,6 +1163,11 @@ require('lazy').setup {
         changedelete = { text = '~' },
       },
     },
+    config = function()
+      require('gitsigns').setup {
+        vim.keymap.set('n', 'tgb', require('gitsigns').blame),
+      }
+    end,
   },
 
   {
@@ -1782,6 +1789,27 @@ require('lazy').setup {
     config = function()
       vim.keymap.set('n', 'cox', ':Neotree toggle<CR>', { desc = 'Toggle file drawer' })
       vim.keymap.set('n', 'tmf', ':Neotree reveal<CR>', { desc = 'Show current file in drawer' })
+    end,
+  },
+
+  -- Neogit                                                     {{{2
+  --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  {
+    'NeogitOrg/neogit',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'sindrets/diffview.nvim',
+      'nvim-telescope/telescope.nvim',
+    },
+    config = function()
+      local neogit = require 'neogit'
+      vim.keymap.set('n', 'tgg', neogit.open, { desc = 'Show git status' })
+      vim.keymap.set('n', 'tgl', function()
+        neogit.open { 'log' }
+      end, { desc = 'Git log popup' })
+      vim.keymap.set('n', 'tgll', function()
+        neogit.action('log', 'log_current')()
+      end, { desc = 'Show git log for repo' })
     end,
   },
 }
