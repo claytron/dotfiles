@@ -1118,6 +1118,8 @@ vim.keymap.set('t', '<C-l>', [[<C-\><C-n><C-l>]])
 -- Plugins                                                      {{{1
 --------------------------------------------------------------------
 
+-- Lazy install                                                 {{{2
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -- Install `lazy.nvim` plugin manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -1133,9 +1135,14 @@ local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
 require('lazy').setup {
+
+  -- Guess indent                                               {{{2
+  --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   -- TODO: get rid of my tabstyle script?
   --'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
 
+  -- Chezmoi                                                    {{{2
+  --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   {
     'andre-kotake/nvim-chezmoi',
     dependencies = {
@@ -1170,6 +1177,8 @@ require('lazy').setup {
     end,
   },
 
+  -- Which key                                                  {{{2
+  --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   {
     'folke/which-key.nvim',
     event = 'VimEnter',
@@ -1221,6 +1230,8 @@ require('lazy').setup {
     },
   },
 
+  -- Telescope git grep                                         {{{2
+  --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   { -- TODO: not sure this will completely work for my use cases of searching old commits too
     'davvid/telescope-git-grep.nvim',
     config = function()
@@ -1230,6 +1241,8 @@ require('lazy').setup {
     end,
   },
 
+  -- Telescope                                                   {{{2
+  --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
@@ -1302,7 +1315,8 @@ require('lazy').setup {
     end,
   },
 
-  -- LSP Plugins
+  -- LSP Plugins                                                {{{2
+  --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   {
     -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
     -- used for completion, annotations and signatures of Neovim apis
@@ -1315,6 +1329,9 @@ require('lazy').setup {
       },
     },
   },
+
+  -- LSP Config                                                 {{{2
+  --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
@@ -1529,6 +1546,8 @@ require('lazy').setup {
     end,
   },
 
+  -- Conform                                                    {{{2
+  --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   { -- Autoformat
     'stevearc/conform.nvim',
     event = { 'BufWritePre' },
@@ -1571,6 +1590,8 @@ require('lazy').setup {
     },
   },
 
+  -- Blink                                                      {{{2
+  --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   { -- Autocompletion
     'saghen/blink.cmp',
     event = 'VimEnter',
@@ -1670,6 +1691,8 @@ require('lazy').setup {
     },
   },
 
+  -- Catppuccin                                                 {{{2
+  --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   {
     'catppuccin/nvim',
     name = 'catppuccin',
@@ -1679,6 +1702,8 @@ require('lazy').setup {
     end,
   },
 
+  -- Markview                                                   {{{2
+  --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   {
     'OXY2DEV/markview.nvim',
     lazy = false,
@@ -1687,6 +1712,8 @@ require('lazy').setup {
     },
   },
 
+  -- TODO Comments                                              {{{2
+  --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   -- Highlight todo, notes, etc in comments
   {
     'folke/todo-comments.nvim',
@@ -1695,6 +1722,8 @@ require('lazy').setup {
     opts = { signs = false },
   },
 
+  -- Mini                                                       {{{2
+  --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
     config = function()
@@ -1733,6 +1762,8 @@ require('lazy').setup {
     end,
   },
 
+  -- Treesitter                                                 {{{2
+  --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
@@ -1771,6 +1802,8 @@ require('lazy').setup {
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
 
+  -- Neotree                                                    {{{2
+  --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   {
     'nvim-neo-tree/neo-tree.nvim',
     branch = 'v3.x',
