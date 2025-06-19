@@ -1992,6 +1992,28 @@ require('lazy').setup {
       }
     end,
   },
+
+  -- Snacks                                                     {{{2
+  --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  {
+    'folke/snacks.nvim',
+    ---@type snacks.Config
+    opts = {
+      gitbrowse = {
+        enabled = true,
+      },
+    },
+    keys = {
+      {
+        'tgbb',
+        function()
+          Snacks.gitbrowse()
+        end,
+        desc = 'Git Browse',
+        mode = { 'n', 'v' },
+      },
+    },
+  },
 }
 
 -- vim: fdm=marker ts=2 sts=2 sw=2 et
