@@ -185,13 +185,8 @@ vim.g.terminal_scrollback_buffer_size = 100000
 -- Python support via virtualenvs
 vim.g.python3_host_prog = vim.fn.expand '~/.virtualenvs/neovim/bin/python:p'
 
--- hide the backup and swap files
-local prefix = vim.env.XDG_CONFIG_HOME or vim.fn.expand '~/.backup'
-vim.opt.backupdir = { prefix .. '/nvim/backup//' }
-vim.opt.directory = { prefix .. '/nvim/swp//' }
 -- Save undo history
 vim.o.undofile = true
-vim.opt.undodir = { prefix .. '/nvim/undo//' }
 
 -- have fifty lines of command-line (etc.) history:
 -- TODO: is this just the default now?
