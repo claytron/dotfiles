@@ -23,6 +23,7 @@ cask "font-victor-mono-nerd-font"
 
 # Helpers for dotfiles related stuff
 brew 'moreutils'
+brew 'coreutils'
 brew 'keychain'
 brew 'icdiff'
 brew 'git-delta'
