@@ -1843,6 +1843,14 @@ require('lazy').setup {
     'RRethy/nvim-treesitter-endwise',
   },
 
+  -- Autopairs                                                  {{{2
+  --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  {
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    config = true,
+  },
+
   -- Neotree                                                    {{{2
   --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   {
