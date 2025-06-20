@@ -226,3 +226,34 @@ dark_mode () {
         nvr --servername "$inst" --remote-send ':ColorSwitcher<cr>'
     done
 }
+{{- if eq .chezmoi.hostname "television" }}
+
+hash -d H=/Volumes/theater
+hash -d D=/Volumes/DELUGE/torrents
+hash -d T=/Volumes/DELUGE/torrents
+alias pms="/Applications/Plex\ Media\ Server.app/Contents/MacOS/Plex\ Media\ Scanner"
+
+function copy_movie () {
+    local movie
+    local movie_path
+    movie=$(transmission-remote 9080 -l | sort | sed -E 's/.*(Stopped|Idle|Seeding|Downloading) +//' | sed '$d' | tac | fzf)
+    [ -z "$movie" ] && return
+    movie_path="/Volumes/DELUGE/torrents/$movie"
+    if [ -d "$movie_path" ];then
+        movie_path="$(find "$movie_path" | fzf)"
+        [ -z "$movie_path" ] && return
+    fi
+    echo $movie_path
+    cp -X "$movie_path" ~H/Movies/Movies/.
+}
+
+function beet_import () {
+    local album
+    local album_path
+    album=$(transmission-remote 9080 -l | sort | sed -E 's/.*(Idle|Seeding|Downloading|Stopped) +//' | sed '$d' | tac | fzf)
+    [ -z "$album" ] && return
+    album_path="/Volumes/DELUGE/torrents/$album"
+    echo $album_path
+    beet import "$album_path"
+}
+{{- end }}
