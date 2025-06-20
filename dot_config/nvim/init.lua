@@ -531,24 +531,6 @@ vim.keymap.set('n', 'cog', ':ToggleGutterSigns<CR>', { silent = true, desc = 'To
 -- Custom functions and commands                                {{{1
 --------------------------------------------------------------------
 
--- Strip whitespace                                             {{{2
---~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--- Adapted from here:
--- https://vi.stackexchange.com/a/456/5433
-
--- Define the TrimWhitespace function
-local function trim_whitespace()
-  local view = vim.fn.winsaveview()
-  vim.cmd [[keeppatterns %s/\s\+$//e]]
-  vim.fn.winrestview(view)
-end
-
--- Create :TrimWhitespace command
-vim.api.nvim_create_user_command('TrimWhitespace', trim_whitespace, {})
-
--- Map `cuw` to trim whitespace
-vim.keymap.set('n', 'cuw', ':TrimWhitespace<CR>', { silent = true, desc = 'Trim trailing whitespace' })
-
 -- Tabs and spaces                                              {{{2
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1806,8 +1788,12 @@ require('lazy').setup {
         return '%2l:%-2v'
       end
 
-      -- ... and there is more!
-      --  Check out: https://github.com/echasnovski/mini.nvim
+      -- Highlight and clean up trailing whitespace
+      require('mini.trailspace').setup()
+      local trailspace = require 'mini.trailspace'
+      vim.keymap.set('n', 'cuw', function()
+        trailspace.trim()
+      end, { silent = true, desc = 'Trim trailing whitespace' })
     end,
   },
 
