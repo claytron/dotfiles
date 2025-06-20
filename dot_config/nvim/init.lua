@@ -1266,7 +1266,7 @@ require('lazy').setup {
     end,
   },
 
-  -- Telescope                                                   {{{2
+  -- Telescope                                                  {{{2
   --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
@@ -1835,6 +1835,12 @@ require('lazy').setup {
     --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
     --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+  },
+
+  -- Treesitter endwise                                         {{{2
+  --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  { -- add end to ruby, bash, etc.
+    'RRethy/nvim-treesitter-endwise',
   },
 
   -- Neotree                                                    {{{2
