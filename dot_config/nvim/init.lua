@@ -1743,6 +1743,24 @@ require('lazy').setup {
     opts = {},
   },
 
+  -- Peek                                                       {{{2
+  --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  {
+    'toppair/peek.nvim',
+    event = { 'VeryLazy' },
+    build = 'deno task --quiet build:fast',
+    config = function()
+      local peek = require 'peek'
+      peek.setup()
+      vim.keymap.set('n', 'tmm', function()
+        peek.open()
+      end, { desc = 'Open markdown preview' })
+      vim.keymap.set('n', 'tmmk', function()
+        peek.close()
+      end, { desc = 'Close markdown preview' })
+    end,
+  },
+
   -- TODO Comments                                              {{{2
   --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   -- Highlight todo, notes, etc in comments
