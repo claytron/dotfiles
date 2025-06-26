@@ -1519,6 +1519,16 @@ require('lazy').setup {
         -- ts_ls = {},
         --
 
+        bashls = {},
+        helm_ls = {},
+        yamlls = {},
+        pyright = {},
+        ts_ls = {},
+        ruby_lsp = {},
+        rubocop = {},
+        dockerls = {},
+        docker_compose_language_service = {},
+        prosemd_lsp = {},
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
