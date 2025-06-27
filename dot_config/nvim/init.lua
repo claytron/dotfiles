@@ -1719,7 +1719,20 @@ require('lazy').setup {
     },
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
-    opts = {},
+    opts = {
+      sign = {
+        enabled = false,
+      },
+      code = {
+        width = 'block',
+        min_width = 72,
+        right_pad = 2,
+        left_pad = 2,
+        border = 'thick',
+        position = 'right',
+        language_pad = 2,
+      },
+    },
   },
 
   -- Peek                                                       {{{2
