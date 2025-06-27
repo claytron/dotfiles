@@ -2008,6 +2008,48 @@ require('lazy').setup {
       },
     },
   },
+
+  -- Neotest                                                    {{{2
+  --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  {
+    'nvim-neotest/neotest',
+    dependencies = {
+      'nvim-neotest/nvim-nio',
+      'nvim-lua/plenary.nvim',
+      'antoinemadec/FixCursorHold.nvim',
+      'nvim-treesitter/nvim-treesitter',
+      'olimorris/neotest-rspec',
+    },
+    config = function()
+      require('neotest').setup {
+        adapters = {
+          require 'neotest-rspec' {
+            rspec_cmd = function()
+              return vim.tbl_flatten {
+                'bundle',
+                'exec',
+                'rspec',
+                '--deprecation-out',
+                '/dev/null',
+                '--out',
+                '/dev/null',
+                '-f',
+                'failures',
+              }
+            end,
+          },
+        },
+      }
+
+      local neotest = require 'neotest'
+      vim.keymap.set('n', 'tsl', function()
+        neotest.run.run()
+      end, { desc = 'Run the nearest test' })
+      vim.keymap.set('n', 'ts;', function()
+        neotest.run.run(vim.fn.expand '%')
+      end, { desc = 'Run the tests for the current file' })
+    end,
+  },
 }
 
 -- vim: fdm=marker ts=2 sts=2 sw=2 et
