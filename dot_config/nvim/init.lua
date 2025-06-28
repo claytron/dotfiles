@@ -1290,6 +1290,18 @@ require('lazy').setup {
             require('telescope.themes').get_dropdown(),
           },
         },
+        pickers = {
+          help_tags = {
+            mappings = {
+              i = {
+                ['<cr>'] = 'select_tab',
+              },
+              n = {
+                ['<cr>'] = 'select_tab',
+              },
+            },
+          },
+        },
       }
 
       -- Enable Telescope extensions if they are installed
