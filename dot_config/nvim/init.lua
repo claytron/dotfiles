@@ -982,7 +982,7 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
 -- helm files
 vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
   group = filetype_group,
-  pattern = 'chart*/**/*.y*ml',
+  pattern = { '*chart*/**/*.y*ml', '*chart*/*.y*ml' },
   command = 'set filetype=helm',
 })
 
