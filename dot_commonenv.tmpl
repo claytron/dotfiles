@@ -154,9 +154,11 @@ export SLACK_APPS=({{ onepasswordRead "op://Private/pushover.net/tomato time/sla
 {{- if .work }}
 export ANTHROPIC_API_KEY={{ onepasswordRead "op://Private/Claude/neovim-work" }}
 export OPENAI_API_KEY={{ onepasswordRead "op://Private/OpenAI/neovim-work" }}
+export TAVILY_API_KEY={{ onepasswordRead "op://Private/Tavily/neovim-work api key" }}
 {{- else }}
 export ANTHROPIC_API_KEY={{ onepasswordRead "op://Private/Claude/neovim-personal" }}
 export OPENAI_API_KEY={{ onepasswordRead "op://Private/OpenAI/neovim-personal" }}
+export TAVILY_API_KEY={{ onepasswordRead "op://Private/Tavily/default api key" }}
 {{- end }}
 {{- if .work }}
 
