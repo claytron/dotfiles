@@ -638,7 +638,7 @@ end, { silent = true })
 
 -- Diagnostic keymaps
 -- TODO: I think I have a simlar one, but does it work?
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', 'coe', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Copy search matches to register                              {{{2
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1312,7 +1312,6 @@ require('lazy').setup {
       local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
-      vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
 
       -- My old ways
@@ -1320,6 +1319,7 @@ require('lazy').setup {
       vim.keymap.set('n', 'ffa', builtin.find_files, { desc = 'Fuzzy find all files' })
       vim.keymap.set('n', 'ffb', builtin.buffers, { desc = 'Fuzzy find buffers' })
       vim.keymap.set('n', 'ffc', builtin.commands, { desc = 'Fuzzy find commands' })
+      vim.keymap.set('n', 'ffe', builtin.diagnostics, { desc = 'Fuzzy find error diagnostics' })
       vim.keymap.set('n', 'ffh', builtin.help_tags, { desc = 'Fuzzy find help' })
       vim.keymap.set('n', 'ffr', function()
         builtin.oldfiles { only_cwd = true }
