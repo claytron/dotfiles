@@ -2006,7 +2006,7 @@ require('lazy').setup {
       {
         'tgbb',
         function()
-          Snacks.gitbrowse()
+          require('snacks').gitbrowse()
         end,
         desc = 'Git Browse',
         mode = { 'n', 'v' },
