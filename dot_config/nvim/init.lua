@@ -1864,7 +1864,7 @@ require('lazy').setup {
       'nvim-lua/plenary.nvim',
       'nvim-tree/nvim-web-devicons',
       'MunifTanjim/nui.nvim',
-      -- { '3rd/image.nvim', opts = {} },
+      'folke/snacks.nvim',
     },
     lazy = false, -- neo-tree will lazily load itself
     ---@module "neo-tree"
@@ -2005,6 +2005,9 @@ require('lazy').setup {
     opts = {
       gitbrowse = {
         enabled = true,
+      },
+      image = {
+        force = true,
       },
     },
     keys = {
