@@ -1870,7 +1870,12 @@ require('lazy').setup {
     ---@module "neo-tree"
     ---@type neotree.Config?
     opts = {
-      -- fill any relevant options here
+      filesystem = {
+        follow_current_file = {
+          enabled = true,
+        },
+        use_libuv_file_watcher = true,
+      },
     },
     config = function()
       vim.keymap.set('n', 'cox', ':Neotree toggle<CR>', { desc = 'Toggle file drawer' })
