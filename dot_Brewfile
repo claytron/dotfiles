@@ -92,6 +92,7 @@ cask 'telegram'
 cask 'stats'
 cask 'visual-studio-code'
 cask 'slack'
+cask 'meetingbar'
 
 # Other fun stuff
 brew 'cowsay'
