@@ -688,7 +688,7 @@ vim.api.nvim_create_user_command('GlobalToBuffer', function()
     put! a
     normal! ggddGdd
   ]]
-end, {})
+end, { desc = 'Copy results of last global search to a new buffer for editing' })
 
 -- Open a buffer number in a vertical split                     {{{2
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
