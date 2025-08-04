@@ -1,4 +1,4 @@
-# General Style
+# Coding Style
 
 - Don't leave extraneous trailing whitespace unless it is explicitly needed.
 - Always add newlines to the end of new files
