@@ -163,7 +163,7 @@ export TAVILY_API_KEY={{ onepasswordRead "op://Private/Tavily/default api key" }
 {{- if .work }}
 
 # Work specific settings
-export BUNDLE_ENTERPRISE__CONTRIBSYS__COM={{ (bitwarden "item" "05a059eb-7164-47bc-99ab-ae290161ff54").login.username | quote }}
-export GITHUB_PACKAGE_AUTH={{ (bitwarden "item" "016e2ac9-1956-4cd3-9a00-af8201106e2e").login.password | quote }}
+export BUNDLE_ENTERPRISE__CONTRIBSYS__COM={{ (rbw "Sidekiq Enterprise Token").data.username | quote }}
+export GITHUB_PACKAGE_AUTH={{ (rbw "GITHUB_PACKAGE_AUTH").data.password | quote }}
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY='YES'
 {{- end }}

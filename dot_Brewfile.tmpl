@@ -14,7 +14,10 @@ brew 'telnet'
 brew 'dust'
 brew 'chezmoi'
 cask '1password/tap/1password-cli'
+{{- if .work }}
 brew 'bitwarden-cli'
+brew 'rbw'
+{{- end }}
 brew 'atuin'
 
 # Fonts!

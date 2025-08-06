@@ -1,5 +1,5 @@
 ---
 BUNDLE_PATH: "vendor/bundle"
 {{- if .work }}
-BUNDLE_HTTPS://RUBYGEMS__PKG__GITHUB__COM/{{ (bitwardenFields "item" "016e2ac9-1956-4cd3-9a00-af8201106e2e").organization.value | upper }}/: '{{ (bitwardenFields "item" "016e2ac9-1956-4cd3-9a00-af8201106e2e").github_user.value }}:{{ (bitwarden "item" "016e2ac9-1956-4cd3-9a00-af8201106e2e").login.password }}'
+BUNDLE_HTTPS://RUBYGEMS__PKG__GITHUB__COM/{{ (rbwFields "GITHUB_PACKAGE_AUTH").organization.value | upper }}/: '{{ (rbwFields "GITHUB_PACKAGE_AUTH").github_user.value }}:{{ (rbw "GITHUB_PACKAGE_AUTH").data.password }}'
 {{- end }}
