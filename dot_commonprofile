@@ -2,7 +2,10 @@
 source "$HOME/.commonfuncs"
 
 # run the fortune function....and...laugh
-[ -z "$NO_LAUGHS" ] && makeMeLaugh
+# only run in interactive shells to avoid output in non-interactive contexts like Claude Code
+if [ -t 1 ] && [ -z "$NO_LAUGHS" ]; then
+    makeMeLaugh
+fi
 
 # only update once a day
 # if checkPath git && [ -d ~/.dotfiles/.git ] && weShouldUpdate; then
