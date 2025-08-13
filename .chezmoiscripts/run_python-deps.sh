@@ -9,7 +9,7 @@
 
     cd neovim
     bin/pip install -U pip
-    bin/pip install pynvim
+    bin/pip install -U pynvim
 )
 
 (
@@ -21,5 +21,5 @@
 
     cd tools
     bin/pip install -U pip
-    bin/pip install black autopep8 flake8 glances yamllint sqlfluff neovim-remote
+    bin/pip install -U black autopep8 flake8 glances yamllint sqlfluff neovim-remote
 )
