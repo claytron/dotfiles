@@ -2108,6 +2108,20 @@ require('lazy').setup {
       end, { desc = 'Run the tests for the current file' })
     end,
   },
+
+  -- Outline                                                    {{{2
+  --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  {
+    'hedyhli/outline.nvim',
+    lazy = true,
+    cmd = { 'Outline', 'OutlineOpen' },
+    keys = { -- Example mapping to toggle outline
+      { '<leader>o', '<cmd>Outline<CR>', desc = 'Toggle outline' },
+    },
+    opts = {
+      -- Your setup opts here
+    },
+  },
 }
 
 -- vim: fdm=marker ts=2 sts=2 sw=2 et
