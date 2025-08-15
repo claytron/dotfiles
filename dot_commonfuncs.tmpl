@@ -225,6 +225,8 @@ dark_mode () {
         nvr --servername "$inst" --remote-send ":set background=${bg_init}<cr>"
         nvr --servername "$inst" --remote-send ':ColorSwitcher<cr>'
     done
+
+    curl -X POST -H "Content-Type: application/json" -d "{ \"dark_mode\": \"$dark_mode\" }" {{ onepasswordRead "op://Private/Home Assistant/studio-meeting-webhook" }}
 }
 {{- if eq .chezmoi.hostname "television" }}
 
