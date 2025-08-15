@@ -800,8 +800,13 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
 -- shell files
 vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
   group = filetype_group,
-  pattern = '.common*',
+  pattern = { 'dot_common*', '.common*' },
   command = 'set filetype=sh',
+})
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
+  group = filetype_group,
+  pattern = { 'dot_common*.tmpl', '.common*.tmpl' },
+  command = 'set filetype=sh.template'
 })
 
 -- vim help files
