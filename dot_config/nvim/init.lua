@@ -1635,6 +1635,7 @@ require('lazy').setup {
         -- python = { 'ruff_format' },
         ['markdown'] = { 'markdownlint-cli2' },
         ['markdown.mdx'] = { 'markdownlint-cli2' },
+        terraform = { 'terraform_fmt' },
       },
     },
   },
