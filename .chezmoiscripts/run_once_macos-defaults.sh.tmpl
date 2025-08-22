@@ -64,6 +64,10 @@ defaults write com.apple.finder "FXEnableExtensionChangeWarning" -bool "false"
 defaults write com.apple.dock "tilesize" -int "36"
 defaults write com.apple.dock "autohide" -bool "true"
 
+# Make the spacing of the menu bar better when there is a notch.
+defaults -currentHost write -globalDomain NSStatusItemSpacing -int 6
+defaults -currentHost write -globalDomain NSStatusItemSelectionPadding -int 6
+
 # Set the screenshots dir to a folder on the desktop
 if [ ! -d "$HOME/Desktop/screenshots" ]; then
     mkdir "$HOME"/Desktop/screenshots
