@@ -1283,7 +1283,10 @@ require('lazy').setup {
     'davvid/telescope-git-grep.nvim',
     config = function()
       vim.keymap.set('n', '//', function()
-        require('git_grep').live_grep()
+        require('git_grep').live_grep({additional_args = { "-i"}})
+      end, { desc = 'Search current git project' })
+      vim.keymap.set('n', '//i', function()
+        require('git_grep').live_grep({search_title = 'Live Git Grep (case sensitive)', additional_args = { "--no-ignore-case"}})
       end, { desc = 'Search current git project' })
     end,
   },
