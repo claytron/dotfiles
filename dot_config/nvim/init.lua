@@ -803,10 +803,27 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
   pattern = { 'dot_common*', '.common*' },
   command = 'set filetype=sh',
 })
+-- Use FileType event with higher priority to override other plugins
+vim.api.nvim_create_autocmd('FileType', {
+  group = filetype_group,
+  pattern = '*',
+  callback = function()
+    local filepath = vim.fn.expand('%:p')
+    if filepath:match('%.sh%.tmpl$') then
+      vim.bo.filetype = 'sh.template'
+    end
+  end,
+})
+
+-- Not sure why sh.template gets overriden for sh, claude thought this and the above were a good idea
 vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
   group = filetype_group,
-  pattern = { 'dot_common*.tmpl', '.common*.tmpl' },
-  command = 'set filetype=sh.template'
+  pattern = { 'dot_common*.tmpl', '.common*.tmpl', '*.sh.tmpl' },
+  callback = function()
+    vim.schedule(function()
+      vim.bo.filetype = 'sh.template'
+    end)
+  end,
 })
 
 -- vim help files
