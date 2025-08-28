@@ -1750,7 +1750,7 @@ require('lazy').setup {
     'MeanderingProgrammer/render-markdown.nvim',
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
-      'echasnovski/mini.nvim',
+      'nvim-mini/mini.nvim',
     },
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
@@ -1801,7 +1801,7 @@ require('lazy').setup {
   -- Mini                                                       {{{2
   --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   { -- Collection of various small independent plugins/modules
-    'echasnovski/mini.nvim',
+    'nvim-mini/mini.nvim',
     config = function()
       -- Better Around/Inside textobjects
       require('mini.ai').setup { n_lines = 500 }
