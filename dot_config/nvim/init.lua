@@ -2037,7 +2037,13 @@ require('lazy').setup {
       image = {
         force = true,
       },
-      scratch = {},
+      scratch = {
+        filekey = {
+          cwd = true,
+          branch = false,
+          count = true,
+        },
+      },
     },
     keys = {
       -- gitbrowse
@@ -2053,6 +2059,20 @@ require('lazy').setup {
       -- scratch
       { "<leader>.",  function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
       { "<leader>S",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
+      { "<leader>.f",  function()
+        require('telescope.builtin').filetypes({
+          attach_mappings = function(_, map)
+            local function create_scratch_with_ft(prompt_bufnr)
+              local selection = require('telescope.actions.state').get_selected_entry()
+              require('telescope.actions').close(prompt_bufnr)
+              Snacks.scratch({ ft = selection.value })
+            end
+            map('i', '<CR>', create_scratch_with_ft)
+            map('n', '<CR>', create_scratch_with_ft)
+            return true
+          end
+        })
+      end, desc = "Toggle Scratch Buffer (with Filetype)" },
     },
   },
 
