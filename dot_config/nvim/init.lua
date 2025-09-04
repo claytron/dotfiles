@@ -2037,8 +2037,10 @@ require('lazy').setup {
       image = {
         force = true,
       },
+      scratch = {},
     },
     keys = {
+      -- gitbrowse
       {
         'tgbb',
         function()
@@ -2047,6 +2049,10 @@ require('lazy').setup {
         desc = 'Git Browse',
         mode = { 'n', 'v' },
       },
+
+      -- scratch
+      { "<leader>.",  function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
+      { "<leader>S",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
     },
   },
 
