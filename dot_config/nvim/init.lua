@@ -2174,6 +2174,20 @@ require('lazy').setup {
       -- Your setup opts here
     },
   },
+
+  -- Colorizer                                                  {{{2
+  --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  {
+    'catgoose/nvim-colorizer.lua',
+    event = 'BufReadPre',
+    opts = {
+      user_default_options = {
+        RRGGBBAA = true,
+        AARRGGBB = true,
+        css_fn = true,
+      },
+    },
+  },
 }
 
 -- vim: fdm=marker ts=2 sts=2 sw=2 et
