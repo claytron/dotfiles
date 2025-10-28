@@ -28,7 +28,32 @@ These configs use [chezmoi](https://www.chezmoi.io/) to manage installation.
 
 ### Install
 
-Bare minimum needed is [1password](https://1password.com/downloads/mac) with ssh key integration on.
+Bare minimum software needed is [1password](https://1password.com/downloads/mac) with ssh key integration on.
+
+On macOS, open up Terminal and run a git command to have XCode install command line tools:
+
+```sh
+$ git status
+```
+
+Optionally set the bonjour and computer name:
+
+```sh
+$ sudo scutil --set LocalHostName something
+$ sudo scutil --set ComputerName something
+```
+
+Prep for the chezmoi install, by getting config in place (install depends on this `data`):
+
+```sh
+mkdir -p ~/.config/chezmoi
+
+cat << EOF > ~/.config/chezmoi/chezmoi.toml
+[data]
+work = false
+EOF
+```
+
 Then install chezmoi with the following command:
 
 ```sh
