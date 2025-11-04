@@ -160,10 +160,3 @@ export ANTHROPIC_API_KEY={{ onepasswordRead "op://Private/Claude/neovim-personal
 export OPENAI_API_KEY={{ onepasswordRead "op://Private/OpenAI/neovim-personal" }}
 export TAVILY_API_KEY={{ onepasswordRead "op://Private/Tavily/default api key" }}
 {{- end }}
-{{- if .work }}
-
-# Work specific settings
-export BUNDLE_ENTERPRISE__CONTRIBSYS__COM={{ (rbw "Sidekiq Enterprise Token").data.username | quote }}
-export GITHUB_PACKAGE_AUTH={{ (rbw "GITHUB_PACKAGE_AUTH").data.password | quote }}
-export OBJC_DISABLE_INITIALIZE_FORK_SAFETY='YES'
-{{- end }}

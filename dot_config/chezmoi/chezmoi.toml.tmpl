@@ -13,7 +13,7 @@ exclude = ["scripts"]
     ]
 
 [data]
-{{- if (or (eq .chezmoi.hostname "charon")) }}
+{{- if (or (eq .chezmoi.hostname "kerberos")) }}
 work = true
 {{- else }}
 work = false

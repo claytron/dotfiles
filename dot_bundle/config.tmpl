@@ -1,5 +1,2 @@
 ---
 BUNDLE_PATH: "vendor/bundle"
-{{- if .work }}
-BUNDLE_HTTPS://RUBYGEMS__PKG__GITHUB__COM/{{ (rbwFields "GITHUB_PACKAGE_AUTH").organization.value | upper }}/: '{{ (rbwFields "GITHUB_PACKAGE_AUTH").github_user.value }}:{{ (rbw "GITHUB_PACKAGE_AUTH").data.password }}'
-{{- end }}
