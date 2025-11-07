@@ -1652,7 +1652,7 @@ require('lazy').setup {
         lua = { 'stylua' },
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
-        -- python = { 'ruff_format' },
+        python = { 'isort', 'black' },
         ['markdown'] = { 'markdownlint-cli2' },
         ['markdown.mdx'] = { 'markdownlint-cli2' },
         terraform = { 'terraform_fmt' },

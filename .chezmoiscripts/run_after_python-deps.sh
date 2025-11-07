@@ -21,5 +21,5 @@
 
     cd tools
     bin/pip install -U pip
-    bin/pip install -U black autopep8 flake8 glances yamllint sqlfluff neovim-remote
+    bin/pip install -U black isort autopep8 flake8 glances yamllint sqlfluff neovim-remote
 )
