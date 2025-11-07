@@ -1806,6 +1806,9 @@ require('lazy').setup {
       -- Better Around/Inside textobjects
       require('mini.ai').setup { n_lines = 500 }
 
+      -- Exchange and other helpers
+      require('mini.operators').setup()
+
       -- Add/delete/replace surroundings (brackets, quotes, etc.)
       require('mini.surround').setup {
         respect_selection_type = true,
