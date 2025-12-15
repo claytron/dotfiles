@@ -229,7 +229,7 @@ dark_mode () {
     curl -X POST -H "Content-Type: application/json" -d "{ \"dark_mode\": \"$dark_mode\" }" {{ onepasswordRead "op://Private/Home Assistant/studio-meeting-webhook" }}
 }
 
-purge_chezmoi() {
+purge_setup() {
     # Check if chezmoi is installed
     if ! command -v chezmoi &> /dev/null; then
         echo "Error: chezmoi is not installed or not in PATH"
@@ -272,6 +272,21 @@ purge_chezmoi() {
 
         echo -e "\nRemove histories"
         rm -f ~/.zsh_history ~/.bash_history ~/.python_history
+
+        if [ -d "$HOME/Documents/Obsidian" ]; then
+          open -a Obsidian
+          echo -e "\nAre you sure you want to remove Obsidian?"
+          echo -n "Type 'yes' to confirm: "
+          read confirm_obsidian
+
+          if [ "$confirm_obsidian" = "yes" ]; then
+            rm -rf "$HOME/Documents/Obsidian"
+          fi
+          echo -e "\nRemoved obsidian notes"
+        fi
+
+        op account forget --all
+        echo -e "\nLogged out of 1Password"
 
         echo -e "\nDone! Removed $file_count files and cleaned up chezmoi state."
     else
