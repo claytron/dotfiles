@@ -150,6 +150,10 @@ export PUSHOVER_TOKEN={{ onepasswordRead "op://Private/pushover.net/tomato time/
 # Token for each workspace to change
 export SLACK_APPS=({{ onepasswordRead "op://Private/pushover.net/tomato time/slack_tokens" }})
 
+{{- if .op_account }}
+export OP_ACCOUNT="{{.op_account}}"
+{{- end }}
+
 # AI Stuff
 {{- if .work }}
 export ANTHROPIC_API_KEY={{ onepasswordRead "op://Private/Claude/neovim-work" }}
