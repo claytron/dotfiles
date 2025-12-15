@@ -228,6 +228,57 @@ dark_mode () {
 
     curl -X POST -H "Content-Type: application/json" -d "{ \"dark_mode\": \"$dark_mode\" }" {{ onepasswordRead "op://Private/Home Assistant/studio-meeting-webhook" }}
 }
+
+purge_chezmoi() {
+    # Check if chezmoi is installed
+    if ! command -v chezmoi &> /dev/null; then
+        echo "Error: chezmoi is not installed or not in PATH"
+        return 1
+    fi
+
+    # Get the list of managed files
+    echo "Checking for chezmoi managed files..."
+    local file_count=$(chezmoi managed -i files 2>/dev/null | wc -l)
+
+    if [ "$file_count" -eq 0 ]; then
+        echo "No chezmoi managed files found."
+        return 0
+    fi
+
+    # Show what will be removed
+    echo -e "\nThe following $file_count file(s) will be removed:"
+    echo "----------------------------------------"
+    chezmoi managed -i files 2>/dev/null | head -20
+
+    if [ "$file_count" -gt 20 ]; then
+        echo "... and $(($file_count - 20)) more files"
+    fi
+    echo "----------------------------------------"
+
+    # Ask for confirmation
+    echo -e "\nAre you sure you want to remove ALL $file_count chezmoi managed files?"
+    echo -n "Type 'yes' to confirm: "
+    read confirmation
+
+    if [ "$confirmation" = "yes" ]; then
+        echo -e "\nRemoving chezmoi managed files..."
+        chezmoi managed -i files -0 2>/dev/null | xargs -0 -I{} rm -vf "{}"
+
+        echo -e "\nRunning chezmoi purge to clean up..."
+        chezmoi purge --verbose --force
+
+        echo -e "\nRemove teamocil config"
+        rm -rf ~/.teamocil
+
+        echo -e "\nRemove histories"
+        rm -f ~/.zsh_history ~/.bash_history ~/.python_history
+
+        echo -e "\nDone! Removed $file_count files and cleaned up chezmoi state."
+    else
+        echo "Cancelled. No files were removed."
+        return 1
+    fi
+}
 {{- if eq .chezmoi.hostname "television" }}
 
 hash -d H=/Volumes/theater
