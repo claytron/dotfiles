@@ -1,8 +1,8 @@
-{{- if eq .chezmoi.os "darwin" -}}
 #!/usr/bin/env bash
-{{- if eq .chezmoi.arch "arm64" }}
+{{- if eq .chezmoi.os "darwin" -}}
+/usr/local/bin/brew bundle --global
+{{- else if eq .chezmoi.arch "arm64" }}
 /opt/homebrew/bin/brew bundle --global
 {{- else }}
-/usr/local/bin/brew bundle --global
+/home/linuxbrew/.linuxbrew/bin/brew bundle --global || true
 {{- end }}
-{{ end -}}

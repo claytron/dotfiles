@@ -5,15 +5,20 @@ brew 'starship'
 brew 'bash'
 brew 'git'
 brew 'nvim'
+brew 'vim'
 brew 'tmux'
 brew 'pwgen'
 brew 'wget'
 brew 'curl'
 brew 'rsync'
+{{- if eq .chezmoi.os "darwin" -}}
 brew 'telnet'
+{{- end }}
 brew 'dust'
 brew 'chezmoi'
+{{- if eq .chezmoi.os "darwin" -}}
 cask '1password/tap/1password-cli'
+{{- end }}
 cask 'readdle-spark'
 brew 'atuin'
 
@@ -53,11 +58,14 @@ brew 'git-lfs'
 {{- end }}
 ## Ops utils
 brew 'sipcalc'
-brew 'rename'
 brew 'doggo'
 brew 'awscli'
+{{- if eq .chezmoi.os "darwin" -}}
+# These won't install on linux...
 cask 'aws-vault-binary'
 cask 'gcloud-cli'
+brew 'rename'
+{{- end }}
 brew 'hadolint'
 brew 'sshuttle'
 brew 'magic-wormhole'
@@ -74,6 +82,7 @@ cask 'pop-app'
 brew 'ffmpeg'
 brew 'imagemagick'
 
+{{- if eq .chezmoi.os "darwin" -}}
 # Apps
 cask 'firefox'
 cask 'google-chrome'
@@ -103,6 +112,7 @@ cask 'meetingbar'
 cask 'reader'
 cask 'pocket-casts'
 
+{{- end }}
 # Other fun stuff
 brew 'cowsay'
 brew 'fortune'
