@@ -1,8 +1,14 @@
 #!/usr/bin/env bash
-{{- if eq .chezmoi.os "darwin" -}}
+set -euo pipefail
+
+{{ if eq .chezmoi.os "darwin" }}
+  {{ if eq .chezmoi.arch "amd64" }}
 /usr/local/bin/brew bundle --global
-{{- else if eq .chezmoi.arch "arm64" }}
+  {{ else if eq .chezmoi.arch "arm64" }}
 /opt/homebrew/bin/brew bundle --global
-{{- else }}
+  {{ end }}
+{{ end }}
+
+{{ if eq .chezmoi.os "linux" }}
 /home/linuxbrew/.linuxbrew/bin/brew bundle --global || true
-{{- end }}
+{{ end }}

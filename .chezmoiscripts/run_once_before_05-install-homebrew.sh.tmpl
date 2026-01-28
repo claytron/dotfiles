@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
+set -euo pipefail
+
 if which -s brew; then
     echo "Homebrew already installed"
 else
-{{- if eq .chezmoi.os "darwin" -}}
+{{ if eq .chezmoi.os "darwin" }}
     echo "Installing homebrew"
     xcode-select --install || true
-{{- else }}
+{{ else }}
     # Prepare for 1password install
     curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" | sudo tee /etc/apt/sources.list.d/1password.list
@@ -19,7 +21,6 @@ else
 
     # Install required apt packages to run homebrew
     sudo apt-get install build-essential procps curl file git ssh gnome-keyring
-{{ end -}}
-
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+{{ end }}
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
