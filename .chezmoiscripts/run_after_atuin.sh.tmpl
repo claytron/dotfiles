@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+{{ if eq .chezmoi.hostname "television" }}
+echo "Put atuin server config in place"
+cp -v ~/.config/atuin/server.toml /usr/local/etc/atuin-server/server.toml
+{{ end }}
