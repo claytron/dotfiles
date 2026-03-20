@@ -1,0 +1,23 @@
+{{- if eq .chezmoi.hostname "hydra" -}}
+python 3.13.3
+nodejs 24.14.0 20.15.1 20.11.1 20.10.0 18.15.0 17.5.0
+ruby 3.4.4 3.2.2 3.0.5
+terraform 1.14.0 1.3.9
+perl 5.35.8
+golang 1.23.3
+rust 1.65.0
+{{- else if eq .chezmoi.hostname "television" -}}
+python 3.14.3 3.13.9 3.13.5 3.13.3 3.13.1
+nodejs 24.13.1
+ruby 3.2.2
+{{- else if eq .chezmoi.hostname "charon" -}}
+python 3.14.3
+nodejs 24.14.0
+ruby 3.4.9
+terraform 1.14.7
+{{- else -}}
+python 3.12.2
+ruby 3.4.9
+nodejs 24.14.0
+terraform 1.14.7
+{{- end -}}
