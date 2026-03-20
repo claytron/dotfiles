@@ -10,6 +10,16 @@ userChrome.css
 tmux-256color.terminfo
 tmux.terminfo
 
+{{ if ne .chezmoi.os "darwin" }}
+Library/
+{{ end }}
+
+# Rectangle reads this file and moves it out of the way, so only put it there once.
+# Remove the folder to update.
+{{ if stat (joinPath .chezmoi.homeDir "Library/Application Support/Rectangle") }}
+Library/Application Support/Rectangle/
+{{ end }}
+
 {{ if ne .chezmoi.os "linux" }}
 .Xmodmap
 .xmodmaprc
