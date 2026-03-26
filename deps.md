@@ -16,32 +16,20 @@ Hard to automate because of randomized profile name.
 ### Utils
 
 - Dash
-- LogiOptions+ for mice
 - Carbon Copy Cloner
-- Teensy
 - Toast 20
 
 ### Art Stuff
 
 - Digital Performer
-- Loopback
-- Audio Hijack
-- OBS
-- iLok
 - MoogerFooger Effects
 - VCV Rack
 - Blackmagic Video Driver (Desktop Video)
 - Boss DD-500 editor
 - TR-8S editor
 - Roland Cloud Manager
-- Focusrite tools
 - FH-2 configurator
-- MidiKeys
-- MIDI Monitor
 - MidiPipe
-- Sysex Librarian
-- VLC
-- Arturia Software Center
 - Arturia MIDI Control Center
 - Soundtoys Little Radiator
 

@@ -109,8 +109,26 @@ cask 'reader'
 cask 'pocket-casts'
 cask 'fastmail'
 cask 'claude'
+cask 'obs'
+cask 'logi-options+'
+cask 'insta360-link-controller'
+cask 'vlc'
 ## color picker replacement for hex color
 cask 'pika'
+{{ if or .work (eq .chezmoi.hostname "hydra") -}}
+cask 'soundsource'
+{{ end -}}
+{{ if eq .chezmoi.hostname "hydra" -}}
+cask 'protokol'
+cask 'midikeys'
+cask 'sysex-librarian'
+cask 'focusrite-control'
+cask 'ilok-license-manager'
+cask 'arturia-software-center'
+cask 'teensy'
+cask 'audio-hijack'
+cask 'loopback'
+{{ end -}}
 
 {{ end -}}
 # Other fun stuff
