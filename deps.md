@@ -16,7 +16,6 @@ Hard to automate because of randomized profile name.
 ### Utils
 
 - Dash
-- Hex Color
 - LogiOptions+ for mice
 - Logitune for cameras
 - Carbon Copy Cloner
