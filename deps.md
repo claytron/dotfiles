@@ -17,11 +17,9 @@ Hard to automate because of randomized profile name.
 
 - Dash
 - LogiOptions+ for mice
-- Logitune for cameras
 - Carbon Copy Cloner
 - Teensy
 - Toast 20
-- Garmin Express
 
 ### Art Stuff
 
@@ -46,17 +44,6 @@ Hard to automate because of randomized profile name.
 - Arturia Software Center
 - Arturia MIDI Control Center
 - Soundtoys Little Radiator
-
-## Python
-
-- virtual env for neovim / neovim-py2
-- virtual env with tools (pip install black autopep8 flake8 glances yamllint sqlfluff neovim-remote)
-
-## Ruby
-
-- teamocil
-- neovim
-- solargraph?
 
 ## Perl
 
