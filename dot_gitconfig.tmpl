@@ -3,7 +3,20 @@
 	excludesfile = ~/.gitignore
 [user]
 	name = Clayton Parker
+{{- if .work }}
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJkdHN9vvDhD4On6JIE1DgMvmfqeHVWmJOvTjkvsG92K
+	email = {{ onepasswordRead "op://Private/qbnhreug5xpcv6yh5avzbnmrla/Internet Details/work_email" }}
+{{- else }}
 	email = me@claytron.com
+{{- end }}
+{{- if .work }}
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+[commit]
+	gpgsign = true
+{{- end }}
 [color]
 	ui = auto
 [color "branch"]
