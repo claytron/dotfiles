@@ -18,7 +18,7 @@ When you try and go back to the end you can't without going to command mode and 
 
 To start off, here is a little background.
 Here in lies years of craziness all compiled into one nice little folder.
-I've been using the command line since 2003 when I was given a job as a systems administrator.
+I've been using the command line since 2003 when I started a job as a systems administrator.
 I started on ZSH and have been using it ever since.
 At some point I decided to compile a set of confs that could be used with either ZSH or Bash (since most machines have at least bash).
 
@@ -28,40 +28,25 @@ These configs use [chezmoi](https://www.chezmoi.io/) to manage installation.
 
 ### Install
 
-Bare minimum software needed is [1password](https://1password.com/downloads/mac) with ssh key integration on.
+#### Prerequisites
 
-On macOS, open up Terminal and run a git command to have XCode install command line tools:
+[1Password](https://1password.com/downloads/mac) installed and signed in, with the SSH agent integration enabled (used to authenticate the initial git clone).
+
+Optionally set the bonjour and computer name on macOS:
 
 ```sh
-$ git status
+sudo scutil --set LocalHostName something
+sudo scutil --set ComputerName something
 ```
 
-Optionally set the bonjour and computer name:
+#### One-line bootstrap
 
 ```sh
-$ sudo scutil --set LocalHostName something
-$ sudo scutil --set ComputerName something
-```
-
-Prep for the chezmoi install, by getting config in place (install depends on this `data`):
-
-```sh
-mkdir -p ~/.config/chezmoi
-
-cat << EOF > ~/.config/chezmoi/chezmoi.toml
-[data]
-work = false
-EOF
-```
-
-Then install chezmoi with the following command:
-
-```sh
-$ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply --ssh claytron/dotfiles
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/claytron/dotfiles/master/install.sh)"
 ```
 
 ### Update
 
 ```sh
-$ chezmoi update
+chezmoi update
 ```
