@@ -26,7 +26,7 @@ if [ "$OS" = "Linux" ] && [ -f /etc/debian_version ]; then
     if ! command -v brew >/dev/null 2>&1; then
         echo "Installing Linux prerequisites..."
         sudo apt-get update
-        sudo apt-get install -y build-essential procps curl file git ssh gnome-keyring gpg
+        sudo apt-get install -y build-essential procps curl file git ssh gnome-keyring gpg unzip
     fi
 
     if [ ! -d /opt/1Password ]; then
@@ -66,6 +66,19 @@ if [ "$OS" = "Linux" ] && [ -f /etc/debian_version ]; then
                 echo "Warning: unsupported arch '$ARCH'; install 1Password manually" >&2
                 ;;
         esac
+    fi
+
+    # 1Password CLI on arm64 has no apt repo either; install the binary directly.
+    # Bump OP_VERSION when needed: https://app-updates.agilebits.com/product_history/CLI2
+    if [ "$ARCH" = "arm64" ] && ! command -v op >/dev/null 2>&1; then
+        OP_VERSION="v2.30.3"
+        echo "Installing 1Password CLI ${OP_VERSION} (arm64)..."
+        cli_tmp="$(mktemp -d)"
+        curl -fsSL -o "$cli_tmp/op.zip" \
+            "https://cache.agilebits.com/dist/1P/op2/pkg/${OP_VERSION}/op_linux_arm64_${OP_VERSION}.zip"
+        unzip -q "$cli_tmp/op.zip" -d "$cli_tmp"
+        sudo install -m 755 "$cli_tmp/op" /usr/local/bin/op
+        rm -rf "$cli_tmp"
     fi
 fi
 
