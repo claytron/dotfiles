@@ -106,4 +106,4 @@ if ! command -v chezmoi >/dev/null 2>&1; then
 fi
 
 echo "Running chezmoi init..."
-exec chezmoi init --apply --ssh claytron
+exec chezmoi init --apply --ssh --branch better-bootstrap claytron

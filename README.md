@@ -42,7 +42,7 @@ sudo scutil --set ComputerName something
 #### One-line bootstrap
 
 ```sh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/claytron/dotfiles/master/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/claytron/dotfiles/better-bootstrap/install.sh)"
 ```
 
 ### Update
