@@ -79,6 +79,18 @@ if [ "$OS" = "Linux" ] && [ -f /etc/debian_version ]; then
         unzip -q "$cli_tmp/op.zip" -d "$cli_tmp"
         sudo install -m 755 "$cli_tmp/op" /usr/local/bin/op
         rm -rf "$cli_tmp"
+
+        # The desktop app authenticates `op` via the onepassword-cli group
+        # (the deb package handles this; the tarball does not).
+        sudo groupadd -f onepassword
+        sudo groupadd -f onepassword-cli
+        sudo chgrp onepassword-cli /usr/local/bin/op
+        sudo chmod g+s /usr/local/bin/op
+        sudo usermod -aG onepassword-cli "$USER"
+        echo
+        echo "1Password CLI installed. Log out and back in for the"
+        echo "onepassword-cli group to take effect, then re-run this script."
+        exit 0
     fi
 fi
 
