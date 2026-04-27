@@ -18,8 +18,8 @@ brew 'dust'
 brew 'chezmoi'
 {{ if eq .chezmoi.os "darwin" -}}
 cask '1password/tap/1password-cli'
-{{ end -}}
 cask 'readdle-spark'
+{{ end -}}
 brew 'atuin'
 
 # Fonts!
@@ -72,8 +72,10 @@ brew 'gh'
 brew 'exercism'
 brew 'uv'
 cask 'codex'
+{{ if eq .chezmoi.os "darwin" -}}
 cask 'coscreen'
 cask 'pop-app'
+{{ end -}}
 
 # art related stuff
 brew 'ffmpeg'

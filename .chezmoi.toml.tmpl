@@ -1,0 +1,19 @@
+{{- $work := promptBoolOnce . "work" "Is this a work machine" (eq .chezmoi.hostname "charon") -}}
+{{- $opAccount := promptStringOnce . "op_account" "1Password account ID (leave empty for none)" "" -}}
+
+[data]
+    work = {{ $work }}
+    op_account = {{ $opAccount | quote }}
+
+[diff]
+    command = "delta"
+    exclude = ["scripts"]
+
+[merge]
+    command = "nvim"
+    args = [
+        "-d",
+        {{ printf "%q" "{{ .Destination }}" }},
+        {{ printf "%q" "{{ .Source }}" }},
+        {{ printf "%q" "{{ .Target }}" }},
+    ]
