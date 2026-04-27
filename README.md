@@ -28,7 +28,7 @@ These configs use [chezmoi](https://www.chezmoi.io/) to manage installation.
 
 ### Install
 
-#### Prerequisites
+#### macOS
 
 [1Password](https://1password.com/downloads/mac) installed and signed in, with the SSH agent integration enabled (used to authenticate the initial git clone).
 
@@ -39,10 +39,16 @@ sudo scutil --set LocalHostName something
 sudo scutil --set ComputerName something
 ```
 
-#### One-line bootstrap
-
 ```sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/claytron/dotfiles/master/install.sh)"
+```
+
+#### Linux
+
+This will install 1password, which will need to be authenticated. Then ssh agent and cli integration turned on.
+
+```sh
+sh -c "$(wget -qO- https://raw.githubusercontent.com/claytron/dotfiles/master/install.sh)"
 ```
 
 ### Update
