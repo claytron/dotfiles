@@ -26,7 +26,13 @@ if [ "$OS" = "Linux" ] && [ -f /etc/debian_version ]; then
     if ! command -v brew >/dev/null 2>&1; then
         echo "Installing Linux prerequisites..."
         sudo apt-get update
+        # Base bootstrap deps
         sudo apt-get install -y build-essential procps curl file git ssh gnome-keyring gpg unzip
+        # Additional build deps to install langs via asdf on first run
+        sudo apt-get install -y \
+            libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev \
+            libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev \
+            libffi-dev liblzma-dev
     fi
 
     if [ ! -d /opt/1Password ]; then
