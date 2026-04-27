@@ -51,6 +51,19 @@ This will install 1password, which will need to be authenticated. Then ssh agent
 sh -c "$(wget -qO- https://raw.githubusercontent.com/claytron/dotfiles/master/install.sh)"
 ```
 
+#### Windows
+
+Run from an elevated PowerShell (the script installs packages system-wide).
+
+The script installs 1Password and the 1Password CLI.
+After 1Password is installed, sign in and enable Settings -> Developer -> 'Use the SSH agent' so the initial git clone can authenticate, then re-run.
+
+Run from PowerShell:
+
+```powershell
+iwr -useb https://raw.githubusercontent.com/claytron/dotfiles/master/install.ps1 | iex
+```
+
 ### Update
 
 ```sh

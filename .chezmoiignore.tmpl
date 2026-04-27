@@ -1,5 +1,6 @@
 README.md
 install.sh
+install.ps1
 
 # Automagically created by neovim + mason for ruby lsp
 vendor/
@@ -31,4 +32,17 @@ Library/Application Support/Rectangle/
 
 {{ if ne .chezmoi.hostname "television" }}
 .config/atuin/server.toml
+{{ end }}
+
+{{ if eq .chezmoi.os "windows" }}
+# POSIX shell scripts won't run natively on Windows; PowerShell-based scripts can live alongside.
+.chezmoiscripts/**/*.sh
+.chezmoiscripts/**/*.sh.tmpl
+
+# Homebrew is unix-only.
+.Brewfile
+
+# Ignore most dotfiles to start
+.*
+!.gitconfig
 {{ end }}
