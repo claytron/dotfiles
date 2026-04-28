@@ -111,6 +111,7 @@ export THOR_MERGE=$MERGETOOL
 #   6.3
 # You should see a version number and NOT 'editline'
 [ -d "/opt/local" ] && export RUBY_CONFIGURE_OPTS="--with-readline-dir=/opt/local"
+[ -d "/home/linuxbrew/.linuxbrew" ] && export RUBY_CONFIGURE_OPTS="--with-zlib-dir=/home/linuxbrew/.linuxbrew/opt/zlib"
 
 # colors!!!
 ###########
