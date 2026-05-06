@@ -256,6 +256,7 @@ vim.keymap.set('n', 'fts', ':set ft=sql<CR>', { desc = 'Set filetype: sql' })
 vim.keymap.set('n', 'ftsh', ':set ft=sh<CR>', { desc = 'Set filetype: shell script' })
 vim.keymap.set('n', 'ftc', ':set ft=css<CR>', { desc = 'Set filetype: css' })
 vim.keymap.set('n', 'fth', ':set ft=html<CR>', { desc = 'Set filetype: html' })
+vim.keymap.set('n', 'ftps', ':set ft=ps1<CR>', { desc = 'Set filetype: powershell' })
 
 -- Visual settings                                              {{{1
 --------------------------------------------------------------------
@@ -884,7 +885,17 @@ vim.api.nvim_create_autocmd('TermOpen', {
 vim.api.nvim_create_autocmd('TermOpen', {
   group = filetype_group,
   pattern = '*',
-  command = 'startinsert',
+  callback = function(args)
+    -- Make sure that hidden terminals don't invoke insert mode (e.g.
+    -- powershell.nvim spawns an LSP host in a hidden terminal buffer).
+    -- Deferred so the check runs after `nvim_buf_call` restores the real
+    -- current buffer — otherwise hidden terms look "current" here.
+    vim.schedule(function()
+      if vim.api.nvim_buf_is_valid(args.buf) and vim.api.nvim_get_current_buf() == args.buf then
+        vim.cmd.startinsert()
+      end
+    end)
+  end,
 })
 
 -- Go back to normal mode in the terminal once process is
@@ -1594,12 +1605,17 @@ require('lazy').setup {
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
         'markdownlint-cli2',
+        'powershell-editor-services', -- used by powershell.nvim
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       require('mason-lspconfig').setup {
         ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
         automatic_installation = false,
+        -- powershell.nvim manages the powershell_es LSP lifecycle itself
+        automatic_enable = {
+          exclude = { 'powershell_es' },
+        },
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
@@ -1850,6 +1866,7 @@ require('lazy').setup {
         'markdown',
         'markdown_inline',
         'query',
+        'powershell',
         'vim',
         'vimdoc',
       },
@@ -1887,6 +1904,28 @@ require('lazy').setup {
     --
     --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+  },
+
+  -- PowerShell                                                  {{{2
+  --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  {
+    'TheLeoP/powershell.nvim',
+    ft = 'ps1',
+    config = function(_, opts)
+      require('powershell').setup(opts)
+      -- FileType event already fired before this plugin loaded, so initialize manually
+      local buf = vim.api.nvim_get_current_buf()
+      if vim.bo[buf].filetype == 'ps1' then
+        require('powershell').initialize_or_attach(buf)
+      end
+    end,
+    opts = {
+      bundle_path = vim.fn.stdpath('data') .. '/mason/packages/powershell-editor-services',
+    },
+    keys = {
+      { '<leader>lt', function() require('powershell').toggle_term() end, ft = 'ps1', desc = 'Toggle PowerShell terminal' },
+      { '<leader>le', function() require('powershell').eval() end, ft = 'ps1', mode = { 'n', 'x' }, desc = 'Evaluate PowerShell line/selection' },
+    },
   },
 
   -- Treesitter endwise                                         {{{2
