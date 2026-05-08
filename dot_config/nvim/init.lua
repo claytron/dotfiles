@@ -1964,9 +1964,60 @@ require('lazy').setup {
         use_libuv_file_watcher = true,
       },
     },
-    config = function()
+    -- Lazy.nvim's default config = setup(opts), but supplying our own config
+    -- replaces that default — call setup explicitly so `opts` aren't dropped.
+    config = function(_, opts)
+      require('neo-tree').setup(opts)
+
       vim.keymap.set('n', 'cox', ':Neotree toggle<CR>', { desc = 'Toggle file drawer' })
       vim.keymap.set('n', 'tmf', ':Neotree reveal<CR>', { desc = 'Show current file in drawer' })
+
+      local refresh_neotree = function()
+        if package.loaded['neo-tree.sources.manager'] then
+          require('neo-tree.sources.manager').refresh 'filesystem'
+        end
+      end
+
+      -- GIT_EVENT is neo-tree's documented hook for "git state changed
+      -- externally" — same path it uses for `User FugitiveChanged`.
+      local refresh_neotree_git = function()
+        local ok, events = pcall(require, 'neo-tree.events')
+        if ok then
+          events.fire_event(events.GIT_EVENT)
+        end
+      end
+
+      local group = vim.api.nvim_create_augroup('NeoTreeRefresh', { clear = true })
+      -- libuv watcher only sees expanded dirs and is flaky on macOS FSEvents,
+      -- so refresh on signals that imply something may have changed underneath.
+      vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave', 'BufWritePost' }, {
+        group = group,
+        callback = refresh_neotree,
+      })
+      -- neo-tree.manager.refresh only acts on states in the current tab and
+      -- marks others dirty without auto-flushing them. Re-fire GIT_EVENT on
+      -- TabEnter so staging in a Neogit tab gets picked up when we come back.
+      vim.api.nvim_create_autocmd('TabEnter', {
+        group = group,
+        callback = refresh_neotree_git,
+      })
+      -- Neogit emits these via `User Neogit<Name>` autocmds. They're the
+      -- only signal we get for stage/unstage/commit since those don't touch
+      -- the working tree in ways the libuv watcher would notice.
+      vim.api.nvim_create_autocmd('User', {
+        group = group,
+        pattern = {
+          'NeogitStatusRefreshed',
+          'NeogitCommitComplete',
+          'NeogitPushComplete',
+          'NeogitPullComplete',
+          'NeogitFetchComplete',
+          'NeogitBranchCheckout',
+          'NeogitReset',
+          'NeogitStash',
+        },
+        callback = refresh_neotree_git,
+      })
     end,
   },
 
