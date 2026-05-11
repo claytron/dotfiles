@@ -1783,6 +1783,107 @@ require('lazy').setup {
         position = 'right',
         language_pad = 2,
       },
+      -- Render Docusaurus admonitions (`:::tip[Title] ... :::`) so they
+      -- look like GitHub alerts. The markdown treesitter parser doesn't
+      -- recognize `:::` directives, so render-markdown's built-in callout
+      -- support doesn't see them; this scans buffer lines and lays down
+      -- overlay extmarks using the same highlight groups as alerts.
+      custom_handlers = {
+        markdown = {
+          extends = true,
+          parse = function(ctx)
+            local types = {
+              note = { icon = '󰋽 ', label = 'Note', hl = 'RenderMarkdownInfo' },
+              tip = { icon = '󰌶 ', label = 'Tip', hl = 'RenderMarkdownSuccess' },
+              info = { icon = '󰋽 ', label = 'Info', hl = 'RenderMarkdownInfo' },
+              warning = { icon = '󰀪 ', label = 'Warning', hl = 'RenderMarkdownWarn' },
+              danger = { icon = '󰳦 ', label = 'Danger', hl = 'RenderMarkdownError' },
+            }
+            local bar = '▋ '
+            local bar_w = vim.fn.strdisplaywidth(bar)
+            local marks = {}
+            local lines = vim.api.nvim_buf_get_lines(ctx.buf, 0, -1, false)
+            -- Each stack frame: { colons = N, hl = '...' }. Docusaurus
+            -- requires the outer fence to use more colons than the inner,
+            -- so a nested opening must have strictly fewer colons than
+            -- the current top.
+            local stack = {}
+            for i, line in ipairs(lines) do
+              local row = i - 1
+              local colons_o, kind, title = line:match '^(:::+)(%w+)%[(.-)%]%s*$'
+              if not colons_o then
+                colons_o, kind = line:match '^(:::+)(%w+)%s*$'
+              end
+              local colons_c = line:match '^(:::+)%s*$'
+              local spec = kind and types[kind]
+              local can_open = spec and (#stack == 0 or #colons_o < stack[#stack].colons)
+              local can_close = colons_c and #stack > 0 and #colons_c == stack[#stack].colons
+              if can_open then
+                local chunks = {}
+                for _, frame in ipairs(stack) do
+                  table.insert(chunks, { bar, frame.hl })
+                end
+                local header = bar .. spec.icon .. (title and #title > 0 and title or spec.label)
+                table.insert(chunks, { header, spec.hl })
+                local used = #stack * bar_w + vim.fn.strdisplaywidth(header)
+                local pad = math.max(0, vim.fn.strdisplaywidth(line) - used)
+                if pad > 0 then
+                  table.insert(chunks, { string.rep(' ', pad), spec.hl })
+                end
+                table.insert(marks, {
+                  conceal = true,
+                  start_row = row,
+                  start_col = 0,
+                  opts = {
+                    end_row = row,
+                    end_col = #line,
+                    virt_text = chunks,
+                    virt_text_pos = 'overlay',
+                  },
+                })
+                table.insert(stack, { colons = #colons_o, hl = spec.hl })
+              elseif can_close then
+                local chunks = {}
+                for _, frame in ipairs(stack) do
+                  table.insert(chunks, { bar, frame.hl })
+                end
+                local used = #stack * bar_w
+                local pad = math.max(0, vim.fn.strdisplaywidth(line) - used)
+                if pad > 0 then
+                  table.insert(chunks, { string.rep(' ', pad), stack[#stack].hl })
+                end
+                table.insert(marks, {
+                  conceal = true,
+                  start_row = row,
+                  start_col = 0,
+                  opts = {
+                    end_row = row,
+                    end_col = #line,
+                    virt_text = chunks,
+                    virt_text_pos = 'overlay',
+                  },
+                })
+                table.remove(stack)
+              elseif #stack > 0 then
+                local chunks = {}
+                for _, frame in ipairs(stack) do
+                  table.insert(chunks, { bar, frame.hl })
+                end
+                table.insert(marks, {
+                  conceal = true,
+                  start_row = row,
+                  start_col = 0,
+                  opts = {
+                    virt_text = chunks,
+                    virt_text_pos = 'inline',
+                  },
+                })
+              end
+            end
+            return marks
+          end,
+        },
+      },
     },
   },
 
