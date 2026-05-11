@@ -9,3 +9,7 @@
 [".tmux/plugins/tpm"]
     type = "git-repo"
     url = "https://github.com/tmux-plugins/tpm"
+["bin/scripts"]
+    type = "git-repo"
+    url = "git@github.com:claytron/scripts.git"
+    refreshPeriod = '48h'

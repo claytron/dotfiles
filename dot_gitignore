@@ -38,6 +38,7 @@ htmlcov/
 .idea/
 .vim/bundle/
 .tmux/plugins/
+vendor/bundle/
 
 .claude/
 CLAUDE.md
