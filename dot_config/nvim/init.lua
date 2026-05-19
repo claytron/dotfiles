@@ -1975,17 +1975,29 @@ require('lazy').setup {
     config = function(_, opts)
       require('nvim-treesitter').setup(opts)
 
-      -- Auto-install parsers for new filetypes as they are opened.
-      -- Skip filetypes nvim-treesitter has no parser config for (e.g.
-      -- Telescope's pseudo-filetypes), otherwise TSInstall warns on each open.
+      -- Start treesitter highlighting on every supported buffer, and
+      -- auto-install parsers for filetypes encountered for the first
+      -- time. Skip filetypes nvim-treesitter has no parser config for
+      -- (e.g. Telescope's pseudo-filetypes), otherwise TSInstall warns
+      -- on each open.
       vim.api.nvim_create_autocmd('FileType', {
-        callback = function()
-          local lang = vim.treesitter.language.get_lang(vim.bo.filetype)
-          if not lang or pcall(vim.treesitter.language.inspect, lang) then
+        callback = function(args)
+          local lang = vim.treesitter.language.get_lang(vim.bo[args.buf].filetype)
+          if not lang then
             return
           end
-          local available = require('nvim-treesitter.config').get_available()
-          if vim.list_contains(available, lang) then
+          -- Check installed queries rather than parser visibility:
+          -- nvim-treesitter ships parsers inside its lazy dir (visible
+          -- on rtp), but the matching queries live in `runtime/queries/`
+          -- which is not on rtp. Only languages that have actually been
+          -- TSInstalled get their queries symlinked into stdpath('data')
+          -- and become usable for highlighting.
+          local ts_config = require('nvim-treesitter.config')
+          if vim.list_contains(ts_config.get_installed('queries'), lang) then
+            pcall(vim.treesitter.start, args.buf, lang)
+            return
+          end
+          if vim.list_contains(ts_config.get_available(), lang) then
             vim.cmd('TSInstall ' .. lang)
           end
         end,
