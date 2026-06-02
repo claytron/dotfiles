@@ -158,11 +158,11 @@ export OP_ACCOUNT="{{.op_account}}"
 
 # AI Stuff
 {{- if .work }}
-export ANTHROPIC_API_KEY={{ onepasswordRead "op://Private/Claude/neovim-work" }}
-export OPENAI_API_KEY={{ onepasswordRead "op://Private/OpenAI/neovim-work" }}
-export TAVILY_API_KEY={{ onepasswordRead "op://Private/Tavily/neovim-work api key" }}
+# export ANTHROPIC_API_KEY={{ onepasswordRead "op://Private/Claude/neovim-work" }}
+# export OPENAI_API_KEY={{ onepasswordRead "op://Private/OpenAI/neovim-work" }}
+# export TAVILY_API_KEY={{ onepasswordRead "op://Private/Tavily/neovim-work api key" }}
 {{- else }}
-export ANTHROPIC_API_KEY={{ onepasswordRead "op://Private/Claude/neovim-personal" }}
-export OPENAI_API_KEY={{ onepasswordRead "op://Private/OpenAI/neovim-personal" }}
-export TAVILY_API_KEY={{ onepasswordRead "op://Private/Tavily/default api key" }}
+# export ANTHROPIC_API_KEY={{ onepasswordRead "op://Private/Claude/neovim-personal" }}
+# export OPENAI_API_KEY={{ onepasswordRead "op://Private/OpenAI/neovim-personal" }}
+# export TAVILY_API_KEY={{ onepasswordRead "op://Private/Tavily/default api key" }}
 {{- end }}
