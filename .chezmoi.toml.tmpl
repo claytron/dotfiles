@@ -1,9 +1,11 @@
 {{- $work := promptBoolOnce . "work" "Is this a work machine" (eq .chezmoi.hostname "charon") -}}
-{{- $opAccount := promptStringOnce . "op_account" "1Password account ID (leave empty for none)" "" -}}
+{{- $opAccount := promptStringOnce . "op_account" "1Password personal account ID (leave empty for none)" "" -}}
+{{- $opAccountWork := promptStringOnce . "op_account_work" "1Password work account ID (leave empty for none)" "" -}}
 
 [data]
     work = {{ $work }}
     op_account = {{ $opAccount | quote }}
+    op_account_work = {{ $opAccountWork | quote }}
 
 [diff]
     command = "delta"

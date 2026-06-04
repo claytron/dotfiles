@@ -147,22 +147,24 @@ export FZF_DEFAULT_OPTS='--extended --multi --inline-info --prompt="fzf> "'
 export DISABLE_SPRING=true
 
 # Tomato time
-export PUSHOVER_USER={{ onepasswordRead "op://Private/pushover.net/tomato time/user" }}
-export PUSHOVER_TOKEN={{ onepasswordRead "op://Private/pushover.net/tomato time/token" }}
+export PUSHOVER_USER={{ onepasswordRead "op://Private/pushover.net/tomato time/user" .op_account }}
+export PUSHOVER_TOKEN={{ onepasswordRead "op://Private/pushover.net/tomato time/token" .op_account }}
 # Token for each workspace to change
-export SLACK_APPS=({{ onepasswordRead "op://Private/pushover.net/tomato time/slack_tokens" }})
+export SLACK_APPS=({{ onepasswordRead "op://Private/pushover.net/tomato time/slack_tokens" .op_account }})
 
-{{- if .op_account }}
+{{- if and .work .op_account_work }}
+export OP_ACCOUNT="{{.op_account_work}}"
+{{- else if .op_account }}
 export OP_ACCOUNT="{{.op_account}}"
 {{- end }}
 
 # AI Stuff
 {{- if .work }}
-# export ANTHROPIC_API_KEY={{ onepasswordRead "op://Private/Claude/neovim-work" }}
-# export OPENAI_API_KEY={{ onepasswordRead "op://Private/OpenAI/neovim-work" }}
-# export TAVILY_API_KEY={{ onepasswordRead "op://Private/Tavily/neovim-work api key" }}
+# export ANTHROPIC_API_KEY={{ onepasswordRead "op://Private/Claude/neovim-work" .op_account }}
+# export OPENAI_API_KEY={{ onepasswordRead "op://Private/OpenAI/neovim-work" .op_account }}
+# export TAVILY_API_KEY={{ onepasswordRead "op://Private/Tavily/neovim-work api key" .op_account }}
 {{- else }}
-# export ANTHROPIC_API_KEY={{ onepasswordRead "op://Private/Claude/neovim-personal" }}
-# export OPENAI_API_KEY={{ onepasswordRead "op://Private/OpenAI/neovim-personal" }}
-# export TAVILY_API_KEY={{ onepasswordRead "op://Private/Tavily/default api key" }}
+# export ANTHROPIC_API_KEY={{ onepasswordRead "op://Private/Claude/neovim-personal" .op_account }}
+# export OPENAI_API_KEY={{ onepasswordRead "op://Private/OpenAI/neovim-personal" .op_account }}
+# export TAVILY_API_KEY={{ onepasswordRead "op://Private/Tavily/default api key" .op_account }}
 {{- end }}

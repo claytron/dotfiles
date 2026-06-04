@@ -5,7 +5,7 @@
 	name = Clayton Parker
 {{- if .work }}
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJkdHN9vvDhD4On6JIE1DgMvmfqeHVWmJOvTjkvsG92K
-	email = {{ onepasswordRead "op://Private/qbnhreug5xpcv6yh5avzbnmrla/Internet Details/work_email" }}
+	email = {{ onepasswordRead "op://Private/qbnhreug5xpcv6yh5avzbnmrla/Internet Details/work_email" .op_account }}
 {{- else }}
 	email = me@claytron.com
 {{- end }}

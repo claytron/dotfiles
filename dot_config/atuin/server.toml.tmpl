@@ -1,9 +1,9 @@
 host = "0.0.0.0"
-port = {{ onepasswordRead "op://Private/Atuin History sync/port" }}
+port = {{ onepasswordRead "op://Private/Atuin History sync/port" .op_account }}
 open_registration = false
-db_uri="{{ onepasswordRead "op://Private/Atuin History sync/pg_uri" }}"
+db_uri="{{ onepasswordRead "op://Private/Atuin History sync/pg_uri" .op_account }}"
 
 [tls]
 enable = true
-cert_path = "/etc/letsencrypt/live/{{ onepasswordRead "op://Private/Atuin History sync/domain" }}/fullchain.pem"
-pkey_path = "/etc/letsencrypt/live/{{ onepasswordRead "op://Private/Atuin History sync/domain" }}/privkey.pem"
+cert_path = "/etc/letsencrypt/live/{{ onepasswordRead "op://Private/Atuin History sync/domain" .op_account }}/fullchain.pem"
+pkey_path = "/etc/letsencrypt/live/{{ onepasswordRead "op://Private/Atuin History sync/domain" .op_account }}/privkey.pem"

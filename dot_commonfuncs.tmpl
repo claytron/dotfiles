@@ -226,7 +226,7 @@ dark_mode () {
         nvr --servername "$inst" --remote-send ':ColorSwitcher<cr>'
     done
 
-    curl -X POST -H "Content-Type: application/json" -d "{ \"dark_mode\": \"$dark_mode\" }" {{ onepasswordRead "op://Private/Home Assistant/studio-meeting-webhook" }}
+    curl -X POST -H "Content-Type: application/json" -d "{ \"dark_mode\": \"$dark_mode\" }" {{ onepasswordRead "op://Private/Home Assistant/studio-meeting-webhook" .op_account }}
 }
 
 purge_setup() {
