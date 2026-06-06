@@ -1,0 +1,39 @@
+{
+  "mcpServers": {
+    "AbletonMCP": {
+      "command": "uvx",
+      "args": [
+        "ableton-mcp"
+      ]
+    },
+    "mcp-obsidian": {
+      "command": "uvx",
+      "args": [
+        "mcp-obsidian"
+      ],
+      "env": {
+        "OBSIDIAN_API_KEY": "{{ onepasswordRead "op://Private/Obsidian/mcp_api_key" .op_account }}",
+        "OBSIDIAN_HOST": "127.0.0.1",
+        "OBSIDIAN_PORT": "27123"
+      }
+    },
+    "sheets": {
+      "command": "uvx",
+      "args": [
+        "mcp-google-sheets@latest"
+      ],
+      "env": {
+        "CREDENTIALS_PATH": "~/.config/gcloud/application_default_credentials.json",
+        "TOKEN_PATH": "~/.config/sheets_mcp/token.json"
+      }
+    },
+    "plex": {
+      "command": "uvx",
+      "args": [
+        "plex-mcp-server",
+        "--transport",
+        "stdio"
+      ]
+    }
+  }
+}
