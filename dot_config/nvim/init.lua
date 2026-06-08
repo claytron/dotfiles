@@ -1782,6 +1782,9 @@ require('lazy').setup {
         border = 'thick',
         position = 'right',
         language_pad = 2,
+        -- Render inline code with just a foreground color (no background
+        -- box) by borrowing the colorscheme's native inline-code group.
+        highlight_inline = '@markup.raw.markdown_inline',
       },
       -- Render Docusaurus admonitions (`:::tip[Title] ... :::`) so they
       -- look like GitHub alerts. The markdown treesitter parser doesn't
