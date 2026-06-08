@@ -6,12 +6,20 @@ command -v claude >/dev/null || { echo "claude not installed, skipping plugins";
 marketplaces=(
   anthropics/claude-plugins-official
   Digital-Process-Tools/claude-marketplace
+{{- if .work }}
+{{- else }}
+  homeassistant-ai/skills
+{{- end }}
 )
 
 plugins=(
   remember@dpt-plugins
   claude-md-management@claude-plugins-official
   superpowers@claude-plugins-official
+{{- if .work }}
+{{- else }}
+  home-assistant-skills@home-assistant-skills
+{{- end }}
 )
 
 for m in "${marketplaces[@]}"; do
