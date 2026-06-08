@@ -1192,6 +1192,22 @@ require('lazy').setup {
             vim.keymap.set(mode, l, r, opts)
           end
 
+          -- Navigation
+          map('n', ']c', function()
+            if vim.wo.diff then
+              vim.cmd.normal { ']c', bang = true }
+            else
+              gitsigns.nav_hunk 'next'
+            end
+          end, { desc = 'Next git hunk' })
+          map('n', '[c', function()
+            if vim.wo.diff then
+              vim.cmd.normal { '[c', bang = true }
+            else
+              gitsigns.nav_hunk 'prev'
+            end
+          end, { desc = 'Previous git hunk' })
+
           -- Actions
           map('n', '<leader>hs', gitsigns.stage_hunk, { desc = 'Stage hunk' })
           map('n', '<leader>hr', gitsigns.reset_hunk, { desc = 'Reset hunk' })
