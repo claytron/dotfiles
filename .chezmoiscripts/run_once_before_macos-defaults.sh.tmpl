@@ -78,6 +78,12 @@ defaults write com.apple.screencapture "location" -string "~/Desktop/screenshots
 # Don't show the thumbnail after taking it
 defaults write com.apple.screencapture "show-thumbnail" -bool "false"
 
+# Set up the hot corners
+# Show mission control
+defaults write com.apple.dock wvous-bl-corner -int 2
+# Show desktop
+defaults write com.apple.dock wvous-br-corner -int 4
+
 # Set the regional time / data settings
 # TODO: this doesn't work
 # defaults write -g AppleFirstWeekday "{ gregorian = 2; }"
