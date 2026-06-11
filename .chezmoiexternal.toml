@@ -6,9 +6,6 @@
     type = "git-repo"
     url = "git@github.com:claytron/fortunes.git"
     refreshPeriod = '48h'
-[".tmux/plugins/tpm"]
-    type = "git-repo"
-    url = "https://github.com/tmux-plugins/tpm"
 ["bin/scripts"]
     type = "git-repo"
     url = "git@github.com:claytron/scripts.git"

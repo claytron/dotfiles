@@ -1,14 +1,25 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-{{ if eq .chezmoi.os "darwin" }}
-  {{ if eq .chezmoi.arch "amd64" }}
-/usr/local/bin/brew bundle --global
-  {{ else if eq .chezmoi.arch "arm64" }}
-/opt/homebrew/bin/brew bundle --global
-  {{ end }}
-{{ end }}
+{{- if eq .chezmoi.os "darwin" }}
+  {{- if eq .chezmoi.arch "amd64" }}
+brew=/usr/local/bin/brew
+  {{- else if eq .chezmoi.arch "arm64" }}
+brew=/opt/homebrew/bin/brew
+  {{- end }}
+{{- end }}
 
+{{- if eq .chezmoi.os "linux" }}
+brew=/home/linuxbrew/.linuxbrew/bin/brew
+{{- end }}
+
+# tpack is a cask from a third party tap, so it has to be trusted first
+"$brew" tap tmuxpack/tpack
+"$brew" trust tmuxpack/tpack
+
+{{ if eq .chezmoi.os "darwin" }}
+"$brew" bundle --global
+{{- end }}
 {{ if eq .chezmoi.os "linux" }}
-/home/linuxbrew/.linuxbrew/bin/brew bundle --global || true
-{{ end }}
+"$brew" bundle --global || true
+{{- end }}
