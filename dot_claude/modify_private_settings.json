@@ -1,8 +1,17 @@
 #!/usr/bin/env bash
-# chezmoi modify_ script — maintains the notify.sh hook entries in
-# ~/.claude/settings.json without touching anything else (model, plugins,
-# theme, etc. all pass through). Idempotent: strips any existing notify.sh
-# entries before appending fresh ones.
+# chezmoi modify_ script — keeps several entries in ~/.claude/settings.json
+# fresh on every `chezmoi apply` without touching anything else (model,
+# plugins, theme, /config-managed flags all pass through).
+#
+# Managed entries:
+#   - autoCompactEnabled = false  (the remember plugin needs auto-compact off
+#     so it can save full conversation history before truncation)
+#   - verbose = true
+#   - hooks.Notification / hooks.Stop / hooks.UserPromptSubmit
+#   - statusLine
+#
+# All operations are idempotent: existing entries for our scripts are stripped
+# first, then re-appended fresh.
 
 set -euo pipefail
 
@@ -10,20 +19,37 @@ input=$(cat)
 [ -z "$input" ] && input='{}'
 
 NOTIFY_CMD="~/.claude/hooks/notify.sh"
-NOTIFY_BLOCK='{"hooks":[{"type":"command","command":"'"$NOTIFY_CMD"'","timeout":5}]}'
+PROMPT_CMD="~/.claude/hooks/remember-user-prompt.sh"
+STATUSLINE_CMD="~/.claude/statusline.sh"
 
-printf '%s' "$input" | jq --argjson block "$NOTIFY_BLOCK" --arg cmd "$NOTIFY_CMD" '
-  .hooks //= {}
+NOTIFY_BLOCK='{"hooks":[{"type":"command","command":"'"$NOTIFY_CMD"'","timeout":5}]}'
+PROMPT_BLOCK='{"hooks":[{"type":"command","command":"'"$PROMPT_CMD"'","timeout":5}]}'
+
+printf '%s' "$input" | jq \
+    --argjson notify_block "$NOTIFY_BLOCK" \
+    --argjson prompt_block "$PROMPT_BLOCK" \
+    --arg notify_cmd "$NOTIFY_CMD" \
+    --arg prompt_cmd "$PROMPT_CMD" \
+    --arg statusline_cmd "$STATUSLINE_CMD" '
+  .autoCompactEnabled = false
+  | .statusLine = {type: "command", command: $statusline_cmd}
+  | .hooks //= {}
   | .hooks.Notification = (
       ((.hooks.Notification // [])
-        | map(.hooks |= map(select(.command != $cmd)))
+        | map(.hooks |= map(select(.command != $notify_cmd)))
         | map(select((.hooks // []) | length > 0)))
-      + [$block]
+      + [$notify_block]
     )
   | .hooks.Stop = (
       ((.hooks.Stop // [])
-        | map(.hooks |= map(select(.command != $cmd)))
+        | map(.hooks |= map(select(.command != $notify_cmd)))
         | map(select((.hooks // []) | length > 0)))
-      + [$block]
+      + [$notify_block]
+    )
+  | .hooks.UserPromptSubmit = (
+      ((.hooks.UserPromptSubmit // [])
+        | map(.hooks |= map(select(.command != $prompt_cmd)))
+        | map(select((.hooks // []) | length > 0)))
+      + [$prompt_block]
     )
 '
