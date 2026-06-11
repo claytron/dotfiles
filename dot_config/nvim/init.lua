@@ -2473,6 +2473,10 @@ require('lazy').setup {
         AARRGGBB = true,
         css_fn = true,
       },
+      filetypes = {
+        '*',
+        markdown = { names = false },
+      },
     },
   },
 }
