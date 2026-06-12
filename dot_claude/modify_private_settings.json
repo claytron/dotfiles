@@ -32,6 +32,8 @@ printf '%s' "$input" | jq \
     --arg prompt_cmd "$PROMPT_CMD" \
     --arg statusline_cmd "$STATUSLINE_CMD" '
   .autoCompactEnabled = false
+  | .verbose = true
+  | .autoUpdatesChannel = "latest"
   | .statusLine = {type: "command", command: $statusline_cmd}
   | .hooks //= {}
   | .hooks.Notification = (
