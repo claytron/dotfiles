@@ -14,8 +14,9 @@ brew=/home/linuxbrew/.linuxbrew/bin/brew
 {{- end }}
 
 # tpack is a cask from a third party tap, so it has to be trusted first
-"$brew" tap tmuxpack/tpack
-"$brew" trust tmuxpack/tpack
+# "$brew" tap tmuxpack/tpack
+"$brew" trust 1password/tap hashicorp/tap tmuxpack/tpack
+"$brew" trust --formula hashicorp/tap/packer
 
 {{ if eq .chezmoi.os "darwin" }}
 "$brew" bundle --global
