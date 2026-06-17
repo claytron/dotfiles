@@ -1,12 +1,12 @@
 source $HOME/.commonfuncs
 
-# Set up zi / zplugin / zinit
-typeset -A ZI
-ZI[BIN_DIR]="${HOME}/.zi/bin"
-source "${ZI[BIN_DIR]}/zi.zsh"
-# zi completions
-autoload -Uz _zi
-(( ${+_comps} )) && _comps[zi]=_zi
+# Set up zinit
+typeset -A ZINIT
+ZINIT[HOME_DIR]="${HOME}/.local/share/zinit"
+source "${ZINIT[HOME_DIR]}/zinit.git/zinit.zsh"
+# zinit completions
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
 
 # load all the zi plugins
 source $HOME/.zsh_plugins

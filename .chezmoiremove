@@ -3,3 +3,4 @@
 .bash_extras
 .tmux.local
 .tmux/plugins/tpm
+.zi
