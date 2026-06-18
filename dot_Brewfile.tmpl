@@ -87,6 +87,14 @@ cask 'pop-app'
 # art related stuff
 brew 'ffmpeg'
 brew 'imagemagick'
+{{ if eq .chezmoi.hostname "hydra" -}}
+# Daisy seed
+cask 'cycling74-max'
+brew 'make'
+cask 'gcc-arm-embedded'
+brew 'dfu-util'
+brew 'open-ocd'
+{{ end -}}
 
 {{ if eq .chezmoi.os "darwin" -}}
 # Apps
