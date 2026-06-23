@@ -1,2 +1,3 @@
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-history-substring-search
+zinit light hlissner/zsh-autopair
