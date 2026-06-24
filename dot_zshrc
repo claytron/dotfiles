@@ -216,9 +216,42 @@ ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=yellow,underline'
 ZSH_HIGHLIGHT_STYLES[globbing]='fg=255,bold,bg=blue'
 ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=black,bold,bg=blue'
 
+# suggestions settings
+# commands that should never be auto-suggested, built up and joined with |
+typeset -a _git_ignore=(
+  "add *"
+  "ci *"
+  "commit -m *"
+  "cob *"
+  "checkout -b *"
+)
+typeset -a _autosuggest_ignore=(
+  "(g|git) (${(j:|:)_git_ignore})"
+  "(ls|lsa) *"
+)
+ZSH_AUTOSUGGEST_HISTORY_IGNORE="(${(j:|:)_autosuggest_ignore})"
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Advanced shell history
 if checkPath atuin; then
   eval "$(atuin init zsh --disable-up-arrow)"
+
+  # atuin's autosuggest strategy queries its own DB and ignores
+  # ZSH_AUTOSUGGEST_HISTORY_IGNORE. Wrap it so suggestions (but not
+  # recorded history) honor the ignore pattern: pull a few candidates
+  # and return the first that doesn't match.
+  _zsh_autosuggest_strategy_atuin() {
+    emulate -L zsh
+    setopt EXTENDED_GLOB
+    local line
+    suggestion=""
+    while IFS= read -r line; do
+      if [[ -z $ZSH_AUTOSUGGEST_HISTORY_IGNORE || $line != ${~ZSH_AUTOSUGGEST_HISTORY_IGNORE} ]]; then
+        suggestion="$line"
+        break
+      fi
+    done < <(ATUIN_QUERY="$1" atuin search --cmd-only --filter-mode directory --limit 10 --search-mode prefix 2>/dev/null)
+  }
 fi
