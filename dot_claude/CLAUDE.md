@@ -1,3 +1,5 @@
+Be terse unless I ask for more verbosity.
+
 # Coding Style
 
 - Don't leave extraneous trailing whitespace unless it is explicitly needed.
