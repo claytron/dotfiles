@@ -8,9 +8,6 @@ source "${ZINIT[HOME_DIR]}/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-# load all the zi plugins
-source $HOME/.zsh_plugins
-
 # set up dir hashes
 hash -d L=/var/log
 hash -d P=$HOME/work/projects
@@ -169,6 +166,11 @@ for dump in ~/.zcompdump(N.mh+24); do
 done
 
 compinit -C
+
+# load all the zi plugins here (after compinit, so completion-dependent
+# plugins load correctly, and after the manual bindkey/zle -N setup above so
+# syntax-highlighting wraps those widgets)
+source $HOME/.zsh_plugins
 
 # custom completions
 if [ -d '/usr/share/games/fortunes' ]; then
