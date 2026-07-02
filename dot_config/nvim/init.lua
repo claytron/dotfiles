@@ -1163,6 +1163,20 @@ require('lazy').setup {
       edit = { apply_on_save = 'confirm' },
     },
     config = function(_, opts)
+      -- nvim-chezmoi resolves a source file's filetype from its target via
+      -- plenary.filetype.detect (preferred over vim.filetype.match), whose
+      -- table is stale and maps .zshrc/.zshenv/etc → sh. Teach plenary the
+      -- zsh names so chezmoi source files (dot_zshrc, …) highlight as zsh.
+      require('plenary.filetype').add_table({
+        file_name = {
+          ['.zshrc'] = 'zsh',
+          ['.zshenv'] = 'zsh',
+          ['.zprofile'] = 'zsh',
+          ['.zlogin'] = 'zsh',
+          ['.zlogout'] = 'zsh',
+          ['.zsh_plugins'] = 'zsh',
+        },
+      })
       require('nvim-chezmoi').setup(opts)
     end,
   },
