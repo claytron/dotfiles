@@ -28,4 +28,6 @@ done
 
 for p in "${plugins[@]}"; do
   claude plugin install "$p"
+  # There is no update flag for install...
+  claude plugin update "$p"
 done
