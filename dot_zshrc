@@ -254,6 +254,6 @@ if checkPath atuin; then
         suggestion="$line"
         break
       fi
-    done < <(ATUIN_QUERY="$1" atuin search --cmd-only --filter-mode directory --limit 10 --search-mode prefix 2>/dev/null)
+    done < <(ATUIN_QUERY="$1" atuin search --cmd-only --filter-mode directory --limit 10 --search-mode prefix --reverse 2>/dev/null)
   }
 fi
