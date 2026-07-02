@@ -1,5 +1,7 @@
 source $HOME/.commonfuncs
 
+# Package manager                                              {{{1
+# -----------------------------------------------------------------
 # Set up zinit
 typeset -A ZINIT
 ZINIT[HOME_DIR]="${HOME}/.local/share/zinit"
@@ -8,6 +10,8 @@ source "${ZINIT[HOME_DIR]}/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
+# Aliases                                                      {{{1
+# -----------------------------------------------------------------
 # set up dir hashes
 hash -d L=/var/log
 hash -d P=$HOME/work/projects
@@ -74,13 +78,15 @@ alias -g TS='| ts -i'
 alias -g FZ='| fzf -m'
 alias -g FZF='| fzf -m'
 
+# Options                                                      {{{1
+# -----------------------------------------------------------------
 # automatically print timing statistics if the command took longer
 # than a minute
 export REPORTTIME=60
 
 setopt NO_BEEP
 # Changing Directories
-setopt AUTO_CD 
+setopt AUTO_CD
 setopt CDABLE_VARS
 setopt AUTO_PUSHD
 setopt PUSHDMINUS
@@ -104,6 +110,8 @@ zstyle ':completion:*:history-words' remove-all-dups yes
 zstyle ':completion:*:history-words' list false
 zstyle ':completion:*:history-words' menu yes
 
+# Keybinds                                                     {{{1
+# -----------------------------------------------------------------
 # use vi mode
 bindkey -v
 
@@ -149,6 +157,8 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
+# History                                                      {{{1
+# -----------------------------------------------------------------
 # set up history
 HISTSIZE=50000
 SAVEHIST=50000
@@ -159,18 +169,14 @@ export HISTFILE HISTSIZE SAVEHIST
 export TMOUT=900
 function TRAPALRM() { histappend }
 
-## Completions
+# Completions                                                  {{{1
+# -----------------------------------------------------------------
 autoload -Uz compinit
 for dump in ~/.zcompdump(N.mh+24); do
   compinit
 done
 
 compinit -C
-
-# load all the zi plugins here (after compinit, so completion-dependent
-# plugins load correctly, and after the manual bindkey/zle -N setup above so
-# syntax-highlighting wraps those widgets)
-source $HOME/.zsh_plugins
 
 # custom completions
 if [ -d '/usr/share/games/fortunes' ]; then
@@ -183,6 +189,8 @@ compdef git-achievements=git
 ## case-insensitive (all),partial-word and then substring completion
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
+# Prompt                                                       {{{1
+# -----------------------------------------------------------------
 # Use starship prompt if it's available
 if checkPath starship; then
   eval "$(starship init zsh)"
@@ -206,6 +214,15 @@ else
   source ~/.zshprompt
 fi
 
+# Plugin config                                                {{{1
+# -----------------------------------------------------------------
+# load all the zi plugins here (after compinit, so completion-dependent
+# plugins load correctly, and after the manual bindkey/zle -N setup above so
+# syntax-highlighting wraps those widgets)
+source $HOME/.zsh_plugins
+
+# Highlighting                                                 {{{2
+# -----------------------------------------------------------------
 # Set up zsh highlighters
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets cursor root)
 # set up command line syntax highlighting overrides
@@ -218,7 +235,8 @@ ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=yellow,underline'
 ZSH_HIGHLIGHT_STYLES[globbing]='fg=255,bold,bg=blue'
 ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=black,bold,bg=blue'
 
-# suggestions settings
+# Auto suggestions                                             {{{2
+# -----------------------------------------------------------------
 # commands that should never be auto-suggested, built up and joined with |
 typeset -a _git_ignore=(
   "add *"
@@ -233,8 +251,6 @@ typeset -a _autosuggest_ignore=(
 )
 ZSH_AUTOSUGGEST_HISTORY_IGNORE="(${(j:|:)_autosuggest_ignore})"
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Advanced shell history
 if checkPath atuin; then
@@ -257,3 +273,9 @@ if checkPath atuin; then
     done < <(ATUIN_QUERY="$1" atuin search --cmd-only --filter-mode directory --limit 10 --search-mode prefix --reverse 2>/dev/null)
   }
 fi
+
+# FZF                                                          {{{2
+# -----------------------------------------------------------------
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# vim: fdm=marker ts=2 sts=2 sw=2 et
