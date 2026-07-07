@@ -10,7 +10,10 @@
 {{- else }}
 	email = me@claytron.com
 {{- end }}
+
 {{- if .work }}
+#####################
+# Work specific stuff
 [gpg]
 	format = ssh
 [gpg "ssh"]
@@ -26,6 +29,8 @@
 	insteadOf = git@github.com:{{ onepasswordRead "op://Private/Work SSH/org2" .op_account }}/
 [url "git@github-work:{{ onepasswordRead "op://Private/Work SSH/org3" .op_account }}/"]
 	insteadOf = git@github.com:{{ onepasswordRead "op://Private/Work SSH/org3" .op_account }}/
+# END Work specific stuff
+#########################
 {{- end }}
 
 [color]
