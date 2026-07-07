@@ -1,10 +1,11 @@
 [core]
 	whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	excludesfile = ~/.gitignore
+
 [user]
 	name = Clayton Parker
 {{- if .work }}
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJkdHN9vvDhD4On6JIE1DgMvmfqeHVWmJOvTjkvsG92K
+	signingkey = {{ onepasswordRead .op_work_pub_key_ref .op_account_work }}
 	email = {{ onepasswordRead "op://Private/qbnhreug5xpcv6yh5avzbnmrla/Internet Details/work_email" .op_account }}
 {{- else }}
 	email = me@claytron.com
@@ -16,7 +17,17 @@
 	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 [commit]
 	gpgsign = true
+# Route work org remotes through the github-work ssh alias,
+# which pins the work 1Password key (see ~/.ssh/config).
+[url "git@github-work:{{ onepasswordRead "op://Private/Work SSH/org" .op_account }}/"]
+	insteadOf = git@github.com:{{ onepasswordRead "op://Private/Work SSH/org" .op_account }}/
+# Extra orgs
+[url "git@github-work:{{ onepasswordRead "op://Private/Work SSH/org2" .op_account }}/"]
+	insteadOf = git@github.com:{{ onepasswordRead "op://Private/Work SSH/org2" .op_account }}/
+[url "git@github-work:{{ onepasswordRead "op://Private/Work SSH/org3" .op_account }}/"]
+	insteadOf = git@github.com:{{ onepasswordRead "op://Private/Work SSH/org3" .op_account }}/
 {{- end }}
+
 [color]
 	ui = auto
 [color "branch"]

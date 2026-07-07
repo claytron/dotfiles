@@ -1,11 +1,13 @@
 {{- $work := promptBoolOnce . "work" "Is this a work machine" (eq .chezmoi.hostname "charon") -}}
-{{- $opAccount := promptStringOnce . "op_account" "1Password personal account ID (leave empty for none)" "" -}}
-{{- $opAccountWork := promptStringOnce . "op_account_work" "1Password work account ID (leave empty for none)" "" -}}
+{{- $opAccount := promptStringOnce . "op_account" "1Password personal account ID (leave empty for none)" .op_account -}}
+{{- $opAccountWork := promptStringOnce . "op_account_work" "1Password work account ID (leave empty for none)" .op_account_work -}}
+{{- $opWorkPubKeyRef := promptStringOnce . "op_work_pub_key_ref" "1Password reference to work ssh public key NO QUOTES (leave empty for none)" .op_work_pub_key_ref -}}
 
 [data]
     work = {{ $work }}
     op_account = {{ $opAccount | quote }}
     op_account_work = {{ $opAccountWork | quote }}
+    op_work_pub_key_ref = {{ $opWorkPubKeyRef | quote }}
 
 [diff]
     command = "delta"

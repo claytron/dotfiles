@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -euo pipefail
+{{- if and .work (ne .op_account_work "") }}
+
+sshdir="$HOME/.ssh"
+config="$sshdir/config"
+mkdir -p "$sshdir"
+chmod 700 "$sshdir"
+
+# Materialize the work public key from 1Password (the pin target for the alias)
+umask 077
+printf '%s\n' {{ onepasswordRead .op_work_pub_key_ref .op_account_work | quote }} > "$sshdir/work.pub"
+chmod 644 "$sshdir/work.pub"
+
+# Idempotently add the host alias that pins the work key for the work org remotes
+touch "$config"
+chmod 600 "$config"
+if ! grep -q '^Host github-work$' "$config"; then
+cat >> "$config" <<'EOF'
+
+# Pin the work 1Password key for git@github.com:<work-org>/* remotes
+# (git URL rewrite in ~/.gitconfig routes those through this alias)
+Host github-work
+	HostName github.com
+	User git
+	IdentitiesOnly yes
+	IdentityFile ~/.ssh/work.pub
+EOF
+fi
+{{- end }}
