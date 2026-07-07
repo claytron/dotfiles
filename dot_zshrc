@@ -235,6 +235,17 @@ ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=yellow,underline'
 ZSH_HIGHLIGHT_STYLES[globbing]='fg=255,bold,bg=blue'
 ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=black,bold,bg=blue'
 
+# FZF                                                          {{{2
+# -----------------------------------------------------------------
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Atuin                                                        {{{2
+# -----------------------------------------------------------------
+# NOTE: doing this after fzf to override ctrl+r history
+if checkPath atuin; then
+  eval "$(atuin init zsh --disable-up-arrow)"
+fi
+
 # Auto suggestions                                             {{{2
 # -----------------------------------------------------------------
 # commands that should never be auto-suggested, built up and joined with |
@@ -255,8 +266,6 @@ ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
 # Advanced shell history
 if checkPath atuin; then
-  eval "$(atuin init zsh --disable-up-arrow)"
-
   # atuin's autosuggest strategy queries its own DB and ignores
   # ZSH_AUTOSUGGEST_HISTORY_IGNORE. Wrap it so suggestions (but not
   # recorded history) honor the ignore pattern: pull a few candidates
@@ -274,9 +283,5 @@ if checkPath atuin; then
     done < <(ATUIN_QUERY="$1" atuin search --cmd-only --filter-mode directory --limit 10 --search-mode prefix --reverse 2>/dev/null)
   }
 fi
-
-# FZF                                                          {{{2
-# -----------------------------------------------------------------
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # vim: fdm=marker ts=2 sts=2 sw=2 et
