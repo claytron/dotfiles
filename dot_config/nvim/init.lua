@@ -244,6 +244,9 @@ vim.keymap.set('n', '/', '/\\v', { desc = 'Use very magic regex (normal)' })
 vim.keymap.set('v', '/', '/\\v', { desc = 'Use very magic regex (visual)' })
 vim.keymap.set('n', '////', ':tab helpg \\v\\c<Left><Left>', { desc = 'Search help (very magic, case-insensitive)' })
 
+-- Paste over a selection without clobbering the unnamed register
+vim.keymap.set('x', 'p', 'P', { desc = 'Paste over selection, keep yank' })
+
 -- Easy filetype switching
 vim.keymap.set('n', 'ftm', ':set ft=markdown<CR>', { desc = 'Set filetype: markdown' })
 vim.keymap.set('n', 'ftp', ':set ft=python<CR>', { desc = 'Set filetype: python' })
