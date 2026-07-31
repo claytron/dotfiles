@@ -158,6 +158,10 @@ export OP_ACCOUNT="{{.op_account_work}}"
 export OP_ACCOUNT="{{.op_account}}"
 {{- end }}
 
+{{- if and .work .op_account_work }}
+export CONTEXT_RAG_PAT={{ onepasswordRead "op://Employee/bloomerang-mcp-pat/credential" .op_account_work }}
+{{- end }}
+
 # AI Stuff
 {{- if .work }}
 # export ANTHROPIC_API_KEY={{ onepasswordRead "op://Private/Claude/neovim-work" .op_account }}
