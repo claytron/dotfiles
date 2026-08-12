@@ -13,6 +13,14 @@ brew=/opt/homebrew/bin/brew
 brew=/home/linuxbrew/.linuxbrew/bin/brew
 {{- end }}
 
+# full upgrade at most once every 30 days, tracked by a stamp file
+stamp="${XDG_CACHE_HOME:-$HOME/.cache}/chezmoi-brew-upgrade"
+mkdir -p "$(dirname "$stamp")"
+if [ ! -e "$stamp" ] || [ -n "$(find "$stamp" -mtime +30)" ]; then
+  "$brew" upgrade
+  touch "$stamp"
+fi
+
 # tpack is a cask from a third party tap, so it has to be trusted first
 # "$brew" tap tmuxpack/tpack
 "$brew" trust 1password/tap hashicorp/tap tmuxpack/tpack
