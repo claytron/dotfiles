@@ -7,6 +7,7 @@
 #   - autoCompactEnabled = false  (the remember plugin needs auto-compact off
 #     so it can save full conversation history before truncation)
 #   - verbose = true
+#   - permissions.defaultMode = "manual"  (opt out of the new "auto" default)
 #   - hooks.Notification / hooks.Stop / hooks.UserPromptSubmit
 #   - statusLine
 #
@@ -34,6 +35,8 @@ printf '%s' "$input" | jq \
   .autoCompactEnabled = false
   | .verbose = true
   | .autoUpdatesChannel = "latest"
+  | .permissions //= {}
+  | .permissions.defaultMode = "manual"
   | .statusLine = {type: "command", command: $statusline_cmd}
   | .hooks //= {}
   | .hooks.Notification = (
