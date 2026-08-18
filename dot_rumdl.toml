@@ -1,0 +1,19 @@
+[global]
+disable = [
+  # Keep lines short for better readability
+  "MD013",
+  # Show command output in documentation
+  "MD014",
+  # Keep your document organized with one main title
+  "MD025",
+  # Start Your Document with a Clear Title
+  "MD041",
+  # URLs should be formatted as links
+  "MD034",
+]
+
+# TODO: try this out.
+# [MD013]
+# line-length = 80
+# reflow = true
+# reflow-mode = "sentence-per-line"

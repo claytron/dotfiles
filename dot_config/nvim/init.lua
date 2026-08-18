@@ -1602,9 +1602,10 @@ require('lazy').setup {
         ts_ls = {},
         ruby_lsp = {},
         rubocop = {},
+        rumdl = {},
         dockerls = {},
         docker_compose_language_service = {},
-        prosemd_lsp = {},
+        -- prosemd_lsp = {}, -- markdown prose/grammar linter (inline "typographical" suggestions); re-enable to turn back on
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
@@ -1637,7 +1638,6 @@ require('lazy').setup {
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
-        'markdownlint-cli2',
         'powershell-editor-services', -- used by powershell.nvim
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
@@ -1647,7 +1647,11 @@ require('lazy').setup {
         automatic_installation = false,
         -- powershell.nvim manages the powershell_es LSP lifecycle itself
         automatic_enable = {
-          exclude = { 'powershell_es' },
+          exclude = {
+            'powershell_es',
+            -- markdown prose/grammar linter (inline "typographical" suggestions); remove from exclude to re-enable
+            -- 'prosemd_lsp',
+          },
         },
         handlers = {
           function(server_name)
@@ -1702,8 +1706,8 @@ require('lazy').setup {
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
         python = { 'isort', 'black' },
-        ['markdown'] = { 'markdownlint-cli2' },
-        ['markdown.mdx'] = { 'markdownlint-cli2' },
+        ['markdown'] = { 'rumdl' },
+        ['markdown.mdx'] = { 'rumdl' },
         terraform = { 'terraform_fmt' },
       },
     },
