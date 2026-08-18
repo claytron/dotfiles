@@ -1,0 +1,61 @@
+[ui]
+# colour215 — the accent used for the active pane border in ~/.tmux.conf
+accent = "#ffaf5f"
+pane_borders = true
+pane_gaps = true
+copy_on_select = true
+mouse_capture = true
+# tmux `bind c new-window` created windows without prompting for a name
+prompt_new_tab_name = false
+
+[ui.sound]
+enabled = false
+
+[theme]
+name = "catppuccin-latte"
+auto_switch = false
+
+[terminal]
+# tmux `bind c new-window -c "#{pane_current_path}"`
+new_cwd = "follow"
+
+[keys]
+# `set -g prefix C-a` (screen-style)
+prefix = "ctrl+a"
+
+# window -> tab
+new_tab = "prefix+c"
+previous_tab = "prefix+ctrl+p"
+next_tab = "prefix+ctrl+n"
+switch_tab = "prefix+1..9"
+close_tab = "prefix+shift+x"
+
+# session -> workspace; tmux `bind S new-session`
+new_workspace = "prefix+shift+s"
+workspace_picker = "prefix+w"
+
+# pane navigation, vi-style (as tmux-pain-control provided)
+focus_pane_left = ["prefix+h", "prefix+ctrl+h"]
+focus_pane_down = ["prefix+j", "prefix+ctrl+j"]
+focus_pane_up = ["prefix+k", "prefix+ctrl+k"]
+focus_pane_right = ["prefix+l", "prefix+ctrl+l"]
+# tmux `bind -r Enter last-pane`
+last_pane = "prefix+enter"
+
+# tmux-pain-control splits: | horizontal, - vertical
+split_vertical = ["prefix+v", "prefix+|"]
+split_horizontal = "prefix+minus"
+close_pane = "prefix+x"
+
+# tmux-power-zoom
+zoom = "prefix+z"
+resize_mode = "prefix+r"
+
+edit_scrollback = "prefix+e"
+toggle_sidebar = "prefix+b"
+detach = "prefix+q"
+reload_config = "prefix+shift+r"
+
+[advanced]
+# tmux `set -g history-limit 200000`; herdr budgets bytes, not lines
+scrollback_limit_bytes = 100000000
