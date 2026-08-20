@@ -6,6 +6,8 @@ command -v claude >/dev/null || { echo "claude not installed, skipping plugins";
 marketplaces=(
   anthropics/claude-plugins-official
   Digital-Process-Tools/claude-marketplace
+  ayghri/i-have-adhd
+  DietrichGebert/ponytail
 {{- if .work }}
 {{- else }}
   homeassistant-ai/skills
@@ -16,6 +18,8 @@ plugins=(
   remember@dpt-plugins
   claude-md-management@claude-plugins-official
   superpowers@claude-plugins-official
+  i-have-adhd@i-have-adhd
+  ponytail@ponytail
 {{- if .work }}
 {{- else }}
   home-assistant-skills@home-assistant-skills
