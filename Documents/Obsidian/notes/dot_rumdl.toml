@@ -1,0 +1,17 @@
+extends = "~/.rumdl.toml"
+
+[global]
+flavor = "obsidian"
+
+exclude = [
+  # These are generated files, ignore the issues
+  "external/*",
+  # Old stuff, no need to modify
+  "zArchive",
+]
+
+[MD007]
+indent = 4
+
+[MD010]
+spaces-per-tab = 4

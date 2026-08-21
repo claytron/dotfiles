@@ -22,6 +22,10 @@ Library/
 Library/Application Support/Rectangle/
 {{ end }}
 
+{{ if stat (joinPath .chezmoi.homeDir "Documents/Obsidian/notes") }}
+Document/Obsidian/notes/
+{{ end }}
+
 {{ if ne .chezmoi.os "linux" }}
 .Xmodmap
 .xmodmaprc
