@@ -8,9 +8,16 @@ exclude = [
   "external/*",
   # Old stuff, no need to modify
   "zArchive",
+  # AI Stuff
+  "AI Chat/*/artifacts/*",
 ]
 
+[per-file-ignores]
+# Completion checklists get flagged
+"AI Chat/*/docs/superpowers/*" = ["MD076"]
+
 [MD007]
+# Obsidian requires 4 space indents
 indent = 4
 
 [MD010]
