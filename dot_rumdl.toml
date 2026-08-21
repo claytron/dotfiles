@@ -1,7 +1,7 @@
 [global]
+cache-dir = "~/.cache/rumdl"
+
 disable = [
-  # Keep lines short for better readability
-  "MD013",
   # Show command output in documentation
   "MD014",
   # Keep your document organized with one main title
@@ -12,8 +12,9 @@ disable = [
   "MD034",
 ]
 
-# TODO: try this out.
-# [MD013]
-# line-length = 80
-# reflow = true
-# reflow-mode = "sentence-per-line"
+[MD013]
+reflow = true
+reflow-mode = "sentence-per-line"
+
+[MD004]
+style = "consistent"

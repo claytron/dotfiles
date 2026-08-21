@@ -45,7 +45,8 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/claytron/dotfiles/master/i
 
 #### Linux
 
-This will install 1password, which will need to be authenticated. Then ssh agent and cli integration turned on.
+This will install 1password, which will need to be authenticated.
+Then ssh agent and cli integration turned on.
 
 ```sh
 sh -c "$(wget -qO- https://raw.githubusercontent.com/claytron/dotfiles/master/install.sh)"
