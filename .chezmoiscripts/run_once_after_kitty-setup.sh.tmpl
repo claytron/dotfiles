@@ -2,13 +2,11 @@
 
 cd "$HOME/.config/kitty"
 
-if [ ! -d "themes" ]; then
-  git clone -b better-light git@github.com:claytron/papercolor-kitty.git themes
-fi
-
 # Choose a kitty theme that's built in
 if which kitten >/dev/null; then
-    kitten themes --reload-in=all Catppuccin-Latte
+    kitten themes --dump-theme --cache-age=0 Catppuccin-Mocha > dark-theme.auto.conf
+    kitten themes --dump-theme --cache-age=0 Catppuccin-Latte > light-theme.auto.conf
+    cp light-theme.auto.conf no-preference-theme.auto.conf
 fi
 
 if [ ! -d "icons" ]; then

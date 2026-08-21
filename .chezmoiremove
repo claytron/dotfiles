@@ -5,3 +5,5 @@
 .tmux/plugins/tpm
 .zi
 Documents/Obsidian/notes/.obsidian.vimrc
+.config/kitty/themes/
+.config/kitty/current-theme.conf

@@ -476,10 +476,8 @@ local function color_switcher(opts)
   -- Toggle light/dark theme
   if vim.o.background == 'dark' then
     vim.o.background = 'light'
-    vim.fn.system { 'kitty', '+kitten', 'themes', '--reload-in=all', 'catppuccin-latte' }
   else
     vim.o.background = 'dark'
-    vim.fn.system { 'kitty', '+kitten', 'themes', '--reload-in=all', 'catppuccin-mocha' }
   end
 
   extra_highlights()
