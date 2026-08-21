@@ -12,6 +12,10 @@ disable = [
   "MD034",
 ]
 
+[per-file-ignores]
+# Completion checklists get flagged
+"*/docs/superpowers/*" = ["MD076"]
+
 [MD013]
 line-length = 0
 reflow = true

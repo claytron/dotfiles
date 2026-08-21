@@ -1,8 +1,6 @@
-extends = "~/.rumdl.toml"
+extends = "../.rumdl.toml"
 
 [global]
-flavor = "obsidian"
-
 exclude = [
   # These are generated files, ignore the issues
   "external/*",
@@ -11,14 +9,3 @@ exclude = [
   # AI Stuff
   "AI Chat/*/artifacts/*",
 ]
-
-[per-file-ignores]
-# Completion checklists get flagged
-"AI Chat/*/docs/superpowers/*" = ["MD076"]
-
-[MD007]
-# Obsidian requires 4 space indents
-indent = 4
-
-[MD010]
-spaces-per-tab = 4

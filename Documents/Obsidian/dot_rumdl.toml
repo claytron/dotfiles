@@ -1,0 +1,11 @@
+extends = "~/.rumdl.toml"
+
+[global]
+flavor = "obsidian"
+
+[MD007]
+# Obsidian requires 4 space indents
+indent = 4
+
+[MD010]
+spaces-per-tab = 4

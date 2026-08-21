@@ -22,8 +22,8 @@ Library/
 Library/Application Support/Rectangle/
 {{ end }}
 
-{{ if stat (joinPath .chezmoi.homeDir "Documents/Obsidian/notes") }}
-Document/Obsidian/notes/
+{{ if stat (joinPath .chezmoi.homeDir "Documents/Obsidian") }}
+Document/Obsidian/
 {{ end }}
 
 {{ if ne .chezmoi.os "linux" }}
