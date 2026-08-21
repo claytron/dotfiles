@@ -1384,7 +1384,11 @@ require('lazy').setup {
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
 
       -- My old ways
-      vim.keymap.set('n', 'ff', builtin.git_files, { desc = 'Fuzzy find all files' })
+      vim.keymap.set('n', 'ff', function()
+        if not pcall(builtin.git_files) then
+          builtin.find_files()
+        end
+      end, { desc = 'Fuzzy find all files' })
       vim.keymap.set('n', 'ffa', builtin.find_files, { desc = 'Fuzzy find all files' })
       vim.keymap.set('n', 'ffb', builtin.buffers, { desc = 'Fuzzy find buffers' })
       vim.keymap.set('n', 'ffc', builtin.commands, { desc = 'Fuzzy find commands' })
