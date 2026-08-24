@@ -16,6 +16,7 @@
 -- Change Option mnemonic                                       {{{2
 -- -----------------------------------------------------------------
 --    coc             -- Switch between light and dark colors
+--    cod             -- Toggle LSP diagnostics in the current buffer
 --    coe             -- Show current :Errors
 --    cog             -- Toggle the gutter and clear signs
 --    coh             -- Clear the current search highlight
@@ -641,6 +642,9 @@ end, { silent = true })
 -- Diagnostic keymaps
 -- TODO: I think I have a simlar one, but does it work?
 vim.keymap.set('n', 'coe', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', 'cod', function()
+  vim.diagnostic.enable(not vim.diagnostic.is_enabled { bufnr = 0 }, { bufnr = 0 })
+end, { desc = 'Toggle diagnostics in the current buffer' })
 
 -- Copy search matches to register                              {{{2
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
