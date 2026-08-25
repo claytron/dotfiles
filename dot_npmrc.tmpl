@@ -1,0 +1,4 @@
+{{- if .work -}}
+//npm.pkg.github.com/:_authToken={{ onepasswordRead "op://Employee/mwc76fpgmacd57qr5vkmbxq6by/credential" .op_account_work }}
+@{{ onepasswordRead "op://Employee/mwc76fpgmacd57qr5vkmbxq6by/org" .op_account_work }}:registry={{ onepasswordRead "op://Employee/mwc76fpgmacd57qr5vkmbxq6by/host" .op_account_work }}
+{{- end }}
