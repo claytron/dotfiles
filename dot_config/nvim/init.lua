@@ -27,15 +27,13 @@
 --    conn            -- Toggles relative line numbers
 --    coq             -- Toggle the quickfix window
 --    cos             -- Toggle spell checking
---    cot             -- Change the tab name
 --    cow             -- Toggle line wrapping
---    cox             -- Toggles file drawer
+--    cox             -- Toggles file drawer (neo-tree)
 --
 -- Clean Up mnemonic                                            {{{2
 -- -----------------------------------------------------------------
 --    cuw             -- Removes trailing whitespace characters
---    cuf             -- Clean up the current file using autoformat
---    cut             -- Find things to clean up. TODO, XXX, etc.
+--    cuf             -- Format the current buffer (conform)
 --    cuv             -- Sort a buildout versions.cfg file
 --
 -- File Type mnemonic                                           {{{2
@@ -45,69 +43,107 @@
 --    ftj             -- Change current filetype to Javascript
 --    ftm             -- Change current filetype to Markdown
 --    ftp             -- Change current filetype to Python
---    ftr             -- Change current filetype to reStructuredText
+--    ftps            -- Change current filetype to PowerShell
+--    ftr             -- Change current filetype to Ruby
+--    ftrs            -- Change current filetype to reStructuredText
+--    fts             -- Change current filetype to SQL
+--    ftsh            -- Change current filetype to shell
 --    ftv             -- Change current filetype to Vim
 --    ftw             -- Change current filetype to Wiki
 --
--- TeSt mnemonic
+-- TeSt mnemonic                                                {{{2
 -- -----------------------------------------------------------------
---    tsl             -- :TestNearest
---    ts;             -- :TestFile
---    ts'             -- :TestSuite
---    tss             -- :TestLast
+--    tsl             -- Run the nearest test (neotest)
+--    ts;             -- Run the tests for the current file
 --
 -- Fuzzy Finder mnemonic                                        {{{2
 -- -----------------------------------------------------------------
---    ff              -- Fuzzy file mode
---    fft             -- Fuzzy tag mode
---    ffr             -- Fuzzy MRU mode
---    ffe             -- Fuzzy buffer mode
---    ffc             -- Fuzzy :colors mode
+--    ff              -- Fuzzy find files (git files, else all)
+--    ffa             -- Fuzzy find all files
+--    ffb             -- Fuzzy find buffers
+--    ffc             -- Fuzzy find commands
+--    ffe             -- Fuzzy find error diagnostics
+--    ffh             -- Fuzzy find help
+--    ffr             -- Fuzzy find recent files in CWD ("." to repeat)
+--    ffra            -- Fuzzy find recent files (all)
+--    ///             -- Live grep all files
 --
 -- Tell Me mnemonic                                             {{{2
 -- -----------------------------------------------------------------
---    tma             -- Starts an ack search in the CWD
---    tmf             -- Shows the current file in the NERDTree. This
---                       is the TextMate equivalent of ctrl+cmd+r
+--    tmf             -- Show the current file in the file drawer
 --    tmi             -- Toggle indent guides
---    tmy             -- Show the yankring
---    tmb             -- Shortcut for getting to NERDTree bookmarks
+--    tm0             -- Reset the highlight slots
 --    tm1             -- Set a highlight for the current word (1)
 --    tm2             -- Set a highlight for the current word (2)
 --    tm3             -- Set a highlight for the current word (3)
---    tmr             -- Show me reST preview
---    tmrk            -- Stop reST preview
---    tmm             -- Show me Markdown preview
+--    tmm             -- Show me Markdown preview (peek)
 --    tmmk            -- Stop Markdown preview
---    tmg             -- Toggle signify folds (show only vcs changes)
---    tmt             -- Show translations for the current key (rails)
---    tmte            -- Expand the current YAML key (rails)
 --
 -- Git stuff                                                    {{{2
 -- -----------------------------------------------------------------
---    tgg             -- Git status (tmg was too hard, so tg)
+--    tgg             -- Git status (neogit)
 --    //              -- Git grep (double tap to start)
---    tgd             -- Git diff
---    tgb             -- Git blame
---    tgbb            -- Show commit in browser
---    tgl             -- Git log on the current file (back 100)
---    tgll            -- Git log on the current project (back 100)
---    tgh             -- Git log search looking for + / - of term
---    tghh            -- Git log search with word in diff
+--    //i             -- Git grep, case sensitive
+--    tgb             -- Git blame (gitsigns)
+--    tgbb            -- Browse commit / repo on the web (snacks)
+--    tgl             -- Git log popup (neogit)
+--    tgll            -- Git log for the whole repo
+--    ]c / [c         -- Next / previous git hunk
+--    <leader>hs      -- Stage hunk (visual: stage selection)
+--    <leader>hr      -- Reset hunk (visual: reset selection)
+--    <leader>hS      -- Stage buffer
+--    <leader>hR      -- Reset buffer
+--    <leader>hp      -- Preview hunk
+--    <leader>hi      -- Preview hunk inline
+--    <leader>hb      -- Blame line (full)
+--    <leader>hd      -- Diff this
+--    <leader>hD      -- Diff this against ~
+--    <leader>hq      -- Send hunks to the quickfix list
+--    <leader>hQ      -- Send all hunks to the quickfix list
+--    <leader>tb      -- Toggle current line blame
+--    <leader>tw      -- Toggle word diff
+--    ih              -- Select hunk (text object)
+--    <leader>gi/gI   -- GitHub issues, open / all (snacks)
+--    <leader>gp/gP   -- GitHub pull requests, open / all
+--
+-- LSP (buffer-local when a server attaches)                    {{{2
+-- -----------------------------------------------------------------
+--    grn             -- Rename symbol
+--    gra             -- Code action (normal + visual)
+--    grr             -- Goto references
+--    gri             -- Goto implementation
+--    grd             -- Goto definition
+--    grD             -- Goto declaration
+--    grt             -- Goto type definition
+--    gO              -- Open document symbols
+--    gW              -- Open workspace symbols
+--    <leader>th      -- Toggle inlay hints
+--
+-- Diagnostics / Trouble                                        {{{2
+-- -----------------------------------------------------------------
+--    coe             -- Diagnostics to the location list
+--    <leader>xx      -- Diagnostics (Trouble)
+--    <leader>xX      -- Buffer diagnostics (Trouble)
+--    <leader>xL      -- Location list (Trouble)
+--    <leader>xQ      -- Quickfix list (Trouble)
+--    <leader>cs      -- Symbols (Trouble)
+--    <leader>cl      -- LSP definitions / references (Trouble)
 --
 -- Window Management                                            {{{2
 -- -----------------------------------------------------------------
 --    <C-W>-          -- Horizontal split
 --    <C-W>|          -- Vertical split
 --    <C-W>z          -- Zoom in on the current buffer
---    <C-W><C-E>      -- Cycle through windows
+--    <C-W>e / <C-W><C-E> -- Cycle through windows
 --    <C-H>           -- Move left to window
---    <C-J>           -- Move up to window
---    <C-K>           -- Move down to window
+--    <C-J>           -- Move down to window
+--    <C-K>           -- Move up to window
 --    <C-L>           -- Move right to window
---    <C-W><C-H>      -- Move left to next tab
---    <C-W><C-L>      -- Move right to next tab
---    <C-W><C-N>      -- Create a new tab
+--    <C-W><C-H>      -- Previous tab
+--    <C-W><C-L>      -- Next tab
+--    <C-W><C-N>      -- Next tab
+--    <C-W><C-P>      -- Previous tab
+--    <C-W><C-T>      -- Create a new tab
 --    <C-W><C-I>      -- Edit current file in a new tab
 --    <C-W><C-X>      -- Close the current tab
 --    +               -- Make the current window taller
@@ -115,24 +151,31 @@
 --
 -- Other random stuff                                           {{{2
 -- -----------------------------------------------------------------
---    ]q              -- Previous quickfix change
 --    [q              -- Next quickfix change
---    ]w              -- Previous location list change
+--    ]q              -- Previous quickfix change
 --    [w              -- Next location list change
---    tt              -- Opens up the taglist
+--    ]w              -- Previous location list change
 --    Y               -- Yank to the end of the line, no newline
 --    YY              -- Yank the current line, no newline
 --    funi            -- Find the next non-ascii character (funny)
 --    jj              -- Alternative to <ESC>
 --    jk              -- Alternative to <ESC>
+--    j / k           -- Move by visual line (down / up)
+--    E               -- End of previous word
+--    x-mode p        -- Paste over selection, keep the yank
 --    <leader>Enter   -- Split line at current cursor in normal mode
---    <F2>            -- Toggle smart indent on paste
+--    <leader>o       -- Toggle outline
+--    <leader>.       -- Toggle scratch buffer (snacks)
+--    <leader>S       -- Select scratch buffer
+--    <leader>.f      -- Toggle scratch buffer with a filetype
+--    <leader>lt      -- Toggle PowerShell terminal
+--    <leader>le      -- Evaluate PowerShell line / selection
 --
 -- Command line mappings                                        {{{2
 -- -----------------------------------------------------------------
 --
 --    <C-a>           -- Beginning of the line
---    <C-c>           -- End of the line
+--    <C-e>           -- End of the line
 --
 -- Custom Commands                                              {{{2
 -- -----------------------------------------------------------------
@@ -141,10 +184,16 @@
 --
 --    MarkdownToHTML  -- Converts the current buffer into HTML and
 --                       places it in a scratch buffer.
---    MarkdownToHTMLCopy -- Same as previous, but copies to clipboard
+--    MarkdownToHTMLReplace -- Replace buffer with the HTML version
+--    MarkdownToHTMLCopy -- Same as HTML, but copies to clipboard
+--    MarkdownFromHTML -- Convert HTML into Markdown (pandoc)
 --    Shell           -- Runs a shell command and places it in the
 --                       scratch buffer
---    TidyXML         -- Runs tidy in XML mode on the current buffer
+--    ColorSwitcher   -- Toggle light/dark, or switch to a colorscheme
+--    ToggleGutterSigns -- Toggle the sign column
+--    CopyMatches     -- Copy last-search matches to a register
+--    GlobalToBuffer  -- Send last :global results to a new buffer
+--    Vbuffer         -- Open a buffer number in a vertical split
 --    TabStyle        -- Set the tab style and number, :TabStyle space 4
 --    W               -- Save the following file using sudo to avoid
 --                       the [readonly] flag.
@@ -177,8 +226,8 @@ vim.o.timeoutlen = 350
 vim.o.nrformats = ''
 
 -- set up jk as mode switch
-vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true })
-vim.keymap.set('i', 'jk', '<Esc>', { noremap = true, silent = true })
+vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true, desc = 'Escape insert mode' })
+vim.keymap.set('i', 'jk', '<Esc>', { noremap = true, silent = true, desc = 'Escape insert mode' })
 
 -- :terminal settings
 vim.g.terminal_scrollback_buffer_size = 100000
@@ -303,7 +352,7 @@ vim.opt.wildignore:append {
 }
 
 -- toggle spell checking
-vim.keymap.set('n', 'cos', ':set spell!<CR>', { silent = true })
+vim.keymap.set('n', 'cos', ':set spell!<CR>', { silent = true, desc = 'Toggle spell check' })
 -- set spell language to English and enable spell checking
 vim.o.spelllang = 'en'
 vim.o.spell = true
@@ -337,9 +386,9 @@ vim.o.cursorline = true
 -- turn on line numbers, aww yeah
 vim.o.number = true
 -- shortcut to turn off line numbers
-vim.keymap.set('n', 'con', ':set number!<CR>', { silent = true })
+vim.keymap.set('n', 'con', ':set number!<CR>', { silent = true, desc = 'Toggle line numbers' })
 -- toggle relative number
-vim.keymap.set('n', 'conn', ':set relativenumber!<CR>', { silent = true })
+vim.keymap.set('n', 'conn', ':set relativenumber!<CR>', { silent = true, desc = 'Toggle relative line numbers' })
 
 -- don't redraw during macros
 vim.o.lazyredraw = true
@@ -351,7 +400,7 @@ vim.o.linebreak = true
 vim.o.sidescroll = 5
 
 -- toggle line wrapping on/off
-vim.keymap.set('n', 'cow', ':set wrap!<CR>', { silent = true })
+vim.keymap.set('n', 'cow', ':set wrap!<CR>', { silent = true, desc = 'Toggle line wrapping' })
 
 vim.api.nvim_create_augroup('PreservingFilePosition', { clear = true })
 -- When editing a file, always jump to the last known cursor position.
@@ -406,14 +455,14 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 -- a toggle for search highlight
-vim.keymap.set('', 'coH', ':set hlsearch!<CR>', { silent = true })
+vim.keymap.set('', 'coH', ':set hlsearch!<CR>', { silent = true, desc = 'Toggle search highlight' })
 
 -- Shortcut to clear out the search pattern (and thus turn off the highlighting)
 -- Adapted from http://stackoverflow.com/questions/657447/vim-clear-last-search-highlighting
-vim.keymap.set('', 'coh', ':let @/ = ""<CR>', { silent = true })
+vim.keymap.set('', 'coh', ':let @/ = ""<CR>', { silent = true, desc = 'Clear search highlight' })
 
 -- Find any non-ascii character
-vim.keymap.set('', 'funi', '/[^ -~]<CR>', { silent = true })
+vim.keymap.set('', 'funi', '/[^ -~]<CR>', { silent = true, desc = 'Find next non-ascii char' })
 
 -- Colors and Syntax                                            {{{1
 --------------------------------------------------------------------
@@ -634,10 +683,10 @@ end
 
 vim.keymap.set('n', 'coq', function()
   toggle_list('Quickfix List', 'c')
-end, { silent = true })
+end, { silent = true, desc = 'Toggle quickfix window' })
 vim.keymap.set('n', 'col', function()
   toggle_list('Location List', 'l')
-end, { silent = true })
+end, { silent = true, desc = 'Toggle location list' })
 
 -- Diagnostic keymaps
 -- TODO: I think I have a simlar one, but does it work?
@@ -726,7 +775,7 @@ function _G.IndentGuides()
   end
 end
 
-vim.keymap.set('n', 'tmi', '<cmd>lua IndentGuides()<CR>', { silent = true })
+vim.keymap.set('n', 'tmi', '<cmd>lua IndentGuides()<CR>', { silent = true, desc = 'Toggle indent guides' })
 
 -- Save a file with sudo when it is [readonly]                  {{{2
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1036,31 +1085,31 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
 
 -- Make cursor move by visual lines instead of file lines (when wrapping)
 -- This makes me feel more at home :)
-vim.keymap.set('n', '<up>', 'gk')
-vim.keymap.set('n', 'k', 'gk')
-vim.keymap.set('i', '<up>', '<C-o>gk')
-vim.keymap.set('n', '<down>', 'gj')
-vim.keymap.set('n', 'j', 'gj')
-vim.keymap.set('i', '<down>', '<C-o>gj')
-vim.keymap.set('n', 'E', 'ge')
+vim.keymap.set('n', '<up>', 'gk', { desc = 'Up by visual line' })
+vim.keymap.set('n', 'k', 'gk', { desc = 'Up by visual line' })
+vim.keymap.set('i', '<up>', '<C-o>gk', { desc = 'Up by visual line' })
+vim.keymap.set('n', '<down>', 'gj', { desc = 'Down by visual line' })
+vim.keymap.set('n', 'j', 'gj', { desc = 'Down by visual line' })
+vim.keymap.set('i', '<down>', '<C-o>gj', { desc = 'Down by visual line' })
+vim.keymap.set('n', 'E', 'ge', { desc = 'End of previous word' })
 
 -- window resizing
 if vim.fn.bufwinnr(1) ~= -1 then
-  vim.keymap.set('n', '+', '<C-W>+')
-  vim.keymap.set('n', '-', '<C-W>-')
+  vim.keymap.set('n', '+', '<C-W>+', { desc = 'Grow window taller' })
+  vim.keymap.set('n', '-', '<C-W>-', { desc = 'Shrink window shorter' })
 end
 
 -- open a new line from the current spot (sort of the opposite of J)
-vim.keymap.set('', '<leader><CR>', 'i<CR><ESC>')
+vim.keymap.set('', '<leader><CR>', 'i<CR><ESC>', { desc = 'Split line at cursor' })
 
 -- Yank from the cursor to the end of the line, to be consistent with C and D.
-vim.keymap.set('n', 'Y', 'yg_')
+vim.keymap.set('n', 'Y', 'yg_', { desc = 'Yank to end of line' })
 
 -- Yank an entire line without the line ending and leading space
-vim.keymap.set('n', 'YY', '^yg_')
+vim.keymap.set('n', 'YY', '^yg_', { desc = 'Yank line, no newline' })
 
 -- sort versions in a versions.cfg
-vim.keymap.set('', 'cuv', [[/\[versions\]<CR>jVG:g/^#/d<CR>gv:g/^$/d<CR>gv:sort i<CR>:w<CR>]])
+vim.keymap.set('', 'cuv', [[/\[versions\]<CR>jVG:g/^#/d<CR>gv:g/^$/d<CR>gv:sort i<CR>:w<CR>]], { desc = 'Sort versions.cfg' })
 
 -- Set the fill characters so they aren't annoying
 vim.opt.fillchars = { vert = '┃', diff = '·', fold = '·' }
@@ -1079,7 +1128,7 @@ vim.opt.listchars = {
 vim.opt.list = true
 
 -- toggle invisible characters
-vim.keymap.set('n', 'coi', ':set list!<CR>', { silent = true })
+vim.keymap.set('n', 'coi', ':set list!<CR>', { silent = true, desc = 'Toggle invisible chars' })
 
 -- Window management settings                                   {{{1
 -- -----------------------------------------------------------------
@@ -1097,30 +1146,30 @@ vim.keymap.set('n', '<C-W><C-N>', ':tabnext<CR>', { silent = true, desc = 'Move 
 vim.keymap.set('n', '<C-W><C-P>', ':tabprevious<CR>', { silent = true, desc = 'Move focus to previous tab' })
 
 -- Create a new tab
-vim.keymap.set('n', '<C-W><C-T>', ':tabnew<CR>', { silent = true })
+vim.keymap.set('n', '<C-W><C-T>', ':tabnew<CR>', { silent = true, desc = 'New tab' })
 
 -- Edit current buffer in a tab (think tmux zoom)
-vim.keymap.set('n', '<C-W><C-I>', ':tabedit %<CR>', { silent = true })
+vim.keymap.set('n', '<C-W><C-I>', ':tabedit %<CR>', { silent = true, desc = 'Edit current file in new tab' })
 
 -- Close the current tab
-vim.keymap.set('n', '<C-W><C-X>', ':tabclose<CR>', { silent = true })
+vim.keymap.set('n', '<C-W><C-X>', ':tabclose<CR>', { silent = true, desc = 'Close tab' })
 
 -- cycle windows
-vim.keymap.set('n', '<C-W>e', '<C-W>W')
-vim.keymap.set('n', '<C-W><C-E>', '<C-W>W')
+vim.keymap.set('n', '<C-W>e', '<C-W>W', { desc = 'Cycle windows' })
+vim.keymap.set('n', '<C-W><C-E>', '<C-W>W', { desc = 'Cycle windows' })
 
 -- Window splits like I have mapped in tmux (- horizontal, | vertical)
-vim.keymap.set('n', '<C-W>-', '<C-W>s')
-vim.keymap.set('n', '<C-W>|', '<C-W>v')
+vim.keymap.set('n', '<C-W>-', '<C-W>s', { desc = 'Horizontal split' })
+vim.keymap.set('n', '<C-W>|', '<C-W>v', { desc = 'Vertical split' })
 
 -- Zoom like in tmux too
-vim.keymap.set('n', '<C-W>z', '<C-W>o')
+vim.keymap.set('n', '<C-W>z', '<C-W>o', { desc = 'Zoom current window' })
 
 -- Deal with neovim terminals and window movement
-vim.keymap.set('t', '<C-h>', [[<C-\><C-n><C-h>]])
-vim.keymap.set('t', '<C-j>', [[<C-\><C-n><C-j>]])
-vim.keymap.set('t', '<C-k>', [[<C-\><C-n><C-k>]])
-vim.keymap.set('t', '<C-l>', [[<C-\><C-n><C-l>]])
+vim.keymap.set('t', '<C-h>', [[<C-\><C-n><C-h>]], { desc = 'Move focus to the left window' })
+vim.keymap.set('t', '<C-j>', [[<C-\><C-n><C-j>]], { desc = 'Move focus to the lower window' })
+vim.keymap.set('t', '<C-k>', [[<C-\><C-n><C-k>]], { desc = 'Move focus to the upper window' })
+vim.keymap.set('t', '<C-l>', [[<C-\><C-n><C-l>]], { desc = 'Move focus to the right window' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -1201,7 +1250,7 @@ require('lazy').setup {
     },
     config = function()
       require('gitsigns').setup {
-        vim.keymap.set('n', 'tgb', require('gitsigns').blame),
+        vim.keymap.set('n', 'tgb', require('gitsigns').blame, { desc = 'Git blame' }),
         on_attach = function(bufnr)
           local gitsigns = require 'gitsigns'
 
@@ -1274,6 +1323,9 @@ require('lazy').setup {
   --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   {
     'folke/which-key.nvim',
+    dependencies = {
+      'nvim-mini/mini.icons',
+    },
     event = 'VimEnter',
     opts = {
       delay = 400,
@@ -1319,6 +1371,37 @@ require('lazy').setup {
         { '<leader>s', group = '[S]earch' },
         { '<leader>t', group = '[T]oggle' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+        -- Filetype switching icons
+        { 'ft', group = 'Set Filetype'},
+        { 'ftc', icon = { name = 'css', cat = 'filetype' } },
+        { 'fth', icon = { name = 'html', cat = 'filetype' } },
+        { 'ftj', icon = { name = 'javascript', cat = 'filetype' } },
+        { 'ftm', icon = { name = 'markdown', cat = 'filetype' } },
+        { 'ftv', icon = { name = 'vim', cat = 'filetype' } },
+        { 'ftp', icon = { name = 'python', cat = 'filetype' } },
+        { 'ftr', icon = { name = 'ruby', cat = 'filetype' } },
+        { 'fts', icon = { name = 'sql', cat = 'filetype' } },
+        -- Tell me
+        { 'tmm', icon = { name = 'markdown', cat = 'filetype' } },
+        -- Other mnemonic namespaces
+        { 'co', group = 'Change option' },
+        { 'cu', group = 'Clean Up' },
+        { 'ff', group = 'Fuzzy Find' },
+        { 'tm', group = 'Tell Me' },
+        { 'tg', group = 'Git' },
+        { 'ts', group = 'Test' },
+        -- Remaining leader prefixes
+        { '<leader>x', group = 'Trouble' },
+        { '<leader>c', group = 'Code' },
+        { '<leader>g', group = 'GitHub' },
+        { '<leader>l', group = 'PowerShell' },
+      },
+
+      -- Add some of my custom keymap keys to trigger
+      triggers = {
+        { "<auto>", mode = "nixsotc" },
+        { "f", mode = { "n", "v" } },
+        { "t", mode = { "n", "v" } },
       },
     },
   },
@@ -1398,8 +1481,8 @@ require('lazy').setup {
       vim.keymap.set('n', 'ffh', builtin.help_tags, { desc = 'Fuzzy find help' })
       vim.keymap.set('n', 'ffr', function()
         builtin.oldfiles { only_cwd = true }
-      end, { desc = 'Fuzzy find Recent Files in CWD ("." for repeat)' })
-      vim.keymap.set('n', 'ffra', builtin.oldfiles, { desc = 'Fuzzy find Recent Files' })
+      end, { desc = 'Fuzzy find Recent Files in CWD' })
+      vim.keymap.set('n', 'ffra', builtin.oldfiles, { desc = 'Fuzzy find recent files from anywhere' })
       vim.keymap.set('n', '///', builtin.live_grep, { desc = 'Search all files' })
 
       -- Slightly advanced example of overriding default behavior and theme
