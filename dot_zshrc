@@ -259,7 +259,8 @@ typeset -a _git_ignore=(
 typeset -a _autosuggest_ignore=(
   "(g|git) (${(j:|:)_git_ignore})"
   "(ls|lsa) *"
-  "(cp|mv) *"
+  "(cp|mv|rm) *"
+  "beet import *"
 )
 ZSH_AUTOSUGGEST_HISTORY_IGNORE="(${(j:|:)_autosuggest_ignore})"
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
