@@ -7,3 +7,6 @@
 Documents/Obsidian/notes/.obsidian.vimrc
 .config/kitty/themes/
 .config/kitty/current-theme.conf
+.tmux/tmuxline.tmux
+.tmux/warning.tmux
+.tmux/tmuxline_window.tmux
