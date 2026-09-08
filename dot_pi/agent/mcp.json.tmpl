@@ -1,5 +1,7 @@
 {
   "mcpServers": {
+{{ if .work -}}
+{{ else }}
     "AbletonMCP": {
       "command": "uvx",
       "args": [
@@ -35,5 +37,6 @@
         "stdio"
       ]
     }
+{{ end -}}
   }
 }

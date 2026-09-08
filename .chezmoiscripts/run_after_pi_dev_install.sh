@@ -7,5 +7,9 @@ fi
 
 # Install plugins
 pi install npm:pi-mcp-adapter
+
+# TODO: pick one or the other here
 pi install npm:pi-setup-custom-providers
+pi install npm:pi-omlx-picker
+
 pi install git:github.com/otahontas/pi-coding-agent-catppuccin
