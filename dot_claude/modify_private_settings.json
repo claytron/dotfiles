@@ -35,6 +35,7 @@ printf '%s' "$input" | jq \
     --arg statusline_cmd "$STATUSLINE_CMD" '
   .autoCompactEnabled = false
   | .verbose = true
+  | .theme = "auto"
   | .autoUpdatesChannel = "latest"
   | .cleanupPeriodDays = 99999
   | .permissions //= {}
