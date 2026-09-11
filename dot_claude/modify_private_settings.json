@@ -9,7 +9,7 @@
 #   - verbose = true
 #   - cleanupPeriodDays = 99999  (keep chat transcripts effectively forever)
 #   - permissions.defaultMode = "manual"  (opt out of the new "auto" default)
-#   - hooks.Notification / hooks.Stop / hooks.UserPromptSubmit
+#   - hooks.UserPromptSubmit
 #   - statusLine
 #
 # All operations are idempotent: existing entries for our scripts are stripped
@@ -20,17 +20,13 @@ set -euo pipefail
 input=$(cat)
 [ -z "$input" ] && input='{}'
 
-NOTIFY_CMD="~/.claude/hooks/notify.sh"
 PROMPT_CMD="~/.claude/hooks/remember-user-prompt.sh"
 STATUSLINE_CMD="~/.claude/statusline.sh"
 
-NOTIFY_BLOCK='{"hooks":[{"type":"command","command":"'"$NOTIFY_CMD"'","timeout":5}]}'
 PROMPT_BLOCK='{"hooks":[{"type":"command","command":"'"$PROMPT_CMD"'","timeout":5}]}'
 
 printf '%s' "$input" | jq \
-    --argjson notify_block "$NOTIFY_BLOCK" \
     --argjson prompt_block "$PROMPT_BLOCK" \
-    --arg notify_cmd "$NOTIFY_CMD" \
     --arg prompt_cmd "$PROMPT_CMD" \
     --arg statusline_cmd "$STATUSLINE_CMD" '
   .autoCompactEnabled = false
@@ -42,18 +38,7 @@ printf '%s' "$input" | jq \
   | .permissions.defaultMode = "manual"
   | .statusLine = {type: "command", command: $statusline_cmd}
   | .hooks //= {}
-  | .hooks.Notification = (
-      ((.hooks.Notification // [])
-        | map(.hooks |= map(select(.command != $notify_cmd)))
-        | map(select((.hooks // []) | length > 0)))
-      + [$notify_block]
-    )
-  | .hooks.Stop = (
-      ((.hooks.Stop // [])
-        | map(.hooks |= map(select(.command != $notify_cmd)))
-        | map(select((.hooks // []) | length > 0)))
-      + [$notify_block]
-    )
+  | del(.hooks.Notification, .hooks.Stop)
   | .hooks.UserPromptSubmit = (
       ((.hooks.UserPromptSubmit // [])
         | map(.hooks |= map(select(.command != $prompt_cmd)))
