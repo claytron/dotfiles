@@ -7,6 +7,7 @@
 #   - autoCompactEnabled = false  (the remember plugin needs auto-compact off
 #     so it can save full conversation history before truncation)
 #   - verbose = true
+#   - tui = default so that we don't get accidental mouse clicks choosing things
 #   - cleanupPeriodDays = 99999  (keep chat transcripts effectively forever)
 #   - permissions.defaultMode = "manual"  (opt out of the new "auto" default)
 #   - hooks.UserPromptSubmit
@@ -32,6 +33,7 @@ printf '%s' "$input" | jq \
   .autoCompactEnabled = false
   | .verbose = true
   | .theme = "auto"
+  | .tui = "default"
   | .autoUpdatesChannel = "latest"
   | .cleanupPeriodDays = 99999
   | .permissions //= {}
