@@ -2,6 +2,14 @@ extends = "~/.rumdl.toml"
 
 [global]
 flavor = "obsidian"
+extend-disable = [
+  # Having a full blank line in obsidian at the end is annoying
+  "MD047",
+]
+
+[per-file-ignores]
+# HTML was necessary in here for now
+"art/Modular Beginnings.md" = ["MD033"]
 
 [MD007]
 # Obsidian requires 4 space indents
