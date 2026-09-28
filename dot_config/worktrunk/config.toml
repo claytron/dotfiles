@@ -1,0 +1,2 @@
+# Bare repository cloned to `~/code/myproject/.git` (`~/code/myproject/feature-auth`):
+worktree-path = "{{ repo_path }}/../{{ branch | sanitize }}"

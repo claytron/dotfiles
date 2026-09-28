@@ -60,4 +60,8 @@ else
     PS1="$PR_IMPOSTER\n\d \A | \w\n\h\$ "
 fi
 
+if checkPath wt; then
+  eval "$(command wt config shell init bash)"
+fi
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

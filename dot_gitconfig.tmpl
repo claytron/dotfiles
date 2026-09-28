@@ -103,6 +103,10 @@
 	cob = checkout -b
 	com = !git checkout $(git br-main)
 	cod = !git checkout $(git br-dev)
+	# worktrees
+	w = worktree
+	wa = !git w add
+	wl = !git w list
 	# Put things back to the way they were
 	r = reset
 	rh = reset --hard
