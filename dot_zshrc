@@ -239,6 +239,12 @@ ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=black,bold,bg=blue'
 # -----------------------------------------------------------------
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# teamocil                                                     {{{2
+# -----------------------------------------------------------------
+if [ -d "$HOME/.teamocil" ]; then
+  compctl -g '~/.teamocil/*(:t:r)' teamocil
+fi
+
 # Worktrunk                                                    {{{2
 # -----------------------------------------------------------------
 if command -v wt >/dev/null 2>&1; then
