@@ -9,7 +9,8 @@
 }
 
 /* to hide the sidebar header */
-#sidebar-header {
+#sidebar-header,
+*|*#sidebar-panel-header {
     visibility: collapse;
 }
 
