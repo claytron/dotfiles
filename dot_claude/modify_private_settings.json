@@ -40,7 +40,12 @@ printf '%s' "$input" | jq \
   | .permissions.defaultMode = "manual"
   | .statusLine = {type: "command", command: $statusline_cmd}
   | .hooks //= {}
-  | del(.hooks.Notification, .hooks.Stop)
+  | reduce ("Notification", "Stop") as $ev (.;
+      if .hooks[$ev] then
+        .hooks[$ev] |= (map(.hooks |= map(select(.command != "~/.claude/hooks/notify.sh")))
+          | map(select((.hooks // []) | length > 0)))
+        | if .hooks[$ev] == [] then del(.hooks[$ev]) else . end
+      else . end)
   | .hooks.UserPromptSubmit = (
       ((.hooks.UserPromptSubmit // [])
         | map(.hooks |= map(select(.command != $prompt_cmd)))
