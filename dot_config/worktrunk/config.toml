@@ -1,2 +1,7 @@
 # create worktrees inside the repo
 worktree-path = "{{ repo_path }}/.worktrees/{{ branch | sanitize }}"
+
+[aliases]
+l = "wt list --progressive {{ args }}"
+s = "wt switch {{ args }}"
+c = "wt switch --create {{ args }}"
