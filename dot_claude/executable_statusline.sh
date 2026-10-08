@@ -38,6 +38,10 @@ if [ -n "$pct_raw" ]; then
     printf '%s' "$pct" > "${TMPDIR:-/tmp}/claude-ctx-pct" 2>/dev/null || true
 fi
 
+# Raw window size, dumped for headless inspection: `cat $TMPDIR/claude-ctx-size`
+# tells you the % denominator (200000 vs 1000000) that isn't in the injected %.
+[ -n "$max_tok" ] && printf '%s' "$max_tok" > "${TMPDIR:-/tmp}/claude-ctx-size" 2>/dev/null || true
+
 # --- styling ---------------------------------------------------------------
 esc=$'\033'
 reset="${esc}[0m"
@@ -136,8 +140,8 @@ if [ -n "$pct" ]; then
         i=$((i + 1))
     done
     ctx="$(fg "$ctx_color")${bar} ${pct}%"
-    if [ -n "$used_tok" ] && [ -n "$max_tok" ]; then
-        ctx="${ctx} $(fg "$col_sep")($(fg "$ctx_color")$(kfmt "$used_tok")/$(kfmt "$max_tok")$(fg "$col_sep"))"
+    if [ -n "$max_tok" ]; then
+        ctx="${ctx} $(fg "$col_sep")($(fg "$ctx_color")$(kfmt "${used_tok:-0}")/$(kfmt "$max_tok")$(fg "$col_sep"))"
     fi
     line1+=("${ctx}${reset}")
 fi
