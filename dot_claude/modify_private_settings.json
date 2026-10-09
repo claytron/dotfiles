@@ -37,7 +37,7 @@ printf '%s' "$input" | jq \
   | .autoUpdatesChannel = "latest"
   | .cleanupPeriodDays = 99999
   | .permissions //= {}
-  | .permissions.defaultMode = "manual"
+  | .permissions.defaultMode = "auto"
   | .statusLine = {type: "command", command: $statusline_cmd}
   | .hooks //= {}
   | reduce ("Notification", "Stop") as $ev (.;

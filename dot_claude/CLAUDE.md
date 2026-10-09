@@ -17,3 +17,9 @@ Be terse unless I ask for more verbosity.
 - Prefer `rg` (ripgrep) over `grep -r` / `grep -l` for filesystem searches — faster and respects .gitignore.
   Reserve plain `grep` for single-file matches or piping.
 - When creating worktrees, use the worktrunk command (`wt`) and follow its config (either global or in the current project)
+
+# Git
+
+- SSH keys are served by the 1Password agent.
+  If git over SSH fails with `agent refused operation`, 1Password is locked or the approval prompt timed out: ask me to unlock it and retry.
+  Don't switch to HTTPS or add credential helpers.
