@@ -2236,6 +2236,7 @@ require('lazy').setup {
     ---@module "neo-tree"
     ---@type neotree.Config?
     opts = {
+      sort_case_insensitive = true,
       filesystem = {
         follow_current_file = {
           enabled = true,
