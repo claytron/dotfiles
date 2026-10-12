@@ -9,6 +9,9 @@ set -g status-style "fg=#cad3f5,bg=#24273a"
 set -g message-style "fg=#cad3f5,bg=#363a4f"
 set -g pane-active-border-style "fg=#f5a97f,bold"
 set -g pane-border-style "fg=#363a4f"
+set -g mode-style "fg=#cad3f5,bg=#494d64"
+set -g tree-mode-border-style "fg=#8087a2,bg=#24273a"
+set -g tree-mode-preview-style "fg=#{?#{||:#{&&:#{pane_format},#{pane_active}},#{&&:#{window_format},#{window_active}}},#ed8796,#8aadf4},bg=#363a4f"
 
 # agenmux matches the OS (unlike the bar): dark OS -> dark sidebar. Applies on
 # the sidebar's next open; reload also refreshes its key hints.
