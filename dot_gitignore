@@ -48,3 +48,7 @@ CLAUDE.md
 # Worktrunk config per project
 .config/wt.toml
 .worktrees/
+
+# MemPalace per-project files (issue #185)
+mempalace.yaml
+/entities.json
