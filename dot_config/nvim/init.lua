@@ -2590,6 +2590,15 @@ require('lazy').setup {
       },
     },
   },
+
+  -- Hapax LSP                                                  {{{2
+  --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  {
+    "claytron/hapax-lsp",
+    config = function()
+      vim.lsp.enable("hapax")
+    end
+  },
 }
 
 -- vim: fdm=marker ts=2 sts=2 sw=2 et
