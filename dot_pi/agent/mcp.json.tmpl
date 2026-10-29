@@ -1,7 +1,8 @@
 {
   "mcpServers": {
-{{ if .work -}}
-{{ else }}
+    "mempalace": {
+      "command": "mempalace-mcp"
+    }{{ if not .work }},
     "AbletonMCP": {
       "command": "uvx",
       "args": [

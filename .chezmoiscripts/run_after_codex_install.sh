@@ -5,3 +5,7 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # Non-interactive skips the "Start Codex now?" prompt
 curl -fsSL https://chatgpt.com/codex/install.sh | CODEX_NON_INTERACTIVE=1 sh
+
+codex plugin marketplace add MemPalace/mempalace
+codex plugin marketplace upgrade mempalace
+codex plugin add mempalace@mempalace
