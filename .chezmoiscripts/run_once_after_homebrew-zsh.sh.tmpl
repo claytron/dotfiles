@@ -1,0 +1,10 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+zsh="$({{ if eq .chezmoi.arch "arm64" }}/opt/homebrew/bin/brew{{ else }}/usr/local/bin/brew{{ end }} --prefix)/bin/zsh"
+[ -x "$zsh" ] || { echo "$zsh not installed" >&2; exit 1; }
+
+grep -qxF "$zsh" /etc/shells || echo "$zsh" | sudo tee -a /etc/shells >/dev/null
+[ "$(dscl . -read ~ UserShell | awk '{print $2}')" = "$zsh" ] || sudo chsh -s "$zsh" "$USER"
+{{- end }}
