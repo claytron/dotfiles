@@ -1,2 +1,8 @@
 [theme]
 base = "light"
+
+[display]
+show_all_panes = false
+mode = "popup"
+popup_height = "auto"
+agent_label = "icon-text"
