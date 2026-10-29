@@ -6,3 +6,5 @@ show_all_panes = false
 mode = "popup"
 popup_height = "auto"
 agent_label = "icon-text"
+show_frame = false
+popup_width = 100
