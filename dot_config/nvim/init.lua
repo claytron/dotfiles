@@ -1209,6 +1209,8 @@ require('lazy').setup {
   --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   {
     'andre-kotake/nvim-chezmoi',
+    -- Version 2.x had a pop-up that did not work for me, so pinning for now
+    version = "1.*",
     dependencies = {
       { 'nvim-lua/plenary.nvim' },
       { 'nvim-telescope/telescope.nvim' },
