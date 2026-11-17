@@ -2,6 +2,8 @@
 
 ## Random things
 
+### Firefox Chrome CSS
+
 Put css in place in userChrome in the Firefox profile.
 
 - Set the `toolkit.legacyUserProfileCustomizations.stylesheets` to true in `about:config`
@@ -10,6 +12,16 @@ Put css in place in userChrome in the Firefox profile.
 - Symlink `userChrome.css` into `chrome/.`
 
 Hard to automate because of randomized profile name.
+
+### Tridactyl Native
+
+To load the tridactyl rc file, open Firefox and run:
+
+```vim
+:nativeinstaller
+```
+
+Then run what that copied to your clipboard in a terminal.
 
 ## Apps
 

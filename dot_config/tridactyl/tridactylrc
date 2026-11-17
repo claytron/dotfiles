@@ -1,0 +1,7 @@
+" Using this file requires the :nativeinstall, run this to get the install command
+
+" Turn off mode indicator
+set modeindicator false
+
+" Don't use tridactyl on this pages
+blacklistadd read.readwise.io
